@@ -43,7 +43,12 @@ class Installer
             print_r('Файл конфигурации найден, пропускаем настройку'."\n");
             return;
         }
-        copy($configPath, $configTargetPath);
+        if($mode === 'local') {
+            symlink($configPath, $configTargetPath);
+        }
+        else {
+            copy($configPath, $configTargetPath);
+        }
 
         // нужно прописать в модули
         $modulesTargetPath = $configDir.'modules.yaml';
@@ -64,9 +69,14 @@ class Installer
         $scriptsPath = $path.'/src/Sites/bin/';
         $binDir = './bin/';
 
-        copy($scriptsPath.'sites-migrate.sh', $binDir.'sites-migrate.sh');
-        copy($scriptsPath.'sites-models-generate.sh', $binDir.'sites-models-generate.sh');
-
+        if($mode === 'local') {
+            symlink($scriptsPath.'sites-migrate.sh', $binDir.'sites-migrate.sh');
+            symlink($scriptsPath.'sites-models-generate.sh', $binDir.'sites-models-generate.sh');
+        }
+        else {
+            copy($scriptsPath.'sites-migrate.sh', $binDir.'sites-migrate.sh');
+            copy($scriptsPath.'sites-models-generate.sh', $binDir.'sites-models-generate.sh');
+        }
         print_r('Установка завершена'."\n");
 
     }

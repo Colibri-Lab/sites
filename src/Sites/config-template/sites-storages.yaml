@@ -1,0 +1,152 @@
+---
+pages:
+  access-point: sites
+  module: Sites
+  models:
+    row: Models\Page
+    table: Models\Pages
+  desc: Публикации
+  fields:
+    parent: 
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Page
+      desc: Отцовская страница
+      required: true
+      readonly: false
+    name: 
+      type: varchar
+      length: 255
+      class: string
+      desc: Наименование раздела
+      note: Введите наименование страницы, наименование будет использовано в URL
+      required: true
+      readonly: false
+    description: 
+      type: varchar
+      length: 255
+      class: string
+      desc: Описание страницы
+      note: Введите описание сайта
+      required: true
+      readonly: false
+    published: 
+      type: tinyint
+      length: 1
+      class: bool
+      desc: Опубликована
+      note: Выберите «Да» если хотите опубликовать сайт
+      component: Radio
+      required: true
+      readonly: false
+      values:
+        - value: 0
+          title: Нет
+        - value: 1
+          title: Да
+    meta:
+      type: json
+      class: ObjectField
+      desc: Мета данные
+      component: Object
+      fields:
+        title:
+          type: varchar
+          length: 512
+          class: string
+          component: Text
+          description: Заголовок страницы
+          note: Введите заголовок страницы
+        description:
+          type: varchar
+          length: 1024
+          class: string
+          component: TextArea
+          description: Описание сайта
+          note: Введите мета описание сайта
+        keywords:
+          type: varchar
+          length: 1024
+          class: string
+          component: TextArea
+          description: Ключевые слова
+          note: Введите ключевые слова
+
+    settings:
+      type: json
+      class: ObjectField
+      desc: Технические данные
+      fields: 
+        template: varchar(255), string, Text, Шаблон, Введите описание сайта
+        parameters:
+          type: json
+          class: ArrayField
+          desc: Дополнительные свойства
+          fields: 
+            name: varchar(50), string, Text, Наименование поля
+            description: varchar(255), string, Text, Описание поля
+            type: 
+              type: tinyint
+              length: 1
+              desc: "Тип поля"
+              component: Select
+              values:
+                - value: 0
+                  title: Нет
+                - value: 1
+                  title: Да
+            default: varchar(255), string, Text, Значение по умолчанию
+            class: varchar(255), string, Text, Использовать класс
+            component: varchar(255), string, Text, Использовать компоненту
+
+    order:
+      type: int
+      class: int
+      default: 0
+      desc: Позиция в рамках parent-а
+
+pubs:
+  access-point: sites
+  module: Sites
+  models:
+    row: Models\Publication
+    table: Models\Publications
+  desc: Публикации
+  fields:
+    page:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Page
+      desc: Страница
+      note: Выберите страницу
+      required: true
+      readonly: false
+    storage:
+      type: varchar
+      length: 255
+      class: Storage
+      desc: Хранилище материалов
+      note: Выберите хранилище материалов
+      required: true
+      readonly: false
+    row:
+      type: bigint unsigned
+      class: int
+      desc: ID записи в хранилище
+      note: Введите ID записи в хранилище
+      required: true
+      readonly: false
+    ft:
+      type: longtext
+      class: string
+      required: false
+      readonly: false
+      desc: Полнотекстовый поиск
+    object:
+      type: json
+      class: ObjectField
+      desc: Данные строки
+    order:
+      type: int
+      class: int
+      default: 0
+      desc: Позиция в рамках страницы
+...

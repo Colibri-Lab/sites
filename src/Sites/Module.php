@@ -15,6 +15,7 @@ use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Debug;
 use App\Modules\Sites\Controllers\Controller;
 use Colibri\Utils\Menu\Item;
+use Colibri\Data\Storages\Storages;
 
 /**
  * Описание модуля
@@ -51,9 +52,9 @@ class Module extends BaseModule
             Item::Create('struct', 'Структура', '', 'green', false, '')
                 ->Add([
                     Item::Create('sites', 'Сайты и разделы', '', '', false, '')->Add([
-                        Item::Create('structure', 'Структура сайта', 'Структура проекта, папки и конечные страницы, публикация данных', '', true, 'Sites.RouteTo("/sites/structure/")'),
-                        Item::Create('storages', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', '', false, 'Sites.RouteTo("/sites/storages/")'),
-                        Item::Create('references', 'Справочники', 'Справочники, ', 'Редактор справочников. Страны, города и т.д.', false, 'Sites.RouteTo("/sites/references/")'),
+                        Item::Create('structure', 'Структура сайта', 'Структура проекта, папки и конечные страницы, публикация данных', '', true, 'Sites.RouteTo("/structure/")'),
+                        Item::Create('storages', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', '', false, 'Sites.RouteTo("/storages/")'),
+                        Item::Create('references', 'Справочники', 'Справочники, ', 'Редактор справочников. Страны, города и т.д.', false, 'Sites.RouteTo("/references/")'),
                     ])
                 ],
             ),
@@ -73,10 +74,33 @@ class Module extends BaseModule
         $permissions = parent::GetPermissions();
 
         $permissions['sites'] = 'Инструменты';
-        $permissions['sites.backup'] = 'Доступ к системе восстановления';
-        $permissions['sites.backup.create'] = 'Создание точки восстановления';
-        $permissions['sites.backup.restore'] = 'Восстановление из точки';
-        $permissions['sites.execute'] = 'Выполнение скриптов';
+        $permissions['sites.structure'] = 'Доступ к редактору страниц и публикаций';
+        $permissions['sites.structure.add'] = 'Создать страницу';
+        $permissions['sites.structure.edit'] = 'Редактировать страницу';
+        $permissions['sites.structure.remove'] = 'Удалить страницу';
+        $permissions['sites.structure.pubs'] = 'Список публикаций';
+        $permissions['sites.structure.pubs.add'] = 'Создать публикацию';
+        $permissions['sites.structure.pubs.remove'] = 'Удалить публикацию';
+
+        $permissions['sites.storages'] = 'Доступ к редактору хранилищь';
+        $permissions['sites.storages.add'] = 'Создать хранилище';
+        $permissions['sites.storages.edit'] = 'Редактировать хранилище';
+        $permissions['sites.storages.remove'] = 'Удалить хранилище';
+
+        $storages = Storages::Create()->list;
+        foreach($storages as $storage) {
+            $permissions['sites.storages.'.$storage->name] = 'Доступ к хранилищу «'.$storage->desc.'»';
+            $permissions['sites.storages.'.$storage->name.'.list'] = 'Просматривать список строк';
+            $permissions['sites.storages.'.$storage->name.'.fields'] = 'Редактировать хранилище';
+            $permissions['sites.storages.'.$storage->name.'.add'] = 'Добавить строку';
+            $permissions['sites.storages.'.$storage->name.'.edit'] = 'Редактировать строку';
+            $permissions['sites.storages.'.$storage->name.'.remove'] = 'Удалить строку';
+            $permissions['sites.storages.'.$storage->name.'.export'] = 'Экспорт строк';
+            $permissions['sites.storages.'.$storage->name.'.import'] = 'Импорт строк';
+        }
+
+        $permissions['sites.references'] = 'Доступ к редактору справочников';
+
 
         return $permissions;
     }
