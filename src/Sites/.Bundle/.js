@@ -172,23 +172,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteFolder(id) {
         this.Call('Pages', 'Delete', {id: id})
             .then((response) => {
-                const saved = response.result;
                 App.Notices.Add(new Colibri.UI.Notice('Страница удалена', Colibri.UI.Notice.Success, 3000));
-                const pages = Object.values(this._store.Query('sites.pages'));
-                let found = null;
-                pages.forEach((page, index) => {
-                    if(page.id == id) {
-                        found = index;
-                        return false;
-                    }
-                    return true;
-                });
-
-                if(found) {
-                    pages.splice(found, 1);
-                }
-                this._store.Set('sites.pages', pages);
-
+                this._store.Set('sites.pages', response.result);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));

@@ -100,7 +100,12 @@ class PagesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        return $this->Finish(200, 'ok');
+        $pages = Pages::LoadAll();
+        $pagesArray = [];
+        foreach($pages as $page) {
+            $pagesArray[$page->id] = $page->ToArray(true);
+        }
+        return $this->Finish(200, 'ok', $pagesArray);
 
     }
 
