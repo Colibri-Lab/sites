@@ -10,9 +10,15 @@ pages:
     parent: 
       type: bigint unsigned
       class: App\Modules\Sites\Models\Page
+      component: Hidden
       desc: Отцовская страница
+      default: '0'
       required: true
       readonly: false
+      lookup:
+        storage: pages
+        title: description
+        value: id
     name: 
       type: varchar
       length: 255
@@ -38,72 +44,179 @@ pages:
       component: Radio
       required: true
       readonly: false
+      default: '0'
+      selector:
+        value: value
+        title: title
       values:
-        - value: 0
+        - value: '0'
           title: Нет
-        - value: 1
+        - value: '1'
           title: Да
-    meta:
+    additional:
       type: json
       class: ObjectField
-      desc: Мета данные
-      component: Object
+      component: Tabs
+      desc: Всякое
+      default: "json_object()"
       fields:
-        title:
-          type: varchar
-          length: 512
-          class: string
-          component: Text
-          description: Заголовок страницы
-          note: Введите заголовок страницы
-        description:
-          type: varchar
-          length: 1024
-          class: string
-          component: TextArea
-          description: Описание сайта
-          note: Введите мета описание сайта
-        keywords:
-          type: varchar
-          length: 1024
-          class: string
-          component: TextArea
-          description: Ключевые слова
-          note: Введите ключевые слова
-
-    settings:
-      type: json
-      class: ObjectField
-      desc: Технические данные
-      fields: 
-        template: varchar(255), string, Text, Шаблон, Введите описание сайта
-        parameters:
+        meta:
           type: json
-          class: ArrayField
-          desc: Дополнительные свойства
+          class: ObjectField
+          desc: "Мета данные"
+          component: Object
+          vertical: true
+          default: "json_object()"
+          fields:
+            title:
+              type: varchar
+              length: 512
+              class: string
+              component: Text
+              desc: Заголовок страницы
+              note: Введите заголовок страницы
+            description:
+              type: varchar
+              length: 1024
+              class: string
+              component: TextArea
+              description: Описание сайта
+              note: Введите мета описание сайта
+            keywords:
+              type: varchar
+              length: 1024
+              class: string
+              component: TextArea
+              description: Ключевые слова
+              note: Введите ключевые слова
+        settings:
+          type: json
+          class: ObjectField
+          component: Object
+          desc: Технические данные
+          vertical: true
+          default: "json_object()"
           fields: 
-            name: varchar(50), string, Text, Наименование поля
-            description: varchar(255), string, Text, Описание поля
-            type: 
-              type: tinyint
-              length: 1
-              desc: "Тип поля"
+            template: 
+              type: varchar
+              length: 255
+              class: string
               component: Select
-              values:
-                - value: 0
-                  title: Нет
-                - value: 1
-                  title: Да
-            default: varchar(255), string, Text, Значение по умолчанию
-            class: varchar(255), string, Text, Использовать класс
-            component: varchar(255), string, Text, Использовать компоненту
+              desc: Шаблон
+              note: Введите описание сайта
+              selector: 
+                value: value
+                title: title
+              lookup: "() => { 
+                let ret = []; 
+                Object.keys(App.Modules).forEach((module) => { 
+                  Object.forEach(eval('App.Modules.' + module), (name, value) => { 
+                    if(name.indexOf('Page') !== -1) { 
+                      ret.push({value: name, title: module + '.' + name}); 
+                    } 
+                  }); 
+                }); 
+                return ret; }"
 
+            parameters:
+              type: json
+              class: ArrayField
+              component: Array
+              desc: Дополнительные свойства
+              default: "json_array()"
+              attrs:
+                className: app-field-wrap 
+              params:
+                addlink: 'Добавить параметр'
+              fields: 
+                name: 
+                  type: varchar
+                  length: 50
+                  class: string
+                  component: Text
+                  desc: Наименование поля
+                  attrs:
+                    width: 30%
+                description: 
+                  type: varchar
+                  length: 255
+                  class: string
+                  component: Text
+                  desc: Описание поля
+                  attrs:
+                    width: 68%
+                type: 
+                  type: enum
+                  length: 255
+                  desc: "Тип"
+                  component: Select
+                  default: 'text'
+                  attrs:
+                    width: 15%
+                  values: 
+                    - value: text
+                      title: Текст
+                    - value: integer
+                      title: Целое число
+                    - value: double
+                      title: Число с плавающей запятой
+                    - value: object
+                      title: Обьект
+                    - value: array
+                      title: Массив
+                default: 
+                  type: varchar
+                  length: 255
+                  class: string
+                  component: Text
+                  desc: Значение по умолчанию
+                  attrs:
+                    width: 30%
+                class: 
+                  type: varchar
+                  length: 255
+                  class: string
+                  component: Text
+                  desc: Класс (PHP)
+                  attrs:
+                    width: 30%
+                component: 
+                  type: varchar
+                  length: 255
+                  class: string
+                  default: "Text"
+                  component: Select
+                  desc: Компонента (JS)
+                  selector: 
+                    value: value
+                    title: title
+                  lookup: "() => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => { ret.push({value: name, title: value.description}); }); return ret; }"
+                  attrs:
+                    width: 22%
     order:
       type: int
       class: int
-      default: 0
+      default: '0'
+      component: Hidden
       desc: Позиция в рамках parent-а
-
+  indices:
+    pages_parent_idx:
+      fields: ['parent']
+      type: NORMAL
+      method: BTREE  
+    pages_name_idx:
+      fields: ['name']
+      type: NORMAL
+      method: BTREE  
+    pages_order_idx:
+      fields: ['order']
+      type: NORMAL
+      method: BTREE
+    pages_published_idx:
+      fields: ['published']
+      type: NORMAL
+      method: BTREE
+      
 pubs:
   access-point: sites
   module: Sites
@@ -144,9 +257,23 @@ pubs:
       type: json
       class: ObjectField
       desc: Данные строки
+      default: "json_object()"
     order:
       type: int
       class: int
       default: 0
       desc: Позиция в рамках страницы
+  indices:
+    pubs_pagestoragerow_idx:
+      fields: ['page', 'storage', 'row']
+      type: NORMAL
+      method: BTREE  
+    pubs_order_idx:
+      fields: ['order']
+      type: NORMAL
+      method: BTREE  
+    pubs_ft_idx:
+      fields: ['ft']
+      type: FULLTEXT
+      method:   
 ...

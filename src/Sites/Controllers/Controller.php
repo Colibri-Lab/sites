@@ -27,7 +27,7 @@ class Controller extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Index(RequestCollection $get, RequestCollection $post, mixed $payload = null)
+    public function Index(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
         $module = App::$moduleManager->tools;
@@ -78,7 +78,7 @@ class Controller extends WebController
      * @return \stdClass
      * @throws \App\Modules\Sites\Exception
      */
-    public function Bundle(RequestCollection $get, RequestCollection $post, ?\stdClass $payload): \stdClass
+    public function Bundle(RequestCollection $get, RequestCollection $post, ?\stdClass $payload): object
     {
 
         App::$instance->HandleEvent(EventsContainer::BundleComplete, function ($event, $args) {

@@ -1,0 +1,14 @@
+<div ComponentName="App.Modules.Sites.StructurePage">
+
+    <component Component="Colibri.UI.Split" name="split" shown="true" hasHandle="true">
+        <component Component="Colibri.UI.Pane" name="folders-pane" shown="true">
+            <component Component="Colibri.UI.H2" name="ttl" shown="true">Сайты и разделы</component>
+            <component Component="App.Modules.Sites.FoldersTree" name="folders" shown="true" hasContextMenu="true" binding="app.sites.pages" />
+        </component>
+        <component Component="Colibri.UI.Pane" name="publications-pane" shown="true">
+            <component Component="Colibri.UI.H2" name="ttl" shown="true">Публикации</component>
+            <component Component="Colibri.UI.Grid" name="publications" shown="true" />
+        </component>
+    </component>    
+
+</div>

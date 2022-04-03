@@ -87,7 +87,7 @@ class Module extends BaseModule
         $permissions['sites.storages.edit'] = 'Редактировать хранилище';
         $permissions['sites.storages.remove'] = 'Удалить хранилище';
 
-        $storages = Storages::Create()->list;
+        $storages = Storages::Create()->GetStorages();
         foreach($storages as $storage) {
             $permissions['sites.storages.'.$storage->name] = 'Доступ к хранилищу «'.$storage->desc.'»';
             $permissions['sites.storages.'.$storage->name.'.list'] = 'Просматривать список строк';

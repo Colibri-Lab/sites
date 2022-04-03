@@ -6,6 +6,7 @@ use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use App\Modules\Sites\Models\Page;
 use Colibri\Data\Storages\Fields\ObjectField;
+use Colibri\Data\SqlClient\NonQueryInfo;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -20,8 +21,7 @@ use Colibri\Data\Storages\Fields\ObjectField;
  * @property string $name Наименование раздела
  * @property string $description Описание страницы
  * @property bool $published Опубликована
- * @property ObjectField|null $meta Мета данные
- * @property ObjectField|null $settings Технические данные
+ * @property ObjectField|null $additional Всякое
  * @property int|null $order Позиция в рамках parent-а
  * endregion Properties;
  */
@@ -131,6 +131,16 @@ class Page extends BaseModelDataRow {
         $this->Save();
         return true;
 
+    }
+
+    public function Delete(): NonQueryInfo
+    {
+        $childs = $this->Children();
+        foreach($childs as $child) {
+            $child->Delete();
+        }
+        return parent::Delete();    
+    
     }
 
 
