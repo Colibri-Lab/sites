@@ -53,8 +53,8 @@ class Module extends BaseModule
                 ->Add([
                     Item::Create('sites', 'Сайты и разделы', '', '', false, '')->Add([
                         Item::Create('structure', 'Структура сайта', 'Структура проекта, папки и конечные страницы, публикация данных', '', true, 'Sites.RouteTo("/structure/")'),
-                        Item::Create('storages', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', '', false, 'Sites.RouteTo("/storages/")'),
-                        Item::Create('references', 'Справочники', 'Справочники, ', 'Редактор справочников. Страны, города и т.д.', false, 'Sites.RouteTo("/references/")'),
+                        Item::Create('data', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', '', false, 'Sites.RouteTo("/data/")'),
+                        Item::Create('references', 'Справочники', 'Справочники', 'Редактор справочников. Страны, города и т.д.', false, 'Sites.RouteTo("/references/")'),
                     ])
                 ],
             ),
@@ -89,6 +89,10 @@ class Module extends BaseModule
 
         $storages = Storages::Create()->GetStorages();
         foreach($storages as $storage) {
+            if( ($storage->params['visible'] ?? true) === false ) {
+                continue;
+            }
+            
             $permissions['sites.storages.'.$storage->name] = 'Доступ к хранилищу «'.$storage->desc.'»';
             $permissions['sites.storages.'.$storage->name.'.list'] = 'Просматривать список строк';
             $permissions['sites.storages.'.$storage->name.'.fields'] = 'Редактировать хранилище';

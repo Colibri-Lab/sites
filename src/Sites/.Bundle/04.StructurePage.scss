@@ -3,11 +3,24 @@
     [data-object-name="split"] {
         width: 100%;
         height: 100%;
-        [data-object-name="folders-pane"], [data-object-name="publications-pane"] {
+        [data-object-name="folders-pane"] {
             &.app-component-shown {
                 display: grid;
             }
-            grid-template-rows: 30px calc(100% - 30px);
+            grid-template-rows: 40px calc(100% - 40px);
+        }
+        [data-object-name="publications-pane"] {
+            &.app-component-shown {
+                display: grid;
+            }
+            grid-template-rows: 40px 50px calc(100% - 140px) 50px;
+        }
+        [data-object-name="buttons-pane"] {
+            .app-component-button {
+                margin-right: 10px;
+                padding: 0px 20px;
+                height: 36px;
+            }
         }
         .app-component-split-left {
             flex: 0 0 20%;

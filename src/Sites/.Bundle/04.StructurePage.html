@@ -1,0 +1,34 @@
+<div ComponentName="App.Modules.Sites.StructurePage">
+
+    <component Component="Colibri.UI.Split" name="split" shown="true" hasHandle="true">
+        <component Component="Colibri.UI.Pane" name="folders-pane" shown="true">
+            <component Component="Colibri.UI.H2" name="ttl" shown="true">Разделы сайта</component>
+            <component Component="App.Modules.Sites.FoldersTree" name="folders" shown="true" hasContextMenu="true" binding="app.sites.pages" />
+        </component>
+        <component Component="Colibri.UI.Pane" name="publications-pane" shown="true">
+            <component Component="Colibri.UI.H2" name="ttl" shown="true">Публикации</component>
+            <component Component="Colibri.UI.Pane" name="search-pane" shown="true">
+                <component Component="Colibri.UI.Input" name="search-input" enabled="false" shown="true" placeholder="Поиск" />
+            </component>
+            <component Component="App.Modules.Sites.PublicationsGrid" name="publications" shown="true" enabled="false">
+                <component-header>
+                    <component-columns>
+                        <component Component="Colibri.UI.Grid.Column" name="id" shown="true" value="#" width="10%" resizable="true" />
+                        <component Component="Colibri.UI.Grid.Column" name="datecreated" shown="true" value="Создана" width="20%" resizable="true" />
+                        <component Component="Colibri.UI.Grid.Column" name="page" shown="true" value="Страница" width="30%" resizable="true" />
+                        <component Component="Colibri.UI.Grid.Column" name="storage" shown="true" value="Хранилище" width="20%" resizable="true" />
+                        <component Component="Colibri.UI.Grid.Column" name="row" shown="true" value="Строка" width="20%" resizable="false" />
+                    </component-columns>
+                </component-header>
+            </component>
+
+            <component Component="Colibri.UI.FlexBox" name="buttons-pane" shown="true">
+                <component Component="Colibri.UI.SuccessButton" name="publish" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Публикация</component>
+                <component Component="Colibri.UI.SuccessButton" name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Данные</component>
+                <component Component="Colibri.UI.SuccessButton" name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">Редактировать</component>
+                <component Component="Colibri.UI.SuccessButton" name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">Удалить</component>
+            </component>
+        </component>
+    </component>    
+
+</div>

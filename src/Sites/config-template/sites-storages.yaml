@@ -5,7 +5,9 @@ pages:
   models:
     row: Models\Page
     table: Models\Pages
-  desc: Публикации
+  desc: Страницы
+  params:
+    visible: false
   fields:
     parent: 
       type: bigint unsigned
@@ -224,6 +226,8 @@ pubs:
     row: Models\Publication
     table: Models\Publications
   desc: Публикации
+  params:
+    visible: false
   fields:
     page:
       type: bigint unsigned

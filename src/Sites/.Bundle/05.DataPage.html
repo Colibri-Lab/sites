@@ -1,0 +1,22 @@
+<div ComponentName="App.Modules.Sites.DataPage">
+
+    <component Component="Colibri.UI.Split" name="split" shown="true" hasHandle="true">
+        <component Component="Colibri.UI.Pane" name="storages-pane" shown="true">
+            <component Component="Colibri.UI.H2" name="ttl" shown="true">Хранилища</component>
+            <component Component="App.Modules.Sites.StoragesTree" name="storages" shown="true" binding="app.manage.storages" />
+        </component>
+        <component Component="Colibri.UI.Pane" name="data-pane" shown="true">
+            <component Component="Colibri.UI.H2" name="ttl" shown="true">Данные</component>
+            <component Component="Colibri.UI.Pane" name="search-pane" shown="true">
+                <component Component="Colibri.UI.Input" name="search-input" shown="true" placeholder="Поиск" enabled="false" />
+            </component>
+            <component Component="App.Modules.Sites.DataGrid" name="data" shown="true" enabled="false" />
+            <component Component="Colibri.UI.FlexBox" name="buttons-pane" shown="true">
+                <component Component="Colibri.UI.SuccessButton" name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Данные</component>
+                <component Component="Colibri.UI.SuccessButton" name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">Редактировать</component>
+                <component Component="Colibri.UI.SuccessButton" name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">Удалить</component>
+            </component>
+        </component>
+    </component>    
+
+</div>
