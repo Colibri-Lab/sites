@@ -10,14 +10,34 @@
             <component Component="Colibri.UI.Pane" name="search-pane" shown="true">
                 <component Component="Colibri.UI.Input" name="search-input" enabled="false" shown="true" placeholder="Поиск" />
             </component>
-            <component Component="App.Modules.Sites.PublicationsGrid" name="publications" shown="true" enabled="false">
+            <component Component="App.Modules.Sites.PublicationsGrid" name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="Публикаций не найдено">
                 <component-header>
                     <component-columns>
                         <component Component="Colibri.UI.Grid.Column" name="id" shown="true" value="#" width="10%" resizable="true" />
-                        <component Component="Colibri.UI.Grid.Column" name="datecreated" shown="true" value="Создана" width="20%" resizable="true" />
-                        <component Component="Colibri.UI.Grid.Column" name="page" shown="true" value="Страница" width="30%" resizable="true" />
-                        <component Component="Colibri.UI.Grid.Column" name="storage" shown="true" value="Хранилище" width="20%" resizable="true" />
-                        <component Component="Colibri.UI.Grid.Column" name="row" shown="true" value="Строка" width="20%" resizable="false" />
+                        <component Component="Colibri.UI.Grid.Column" name="datecreated" shown="true" value="Создана" width="10%" resizable="true" viewer="Colibri.UI.DateTimeViewer" />
+                        <component Component="Colibri.UI.Grid.Column" name="page" shown="true" value="Страница" width="15%" resizable="true">
+                            <params>
+                                {
+                                    render: (cell, row) => {
+                                        return row.value.page?.description ?? "Главная страница";
+                                    }
+                                }
+                            </params>
+                        </component>
+                        <component Component="Colibri.UI.Grid.Column" name="storage" shown="true" value="Хранилище" width="15%" resizable="true">
+                            <params>
+                                {
+                                    render: (cell, row) => {
+                                        Manage.Store.AsyncQuery('manage.storages').then(storages => {
+                                            const storage = storages[row.value.storage];
+                                            cell.valueContainer.value = storage.desc;
+                                        });
+                                    }
+                                }
+                            </params>
+                        </component>
+                        <component Component="Colibri.UI.Grid.Column" name="row" shown="true" value="Строка" width="5%" resizable="true" />
+                        <component Component="Colibri.UI.Grid.Column" name="ft" shown="true" value="Данные" width="45%" resizable="false" />
                     </component-columns>
                 </component-header>
             </component>

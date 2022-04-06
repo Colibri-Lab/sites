@@ -109,4 +109,38 @@ class PagesController extends WebController
 
     }
 
+    public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        $move = $post->move;
+        $to = $post->to;
+
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $move = Pages::LoadById($move);
+        if(!$move) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $to = $to ? Pages::LoadById($to) : null;
+        
+        if(!$move->MoveTo($to)) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $pages = Pages::LoadAll();
+        $pagesArray = [];
+        foreach($pages as $page) {
+            $pagesArray[$page->id] = $page->ToArray(true);
+        }
+        return $this->Finish(200, 'ok', $pagesArray);
+
+    }
+
 }

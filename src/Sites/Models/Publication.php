@@ -7,6 +7,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use App\Modules\Sites\Models\Page;
 use Colibri\Data\Storages\Storage;
 use Colibri\Data\Storages\Fields\ObjectField;
+use Colibri\Data\Storages\Storages;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -18,7 +19,7 @@ use Colibri\Data\Storages\Fields\ObjectField;
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
  * @property Page $page Страница
- * @property Storage $storage Хранилище материалов
+ * @property string $storage Хранилище материалов
  * @property int $row ID записи в хранилище
  * @property string|null $ft Полнотекстовый поиск
  * @property ObjectField|null $object Данные строки
@@ -121,6 +122,30 @@ class Publication extends BaseModelDataRow {
         $this->Save();
         return true;
 
+    }
+
+    public function DataRow(): mixed
+    {
+        $storage = Storages::Create()->Load($this->storage);
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+        return $tableClass::LoadById($this->row);
+    }
+
+    public function Copy(?Page $to = null): ?Publication
+    {
+        $datarow = $this->DataRow();
+        if(!$datarow) {
+            return null;
+        }
+        return Publications::CreatePublication($to, $datarow);
+    }
+
+    public function Save(): bool
+    {
+        $datarow = $this->DataRow();
+        $this->ft = $datarow->ToString();
+        $this->object = json_encode($datarow);
+        return parent::Save();
     }
 
 }

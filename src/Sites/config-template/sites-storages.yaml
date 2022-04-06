@@ -8,6 +8,7 @@ pages:
   desc: Страницы
   params:
     visible: false
+    maybepublished: false
   fields:
     parent: 
       type: bigint unsigned
@@ -228,6 +229,7 @@ pubs:
   desc: Публикации
   params:
     visible: false
+    maybepublished: false
   fields:
     page:
       type: bigint unsigned
@@ -236,10 +238,14 @@ pubs:
       note: Выберите страницу
       required: true
       readonly: false
+      lookup:
+        storage: pages
+        title: description
+        value: id
     storage:
       type: varchar
       length: 255
-      class: Storage
+      class: string
       desc: Хранилище материалов
       note: Выберите хранилище материалов
       required: true
@@ -280,4 +286,38 @@ pubs:
       fields: ['ft']
       type: FULLTEXT
       method:   
+
+texts:
+  access-point: sites
+  module: Sites
+  models:
+    row: Models\Text
+    table: Models\Texts
+  desc: Текстовые данные
+  params:
+    visible: true
+    maybepublished: true
+  fields:
+    title:
+      type: varchar
+      length: 255
+      class: string
+      component: Text
+      desc: Заголовок
+      note: Введите заголовок текстового блока, если необходимо
+      required: false
+      readonly: false
+      params:
+        list: true
+    html:
+      type: longtext
+      class: string
+      desc: Содержание
+      note: Введите содержание
+      component: App.Modules.Manage.UI.TinyMCETextArea
+      required: true
+      readonly: false
+      params:
+        visual: true
+        list: true
 ...

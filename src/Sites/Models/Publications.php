@@ -82,17 +82,45 @@ class Publications extends BaseModelDataTable {
     }
 
     /**
+     * Возвращает модель по ID
+     * @param int[] $ids ID строки
+     * @return Publications
+     */
+    static function LoadByIds(array $ids) : Publications
+    {
+        return self::LoadByFilter(-1, 20, '{id} in ('.implode(',', $ids).')', null);
+    }
+
+    /**
+     * Удаляет все по списку ID
+     * @param int[] $ids ID строки
+     * @return void
+     */
+    static function DeleteAllByIds(array $ids): void
+    {
+        $storage = Storages::Create()->Load('pubs');
+        $storage->accessPoint->Delete('pubs', 'pubs_id in ('.implode(',', $ids).')');
+    }
+
+
+    /**
      * Загружает без фильтра
      * @param int $page страница
      * @param int $pagesize размер страницы
      * @return Publications 
      */
-    static function LoadByPage(Page|int $folder, int $page = -1, int $pagesize = 20) : Publications
+    static function LoadByPage(Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20) : Publications
     {
         if(!is_numeric($folder)) {
             $folder = $folder->id;
         }
-        return self::LoadByFilter($page, $pagesize, 'pubs_page=[[folder:integer]]', '{order}', ['folder' => $folder]);
+        
+        $params = ['folder' => $folder];
+        if($term) {
+            $params['term'] = '%'.$term.'%';
+        }
+
+        return self::LoadByFilter($page, $pagesize, 'pubs_page=[[folder:integer]]'.($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params);
     }
 
     /**
@@ -109,23 +137,21 @@ class Publications extends BaseModelDataTable {
      * Создание модели по названию хранилища
      * @return Publication
      */
-    static function CreatePublication(Page $page, DataRow $datarow) : Publication
+    static function CreatePublication(?Page $page, DataRow $datarow) : Publication
     {
         $pubs = self::LoadByFilter(-1, 20, 'false');
         $empty = $pubs->CreateEmptyRow();
-        $empty->page = $page;
-        $empty->storage = $datarow->Storage();
+        $empty->page = $page ?: 0;
+        $empty->storage = $datarow->Storage()->name;
         $empty->row = $datarow->id;
-        $empty->ft = $datarow->ToString();
-        $empty->object = json_encode($datarow);
         $empty->order = Publications::NextPublicationOrder($page);
         return $empty;
     }
 
     
-    static function NextPublicationOrder(Page $page): int
+    static function NextPublicationOrder(?Page $page = null): int
     {
-        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]]', '{order} desc', ['page' => $page->id]);
+        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]]', '{order} desc', ['page' => $page ? $page->id : 0]);
         $pub = $pubs->First();
         if(!$pub) {
             return Publications::StartOrder;

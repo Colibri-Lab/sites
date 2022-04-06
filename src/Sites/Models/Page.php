@@ -120,7 +120,7 @@ class Page extends BaseModelDataRow {
     public function MoveToEnd(): bool
     {
 
-        $pubs = Pages::LoadByFilter(1, 1, '{parent}=[[parent:string]]', '{order} desc', ['parent' => $this->parent->id]);
+        $pubs = Pages::LoadByFilter(1, 1, '{parent}=[[parent:string]]', '{order} desc', ['parent' => $this->parent?->id ?: 0]);
         $lastPage = $pubs->First();
         if(!$lastPage) {
             $this->order = Publications::StartOrder;
@@ -131,6 +131,13 @@ class Page extends BaseModelDataRow {
         $this->Save();
         return true;
 
+    }
+
+    public function MoveTo(?Page $page): bool
+    {
+        $this->parent = $page ?: 0;
+        $this->Save();
+        return $this->MoveToEnd();
     }
 
     public function Delete(): NonQueryInfo

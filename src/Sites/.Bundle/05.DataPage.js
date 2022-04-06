@@ -6,124 +6,144 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
         this.AddClass('app-data-page-component');
 
-        this._folders = this.Children('split/storages-pane/storages');
+        this._storages = this.Children('split/storages-pane/storages');
         this._data = this.Children('split/data-pane/data');
+        this._searchInput = this.Children('split/data-pane/search-pane/search-input');
+        this._addData = this.Children('split/data-pane/buttons-pane/add-data');
+        this._editData = this.Children('split/data-pane/buttons-pane/edit-data');
+        this._deleteData = this.Children('split/data-pane/buttons-pane/delete-data');
 
         // this._folders.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderFoldersContextMenu(event, args))
         // this._folders.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnFoldersContextMenu(event, args));        
         // this._folders.AddHandler('DoubleClicked', (event, args) => this.__foldersDoubleClick(event, args));
 
+        this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
+
+        this._data.AddHandler('SelectionChanged', (event, args) => this.__dataSelectionChanged(event, args));
+        this._data.AddHandler('ScrolledToBottom', (event, args) => this.__dataScrolledToBottom(event, args));
+        this._data.AddHandler('CheckChanged', (event, args) => this.__checkChangedOnData(event, args));
+        this._data.AddHandler('DoubleClicked', (event, args) => this.__doubleClickedOnData(event, args));
+
+        this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
+        this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
+        this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
+
+        this._searchInput.AddHandler('Filled', (event, args) => this.__searchInputFilled(event, args));
+
     }
 
-    __renderFoldersContextMenu(event, args) {
+    
+    _loadDataPage(storage, searchTerm, page) {
+        this._dataCurrentPage = page;
+        Sites.LoadData(storage, searchTerm, page, 20);
+    }
 
-        let contextmenu = [];
+    
+    __searchInputFilled(event, args) {
+        const selected = this._storages.selected;
+        this._data.storage = selected.tag;
+        this._loadDataPage(selected?.tag, this._searchInput.value, 1);
+    }
+
+    __storagesSelectionChanged(event, args) {
+
+        const selection = this._storages.selected;
         
-        const itemData = args.item?.value;
-        if(!itemData) {
-            contextmenu.push({name: 'new-root-folder', title: 'Новый раздел', icon: Colibri.UI.ContextMenuAddIcon});
+        this._searchInput.enabled = selection != null;
+        this._data.enabled = selection != null;
+        this._addData.enabled = selection != null;
+        this._editData.enabled = false;
+        this._deleteData.enabled = false;
 
-            this._folders.contextmenu = contextmenu;
-            this._folders.ShowContextMenu(args.isContextMenuEvent ? 'right bottom' : 'left top', '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
+        this.__searchInputFilled(event, args);
+        
+    }
 
+    
+    __dataScrolledToBottom(event, args) {
+        const selected = this._storages.selected;
+        this._loadDataPage(selected?.tag, this._searchInput.value, this._dataCurrentPage + 1);
+    }
+
+    __dataSelectionChanged(event, args) {
+        const checked = this._data.checked;
+        const selected = this._data.selected;
+        this._editData.enabled = checked.length == 1 || !!selected;
+        this._deleteData.enabled = checked.length > 0 || !!selected;
+    }
+
+    __checkChangedOnData(event, args) { 
+        const checked = this._data.checked;
+        const selected = this._data.selected;
+        this._editData.enabled = checked.length == 1 || !!selected;
+        this._deleteData.enabled = checked.length > 0 || !!selected;
+    }
+
+    __doubleClickedOnData(event, args) {
+        this._editData.Dispatch('Clicked');
+    }
+
+    __deleteDataButtonClicked(event, args) {
+        const storage = selection?.tag;
+        if(!storage) {
+            return;
+        }
+        if(this._data.checked.length == 0) {
+            App.Confirm.Show('Удаление данных', 'Вы уверены, что хотите удалить выбранную строку?', 'Удалить!').then(() => {
+                Sites.DeleteData(storage, [this._data.selected.value.id]);
+            });
         }
         else {
-            contextmenu.push({name: 'new-child-folder', title: 'Новый дочерний раздел', icon: Colibri.UI.ContextMenuAddIcon});
-            contextmenu.push({name: 'edit-folder', title: 'Редактировать раздел', icon: Colibri.UI.ContextMenuEditIcon});
-            contextmenu.push({name: 'remove-folder', title: 'Удалить раздел', icon: Colibri.UI.ContextMenuRemoveIcon});
-
-            args.item.contextmenu = contextmenu;
-            args.item.ShowContextMenu(args.isContextMenuEvent ? 'right bottom' : 'left bottom', '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
-        }
-        
-
-    }
-
-    __clickOnFoldersContextMenu(event, args) {
-
-        const item = args?.item;
-        const menuData = args.menuData;
-        if(!menuData) {
-            return false;
-        }
-
-        if(menuData.name == 'new-root-folder') {
-            if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('Новый раздел', 800, 'app.manage.storages(pages)', {})
-                    .then((data) => {
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => {});
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
-        }
-        else if(menuData.name == 'edit-folder') {
-
-            if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('Редактировать раздел', 800, 'app.manage.storages(pages)', item.tag)
-                    .then((data) => {
-                        data.parent = item.tag?.parent?.id ?? 0;
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => {});
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
-
-        }
-        else if(menuData.name == 'new-child-folder') {
-
-            if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('Новый дочерний раздел', 800, 'app.manage.storages(pages)', {})
-                    .then((data) => {
-                        data.parent = item.tag.id;
-                        item.Expand();
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => {});
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
-
-        }
-        else if(menuData.name == 'remove-folder') {
-            App.Confirm.Show('Удаление папки', 'Вы уверены, что хотите удалить папку?', 'Удалить!').then(() => {
-                Sites.DeleteFolder(item.tag.id);
+            App.Confirm.Show('Удаление данных', 'Вы уверены, что хотите удалить выбранные строки?', 'Удалить!').then(() => {
+                let ids = [];
+                this._data.checked.forEach((row) => {
+                    ids.push(row.value.id);
+                });
+                Sites.DeleteData(storage, ids);
             });
         }
     }
 
-    __foldersDoubleClick(event, args) {
-        const item = this._folders.selected;
-        if(!item) {
-            if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('Новый раздел', 800, 'app.manage.storages(pages)', {})
-                    .then((data) => {
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => {});
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
+    __addDataButtonClicked(event, args) {
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        if(!storage) {
+            return;
+        }
+
+        if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
+            Manage.FormWindow.Show('Новая строка «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', {})
+                .then((data) => {
+                    Sites.SaveData(storage.name, data);
+                })
+                .catch(() => {});
         }
         else {
-            if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('Редактировать раздел', 800, 'app.manage.storages(pages)', item.tag)
-                    .then((data) => {
-                        data.parent = item.tag?.parent?.id ?? 0;
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => {});
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
+            App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
         }
+            
+
+    }
+
+    __editDataButtonClicked(event, args) {
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        const dta = this._data.selected.value;
+        if(!storage || !dta) {
+            return;
+        }
+
+        if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
+            Manage.FormWindow.Show('Новая строка «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+                .then((data) => {
+                    Sites.SaveData(storage.name, data);
+                })
+                .catch(() => {});
+        }
+        else {
+            App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
+        }
+
     }
 
 }

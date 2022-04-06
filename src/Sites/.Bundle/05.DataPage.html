@@ -10,9 +10,9 @@
             <component Component="Colibri.UI.Pane" name="search-pane" shown="true">
                 <component Component="Colibri.UI.Input" name="search-input" shown="true" placeholder="Поиск" enabled="false" />
             </component>
-            <component Component="App.Modules.Sites.DataGrid" name="data" shown="true" enabled="false" />
+            <component Component="App.Modules.Sites.DataGrid" name="data" shown="true" enabled="false" binding="app.sites.data" selectionMode="fullrow" showCheckboxes="true" hasContextMenu="true" emptyMessage="Данные не найдены" />
             <component Component="Colibri.UI.FlexBox" name="buttons-pane" shown="true">
-                <component Component="Colibri.UI.SuccessButton" name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Данные</component>
+                <component Component="Colibri.UI.SuccessButton" name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Добавить</component>
                 <component Component="Colibri.UI.SuccessButton" name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">Редактировать</component>
                 <component Component="Colibri.UI.SuccessButton" name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">Удалить</component>
             </component>
