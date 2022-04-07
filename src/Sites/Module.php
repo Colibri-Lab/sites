@@ -60,8 +60,8 @@ class Module extends BaseModule
             ),
             Item::Create('dev', 'Разработка', '', 'orange', false, '')->Add([
                 Item::Create('sites', 'Данные', '', '', false, '')->Add([
-                    Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', '', true, 'Sites.RouteTo("/settings/data/storages/")'),
-                    Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', true, 'Sites.RouteTo("/settings/data/sources/")')
+                    Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', '', true, 'Sites.RouteTo("/storages/")'),
+                    Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', true, 'Sites.RouteTo("/sources/")')
                 ]),
             ])
         ];

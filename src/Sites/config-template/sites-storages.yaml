@@ -320,4 +320,28 @@ texts:
       params:
         visual: true
         list: true
+    testobject:
+      type: json
+      class: ObjectField
+      desc: Тестовый обьект
+      component: Object
+      required: false
+      readonly: true
+      fields:
+        testvarchar:
+          type: varchar
+          length: 255
+          desc: Текст
+          component: Text
+          class: string
+        testarray:
+          type: json
+          desc: Массив
+          class: ArrayField
+          component: Array
+          fields:
+            varchar: varchar(255), string, Text, Тестовый текст
+            numeric: bigint, int, Number, Тестовое число
+
+
 ...

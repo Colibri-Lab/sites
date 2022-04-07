@@ -1,0 +1,11 @@
+.app-sites-storages-page-component {
+    height: 100%;
+    [data-object-name="storages-pane"] {
+        &.app-component-shown {
+            display: grid;
+        }
+        grid-template-rows: 40px calc(100% - 40px);
+        height: 100%;
+    }
+    
+}
