@@ -7,10 +7,21 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
     get storage() {
         return this._storage;
     }
+
+    set value(value) {
+        this.__renderBoundedValues(value);
+    }
+
+    get value() {
+        return super.value;
+    }
     
     __renderBoundedValues(data) {
 
-        if(!data || (!Array.isArray(data) && data instanceof Object)) {
+        if(!data) {
+            data = [];
+        }
+        else if(!Array.isArray(data) && data instanceof Object) {
             data = Object.values(data);
         }
 
@@ -25,7 +36,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this.header.columns.Children('firstChild').width = '2%';
         let idColumn = this.header.columns.Children('id');
         if(!idColumn) {
-            idColumn = this.header.columns.Add('id', '#', {width: '3%'});
+            idColumn = this.header.columns.Add('id', '#', {width: '5%'});
         }
         let dateCreatedColumn = this.header.columns.Children('datecreated');
         if(!dateCreatedColumn) {
@@ -40,7 +51,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             }
             let column = this.header.columns.Children(name);
             if(!column) {
-                column = this.header.columns.Add(name, field.desc, {width: (85/columnCount) + '%'});
+                column = this.header.columns.Add(name, field.desc, {width: (83/columnCount) + '%'});
                 if(field.params?.viewer) {
                     column.viewer = field.params?.viewer;
                 }
@@ -60,7 +71,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 this.rows.Add('data' + d.id, d);
             }
             else {
-                row.value = row;
+                row.value = d;
             }
         });
 

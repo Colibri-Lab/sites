@@ -31,7 +31,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
         
-        this._searchInput.AddHandler('Filled', (event, args) => this.__searchInputFilled(event, args));
+        this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
 
         this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
         this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
@@ -224,7 +224,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         this._addData.enabled = selected != null;
         this._editData.enabled = false;
         this._deleteData.enabled = false;
-
+        this._publications.UnselectAllRows();
+        this._publications.UncheckAllRows();
+        
         this.__searchInputFilled(event, args);
 
     }
@@ -324,13 +326,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     __publishButtonClicked(event, args) {
 
+        const wnd = new App.Modules.Sites.DataWindow('publish', document.body, 'Публикация данных');
+        wnd.Show((storage, dataIds) => {
+            const selected = this._folders.selected;
+            Sites.Publish(selected?.tag, storage.name, dataIds);
+        }); 
+
 
     }
 
-    _createPublicationWindow(menuData) {
-        
-
-
-    }
 
 }

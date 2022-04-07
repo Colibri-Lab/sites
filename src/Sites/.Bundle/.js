@@ -83,6 +83,10 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
 
     }
+    
+    get Store() {
+        return this._store;
+    }
 
     ShowPage(name) {
         Colibri.Common.Wait(() => Security.Store.Query('security.user').id).then(() => {
@@ -141,6 +145,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             this._pages[componentClass] = null;
         }
     }
+
+    /** API */
 
     SaveFolder(data) {
         this.Call('Pages', 'Save', data)
@@ -216,6 +222,10 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 App.Notices.Add(new Colibri.UI.Notice('Публикация удалена', Colibri.UI.Notice.Success, 3000));
 
                 let pubs = this._store.Query('sites.pubs');
+                if(!pubs || !Array.isArray(pubs)) {
+                    pubs = [];
+                }
+
                 let newPubs = [];
                 pubs.map((p) => {
                     if(pubIds.indexOf(p.id) === -1) {
@@ -236,6 +246,10 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 App.Notices.Add(new Colibri.UI.Notice('Данные удалены', Colibri.UI.Notice.Success, 3000));
 
                 let data = this._store.Query('sites.data');
+                if(!data || !Array.isArray(data)) {
+                    data = [];
+                }
+                
                 let newData = [];
                 data.map((p) => {
                     if(dataIds.indexOf(p.id) === -1) {
@@ -255,7 +269,28 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         this.Call('Publications', 'Create', {folder: folder?.id ?? null, storage, data: data})
             .then((response) => {
                 let pubs = this._store.Query('sites.pubs');
+                if(!pubs || !Array.isArray(pubs)) {
+                    pubs = [];
+                }
                 pubs.push(response.result);
+                this._store.Set('sites.pubs', pubs);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+
+    }
+
+    Publish(folder, storage, ids) {
+
+        this.Call('Publications', 'Publish', {folder: folder?.id ?? null, storage, ids: ids.join(',')})
+            .then((response) => {
+                let pubs = this._store.Query('sites.pubs');
+                if(!pubs || !Array.isArray(pubs)) {
+                    pubs = [];
+                }
+                pubs = pubs.concat(response.result);
                 this._store.Set('sites.pubs', pubs);
             })
             .catch(error => {
@@ -271,9 +306,26 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 if(pub) {
                     let p = response.result.pub;
                     let pubs = this._store.Query('sites.pubs');
+                    if(!pubs || !Array.isArray(pubs)) {
+                        pubs = [];
+                    }
                     pubs = pubs.map(pp => pp.id == p.id ? p : pp);
                     this._store.Set('sites.pubs', pubs);
                 }
+
+                let dtas = this._store.Query('sites.data');
+                if(!dtas || !Array.isArray(dtas)) {
+                    dtas = [];
+                }
+                if(data?.id) {
+                    // редактирование
+                    dtas = dtas.map(dd => dd.id == data.id ? data : dd);
+                }
+                else {
+                    dtas.push(response.result.datarow);
+                }
+                this._store.Set('sites.data', dtas);
+
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -291,50 +343,58 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-    LoadPublications(folder, term = null, page) {
-        this.Call('Publications', 'List', {folder: folder?.id ?? null, term: term, page: page})
-            .then((response) => {
-                if(page == 1) {
-                    this._store.Set('sites.pubs', response.result);
+    LoadPublications(folder, term = null, page = 1, pagesize = 20, returnPromise = false) {
+        const promise = this.Call('Publications', 'List', {folder: folder?.id ?? null, term: term, page: page, pagesize: pagesize});
+        if(returnPromise) {
+            return promise;
+        }
+
+        promise.then((response) => {
+            if(page == 1) {
+                this._store.Set('sites.pubs', response.result);
+            }
+            else if(Array.isArray(response.result)) {
+                let pubs = this._store.Query('sites.pubs');
+                if(!pubs || !Array.isArray(pubs)) {
+                    pubs = [];
                 }
-                else if(Array.isArray(response.result)) {
-                    let pubs = this._store.Query('sites.pubs');
-                    pubs = pubs.concat(response.result);
-                    this._store.Set('sites.pubs', pubs);
-                }
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+                pubs = pubs.concat(response.result);
+                this._store.Set('sites.pubs', pubs);
+            }
+        })
+        .catch(error => {
+            App.Notices.Add(new Colibri.UI.Notice(error.result));
+            console.error(error);
+        });
     }
 
-    LoadData(storage, term = null, page = 1) {
-        this.Call('Data', 'List', {storage: storage.name, term: term, page: page})
-            .then((response) => {
-                if(page == 1) {
-                    this._store.Set('sites.data', response.result);
+    LoadData(storage, term = null, page = 1, pagesize = 20, returnPromise = false) {
+
+        const promise = this.Call('Data', 'List', {storage: storage.name, term: term, page: page, pagesize: pagesize});
+        if(returnPromise) {
+            return promise;
+        }
+
+        promise.then((response) => {
+            if(page == 1) {
+                this._store.Set('sites.data', response.result);
+            }
+            else if(Array.isArray(response.result)) {
+                let data = this._store.Query('sites.data');
+                if(!data || !Array.isArray(data)) {
+                    data = [];
                 }
-                else if(Array.isArray(response.result)) {
-                    let data = this._store.Query('sites.data');
-                    if(!data || !Array.isArray(data)) {
-                        data = [];
-                    }
-                    data = data.concat(response.result);
-                    this._store.Set('sites.data', data);
-                }
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+                data = data.concat(response.result);
+                this._store.Set('sites.data', data);
+            }
+        })
+        .catch(error => {
+            App.Notices.Add(new Colibri.UI.Notice(error.result));
+            console.error(error);
+        });
     }
 
 
-
-    get Store() {
-        return this._store;
-    }
 
     Pages(returnPromise = false) {
         const promise = this.Call('Pages', 'List')

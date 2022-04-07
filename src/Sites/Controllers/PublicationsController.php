@@ -146,6 +146,43 @@ class PublicationsController extends WebController
 
     }
 
+    public function Publish(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
 
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $folder = $post->folder;
+        $storage = $post->storage;
+        $ids = $post->ids ? explode(',', $post->ids) : [];
+        if(!$ids || !$storage) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $folder = $folder ? Pages::LoadById($folder) : null;
+        $storage = Storages::Create()->Load($storage);
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+
+        $pubArray = [];
+        foreach($ids as $id) {
+        
+            $datarow = $tableClass::LoadById($id);
+            if(!$datarow) {
+                continue;
+            }
+
+            $pub = Publications::CreatePublication($folder, $datarow);
+            $pub->Save();
+            $pubArray[] = $pub->ToArray(true);
+        
+        }
+
+        return $this->Finish(200, 'ok', $pubArray);
+
+    }
 
 }

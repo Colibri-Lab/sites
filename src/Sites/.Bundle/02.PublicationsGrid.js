@@ -2,7 +2,10 @@ App.Modules.Sites.PublicationsGrid = class extends Colibri.UI.Grid {
  
     __renderBoundedValues(data) {
 
-        if(!Array.isArray(data) && data instanceof Object) {
+        if(!data) {
+            data = [];
+        }
+        else if(!Array.isArray(data) && data instanceof Object) {
             data = Object.values(data);
         }
 

@@ -98,7 +98,7 @@ class DataController extends WebController
         $data = (object)$post->data;
         $pub = $post->pub;
 
-        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage.($data?->id ? '.edit' : '.add'))) {
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage.($data->id ?? 0 ? '.edit' : '.add'))) {
             return $this->Finish(403, 'Permission denied');
         }
 
@@ -106,7 +106,7 @@ class DataController extends WebController
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         
-        if($data?->id) {
+        if($data->id ?? 0) {
             $datarow = $tableClass::LoadById($data->id);
             if(!$datarow) {
                 return $this->Finish(400, 'Bad request');
@@ -157,7 +157,10 @@ class DataController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        Publications::DeleteAllByIds(explode(',', $ids));
+        $storage = Storages::Create()->Load($storage);
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+
+        $tableClass::DeleteAllByIds(explode(',', $ids));
 
         return $this->Finish(200, 'ok');
     }

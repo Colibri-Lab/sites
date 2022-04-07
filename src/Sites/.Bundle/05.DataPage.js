@@ -19,16 +19,18 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
         this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
 
-        this._data.AddHandler('SelectionChanged', (event, args) => this.__dataSelectionChanged(event, args));
         this._data.AddHandler('ScrolledToBottom', (event, args) => this.__dataScrolledToBottom(event, args));
+        this._data.AddHandler('SelectionChanged', (event, args) => this.__dataSelectionChanged(event, args));
         this._data.AddHandler('CheckChanged', (event, args) => this.__checkChangedOnData(event, args));
         this._data.AddHandler('DoubleClicked', (event, args) => this.__doubleClickedOnData(event, args));
+        this._data.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderDataContextMenu(event, args));
+        this._data.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnDataContextMenu(event, args));        
 
         this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
         this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
         this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
 
-        this._searchInput.AddHandler('Filled', (event, args) => this.__searchInputFilled(event, args));
+        this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
 
     }
 
@@ -41,6 +43,10 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     
     __searchInputFilled(event, args) {
         const selected = this._storages.selected;
+        if(!selected) {
+            this._data.ClearAll(); 
+            return;           
+        }
         this._data.storage = selected.tag;
         this._loadDataPage(selected?.tag, this._searchInput.value, 1);
     }
@@ -51,6 +57,8 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         
         this._searchInput.enabled = selection != null;
         this._data.enabled = selection != null;
+        this._data.UnselectAllRows();
+        this._data.UncheckAllRows();
         this._addData.enabled = selection != null;
         this._editData.enabled = false;
         this._deleteData.enabled = false;
@@ -84,6 +92,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     }
 
     __deleteDataButtonClicked(event, args) {
+        const selection = this._storages.selected;
         const storage = selection?.tag;
         if(!storage) {
             return;
@@ -144,6 +153,34 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
         }
 
+    }
+
+    
+    __renderDataContextMenu(event, args) {
+        let contextmenu = [];
+        
+        contextmenu.push({name: 'edit-data', title: 'Редактировать данные', icon: Colibri.UI.ContextMenuEditIcon});
+        contextmenu.push({name: 'remove-pub', title: 'Удалить', icon: Colibri.UI.ContextMenuRemoveIcon});
+
+        args.item.contextmenu = contextmenu;
+        args.item.ShowContextMenu(args.isContextMenuEvent ? 'right bottom' : 'left bottom', '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
+        
+    }
+
+    __clickOnDataContextMenu(event, args) {
+
+        const item = args?.item;
+        const menuData = args.menuData;
+        if(!menuData) {
+            return false;
+        }
+
+        if(menuData.name == 'edit-data') {
+            this._editData.Dispatch('Clicked');
+        }
+        else if(menuData.name == 'remove-pub') {
+            this._deleteData.Dispatch('Clicked');
+        }
     }
 
 }
