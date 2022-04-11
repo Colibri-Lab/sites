@@ -16,28 +16,32 @@ pages:
       component: Hidden
       desc: Отцовская страница
       default: "0"
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
       lookup:
-        storage: pages
-        title: description
-        value: id
+        storage: 
+          name: pages
+          title: description
+          value: id
     name:
       type: varchar
       length: 255
       class: string
       desc: Наименование раздела
       note: Введите наименование страницы, наименование будет использовано в URL
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
     description:
       type: varchar
       length: 255
       class: string
       desc: Описание страницы
       note: Введите описание сайта
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
     published:
       type: tinyint
       length: 1
@@ -45,8 +49,9 @@ pages:
       desc: Опубликована
       note: Выберите «Да» если хотите опубликовать сайт
       component: Radio
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
       default: "0"
       selector:
         value: value
@@ -68,7 +73,8 @@ pages:
           class: ObjectField
           desc: Мета данные
           component: Object
-          vertical: true
+          params:
+            vertical: true
           default: json_object()
           fields:
             title:
@@ -97,7 +103,8 @@ pages:
           class: ObjectField
           component: Object
           desc: Технические данные
-          vertical: true
+          params:
+            vertical: true
           default: json_object()
           fields:
             template:
@@ -110,10 +117,11 @@ pages:
               selector:
                 value: value
                 title: title
-              lookup: '() => { let ret = []; Object.keys(App.Modules).forEach((module)
-                => { Object.forEach(eval(''App.Modules.'' + module), (name, value)
-                => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name, title:
-                module + ''.'' + name}); } }); }); return ret; }'
+              lookup: 
+                method: '() => { let ret = []; Object.keys(App.Modules).forEach((module)
+                  => { Object.forEach(eval(''App.Modules.'' + module), (name, value)
+                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name, title:
+                  module + ''.'' + name}); } }); }); return ret; }'
             parameters:
               type: json
               class: ArrayField
@@ -186,9 +194,10 @@ pages:
                   selector:
                     value: value
                     title: title
-                  lookup: '() => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
-                    (name, value) => { ret.push({value: name, title: value.description});
-                    }); return ret; }'
+                  lookup: 
+                    method: '() => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                      (name, value) => { ret.push({value: name, title: value.description});
+                      }); return ret; }'
                   attrs:
                     width: 22%
     order:
@@ -234,32 +243,37 @@ pubs:
       class: App\Modules\Sites\Models\Page
       desc: Страница
       note: Выберите страницу
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
       lookup:
-        storage: pages
-        title: description
-        value: id
+        storage: 
+          name: pages
+          title: description
+          value: id
     storage:
       type: varchar
       length: 255
       class: string
       desc: Хранилище материалов
       note: Выберите хранилище материалов
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
     row:
       type: bigint unsigned
       class: int
       desc: ID записи в хранилище
       note: Введите ID записи в хранилище
-      required: true
-      readonly: false
+      params:
+        required: true
+        readonly: false
     ft:
       type: longtext
       class: string
-      required: false
-      readonly: false
+      params:
+        required: false
+        readonly: false
       desc: Полнотекстовый поиск
     object:
       type: json
@@ -293,8 +307,8 @@ texts:
   access-point: sites
   module: Sites
   models:
-    table: Models\Texts
     row: Models\Text
+    table: Models\Texts
   desc: Текстовые данные
   params:
     visible: true
@@ -307,9 +321,10 @@ texts:
       component: Text
       desc: Заголовок
       note: Введите заголовок текстового блока, если необходимо
-      required: false
-      readonly: false
       params:
+        required: false
+        readonly: false
+        enabled: true
         list: true
     html:
       type: longtext
@@ -317,9 +332,10 @@ texts:
       desc: Содержание
       note: Введите содержание
       component: App.Modules.Manage.UI.TinyMCETextArea
-      required: true
-      readonly: false
       params:
+        required: true
+        readonly: false
+        enabled: true
         visual: true
         list: true
     testobject:
@@ -327,8 +343,6 @@ texts:
       class: ObjectField
       desc: Тестовый обьект
       component: Object
-      required: false
-      readonly: true
       fields:
         testvarchar:
           type: varchar
@@ -336,6 +350,10 @@ texts:
           desc: Текст
           component: Text
           class: string
+          params:
+            required: true
+            readonly: false
+            enabled: true
         testarray:
           type: json
           desc: Массив
@@ -347,14 +365,75 @@ texts:
               class: string
               component: Text
               desc: Тестовый текст
-              note: ""
               default: ""
               length: 255
+              group: window
+              params:
+                required: true
+                enabled: true
+                readonly: false
+                visual: true
+                list: true
             numeric:
               type: bigint
               class: int
               component: Number
               desc: Тестовое число
-              note: ""
               default: ""
+              group: window
+              params:
+                required: true
+                enabled: true
+                readonly: false
+                visual: true
+                list: true
+          group: window
+          default: ""
+          params:
+            required: true
+            enabled: true
+            readonly: false
+            visual: true
+            list: true
+        testhtml:
+          group: window
+          desc: HTML
+          type: varchar
+          component: App.Modules.Manage.UI.TinyMCETextArea
+          class: string
+          default: "123123123123"
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            visual: false
+            list: false
+        testtext:
+          group: window
+          desc: Test Текст
+          type: varchar
+          component: Text
+          class: string
+          default: asasdfasdf
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            visual: false
+            list: false
+      group: window
+      default: ""
+      params:
+        required: false
+        enabled: true
+        readonly: false
+        visual: false
+        list: false
+        vertical: true
+  indices:
+    texts_title_idx:
+      fields:
+      - title
+      type: NORMAL
+      method: BREE
 ...

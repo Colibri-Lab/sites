@@ -142,10 +142,15 @@ class Page extends BaseModelDataRow {
 
     public function Delete(): NonQueryInfo
     {
+
+        // удаляем все публикации
+        Publications::DeleteAllByPage($this);
+
         $childs = $this->Children();
         foreach($childs as $child) {
             $child->Delete();
         }
+        
         return parent::Delete();    
     
     }

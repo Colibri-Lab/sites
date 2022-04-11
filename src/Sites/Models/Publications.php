@@ -156,7 +156,26 @@ class Publications extends BaseModelDataTable {
         if(!$pub) {
             return Publications::StartOrder;
         }
-        return $pub->order + Publications::StartOrder;
+        return (int)$pub->order + Publications::StartOrder;
     }
 
+    static function DeleteAllByPage(?Page $page = null): bool
+    {
+        $storage = Storages::Create()->Load('pubs');
+        $res = $storage->accessPoint->Delete('pubs', 'pubs_page='.($page?->id ?? 0));
+        if($res->affected > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    static function DeleteAllByRow(DataRow $datarow): bool
+    {
+        $storage = Storages::Create()->Load('pubs');
+        $res = $storage->accessPoint->Delete('pubs', 'pubs_storage=\''.$datarow->Storage()->name.'\' and pubs_row=\''.$datarow->id.'\'');
+        if($res->affected > 0) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -407,8 +407,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    SaveField(module, storage, data) {
-        this.Call('Storages', 'SaveField', {module: module?.name ?? module, storage: storage?.name ?? storage, data: data})
+    SaveField(module, storage, path, data) {
+        this.Call('Storages', 'SaveField', {module: module?.name ?? module, storage: storage?.name ?? storage, path: path, data: data})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Хранилище сохранено', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
@@ -419,8 +419,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    DeleteField(module, storage, field) {
-        this.Call('Storages', 'DeleteField', {module: module?.name ?? module, storage: storage?.name ?? storage, field: field?.name ?? field})
+    DeleteField(module, storage, path) {
+        this.Call('Storages', 'DeleteField', {module: module?.name ?? module, storage: storage?.name ?? storage, path: path})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Хранилище удалено', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
@@ -432,7 +432,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     SaveIndex(module, storage, data) {
-        this.Call('Storages', 'SaveField', {module: module?.name ?? module, storage: storage?.name ?? storage, data: data})
+        this.Call('Storages', 'SaveIndex', {module: module?.name ?? module, storage: storage?.name ?? storage, data: data})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Хранилище сохранено', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
@@ -444,7 +444,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     DeleteIndex(module, storage, index) {
-        this.Call('Storages', 'DeleteField', {module: module?.name ?? module, storage: storage?.name ?? storage, index: index?.name ?? index})
+        this.Call('Storages', 'DeleteIndex', {module: module?.name ?? module, storage: storage?.name ?? storage, index: index?.name ?? index})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Хранилище удалено', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);

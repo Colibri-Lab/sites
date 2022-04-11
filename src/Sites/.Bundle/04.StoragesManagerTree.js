@@ -66,6 +66,8 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         indicesNode.tag.entry = null;
         indicesNode.tag.type = 'indices';
 
+        this._insertFieldIndexes(indicesNode, storage);
+
 
         moduleNode.isLeaf = false;
 
@@ -73,6 +75,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
 
     _insertFieldNode(storageNode, name, field) {
+        field.name = name;
         let fieldNode = this.FindNode(storageNode.name + '_' + name);
         if(!fieldNode) {
             fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name);
@@ -85,13 +88,45 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return fieldNode;
     }
 
+    _insertIndexNode(storageNode, name, index) {
+        index.name = name;
+        let fieldNode = this.FindNode(storageNode.name + '_' + name);
+        if(!fieldNode) {
+            fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name);
+        }
+        fieldNode.text = name;
+        fieldNode.isLeaf = true;
+        fieldNode.icon = App.Modules.Sites.Icons.IndexIcon;
+        fieldNode.tag.entry = index;
+        fieldNode.tag.type = 'index';
+        return fieldNode;
+    }
+
     _insertFieldFields(storageNode, storage) {
         if(!storage.fields) {
             return;
         }
+        const founds = [];
         Object.forEach(storage.fields, (name, field) => {
             const fieldNode = this._insertFieldNode(storageNode, name, field);
+            founds.push(fieldNode.name);
             this._insertFieldFields(fieldNode, field);
+        });
+
+        storageNode.nodes.ForEach((name, node) => {
+            if(founds.indexOf(name) === -1) {
+                node.Dispose();
+            }
+        });
+
+    }
+
+    _insertFieldIndexes(storageNode, storage) {
+        if(!storage.fields) {
+            return;
+        }
+        Object.forEach(storage.indices, (name, index) => {
+            this._insertIndexNode(storageNode, name, index);
         });
     }
 
@@ -113,26 +148,10 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         }
         else if(path.indexOf('.storages') !== -1) {
             data.forEach((storage) => {
-                const moduleNode = this.FindNode(storage.module.name);
+                const moduleNode = this.FindNode(storage.module);
                 const storageNode = this._insertStorageNode(moduleNode, storage);
-                
             });
         }
-
-        // data.forEach((storage) => {
-
-        //     if(storage?.params?.visible === false) {
-        //         return true;
-        //     }
-
-        //     const moduleNode = this._insertModuleNode(storage.module);
-        //     const storageNode = this._insertStorageNode(moduleNode, storage);
-
-        //     this._insertFieldFields(storageNode, storage);
-
-        //     return true;
-
-        // });
 
     }
     

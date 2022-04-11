@@ -96,6 +96,7 @@ class Module extends BaseModule
             $permissions['sites.storages.'.$storage->name] = 'Доступ к хранилищу «'.$storage->desc.'»';
             $permissions['sites.storages.'.$storage->name.'.list'] = 'Просматривать список строк';
             $permissions['sites.storages.'.$storage->name.'.fields'] = 'Редактировать хранилище';
+            $permissions['sites.storages.'.$storage->name.'.indices'] = 'Индексировать строки';
             $permissions['sites.storages.'.$storage->name.'.add'] = 'Добавить строку';
             $permissions['sites.storages.'.$storage->name.'.edit'] = 'Редактировать строку';
             $permissions['sites.storages.'.$storage->name.'.remove'] = 'Удалить строку';

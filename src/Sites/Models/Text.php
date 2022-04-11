@@ -4,6 +4,7 @@ namespace App\Modules\Sites\Models;
 
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
+use Colibri\Data\MySql\NonQueryInfo;
 
 
 /**
@@ -20,5 +21,12 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
  * endregion Properties;
  */
 class Text extends BaseModelDataRow {
+
+    public function Delete(): NonQueryInfo
+    {
+        // удаляем все публикации
+        Publications::DeleteAllByRow($this);
+        return parent::Delete();    
+    }
 
 }

@@ -1,4 +1,4 @@
-App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
+ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
     
     constructor(name, container) {
         super(name, container);

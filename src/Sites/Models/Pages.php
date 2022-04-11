@@ -130,6 +130,6 @@ class Pages extends BaseModelDataTable {
         
         return $sitePage->order + Pages::StartOrder;
 
-    }
+    }    
 
 }

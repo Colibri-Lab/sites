@@ -9,6 +9,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
+        this._storages.AddHandler('DoubleClicked', (event, args) => this.__foldersDoubleClick(event, args));
 
 
     }
@@ -75,6 +76,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _storageFields() {
+        const Field = Colibri.UI.Forms.Field;
         return {
             name: 'Storage',
             desc: 'Хранилища',
@@ -84,8 +86,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Text',
                     desc: 'Наименование хранилища',
                     note: 'Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов',
-                    required: true,
                     params: {
+                        required: true,
                         validate: [{
                             message: 'Пожалуйста, введите наименование хранилища',
                             method: '(field, validator) => !!field.value'
@@ -100,8 +102,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Text',
                     desc: 'Описание',
                     note: 'Описание, в свободной форме',
-                    required: true,
                     params: {
+                        required: true,
                         validate: [{
                             message: 'Пожалуйста, введите описание хранилища',
                             method: '(field, validator) => !!field.value'
@@ -176,20 +178,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _fieldFields() {
-        /**
-         * 
-        desc: Отцовская страница
-        type: bigint unsigned
-        class: App\Modules\Sites\Models\Page
-        component: Hidden
-        default: '0'
-        required: true
-        readonly: false
-        lookup:
-            storage: pages
-            title: description
-            value: id
-         */
         return {
             name: 'Field',
             desc: 'Свойство',
@@ -198,9 +186,26 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Text',
                     desc: 'Наименование свойства',
-                    note: 'Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов',
-                    required: true,
+                    note: 'Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов.',
                     params: {
+                        required: true,
+                        validate: [{
+                            message: 'Пожалуйста, введите наименование свойства',
+                            method: '(field, validator) => !!field.value'
+                        }, {
+                            message: 'Введенный текст не соответствует требованиям',
+                            method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
+                        }]
+                    }
+                },
+                group: {
+                    type: 'varchar',
+                    component: 'Text',
+                    desc: 'Группа свойств',
+                    note: 'Наименование группы, если нужно оставить в основной то нужно написать "window"',
+                    default: 'window',
+                    params: {
+                        required: true,
                         validate: [{
                             message: 'Пожалуйста, введите наименование свойства',
                             method: '(field, validator) => !!field.value'
@@ -215,8 +220,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Text',
                     desc: 'Описание свойства',
                     note: 'Можно на русском языке. Внимание! Описание должно полностью описывать свойство, учитывайте, что модель будет возвращать модель указанную в поле Класс.',
-                    required: true,
                     params: {
+                        required: true,
                         validate: [{
                             message: 'Пожалуйста, опишите свойство',
                             method: '(field, validator) => !!field.value'
@@ -228,8 +233,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Text',
                     desc: 'Тип свойства (для хранения в источнике данных)',
                     note: 'Внинание! Предполагается, что вы знаете, что делаете!',
-                    required: true,
                     params: {
+                        required: true,
                         validate: [{
                             message: 'Пожалуйста, введите тип свойства',
                             method: '(field, validator) => !!field.value'
@@ -274,7 +279,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 const standartComponents = Object.keys(Colibri.UI.Forms);
                                 for (const name of standartComponents) {
                                     if (['Field', 'Form'].indexOf(name) === -1) {
-                                        components.push({ value: 'Colibri.UI.Forms.' + name, title: name, icon: Colibri.UI.FieldIcons[name] });
+                                        components.push({ value: name, title: name, icon: Colibri.UI.FieldIcons[name] });
                                     }
                                 }
 
@@ -289,85 +294,304 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
-                required: {
-                    type: 'bool',
-                    placeholder: 'Обязательное поле',
-                    component: 'Checkbox',
-                    default: true
+                class: {
+                    type: 'varchar',
+                    component: 'Text',
+                    desc: 'Класс (PHP)',
+                    note: 'Внимание! Класс должен существовать',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: 'Пожалуйста, выберите наименование класса',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
                 },
-                readonly: {
-                    type: 'bool',
-                    placeholder: 'Только для чтения',
-                    component: 'Checkbox',
-                    default: true
-                },
+                
                 default: {
                     type: 'varchar',
                     component: 'TextArea',
                     desc: 'Значение по умолчанию',
                     note: 'Введите значение по умолчанию. Внимание! Предполагается что вы знаете что делаете',
                 },
-                lookup: {
+                _adds: {
                     type: 'json',
-                    component: 'Object',
-                    desc: 'Связка',
-                    note: 'Связь с другими хранилищами',
+                    component: 'Tabs',
                     fields: {
-                        storage: {
-                            type: 'varchar',
-                            desc: 'Хранилище',
-                            component: 'Select',
-                            selector: {
-                                value: 'name',
-                                title: 'desc'
+                        
+                        params: {
+                            type: 'json',
+                            component: 'Object',
+                            desc: 'Дополнительные параметры',
+                            vertical: true,
+                            fields: {
+                                required: {
+                                    type: 'bool',
+                                    placeholder: 'Обязательное поле',
+                                    note: 'Будет требоваться ввести значение в форме. Пустое значение будет трактоваться как "нет значения"',
+                                    component: 'Checkbox',
+                                    default: false
+                                },
+                                enabled: {
+                                    type: 'bool',
+                                    placeholder: 'Поле включено',
+                                    note: 'Не будет возможности ввести или изменить поле. Значение не будет передаваться в форме, если не будет введено',
+                                    component: 'Checkbox',
+                                    default: true
+                                },
+                                readonly: {
+                                    type: 'bool',
+                                    placeholder: 'Только для чтения',
+                                    note: 'Не будет возможности ввести или изменить данные',
+                                    component: 'Checkbox',
+                                    default: false
+                                },
+                                visual: {
+                                    type: 'bool',
+                                    placeholder: 'Отображать в виде визуального редактора',
+                                    note: 'Используется только в большом текстовом поле',
+                                    component: 'Checkbox',
+                                    default: false
+                                },
+                                list: {
+                                    type: 'bool',
+                                    placeholder: 'Отображать в списке',
+                                    component: 'Checkbox',
+                                    default: false
+                                },
+                                vertical: {
+                                    type: 'bool',
+                                    placeholder: 'Отображать обьект вертикально',
+                                    note: 'Работает только с обьектами типа Object и Array',
+                                    component: 'Checkbox',
+                                    default: false
+                                }
+                            }
+                        },
+                        lookup: {
+                            type: 'json',
+                            component: 'Object',
+                            desc: 'Связка',
+                            note: 'Связь с другими хранилищами',
+                            vertical: true,
+                            fields: {
+                                _oneof: {
+                                    type: 'varchar',
+                                    component: 'Radio',
+                                    default: 'none',      
+                                    values: [{
+                                        value: 'none',
+                                        title: 'Нет связи'
+                                    }, {
+                                        value: 'storage',
+                                        title: 'Хранилище'
+                                    }, {
+                                        value: 'accesspoint',
+                                        title: 'Точка доступа'
+                                    }, {
+                                        value: 'method',
+                                        title: 'Метод'
+                                    }, {
+                                        value: 'binding',
+                                        title: 'Байдинг к данным'
+                                    }, {
+                                        value: 'controller',
+                                        title: 'Контроллер'
+                                    }]                      
+                                },
+        
+                                storage: {
+                                    type: 'json',
+                                    component: 'Object',
+                                    desc: 'Хранилище',
+                                    fields: {
+                                        name: {
+                                            type: 'varchar',
+                                            desc: 'Хранилище',
+                                            component: 'Select',
+                                            selector: {
+                                                value: 'name',
+                                                title: 'desc'
+                                            },
+                                            lookup: () => {
+                                                return new Promise((rs, rj) => {
+                                                    Manage.Store.AsyncQuery('manage.storages').then((storages) => {
+                                                        rs({ result: Object.values(storages).filter((s => s.params.visible)) });
+                                                    });
+                                                });
+                                            },
+                                        },
+                                        title: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: 'Поле для вывода'
+                                        },
+                                        value: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: 'Поле для значения'
+                                        },
+                                        controller: {
+                                            type: 'json',
+                                            component: 'Object',
+                                            desc: 'Контроллер (JS)',
+                                            fields: {
+                                                module: {
+                                                    type: 'varchar',
+                                                    component: 'Text',
+                                                    desc: 'Модуль'
+                                                },
+                                                class: {
+                                                    type: 'varchar',
+                                                    component: 'Text',
+                                                    desc: 'Класс'
+                                                },
+                                                method: {
+                                                    type: 'varchar',
+                                                    component: 'Text',
+                                                    desc: 'Метод'
+                                                },
+                                            }
+                                        }
+                                    },
+                                    params: {
+                                        condition: {
+                                            field: '_oneof',
+                                            value: 'storage',
+                                        }
+                                    }
+                                    
+                                },
+                                controller: {
+                                    type: 'json',
+                                    component: 'Object',
+                                    desc: 'Контроллер (JS)',
+                                    fields: {
+                                        module: {
+                                            type: 'varchar',
+                                            component: 'Select',
+                                            desc: 'Модуль',
+                                            lookup: () => {
+                                                return new Promise((rs, rj) => {
+                                                    Manage.Store.AsyncQuery('manage.modules').then((modules) => {
+                                                        let components = [];
+                                                        for (const module of modules) {
+                                                            components.push({ value: module.name, title: module.desc});
+                                                        }                        
+                                                        rs({ result: components });
+                                                    });
+                                                });
+                                            }
+                                        },
+                                        class: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: 'Класс'
+                                        },
+                                        method: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: 'Метод'
+                                        },
+                                    },
+                                    params: {
+                                        condition: {
+                                            field: '_oneof',
+                                            value: 'controller',
+                                        }
+                                    }
+                                },
+                                binding: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Байндинг',
+                                    default: '',
+                                    params: {
+                                        condition: {
+                                            field: '_oneof',
+                                            value: 'binding',
+                                        }
+                                    }
+                                },
+                                method: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Метод',
+                                    default: '',
+                                    params: {
+                                        condition: {
+                                            field: '_oneof',
+                                            value: 'method',
+                                        }
+                                    }
+                                },
+                                accesspoint: {
+                                    type: 'json',
+                                    component: 'Object',
+                                    desc: 'Точка доступа',
+                                    default: '',
+                                    fields: {
+                                        fields: { type: 'varchar', component: 'Text', default: '', desc: 'Список полей'},
+                                        table:  { type: 'varchar', component: 'Text', default: '', desc: 'Таблица'},
+                                        filter:  { type: 'varchar', component: 'Text', default: '', desc: 'Фильтр'},
+                                        order: { type: 'varchar', component: 'Text', default: '', desc: 'Сортировка'},
+                                    },
+                                    params: {
+                                        condition: {
+                                            field: '_oneof',
+                                            value: 'accesspoint',
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        values: {
+                            type: 'json',
+                            component: 'Array',
+                            desc: 'Значения',
+                            default: [],
+                            params: {
+                                addlink: 'Добавить значение'
                             },
-                            lookup: () => {
-                                return new Promise((rs, rj) => {
-                                    Manage.Store.AsyncQuery('manage.storages').then((storages) => {
-                                        rs({ result: Object.values(storages).filter((s => s.params.visible)) });
-                                    });
-                                });
-                            },
+                            fields: {
+                                title: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Поле для вывода'
+                                },
+                                value: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Поле для значения'
+                                }
+                            }
                         },
-                        title: {
-                            type: 'varchar',
-                            component: 'Text',
-                            desc: 'Поле для вывода'
+                        selector: {
+                            type: 'json',
+                            desc: 'Выборка',
+                            note: 'Дополнительные настройки для компонента Select',
+                            component: 'Object',
+                            fields: {
+                                value: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Поле значения'
+                                },
+                                title: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Поле заголовка'
+                                },
+                                __render: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Метод для вывода выборки'
+                                },
+                            }
                         },
-                        value: {
-                            type: 'varchar',
-                            component: 'Text',
-                            desc: 'Поле для значения'
-                        }
-                    },
-                    params: {
-                        validate: [{
-                            message: 'Пожалуйста, введите наименование классов моделей таблицы и строки',
-                            method: '(field, validator) => !!field.value.table && !!field.value.row'
-                        }]
-                    }
-                },
-                values: {
-                    type: 'json',
-                    component: 'Array',
-                    desc: 'Значения',
-                    default: [],
-                    params: {
-                        addlink: 'Добавить значение'
-                    },
-                    fields: {
-                        title: {
-                            type: 'varchar',
-                            component: 'Text',
-                            desc: 'Поле для вывода'
-                        },
-                        value: {
-                            type: 'varchar',
-                            component: 'Text',
-                            desc: 'Поле для значения'
-                        }
                     }
                 }
+                
             }
         };
     }
@@ -392,10 +616,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Text',
                     desc: 'Наименование индекса',
                     note: 'Внимание! Рекомендуется индекс называть следующим образом: storage_fields_idx, где storage название хранилища fields - список полей через _',
-                    required: true,
                     params: {
+                        required: true,
                         validate: [{
-                            message: 'Пожалуйста, введите наименование свойства',
+                            message: 'Пожалуйста, введите наименование индекса',
                             method: '(field, validator) => !!field.value'
                         }, {
                             message: 'Введенный текст не соответствует требованиям',
@@ -403,13 +627,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
-                desc: {
+                fields: {
                     type: 'varchar',
                     component: 'Select',
                     multiple: true,
                     desc: 'Спосок свойств',
                     note: 'Выберите список свойств по которым необходимо индексировать',
-                    required: true,
                     lookup: () => {
                         return new Promise((rs, rj) => {
                             Manage.Store.AsyncQuery('manage.storages(' + storageName + ')').then((storage) => {
@@ -424,6 +647,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         });
                     },
                     params: {
+                        required: true,
+                        readonly: true,
                         validate: [{
                             message: 'Пожалуйста, выберите свойства',
                             method: '(field, validator) => !!field.value'
@@ -435,7 +660,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Select',
                     desc: 'Тип индекса',
                     note: 'Внинание! Предполагается, что вы знаете, что делаете!',
-                    required: true,
+                    params: {
+                        required: true,
+                        readonly: true,
+                        validate: [{
+                            message: 'Пожалуйста, выберите тип индекса',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    },
                     default: 'NORMAL',
                     values: [
                         {value: 'FULLTEXT', title: 'Полнотекстовый'},
@@ -455,14 +687,32 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         {value: 'HASH', title: 'Хэш функция'},
                     ],
                     params: {
+                        required: true,
+                        readonly: true,
                         validate: [{
-                            message: 'Пожалуйста, выберите подключение',
+                            message: 'Пожалуйста, выберите метод индексирования',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
                 }
             }
         };
+    }
+
+    _getPath(node, add = null) {
+        const storageNode = this._findStorageNode(node);
+        let paths = [];
+        let p = node;
+        while(p != storageNode) {
+            if(p.tag.entry) {
+                paths.push(p.tag.entry.name);
+            }
+            p = p.parentNode;
+        }
+        paths.reverse();
+        add && paths.push(add);
+        let path = paths.join('/').trim(/\//);
+        return path;
     }
 
     __clickOnStoragesContextMenu(event, args) {
@@ -514,9 +764,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = this._findModuleNode(node);
             const storageNode = this._findStorageNode(node);
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                Manage.FormWindow.Show('Новое свойство', 800, this._fieldFields(), {})
+                Manage.FormWindow.Show('Новое свойство', 1024, this._fieldFields(), {})
                     .then((data) => {
-                        Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, data);
+                        Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
                     })
                     .catch(() => { });
             }
@@ -528,9 +778,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = this._findModuleNode(node);
             const storageNode = this._findStorageNode(node);
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                Manage.FormWindow.Show('Редактировать свойство', 800, this._fieldFields(), node.tag.entry)
+                Manage.FormWindow.Show('Редактировать свойство', 1024, this._fieldFields(), node.tag.entry)
                     .then((data) => {
-                        Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, data);
+                        Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);
                     })
                     .catch(() => { });
             }
@@ -542,9 +792,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         else if (menuData.name == 'remove-field') {
             const moduleNode = this._findModuleNode(node);
             const storageNode = this._findStorageNode(node);
+            const selectedNode = this.selected;
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
                 App.Confirm.Show('Удаление свойства', 'Вы уверены, что хотите удалить свойство?', 'Удалить!').then(() => {
-                    Sites.DeleteField(moduleNode.tag.entry, storageNode.tag.entry, node.tag.entry);
+                    Sites.DeleteField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node));
                 });
             }
             else {
@@ -596,216 +847,20 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
-    __renderPublicationsContextMenu(event, args) {
-        let contextmenu = [];
-
-        contextmenu.push({ name: 'edit-data', title: 'Редактировать данные публикации', icon: Colibri.UI.ContextMenuEditIcon });
-        contextmenu.push({ name: 'remove-pub', title: 'Удалить публикацию', icon: Colibri.UI.ContextMenuRemoveIcon });
-
-        args.item.contextmenu = contextmenu;
-        args.item.ShowContextMenu(args.isContextMenuEvent ? 'right bottom' : 'left bottom', '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
-
-    }
-
-    __clickOnPublicationsContextMenu(event, args) {
-
-        const item = args?.item;
-        const menuData = args.menuData;
-        if (!menuData) {
+    __foldersDoubleClick(event, args) {
+        const node = this._storages.selected;
+        if (!node) {
             return false;
         }
-
-        if (menuData.name == 'edit-data') {
-            this._editData.Dispatch('Clicked');
+        if(node.tag.type === 'indices') {
+            this.__clickOnStoragesContextMenu(event, {menuData: {name: 'new-index'}});
         }
-        else if (menuData.name == 'remove-pub') {
-            this._deleteData.Dispatch('Clicked');
-        }
-    }
-
-    __foldersDoubleClick(event, args) {
-        const item = this._folders.selected;
-        if (!item) {
-            if (Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('Новый раздел', 1024, 'app.manage.storages(pages)', {})
-                    .then((data) => {
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => { });
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
+        else if(node.tag.type === 'fields') {
+            this.__clickOnStoragesContextMenu(event, {menuData: {name: 'new-field'}});
         }
         else {
-            if (Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('Редактировать раздел', 1024, 'app.manage.storages(pages)', node.tag.entry)
-                    .then((data) => {
-                        data.parent = node.tag.entry?.parent?.id ?? 0;
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => { });
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
+            this.__clickOnStoragesContextMenu(event, {menuData: {name: 'edit-' + node.tag.type}});
         }
-    }
-
-    __dragDropComplete(event, args) {
-
-        const dragged = args.dragged;
-        const droppedTo = args.droppedTo;
-
-        if (dragged instanceof Colibri.UI.TreeNode && droppedTo instanceof Colibri.UI.TreeNode) {
-            // Перетаскивание нодов
-            const folderMoving = dragged.tag;
-            const folderTo = droppedTo.tag;
-            Sites.MoveFolder(folderMoving, folderTo);
-        }
-        else if (dragged instanceof Colibri.UI.Grid.Row && droppedTo instanceof Colibri.UI.TreeNode) {
-            // копирование публикации
-            const pub = dragged.value;
-            const folderTo = droppedTo.tag;
-            Sites.CopyPublication(pub, folderTo);
-        }
-
-
-    }
-
-    _loadPublicationsPage(folder, searchTerm, page) {
-        this._publicationsCurrentPage = page;
-        Sites.LoadPublications(folder, searchTerm, page, 20);
-    }
-
-    __searchInputFilled(event, args) {
-        const selected = this._folders.selected;
-        this._loadPublicationsPage(selected?.tag, this._searchInput.value, 1);
-    }
-
-    __publicationsScrolledToBottom(event, args) {
-        const selected = this._folders.selected;
-        this._loadPublicationsPage(selected?.tag, this._searchInput.value, this._publicationsCurrentPage + 1);
-    }
-
-    __selectionChangedOnFolder(event, args) {
-
-        const selected = this._folders.selected;
-
-        this._searchInput.enabled = selected != null;
-        this._publications.enabled = selected != null;
-        this._publishButton.enabled = selected != null;
-        this._addData.enabled = selected != null;
-        this._editData.enabled = false;
-        this._deleteData.enabled = false;
-        this._publications.UnselectAllRows();
-        this._publications.UncheckAllRows();
-
-        this.__searchInputFilled(event, args);
-
-    }
-
-    __selectionChangedOnPublication(event, args) {
-        const checked = this._publications.checked;
-        const selected = this._publications.selected;
-        this._editData.enabled = checked.length == 1 || !!selected;
-        this._deleteData.enabled = checked.length > 0 || !!selected;
-    }
-
-    __checkChangedOnPublications(event, args) {
-        const checked = this._publications.checked;
-        const selected = this._publications.selected;
-        this._editData.enabled = checked.length == 1 || !!selected;
-        this._deleteData.enabled = checked.length > 0 || !!selected;
-    }
-
-    __deleteDataButtonClicked(event, args) {
-        if (this._publications.checked.length == 0) {
-            App.Confirm.Show('Удаление публикации', 'Вы уверены, что хотите удалить выбранную публикацию?', 'Удалить!').then(() => {
-                Sites.DeletePublication([this._publications.selected.value.id]);
-            });
-        }
-        else {
-            App.Confirm.Show('Удаление публикации', 'Вы уверены, что хотите удалить выбранные публикации?', 'Удалить!').then(() => {
-                let ids = [];
-                this._publications.checked.forEach((row) => {
-                    ids.push(row.value.id);
-                });
-                Sites.DeletePublication(ids);
-            });
-        }
-    }
-
-    __addDataButtonClicked(event, args) {
-
-        Manage.Store.AsyncQuery('manage.storages').then((storages) => {
-
-            const contextmenu = [];
-            Object.forEach(storages, (name, storage) => {
-                if (storage.params.visible && storage.params.maybepublished) {
-                    contextmenu.push({ name: storage.name, title: storage.desc, icon: App.Modules.Sites.Icons.ContextMenuStorageIcon });
-                }
-            });
-
-            const contextMenuObject = new Colibri.UI.ContextMenu('storages-list', document.body, 'right top');
-            contextMenuObject.Show(contextmenu, this._addData);
-            contextMenuObject.AddHandler('Clicked', (event, args) => {
-                contextMenuObject.Hide();
-                const menuData = args.menuData;
-                if (Security.IsCommandAllowed('sites.storages.' + menuData.name + '.edit')) {
-                    Manage.FormWindow.Show('Новая строка «' + menuData.title + '»', 1024, 'app.manage.storages(' + menuData.name + ')', {})
-                        .then((data) => {
-                            const selected = this._folders.selected;
-                            Sites.CreatePublication(selected.tag, menuData.name, data);
-                        })
-                        .catch(() => { });
-                }
-                else {
-                    App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-                }
-                contextMenuObject.Dispose();
-            });
-
-        });
-
-
-    }
-
-    __doubleClickedOnPublication(event, args) {
-        this._editData.Dispatch('Clicked');
-    }
-
-    __editDataButtonClicked(event, args) {
-        const pub = this._publications.selected.value;
-
-        Promise.all([
-            Manage.Store.AsyncQuery('manage.storages(' + pub.storage + ')'),
-            Sites.LoadRow(pub.storage, pub.row, pub)
-        ]).then((responses) => {
-            const storage = responses[0];
-            const data = responses[1];
-            if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-                Manage.FormWindow.Show('Новая строка «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', data)
-                    .then((data) => {
-                        Sites.SaveData(storage.name, data, pub);
-                    })
-                    .catch(() => { });
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
-            }
-        });
-    }
-
-    __publishButtonClicked(event, args) {
-
-        const wnd = new App.Modules.Sites.DataWindow('publish', document.body, 'Публикация данных');
-        wnd.Show((storage, dataIds) => {
-            const selected = this._folders.selected;
-            Sites.Publish(selected?.tag, storage.name, dataIds);
-        });
-
-
     }
 
 
