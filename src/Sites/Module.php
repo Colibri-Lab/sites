@@ -49,20 +49,13 @@ class Module extends BaseModule
     public function GetTopmostMenu(): Item|array|null {
 
         return [
-            Item::Create('struct', 'Структура', '', 'green', false, '')
-                ->Add([
-                    Item::Create('sites', 'Сайты и разделы', '', '', false, '')->Add([
-                        Item::Create('structure', 'Структура сайта', 'Структура проекта, папки и конечные страницы, публикация данных', '', true, 'Sites.RouteTo("/structure/")'),
-                        Item::Create('data', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', '', false, 'Sites.RouteTo("/data/")'),
-                        // Item::Create('references', 'Справочники', 'Справочники', 'Редактор справочников. Страны, города и т.д.', false, 'Sites.RouteTo("/references/")'),
-                    ])
-                ],
-            ),
-            Item::Create('dev', 'Разработка', '', 'orange', false, '')->Add([
-                Item::Create('sites', 'Данные', '', '', false, '')->Add([
-                    Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', '', true, 'Sites.RouteTo("/storages/")'),
-                    // Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', true, 'Sites.RouteTo("/sources/")')
-                ]),
+            Item::Create('struct', 'Структура', '', 'App.Modules.MainFrame.Icons.StructureIcon', '')->Add([
+                Item::Create('structure', 'Структура сайта', 'Структура проекта, папки и конечные страницы, публикация данных', 'App.Modules.Sites.Icons.FoldersIcon', 'App.Modules.Sites.StructurePage'),
+                Item::Create('data', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.DataPage'),
+            ]),
+            Item::Create('dev', 'Разработка', '', 'App.Modules.MainFrame.Icons.DevIcon', '')->Add([
+                Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.StoragesPage'),
+                // Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', 'Sites.RouteTo("/sources/")')
             ])
         ];
 
