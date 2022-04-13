@@ -20,7 +20,7 @@ pages:
         required: true
         readonly: false
       lookup:
-        storage: 
+        storage:
           name: pages
           title: description
           value: id
@@ -117,11 +117,11 @@ pages:
               selector:
                 value: value
                 title: title
-              lookup: 
+              lookup:
                 method: '() => { let ret = []; Object.keys(App.Modules).forEach((module)
                   => { Object.forEach(eval(''App.Modules.'' + module), (name, value)
-                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name, title:
-                  module + ''.'' + name}); } }); }); return ret; }'
+                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name,
+                  title: module + ''.'' + name}); } }); }); return ret; }'
             parameters:
               type: json
               class: ArrayField
@@ -194,7 +194,7 @@ pages:
                   selector:
                     value: value
                     title: title
-                  lookup: 
+                  lookup:
                     method: '() => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
                       (name, value) => { ret.push({value: name, title: value.description});
                       }); return ret; }'
@@ -247,7 +247,7 @@ pubs:
         required: true
         readonly: false
       lookup:
-        storage: 
+        storage:
           name: pages
           title: description
           value: id
@@ -338,98 +338,20 @@ texts:
         enabled: true
         visual: true
         list: true
-    testobject:
+    file:
       type: json
-      class: ObjectField
-      desc: Тестовый обьект
-      component: Object
-      fields:
-        testvarchar:
-          type: varchar
-          length: 255
-          desc: Текст
-          component: Text
-          class: string
-          params:
-            required: true
-            readonly: false
-            enabled: true
-        testarray:
-          type: json
-          desc: Массив
-          class: ArrayField
-          component: Array
-          fields:
-            varchar:
-              type: varchar
-              class: string
-              component: Text
-              desc: Тестовый текст
-              default: ""
-              length: 255
-              group: window
-              params:
-                required: true
-                enabled: true
-                readonly: false
-                visual: true
-                list: true
-            numeric:
-              type: bigint
-              class: int
-              component: Number
-              desc: Тестовое число
-              default: ""
-              group: window
-              params:
-                required: true
-                enabled: true
-                readonly: false
-                visual: true
-                list: true
-          group: window
-          default: ""
-          params:
-            required: true
-            enabled: true
-            readonly: false
-            visual: true
-            list: true
-        testhtml:
-          group: window
-          desc: HTML
-          type: varchar
-          component: App.Modules.Manage.UI.TinyMCETextArea
-          class: string
-          default: "123123123123"
-          params:
-            required: false
-            enabled: true
-            readonly: false
-            visual: false
-            list: false
-        testtext:
-          group: window
-          desc: Test Текст
-          type: varchar
-          component: Text
-          class: string
-          default: asasdfasdf
-          params:
-            required: false
-            enabled: true
-            readonly: false
-            visual: false
-            list: false
-      group: window
-      default: ""
+      class: FilesField
+      component: App.Modules.Manage.UI.Files
+      desc: Тестовый файл
+      default: "json_array()"
       params:
         required: false
         enabled: true
         readonly: false
         visual: false
         list: false
-        vertical: true
+        vertical: false
+      group: window
   indices:
     texts_title_idx:
       fields:
