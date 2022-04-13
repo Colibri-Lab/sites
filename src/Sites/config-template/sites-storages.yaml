@@ -340,10 +340,10 @@ texts:
         list: true
     file:
       type: json
-      class: FilesField
-      component: App.Modules.Manage.UI.Files
+      class: ObjectField
+      component: App.Modules.Manage.UI.RemoteFile
       desc: Тестовый файл
-      default: "json_array()"
+      default: "json_object()"
       params:
         required: false
         enabled: true
