@@ -44,7 +44,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         let contextmenu = [];
         
-        const itemData = args.item?.value;
+        const itemData = args.item?.tag;
         if(!itemData) {
             contextmenu.push({name: 'new-root-folder', title: 'Новый раздел', icon: Colibri.UI.ContextMenuAddIcon});
 

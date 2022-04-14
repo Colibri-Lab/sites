@@ -37,30 +37,39 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         let idColumn = this.header.columns.Children('id');
         if(!idColumn) {
             idColumn = this.header.columns.Add('id', '#', {width: '5%'});
+            idColumn.resizable = true;
         }
+        
         let dateCreatedColumn = this.header.columns.Children('datecreated');
         if(!dateCreatedColumn) {
             dateCreatedColumn = this.header.columns.Add('datecreated', 'Дата создания', {width: '10%'});
             dateCreatedColumn.viewer = 'Colibri.UI.DateTimeViewer';
+            dateCreatedColumn.resizable = true;
         }
 
         const columnCount = Object.countKeys(this._storage.fields);
-        Object.forEach(this._storage.fields, (name, field) => {
+        Object.forEach(this._storage.fields, (name, field, index) => {
             if(field.params?.list !== true) {
                 return true;
             }
             let column = this.header.columns.Children(name);
             if(!column) {
-                column = this.header.columns.Add(name, field.desc, {width: (83/columnCount) + '%'});
-                if(field.params?.viewer) {
+                column = this.header.columns.Add(name, field.desc, {width: (83/columnCount).toFixed(2) + '%'});
+                if(field.params?.visual) {
+                    column.viewer = 'Colibri.UI.HtmlDataViewer';
+                }
+                else if(field.params?.viewer) {
                     column.viewer = field.params?.viewer;
                 }
                 if(field.params?.render) {
                     column.tag.params = {render: eval(field.params?.render)};
                 }
+                column.resizable = true;
             }
             return true;
         });
+
+        this.header.columns.Children('lastChild').resizable = false;
         
 
         let found = [];

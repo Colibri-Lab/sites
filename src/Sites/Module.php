@@ -54,7 +54,7 @@ class Module extends BaseModule
                 Item::Create('data', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.DataPage'),
             ]),
             Item::Create('dev', 'Разработка', '', 'App.Modules.MainFrame.Icons.DevIcon', '')->Add([
-                Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.StoragesPage'),
+                Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', 'App.Modules.Sites.Icons.StoragesManageIcon', 'App.Modules.Sites.StoragesPage'),
                 // Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', 'Sites.RouteTo("/sources/")')
             ])
         ];
