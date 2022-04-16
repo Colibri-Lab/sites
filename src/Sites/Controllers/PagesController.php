@@ -19,9 +19,56 @@ use App\Modules\Sites\Models\Pages;
 use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Module;
 use Colibri\Data\Models\DataModelException;
+use App\Modules\Sites\Models\Domains;
 
 class PagesController extends WebController
 {
+    public function Domains(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        if(!SecurityModule::$instance?->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance?->current?->IsCommandAllowed('sites.structure')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $domains = Domains::LoadAll();
+        $domainsArray = [];
+        foreach($domains as $domain) {
+            $domainsArray[$domain->id] = $domain->ToArray(true);
+        }
+        return $this->Finish(200, 'ok', $domainsArray);
+    }
+
+    public function DomainKeys(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $config = App::$config->Query('hosts.domains')->AsArray();
+        $array = array_keys($config);
+        // надо получить список доменов с ключами и выдать для вывода при выборе настрок домена
+        // дальше, при входе на сайт (любой из) запрос в список сайтов на получение по ключу домена - если не нашлось то 404, если нашлось 
+        // то запускаем страницу MainFrame из выбранного модуля
+        
+        $return = [];
+        foreach($array as $key) {
+            $return[] = ['value' => $key, 'title' => $key];
+        }
+
+        return $this->Finish(200, 'ok', $return);
+    }
+
+    
+
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -50,11 +97,18 @@ class PagesController extends WebController
 
         $id = $post->id;
         if(!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
+            return $this->Finish(403, 'Permission denied');
         }
         else if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
             return $this->Finish(403, 'Permission denied');
         }
 
+        $domain = $post->domain;
+        if(!$domain) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $domain = Domains::LoadById($domain);
 
         $parent = $post->parent;
         if($parent) {
@@ -65,19 +119,57 @@ class PagesController extends WebController
         }
 
         if(!$id) {
-            $page = Pages::LoadEmpty($parent);
+            $page = Pages::LoadEmpty($domain, $parent);
             $page->name = $post->name;
         }
         else {
             $page = Pages::LoadById($id);
         }
 
-        $page->description = $post->description;
-        $page->published = $post->published;
-        $page->additional = $post->additional;
+        foreach($post as $k => $v) {
+            if(!in_array($k, ['domain', 'id', 'parent'])) {
+                $page->$k = $v;
+            }
+        }
         $page->Save();
 
         return $this->Finish(200, 'ok', $page->ToArray(true));
+
+    }
+
+    
+    public function SaveDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+        
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $id = $post->id;
+        if(!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+        else if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!$id) {
+            $domain = Domains::LoadEmpty();
+            $domain->name = $post->name;
+        }
+        else {
+            $domain = Domains::LoadById($id);
+        }
+
+        foreach($post as $k => $v) {
+            if(!in_array($k, ['id', 'datecreated'])) {
+                $domain->$k = $v;
+            }
+        }
+
+        $domain->Save();
+
+        return $this->Finish(200, 'ok', $domain->ToArray(true));
 
     }
 
@@ -109,10 +201,39 @@ class PagesController extends WebController
 
     }
 
+    public function DeleteDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.remove')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $id = $post->id;
+        $domain = Domains::LoadById($id);
+        try {
+            $domain->Delete();
+        }
+        catch(DataModelException $e) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $domains = Domains::LoadAll();
+        $domainsArray = [];
+        foreach($domains as $domain) {
+            $domainsArray[$domain->id] = $domain->ToArray(true);
+        }
+        return $this->Finish(200, 'ok', $domainsArray);
+
+    }
+
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
         $move = $post->move;
+        $domain = $post->domain;
         $to = $post->to;
 
         if(!SecurityModule::$instance->current) {
@@ -128,9 +249,14 @@ class PagesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
+        $domain = Domains::LoadById($domain);
+        if(!$domain) {
+            return $this->Finish(400, 'Bad request');
+        }
+
         $to = $to ? Pages::LoadById($to) : null;
         
-        if(!$move->MoveTo($to)) {
+        if(!$move->MoveTo($to ?: $domain)) {
             return $this->Finish(400, 'Bad request');
         }
 

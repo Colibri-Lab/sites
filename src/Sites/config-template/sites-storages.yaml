@@ -10,15 +10,22 @@ domains:
     visible: false
     maybepublished: false
   fields:
+    
     name:
       type: varchar
-      length: 255
-      class: string
-      desc: Наименование сайта
-      note: Введите наименование сайта
+      class: ValueField
+      component: Select
+      desc: Ключ домена
+      note: В конфигурации должны быть указаны паттерны доменов, которые подходят под этот ключ
+      default: ""
+      selector:
+        value: value
+        title: title
       params:
+        readonly: true
         required: true
-        readonly: false
+      lookup:
+        binding: app.sites.domainkeys
     description:
       type: varchar
       length: 255
@@ -47,21 +54,7 @@ domains:
         title: Нет
       - value: "1"
         title: Да
-    domains:
-      type: json
-      class: ArrayField
-      component: Array
-      desc: Список доменов
-      note: Можно использовать регулярные выражения
-      default: "json_array()"
-      params:
-        addlink: Добавить домен
-      fields:
-        pattern: 
-          type: varchar
-          length: 255
-          class: string
-          component: Text 
+      
     additional:
       type: json
       class: ObjectField
@@ -78,39 +71,46 @@ domains:
             vertical: true
           default: json_object()
           fields:
-            type: 
+            type:
               type: enum
               class: ValueField
               component: Select
-              default: 'application'
+              default: application
+              params:
+                readonly: true
+                required: true
               values:
-                - value: application
-                  title: Приложение
-                - value: website
-                  title: Обычный вебсайт
-            module: 
+              - value: application
+                title: Приложение
+              - value: website
+                title: Обычный вебсайт
+            module:
               type: varchar
               length: 255
               class: string
               component: Select
               desc: Стартовый модуль
               note: Выжерите модуль, который будет стартовать
-              default: 
+              default: ~
               selector:
                 value: value
                 title: title
+              params:
+                readonly: true
+                required: true
               lookup:
-                method: '
-                  () => new Promise((resolve, reject) => { 
-                    let ret = [{value: "", title: "Шаблон не выбран"}]; 
-                    Object.keys(App.Modules).forEach((module) => { 
-                      ret.push({value: module, title: module}); 
-                    }); 
-                    resolve(ret); 
+                method: ' () => new Promise((resolve, reject) => { 
+                    Manage.Store.AsyncQuery("manage.modules").then((modules) => {
+                      const ret = [];
+                      for(const module of modules) {
+                        ret.push({value: module.name, title: module.desc + " (" + module.name + ")"});
+                      }
+                      resolve(ret);
+                    });
                   });'
         parameters:
           type: json
-          class: ArrayField
+          class: ArrayField 
           component: Array
           desc: Дополнительные свойства
           default: json_array()
@@ -150,6 +150,8 @@ domains:
                 title: Целое число
               - value: double
                 title: Число с плавающей запятой
+              - value: bool
+                title: Да/Нет
               - value: object
                 title: Обьект
               - value: array
@@ -181,17 +183,17 @@ domains:
                 value: value
                 title: title
               lookup:
-                method: '
-                  () => new Promise((resolve, reject) => {
-                    let ret = []; 
-                    Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => { 
-                      ret.push({value: name, title: value.description});
-                    }); 
-                    resolve(ret);
-                  })'
+                method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                  (name, value) => { ret.push({value: name, title: value.description});
+                  }); resolve(ret); })'
               attrs:
                 width: 22%
   indices:
+    domains_name_idx:
+      fields:
+      - name
+      type: NORMAL
+      method: BREE
 pages:
   access-point: sites
   module: Sites
@@ -203,6 +205,20 @@ pages:
     visible: false
     maybepublished: false
   fields:
+    domain:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Domain
+      component: Hidden
+      desc: Домен
+      default: "0"
+      params:
+        required: true
+        readonly: true
+      lookup:
+        storage:
+          name: domains
+          title: description
+          value: id
     parent:
       type: bigint unsigned
       class: App\Modules\Sites\Models\Page
@@ -235,6 +251,7 @@ pages:
       params:
         required: true
         readonly: false
+        runtime: '(field, form) => { const nameField = form.FindField("name"); if(!nameField.value) { nameField.value = field.value.CyrToUrl(3); } }'
     published:
       type: tinyint
       length: 1
@@ -307,24 +324,16 @@ pages:
               component: Select
               desc: Шаблон
               note: Введите описание сайта
-              default: ''
+              default: ""
               selector:
                 value: value
                 title: title
               lookup:
-                method: '
-                  () => new Promise((resolve, reject) => { 
-                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
-                      Object.keys(App.Modules).forEach((module) => { 
-                        Object.forEach(eval(''App.Modules.'' + module), (name, value) => { 
-                          if(name.indexOf(''Page'') !== -1) { 
-                            ret.push({value: name, title: module + ''.'' + name}); 
-                          } 
-                        }); 
-                      }); 
-                      resolve(ret); 
-                    }); 
-                  '
+                method: ' () => new Promise((resolve, reject) => { let ret = [{value:
+                  "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                  => { Object.forEach(eval(''App.Modules.'' + module), (name, value)
+                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name,
+                  title: module + ''.'' + name}); } }); }); resolve(ret); }); '
             parameters:
               type: json
               class: ArrayField
@@ -367,6 +376,8 @@ pages:
                     title: Целое число
                   - value: double
                     title: Число с плавающей запятой
+                  - value: bool
+                    title: Да/Нет
                   - value: object
                     title: Обьект
                   - value: array
@@ -398,14 +409,10 @@ pages:
                     value: value
                     title: title
                   lookup:
-                    method: '
-                      () => new Promise((resolve, reject) => {
-                        let ret = []; 
-                        Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => { 
-                          ret.push({value: name, title: value.description});
-                        }); 
-                        resolve(ret);
-                      })'
+                    method: ' () => new Promise((resolve, reject) => { let ret = [];
+                      Object.forEach(Colibri.UI.Forms.Field.Components, (name, value)
+                      => { ret.push({value: name, title: value.description}); });
+                      resolve(ret); })'
                   attrs:
                     width: 22%
     order:
@@ -415,6 +422,11 @@ pages:
       component: Hidden
       desc: Позиция в рамках parent-а
   indices:
+    pages_domain_idx:
+      fields:
+      - domain
+      type: NORMAL
+      method: BTREE
     pages_parent_idx:
       fields:
       - parent
@@ -446,6 +458,20 @@ pubs:
     visible: false
     maybepublished: false
   fields:
+    domain:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Domain
+      component: Hidden
+      desc: Домен
+      default: "0"
+      params:
+        required: true
+        readonly: true
+      lookup:
+        storage:
+          name: domains
+          title: description
+          value: id
     page:
       type: bigint unsigned
       class: App\Modules\Sites\Models\Page
@@ -494,6 +520,11 @@ pubs:
       default: 0
       desc: Позиция в рамках страницы
   indices:
+    pubs_domain_idx:
+      fields:
+      - domain
+      type: NORMAL
+      method: BTREE
     pubs_pagestoragerow_idx:
       fields:
       - page
@@ -531,9 +562,13 @@ texts:
       note: Введите заголовок текстового блока, если необходимо
       params:
         required: false
-        readonly: false
         enabled: true
+        readonly: false
+        visual: false
         list: true
+        vertical: false
+      group: window
+      default: ""
     html:
       type: longtext
       class: string
@@ -551,7 +586,7 @@ texts:
       class: ObjectField
       component: App.Modules.Manage.UI.RemoteFiles
       desc: Тестовый файл
-      default: "json_object()"
+      default: json_object()
       params:
         required: false
         enabled: true

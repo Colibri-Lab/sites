@@ -12,14 +12,24 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     InitializeModule() {
 
         this._store = App.Store.AddChild('app.sites', {});
+        this._store.AddPathLoader('sites.domains', () => this.Domains(true));
         this._store.AddPathLoader('sites.pages', () => this.Pages(true));
+        this._store.AddPathLoader('sites.domainkeys', () => this.DomainKeys(true));
 
+        App.Store.AddPathHandler('app.settings.current', (current) => {
+            this.Check(current).then((domainSettings) => {
+                if(!domainSettings || Object.countKeys(domainSettings) == 0) {
+                    return;
+                }
+                const module = eval(domainSettings.additional.settings.module);
+                module.Render();
+            });
+        });
 
         console.log('Initializing module Sites');
 
         App.AddHandler('ApplicationReady', (event, args) => {
             this.Render(document.body);
-
         });
 
 
@@ -49,6 +59,31 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
 
     /** API */
+
+    Check(current) {
+        return new Promise((resolve, reject) => {
+            this.Call('Checks', 'Domain', {current: current}).then(response => {
+                resolve(response.result);
+            }).catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+        })
+    }
+
+    DomainKeys(returnPromise = false) {
+        const promise = this.Call('Pages', 'DomainKeys');
+        if(returnPromise) {
+            return promise;
+        }
+        promise.then((response) => {
+                this._store.Set('sites.domainkeys', response.result);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });    
+    }
 
     SaveFolder(data) {
         this.Call('Pages', 'Save', data)
@@ -83,6 +118,38 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
+    SaveDomain(data) {
+        this.Call('Pages', 'SaveDomain', data)
+            .then((response) => {
+                const saved = response.result;
+                App.Notices.Add(new Colibri.UI.Notice('Домен сохранен', Colibri.UI.Notice.Success, 3000));
+                let domains = Object.values(this._store.Query('sites.domains'));
+                if(!data?.id) {
+                    domains.push(saved);
+                }
+                else {
+                    domains = domains.map(d => d.id == saved.id ? saved : d);
+                }
+                this._store.Set('sites.domains', domains);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
+    DeleteDomain(id) {
+        this.Call('Pages', 'DeleteDomain', {id: id})
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('Домен удалена', Colibri.UI.Notice.Success, 3000));
+                this._store.Set('sites.domains', response.result);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
     DeleteFolder(id) {
         this.Call('Pages', 'Delete', {id: id})
             .then((response) => {
@@ -95,8 +162,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    MoveFolder(move, to) {
-        this.Call('Pages', 'Move', {move: move.id, to: to?.id ?? null})
+    MoveFolder(move, domain, to) {
+        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Страница перенесена', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
@@ -166,9 +233,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    CreatePublication(folder, storage, data) {
+    CreatePublication(domain, folder, storage, data) {
 
-        this.Call('Publications', 'Create', {folder: folder?.id ?? null, storage, data: data})
+        this.Call('Publications', 'Create', {domain: domain.id, folder: folder?.id ?? null, storage, data: data})
             .then((response) => {
                 let pubs = this._store.Query('sites.pubs');
                 if(!pubs || !Array.isArray(pubs)) {
@@ -184,9 +251,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     }
 
-    Publish(folder, storage, ids) {
+    Publish(domain, folder, storage, ids) {
 
-        this.Call('Publications', 'Publish', {folder: folder?.id ?? null, storage, ids: ids.join(',')})
+        this.Call('Publications', 'Publish', {domain: domain.id, folder: folder?.id ?? null, storage, ids: ids.join(',')})
             .then((response) => {
                 let pubs = this._store.Query('sites.pubs');
                 if(!pubs || !Array.isArray(pubs)) {
@@ -245,8 +312,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-    LoadPublications(folder, term = null, page = 1, pagesize = 20, returnPromise = false) {
-        const promise = this.Call('Publications', 'List', {folder: folder?.id ?? null, term: term, page: page, pagesize: pagesize});
+    LoadPublications(domain, folder, term = null, page = 1, pagesize = 20, returnPromise = false) {
+        const promise = this.Call('Publications', 'List', {domain: domain.id, folder: folder?.id ?? null, term: term, page: page, pagesize: pagesize});
         if(returnPromise) {
             return promise;
         }
@@ -386,6 +453,22 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
     
+    Domains(returnPromise = false) {
+        const promise = this.Call('Pages', 'Domains')
+        if(returnPromise) {
+            return promise;
+        }
+
+        promise.then((response) => {
+            this._store.Set('sites.domains', response.result);
+        }).catch((response) => {
+            App.Notices && App.Notices.Add({
+                severity: 'error',
+                title: response.result,
+                timeout: 5000
+            });
+        });
+    }
 
 }
 

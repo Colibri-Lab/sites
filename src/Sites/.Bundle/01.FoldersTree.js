@@ -5,43 +5,54 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         this._foldersList = [];
     }
 
-    _findLevel(parent) {
-        let ret = [];
-        this._foldersList.forEach((folder) => {
-            if(folder?.parent?.id == parent) {
-                folder.isLeaf = this._findLevel(folder.id).length === 0;
-                ret.push(folder);
-            }
-        });
-        return ret;
+    _insertFolderNode(parenNode, folder) {
+        let newNode = this.FindNode('folder' + folder.id);
+        if(!newNode) {
+            newNode = parenNode.nodes.Add('folder' + folder.id);
+        }
+        newNode.text = folder.description;
+        newNode.icon = folder.published.value == 1 ? App.Modules.Sites.Icons.FolderIconPublished : App.Modules.Sites.Icons.FolderIconUnpublished;
+        newNode.tag = {type: 'page', data: folder};
+        return newNode;
     }
 
-    _renderLevel(node, parent) {
+    _renderLevel(node, parent, domain) {
 
-        const folders = this._findLevel(parent);
-        folders.forEach((folder) => {
-            let newNode = this.FindNode(folder.id + folder.name);
+        for(const folder of this._foldersList) {
+
+            if(folder?.domain?.id == domain.id && (folder?.parent?.id ?? 0) == parent) {
+
+                let newNode = this._insertFolderNode(node, folder);
+                if(!folder.parent) {
+                    newNode.parentNode = this.FindNode('domain' + folder.domain.id);
+                }
+                else {
+                    newNode.parentNode = this.FindNode('folder' + folder.parent.id);
+                }
+    
+                this._renderLevel(newNode, folder.id, domain);
+            }
+
+        };
+
+    }
+
+
+    _renderDomains() {
+
+        for(const domain of this._domainsList) {
+
+            let newNode = this.FindNode('domain' + domain.id);
             if(!newNode) {
-                newNode = node.nodes.Add(folder.id + folder.name);
+                newNode = this.nodes.Add('domain' + domain.id);
             }
-            newNode.text = folder.description;
-            newNode.isLeaf = folder.isLeaf;
-            newNode.icon = folder.published.value == 1 ? App.Modules.Sites.Icons.FolderIconPublished : App.Modules.Sites.Icons.FolderIconUnpublished;
-            newNode.tag = folder;
-            
+            newNode.text = domain.description;
+            newNode.icon = App.Modules.Sites.Icons.FolderIconPublished;
+            newNode.tag = {type: 'domain', data: domain};
 
-            if(!folder.parent) {
-                newNode.parentNode = this.FindNode('root');
-            }
-            else if(folder.parent.id != newNode.parentNode?.tag?.id) {
-                const parentNode = this.FindNode(folder.parent.id + folder.parent.name);
-                newNode.parentNode = parentNode;
-                parentNode.Expand();
-            }
-
-            this._renderLevel(newNode, folder.id);
-
-        });
+            this._renderLevel(newNode, 0, domain);
+    
+        }
 
     }
 
@@ -50,7 +61,11 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
             if(node.tag === null) {
                 return true;
             }
-            if(this._foldersList.indexOf(node.tag) === -1) {
+
+            if(node.tag.type === 'domain' && this._domainsList.indexOf(node.tag.data) === -1) {
+                node.Dispose();
+            }
+            else if(node.tag.type === 'page' && this._foldersList.indexOf(node.tag.data) === -1) {
                 node.Dispose();
             }
         });
@@ -58,25 +73,32 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
 
     __renderBoundedValues(data) {
 
-        if(!Array.isArray(data) && data instanceof Object) {
-            data = Object.values(data);
-        }
+        Promise.all([
+            Sites.Store.AsyncQuery('sites.domains'),
+            Sites.Store.AsyncQuery('sites.pages'),
+        ]).then((responses) => {
 
-        this._foldersList = data;
+            let domains = responses[0];
+            let data = responses[1];
 
-        let newNode = this.FindNode('root');
-        if(!newNode) {
-            newNode = this.nodes.Add('root');
-        }
-        newNode.text = 'Главная страница';
-        newNode.isLeaf = false;
-        newNode.icon = App.Modules.Sites.Icons.FolderIconPublished;
-        newNode.tag = null;
+            if(!Array.isArray(domains) && domains instanceof Object) {
+                domains = Object.values(domains);
+            }
 
-        this._renderLevel(newNode, null);
-        newNode.Expand();
+            if(!Array.isArray(data) && data instanceof Object) {
+                data = Object.values(data);
+            }
+    
+            this._domainsList = domains;
+            this._foldersList = data;
+    
+            this._renderDomains();
+    
+            this._removeUnexistent();
 
-        this._removeUnexistent();
+        }); 
+
+        
 
     }
     

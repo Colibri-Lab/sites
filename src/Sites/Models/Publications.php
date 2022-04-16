@@ -109,18 +109,21 @@ class Publications extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Publications 
      */
-    static function LoadByPage(Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20) : Publications
+    static function LoadByPage(Domain|int $domain, Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20) : Publications
     {
+        if(!is_numeric($domain)) {
+            $domain = $domain->id;
+        }
         if(!is_numeric($folder)) {
             $folder = $folder->id;
         }
         
-        $params = ['folder' => $folder];
+        $params = ['domain' => $domain, 'folder' => $folder];
         if($term) {
             $params['term'] = '%'.$term.'%';
         }
 
-        return self::LoadByFilter($page, $pagesize, 'pubs_page=[[folder:integer]]'.($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params);
+        return self::LoadByFilter($page, $pagesize, 'pubs_domain=[[domain:integer]] and pubs_page=[[folder:integer]]'.($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params);
     }
 
     /**
@@ -137,10 +140,11 @@ class Publications extends BaseModelDataTable {
      * Создание модели по названию хранилища
      * @return Publication
      */
-    static function CreatePublication(?Page $page, DataRow $datarow) : Publication
+    static function CreatePublication(Domain $domain, ?Page $page, DataRow $datarow) : Publication
     {
         $pubs = self::LoadByFilter(-1, 20, 'false');
         $empty = $pubs->CreateEmptyRow();
+        $empty->domain = $domain;
         $empty->page = $page ?: 0;
         $empty->storage = $datarow->Storage()->name;
         $empty->row = $datarow->id;
@@ -178,4 +182,15 @@ class Publications extends BaseModelDataTable {
         }
         return false;
     }
+
+    static function DeleteAllByDomain(Domain $domain): bool
+    {
+        $storage = Storages::Create()->Load('pubs');
+        $res = $storage->accessPoint->Delete('pubs', 'pubs_domain=\''.$domain->id.'\'');
+        if($res->affected > 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

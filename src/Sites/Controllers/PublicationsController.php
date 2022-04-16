@@ -21,6 +21,7 @@ use App\Modules\Sites\Module;
 use Colibri\Data\Models\DataModelException;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
+use App\Modules\Sites\Models\Domains;
 
 class PublicationsController extends WebController
 {
@@ -33,6 +34,16 @@ class PublicationsController extends WebController
 
         if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs')) {
             return $this->Finish(403, 'Permission denied');
+        }
+
+        $domain = $post->domain;
+        if(!$domain) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $domain = Domains::LoadById($domain);
+        if(!$domain) {
+            return $this->Finish(400, 'Bad request');
         }
 
         $folder = $post->folder;
@@ -50,7 +61,7 @@ class PublicationsController extends WebController
         $page = (int)$post->page ?: 1;
         $pagesize = (int)$post->pagesize ?: 20;
 
-        $pubs = Publications::LoadByPage($folder, $term, $page, $pagesize);
+        $pubs = Publications::LoadByPage($domain, $folder, $term, $page, $pagesize);
         $pubsArray = [];
         foreach($pubs as $pub) {
             $pubsArray[] = $pub->ToArray(true);
@@ -122,11 +133,17 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
+        $domain = $post->domain;
         $folder = $post->folder;
         $storage = $post->storage;
         $data = $post->data;
 
         if(!$storage || !$data) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $domain = Domains::LoadById($domain);
+        if(!$domain) {
             return $this->Finish(400, 'Bad request');
         }
 
@@ -139,7 +156,7 @@ class PublicationsController extends WebController
         }
         $datarow->Save();
 
-        $newPub = Publications::CreatePublication($folder, $datarow);
+        $newPub = Publications::CreatePublication($domain, $folder, $datarow);
         $newPub->Save();
 
         return $this->Finish(200, 'ok', $newPub->ToArray(true));
@@ -155,6 +172,9 @@ class PublicationsController extends WebController
         if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
             return $this->Finish(403, 'Permission denied');
         }
+
+        $domain = $post->domain;
+        $domain = Domains::LoadById($domain);
 
         $folder = $post->folder;
         $storage = $post->storage;
@@ -175,7 +195,7 @@ class PublicationsController extends WebController
                 continue;
             }
 
-            $pub = Publications::CreatePublication($folder, $datarow);
+            $pub = Publications::CreatePublication($domain, $folder, $datarow);
             $pub->Save();
             $pubArray[] = $pub->ToArray(true);
         

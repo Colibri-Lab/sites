@@ -17,10 +17,11 @@ use Colibri\Data\SqlClient\NonQueryInfo;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property Page $parent Отцовская страница
- * @property string $name Наименование раздела
- * @property string $description Описание страницы
- * @property bool $published Опубликована
+ * @property Domain|null $domain Домен
+ * @property Page|null $parent Отцовская страница
+ * @property string|null $name Наименование раздела
+ * @property string|null $description Описание страницы
+ * @property bool|null $published Опубликована
  * @property ObjectField|null $additional Всякое
  * @property int|null $order Позиция в рамках parent-а
  * endregion Properties;
@@ -133,11 +134,26 @@ class Page extends BaseModelDataRow {
 
     }
 
-    public function MoveTo(?Page $page): bool
+    private function _moveBranch() {
+        $children = $this->Children();
+        foreach($children as $child) {
+            $child->MoveTo($this, false);
+        }
+    }
+
+    public function MoveTo(Page|Domain $page, bool $moveToEnd = true): bool
     {
-        $this->parent = $page ?: 0;
+        if($page instanceof Domain) {
+            $this->parent = 0;
+            $this->domain = $page;
+        }
+        else {
+            $this->domain = $page->domain;
+            $this->parent = $page;
+        }
+        $this->_moveBranch();
         $this->Save();
-        return $this->MoveToEnd();
+        return $moveToEnd ? $this->MoveToEnd() : true;
     }
 
     public function Delete(): NonQueryInfo

@@ -95,14 +95,31 @@ class Pages extends BaseModelDataTable {
     }
 
     /**
+     * Загружает дочерние
+     * @param int $page страница
+     * @param int $pagesize размер страницы
+     * @return Pages 
+     */
+    static function LoadByDomain(Domain|int $domain, int $page = -1, int $pagesize = 20) : Pages
+    {
+        if(!is_numeric($domain)) {
+            $domain = $domain->id;
+        }
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]]', null, ['domain' => $domain]);
+    }
+
+    /**
      * Создание модели по названию хранилища
      * @return Page
      */
-    static function LoadEmpty(?Page $parent = null) : Page
+    static function LoadEmpty(?Domain $domain = null, ?Page $parent = null) : Page
     {
         $sitePages = self::LoadByFilter(-1, 20, 'false');
         /** Page $sitePage */
         $newPage = $sitePages->CreateEmptyRow();
+        if($domain) {
+            $newPage->domain = $domain;
+        }
         if($parent) {
             $newPage->parent = $parent;
         }
@@ -112,7 +129,7 @@ class Pages extends BaseModelDataTable {
 
     /**
      * Возвращает следующий порядковый номер
-     */
+     */ 
     static function NextPageOrder(?Page $parent = null): int
     {
         $filter = '';
@@ -128,8 +145,18 @@ class Pages extends BaseModelDataTable {
             return Pages::StartOrder;
         }
         
-        return $sitePage->order + Pages::StartOrder;
+        return ($sitePage->order ?? 0) + Pages::StartOrder;
 
     }    
+
+    static function DeleteAllByDomain(Domain $domain): bool
+    {
+        $storage = Storages::Create()->Load('pages');
+        $res = $storage->accessPoint->Delete('pages', 'pages_domain=\''.$domain->id.'\'');
+        if($res->affected > 0) {
+            return true;
+        }
+        return false;
+    }
 
 }

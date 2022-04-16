@@ -18,9 +18,10 @@ use Colibri\Data\Storages\Storages;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property Page $page Страница
- * @property string $storage Хранилище материалов
- * @property int $row ID записи в хранилище
+ * @property Domain|null $domain Домен
+ * @property Page|null $page Страница
+ * @property string|null $storage Хранилище материалов
+ * @property int|null $row ID записи в хранилище
  * @property string|null $ft Полнотекстовый поиск
  * @property ObjectField|null $object Данные строки
  * @property int|null $order Позиция в рамках страницы
