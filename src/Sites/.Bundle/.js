@@ -85,6 +85,38 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });    
     }
 
+    Properties(type, obj) {
+        return new Promise((resolve, reject) => {
+            this.Call('Pages', 'Properties', {type: type, object: obj.id})
+                .then((response) => {
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    reject(error.result);
+                });    
+        });
+    }
+
+    SaveProperties(type, obj, data) {
+        this.Call('Pages', 'SaveProperties', {type: type, object: obj?.id, data: data})
+            .then((response) => {
+                const saved = response.result;
+                App.Notices.Add(new Colibri.UI.Notice('Свойства сохранены', Colibri.UI.Notice.Success, 3000));
+                let rows = Object.values(this._store.Query('sites.' + type));
+                for(const row of rows) {
+                    if(row.id == obj.id) {
+                        row.parameters = saved;
+                    }
+                }
+                this._store.Set('sites.' + type, rows);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
+
     SaveFolder(data) {
         this.Call('Pages', 'Save', data)
             .then((response) => {
@@ -469,6 +501,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
         });
     }
+
 
 }
 

@@ -20,6 +20,7 @@ use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Module;
 use Colibri\Data\Models\DataModelException;
 use App\Modules\Sites\Models\Domains;
+use Colibri\Data\Storages\Storages;
 
 class PagesController extends WebController
 {
@@ -66,8 +67,80 @@ class PagesController extends WebController
 
         return $this->Finish(200, 'ok', $return);
     }
+    public function Properties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
 
-    
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $storage = Storages::Create()->Load($post->type);
+        if(!$storage) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+        $datarow = $tableClass::LoadById($post->object);
+        if(!$datarow) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        if($post->type == 'domains') {
+            $parameters = $datarow->additional->parameters->ToArray();
+        }
+        else if($post->type == 'pages') {
+            $path = $datarow->Path();
+            $parameters = $datarow->domain->additional->parameters->ToArray();
+            foreach($path as $page) {
+                $parameters = array_merge($parameters, $page->additional->parameters->ToArray());
+            }
+        }
+
+        $fields = [];
+        foreach($parameters as $parameter) {
+            $fields[$parameter->name] = [
+                'type' => $parameter->type,
+                'length' => $parameter->length,
+                'class' => $parameter->class, 
+                'component' => $parameter->component,
+                'default' => $parameter->default,
+                'desc' => $parameter->description
+            ];
+        }
+
+        return $this->Finish(200, 'ok', ['fields' => $fields]);
+    }
+
+    public function SaveProperties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $storage = Storages::Create()->Load($post->type);
+        if(!$storage) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+        $datarow = $tableClass::LoadById($post->object);
+        if(!$datarow) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $datarow->parameters = $post->data;
+        $datarow->Save();
+
+        return $this->Finish(200, 'ok', $datarow->parameters->ToArray());
+    }
 
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {

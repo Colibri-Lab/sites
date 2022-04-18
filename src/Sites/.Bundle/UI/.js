@@ -1,0 +1,1 @@
+App.Modules.Sites.UI = class {};

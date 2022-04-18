@@ -57,10 +57,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             contextmenu.push({name: 'new-child-folder', title: 'Новый дочерний раздел', icon: Colibri.UI.ContextMenuAddIcon});
             if(itemData.type == 'domain') {
                 contextmenu.push({name: 'edit-domain', title: 'Редактировать домен', icon: Colibri.UI.ContextMenuEditIcon});
+                contextmenu.push({name: 'edit-domain-props', title: 'Редактировать доп. свойства', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'remove-domain', title: 'Удалить домен', icon: Colibri.UI.ContextMenuRemoveIcon});
             }
             else {
                 contextmenu.push({name: 'edit-folder', title: 'Редактировать раздел', icon: Colibri.UI.ContextMenuEditIcon});
+                contextmenu.push({name: 'edit-folder-props', title: 'Редактировать доп. свойства', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'remove-folder', title: 'Удалить раздел', icon: Colibri.UI.ContextMenuRemoveIcon});
             }
 
@@ -99,6 +101,23 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         Sites.SaveDomain(data);
                     })
                     .catch(() => {});
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
+            }
+
+        }
+        else if(menuData.name == 'edit-domain-props') {
+
+            if(Security.IsCommandAllowed('sites.structure.edit')) {
+                Sites.Properties('domains', item.tag.data)
+                    .then((properties) => {
+                        Manage.FormWindow.Show('Редактировать доп. свойства домена', 750, properties, item.tag.data.parameters)
+                            .then((data) => {
+                                Sites.SaveProperties('domains', item.tag.data, data);
+                            })
+                            .catch(() => {});
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
@@ -146,6 +165,23 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             else {
                 App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
             }
+        }
+        else if(menuData.name == 'edit-folder-props') {
+
+            if(Security.IsCommandAllowed('sites.structure.edit')) {
+                Sites.Properties('pages', item.tag.data)
+                    .then((properties) => {
+                        Manage.FormWindow.Show('Редактировать доп. свойства страницы', 750, properties, item.tag.data.parameters)
+                        .then((data) => {
+                            Sites.SaveProperties('pages', item.tag.data, data);
+                        })
+                        .catch(() => {});
+                    });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
+            }
+
         }
         else if(menuData.name == 'remove-folder') {
             App.Confirm.Show('Удаление папки', 'Вы уверены, что хотите удалить папку?', 'Удалить!').then(() => {
@@ -353,6 +389,10 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
     }
 
     __editDataButtonClicked(event, args) {
+        if(!this._publications.selected) {
+            return;
+        }
+        
         const pub = this._publications.selected.value;
 
         Promise.all([

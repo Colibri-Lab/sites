@@ -2,10 +2,14 @@
 
 namespace App\Modules\Sites\Models;
 
-use Colibri\Data\Storages\Fields\DateTimeField;
-use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
+# region Uses:
+use App\Modules\Sites\Models\Domain;
 use App\Modules\Sites\Models\Page;
 use Colibri\Data\Storages\Fields\ObjectField;
+use App\Modules\Sites\Models\Fields\ParametersField;
+# endregion Uses;
+use Colibri\Data\Storages\Fields\DateTimeField;
+use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\SqlClient\NonQueryInfo;
 
 /**
@@ -23,10 +27,13 @@ use Colibri\Data\SqlClient\NonQueryInfo;
  * @property string|null $description Описание страницы
  * @property bool|null $published Опубликована
  * @property ObjectField|null $additional Всякое
+ * @property ParametersField|null $parameters 
  * @property int|null $order Позиция в рамках parent-а
  * endregion Properties;
  */
 class Page extends BaseModelDataRow {
+
+
 
     public function Publications(int $page = -1, $pagesize = 20): Publications
     {
@@ -169,6 +176,49 @@ class Page extends BaseModelDataRow {
         
         return parent::Delete();    
     
+    }
+
+    public function Path(): array
+    {
+
+        if(!$this->parent) {
+            return [$this];
+        }
+        
+        $ret = [$this];
+        $parent = $this->parent;
+        while($parent) {
+            $ret[] = $parent;
+            $parent = $parent->parent;
+        }
+        $ret = array_reverse($ret);
+
+        return $ret;
+
+    }
+
+    public function Template(): ?string
+    {
+        $template = $this->additional?->settings?->template;
+        if($template) {
+            return $template;
+        }
+
+        $parent = $this->parent;
+        while($parent) {
+            $template = $this->additional?->settings?->template;
+            if(!$template) {
+                break;
+            }
+            $parent = $parent->parent;
+        }
+
+        if($template) {
+            return $template;
+        }
+        
+        return null;
+
     }
 
 

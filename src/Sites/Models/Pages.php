@@ -109,6 +109,44 @@ class Pages extends BaseModelDataTable {
     }
 
     /**
+     * Загружает дочерние
+     * @return Pages 
+     */
+    static function LoadByName(Domain|int $domain, Page|int $parent, string $name) : Page
+    {
+        if(!is_numeric($domain)) {
+            $domain = $domain->id;
+        }
+        if(!is_numeric($parent)) {
+            $parent = $parent->id;
+        }
+
+        $table = self::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]] and {name}=[[name:string]]', null, ['domain' => $domain, 'parent' => $parent, 'name' => $name]);
+        return $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
+     * Загружает страницу по пути 
+     * @return Page 
+     */
+    static function LoadByPath(Domain|int $domain, string $path) : Page
+    {
+        if(!is_numeric($domain)) {
+            $domain = $domain->id;
+        }
+
+        $path = explode('/', trim($path, '/'));
+        
+        $page = 0;
+        foreach($path as $name) {
+            $page = self::LoadByName($domain, $page, $name);
+        }
+        
+        return $page;
+    }
+
+
+    /**
      * Создание модели по названию хранилища
      * @return Page
      */
