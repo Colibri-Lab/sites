@@ -33,6 +33,10 @@ App.Modules.Sites.PublicationsGrid = class extends Colibri.UI.Grid {
 
         this.rows.title = '';
 
+        this.rows.Sort((a, b) => {
+            return a.value.order > b.value.order ? 1 : -1;
+        });
+
     }
 
     

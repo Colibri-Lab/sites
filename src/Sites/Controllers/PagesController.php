@@ -200,7 +200,7 @@ class PagesController extends WebController
         }
 
         foreach($post as $k => $v) {
-            if(!in_array($k, ['domain', 'id', 'parent'])) {
+            if(!in_array($k, ['domain', 'id', 'parent', 'order'])) {
                 $page->$k = $v;
             }
         }

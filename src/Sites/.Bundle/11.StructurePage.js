@@ -272,6 +272,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             const folderTo = droppedTo.tag.data;
             Sites.CopyPublication(pub, folderTo);
         }
+        else if(dragged instanceof Colibri.UI.Grid.Row && droppedTo instanceof Colibri.UI.Grid.Row) {
+            const pub = dragged.value;
+            const pubBefore = droppedTo.value;
+            Sites.MovePublication(pub, pubBefore);
+        }
 
 
     }

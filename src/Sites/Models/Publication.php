@@ -31,9 +31,10 @@ class Publication extends BaseModelDataRow {
 
     public function Next(): ?Publication
     {
+        $domain = $this->domain;
         $page = $this->page;
         $order = $this->order;
-        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]] and {order}>[[order:integer]]', '{order} asc', ['page' => $page->id, 'order' => $order]);
+        $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]] and {order}>[[order:integer]]', '{order} asc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
         if($pubs->Count() > 0) {
             return $pubs->First();
         }
@@ -42,9 +43,10 @@ class Publication extends BaseModelDataRow {
 
     public function Previous(): ?Publication
     {
+        $domain = $this->domain;
         $page = $this->page;
         $order = $this->order;
-        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]] and {order}<[[order:integer]]', '{order} desc', ['page' => $page->id, 'order' => $order]);
+        $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]] and {order}<[[order:integer]]', '{order} desc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
         if($pubs->Count() > 0) {
             return $pubs->First();
         }
@@ -93,7 +95,7 @@ class Publication extends BaseModelDataRow {
     public function MoveBefore(?Publication $reference = null): bool
     {
         if(!$reference) {
-            $fristPub = Publications::LoadByPage($this->page)->First();
+            $fristPub = Publications::LoadByPage($this->domain, $this->page)->First();
             $this->order = $fristPub ? $fristPub->order / 2 : Publications::StartOrder / 2;
         }
         else {

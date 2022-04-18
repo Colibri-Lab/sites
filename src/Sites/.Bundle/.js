@@ -23,6 +23,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 }
                 const module = eval(domainSettings.additional.settings.module);
                 module.Render();
+                App.Router.HandleDomReady();
             });
         });
 
@@ -209,6 +210,24 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     CopyPublication(pub, to) {
         this.Call('Publications', 'Copy', {pub: pub.id, to: to?.id ?? null})
             .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('Публикация скопирована', Colibri.UI.Notice.Success, 3000));
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
+    MovePublication(pub, pubBefore) {
+        this.Call('Publications', 'Move', {pub: pub.id, before: pubBefore.id})
+            .then((response) => {
+                const movedPub = response.result;
+                let pubs = this._store.Query('sites.pubs');
+                if(!pubs || !Array.isArray(pubs)) {
+                    pubs = [];
+                }
+                pubs = pubs.map((p) => p.id == movedPub.id ? movedPub : p);
+                this._store.Set('sites.pubs', pubs);
                 App.Notices.Add(new Colibri.UI.Notice('Публикация скопирована', Colibri.UI.Notice.Success, 3000));
             })
             .catch(error => {

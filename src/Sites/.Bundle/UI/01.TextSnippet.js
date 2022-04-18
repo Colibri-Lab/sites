@@ -19,8 +19,7 @@ App.Modules.Sites.UI.TextSnippet = class extends Colibri.UI.Pane {
     }
 
     _setValue() {
-        console.log(this._value);
-        this.GenerateChildren(this._value);
+        this.GenerateChildren('<dummy>' + this._value + '</dummy>');
     }
 
 }

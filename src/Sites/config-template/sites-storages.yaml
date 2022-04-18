@@ -10,13 +10,13 @@ domains:
     visible: false
     maybepublished: false
   fields:
-    
     name:
       type: varchar
       class: ValueField
       component: Select
       desc: Ключ домена
-      note: В конфигурации должны быть указаны паттерны доменов, которые подходят под этот ключ
+      note: В конфигурации должны быть указаны паттерны доменов, которые подходят
+        под этот ключ
       default: ""
       selector:
         value: value
@@ -98,17 +98,13 @@ domains:
               params:
                 readonly: true
                 required: true
-                runtime: '(field, form) => { form.FindField("additional/settings/template").ReloadValues(); }'
+                runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues();
+                  }
               lookup:
-                method: ' () => new Promise((resolve, reject) => { 
-                    Manage.Store.AsyncQuery("manage.modules").then((modules) => {
-                      const ret = [];
-                      for(const module of modules) {
-                        ret.push({value: module.name, title: module.desc + " (" + module.name + ")"});
-                      }
-                      resolve(ret);
-                    });
-                  });'
+                method: ' () => new Promise((resolve, reject) => { Manage.Store.AsyncQuery("manage.modules").then((modules)
+                  => { const ret = []; for(const module of modules) { ret.push({value:
+                  module.name, title: module.desc + " (" + module.name + ")"}); }
+                  resolve(ret); }); });'
             template:
               type: varchar
               length: 255
@@ -121,15 +117,16 @@ domains:
                 value: value
                 title: title
               lookup:
-                depends: "additional?.settings?.module"
-                method: ' (term, dependsValue) => new Promise((resolve, reject) => { let ret = [{value:
-                  "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
-                  => { if(module != dependsValue) {return true;} Object.forEach(eval(''App.Modules.'' + module), (name, value)
-                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name,
-                  title: module + ''.'' + name}); } }); }); resolve(ret); }); '
+                depends: additional?.settings?.module
+                method: ' (term, dependsValue) => new Promise((resolve, reject) =>
+                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                  => { if(module != dependsValue) {return true;} Object.forEach(eval(''App.Modules.''
+                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
+                  { ret.push({value: name, title: module + ''.'' + name}); } }); });
+                  resolve(ret); }); '
         parameters:
           type: json
-          class: ArrayField 
+          class: ArrayField
           component: Array
           desc: Дополнительные свойства
           default: json_array()
@@ -204,6 +201,9 @@ domains:
       type: json
       component: Object
       class: ParametersField
+      params:
+        required: false
+        readonly: false
   indices:
     domains_name_idx:
       fields:
@@ -267,7 +267,8 @@ pages:
       params:
         required: true
         readonly: false
-        runtime: '(field, form) => { const nameField = form.FindField("name"); if(!nameField.value) { nameField.value = field.value.CyrToUrl(3); } }'
+        runtime: (field, form) => { const nameField = form.FindField("name"); if(!nameField.value)
+          { nameField.value = field.value.CyrToUrl(3); } }
     published:
       type: tinyint
       length: 1
@@ -427,6 +428,10 @@ pages:
       type: json
       component: Object
       class: ParametersField
+      default: json_object()
+      params:
+        required: false
+        readonly: false
     order:
       type: int
       class: int
@@ -558,8 +563,8 @@ texts:
   access-point: sites
   module: Sites
   models:
-    row: Models\Text
     table: Models\Texts
+    row: Models\Text
   desc: Текстовые данные
   params:
     visible: true
@@ -593,24 +598,15 @@ texts:
         enabled: true
         visual: true
         list: true
-    file:
-      type: json
-      class: ObjectField
-      component: App.Modules.Manage.UI.RemoteFiles
-      desc: Тестовый файл
-      default: json_object()
-      params:
-        required: false
-        enabled: true
-        readonly: false
-        visual: false
-        list: false
-        vertical: false
-      group: window
   indices:
     texts_title_idx:
       fields:
       - title
       type: NORMAL
       method: BREE
+      name: texts_title_idx
+  components:
+    default: App.Modules.Pocket.Templates.TextsDefaultTemplate
+    list: App.Modules.Pocket.Templates.TextsDefaultTemplate
+    item: App.Modules.Pocket.Templates.TextsItemTemplate
 ...

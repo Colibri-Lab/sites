@@ -216,8 +216,8 @@ class Page extends BaseModelDataRow {
         if($template) {
             return $template;
         }
-        
-        return null;
+
+        return $this->domain->additional?->settings?->template;
 
     }
 

@@ -129,6 +129,81 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
+                components: {
+                    type: 'json',
+                    component: 'Object',
+                    desc: 'Компоненты',
+                    note: 'Компоненты для отображения, если проект в режиме «Приложение»',
+                    vertical: true,
+                    fields: {
+                        default: {
+                            type: 'varchar',
+                            desc: 'Компонент по умолчанию',
+                            component: 'Select',
+                            lookup: {
+                                method: () => new Promise((resolve, reject) => { 
+                                    let ret = []; 
+                                    Object.keys(App.Modules).forEach((module) => { 
+                                        Object.forEach(eval('App.Modules.' + module + '.Templates'), (name, value) => { 
+                                            if(name.indexOf('Template') !== -1) { 
+                                                ret.push({value: 'App.Modules.' + module + '.Templates.' + name, title: 'App.Modules.' + module + '.Templates.' + name}); 
+                                            } 
+                                        }); 
+                                    }); 
+                                    resolve(ret); 
+                                }) 
+                            },
+                            params: {
+                                readonly: true,
+                                required: false,
+                            }
+                        },
+                        list: {
+                            type: 'varchar',
+                            desc: 'Компонент в списке',
+                            component: 'Select',
+                            lookup: {
+                                method: () => new Promise((resolve, reject) => { 
+                                    let ret = []; 
+                                    Object.keys(App.Modules).forEach((module) => { 
+                                        Object.forEach(eval('App.Modules.' + module + '.Templates'), (name, value) => { 
+                                            if(name.indexOf('Template') !== -1) { 
+                                                ret.push({value: 'App.Modules.' + module + '.Templates.' + name, title: 'App.Modules.' + module + '.Templates.' + name}); 
+                                            } 
+                                        }); 
+                                    });  
+                                    resolve(ret); 
+                                }) 
+                            },
+                            params: {
+                                readonly: true,
+                                required: false,
+                            }
+                        },
+                        item: {
+                            type: 'varchar',
+                            desc: 'Компонент карточка',
+                            component: 'Select',
+                            lookup: {
+                                method: () => new Promise((resolve, reject) => { 
+                                    let ret = []; 
+                                    Object.keys(App.Modules).forEach((module) => { 
+                                        Object.forEach(eval('App.Modules.' + module + '.Templates'), (name, value) => { 
+                                            if(name.indexOf('Template') !== -1) { 
+                                                ret.push({value: 'App.Modules.' + module + '.Templates.' + name, title: 'App.Modules.' + module + '.Templates.' + name}); 
+                                            } 
+                                        }); 
+                                    });  
+                                    resolve(ret); 
+                                }) 
+                            },
+                            params: {
+                                readonly: true,
+                                required: false,
+                            }
+                        }
+                    }
+                },
                 models: {
                     type: 'json',
                     component: 'Object',

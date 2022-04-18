@@ -205,4 +205,32 @@ class PublicationsController extends WebController
 
     }
 
+    public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $pub = $post->pub;
+        $before = $post->before;
+
+        if(!$pub || !$before) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $pub = Publications::LoadById($pub);
+        $before = Publications::LoadById($before);
+        if(!$pub || !$before) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $pub->MoveBefore($before);
+                
+        return $this->Finish(200, 'ok', $pub->ToArray(true));
+
+    }
 }
