@@ -30,7 +30,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         this._publications.AddHandler('DoubleClicked', (event, args) => this.__doubleClickedOnPublication(event, args));
 
         this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
-        
+        this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
+
         this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
 
         this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
@@ -246,10 +247,29 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    __dragDropOver(event, args) {
+        const dragged = args.dragged;
+        const droppedTo = args.droppedTo;
+        const droppedToElement = args.droppedToElement;
+        const effects = args.effects;
+        if(dragged instanceof Colibri.UI.TreeNode && droppedTo instanceof Colibri.UI.TreeNode && dragged.tag.type != 'domain') {
+            effects.dropEffect = 'move';
+            this._folders.sorting = true;
+        }
+        else if(dragged instanceof Colibri.UI.Grid.Row && droppedTo instanceof Colibri.UI.TreeNode) {
+            effects.dropEffect = 'copy';
+            this._folders.sorting = false;
+        }
+        else if(dragged instanceof Colibri.UI.Grid.Row && droppedTo instanceof Colibri.UI.Grid.Row) {
+            effects.dropEffect = 'move';
+        }
+    }
+
     __dragDropComplete(event, args) {
 
         const dragged = args.dragged;
         const droppedTo = args.droppedTo;
+        const droppedToElement = args.droppedToElement;
 
         if(dragged instanceof Colibri.UI.TreeNode && droppedTo instanceof Colibri.UI.TreeNode && dragged.tag.type != 'domain') {
             // Перетаскивание нодов
@@ -264,13 +284,21 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 domainTo = folderTo.domain;
             }
             
-            Sites.MoveFolder(folderMoving, domainTo, folderTo);
+            Sites.MoveFolder(folderMoving, domainTo, folderTo, droppedToElement.attr('drop'));
         }
         else if(dragged instanceof Colibri.UI.Grid.Row && droppedTo instanceof Colibri.UI.TreeNode) {
             // копирование публикации
-            const pub = dragged.value;
-            const folderTo = droppedTo.tag.data;
-            Sites.CopyPublication(pub, folderTo);
+            let pub = dragged.value;
+            let folderTo = droppedTo.tag.data;
+            let domainTo = null;
+            if(droppedTo.tag.type == 'domain') {
+                domainTo = folderTo;
+                folderTo = null;
+            }
+            else {
+                domainTo = folderTo.domain;
+            }
+            Sites.CopyPublication(pub, domainTo, folderTo);
         }
         else if(dragged instanceof Colibri.UI.Grid.Row && droppedTo instanceof Colibri.UI.Grid.Row) {
             const pub = dragged.value;

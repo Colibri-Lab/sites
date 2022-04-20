@@ -116,6 +116,9 @@ domains:
               selector:
                 value: value
                 title: title
+              params:
+                readonly: true
+                required: true
               lookup:
                 depends: additional?.settings?.module
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
@@ -433,8 +436,8 @@ pages:
         required: false
         readonly: false
     order:
-      type: int
-      class: int
+      type: double
+      class: float
       default: "0"
       component: Hidden
       desc: Позиция в рамках parent-а
@@ -532,8 +535,8 @@ pubs:
       desc: Данные строки
       default: json_object()
     order:
-      type: int
-      class: int
+      type: double
+      class: float
       default: 0
       desc: Позиция в рамках страницы
   indices:

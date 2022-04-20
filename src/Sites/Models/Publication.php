@@ -134,13 +134,13 @@ class Publication extends BaseModelDataRow {
         return $tableClass::LoadById($this->row);
     }
 
-    public function Copy(?Page $to = null): ?Publication
+    public function Copy(Domain $domain, ?Page $to = null): ?Publication
     {
         $datarow = $this->DataRow();
         if(!$datarow) {
             return null;
         }
-        return Publications::CreatePublication($to, $datarow);
+        return Publications::CreatePublication($domain, $to, $datarow);
     }
 
     public function Save(): bool

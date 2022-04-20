@@ -123,6 +123,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         });
                     },
                     params: {
+                        readonly: true,
+                        required: true,
                         validate: [{
                             message: 'Пожалуйста, выберите подключение',
                             method: '(field, validator) => !!field.value'
@@ -316,6 +318,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
+                length: {
+                    type: 'integer',
+                    component: 'Number',
+                    desc: 'Длина в байтах',
+                    note: 'Внинание! Предполагается, что вы знаете, что делаете!',
+                    params: {
+                        required: false,
+                    }
+                },
                 component: {
                     type: 'varchar',
                     component: 'Select',
@@ -393,7 +404,32 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'json',
                     component: 'Tabs',
                     fields: {
-                        
+                        attrs: {
+                            type: 'json',
+                            component: 'Object',
+                            desc: 'Аттрибуты',
+                            note: 'Атрибуты компонента',
+                            params: {
+                                required: false
+                            },
+                            fields: {
+                                width: {
+                                    type: 'int',
+                                    component: 'Number',
+                                    desc: 'Ширина',
+                                },
+                                height: {
+                                    type: 'int',
+                                    component: 'Number',
+                                    desc: 'Высота',
+                                },
+                                class: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: 'Класс',
+                                },
+                            }
+                        },
                         params: {
                             type: 'json',
                             component: 'Object',
@@ -428,11 +464,44 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     component: 'Checkbox',
                                     default: false
                                 },
+                                code: {
+                                    type: 'varchar',
+                                    placeholder: 'Отображать в виде редактора кода',
+                                    note: 'Используется только в большом текстовом поле',
+                                    component: 'Select',
+                                    default: '',
+                                    params: {
+                                        readonly: true,
+                                        required: false  
+                                    },
+                                    selector: {
+                                        value: 'value',
+                                        title: 'title'
+                                    },
+                                    values: [
+                                        {value: '', title: ''},
+                                        {value: 'js', title: 'JavaScript'},
+                                        {value: 'css', title: 'CSS'},
+                                        {value: 'less', title: 'Less'},
+                                        {value: 'scss', title: 'Scss'},
+                                        {value: 'html', title: 'Код HTML'},
+                                        {value: 'php', title: 'Код PHP'},
+                                        {value: 'xml', title: 'XML'},
+                                        {value: 'yaml', title: 'YAML'}
+                                    ]
+                                },
                                 list: {
                                     type: 'bool',
                                     placeholder: 'Отображать в списке',
                                     component: 'Checkbox',
                                     default: false
+                                },
+                                greed: {
+                                    type: 'varchar',
+                                    placeholder: 'Жадность в списке',
+                                    note: 'Указывается в процентах',
+                                    component: 'Text',
+                                    default: ''
                                 },
                                 vertical: {
                                     type: 'bool',
@@ -440,6 +509,25 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     note: 'Работает только с обьектами типа Object и Array',
                                     component: 'Checkbox',
                                     default: false
+                                },
+                                viewer: {
+                                    type: 'varchar',
+                                    placeholder: 'Класс Viewer (для отображения в списках)',
+                                    note: 'Выберите из списка',
+                                    component: 'Select',
+                                    default: '',
+                                    selector: {
+                                        value: 'value',
+                                        title: 'title'
+                                    },
+                                    params: {
+                                        readonly: true
+                                    },
+                                    lookup: {
+                                        method: () => new Promise((resolve, reject) => {
+                                            resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
+                                        })
+                                    }
                                 }
                             }
                         },

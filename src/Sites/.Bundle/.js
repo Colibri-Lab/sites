@@ -195,8 +195,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    MoveFolder(move, domain, to) {
-        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null})
+    MoveFolder(move, domain, to, siblingStatus) {
+        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Страница перенесена', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
@@ -207,8 +207,8 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    CopyPublication(pub, to) {
-        this.Call('Publications', 'Copy', {pub: pub.id, to: to?.id ?? null})
+    CopyPublication(pub, domain, to) {
+        this.Call('Publications', 'Copy', {pub: pub.id, domain: domain.id, to: to?.id ?? null})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('Публикация скопирована', Colibri.UI.Notice.Success, 3000));
             })
@@ -388,9 +388,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-    LoadData(storage, term = null, page = 1, pagesize = 20, returnPromise = false) {
+    LoadData(storage, term = null, sortField = null, sortOrder = null, page = 1, pagesize = 20, returnPromise = false) {
 
-        const promise = this.Call('Data', 'List', {storage: storage.name, term: term, page: page, pagesize: pagesize});
+        const promise = this.Call('Data', 'List', {storage: storage.name, term: term, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize});
         if(returnPromise) {
             return promise;
         }

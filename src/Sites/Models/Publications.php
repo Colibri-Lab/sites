@@ -92,18 +92,6 @@ class Publications extends BaseModelDataTable {
     }
 
     /**
-     * Удаляет все по списку ID
-     * @param int[] $ids ID строки
-     * @return void
-     */
-    static function DeleteAllByIds(array $ids): void
-    {
-        $storage = Storages::Create()->Load('pubs');
-        $storage->accessPoint->Delete('pubs', 'pubs_id in ('.implode(',', $ids).')');
-    }
-
-
-    /**
      * Загружает без фильтра
      * @param int $page страница
      * @param int $pagesize размер страницы
@@ -163,34 +151,47 @@ class Publications extends BaseModelDataTable {
         return (int)$pub->order + Publications::StartOrder;
     }
 
-    static function DeleteAllByPage(?Page $page = null): bool
+    /**
+     * Удаляет все по списку ID
+     * @param int[] $ids ID строки
+     * @return bool
+     */
+    static function DeleteAllByIds(array $ids): bool
     {
-        $storage = Storages::Create()->Load('pubs');
-        $res = $storage->accessPoint->Delete('pubs', 'pubs_page='.($page?->id ?? 0));
-        if($res->affected > 0) {
-            return true;
-        }
-        return false;
+        return self::DeleteAllByFilter('{id} in ('.implode(',', $ids).')');
+    }
+
+    /**
+     * Удаляет все по фильтру
+     * @param string $filter фильтр, допускается использование элементов вида {field}
+     * @return bool
+     */
+    static function DeleteAllByFilter(string $filter): bool
+    {
+        return self::DeleteByFilter('pubs', $filter);
+    }
+
+    static function DeleteAllByPage(Page|int $page = 0): bool
+    {
+        return self::DeleteAllByFilter('{page}='.($page instanceof Page ? $page->id : $page));
     }
 
     static function DeleteAllByRow(DataRow $datarow): bool
     {
-        $storage = Storages::Create()->Load('pubs');
-        $res = $storage->accessPoint->Delete('pubs', 'pubs_storage=\''.$datarow->Storage()->name.'\' and pubs_row=\''.$datarow->id.'\'');
-        if($res->affected > 0) {
-            return true;
-        }
-        return false;
+        return self::DeleteAllByFilter('{storage}=\''.$datarow->Storage()->name.'\' and {row}=\''.$datarow->id.'\'');
     }
 
-    static function DeleteAllByDomain(Domain $domain): bool
+    static function DeleteAllNotExistsInStorage(Storage|string $storage): bool
     {
-        $storage = Storages::Create()->Load('pubs');
-        $res = $storage->accessPoint->Delete('pubs', 'pubs_domain=\''.$domain->id.'\'');
-        if($res->affected > 0) {
-            return true;
+        if(is_string($storage)) {
+            $storage = Storages::Create()->Load($storage);
         }
-        return false;
+        return self::DeleteAllByFilter('{storage}=\''.$storage->name.'\' and not {row} in (select '.$storage->name.'_id from '.$storage->name.')');
+    }
+
+    static function DeleteAllByDomain(Domain|int $domain): bool
+    {
+        return self::DeleteAllByFilter('{domain}='.($domain instanceof Domain ? $domain->id : $domain));
     }
 
 }

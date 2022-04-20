@@ -53,6 +53,7 @@ class StoragesController extends WebController
 
         $name = $data['name'];
         unset($data['name']);
+        $data['module'] = $module;
         if(!$storage) {
             $storage = Storage::Create($moduleObject, $name, $data);
         }

@@ -308,6 +308,7 @@ class PagesController extends WebController
         $move = $post->move;
         $domain = $post->domain;
         $to = $post->to;
+        $sibling = $post->sibling;
 
         if(!SecurityModule::$instance->current) {
             return $this->Finish(403, 'Permission denied');
@@ -329,10 +330,22 @@ class PagesController extends WebController
 
         $to = $to ? Pages::LoadById($to) : null;
         
-        if(!$move->MoveTo($to ?: $domain)) {
-            return $this->Finish(400, 'Bad request');
+        if(!$sibling || !$to) {
+            if(!$move->MoveTo($to ?: $domain)) {
+                return $this->Finish(400, 'Bad request');
+            }    
         }
-
+        else if($sibling == 'before') {
+            if(!$move->MoveBefore($to)) {
+                return $this->Finish(400, 'Bad request');
+            }
+        }
+        else if($sibling == 'after') {
+            if(!$move->MoveAfter($to)) {
+                return $this->Finish(400, 'Bad request');
+            }            
+        }
+ 
         $pages = Pages::LoadAll();
         $pagesArray = [];
         foreach($pages as $page) {

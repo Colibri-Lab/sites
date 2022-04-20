@@ -92,12 +92,24 @@ class Texts extends BaseModelDataTable {
     /**
      * Удаляет все по списку ID
      * @param int[] $ids ID строки
-     * @return void
+     * @return bool
      */
-    static function DeleteAllByIds(array $ids): void
+    static function DeleteAllByIds(array $ids): bool
     {
-        $storage = Storages::Create()->Load('texts');
-        $storage->accessPoint->Delete('texts', 'texts_id in ('.implode(',', $ids).')');
+        return self::DeleteAllByFilter('{id} in ('.implode(',', $ids).')');
+    }
+
+    /**
+     * Удаляет все по фильтру
+     * @param string $filter фильтр, допускается использование элементов вида {field}
+     * @return bool
+     */
+    static function DeleteAllByFilter(string $filter): bool
+    {
+        if(!self::DeleteByFilter('texts', $filter)) {
+            return false;
+        }
+        return Publications::DeleteAllNotExistsInStorage('texts');
     }
 
 }

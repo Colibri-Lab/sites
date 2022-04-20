@@ -10,7 +10,7 @@ use App\Modules\Sites\Models\Fields\ParametersField;
 # endregion Uses;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
-use Colibri\Data\SqlClient\NonQueryInfo;
+use Colibri\Data\SqlClient\QueryInfo;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -60,7 +60,7 @@ class Page extends BaseModelDataRow {
     {
         $parent = $this->parent;
         $order = $this->order;
-        $pages = Pages::LoadByFilter(1, 1, '{parent}=[[parent:integer]] and {order}<[[order:integer]]', '{order} desc', ['page' => $parent ? $parent->id : 0, 'order' => $order]);
+        $pages = Pages::LoadByFilter(1, 1, '{parent}=[[parent:integer]] and {order}<[[order:integer]]', '{order} desc', ['parent' => $parent ? $parent->id : 0, 'order' => $order]);
         if($pages->Count() > 0) {
             return $pages->First();
         }
@@ -109,12 +109,26 @@ class Page extends BaseModelDataRow {
     public function MoveBefore(?Page $reference = null): bool
     {
         if(!$reference) {
-            $fristPub = Pages::LoadByParent($this->parent ?: 0)->First();
+            $fristPub = Pages::LoadByParent($this->parent ?: 0, 1, 1)->First();
             $this->order = $fristPub ? $fristPub->order / 2 : Pages::StartOrder / 2;
         }
         else {
             $referencePrev = $reference->Previous();
             $this->order = (($referencePrev ? $referencePrev->order : 0) + $reference->order) / 2;
+        }
+        $this->Save();
+        return true;
+    }
+
+    public function MoveAfter(?Page $reference = null): bool
+    {
+        if(!$reference) {
+            $lastPub = Pages::LoadByParentReverce($this->parent ?: 0, 1, 1)->First();
+            $this->order = $lastPub ? $lastPub->order + Pages::StartOrder : Pages::StartOrder;
+        }
+        else {
+            $referenceNext = $reference->Next();
+            $this->order = (($referenceNext ? $referenceNext->order : 0) + $reference->order) / 2;
         }
         $this->Save();
         return true;
@@ -163,7 +177,7 @@ class Page extends BaseModelDataRow {
         return $moveToEnd ? $this->MoveToEnd() : true;
     }
 
-    public function Delete(): NonQueryInfo
+    public function Delete(): QueryInfo
     {
 
         // удаляем все публикации

@@ -5,6 +5,25 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         this._foldersList = [];
     }
 
+    _findLevel(domain, parent) {
+        let ret = [];
+        for(const folder of this._foldersList) {
+            if(folder?.domain?.id == domain && (folder?.parent?.id ?? 0) == parent) {
+                ret.push(folder);
+            }
+        }
+        ret.sort((a, b) => {
+            if(a.order > b.order) {
+                return 1;
+            }
+            else if(a.order < b.order) {
+                return -1;
+            }
+            return 0;
+        });
+        return ret;
+    }
+
     _insertFolderNode(parenNode, folder) {
         let newNode = this.FindNode('folder' + folder.id);
         if(!newNode) {
@@ -18,20 +37,19 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
 
     _renderLevel(node, parent, domain) {
 
-        for(const folder of this._foldersList) {
+        const level = this._findLevel(domain.id, parent);
+        for(const folder of level) {
 
-            if(folder?.domain?.id == domain.id && (folder?.parent?.id ?? 0) == parent) {
 
-                let newNode = this._insertFolderNode(node, folder);
-                if(!folder.parent) {
-                    newNode.parentNode = this.FindNode('domain' + folder.domain.id);
-                }
-                else {
-                    newNode.parentNode = this.FindNode('folder' + folder.parent.id);
-                }
-    
-                this._renderLevel(newNode, folder.id, domain);
+            let newNode = this._insertFolderNode(node, folder);
+            if(!folder.parent) {
+                newNode.parentNode = this.FindNode('domain' + folder.domain.id);
             }
+            else {
+                newNode.parentNode = this.FindNode('folder' + folder.parent.id);
+            }
+
+            this._renderLevel(newNode, folder.id, domain);
 
         };
 

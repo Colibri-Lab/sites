@@ -25,11 +25,7 @@ App.Modules.Sites.PublicationsGrid = class extends Colibri.UI.Grid {
             }
         });
 
-        this.ForEveryRow((name, row) => {
-            if(found.indexOf(name) === -1) {
-                row.Dispose();
-            }
-        });
+        this.DeleteAllExcept(found);
 
         this.rows.title = '';
 

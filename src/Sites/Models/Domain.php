@@ -9,7 +9,7 @@ use App\Modules\Sites\Models\Fields\ParametersField;
 # endregion Uses;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
-use Colibri\Data\MySql\NonQueryInfo;
+use Colibri\Data\MySql\QueryInfo;
 
 /**
  * Представление строки в таблице в хранилище Сайты
@@ -29,9 +29,8 @@ use Colibri\Data\MySql\NonQueryInfo;
  */
 class Domain extends BaseModelDataRow {
 
-    public function Delete(): NonQueryInfo
+    public function Delete(): QueryInfo
     {
-        Publications::DeleteAllByDomain($this);
         Pages::DeleteAllByDomain($this);
         return parent::Delete();
     }

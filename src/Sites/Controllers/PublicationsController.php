@@ -79,6 +79,13 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
+        $domain = $post->domain;
+        if(!$domain) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $domain = Domains::LoadById($domain);
+
         $pub = $post->pub;
         if(!$pub) {
             return $this->Finish(400, 'Bad request');
@@ -92,7 +99,7 @@ class PublicationsController extends WebController
         $to = $post->to;
         $to = $to ? Pages::LoadById($to) : null;
 
-        $newPub = $pub->Copy($to);
+        $newPub = $pub->Copy($domain, $to);
         if(!$newPub) {
             return $this->Finish(400, 'Bad request');
         }

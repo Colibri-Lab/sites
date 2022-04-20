@@ -66,7 +66,7 @@ class Pages extends BaseModelDataTable {
      */
     static function LoadAll(int $page = -1, int $pagesize = 20) : Pages
     {
-        return self::LoadByFilter($page, $pagesize, null, null);
+        return self::LoadByFilter($page, $pagesize, null, '{order}');
     }
 
     /**
@@ -76,7 +76,7 @@ class Pages extends BaseModelDataTable {
      */
     static function LoadById(int $id) : Page|null 
     {
-        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id]);
+        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', '{order}', ['id' => $id]);
         return $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -91,7 +91,21 @@ class Pages extends BaseModelDataTable {
         if(!is_numeric($parent)) {
             $parent = $parent->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{parent}=[[parent:integer]]', null, ['parent' => $parent]);
+        return self::LoadByFilter($page, $pagesize, '{parent}=[[parent:integer]]', '{order}', ['parent' => $parent]);
+    }
+
+    /**
+     * Загружает дочерние
+     * @param int $page страница
+     * @param int $pagesize размер страницы
+     * @return Pages 
+     */
+    static function LoadByParentReverce(Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
+    {
+        if(!is_numeric($parent)) {
+            $parent = $parent->id;
+        }
+        return self::LoadByFilter($page, $pagesize, '{parent}=[[parent:integer]]', '{order} desc', ['parent' => $parent]);
     }
 
     /**
@@ -105,7 +119,7 @@ class Pages extends BaseModelDataTable {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]]', null, ['domain' => $domain]);
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]]', '{order}', ['domain' => $domain]);
     }
 
     /**
@@ -121,7 +135,7 @@ class Pages extends BaseModelDataTable {
             $parent = $parent->id;
         }
 
-        $table = self::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]] and {name}=[[name:string]]', null, ['domain' => $domain, 'parent' => $parent, 'name' => $name]);
+        $table = self::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]] and {name}=[[name:string]]', '{order}', ['domain' => $domain, 'parent' => $parent, 'name' => $name]);
         return $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -187,14 +201,38 @@ class Pages extends BaseModelDataTable {
 
     }    
 
-    static function DeleteAllByDomain(Domain $domain): bool
+    
+    /**
+     * Удаляет все по списку ID
+     * @param int[] $ids ID строки
+     * @return bool
+     */
+    static function DeleteAllByIds(array $ids): bool
     {
-        $storage = Storages::Create()->Load('pages');
-        $res = $storage->accessPoint->Delete('pages', 'pages_domain=\''.$domain->id.'\'');
-        if($res->affected > 0) {
-            return true;
+        return self::DeleteAllByFilter('{id} in ('.implode(',', $ids).')');
+    }
+
+    /**
+     * Удаляет все по фильтру
+     * @param string $filter фильтр, допускается использование элементов вида {field}
+     * @return bool
+     */
+    static function DeleteAllByFilter(string $filter): bool
+    {
+        if(!self::DeleteByFilter('pages', $filter)) {
+            return false;
         }
-        return false;
+        return Publications::DeleteAllByFilter($filter);
+    }
+
+    /**
+     * Удаляет все по домену
+     * @param Domain|int $domain
+     * @return bool
+     */
+    static function DeleteAllByDomain(Domain|int $domain): bool
+    {
+        return self::DeleteAllByFilter('{domain}=\''.($domain instanceof Domain ? $domain->id : $domain).'\'');
     }
 
 }

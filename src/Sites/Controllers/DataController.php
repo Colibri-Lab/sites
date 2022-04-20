@@ -21,6 +21,7 @@ use App\Modules\Sites\Module;
 use Colibri\Data\Models\DataModelException;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
+use Colibri\Data\DataAccessPoint;
 
 class DataController extends WebController
 {
@@ -37,6 +38,8 @@ class DataController extends WebController
         }
 
         $term = $post->term;
+        $sortField = $post->sortfield;
+        $sortOrder = $post->sortorder;
         $page = (int)$post->page ?: 1;
         $pagesize = (int)$post->pagesize ?: 20;
 
@@ -50,7 +53,17 @@ class DataController extends WebController
             }
         }
 
-        $datarows = $tableClass::LoadByFilter($page, $pagesize, implode(' or ', $filters), '{datecreated}', ['term' => '%'.$term.'%']);
+        if(!$sortField) {
+            $sortField = '{datecreated}';
+        }
+        else {
+            $sortField = '{'.$sortField.'}';
+        }
+        if(!$sortOrder) {
+            $sortOrder = 'asc';
+        }
+
+        $datarows = $tableClass::LoadByFilter($page, $pagesize, implode(' or ', $filters), $sortField.' '.$sortOrder, ['term' => '%'.$term.'%']);
         if(!$datarows) {
             return $this->Finish(400, 'Bad request');
         }
@@ -160,7 +173,9 @@ class DataController extends WebController
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
-        $tableClass::DeleteAllByIds(explode(',', $ids));
+        if(!$tableClass::DeleteAllByIds(explode(',', $ids))) {
+            return $this->Finish(400, 'Bad request');
+        }
 
         return $this->Finish(200, 'ok');
     }
