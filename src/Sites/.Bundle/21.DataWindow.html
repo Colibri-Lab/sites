@@ -1,22 +1,18 @@
 <div ComponentName="App.Modules.Sites.DataWindow">
-
     <component-container>
-
-        <component Component="Colibri.UI.Split" name="split" shown="true" hasHandle="true">
-            <component Component="App.Modules.Sites.StoragesTree" name="storages" shown="true" binding="app.manage.storages" />
-            <component Component="Colibri.UI.Pane" name="data-pane" shown="true">
-                <component Component="Colibri.UI.Pane" name="search-pane" shown="true">
-                    <component Component="Colibri.UI.Input" name="search-input" shown="true" placeholder="Поиск" enabled="false" />
-                </component>
-                <component Component="App.Modules.Sites.DataGrid" name="data" shown="true" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="Данные не найдены" />
-            </component>
-        </component>
-
-        
+        <Split name="split" shown="true" hasHandle="true">
+            <App.Modules.Sites.StoragesTree name="storages" shown="true" binding="app.manage.storages" />
+            <Pane name="data-pane" shown="true">
+                <Pane name="search-pane" shown="true">
+                    <Input name="search-input" shown="true" placeholder="Поиск" enabled="false" />
+                </Pane>
+                <App.Modules.Sites.DataGrid name="data" shown="true" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="Данные не найдены" />
+            </Pane>
+        </Split>
     </component-container>
     <component-footer>
-        <component Component="Colibri.UI.SuccessButton" name="save" shown="true" enabled="false" value="Опубликовать выбранное" />
-        <component Component="Colibri.UI.SimpleButton" name="cancel" shown="true" value="Закрыть" OnClicked="(event, args) => this.Hide()" />
+        <SuccessButton name="save" shown="true" enabled="false" value="Опубликовать выбранное" />
+        <SimpleButton name="cancel" shown="true" value="Закрыть" OnClicked="(event, args) => this.Hide()" />
     </component-footer>
 
     

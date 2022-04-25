@@ -11,27 +11,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
         this._storages.AddHandler('DoubleClicked', (event, args) => this.__foldersDoubleClick(event, args));
 
+        this._dragManager = new Colibri.UI.DragManager([this._storages], [this._storages]);
+        this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
+        this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
+        this._storages.sorting = true;    
 
     }
 
     _canAddFieldAsChild(field) {
         return field.type === 'json';
-    }
-
-    _findModuleNode(fieldNode) {
-        let f = fieldNode;
-        while (f && f.tag.type && f.tag.type != 'module') {
-            f = f.parentNode;
-        }
-        return f;
-    }
-
-    _findStorageNode(fieldNode) {
-        let f = fieldNode;
-        while (f && f.tag.type && f.tag.type != 'storage') {
-            f = f.parentNode;
-        }
-        return f;
     }
 
     __renderStoragesContextMenu(event, args) {
@@ -528,7 +516,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                             resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
                                         })
                                     }
-                                }
+                                },
+                                mask: {
+                                    type: 'varchar',
+                                    placeholder: 'Маска ввода',
+                                    note: 'Работает только с обьектами типа Text',
+                                    component: 'Text',
+                                    default: ''
+                                },
                             }
                         },
                         lookup: {
@@ -863,7 +858,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _getPath(node, add = null) {
-        const storageNode = this._findStorageNode(node);
+        const storageNode = node.FindParent((node) => node.tag.type === 'storage');
         let paths = [];
         let p = node;
         while(p != storageNode) {
@@ -891,7 +886,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
 
         if (menuData.name == 'new-storage') {
-            const moduleNode = this._findModuleNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             if (Security.IsCommandAllowed('sites.storages.add')) {
                 Manage.FormWindow.Show('Новое хранилище', 800, this._storageFields(), {})
                     .then((data) => {
@@ -904,7 +899,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'edit-storage') {
-            const moduleNode = this._findModuleNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             if (Security.IsCommandAllowed('sites.storages.edit')) {
                 Manage.FormWindow.Show('Редактировать хранилище', 800, this._storageFields(), node.tag.entry)
                     .then((data) => {
@@ -918,14 +913,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-storage') {
-            const moduleNode = this._findModuleNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             App.Confirm.Show('Удаление хранилища данных', 'Вы уверены, что хотите удалить хранилище данных?', 'Удалить!').then(() => {
                 Sites.DeleteStorage(moduleNode.tag.entry, node.tag.entry);
             });
         }
         else if (menuData.name == 'new-field') {
-            const moduleNode = this._findModuleNode(node);
-            const storageNode = this._findStorageNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
                 Manage.FormWindow.Show('Новое свойство', 1024, this._fieldFields(), {})
                     .then((data) => {
@@ -938,8 +933,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'edit-field') {
-            const moduleNode = this._findModuleNode(node);
-            const storageNode = this._findStorageNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
                 Manage.FormWindow.Show('Редактировать свойство', 1024, this._fieldFields(), node.tag.entry)
                     .then((data) => {
@@ -953,8 +948,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-field') {
-            const moduleNode = this._findModuleNode(node);
-            const storageNode = this._findStorageNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             const selectedNode = this.selected;
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
                 App.Confirm.Show('Удаление свойства', 'Вы уверены, что хотите удалить свойство?', 'Удалить!').then(() => {
@@ -967,8 +962,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'new-index') {
-            const moduleNode = this._findModuleNode(node);
-            const storageNode = this._findStorageNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.indexes')) {
                 Manage.FormWindow.Show('Новый индекс', 800, this._fieldIndex(storageNode.tag.entry.name), {})
                     .then((data) => {
@@ -981,8 +976,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'edit-index') {
-            const moduleNode = this._findModuleNode(node);
-            const storageNode = this._findStorageNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.indexes')) {
                 Manage.FormWindow.Show('Редактировать индекс', 800, this._fieldIndex(storageNode.tag.entry.name), node.tag.entry)
                     .then((data) => {
@@ -996,8 +991,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-index') {
-            const moduleNode = this._findModuleNode(node);
-            const storageNode = this._findStorageNode(node);
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
                 App.Confirm.Show('Удаление индекса', 'Вы уверены, что хотите удалить индекс?', 'Удалить!').then(() => {
                     Sites.DeleteIndex(moduleNode.tag.entry, storageNode.tag.entry, node.tag.entry);
@@ -1024,6 +1019,51 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         else {
             this.__clickOnStoragesContextMenu(event, {menuData: {name: 'edit-' + node.tag.type}});
         }
+    }
+
+    __dragDropOver(event, args) {
+        const dragged = args.dragged;
+        const droppedTo = args.droppedTo;
+        const droppedToElement = args.droppedToElement;
+        const effects = args.effects;
+        if(['storage', 'module', 'fields', 'indices', 'index'].indexOf(dragged.tag.type) !== -1 || ['storage', 'module', 'fields', 'indices', 'index'].indexOf(droppedTo.tag.type) !== -1) {
+            effects.effectAllowed = 'none';
+            effects.dropEffect = 'none';
+        }
+        else if(dragged.tag.type === 'field') {
+
+            const draggedField = dragged.tag.entry;
+            const draggedFieldParent = dragged.parentNode;
+            const draggedStorage = dragged.FindParent((node) => node.tag.type === 'storage');
+
+            const droppedToField = droppedTo.tag.entry;
+            const droppedToFieldParent = droppedTo.parentNode;
+            const droppedToStorage = droppedTo.FindParent((node) => node.tag.type === 'storage');
+            const dropSibling = droppedToElement.attr('drop');
+
+            if(!dropSibling || !draggedStorage || !droppedToStorage || draggedStorage.tag.entry.name != droppedToStorage.tag.entry.name || draggedFieldParent != droppedToFieldParent) {
+                effects.effectAllowed = 'none';
+                effects.dropEffect = 'none';
+            }
+            else {
+                effects.dropEffect = 'move';
+                effects.effectAllowed = 'move';
+            }
+        }
+    }
+
+    __dragDropComplete(event, args) {
+        
+        const dragged = args.dragged;
+        const droppedTo = args.droppedTo;
+        const droppedToElement = args.droppedToElement;
+        const dropSibling = droppedToElement.attr('drop');
+
+        const moduleNode = dragged.FindParent((node) => node.tag.type === 'module');
+        const storageNode = dragged.FindParent((node) => node.tag.type === 'storage');
+
+        Sites.MoveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(dragged), this._getPath(droppedTo), dropSibling);
+
     }
 
 

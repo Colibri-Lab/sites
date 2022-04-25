@@ -462,6 +462,19 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 console.error(error);
             });
     }
+    
+    MoveField(module, storage, pathToMove, pathRelative, sibling) {
+        this.Call('Storages', 'MoveField', {module: module?.name ?? module, storage: storage?.name ?? storage, move: pathToMove, relative: pathRelative, sibling: sibling})
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('Хранилище сохранено', Colibri.UI.Notice.Success, 3000));
+                Manage.Store.Reload('manage.storages', false);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+    
 
     SaveIndex(module, storage, data) {
         this.Call('Storages', 'SaveIndex', {module: module?.name ?? module, storage: storage?.name ?? storage, data: data})

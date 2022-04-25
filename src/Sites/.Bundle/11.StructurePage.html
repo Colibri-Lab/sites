@@ -1,21 +1,21 @@
 <div ComponentName="App.Modules.Sites.StructurePage">
 
-    <component Component="Colibri.UI.Split" name="split" shown="true" hasHandle="true">
-        <component Component="Colibri.UI.Pane" name="folders-pane" shown="true">
-            <component Component="Colibri.UI.H2" name="ttl" shown="true">Разделы сайта</component>
-            <component Component="App.Modules.Sites.FoldersTree" name="folders" shown="true" hasContextMenu="true" hasTreeContextMenu="true" binding="app.sites.domains;app.sites.pages" />
-        </component>
-        <component Component="Colibri.UI.Pane" name="publications-pane" shown="true">
-            <component Component="Colibri.UI.H2" name="ttl" shown="true">Публикации</component>
-            <component Component="Colibri.UI.Pane" name="search-pane" shown="true">
-                <component Component="Colibri.UI.Input" name="search-input" enabled="false" shown="true" placeholder="Поиск" />
-            </component>
-            <component Component="App.Modules.Sites.PublicationsGrid" name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="Публикаций не найдено">
+    <Split name="split" shown="true" hasHandle="true">
+        <Pane name="folders-pane" shown="true">
+            <H2 name="ttl" shown="true">Разделы сайта</H2>
+            <App.Modules.Sites.FoldersTree name="folders" shown="true" hasContextMenu="true" hasTreeContextMenu="true" binding="app.sites.domains;app.sites.pages" />
+        </Pane>
+        <Pane name="publications-pane" shown="true">
+            <H2 name="ttl" shown="true">Публикации</H2>
+            <Pane name="search-pane" shown="true">
+                <Input name="search-input" enabled="false" shown="true" placeholder="Поиск" />
+            </Pane>
+            <App.Modules.Sites.PublicationsGrid name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="Публикаций не найдено">
                 <component-header>
                     <component-columns>
-                        <component Component="Colibri.UI.Grid.Column" name="id" shown="true" value="#" width="10%" resizable="true" />
-                        <component Component="Colibri.UI.Grid.Column" name="datecreated" shown="true" value="Создана" width="10%" resizable="true" viewer="Colibri.UI.DateTimeViewer" />
-                        <component Component="Colibri.UI.Grid.Column" name="page" shown="true" value="Страница" width="15%" resizable="true">
+                        <Grid.Column name="id" shown="true" value="#" width="10%" resizable="true" />
+                        <Grid.Column name="datecreated" shown="true" value="Создана" width="10%" resizable="true" viewer="Colibri.UI.DateTimeViewer" />
+                        <Grid.Column name="page" shown="true" value="Страница" width="15%" resizable="true">
                             <params>
                                 {
                                     render: (cell, row) => {
@@ -23,8 +23,8 @@
                                     }
                                 }
                             </params>
-                        </component>
-                        <component Component="Colibri.UI.Grid.Column" name="storage" shown="true" value="Хранилище" width="15%" resizable="true">
+                        </Grid.Column>
+                        <Grid.Column name="storage" shown="true" value="Хранилище" width="15%" resizable="true">
                             <params>
                                 {
                                     render: (cell, row) => {
@@ -35,20 +35,20 @@
                                     }
                                 }
                             </params>
-                        </component>
-                        <component Component="Colibri.UI.Grid.Column" name="row" shown="true" value="Строка" width="5%" resizable="true" />
-                        <component Component="Colibri.UI.Grid.Column" name="ft" shown="true" value="Данные" width="45%" resizable="false" viewer="Colibri.UI.HtmlDataViewer" />
+                        </Grid.Column>
+                        <Grid.Column name="row" shown="true" value="Строка" width="5%" resizable="true" />
+                        <Grid.Column name="ft" shown="true" value="Данные" width="45%" resizable="false" viewer="Colibri.UI.HtmlDataViewer" />
                     </component-columns>
                 </component-header>
-            </component>
+            </App.Modules.Sites.PublicationsGrid>
 
-            <component Component="Colibri.UI.FlexBox" name="buttons-pane" shown="true">
-                <component Component="Colibri.UI.SuccessButton" name="publish" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Публикация</component>
-                <component Component="Colibri.UI.SuccessButton" name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Данные</component>
-                <component Component="Colibri.UI.SuccessButton" name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">Редактировать</component>
-                <component Component="Colibri.UI.SuccessButton" name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">Удалить</component>
-            </component>
-        </component>
-    </component>    
+            <FlexBox name="buttons-pane" shown="true">
+                <SuccessButton name="publish" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Публикация</SuccessButton>
+                <SuccessButton name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Данные</SuccessButton>
+                <SuccessButton name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">Редактировать</SuccessButton>
+                <SuccessButton name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">Удалить</SuccessButton>
+            </FlexBox>
+        </Pane>
+    </Split>    
 
 </div>

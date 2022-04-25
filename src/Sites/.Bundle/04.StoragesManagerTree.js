@@ -107,6 +107,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             return;
         }
         const founds = [];
+        storageNode.nodes.Clear();
         Object.forEach(storage.fields, (name, field) => {
             const fieldNode = this._insertFieldNode(storageNode, name, field);
             founds.push(fieldNode.name);

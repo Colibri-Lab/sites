@@ -1,0 +1,615 @@
+---
+domains:
+  access-point: sites
+  module: Sites
+  models:
+    row: Models\Domain
+    table: Models\Domains
+  desc: Сайты
+  params:
+    visible: false
+    maybepublished: false
+  fields:
+    name:
+      type: varchar
+      class: ValueField
+      component: Select
+      desc: Ключ домена
+      note: В конфигурации должны быть указаны паттерны доменов, которые подходят
+        под этот ключ
+      default: ""
+      selector:
+        value: value
+        title: title
+      params:
+        readonly: true
+        required: true
+      lookup:
+        binding: app.sites.domainkeys
+    description:
+      type: varchar
+      length: 255
+      class: string
+      desc: Описание страницы
+      note: Введите описание сайта
+      params:
+        required: true
+        readonly: false
+    closed:
+      type: tinyint
+      length: 1
+      class: bool
+      desc: Закрыт
+      note: Выберите «Да» если хотите закрыть сайт
+      component: Radio
+      params:
+        required: true
+        readonly: false
+      default: "0"
+      selector:
+        value: value
+        title: title
+      values:
+      - value: "0"
+        title: Нет
+      - value: "1"
+        title: Да
+    additional:
+      type: json
+      class: ObjectField
+      component: Tabs
+      desc: Дополнительные параметры
+      default: json_object()
+      fields:
+        settings:
+          type: json
+          class: ObjectField
+          component: Object
+          desc: Технические данные
+          params:
+            vertical: true
+          default: json_object()
+          fields:
+            type:
+              type: enum
+              class: ValueField
+              component: Select
+              default: application
+              desc: Тип приложения
+              params:
+                readonly: true
+                required: true
+              values:
+              - value: application
+                title: Приложение (javascript)
+              - value: website
+                title: Обычный вебсайт (php/js)
+            module:
+              type: varchar
+              length: 255
+              class: string
+              component: Select
+              desc: Стартовый модуль
+              note: Выжерите модуль, который будет стартовать
+              default: ~
+              selector:
+                value: value
+                title: title
+              params:
+                readonly: true
+                required: true
+                runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues();
+                  }
+              lookup:
+                method: ' () => new Promise((resolve, reject) => { Manage.Store.AsyncQuery("manage.modules").then((modules)
+                  => { const ret = []; for(const module of modules) { ret.push({value:
+                  module.name, title: module.desc + " (" + module.name + ")"}); }
+                  resolve(ret); }); });'
+            template:
+              type: varchar
+              length: 255
+              class: string
+              component: Select
+              desc: Шаблон по умолчанию
+              note: Выберите шаблон по умолчанию
+              default: ""
+              selector:
+                value: value
+                title: title
+              params:
+                readonly: true
+                required: true
+              lookup:
+                depends: additional?.settings?.module
+                method: ' (term, dependsValue) => new Promise((resolve, reject) =>
+                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                  => { if(module != dependsValue) {return true;} Object.forEach(eval(''App.Modules.''
+                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
+                  { ret.push({value: name, title: module + ''.'' + name}); } }); });
+                  resolve(ret); }); '
+        parameters:
+          type: json
+          class: ArrayField
+          component: Array
+          desc: Дополнительные свойства
+          default: json_array()
+          attrs:
+            className: app-field-wrap
+          params:
+            addlink: Добавить параметр
+          fields:
+            name:
+              type: varchar
+              length: 50
+              class: string
+              component: Text
+              desc: Наименование поля
+              attrs:
+                width: 30%
+            description:
+              type: varchar
+              length: 255
+              class: string
+              component: Text
+              desc: Описание поля
+              attrs:
+                width: 68%
+            type:
+              type: varchar
+              length: 20
+              desc: Тип
+              component: Text
+              default: varchar
+              attrs:
+                width: 19.5%
+            length:
+              type: int
+              desc: Длина
+              component: Number
+              attrs:
+                width: 15%
+            default:
+              type: varchar
+              length: 255
+              class: string
+              component: Text
+              desc: Значение по умолчанию
+              attrs:
+                width: 20%
+            class:
+              type: varchar
+              length: 255
+              class: string
+              component: Text
+              desc: Класс (PHP)
+              attrs:
+                width: 20%
+            component:
+              type: varchar
+              length: 255
+              class: string
+              default: Text
+              component: Select
+              desc: Компонента (JS)
+              selector:
+                value: value
+                title: title
+              lookup:
+                method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                  (name, value) => { ret.push({value: name, title: value.description});
+                  }); resolve(ret); })'
+              attrs:
+                width: 22%
+    parameters:
+      type: json
+      component: Object
+      class: ParametersField
+      params:
+        required: false
+        readonly: false
+  indices:
+    domains_name_idx:
+      fields:
+      - name
+      type: NORMAL
+      method: BREE
+pages:
+  access-point: sites
+  module: Sites
+  models:
+    row: Models\Page
+    table: Models\Pages
+  desc: Страницы
+  params:
+    visible: false
+    maybepublished: false
+  fields:
+    domain:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Domain
+      component: Hidden
+      desc: Домен
+      default: "0"
+      params:
+        required: true
+        readonly: true
+      lookup:
+        storage:
+          name: domains
+          title: description
+          value: id
+    parent:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Page
+      component: Hidden
+      desc: Отцовская страница
+      default: "0"
+      params:
+        required: true
+        readonly: false
+      lookup:
+        storage:
+          name: pages
+          title: description
+          value: id
+    name:
+      type: varchar
+      length: 255
+      class: string
+      desc: Наименование раздела
+      note: Введите наименование страницы, наименование будет использовано в URL
+      params:
+        required: true
+        readonly: false
+    description:
+      type: varchar
+      length: 255
+      class: string
+      desc: Описание страницы
+      note: Введите описание сайта
+      params:
+        required: true
+        readonly: false
+        runtime: (field, form) => { const nameField = form.FindField("name"); if(!nameField.value)
+          { nameField.value = field.value.CyrToUrl(3); } }
+    published:
+      type: tinyint
+      length: 1
+      class: bool
+      desc: Опубликована
+      note: Выберите «Да» если хотите опубликовать сайт
+      component: Radio
+      params:
+        required: true
+        readonly: false
+      default: "0"
+      selector:
+        value: value
+        title: title
+      values:
+      - value: "0"
+        title: Нет
+      - value: "1"
+        title: Да
+    additional:
+      type: json
+      class: ObjectField
+      component: Tabs
+      desc: Всякое
+      default: json_object()
+      fields:
+        meta:
+          type: json
+          class: ObjectField
+          desc: Мета данные
+          component: Object
+          params:
+            vertical: true
+          default: json_object()
+          fields:
+            title:
+              type: varchar
+              length: 512
+              class: string
+              component: Text
+              desc: Заголовок страницы
+              note: Введите заголовок страницы
+            description:
+              type: varchar
+              length: 1024
+              class: string
+              component: TextArea
+              description: Описание сайта
+              note: Введите мета описание сайта
+            keywords:
+              type: varchar
+              length: 1024
+              class: string
+              component: TextArea
+              description: Ключевые слова
+              note: Введите ключевые слова
+        settings:
+          type: json
+          class: ObjectField
+          component: Object
+          desc: Технические данные
+          params:
+            vertical: true
+          default: json_object()
+          fields:
+            template:
+              type: varchar
+              length: 255
+              class: string
+              component: Select
+              desc: Шаблон
+              note: Введите описание сайта
+              default: ""
+              selector:
+                value: value
+                title: title
+              lookup:
+                method: ' () => new Promise((resolve, reject) => { let ret = [{value:
+                  "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                  => { Object.forEach(eval(''App.Modules.'' + module), (name, value)
+                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name,
+                  title: module + ''.'' + name}); } }); }); resolve(ret); }); '
+        parameters:
+          type: json
+          class: ArrayField
+          component: Array
+          desc: Дополнительные свойства
+          default: json_array()
+          attrs:
+            className: app-field-wrap
+          params:
+            addlink: Добавить параметр
+          fields:
+            name:
+              type: varchar
+              length: 50
+              class: string
+              component: Text
+              desc: Наименование поля
+              attrs:
+                width: 30%
+            description:
+              type: varchar
+              length: 255
+              class: string
+              component: Text
+              desc: Описание поля
+              attrs:
+                width: 68%
+            type:
+              type: varchar
+              length: 20
+              desc: Тип
+              component: Text
+              default: varchar
+              attrs:
+                width: 19.5%
+            length:
+              type: int
+              desc: Длина
+              component: Number
+              attrs:
+                width: 15%
+            default:
+              type: varchar
+              length: 255
+              class: string
+              component: Text
+              desc: Значение по умолчанию
+              attrs:
+                width: 20%
+            class:
+              type: varchar
+              length: 255
+              class: string
+              component: Text
+              desc: Класс (PHP)
+              attrs:
+                width: 20%
+            component:
+              type: varchar
+              length: 255
+              class: string
+              default: Text
+              component: Select
+              desc: Компонента (JS)
+              selector:
+                value: value
+                title: title
+              lookup:
+                method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                  (name, value) => { ret.push({value: name, title: value.description});
+                  }); resolve(ret); })'
+              attrs:
+                width: 22%
+    parameters:
+      type: json
+      component: Object
+      class: ParametersField
+      default: json_object()
+      params:
+        required: false
+        readonly: false
+    order:
+      type: double
+      class: float
+      default: "0"
+      component: Hidden
+      desc: Позиция в рамках parent-а
+  indices:
+    pages_domain_idx:
+      fields:
+      - domain
+      type: NORMAL
+      method: BTREE
+    pages_parent_idx:
+      fields:
+      - parent
+      type: NORMAL
+      method: BTREE
+    pages_name_idx:
+      fields:
+      - name
+      type: NORMAL
+      method: BTREE
+    pages_order_idx:
+      fields:
+      - order
+      type: NORMAL
+      method: BTREE
+    pages_published_idx:
+      fields:
+      - published
+      type: NORMAL
+      method: BTREE
+pubs:
+  access-point: sites
+  module: Sites
+  models:
+    row: Models\Publication
+    table: Models\Publications
+  desc: Публикации
+  params:
+    visible: false
+    maybepublished: false
+  fields:
+    domain:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Domain
+      component: Hidden
+      desc: Домен
+      default: "0"
+      params:
+        required: true
+        readonly: true
+      lookup:
+        storage:
+          name: domains
+          title: description
+          value: id
+    page:
+      type: bigint unsigned
+      class: App\Modules\Sites\Models\Page
+      desc: Страница
+      note: Выберите страницу
+      params:
+        required: true
+        readonly: false
+      lookup:
+        storage:
+          name: pages
+          title: description
+          value: id
+    storage:
+      type: varchar
+      length: 255
+      class: string
+      desc: Хранилище материалов
+      note: Выберите хранилище материалов
+      params:
+        required: true
+        readonly: false
+    row:
+      type: bigint unsigned
+      class: int
+      desc: ID записи в хранилище
+      note: Введите ID записи в хранилище
+      params:
+        required: true
+        readonly: false
+    ft:
+      type: longtext
+      class: string
+      params:
+        required: false
+        readonly: false
+      desc: Полнотекстовый поиск
+    object:
+      type: json
+      class: ObjectField
+      desc: Данные строки
+      default: json_object()
+    order:
+      type: double
+      class: float
+      default: 0
+      desc: Позиция в рамках страницы
+  indices:
+    pubs_domain_idx:
+      fields:
+      - domain
+      type: NORMAL
+      method: BTREE
+    pubs_pagestoragerow_idx:
+      fields:
+      - page
+      - storage
+      - row
+      type: NORMAL
+      method: BTREE
+    pubs_order_idx:
+      fields:
+      - order
+      type: NORMAL
+      method: BTREE
+    pubs_ft_idx:
+      fields:
+      - ft
+      type: FULLTEXT
+      method: ~
+texts:
+  access-point: sites
+  module: Sites
+  models:
+    table: Models\Texts
+    row: Models\Text
+  desc: Текстовые данные
+  params:
+    visible: true
+    maybepublished: true
+  fields:
+    title:
+      type: varchar
+      length: 255
+      class: string
+      component: Text
+      desc: Заголовок
+      note: Введите заголовок текстового блока, если необходимо
+      params:
+        required: false
+        enabled: true
+        readonly: false
+        visual: false
+        list: true
+        vertical: false
+      group: window
+      default: ""
+    html:
+      type: longtext
+      class: string
+      desc: Содержание
+      note: Введите содержание
+      component: App.Modules.Manage.UI.TinyMCETextArea
+      params:
+        required: true
+        readonly: false
+        enabled: true
+        visual: true
+        list: true
+  indices:
+    texts_title_idx:
+      fields:
+      - title
+      type: NORMAL
+      method: BREE
+      name: texts_title_idx
+  components:
+    default: App.Modules.Pocket.Templates.TextsDefaultTemplate
+    list: App.Modules.Pocket.Templates.TextsDefaultTemplate
+    item: App.Modules.Pocket.Templates.TextsItemTemplate
+...

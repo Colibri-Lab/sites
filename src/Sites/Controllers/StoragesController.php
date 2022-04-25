@@ -23,6 +23,7 @@ use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
 use Colibri\Utils\Config\Config;
 use Colibri\Data\Storages\Storage;
+use Colibri\Data\Storages\Fields\Field;
 
 class StoragesController extends WebController
 {
@@ -150,6 +151,60 @@ class StoragesController extends WebController
         else {
             $storage->AddField($path, $data);
         }
+
+        $storage->Save();
+
+        return $this->Finish(200, 'ok');
+    }
+    public function MoveField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        if(!SecurityModule::$instance->current) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $module = $post->module;
+        if(!$module) {
+            return $this->Finish(400, 'Bad request');
+        }
+        
+        $moduleObject = App::$moduleManager->$module;
+        if(!$moduleObject) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $storage = $post->storage;
+        if(!$storage) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $storage = Storages::Create()->Load($storage);
+        if(!$storage) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        
+        $move = $post->move;
+        $relative = $post->relative;
+        $sibling = $post->sibling;
+
+        $move = $storage->GetField($move);
+        $relative = $storage->GetField($relative);
+        
+        if(!$move || !$relative) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage->name.'.fields')) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $parentField = $move->parent;
+        if(!$parentField) {
+            $parentField = $storage;
+        }
+
+        $parentField->MoveField($move, $relative, $sibling);
 
         $storage->Save();
 
