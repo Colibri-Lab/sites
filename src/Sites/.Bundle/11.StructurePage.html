@@ -2,29 +2,29 @@
 
     <Split name="split" shown="true" hasHandle="true">
         <Pane name="folders-pane" shown="true">
-            <H2 name="ttl" shown="true">Разделы сайта</H2>
+            <H2 name="ttl" shown="true">#{sites-structure-folders-title;Разделы сайта}</H2>
             <App.Modules.Sites.FoldersTree name="folders" shown="true" hasContextMenu="true" hasTreeContextMenu="true" binding="app.sites.domains;app.sites.pages" />
         </Pane>
         <Pane name="publications-pane" shown="true">
-            <H2 name="ttl" shown="true">Публикации</H2>
+            <H2 name="ttl" shown="true">#{sites-structure-publications-title;Публикации}</H2>
             <Pane name="search-pane" shown="true">
-                <Input name="search-input" enabled="false" shown="true" placeholder="Поиск" />
+                <Input name="search-input" enabled="false" shown="true" placeholder="#{sites-structure-search-placeholder;Поиск}" />
             </Pane>
-            <App.Modules.Sites.PublicationsGrid name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="Публикаций не найдено">
+            <App.Modules.Sites.PublicationsGrid name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="#{sites-structure-publicationsempty;Публикаций не найдено}">
                 <component-header>
                     <component-columns>
                         <Grid.Column name="id" shown="true" value="#" width="10%" resizable="true" />
-                        <Grid.Column name="datecreated" shown="true" value="Создана" width="10%" resizable="true" viewer="Colibri.UI.DateTimeViewer" />
-                        <Grid.Column name="page" shown="true" value="Страница" width="15%" resizable="true">
+                        <Grid.Column name="datecreated" shown="true" value="#{sites-structure-publications-created;Создана}" width="10%" resizable="true" viewer="Colibri.UI.DateTimeViewer" />
+                        <Grid.Column name="page" shown="true" value="#{sites-structure-publications-page;Страница}" width="15%" resizable="true">
                             <params>
                                 {
                                     render: (cell, row) => {
-                                        return row.value.page?.description ?? "Главная страница";
+                                        return row.value.page?.description ?? "#{sites-structure-publications-mainpage;Главная страница}";
                                     }
                                 }
                             </params>
                         </Grid.Column>
-                        <Grid.Column name="storage" shown="true" value="Хранилище" width="15%" resizable="true">
+                        <Grid.Column name="storage" shown="true" value="#{sites-structure-publications-storage;Хранилище}" width="15%" resizable="true">
                             <params>
                                 {
                                     render: (cell, row) => {
@@ -36,17 +36,17 @@
                                 }
                             </params>
                         </Grid.Column>
-                        <Grid.Column name="row" shown="true" value="Строка" width="5%" resizable="true" />
-                        <Grid.Column name="ft" shown="true" value="Данные" width="45%" resizable="false" viewer="Colibri.UI.HtmlDataViewer" />
+                        <Grid.Column name="row" shown="true" value="#{sites-structure-publications-row;Строка}" width="5%" resizable="true" />
+                        <Grid.Column name="ft" shown="true" value="#{sites-structure-publications-data;Данные}" width="45%" resizable="false" viewer="Colibri.UI.HtmlDataViewer" />
                     </component-columns>
                 </component-header>
             </App.Modules.Sites.PublicationsGrid>
 
             <FlexBox name="buttons-pane" shown="true">
-                <SuccessButton name="publish" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Публикация</SuccessButton>
-                <SuccessButton name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">Данные</SuccessButton>
-                <SuccessButton name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">Редактировать</SuccessButton>
-                <SuccessButton name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">Удалить</SuccessButton>
+                <SuccessButton name="publish" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">#{sites-structure-buttons-publish;Публикация}</SuccessButton>
+                <SuccessButton name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">#{sites-structure-buttons-adddata;Данные}</SuccessButton>
+                <SuccessButton name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">#{sites-structure-buttons-editdata;Редактировать}</SuccessButton>
+                <SuccessButton name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">#{sites-structure-buttons-deletedata;Удалить}</SuccessButton>
             </FlexBox>
         </Pane>
     </Split>    

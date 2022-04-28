@@ -212,7 +212,7 @@ domains:
       fields:
       - name
       type: NORMAL
-      method: BREE
+      method: BTREE
 pages:
   access-point: sites
   module: Sites
@@ -606,7 +606,7 @@ texts:
       fields:
       - title
       type: NORMAL
-      method: BREE
+      method: BTREE
       name: texts_title_idx
   components:
     default: App.Modules.Pocket.Templates.TextsDefaultTemplate

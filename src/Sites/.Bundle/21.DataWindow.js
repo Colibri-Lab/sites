@@ -66,7 +66,7 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         }
         if(dataChecked.length > 0) {
             dataChecked.forEach((d) => {
-                ids.push(d.value    .id);
+                ids.push(d.value.id);
             });
         }
         ids = Array.unique(ids);

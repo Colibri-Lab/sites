@@ -42,7 +42,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             
             let dateCreatedColumn = this.header.columns.Children('datecreated');
             if(!dateCreatedColumn) {
-                dateCreatedColumn = this.header.columns.Add('datecreated', 'Дата создания', {width: '10%'});
+                dateCreatedColumn = this.header.columns.Add('datecreated', '#{sites-structure-datagrid-created;Дата создания}', {width: '10%'});
                 dateCreatedColumn.viewer = 'Colibri.UI.DateTimeViewer';
                 dateCreatedColumn.resizable = true;
                 dateCreatedColumn.sortable = true;

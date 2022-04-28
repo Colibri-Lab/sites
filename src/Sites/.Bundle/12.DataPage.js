@@ -99,12 +99,12 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             return;
         }
         if(this._data.checked.length == 0) {
-            App.Confirm.Show('Удаление данных', 'Вы уверены, что хотите удалить выбранную строку?', 'Удалить!').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedata1;Удаление данных}', '#{sites-structure-deletedata1message;Вы уверены, что хотите удалить выбранную строку?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 Sites.DeleteData(storage, [this._data.selected?.value?.id]);
             });
         }
         else {
-            App.Confirm.Show('Удаление данных', 'Вы уверены, что хотите удалить выбранные строки?', 'Удалить!').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedata;Удаление данных}', '#{sites-structure-deletedatamessage;Вы уверены, что хотите удалить выбранные строки?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 let ids = [];
                 this._data.checked.forEach((row) => {
                     ids.push(row.value.id);
@@ -122,14 +122,14 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('Новая строка «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', {})
+            Manage.FormWindow.Show('#{sites-structure-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', {})
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })
                 .catch(() => {});
         }
         else {
-            App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
+            App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
         }
             
 
@@ -144,14 +144,14 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('Новая строка «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+            Manage.FormWindow.Show('#{sites-structure-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })
                 .catch(() => {});
         }
         else {
-            App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
+            App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
         }
 
     }
@@ -167,14 +167,14 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         delete dta.id;
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('Новая строка «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+            Manage.FormWindow.Show('#{sites-structure-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })
                 .catch(() => {});
         }
         else {
-            App.Notices.Add(new Colibri.UI.Notice('Действие запрещено', Colibri.UI.Notice.Error, 5000));
+            App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
         }
 
     }
@@ -183,12 +183,12 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     __renderDataContextMenu(event, args) {
         let contextmenu = [];
         
-        contextmenu.push({name: 'dubl-data', title: 'Дублировать данные', icon: Colibri.UI.ContextMenuAddIcon});
-        contextmenu.push({name: 'edit-data', title: 'Редактировать данные', icon: Colibri.UI.ContextMenuEditIcon});
-        contextmenu.push({name: 'remove-pub', title: 'Удалить', icon: Colibri.UI.ContextMenuRemoveIcon});
+        contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate;Дублировать данные}', icon: Colibri.UI.ContextMenuAddIcon});
+        contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-edit;Редактировать данные}', icon: Colibri.UI.ContextMenuEditIcon});
+        contextmenu.push({name: 'remove-pub', title: '#{sites-structure-contextmenu-delete;Удалить}', icon: Colibri.UI.ContextMenuRemoveIcon});
 
         args.item.contextmenu = contextmenu;
-        args.item.ShowContextMenu(args.isContextMenuEvent ? 'right bottom' : 'left bottom', '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
+        args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
         
     }
 

@@ -48,7 +48,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!fieldsNode) {
             fieldsNode = storageNode.nodes.Add(storage.name + '_fields');
         }
-        fieldsNode.text = 'Свойства';
+        fieldsNode.text = '#{sites-storages-fields;Свойства}';
         fieldsNode.isLeaf = Object.countKeys(storage.fields) == 0;
         fieldsNode.icon = App.Modules.Sites.Icons.FieldsIcon;
         fieldsNode.tag.entry = null;
@@ -60,7 +60,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!indicesNode) {
             indicesNode = storageNode.nodes.Add(storage.name + '_indices');
         }
-        indicesNode.text = 'Индексы';
+        indicesNode.text = '#{sites-storages-indices;Индексы}';
         indicesNode.isLeaf = !storage.indices || Object.countKeys(storage.indices) == 0;
         indicesNode.icon = App.Modules.Sites.Icons.IndexesIcon;
         indicesNode.tag.entry = null;

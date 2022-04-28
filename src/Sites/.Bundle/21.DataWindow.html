@@ -4,15 +4,15 @@
             <App.Modules.Sites.StoragesTree name="storages" shown="true" binding="app.manage.storages" />
             <Pane name="data-pane" shown="true">
                 <Pane name="search-pane" shown="true">
-                    <Input name="search-input" shown="true" placeholder="Поиск" enabled="false" />
+                    <Input name="search-input" shown="true" placeholder="#{sites-datawindow-search-placeholder;Поиск}" enabled="false" />
                 </Pane>
-                <App.Modules.Sites.DataGrid name="data" shown="true" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="Данные не найдены" />
+                <App.Modules.Sites.DataGrid name="data" shown="true" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="#{sites-datawindow-dataempty;Данные не найдены}" />
             </Pane>
         </Split>
     </component-container>
     <component-footer>
-        <SuccessButton name="save" shown="true" enabled="false" value="Опубликовать выбранное" />
-        <SimpleButton name="cancel" shown="true" value="Закрыть" OnClicked="(event, args) => this.Hide()" />
+        <SuccessButton name="save" shown="true" enabled="false" value="#{sites-datawindow-buttons-publish;Опубликовать выбранное}" />
+        <SimpleButton name="cancel" shown="true" value="#{sites-datawindow-buttons-close;Закрыть}" OnClicked="(event, args) => this.Hide()" />
     </component-footer>
 
     
