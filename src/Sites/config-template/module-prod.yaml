@@ -26,7 +26,7 @@ databases:
     points:
       sites: 
         connection: sites
-        database: products
+        database: gate
 
   storages: include(sites-storages.yaml)
       
