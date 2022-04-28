@@ -26,7 +26,7 @@ class Installer
 
         $modules = self::_loadConfig($file);
         foreach($modules['entries'] as $entry) {
-            if($entry['name'] === 'MainFrame') {
+            if($entry['name'] === 'Sites') {
                 return;
             }
         }
