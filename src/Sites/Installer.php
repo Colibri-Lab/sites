@@ -89,7 +89,7 @@ class Installer
   - name: Sites
     entry: \Sites\Module
     enabled: true
-    desc: Сайты, хранилища и публикации
+    desc: Разделы и хранилища материалов
     visible: true
     for:
       - manage
