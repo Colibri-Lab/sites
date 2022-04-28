@@ -5,7 +5,45 @@ namespace App\Modules\Sites;
 
 class Installer
 {
+    private static function _loadConfig($file): array
+    {
+        return yaml_parse_file($file);
+    }
 
+    private static function _saveConfig($file, $config): void
+    {
+        yaml_emit_file($file, $config, \YAML_UTF8_ENCODING, \YAML_ANY_BREAK);
+    }
+
+    private static function _getMode($file): string
+    {
+        $appConfig = self::_loadConfig($file);
+        return $appConfig['mode'];
+    }
+
+    private static function _injectIntoModuleConfig($file): void
+    {
+
+        $modules = self::_loadConfig($file);
+        foreach($modules['entries'] as $entry) {
+            if($entry['name'] === 'MainFrame') {
+                return;
+            }
+        }
+
+        $modules['entries'][] = [
+            'name' => 'Sites',
+            'entry' => '\Sites\Module',
+            'desc' => 'Административный интерфейс',
+            'enabled' => true,
+            'visible' => true,
+            'for' => ['manage'],
+            'config' => 'include(/config/sites.yaml)'
+        ];
+
+        self::_saveConfig($file, $modules);
+
+    }
     private static function _copyOrSymlink($mode, $pathFrom, $pathTo, $fileFrom, $fileTo): void 
     {
         print_r('Копируем '.$mode.' '.$pathFrom.' '.$pathTo.' '.$fileFrom.' '.$fileTo."\n");
@@ -44,6 +82,11 @@ class Installer
         print_r('Установка и настройка модуля Colibri Sites Module'."\n");
 
         $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir').'/';
+        $operation = $event->getOperation();
+        $installedPackage = $operation->getPackage();
+        $targetDir = $installedPackage->getName();
+        $path = $vendorDir.$targetDir;
+        $configPath = $path.'/src/Sites/config-template/';
         $configDir = './config/';
 
         if(!file_exists($configDir.'app.yaml')) {
@@ -51,57 +94,20 @@ class Installer
             return;
         }
 
-        $mode = 'dev';
-        $appYamlContent = file_get_contents($configDir.'app.yaml');
-        if(preg_match('/mode: (\w+)/', $appYamlContent, $matches) >=0 ) {
-            $mode = $matches[1];
-        }
-
-        $operation = $event->getOperation();
-        $installedPackage = $operation->getPackage();
-        $targetDir = $installedPackage->getName();
-        $path = $vendorDir.$targetDir;
-        $configPath = $path.'/src/Sites/config-template/';
+        $mode = self::_getMode($configDir.'app.yaml');
 
         // копируем конфиг
-        print_r('Копируем файл конфигурации'."\n");
-        if(file_exists($configDir.'sites.yaml')) {
-            print_r('Файл конфигурации найден, пропускаем настройку'."\n");
-            return;
-        }
+        print_r('Копируем файлы конфигурации'."\n");
         self::_copyOrSymlink($mode, $configPath, $configDir, 'module-'.$mode.'.yaml', 'sites.yaml');
-
-        if(file_exists($configDir.'sites-storages.yaml')) {
-            print_r('Файл конфигурации хранилищ найден, пропускаем настройку'."\n");
-            return;
-        }
         self::_copyOrSymlink($mode, $configPath, $configDir, 'sites-storages.yaml', 'sites-storages.yaml');
 
-        // нужно прописать в модули
-        $modulesTargetPath = $configDir.'modules.yaml';
-        $modulesConfigContent = file_get_contents($modulesTargetPath);
-        if(strstr($modulesConfigContent, '- name: Sites') !== false) {
-            print_r('Модуль сконфигурирован, пропускаем'."\n");
-            return;
-        }
-
-        $modulesConfigContent = $modulesConfigContent.'
-  - name: Sites
-    entry: \Sites\Module
-    enabled: true
-    desc: Разделы и хранилища материалов
-    visible: true
-    for:
-      - manage
-    config: include(/config/sites.yaml)';
-        file_put_contents($modulesTargetPath, $modulesConfigContent);
+        print_r('Встраиваем модуль'."\n");
+        self::_injectIntoModuleConfig($configDir.'modules.yaml');
 
         print_r('Установка скриптов'."\n");
-        $scriptsPath = $path.'/src/Sites/bin/';
-        $binDir = './bin/';
+        self::_copyOrSymlink($mode, $path.'/src/Sites/bin/', './bin/', 'sites-migrate.sh', 'sites-migrate.sh');
+        self::_copyOrSymlink($mode, $path.'/src/Sites/bin/', './bin/', 'sites-models-generate.sh', 'sites-models-generate.sh');
 
-        self::_copyOrSymlink($mode, $scriptsPath, $binDir, 'sites-migrate.sh', 'sites-migrate.sh');
-        self::_copyOrSymlink($mode, $scriptsPath, $binDir, 'sites-models-generate.sh', 'sites-models-generate.sh');
         print_r('Установка завершена'."\n");
 
     }
