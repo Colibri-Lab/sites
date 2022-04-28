@@ -89,6 +89,10 @@ class Installer
   - name: Sites
     entry: \Sites\Module
     enabled: true
+    desc: Сайты, хранилища и публикации
+    visible: true
+    for:
+      - manage
     config: include(/config/sites.yaml)';
         file_put_contents($modulesTargetPath, $modulesConfigContent);
 
