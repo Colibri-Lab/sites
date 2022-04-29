@@ -740,17 +740,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     component: 'Text',
                                     desc: '#{sites-storages-fieldselector-title;Поле заголовка}'
                                 },
+                                __render: {
+                                    type: 'varchar',
+                                    component: 'TextArea',
+                                    desc: '#{sites-storages-fieldselector-render;Метод для вывода выборки}'
+                                },
                                 ondemand: {
                                     type: 'bool',
                                     component: 'Checkbox',
                                     default: 0,
                                     desc: '#{sites-storages-fieldselector-ondemand;Загружать при запросе}',
-                                    placeholder: '#{sites-storages-fieldselector-ondemand;Загружать при запросе}'
-                                },
-                                __render: {
-                                    type: 'varchar',
-                                    component: 'TextArea',
-                                    desc: '#{sites-storages-fieldselector-render;Метод для вывода выборки}'
                                 },
                             }
                         },
