@@ -64,6 +64,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                     else if(field.params?.viewer) {
                         column.viewer = field.params?.viewer;
                     }
+                    column.tag = field;
                     if(field.params?.render) {
                         column.tag.params = {render: eval(field.params?.render)};
                     }

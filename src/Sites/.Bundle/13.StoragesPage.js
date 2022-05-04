@@ -379,11 +379,22 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     }
                 },
                 
+                hasdefault: {
+                    type: 'bool',
+                    component: 'Checkbox',
+                    placeholder: '#{sites-storages-fieldsetdefault;Указать значение по умолчанию}'
+                },
                 default: {
                     type: 'varchar',
                     component: 'TextArea',
                     desc: '#{sites-storages-fielddefault;Значение по умолчанию}',
                     note: '#{sites-storages-fielddefault-note;Введите значение по умолчанию. Внимание! Предполагается что вы знаете что делаете}',
+                    params: {
+                        condition: {
+                            field: 'hasdefault',
+                            value: true,
+                        }
+                    }
                 },
                 _adds: {
                     type: 'json',
@@ -942,6 +953,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
+                
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty;Редактировать свойство}', 1024, this._fieldFields(), node.tag.entry)
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);

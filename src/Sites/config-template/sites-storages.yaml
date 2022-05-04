@@ -17,7 +17,6 @@ domains:
       desc: Ключ домена
       note: В конфигурации должны быть указаны паттерны доменов, которые подходят
         под этот ключ
-      default: ""
       selector:
         value: value
         title: title
@@ -91,7 +90,6 @@ domains:
               component: Select
               desc: Стартовый модуль
               note: Выжерите модуль, который будет стартовать
-              default: ~
               selector:
                 value: value
                 title: title
@@ -112,7 +110,6 @@ domains:
               component: Select
               desc: Шаблон по умолчанию
               note: Выберите шаблон по умолчанию
-              default: ""
               selector:
                 value: value
                 title: title
@@ -344,7 +341,6 @@ pages:
               component: Select
               desc: Шаблон
               note: Введите описание сайта
-              default: ""
               selector:
                 value: value
                 title: title
@@ -588,7 +584,6 @@ texts:
         list: true
         vertical: false
       group: window
-      default: ""
     html:
       type: longtext
       class: string

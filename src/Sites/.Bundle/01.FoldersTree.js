@@ -30,7 +30,7 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
             newNode = parenNode.nodes.Add('folder' + folder.id);
         }
         newNode.text = folder.description;
-        newNode.icon = folder.published.value == 1 ? App.Modules.Sites.Icons.FolderIconPublished : App.Modules.Sites.Icons.FolderIconUnpublished;
+        newNode.icon = folder?.published?.value == 1 ? App.Modules.Sites.Icons.FolderIconPublished : App.Modules.Sites.Icons.FolderIconUnpublished;
         newNode.tag = {type: 'page', data: folder};
         return newNode;
     }
