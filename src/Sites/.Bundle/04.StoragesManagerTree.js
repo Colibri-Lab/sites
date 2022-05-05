@@ -80,12 +80,15 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return storageNode;
     }
 
-    _insertFieldNode(storageNode, name, field) {
+    _insertFieldNode(storageNode, name, field, index) {
         field.name = name;
         this._names.set(storageNode.name + '_' + name, storageNode.name + '_' + name);
         let fieldNode = this.FindNode(storageNode.name + '_' + name);
         if(!fieldNode) {
-            fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name);
+            fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name, index);
+        }
+        else {
+            storageNode.nodes.Move(fieldNode, index);
         }
         fieldNode.text = field.desc + ' (' + name + ')';
         fieldNode.isLeaf = !field.fields || Object.countKeys(field.fields) == 0;
@@ -103,7 +106,6 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name);
         }
         fieldNode.text = name;
-        fieldNode.isLeaf = true;
         fieldNode.icon = App.Modules.Sites.Icons.IndexIcon;
         fieldNode.tag.entry = index;
         fieldNode.tag.type = 'index';
@@ -115,8 +117,8 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             return;
         }
         const founds = [];
-        Object.forEach(storage.fields, (name, field) => {
-            const fieldNode = this._insertFieldNode(storageNode, name, field);
+        Object.forEach(storage.fields, (name, field, index) => {
+            const fieldNode = this._insertFieldNode(storageNode, name, field, index);
             founds.push(fieldNode.name);
             this._insertFieldFields(fieldNode, field);
         });
