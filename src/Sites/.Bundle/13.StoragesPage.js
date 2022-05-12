@@ -242,14 +242,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         };
     }
 
-    _fieldFields() {
-        return {
+    _fieldFields(showGroup = true) {
+        const fields = {
             name: 'Field',
             desc: 'Свойство',
             fields: {
                 name: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-fieldname;Наименование свойства}',
                     note: '#{sites-storages-fieldname-note;Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов.}',
                     params: {
@@ -266,6 +267,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 group: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-fieldgroup;Группа свойств}',
                     note: '#{sites-storages-fieldgroup-note;Наименование группы, если нужно оставить в основной то нужно написать "window"}',
                     default: 'window',
@@ -280,6 +282,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 desc: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-fielddesc;Описание свойства}',
                     note: '#{sites-storages-fielddesc-note;Можно на русском языке. Внимание! Описание должно полностью описывать свойство, учитывайте, что модель будет возвращать модель указанную в поле Класс.}',
                     params: {
@@ -293,6 +296,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 type: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-fieldtype;Тип свойства (для хранения в источнике данных)}',
                     note: '#{sites-storages-fieldtype-note;Внинание! Предполагается, что вы знаете, что делаете!}',
                     params: {
@@ -306,6 +310,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 length: {
                     type: 'integer',
                     component: 'Number',
+                    group: 'window',
                     desc: '#{sites-storages-fieldlength;Длина в байтах}',
                     note: '#{sites-storages-fieldlength-note;Внинание! Предполагается, что вы знаете, что делаете!}',
                     params: {
@@ -315,6 +320,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 component: {
                     type: 'varchar',
                     component: 'Select',
+                    group: 'window',
                     desc: '#{sites-storages-fieldcomponent;Компонента}',
                     note: '#{sites-storages-fieldcomponent-note;Выберите компоненту, которая будет использоваться в формах для ввода и редактирования данных}',
                     selector: {
@@ -368,6 +374,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 class: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-fieldclass;Класс (PHP)}',
                     note: '#{sites-storages-fieldclass-note;Внимание! Класс должен существовать}',
                     params: {
@@ -381,11 +388,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 
                 hasdefault: {
                     type: 'bool',
+                    group: 'window',
                     component: 'Checkbox',
                     placeholder: '#{sites-storages-fieldsetdefault;Указать значение по умолчанию}'
                 },
                 default: {
                     type: 'varchar',
+                    group: 'window',
                     component: 'TextArea',
                     desc: '#{sites-storages-fielddefault;Значение по умолчанию}',
                     note: '#{sites-storages-fielddefault-note;Введите значение по умолчанию. Внимание! Предполагается что вы знаете что делаете}',
@@ -396,379 +405,384 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }
                     }
                 },
-                _adds: {
+                
+                attrs: {
                     type: 'json',
-                    component: 'Tabs',
+                    component: 'Object',
+                    group: '#{sites-storages-fieldattrs;Аттрибуты}',
+                    desc: '#{sites-storages-fieldattrs;Аттрибуты}',
+                    note: '#{sites-storages-fieldattrs-note;Атрибуты компонента}',
+                    params: {
+                        required: false
+                    },
                     fields: {
-                        attrs: {
-                            type: 'json',
-                            component: 'Object',
-                            desc: '#{sites-storages-fieldattrs;Аттрибуты}',
-                            note: '#{sites-storages-fieldattrs-note;Атрибуты компонента}',
+                        width: {
+                            type: 'int',
+                            component: 'Number',
+                            desc: '#{sites-storages-fieldattrs-width;Ширина}',
+                        },
+                        height: {
+                            type: 'int',
+                            component: 'Number',
+                            desc: '#{sites-storages-fieldattrs-height;Высота}',
+                        },
+                        class: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldattrs-class;Класс}',
+                        },
+                    }
+                },
+                params: {
+                    type: 'json',
+                    component: 'Object',
+                    group: '#{sites-storages-fieldparams;Дополнительные параметры}',
+                    desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
+                    vertical: true,
+                    fields: {
+                        required: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-required;Обязательное поле}',
+                            note: '#{sites-storages-fieldparams-required-note;Будет требоваться ввести значение в форме. Пустое значение будет трактоваться как "нет значения"}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        enabled: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-enabled;Поле включено}',
+                            note: '#{sites-storages-fieldparams-enabled-note;Не будет возможности ввести или изменить поле. Значение не будет передаваться в форме, если не будет введено}',
+                            component: 'Checkbox',
+                            default: true
+                        },
+                        readonly: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-readonly;Только для чтения}',
+                            note: '#{sites-storages-fieldparams-readonly-note;Не будет возможности ввести или изменить данные}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        visual: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-visual;Отображать в виде визуального редактора}',
+                            note: '#{sites-storages-fieldparams-visual-note;Используется только в большом текстовом поле}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        code: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-code;Отображать в виде редактора кода}',
+                            note: '#{sites-storages-fieldparams-code-note;Используется только в большом текстовом поле}',
+                            component: 'Select',
+                            default: '',
                             params: {
-                                required: false
+                                readonly: true,
+                                required: false  
                             },
-                            fields: {
-                                width: {
-                                    type: 'int',
-                                    component: 'Number',
-                                    desc: '#{sites-storages-fieldattrs-width;Ширина}',
-                                },
-                                height: {
-                                    type: 'int',
-                                    component: 'Number',
-                                    desc: '#{sites-storages-fieldattrs-height;Высота}',
-                                },
-                                class: {
-                                    type: 'varchar',
-                                    component: 'Text',
-                                    desc: '#{sites-storages-fieldattrs-class;Класс}',
-                                },
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            values: [
+                                {value: '', title: ''},
+                                {value: 'js', title: 'JavaScript'},
+                                {value: 'css', title: 'CSS'},
+                                {value: 'less', title: 'Less'},
+                                {value: 'scss', title: 'Scss'},
+                                {value: 'html', title: 'HTML'},
+                                {value: 'php', title: 'PHP'},
+                                {value: 'xml', title: 'XML'},
+                                {value: 'yaml', title: 'YAML'}
+                            ]
+                        },
+                        list: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        greed: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
+                            note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
+                            component: 'Text',
+                            default: ''
+                        },
+                        vertical: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-vertical;Отображать обьект вертикально}',
+                            note: '#{sites-storages-fieldparams-vertical-note;Работает только с обьектами типа Object и Array}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        viewer: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
+                            note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
+                            component: 'Select',
+                            default: '',
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            params: {
+                                readonly: true
+                            },
+                            lookup: {
+                                method: () => new Promise((resolve, reject) => {
+                                    resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
+                                })
                             }
                         },
-                        params: {
-                            type: 'json',
-                            component: 'Object',
-                            desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
-                            vertical: true,
-                            fields: {
-                                required: {
-                                    type: 'bool',
-                                    placeholder: '#{sites-storages-fieldparams-required;Обязательное поле}',
-                                    note: '#{sites-storages-fieldparams-required-note;Будет требоваться ввести значение в форме. Пустое значение будет трактоваться как "нет значения"}',
-                                    component: 'Checkbox',
-                                    default: false
-                                },
-                                enabled: {
-                                    type: 'bool',
-                                    placeholder: '#{sites-storages-fieldparams-enabled;Поле включено}',
-                                    note: '#{sites-storages-fieldparams-enabled-note;Не будет возможности ввести или изменить поле. Значение не будет передаваться в форме, если не будет введено}',
-                                    component: 'Checkbox',
-                                    default: true
-                                },
-                                readonly: {
-                                    type: 'bool',
-                                    placeholder: '#{sites-storages-fieldparams-readonly;Только для чтения}',
-                                    note: '#{sites-storages-fieldparams-readonly-note;Не будет возможности ввести или изменить данные}',
-                                    component: 'Checkbox',
-                                    default: false
-                                },
-                                visual: {
-                                    type: 'bool',
-                                    placeholder: '#{sites-storages-fieldparams-visual;Отображать в виде визуального редактора}',
-                                    note: '#{sites-storages-fieldparams-visual-note;Используется только в большом текстовом поле}',
-                                    component: 'Checkbox',
-                                    default: false
-                                },
-                                code: {
-                                    type: 'varchar',
-                                    placeholder: '#{sites-storages-fieldparams-code;Отображать в виде редактора кода}',
-                                    note: '#{sites-storages-fieldparams-code-note;Используется только в большом текстовом поле}',
-                                    component: 'Select',
-                                    default: '',
-                                    params: {
-                                        readonly: true,
-                                        required: false  
-                                    },
-                                    selector: {
-                                        value: 'value',
-                                        title: 'title'
-                                    },
-                                    values: [
-                                        {value: '', title: ''},
-                                        {value: 'js', title: 'JavaScript'},
-                                        {value: 'css', title: 'CSS'},
-                                        {value: 'less', title: 'Less'},
-                                        {value: 'scss', title: 'Scss'},
-                                        {value: 'html', title: 'HTML'},
-                                        {value: 'php', title: 'PHP'},
-                                        {value: 'xml', title: 'XML'},
-                                        {value: 'yaml', title: 'YAML'}
-                                    ]
-                                },
-                                list: {
-                                    type: 'bool',
-                                    placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
-                                    component: 'Checkbox',
-                                    default: false
-                                },
-                                greed: {
-                                    type: 'varchar',
-                                    placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
-                                    note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
-                                    component: 'Text',
-                                    default: ''
-                                },
-                                vertical: {
-                                    type: 'bool',
-                                    placeholder: '#{sites-storages-fieldparams-vertical;Отображать обьект вертикально}',
-                                    note: '#{sites-storages-fieldparams-vertical-note;Работает только с обьектами типа Object и Array}',
-                                    component: 'Checkbox',
-                                    default: false
-                                },
-                                viewer: {
-                                    type: 'varchar',
-                                    placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
-                                    note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
-                                    component: 'Select',
-                                    default: '',
-                                    selector: {
-                                        value: 'value',
-                                        title: 'title'
-                                    },
-                                    params: {
-                                        readonly: true
-                                    },
-                                    lookup: {
-                                        method: () => new Promise((resolve, reject) => {
-                                            resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
-                                        })
-                                    }
-                                },
-                                mask: {
-                                    type: 'varchar',
-                                    placeholder: '#{sites-storages-fieldparams-mask;Маска ввода}',
-                                    note: '#{sites-storages-fieldparams-mask-note;Работает только с обьектами типа Text}',
-                                    component: 'Text',
-                                    default: ''
-                                },
-                            }
+                        mask: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-mask;Маска ввода}',
+                            note: '#{sites-storages-fieldparams-mask-note;Работает только с обьектами типа Text}',
+                            component: 'Text',
+                            default: ''
                         },
-                        lookup: {
+                    }
+                },
+                lookup: {
+                    type: 'json',
+                    component: 'Object',
+                    group: '#{sites-storages-fieldlookup;Связка}',
+                    desc: '#{sites-storages-fieldlookup;Связка}',
+                    note: '#{sites-storages-fieldlookup-note;Связь с другими хранилищами}',
+                    vertical: true,
+                    fields: {
+                        _oneof: {
+                            type: 'varchar',
+                            component: 'Radio',
+                            default: 'none',      
+                            values: [{
+                                value: 'none',
+                                title: '#{sites-storages-fieldlookup-oneof-none;Нет связи}'
+                            }, {
+                                value: 'storage',
+                                title: '#{sites-storages-fieldlookup-oneof-storage;Хранилище}'
+                            }, {
+                                value: 'accesspoint',
+                                title: '#{sites-storages-fieldlookup-oneof-accesspoint;Точка доступа}'
+                            }, {
+                                value: 'method',
+                                title: '#{sites-storages-fieldlookup-oneof-method;Метод}'
+                            }, {
+                                value: 'binding',
+                                title: '#{sites-storages-fieldlookup-oneof-binding;Байдинг к данным}'
+                            }, {
+                                value: 'controller',
+                                title: '#{sites-storages-fieldlookup-oneof-controller;Контроллер}'
+                            }]                      
+                        },
+
+                        storage: {
                             type: 'json',
                             component: 'Object',
-                            desc: '#{sites-storages-fieldlookup;Связка}',
-                            note: '#{sites-storages-fieldlookup-note;Связь с другими хранилищами}',
-                            vertical: true,
+                            desc: '#{sites-storages-fieldlookup-storage;Хранилище}',
                             fields: {
-                                _oneof: {
+                                name: {
                                     type: 'varchar',
-                                    component: 'Radio',
-                                    default: 'none',      
-                                    values: [{
-                                        value: 'none',
-                                        title: '#{sites-storages-fieldlookup-oneof-none;Нет связи}'
-                                    }, {
-                                        value: 'storage',
-                                        title: '#{sites-storages-fieldlookup-oneof-storage;Хранилище}'
-                                    }, {
-                                        value: 'accesspoint',
-                                        title: '#{sites-storages-fieldlookup-oneof-accesspoint;Точка доступа}'
-                                    }, {
-                                        value: 'method',
-                                        title: '#{sites-storages-fieldlookup-oneof-method;Метод}'
-                                    }, {
-                                        value: 'binding',
-                                        title: '#{sites-storages-fieldlookup-oneof-binding;Байдинг к данным}'
-                                    }, {
-                                        value: 'controller',
-                                        title: '#{sites-storages-fieldlookup-oneof-controller;Контроллер}'
-                                    }]                      
-                                },
-        
-                                storage: {
-                                    type: 'json',
-                                    component: 'Object',
-                                    desc: '#{sites-storages-fieldlookup-storage;Хранилище}',
-                                    fields: {
-                                        name: {
-                                            type: 'varchar',
-                                            desc: '#{sites-storages-fieldlookup-storage-name;Хранилище}',
-                                            component: 'Select',
-                                            selector: {
-                                                value: 'name',
-                                                title: 'desc'
-                                            },
-                                            lookup: () => {
-                                                return new Promise((rs, rj) => {
-                                                    Manage.Store.AsyncQuery('manage.storages').then((storages) => {
-                                                        rs({ result: Object.values(storages).filter((s => s.params.visible)) });
-                                                    });
-                                                });
-                                            },
-                                        },
-                                        title: {
-                                            type: 'varchar',
-                                            component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-title;Поле для вывода}'
-                                        },
-                                        value: {
-                                            type: 'varchar',
-                                            component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-value;Поле для значения}'
-                                        },
-                                        controller: {
-                                            type: 'json',
-                                            component: 'Object',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller;Контроллер (JS)}',
-                                            fields: {
-                                                module: {
-                                                    type: 'varchar',
-                                                    component: 'Text',
-                                                    desc: '#{sites-storages-fieldlookup-storage-controller-module;Модуль}'
-                                                },
-                                                class: {
-                                                    type: 'varchar',
-                                                    component: 'Text',
-                                                    desc: '#{sites-storages-fieldlookup-storage-controller-class;Класс}'
-                                                },
-                                                method: {
-                                                    type: 'varchar',
-                                                    component: 'Text',
-                                                    desc: '#{sites-storages-fieldlookup-storage-controller-method;Метод}'
-                                                },
-                                            }
-                                        }
+                                    desc: '#{sites-storages-fieldlookup-storage-name;Хранилище}',
+                                    component: 'Select',
+                                    selector: {
+                                        value: 'name',
+                                        title: 'desc'
                                     },
-                                    params: {
-                                        condition: {
-                                            field: '_oneof',
-                                            value: 'storage',
-                                        }
-                                    }
-                                    
+                                    lookup: () => {
+                                        return new Promise((rs, rj) => {
+                                            Manage.Store.AsyncQuery('manage.storages').then((storages) => {
+                                                rs({ result: Object.values(storages).filter((s => s.params.visible)) });
+                                            });
+                                        });
+                                    },
+                                },
+                                title: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-title;Поле для вывода}'
+                                },
+                                value: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-value;Поле для значения}'
                                 },
                                 controller: {
                                     type: 'json',
                                     component: 'Object',
-                                    desc: '#{sites-storages-fieldlookup-controller;Контроллер (JS)}',
+                                    desc: '#{sites-storages-fieldlookup-storage-controller;Контроллер (JS)}',
                                     fields: {
                                         module: {
                                             type: 'varchar',
-                                            component: 'Select',
-                                            desc: '#{sites-storages-fieldlookup-controller-module;Модуль}',
-                                            lookup: () => {
-                                                return new Promise((rs, rj) => {
-                                                    Manage.Store.AsyncQuery('manage.modules').then((modules) => {
-                                                        let components = [];
-                                                        for (const module of modules) {
-                                                            components.push({ value: module.name, title: module.desc});
-                                                        }                        
-                                                        rs({ result: components });
-                                                    });
-                                                });
-                                            }
+                                            component: 'Text',
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-module;Модуль}'
                                         },
                                         class: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-controller-class;Класс}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-class;Класс}'
                                         },
                                         method: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-controller-method;Метод}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-method;Метод}'
                                         },
-                                    },
-                                    params: {
-                                        condition: {
-                                            field: '_oneof',
-                                            value: 'controller',
-                                        }
+                                    }
+                                }
+                            },
+                            params: {
+                                condition: {
+                                    field: '_oneof',
+                                    value: 'storage',
+                                }
+                            }
+                            
+                        },
+                        controller: {
+                            type: 'json',
+                            component: 'Object',
+                            desc: '#{sites-storages-fieldlookup-controller;Контроллер (JS)}',
+                            fields: {
+                                module: {
+                                    type: 'varchar',
+                                    component: 'Select',
+                                    desc: '#{sites-storages-fieldlookup-controller-module;Модуль}',
+                                    lookup: () => {
+                                        return new Promise((rs, rj) => {
+                                            Manage.Store.AsyncQuery('manage.modules').then((modules) => {
+                                                let components = [];
+                                                for (const module of modules) {
+                                                    components.push({ value: module.name, title: module.desc});
+                                                }                        
+                                                rs({ result: components });
+                                            });
+                                        });
                                     }
                                 },
-                                binding: {
+                                class: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-binding;Байндинг}',
-                                    default: '',
-                                    params: {
-                                        condition: {
-                                            field: '_oneof',
-                                            value: 'binding',
-                                        }
-                                    }
+                                    desc: '#{sites-storages-fieldlookup-controller-class;Класс}'
                                 },
                                 method: {
                                     type: 'varchar',
-                                    component: 'TextArea',
-                                    desc: '#{sites-storages-fieldlookup-method;Метод}',
-                                    default: '',
-                                    params: {
-                                        condition: {
-                                            field: '_oneof',
-                                            value: 'method',
-                                        }
-                                    }
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-controller-method;Метод}'
                                 },
-                                accesspoint: {
-                                    type: 'json',
-                                    component: 'Object',
-                                    desc: '#{sites-storages-fieldlookup-accesspoint;Точка доступа}',
-                                    default: '',
-                                    fields: {
-                                        table:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-table;Таблица}'},
-                                        fields: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-fields;Список полей}'},
-                                        filter:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-filter;Фильтр}'},
-                                        order: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-order;Сортировка}'},
-                                    },
-                                    params: {
-                                        condition: {
-                                            field: '_oneof',
-                                            value: 'accesspoint',
-                                        }
-                                    }
+                            },
+                            params: {
+                                condition: {
+                                    field: '_oneof',
+                                    value: 'controller',
                                 }
                             }
                         },
-                        values: {
-                            type: 'json',
-                            component: 'Array',
-                            desc: '#{sites-storages-fieldvalues;Значения}',
-                            default: [],
+                        binding: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldlookup-binding;Байндинг}',
+                            default: '',
                             params: {
-                                addlink: 'Добавить значение'
-                            },
-                            fields: {
-                                value: {
-                                    type: 'varchar',
-                                    component: 'Text',
-                                    desc: '#{sites-storages-fieldvalues-value;Поле для значения}'
-                                },
-                                title: {
-                                    type: 'varchar',
-                                    component: 'Text',
-                                    desc: '#{sites-storages-fieldvalues-title;Поле для вывода}'
-                                },
+                                condition: {
+                                    field: '_oneof',
+                                    value: 'binding',
+                                }
                             }
                         },
-                        selector: {
-                            type: 'json',
-                            desc: '#{sites-storages-fieldselector;Выборка}',
-                            note: '#{sites-storages-fieldselector-note;Дополнительные настройки для компонента Select}',
-                            component: 'Object',
+                        method: {
+                            type: 'varchar',
+                            component: 'TextArea',
+                            desc: '#{sites-storages-fieldlookup-method;Метод}',
+                            default: '',
                             params: {
-                                vertical: true,
-                            },
-                            fields: {
-                                value: {
-                                    type: 'varchar',
-                                    component: 'Text',
-                                    desc: '#{sites-storages-fieldselector-value;Поле значения}'
-                                },
-                                title: {
-                                    type: 'varchar',
-                                    component: 'Text',
-                                    desc: '#{sites-storages-fieldselector-title;Поле заголовка}'
-                                },
-                                __render: {
-                                    type: 'varchar',
-                                    component: 'TextArea',
-                                    desc: '#{sites-storages-fieldselector-render;Метод для вывода выборки}'
-                                },
-                                ondemand: {
-                                    type: 'bool',
-                                    component: 'Checkbox',
-                                    default: 0,
-                                    desc: '#{sites-storages-fieldselector-ondemand;Загружать при запросе}',
-                                },
+                                condition: {
+                                    field: '_oneof',
+                                    value: 'method',
+                                }
                             }
+                        },
+                        accesspoint: {
+                            type: 'json',
+                            component: 'Object',
+                            desc: '#{sites-storages-fieldlookup-accesspoint;Точка доступа}',
+                            default: '',
+                            fields: {
+                                table:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-table;Таблица}'},
+                                fields: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-fields;Список полей}'},
+                                filter:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-filter;Фильтр}'},
+                                order: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-order;Сортировка}'},
+                            },
+                            params: {
+                                condition: {
+                                    field: '_oneof',
+                                    value: 'accesspoint',
+                                }
+                            }
+                        }
+                    }
+                },
+                values: {
+                    type: 'json',
+                    component: 'Array',
+                    group: '#{sites-storages-fieldvalues;Значения}',
+                    desc: '#{sites-storages-fieldvalues;Значения}',
+                    default: [],
+                    params: {
+                        addlink: 'Добавить значение'
+                    },
+                    fields: {
+                        value: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldvalues-value;Поле для значения}'
+                        },
+                        title: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldvalues-title;Поле для вывода}'
                         },
                     }
-                }
+                },
+                selector: {
+                    type: 'json',
+                    group: '#{sites-storages-fieldselector;Выборка}',
+                    desc: '#{sites-storages-fieldselector;Выборка}',
+                    note: '#{sites-storages-fieldselector-note;Дополнительные настройки для компонента Select}',
+                    component: 'Object',
+                    params: {
+                        vertical: true,
+                    },
+                    fields: {
+                        value: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldselector-value;Поле значения}'
+                        },
+                        title: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldselector-title;Поле заголовка}'
+                        },
+                        __render: {
+                            type: 'varchar',
+                            component: 'TextArea',
+                            desc: '#{sites-storages-fieldselector-render;Метод для вывода выборки}'
+                        },
+                        ondemand: {
+                            type: 'bool',
+                            component: 'Checkbox',
+                            default: 0,
+                            desc: '#{sites-storages-fieldselector-ondemand;Загружать при запросе}',
+                        },
+                    }
+                },
+
                 
             }
         };
+        if(!showGroup) {
+            delete fields.fields.group;
+        }
+        return fields;
     }
 
     _fieldIndex(storageName) {
@@ -939,7 +953,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty;Новое свойство}', 1024, this._fieldFields(), {})
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty;Новое свойство}', 1024, this._fieldFields(node.tag.type === 'fields'), {})
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
                     })
@@ -959,7 +973,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fieldData.hasdefault = true;
                 }
 
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty;Редактировать свойство}', 1024, this._fieldFields(), node.tag.entry)
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty;Редактировать свойство}', 1024, this._fieldFields(node.parentNode.tag.type === 'fields'), node.tag.entry)
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);
                     })
