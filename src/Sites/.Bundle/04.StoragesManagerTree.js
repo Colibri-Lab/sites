@@ -4,6 +4,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
 
     constructor(name, container) {
         super(name, container);
+        this.AddClass('app-manager-tree-component');
         this._foldersList = [];
         this._names = new Map();
     }
@@ -90,7 +91,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         else {
             storageNode.nodes.Move(fieldNode, index);
         }
-        fieldNode.text = field.desc + ' (' + name + ')';
+
+        fieldNode.text = field.desc + 
+            ' (' + name + (field?.params?.list ? ', <span class="inlist">inlist</span>' : '') + 
+            (field?.params?.greed ? ', <span class="greed">' + field?.params?.greed + '</span>' : '') + 
+            (field?.params?.viewer ? ', <span class="viewer">' + field?.params?.viewer + '</span>' : '') + 
+        ')';
+
         fieldNode.isLeaf = !field.fields || Object.countKeys(field.fields) == 0;
         fieldNode.icon = this._searchForFieldIcon(field);
         fieldNode.tag.entry = field;
@@ -105,7 +112,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!fieldNode) {
             fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name);
         }
-        fieldNode.text = name;
+        fieldNode.text = name + ' (' + index.fields.join(', ') + ', <span class="type">' + index.type + '</span>, <span class="method">' + index.method + '</span>)';
         fieldNode.icon = App.Modules.Sites.Icons.IndexIcon;
         fieldNode.tag.entry = index;
         fieldNode.tag.type = 'index';

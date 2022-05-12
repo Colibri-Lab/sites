@@ -571,7 +571,7 @@ texts:
   fields:
     title:
       type: varchar
-      length: 255
+      length: "255"
       class: string
       component: Text
       desc: Заголовок
@@ -581,9 +581,14 @@ texts:
         enabled: true
         readonly: false
         visual: false
+        code: ""
         list: true
+        greed: 30%
         vertical: false
+        viewer: ~
+        mask: ""
       group: window
+      attrs: []
     html:
       type: longtext
       class: string
@@ -592,10 +597,17 @@ texts:
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: true
-        readonly: false
         enabled: true
+        readonly: false
         visual: true
+        code: ""
         list: true
+        greed: 55%
+        vertical: false
+        viewer: ~
+        mask: ""
+      group: window
+      attrs: []
   indices:
     texts_title_idx:
       fields:

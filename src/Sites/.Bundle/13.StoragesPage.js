@@ -9,7 +9,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
-        this._storages.AddHandler('DoubleClicked', (event, args) => this.__foldersDoubleClick(event, args));
+        this._storages.AddHandler('DoubleClicked', (event, args) => this.__storagesDoubleClick(event, args));
 
         this._dragManager = new Colibri.UI.DragManager([this._storages], [this._storages]);
         this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
@@ -1028,7 +1028,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
-    __foldersDoubleClick(event, args) {
+    __storagesDoubleClick(event, args) {
         const node = this._storages.selected;
         if (!node) {
             return false;
