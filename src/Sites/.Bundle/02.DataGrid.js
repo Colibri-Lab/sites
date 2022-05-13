@@ -26,9 +26,13 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             data = Object.values(data);
         }
 
-        if(data.length == 0 || this._storageChanged) {
+        if(this._storageChanged) {
             this.ResetSort();
             this.ClearAll();
+        }
+
+        if(data.length == 0) {
+            this.ClearAllRows();
         }
 
         if(this._storage && this._storage.fields && this._storageChanged) {
