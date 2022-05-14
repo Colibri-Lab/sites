@@ -63,7 +63,12 @@ class DataController extends WebController
             $sortOrder = 'asc';
         }
 
-        $datarows = $tableClass::LoadByFilter($page, $pagesize, implode(' or ', $filters), $sortField.' '.$sortOrder, ['term' => '%'.$term.'%']);
+        if(!empty($filters)) {
+            $datarows = $tableClass::LoadByFilter($page, $pagesize, implode(' or ', $filters), $sortField.' '.$sortOrder, ['term' => '%'.$term.'%']);
+        }
+        else {
+            $datarows = $tableClass::LoadByFilter($page, $pagesize, '', $sortField.' '.$sortOrder);
+        }
         if(!$datarows) {
             return $this->Finish(400, 'Bad request');
         }
