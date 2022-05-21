@@ -86,12 +86,15 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByParent(Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
+    static function LoadByParent(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
     {
+        if(!is_numeric($domain)) {
+            $domain = $domain->id;
+        }
         if(!is_numeric($parent)) {
             $parent = $parent->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{parent}=[[parent:integer]]', '{order}', ['parent' => $parent]);
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]]', '{order}', ['parent' => $parent, 'domain' => $domain]);
     }
 
     /**
@@ -100,12 +103,15 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByParentReverce(Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
+    static function LoadByParentReverce(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
     {
+        if(!is_numeric($domain)) {
+            $domain = $domain->id;
+        }
         if(!is_numeric($parent)) {
             $parent = $parent->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{parent}=[[parent:integer]]', '{order} desc', ['parent' => $parent]);
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]]', '{order} desc', ['parent' => $parent, 'domain' => $domain]);
     }
 
     /**
@@ -126,7 +132,7 @@ class Pages extends BaseModelDataTable {
      * Загружает дочерние
      * @return Pages 
      */
-    static function LoadByName(Domain|int $domain, Page|int $parent, string $name) : Page
+    static function LoadByName(Domain|int $domain, Page|int $parent, string $name) : ?Page
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -143,7 +149,7 @@ class Pages extends BaseModelDataTable {
      * Загружает страницу по пути 
      * @return Page 
      */
-    static function LoadByPath(Domain|int $domain, string $path) : Page
+    static function LoadByPath(Domain|int $domain, string $path) : ?Page
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -164,7 +170,7 @@ class Pages extends BaseModelDataTable {
      * Создание модели по названию хранилища
      * @return Page
      */
-    static function LoadEmpty(?Domain $domain = null, ?Page $parent = null) : Page
+    static function LoadEmpty(?Domain $domain = null, ?Page $parent = null) : ?Page
     {
         $sitePages = self::LoadByFilter(-1, 20, 'false');
         /** Page $sitePage */

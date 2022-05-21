@@ -146,6 +146,10 @@ class Publication extends BaseModelDataRow {
     public function Save(): bool
     {
         $datarow = $this->DataRow();
+        if(!$datarow) {
+            // Не получилось
+            return false;
+        }
         $this->ft = $datarow->ToString();
         $this->object = json_encode($datarow);
         return parent::Save();

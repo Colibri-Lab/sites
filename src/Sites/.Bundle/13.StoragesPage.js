@@ -72,6 +72,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 name: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-storagename;Наименование хранилища}',
                     note: '#{sites-storages-storagename-note;Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов}',
                     params: {
@@ -88,6 +89,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 desc: {
                     type: 'varchar',
                     component: 'Text',
+                    group: 'window',
                     desc: '#{sites-storages-storagedesc;Описание}',
                     note: '#{sites-storages-storagedesc-note;Описание, в свободной форме}',
                     params: {
@@ -100,6 +102,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 },
                 'access-point': {
                     type: 'varchar',
+                    group: 'window',
                     component: 'Select',
                     desc: '#{sites-storages-storageaccesspoint;Подключение}',
                     note: '#{sites-storages-storageaccesspoint-note;Внинание! Предполагается, что вы знаете, что делаете!}',
@@ -119,8 +122,34 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
+                models: {
+                    type: 'json',
+                    component: 'Object',
+                    desc: '#{sites-storages-storagemodels;Модели}',
+                    note: '#{sites-storages-storagemodels-note;Название классов моделей. Внимание! Неймспейс должен начинаться с Models\\}',
+                    group: 'window',
+                    fields: {
+                        table: {
+                            type: 'varchar',
+                            desc: '#{sites-storages-storagemodels-table;Таблица}',
+                            component: 'Text'
+                        },
+                        row: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-storagemodels-row;Строка}'
+                        }
+                    },
+                    params: {
+                        validate: [{
+                            message: '#{sites-storages-storagemodels-validation-required;Пожалуйста, введите наименование классов моделей таблицы и строки}',
+                            method: '(field, validator) => !!field.value.table && !!field.value.row'
+                        }]
+                    }
+                },
                 components: {
                     type: 'json',
+                    group: '#{sites-storages-storagecomponents;Компоненты}',
                     component: 'Object',
                     desc: '#{sites-storages-storagecomponents;Компоненты}',
                     note: '#{sites-storages-storagecomponents-note;Компоненты для отображения, если проект в режиме «Приложение»}',
@@ -194,33 +223,92 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }
                     }
                 },
-                models: {
+                templates: {
                     type: 'json',
+                    group: '#{sites-storages-storagetemplates;Шаблоны}',
                     component: 'Object',
-                    desc: '#{sites-storages-storagemodels;Модели}',
-                    note: '#{sites-storages-storagemodels-note;Название классов моделей. Внимание! Неймспейс должен начинаться с Models\\}',
+                    desc: '#{sites-storages-storagetemplates;Шаблоны}',
+                    note: '#{sites-storages-storagetemplates-note;Шаблоны для отображения, если проект в режиме «Вебсайт»}',
+                    vertical: true,
                     fields: {
-                        table: {
+                        default: {
                             type: 'varchar',
-                            desc: '#{sites-storages-storagemodels-table;Таблица}',
-                            component: 'Text'
+                            desc: '#{sites-storages-storagetemplates-default;Шаблон по умолчанию}',
+                            component: 'Select',
+                            lookup: {
+                                depends: 'module',
+                                method: (term, dependsValue) => new Promise((resolve, reject) => { 
+                                    let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                                    Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
+                                        templates.forEach(template => {
+                                            ret.push({value: template.path, title: template.path}); 
+                                        });
+                                        resolve(ret); 
+                                    });  
+                                }) 
+                            },
+                            params: {
+                                readonly: true,
+                                required: false,
+                            },
+                            selector: {
+                                ondemand: true
+                            }
                         },
-                        row: {
+                        list: {
                             type: 'varchar',
-                            component: 'Text',
-                            desc: '#{sites-storages-storagemodels-row;Строка}'
+                            desc: '#{sites-storages-storagetemplates-list;Шаблон в списке}',
+                            component: 'Select',
+                            lookup: {
+                                depends: 'module',
+                                method: (term, dependsValue) => new Promise((resolve, reject) => { 
+                                    let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                                    Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
+                                        templates.forEach(template => {
+                                            ret.push({value: template.path, title: template.path}); 
+                                        });
+                                        resolve(ret); 
+                                    });  
+                                }) 
+                            },
+                            params: {
+                                readonly: true,
+                                required: false,
+                            },
+                            selector: {
+                                ondemand: true
+                            }
+                        },
+                        item: {
+                            type: 'varchar',
+                            desc: '#{sites-storages-storagetemplates-item;Шаблон карточка}',
+                            component: 'Select',
+                            lookup: {
+                                depends: 'module',
+                                method: (term, dependsValue) => new Promise((resolve, reject) => { 
+                                    let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                                    Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
+                                        templates.forEach(template => {
+                                            ret.push({value: template.path, title: template.path}); 
+                                        });
+                                        resolve(ret); 
+                                    });  
+                                }) 
+                            },
+                            params: {
+                                readonly: true,
+                                required: false,
+                            },
+                            selector: {
+                                ondemand: true
+                            }
                         }
-                    },
-                    params: {
-                        validate: [{
-                            message: '#{sites-storages-storagemodels-validation-required;Пожалуйста, введите наименование классов моделей таблицы и строки}',
-                            method: '(field, validator) => !!field.value.table && !!field.value.row'
-                        }]
                     }
                 },
                 params: {
                     type: 'json',
                     component: 'Object',
+                    group: '#{sites-storages-storageadditional;Дополнительные параметры}',
                     desc: '#{sites-storages-storageadditional;Дополнительные параметры}',
                     vertical: true,
                     fields: {
@@ -630,6 +718,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }
                             },
                             params: {
+                                vertical: true,
                                 condition: {
                                     field: '_oneof',
                                     value: 'storage',

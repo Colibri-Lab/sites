@@ -161,7 +161,9 @@ class PublicationsController extends WebController
         foreach($data as $field => $value) {
             $datarow->$field = $value;
         }
-        $datarow->Save();
+        if(!$datarow->Save()) {
+            return $this->Finish(500, 'Can not save row');
+        }
 
         $newPub = Publications::CreatePublication($domain, $folder, $datarow);
         $newPub->Save();

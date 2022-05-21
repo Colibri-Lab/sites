@@ -60,6 +60,36 @@ domains:
       desc: Дополнительные параметры
       default: json_object()
       fields:
+        meta:
+          type: json
+          class: ObjectField
+          desc: Мета данные
+          component: Object
+          params:
+            vertical: true
+          default: json_object()
+          fields:
+            title:
+              type: varchar
+              length: 512
+              class: string
+              component: Text
+              desc: Заголовок страницы
+              note: Введите заголовок страницы
+            description:
+              type: varchar
+              length: 1024
+              class: string
+              component: TextArea
+              description: Описание сайта
+              note: Введите мета описание сайта
+            keywords:
+              type: varchar
+              length: 1024
+              class: string
+              component: TextArea
+              description: Ключевые слова
+              note: Введите ключевые слова
         settings:
           type: json
           class: ObjectField
@@ -117,13 +147,33 @@ domains:
                 readonly: true
                 required: true
               lookup:
-                depends: additional?.settings?.module
+                depends: additional?.settings
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
-                  => { if(module != dependsValue) {return true;} Object.forEach(eval(''App.Modules.''
-                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
-                  { ret.push({value: name, title: module + ''.'' + name}); } }); });
-                  resolve(ret); }); '
+                  { 
+                    if(dependsValue.type === "application") {                    
+                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                      Object.keys(App.Modules).forEach((module) => { 
+                        if(module != dependsValue?.module) {
+                          return true;
+                        } 
+                        Object.forEach(eval(''App.Modules.'' + module), (name, value) => { 
+                          if(name.indexOf(''Page'') !== -1) { 
+                            ret.push({value: name, title: module + ''.'' + name}); 
+                          } 
+                        }); 
+                      });
+                      resolve(ret); 
+                    }
+                    else {
+                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                      Manage.Store.AsyncQuery("manage.templates(" + dependsValue.module.toLowerCase() + ")").then((templates) => {
+                        templates.forEach(template => {
+                          ret.push({value: template.path, title: template.path}); 
+                        });
+                        resolve(ret);
+                      });
+                    }
+                  }); '
         parameters:
           type: json
           class: ArrayField
@@ -201,7 +251,9 @@ domains:
       type: json
       component: Object
       class: ParametersField
+      default: json_object()
       params:
+        hidden: true
         required: false
         readonly: false
   indices:
@@ -345,11 +397,29 @@ pages:
                 value: value
                 title: title
               lookup:
-                method: ' () => new Promise((resolve, reject) => { let ret = [{value:
-                  "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
-                  => { Object.forEach(eval(''App.Modules.'' + module), (name, value)
-                  => { if(name.indexOf(''Page'') !== -1) { ret.push({value: name,
-                  title: module + ''.'' + name}); } }); }); resolve(ret); }); '
+                depends: domain
+                method: '(term, dependsValue) => new Promise((resolve, reject) => { 
+                    if(dependsValue?.additional?.settings?.type?.value === "application") {
+                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                      Object.keys(App.Modules).forEach((module) => { 
+                        Object.forEach(eval(''App.Modules.'' + module), (name, value) => { 
+                          if(name.indexOf(''Page'') !== -1) { 
+                            ret.push({value: name, title: module + ''.'' + name}); 
+                          } 
+                        }); 
+                      }); 
+                      resolve(ret);                     
+                    }
+                    else {
+                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
+                      Manage.Store.AsyncQuery("manage.templates(" + dependsValue?.additional?.settings.module.toLowerCase() + ")").then((templates) => {
+                        templates.forEach(template => {
+                          ret.push({value: template.path, title: template.path}); 
+                        });
+                        resolve(ret);
+                      });
+                    }
+                  }); '
         parameters:
           type: json
           class: ArrayField
@@ -429,6 +499,7 @@ pages:
       class: ParametersField
       default: json_object()
       params:
+        hidden: true
         required: false
         readonly: false
     order:

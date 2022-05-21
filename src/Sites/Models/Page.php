@@ -30,8 +30,10 @@ use Colibri\Data\SqlClient\QueryInfo;
  * @property ParametersField|null $parameters 
  * @property int|null $order Позиция в рамках parent-а
  * endregion Properties;
+ * @property-read string $path полный путь от домена
  */
-class Page extends BaseModelDataRow {
+class Page extends BaseModelDataRow 
+{
 
 
 
@@ -235,5 +237,19 @@ class Page extends BaseModelDataRow {
 
     }
 
+    public function getPropertyPath(): string
+    {
+        $ret = [];
+        $path = $this->Path();
+        foreach($path as $p) {
+            $ret[] = $p->name;
+        }
+        return implode('/', $ret);
+    }
+
+    public function IsChildOf(Page $page): bool
+    {
+        return strpos($this->path, $page->path) === 0;
+    }
 
 }

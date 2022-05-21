@@ -50,7 +50,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             contextmenu.push({name: 'new-domain', title: '#{sites-structure-contextmenu-newdomain;Новый домен}', icon: Colibri.UI.ContextMenuAddIcon});
 
             this._folders.contextmenu = contextmenu;
-            this._folders.ShowContextMenu(args.isContextMenuEvent ? 'right bottom' : 'left top', '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
+            this._folders.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RT, Colibri.UI.ContextMenu.LT], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
 
         }
         else {
@@ -113,11 +113,16 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             if(Security.IsCommandAllowed('sites.structure.edit')) {
                 Sites.Properties('domains', item.tag.data)
                     .then((properties) => {
-                        Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops;Редактировать доп. свойства домена}', 750, properties, item.tag.data.parameters)
-                            .then((data) => {
-                                Sites.SaveProperties('domains', item.tag.data, data);
-                            })
-                            .catch(() => {});
+                        if(Object.countKeys(properties.fields) > 0) {                            
+                            Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops;Редактировать доп. свойства домена}', 750, properties, item.tag.data.parameters)
+                                .then((data) => {
+                                    Sites.SaveProperties('domains', item.tag.data, data);
+                                })
+                                .catch(() => {});
+                        }
+                        else {
+                            App.Alert.Show('#{sites-structure-windowtitle-editdomainprops;Редактировать доп. свойства домена}', '#{sites-structure-windowtitle-noeditdomainprops;Свойства не найдены}', '#{app-alert-close;Закрыть}');
+                        }
                     });
             }
             else {
@@ -133,7 +138,18 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         else if(menuData.name == 'new-child-folder') {
 
             if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newchildpage;Новый дочерний раздел}', 1024, 'app.manage.storages(pages)', {})
+
+                const dta = {};
+                if(item.tag.type == 'domain') {
+                    dta.domain = item.tag.data;    
+                    dta.parent = null;
+                }
+                else {
+                    dta.domain = item.tag.data.domain;
+                    dta.parent = item.tag.data;
+                }
+
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newchildpage;Новый дочерний раздел}', 1024, 'app.manage.storages(pages)', dta)
                     .then((data) => {
                         if(item.tag.type == 'domain') {
                             data.domain = item.tag.data.id;    
@@ -172,11 +188,17 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             if(Security.IsCommandAllowed('sites.structure.edit')) {
                 Sites.Properties('pages', item.tag.data)
                     .then((properties) => {
-                        Manage.FormWindow.Show('#{sites-structure-windowtitle-editpageprops;Редактировать доп. свойства страницы}', 750, properties, item.tag.data.parameters)
-                        .then((data) => {
-                            Sites.SaveProperties('pages', item.tag.data, data);
-                        })
-                        .catch(() => {});
+                        if(Object.countKeys(properties.fields) > 0) {                            
+                            Manage.FormWindow.Show('#{sites-structure-windowtitle-editpageprops;Редактировать доп. свойства страницы}', 750, properties, item.tag.data.parameters)
+                                .then((data) => {
+                                    Sites.SaveProperties('pages', item.tag.data, data);
+                                })
+                                .catch(() => {});
+                        }
+                        else {
+                            App.Alert.Show('#{sites-structure-windowtitle-editpageprops;Редактировать доп. свойства страницы}', '#{sites-structure-windowtitle-noeditpageprops;Свойства не найдены}', '#{app-alert-close;Закрыть}');
+                        }
+                        
                     });
             }
             else {
@@ -311,11 +333,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     _loadPublicationsPage(folder, searchTerm, page) {
         this._publicationsCurrentPage = page;
-        if(folder.type == 'domain') {
-            Sites.LoadPublications(folder.data, null, searchTerm, page, 20);
-        }
-        else {
-            Sites.LoadPublications(folder.data.domain, folder.data, searchTerm, page, 20);
+        if(folder) {
+            if(folder.type == 'domain') {
+                Sites.LoadPublications(folder.data, null, searchTerm, page, 20);
+            }
+            else {
+                Sites.LoadPublications(folder.data.domain, folder.data, searchTerm, page, 20);
+            }    
         }
     }
 
