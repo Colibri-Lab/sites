@@ -7,6 +7,11 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\MySql\QueryInfo;
 use Colibri\Common\StringHelper;
 use Colibri\Web\Controller;
+use Colibri\Xml\XmlNode;
+use Colibri\Utils\Debug;
+use Colibri\Web\Templates\PhpTemplate;
+use Colibri\Web\Templates\Template;
+use Colibri\Utils\ExtendedObject;
 
 
 /**
@@ -73,6 +78,35 @@ class Text extends BaseModelDataRow {
 
         return $text;
         
+    }
+
+    public static function ApplyComponents(string $text, Template $parent, string $snippetsPath, ExtendedObject $args): string
+    {
+        $xml = XmlNode::LoadHtmlNode($text, 'utf-8');
+        $components = $xml->Query('//component');
+        foreach($components->getIterator() as $component) {
+            /** @var XmlNode $component */
+
+            $args = $args->GetData();
+            foreach($component->attributes as $attr) {
+                if(!in_array($attr->name, ['component', 'contenteditable', 'style', 'shown'])) {
+                    $args[$attr->name] = $attr->value;
+                }
+            }
+            
+            $template = $component->attributes->component->value;
+            $content = $parent->Insert($snippetsPath.$template, $args);
+            if(!$content) {
+                $component->Remove();
+            }
+            else {
+                $newNode = XmlNode::LoadHtmlNode($content, 'utf-8');
+                $component->ReplaceTo($newNode);
+            }
+
+        }
+
+        return $xml->xml;
     }
 
 }
