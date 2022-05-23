@@ -222,8 +222,9 @@ class Page extends BaseModelDataRow
 
         $parent = $this->parent;
         while($parent) {
-            $template = $this->additional?->settings?->template;
-            if(!$template) {
+            /** @var Page $parent */
+            $template = $parent->additional->settings->template;
+            if($template) {
                 break;
             }
             $parent = $parent->parent;
