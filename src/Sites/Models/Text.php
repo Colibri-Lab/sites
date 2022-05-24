@@ -36,9 +36,8 @@ class Text extends BaseModelDataRow {
         return parent::Delete();    
     }
 
-    public function ClearHtmlText(string $field, string $linkControllerClass, string $linkMethod): string
+    public static function ClearHtmlText(string $text, string $linkControllerClass, string $linkMethod): string
     {
-        $text = $this->$field;
 
         $text = StringHelper::StripHtmlAndBody($text);
         if($text == '') {
