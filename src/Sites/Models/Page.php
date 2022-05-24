@@ -11,6 +11,7 @@ use App\Modules\Sites\Models\Fields\ParametersField;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\SqlClient\QueryInfo;
+use Colibri\Common\StringHelper;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -211,6 +212,16 @@ class Page extends BaseModelDataRow
 
         return $ret;
 
+    }
+
+    public function Url(array $params = []): string
+    {
+        $url = [];
+        $path = $this->Path();
+        foreach($path as $page) {
+            $url[] = $page->name;
+        }
+        return StringHelper::AddToQueryString('/'.implode('/', $url).'/', $params, true);
     }
 
     public function Template(): ?string
