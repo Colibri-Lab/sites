@@ -41,6 +41,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 break;
             case 'fields':
                 contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield;Новое свойство}', icon: Colibri.UI.ContextMenuAddIcon });
+                contextmenu.push({ name: 'new-virtual-field', title: '#{sites-storages-contextmenu-newvirtualfield;Новое виртуальное свойство}', icon: Colibri.UI.ContextMenuAddIcon });
                 break;
             case 'field':
                 contextmenu.push({ name: 'edit-field', title: '#{sites-storages-contextmenu-editfield;Редактировать свойство}', icon: Colibri.UI.ContextMenuEditIcon });
@@ -874,6 +875,151 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return fields;
     }
 
+    _fieldVirtualFields() {
+        const fields = {
+            name: 'Field',
+            desc: 'Свойство',
+            fields: {
+                name: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldname;Наименование свойства}',
+                    note: '#{sites-storages-fieldname-note;Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов.}',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-fieldname-validation-required;Пожалуйста, введите наименование свойства}',
+                            method: '(field, validator) => !!field.value'
+                        }, {
+                            message: '#{sites-storages-fieldname-validation-regexp;Введенный текст не соответствует требованиям}',
+                            method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
+                        }]
+                    }
+                },
+                group: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldgroup;Группа свойств}',
+                    note: '#{sites-storages-fieldgroup-note;Наименование группы, если нужно оставить в основной то нужно написать "window"}',
+                    default: 'window',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-fieldgroup-validation-required;Пожалуйста, введите группу свойств}',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
+                },
+                desc: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-fielddesc;Описание свойства}',
+                    note: '#{sites-storages-fielddesc-note;Можно на русском языке. Внимание! Описание должно полностью описывать свойство, учитывайте, что модель будет возвращать модель указанную в поле Класс.}',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-fielddesc-validation-required;Пожалуйста, опишите свойство}',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
+                },
+                type: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldtype;Тип свойства (для хранения в источнике данных)}',
+                    note: '#{sites-storages-fieldtype-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-fieldtype-validation-required;Пожалуйста, введите тип свойства}',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
+                },
+                length: {
+                    type: 'integer',
+                    component: 'Number',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldlength;Длина в байтах}',
+                    note: '#{sites-storages-fieldlength-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    params: {
+                        required: false,
+                    }
+                },
+                class: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldclass;Класс (PHP)}',
+                    note: '#{sites-storages-fieldclass-note;Внимание! Класс должен существовать}',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-fieldclass-validation-required;Пожалуйста, выберите наименование класса}',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
+                },
+                
+                expression: {
+                    type: 'varchar',
+                    group: 'window',
+                    component: 'TextArea',
+                    desc: '#{sites-storages-fieldexpression;Выражение}',
+                    note: '#{sites-storages-fieldexpression-note;Введите выражение для создания поля. Внимание! Предполагается что вы знаете что делаете}'
+                },
+                
+                params: {
+                    type: 'json',
+                    component: 'Object',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
+                    vertical: true,
+                    fields: {
+                        list: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        greed: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
+                            note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
+                            component: 'Text',
+                            default: ''
+                        },
+                        viewer: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
+                            note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
+                            component: 'Select',
+                            default: '',
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            params: {
+                                readonly: true
+                            },
+                            lookup: {
+                                method: () => new Promise((resolve, reject) => {
+                                    resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
+                                })
+                            }
+                        },
+                    }
+                },
+                
+            }
+        };
+        return fields;
+    }
+
     _fieldIndex(storageName) {
         /**
          * 
@@ -1052,6 +1198,21 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
             }
         }
+        else if (menuData.name == 'new-virtual-field') {
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
+            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty;Новое виртуальное свойство}', 1024, this._fieldVirtualFields(), {})
+                    .then((data) => {
+                        data.virtual = true;
+                        Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
         else if (menuData.name == 'edit-field') {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
@@ -1062,7 +1223,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fieldData.hasdefault = true;
                 }
 
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty;Редактировать свойство}', 1024, this._fieldFields(node.parentNode.tag.type === 'fields'), node.tag.entry)
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty;Редактировать свойство}', 1024, fieldData.virtual ? this._fieldVirtualFields() : this._fieldFields(node.parentNode.tag.type === 'fields'), node.tag.entry)
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);
                     })

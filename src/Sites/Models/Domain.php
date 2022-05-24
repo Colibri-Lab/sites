@@ -10,6 +10,8 @@ use App\Modules\Sites\Models\Fields\ParametersField;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\MySql\QueryInfo;
+use Colibri\Common\StringHelper;
+use Colibri\App;
 
 /**
  * Представление строки в таблице в хранилище Сайты
@@ -43,6 +45,12 @@ class Domain extends BaseModelDataRow {
     public function GetMeta(): object
     {
         return $this->additional->meta;
+    }
+    
+    public function Url(array $params = []): string
+    {
+        $uri = StringHelper::AddToQueryString('/', $params, true);
+        return App::$router->Uri($uri);
     }
 
 }
