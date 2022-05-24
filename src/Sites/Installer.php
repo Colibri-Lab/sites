@@ -39,10 +39,10 @@ class Installer
         $modules['entries'][] = [
             'name' => 'Sites',
             'entry' => '\Sites\Module',
-            'desc' => 'Административный интерфейс',
+            'desc' => 'Модуль создания простых сайтов',
             'enabled' => true,
             'visible' => true,
-            'for' => ['manage'],
+            'for' => [],
             'config' => 'include(/config/sites.yaml)'
         ];
 
