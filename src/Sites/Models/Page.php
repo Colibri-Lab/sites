@@ -263,7 +263,7 @@ class Page extends BaseModelDataRow
 
     public function IsChildOf(Page $page): bool
     {
-        return strpos($this->path, $page->path) === 0;
+        return strpos($this->path.'/', $page->path.'/') === 0;
     }
 
     public function GetMeta(): object
