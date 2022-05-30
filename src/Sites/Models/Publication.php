@@ -8,6 +8,9 @@ use App\Modules\Sites\Models\Page;
 use Colibri\Data\Storages\Storage;
 use Colibri\Data\Storages\Fields\ObjectField;
 use Colibri\Data\Storages\Storages;
+use Colibri\Web\Templates\PhpTemplate;
+use Colibri\Web\Templates\Template;
+use Colibri\Utils\ExtendedObject;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -27,7 +30,8 @@ use Colibri\Data\Storages\Storages;
  * @property int|null $order Позиция в рамках страницы
  * endregion Properties;
  */
-class Publication extends BaseModelDataRow {
+class Publication extends BaseModelDataRow 
+{
 
     public function Next(): ?Publication
     {
@@ -154,5 +158,15 @@ class Publication extends BaseModelDataRow {
         $this->object = json_encode($datarow);
         return parent::Save();
     }
+
+    public function Out(mixed $args = [], string $templateType = 'item'): string
+	{
+        $datarow = $this->DataRow();
+        $storage = $datarow->Storage();
+		$module = $storage->GetModule();
+		$templates = $storage->GetTemplates();
+		$template = new PhpTemplate($module->modulePath . 'templates/web/' . $templates[$templateType] ?? $templates['default'] ?? Template::Dummy);
+		return $template->Render(array_merge($args instanceof ExtendedObject ? $args->GetData() : $args, ['datarow' => $datarow, 'pub' => $this, 'storage' => $storage]));
+	}
 
 }

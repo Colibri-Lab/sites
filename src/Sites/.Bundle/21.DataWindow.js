@@ -39,7 +39,7 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         this._data.UnselectAllRows();   
         
         this._data.storage = selection.tag;
-        Sites.LoadData(this._data.storage, this._searchInput.value, 1, 20, true).then((response) => {
+        Sites.LoadData(this._data.storage, this._searchInput.value, this._data.sortColumn?.name, this._data.sortOrder, 1, 20, true).then((response) => {
             this._data.value = response.result;
         }); 
         

@@ -1,7 +1,7 @@
 App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
     set storage(value) {
-        this._storageChanged = this._storage.name != value.name;
+        this._storageChanged = this._storage?.name != value.name;
         this._storage = value;
     }
 
