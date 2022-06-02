@@ -10,6 +10,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     
 
     InitializeModule() {
+        super.InitializeModule();
 
         this._store = App.Store.AddChild('app.sites', {});
         this._store.AddPathLoader('sites.domains', () => this.Domains(true));
