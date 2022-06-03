@@ -41,6 +41,11 @@ class Domain extends BaseModelDataRow {
     {
         return $this->additional?->settings?->template;
     }
+    
+    public function Component(): ?string
+    {
+        return $this->additional?->settings?->component;
+    }
 
     public function GetMeta(): object
     {

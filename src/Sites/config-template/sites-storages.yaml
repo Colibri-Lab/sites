@@ -130,9 +130,30 @@ domains:
                   }
               lookup:
                 method: ' () => new Promise((resolve, reject) => { Manage.Store.AsyncQuery("manage.modules").then((modules)
-                  => { const ret = []; for(const module of modules) { ret.push({value:
-                  module.name, title: module.desc + " (" + module.name + ")"}); }
-                  resolve(ret); }); });'
+                  => { const ret = []; for(const module of modules) { ret.push({value:module.name,
+                  title: module.desc + " (" + module.name + ")"}); } resolve(ret);
+                  }); });'
+            component:
+              type: varchar
+              length: 255
+              class: string
+              component: Select
+              desc: Компонент по умолчанию
+              note: Выберите компонент по умолчанию
+              selector:
+                value: value
+                title: title
+              params:
+                readonly: true
+                required: true
+              lookup:
+                depends: additional?.settings
+                method: ' (term, dependsValue) => new Promise((resolve, reject) =>
+                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                  => { if(module != dependsValue?.module) { return true; } Object.forEach(eval(''App.Modules.''
+                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
+                  { ret.push({value: name, title: module + ''.'' + name}); } }); });
+                  resolve(ret); }); '
             template:
               type: varchar
               length: 255
@@ -149,31 +170,10 @@ domains:
               lookup:
                 depends: additional?.settings
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                  { 
-                    if(dependsValue.type === "application") {                    
-                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
-                      Object.keys(App.Modules).forEach((module) => { 
-                        if(module != dependsValue?.module) {
-                          return true;
-                        } 
-                        Object.forEach(eval(''App.Modules.'' + module), (name, value) => { 
-                          if(name.indexOf(''Page'') !== -1) { 
-                            ret.push({value: name, title: module + ''.'' + name}); 
-                          } 
-                        }); 
-                      });
-                      resolve(ret); 
-                    }
-                    else {
-                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
-                      Manage.Store.AsyncQuery("manage.templates(" + dependsValue.module.toLowerCase() + ")").then((templates) => {
-                        templates.forEach(template => {
-                          ret.push({value: template.path, title: template.path}); 
-                        });
-                        resolve(ret);
-                      });
-                    }
-                  }); '
+                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                  + dependsValue.module.toLowerCase() + ")").then((templates) => {
+                  templates.forEach(template => { ret.push({value: template.path,
+                  title: template.path}); }); resolve(ret); }); });'
         parameters:
           type: json
           class: ArrayField
@@ -386,6 +386,24 @@ pages:
             vertical: true
           default: json_object()
           fields:
+            component:
+              type: varchar
+              length: 255
+              class: string
+              component: Select
+              desc: Шаблон
+              note: Введите описание сайта
+              selector:
+                value: value
+                title: title
+              lookup:
+                depends: domain
+                method: '(term, dependsValue) => new Promise((resolve, reject) =>
+                  { let ret = [{value: "", title: "Шаблон не выбран"}]; const module
+                  = dependsValue?.additional?.settings.module; Object.forEach(eval("App.Modules."
+                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
+                  { ret.push({value: name, title: module + ''.'' + name}); } }); resolve(ret);
+                  }); '
             template:
               type: varchar
               length: 255
@@ -398,28 +416,11 @@ pages:
                 title: title
               lookup:
                 depends: domain
-                method: '(term, dependsValue) => new Promise((resolve, reject) => { 
-                    if(dependsValue?.additional?.settings?.type?.value === "application") {
-                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
-                      Object.keys(App.Modules).forEach((module) => { 
-                        Object.forEach(eval(''App.Modules.'' + module), (name, value) => { 
-                          if(name.indexOf(''Page'') !== -1) { 
-                            ret.push({value: name, title: module + ''.'' + name}); 
-                          } 
-                        }); 
-                      }); 
-                      resolve(ret);                     
-                    }
-                    else {
-                      let ret = [{value: "", title: "Шаблон не выбран"}]; 
-                      Manage.Store.AsyncQuery("manage.templates(" + dependsValue?.additional?.settings.module.toLowerCase() + ")").then((templates) => {
-                        templates.forEach(template => {
-                          ret.push({value: template.path, title: template.path}); 
-                        });
-                        resolve(ret);
-                      });
-                    }
-                  }); '
+                method: '(term, dependsValue) => new Promise((resolve, reject) =>
+                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                  + dependsValue?.additional?.settings.module.toLowerCase() + ")").then((templates)
+                  => { templates.forEach(template => { ret.push({value: template.path,
+                  title: template.path}); }); resolve(ret); }); }); '
         parameters:
           type: json
           class: ArrayField
@@ -687,7 +688,7 @@ texts:
       method: BTREE
       name: texts_title_idx
   components:
-    default: App.Modules.Pocket.Templates.TextsDefaultTemplate
-    list: App.Modules.Pocket.Templates.TextsDefaultTemplate
-    item: App.Modules.Pocket.Templates.TextsItemTemplate
+    default: App.Modules.Pravosudie.Templates.TextsDefaultTemplate
+    list: App.Modules.Pravosudie.Templates.TextsDefaultTemplate
+    item: App.Modules.Pravosudie.Templates.TextsItemTemplate
 ...

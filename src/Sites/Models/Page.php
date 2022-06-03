@@ -251,6 +251,31 @@ class Page extends BaseModelDataRow
 
     }
 
+    public function Component(): ?string
+    {
+        $component = $this->additional?->settings?->component;
+        if($component) {
+            return $component;
+        }
+
+        $parent = $this->parent;
+        while($parent) {
+            /** @var Page $parent */
+            $component = $parent->additional->settings->component;
+            if($component) {
+                break;
+            }
+            $parent = $parent->parent;
+        }
+
+        if($component) {
+            return $component;
+        }
+
+        return $this->domain->additional?->settings?->component;
+
+    }
+
     public function getPropertyPath(): string
     {
         $ret = [];
