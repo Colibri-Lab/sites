@@ -65,7 +65,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _storageFields() {
-        const Field = Colibri.UI.Forms.Field;
         return {
             name: 'Storage',
             desc: 'Хранилища',
