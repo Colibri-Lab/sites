@@ -68,9 +68,9 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20) : Pages
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
     {
-        return self::LoadByFilter($page, $pagesize, null, '{order}');
+        return self::LoadByFilter($page, $pagesize, null, '{order}', [], $calculateAffected);
     }
 
     /**
@@ -80,7 +80,7 @@ class Pages extends BaseModelDataTable {
      */
     static function LoadById(int $id) : Page|null 
     {
-        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', '{order}', ['id' => $id]);
+        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', '{order}', ['id' => $id], false);
         return $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -90,7 +90,7 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByParent(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
+    static function LoadByParent(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -98,7 +98,7 @@ class Pages extends BaseModelDataTable {
         if(!is_numeric($parent)) {
             $parent = $parent->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]]', '{order}', ['parent' => $parent, 'domain' => $domain]);
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]]', '{order}', ['parent' => $parent, 'domain' => $domain], $calculateAffected);
     }
 
     /**
@@ -107,7 +107,7 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByParentReverce(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20) : Pages
+    static function LoadByParentReverce(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -115,7 +115,7 @@ class Pages extends BaseModelDataTable {
         if(!is_numeric($parent)) {
             $parent = $parent->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]]', '{order} desc', ['parent' => $parent, 'domain' => $domain]);
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]]', '{order} desc', ['parent' => $parent, 'domain' => $domain], $calculateAffected);
     }
 
     /**
@@ -124,12 +124,12 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByDomain(Domain|int $domain, int $page = -1, int $pagesize = 20) : Pages
+    static function LoadByDomain(Domain|int $domain, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
         }
-        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]]', '{order}', ['domain' => $domain]);
+        return self::LoadByFilter($page, $pagesize, '{domain}=[[domain:integer]]', '{order}', ['domain' => $domain], $calculateAffected);
     }
 
     /**
@@ -145,7 +145,7 @@ class Pages extends BaseModelDataTable {
             $parent = $parent->id;
         }
 
-        $table = self::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]] and {name}=[[name:string]]', '{order}', ['domain' => $domain, 'parent' => $parent, 'name' => $name]);
+        $table = self::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]] and {name}=[[name:string]]', '{order}', ['domain' => $domain, 'parent' => $parent, 'name' => $name], false);
         return $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -176,7 +176,7 @@ class Pages extends BaseModelDataTable {
      */
     static function LoadEmpty(?Domain $domain = null, ?Page $parent = null) : ?Page
     {
-        $sitePages = self::LoadByFilter(-1, 20, 'false');
+        $sitePages = self::LoadByFilter(-1, 20, 'false', null, [], false);
         /** Page $sitePage */
         $newPage = $sitePages->CreateEmptyRow();
         if($domain) {
@@ -201,7 +201,7 @@ class Pages extends BaseModelDataTable {
             $params['parent'] = $parent->id;
         }
 
-        $sitePages = self::LoadByFilter(1, 1, $filter, '{order} desc', $params);
+        $sitePages = self::LoadByFilter(1, 1, $filter, '{order} desc', $params, false);
         $sitePage = $sitePages->First();
         if(!$sitePage) {
             return Pages::StartOrder;

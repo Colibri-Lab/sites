@@ -67,9 +67,9 @@ class Domains extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Domains 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20) : Domains
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Domains
     {
-        return self::LoadByFilter($page, $pagesize, null, null);
+        return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
 
     /**
@@ -79,7 +79,7 @@ class Domains extends BaseModelDataTable {
      */
     static function LoadById(int $id) : Domain|null 
     {
-        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id]);
+        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table->Count() > 0 ? $table->First() : null;
     }
 

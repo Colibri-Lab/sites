@@ -66,9 +66,9 @@ class Texts extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Texts 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20) : Texts
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Texts
     {
-        return self::LoadByFilter($page, $pagesize, null, null);
+        return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
 
     /**
@@ -78,7 +78,7 @@ class Texts extends BaseModelDataTable {
      */
     static function LoadById(int $id) : Text|null 
     {
-        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id]);
+        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -88,7 +88,7 @@ class Texts extends BaseModelDataTable {
      */
     static function LoadEmpty() : Text
     {
-        $reports = self::LoadByFilter(-1, 20, 'false');
+        $reports = self::LoadByFilter(-1, 20, 'false', null, [], false);
         return $reports->CreateEmptyRow();
     }
 

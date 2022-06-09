@@ -70,9 +70,9 @@ class Publications extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Publications 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20) : Publications
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Publications
     {
-        return self::LoadByFilter($page, $pagesize, null, '{order}');
+        return self::LoadByFilter($page, $pagesize, null, '{order}', [], $calculateAffected);
     }
 
     /**
@@ -82,7 +82,7 @@ class Publications extends BaseModelDataTable {
      */
     static function LoadById(int $id) : Publication|null 
     {
-        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id]);
+        $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -93,7 +93,7 @@ class Publications extends BaseModelDataTable {
      */
     static function LoadByIds(array $ids) : Publications
     {
-        return self::LoadByFilter(-1, 20, '{id} in ('.implode(',', $ids).')', null);
+        return self::LoadByFilter(-1, 20, '{id} in ('.implode(',', $ids).')', null, [], false);
     }
 
     /**
@@ -102,7 +102,7 @@ class Publications extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Publications 
      */
-    static function LoadByPage(Domain|int $domain, Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20) : Publications
+    static function LoadByPage(Domain|int $domain, Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Publications
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -116,7 +116,7 @@ class Publications extends BaseModelDataTable {
             $params['term'] = '%'.$term.'%';
         }
 
-        return self::LoadByFilter($page, $pagesize, 'pubs_domain=[[domain:integer]] and pubs_page=[[folder:integer]]'.($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params);
+        return self::LoadByFilter($page, $pagesize, 'pubs_domain=[[domain:integer]] and pubs_page=[[folder:integer]]'.($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params, $calculateAffected);
     }
 
     /**
@@ -135,7 +135,7 @@ class Publications extends BaseModelDataTable {
      */
     static function CreatePublication(Domain $domain, ?Page $page, DataRow $datarow) : Publication
     {
-        $pubs = self::LoadByFilter(-1, 20, 'false');
+        $pubs = self::LoadByFilter(-1, 20, 'false', null, [], false);
         $empty = $pubs->CreateEmptyRow();
         $empty->domain = $domain;
         $empty->page = $page ?: 0;
@@ -148,7 +148,7 @@ class Publications extends BaseModelDataTable {
     
     static function NextPublicationOrder(?Page $page = null): int
     {
-        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]]', '{order} desc', ['page' => $page ? $page->id : 0]);
+        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]]', '{order} desc', ['page' => $page ? $page->id : 0], false);
         $pub = $pubs->First();
         if(!$pub) {
             return Publications::StartOrder;
