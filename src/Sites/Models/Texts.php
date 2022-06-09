@@ -44,15 +44,19 @@ class Texts extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Texts
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = []) : Texts
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : Texts
     {
         $storage = Storages::Create()->Load('texts');
+        $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
+        if(!$calculateAffected) {
+            $additionalParams['type'] = DataAccessPoint::QueryTypeBigData;
+        }
         return self::LoadByQuery(
             $storage,
             'select * from ' . $storage->name . 
                 ($filter ? ' where ' . $filter : '') . 
                 ($order ? ' order by ' . $order : ''), 
-            ['page' => $page, 'pagesize' => $pagesize, 'params' => $params]
+            $additionalParams
         );
     }
 
