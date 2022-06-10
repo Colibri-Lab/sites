@@ -24,13 +24,9 @@ if($type === 'website') {
         'payload' => App::$request->GetPayloadCopy()
     ]);
 
-    try {
-        // пытаемся сгенерировать страницу
-        echo $template->Render($args);
-    } catch (Exception $e) {
-        // если произошла ошибка, то выводим ее
-        echo $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine();
-    }
+    // пытаемся сгенерировать страницу
+    echo $template->Render($args);
+
 }
 
 ?>
