@@ -1,4 +1,6 @@
 
+texts: include(sites-langtexts.yaml)
+
 databases:
   storages: include(sites-storages.yaml)
       

@@ -49,12 +49,12 @@ class Module extends BaseModule
     public function GetTopmostMenu(): Item|array|null {
 
         return [
-            Item::Create('struct', 'Структура', '', 'App.Modules.MainFrame.Icons.StructureIcon', '')->Add([
-                Item::Create('structure', 'Структура сайта', 'Структура проекта, папки и конечные страницы, публикация данных', 'App.Modules.Sites.Icons.FoldersIcon', 'App.Modules.Sites.StructurePage'),
-                Item::Create('data', 'Материалы', 'Редактор материалов, которые содержатся в хранилищах данных', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.DataPage'),
+            Item::Create('struct', '#{mainframe-menu-struct;Структура}', '', 'App.Modules.MainFrame.Icons.StructureIcon', '')->Add([
+                Item::Create('structure', '#{sites-menu-struct;Структура сайта}', '#{sites-menu-struct-desc;Структура проекта, папки и конечные страницы, публикация данных}', 'App.Modules.Sites.Icons.FoldersIcon', 'App.Modules.Sites.StructurePage'),
+                Item::Create('data', '#{sites-menu-storagesdata;Материалы}', '#{sites-menu-storagesdata-desc;Редактор материалов, которые содержатся в хранилищах данных}', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.DataPage'),
             ]),
-            Item::Create('dev', 'Разработка', '', 'App.Modules.MainFrame.Icons.DevIcon', '')->Add([
-                Item::Create('storages', 'Хранилища', 'Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс', 'App.Modules.Sites.Icons.StoragesManageIcon', 'App.Modules.Sites.StoragesPage'),
+            Item::Create('dev', '#{mainframe-menu-dev;Разработка}', '', 'App.Modules.MainFrame.Icons.DevIcon', '')->Add([
+                Item::Create('storages', '#{sites-menu-storages;Хранилища}', '#{sites-menu-storages-desc;Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс}', 'App.Modules.Sites.Icons.StoragesManageIcon', 'App.Modules.Sites.StoragesPage'),
                 // Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', 'Sites.RouteTo("/sources/")')
             ])
         ];
