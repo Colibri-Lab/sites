@@ -171,8 +171,8 @@ domains:
                 depends: additional?.settings
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
                   { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
-                  + dependsValue.module.toLowerCase() + ")").then((templates) => {
-                  templates.forEach(template => { ret.push({value: template.path,
+                  + dependsValue.module?.toLowerCase() + ")").then((templates) => {
+                  templates && templates.forEach(template => { ret.push({value: template.path,
                   title: template.path}); }); resolve(ret); }); });'
         parameters:
           type: json

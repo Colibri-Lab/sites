@@ -244,9 +244,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         const item = this._folders.selected;
         if(!item) {
             if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newpage;Новый раздел}', 1024, 'app.manage.storages(pages)', {})
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain;Новый домен}', 1024, 'app.manage.storages(domains)', {})
                     .then((data) => {
-                        Sites.SaveFolder(data);
+                        Sites.SaveDomain(data);
                     })
                     .catch(() => {});
             }
@@ -256,12 +256,21 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
         else {
             if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage;Редактировать раздел}', 1024, 'app.manage.storages(pages)', item.tag)
-                    .then((data) => {
-                        data.parent = item.tag?.parent?.id ?? 0;
-                        Sites.SaveFolder(data);
-                    })
-                    .catch(() => {});
+                if(item.tag.type == 'domain') {
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain;Редактировать домен}', 1024, 'app.manage.storages(domains)', item.tag.data)
+                        .then((data) => {
+                            Sites.SaveDomain(data);
+                        })
+                        .catch(() => {});
+                }
+                else if(item.tag.type == 'page') {
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage;Редактировать раздел}', 1024, 'app.manage.storages(pages)', item.tag.data)
+                        .then((data) => {
+                            data.parent = item.tag?.parent?.id ?? 0;
+                            Sites.SaveFolder(data);
+                        })
+                        .catch(() => {});
+                }
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
