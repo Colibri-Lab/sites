@@ -81,7 +81,7 @@ class Publications extends BaseModelDataTable {
     static function LoadById(int $id) : Publication|null 
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
-        return $table->Count() > 0 ? $table->First() : null;
+        return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**

@@ -77,7 +77,7 @@ class Texts extends BaseModelDataTable {
     static function LoadById(int $id) : Text|null 
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
-        return $table->Count() > 0 ? $table->First() : null;
+        return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**
@@ -86,8 +86,8 @@ class Texts extends BaseModelDataTable {
      */
     static function LoadEmpty() : Text
     {
-        $reports = self::LoadByFilter(-1, 20, 'false', null, [], false);
-        return $reports->CreateEmptyRow();
+        $table = self::LoadByFilter(-1, 20, 'false', null, [], false);
+        return $table->CreateEmptyRow();
     }
 
     

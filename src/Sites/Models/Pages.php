@@ -79,7 +79,7 @@ class Pages extends BaseModelDataTable {
     static function LoadById(int $id) : Page|null 
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', '{order}', ['id' => $id], false);
-        return $table->Count() > 0 ? $table->First() : null;
+        return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**
@@ -144,7 +144,7 @@ class Pages extends BaseModelDataTable {
         }
 
         $table = self::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {parent}=[[parent:integer]] and {name}=[[name:string]]', '{order}', ['domain' => $domain, 'parent' => $parent, 'name' => $name], false);
-        return $table->Count() > 0 ? $table->First() : null;
+        return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**
