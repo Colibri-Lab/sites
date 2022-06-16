@@ -47,7 +47,7 @@ class Publications extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Publications
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : Publications
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Publications
     {
         $storage = Storages::Create()->Load('pubs');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
@@ -68,7 +68,7 @@ class Publications extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Publications 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Publications
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Publications
     {
         return self::LoadByFilter($page, $pagesize, null, '{order}', [], $calculateAffected);
     }
@@ -100,7 +100,7 @@ class Publications extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Publications 
      */
-    static function LoadByPage(Domain|int $domain, Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Publications
+    static function LoadByPage(Domain|int $domain, Page|int $folder, ?string $term = '', int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Publications
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;

@@ -46,7 +46,7 @@ class Pages extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Pages
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : Pages
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Pages
     {
         $storage = Storages::Create()->Load('pages');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
@@ -66,7 +66,7 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Pages
     {
         return self::LoadByFilter($page, $pagesize, null, '{order}', [], $calculateAffected);
     }
@@ -88,7 +88,7 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByParent(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
+    static function LoadByParent(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Pages
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -105,7 +105,7 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByParentReverce(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
+    static function LoadByParentReverce(Domain|int $domain, Page|int $parent, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Pages
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;
@@ -122,7 +122,7 @@ class Pages extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Pages 
      */
-    static function LoadByDomain(Domain|int $domain, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Pages
+    static function LoadByDomain(Domain|int $domain, int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Pages
     {
         if(!is_numeric($domain)) {
             $domain = $domain->id;

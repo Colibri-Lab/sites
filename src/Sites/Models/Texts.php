@@ -44,7 +44,7 @@ class Texts extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Texts
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : Texts
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Texts
     {
         $storage = Storages::Create()->Load('texts');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
@@ -64,7 +64,7 @@ class Texts extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Texts 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Texts
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Texts
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }

@@ -44,7 +44,7 @@ class Domains extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Domains
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : Domains
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Domains
     {
         $storage = Storages::Create()->Load('domains');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
@@ -65,7 +65,7 @@ class Domains extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Domains 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : Domains
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Domains
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
