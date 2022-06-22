@@ -163,8 +163,16 @@ class StoragesController extends WebController
             App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-desc.' . $currentLang, $data['desc']);
             $data['desc'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-desc;'.$data['desc'].'}';
 
-            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']);
-            $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;'.$data['note'].'}';
+            if(!$data['note']) {
+                $data['note'] = null;
+            }
+            try {
+                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']);
+            }
+            catch(\Throwable $e) {
+                
+            }
+            $data['note'] && $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;'.$data['note'].'}';
 
         }
 
