@@ -14,9 +14,9 @@ domains:
       type: varchar
       class: ValueField
       component: Select
-      desc: Ключ домена
-      note: В конфигурации должны быть указаны паттерны доменов, которые подходят
-        под этот ключ
+      desc: '#{sites-storages-domains-key;Ключ домена}'
+      note: '#{sites-storages-domains-key-desc;В конфигурации должны быть указаны
+        паттерны доменов, которые подходят под этот ключ}'
       selector:
         value: value
         title: title
@@ -171,9 +171,9 @@ domains:
                 depends: additional?.settings
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
                   { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
-                  + dependsValue.module?.toLowerCase() + ")").then((templates) => {
-                  templates && templates.forEach(template => { ret.push({value: template.path,
-                  title: template.path}); }); resolve(ret); }); });'
+                  + dependsValue.module?.toLowerCase() + ")").then((templates) =>
+                  { templates && templates.forEach(template => { ret.push({value:
+                  template.path, title: template.path}); }); resolve(ret); }); });'
         parameters:
           type: json
           class: ArrayField
@@ -636,7 +636,7 @@ texts:
   models:
     table: Models\Texts
     row: Models\Text
-  desc: Текстовые данные
+  desc: '#{sites-storages-texts-desc;Текстовые данные}'
   params:
     visible: true
     maybepublished: true
@@ -646,8 +646,9 @@ texts:
       length: "255"
       class: string
       component: Text
-      desc: Заголовок
-      note: Введите заголовок текстового блока, если необходимо
+      desc: '#{sites-storages-texts-fields-title-desc;Заголовок}'
+      note: '#{sites-storages-texts-fields-title-note;Введите заголовок текстового
+        блока, если не обходимо}'
       params:
         required: false
         enabled: true
@@ -664,8 +665,8 @@ texts:
     html:
       type: longtext
       class: string
-      desc: Содержание
-      note: Введите содержание
+      desc: '#{sites-storages-texts-fields-html-desc;Содержание блока}'
+      note: '#{sites-storages-texts-fields-html-note;Введите содержание блока}'
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: true
@@ -691,4 +692,5 @@ texts:
     default: App.Modules.Pravosudie.Templates.TextsDefaultTemplate
     list: App.Modules.Pravosudie.Templates.TextsDefaultTemplate
     item: App.Modules.Pravosudie.Templates.TextsItemTemplate
+  note: ""
 ...

@@ -54,6 +54,17 @@ class StoragesController extends WebController
 
         $name = $data['name'];
         unset($data['name']);
+
+        // если есть мультиязыковая поддержка
+        if(App::$moduleManager->lang) {
+            // desc, note
+            $currentLang = App::$moduleManager->lang->current;
+            
+            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $name . '-desc.' . $currentLang, $data['desc']);
+            $data['desc'] = '#{' . strtolower($module) . '-storages-' . $name . '-desc;'.$data['desc'].'}';
+
+        }
+
         $data['module'] = $module;
         if(!$storage) {
             $storage = Storage::Create($moduleObject, $name, $data);
@@ -142,6 +153,19 @@ class StoragesController extends WebController
         
         if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage->name.'.fields')) {
             return $this->Finish(403, 'Permission denied');
+        }
+
+        // если есть мультиязыковая поддержка
+        if(App::$moduleManager->lang) {
+            // desc, note
+            $currentLang = App::$moduleManager->lang->current;
+            
+            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-desc.' . $currentLang, $data['desc']);
+            $data['desc'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-desc;'.$data['desc'].'}';
+
+            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']);
+            $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;'.$data['note'].'}';
+
         }
 
         if($field) {

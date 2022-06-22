@@ -381,6 +381,20 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
+                note: {
+                    type: 'varchar',
+                    component: 'TextArea',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldnote;Подсказка}',
+                    note: '#{sites-storages-fieldnote-note;Подсказка, отображается под полем серым текстом}',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-fielddesc-validation-required;Пожалуйста, опишите свойство}',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
+                },
                 type: {
                     type: 'varchar',
                     component: 'Text',

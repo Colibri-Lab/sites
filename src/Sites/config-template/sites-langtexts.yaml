@@ -1007,4 +1007,36 @@ sites-menu-storages-desc:
     interface
   hy: 'Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով հարմար
     ինտերֆեյս'
+sites-storages-domains-key:
+  en: Domain Key
+  ru: Ключ домена
+  hy: Դոմեյն բանալին
+sites-storages-domains-key-desc:
+  en: The configuration must specify the domain patterns that fit this key.
+  ru: В конфигурации должны быть указаны паттерны доменов, которые подходят под этот
+    ключ
+  hy: Կոնֆիգուրացիայում պետք է նշվեն դոմենների պատվերները, որոնք համապատասխանում են
+    այս բանալին
+sites-storages-texts-desc:
+  ru: Текстовые данные
+  en: Text data
+sites-storages-fieldnote:
+  ru: Подсказка
+sites-storages-fieldnote-note:
+  ru: Подсказка, отображается под полем серым текстом
+sites-storages-texts-fields-title-desc:
+  en: Heading 1
+  ru: Заголовок
+sites-storages-texts-fields-title-note:
+  ru: Введите заголовок текстового блока, если не обходимо
+  en: Enter the title of the text block, if necessary
+  hy: Մուտքագրեք տեքստային բլոկի Վերնագիր, եթե ոչ շրջանցելի
+sites-storages-texts-fields-html-desc:
+  ru: Содержание блока
+  en: Block Content
+  hy: Բլոկի բովանդակությունը
+sites-storages-texts-fields-html-note:
+  ru: Введите содержание блока
+  en: Enter the content of the block
+  hy: Մուտքագրեք բովանդակությունը բլոկի
 ...
