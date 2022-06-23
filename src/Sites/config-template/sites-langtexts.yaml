@@ -1020,13 +1020,19 @@ sites-storages-domains-key-desc:
 sites-storages-texts-desc:
   ru: Текстовые данные
   en: Text data
+  hy: Տեքստային տվյալներ
 sites-storages-fieldnote:
   ru: Подсказка
+  en: Hint
+  hy: Ակնարկ
 sites-storages-fieldnote-note:
   ru: Подсказка, отображается под полем серым текстом
+  en: The hint is displayed under the field in gray text
+  hy: Ակնարկ, ցուցադրվում է դաշտի տակ գորշ տեքստի
 sites-storages-texts-fields-title-desc:
-  en: Heading 1
+  en: Heading
   ru: Заголовок
+  hy: Վերնագիր
 sites-storages-texts-fields-title-note:
   ru: Введите заголовок текстового блока, если не обходимо
   en: Enter the title of the text block, if necessary
