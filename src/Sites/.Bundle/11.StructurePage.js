@@ -267,6 +267,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage;Редактировать раздел}', 1024, 'app.manage.storages(pages)', item.tag.data)
                         .then((data) => {
                             data.parent = item.tag?.parent?.id ?? 0;
+                            data.domain = item.tag?.data?.domain?.id;
                             Sites.SaveFolder(data);
                         })
                         .catch(() => {});
