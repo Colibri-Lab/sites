@@ -183,7 +183,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     __renderDataContextMenu(event, args) {
         let contextmenu = [];
         
-        contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate;Дублировать данные}', icon: Colibri.UI.ContextMenuAddIcon});
+        contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate;Дублировать данные}', icon: Colibri.UI.ContextMenuDublicateIcon});
         contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-edit;Редактировать данные}', icon: Colibri.UI.ContextMenuEditIcon});
         contextmenu.push({name: 'remove-pub', title: '#{sites-structure-contextmenu-delete;Удалить}', icon: Colibri.UI.ContextMenuRemoveIcon});
 

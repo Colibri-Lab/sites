@@ -66,6 +66,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 contextmenu.push({name: 'edit-folder-props', title: '#{sites-structure-contextmenu-editprops;Редактировать доп. свойства}', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'remove-folder', title: '#{sites-structure-contextmenu-deletepage;Удалить раздел}', icon: Colibri.UI.ContextMenuRemoveIcon});
             }
+            contextmenu.push({name: '-'});
+            contextmenu.push({name: 'copy-path', title: '#{sites-structure-contextmenu-copypath;Скопировать путь (ссылку)}', icon: Colibri.UI.CopyIcon});
 
             args.item.contextmenu = contextmenu;
             args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
@@ -210,6 +212,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             App.Confirm.Show('#{sites-structure-deletepage;Удаление папки}', '#{sites-structure-deletepagemessage;Вы уверены, что хотите удалить папку?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 Sites.DeleteFolder(item.tag.data.id);
             });
+        }
+        else if(menuData.name == 'copy-path') {
+            const path = this._getPath(item);
+            path.copyToClipboard().then(() => {
+                App.Alert.Show('#{sites-structure-windowtitle-urlcopied;Путь скопирован}', '#{sites-structure-windowtitle-urlcopiedtext;Путь к разделу успешно скопирован в буфер обмена}', '#{app-alert-close;Закрыть}');
+            }).catch(() => {
+                App.Alert.Show('#{sites-structure-windowtitle-urlcopiederror;Путь не скопирован}', '#{sites-structure-windowtitle-urlcopiederrortext;Не получилось скопировать путь к разделу}', '#{app-alert-close;Закрыть}');
+            })
         }
     }
 
@@ -497,5 +507,20 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     }
 
+    _getPath(node, add = null) {
+        const storageNode = node.FindParent((node) => node.tag.type === 'domain');
+        let paths = [];
+        let p = node;
+        while(p != storageNode) {
+            if(p.tag.data) {
+                paths.push(p.tag.data.name);
+            }
+            p = p.parentNode;
+        }
+        paths.reverse();
+        add && paths.push(add);
+        let path = paths.join('/').trim(/\//);
+        return '/' + (path ? path + '/' : '');
+    }
 
 }

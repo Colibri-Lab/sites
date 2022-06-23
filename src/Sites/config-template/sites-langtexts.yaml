@@ -1045,4 +1045,24 @@ sites-storages-texts-fields-html-note:
   ru: Введите содержание блока
   en: Enter the content of the block
   hy: Մուտքագրեք բովանդակությունը բլոկի
+sites-structure-contextmenu-copypath:
+  ru: Скопировать путь (ссылку)
+  en: Copy the path (link)
+  hy: Պատճենել ուղին (հղումը)
+sites-structure-windowtitle-urlcopied:
+  ru: Путь скопирован
+  en: The path is copied
+  hy: Ճանապարհը պատճենահանված է
+sites-structure-windowtitle-urlcopiedtext:
+  ru: Путь к разделу успешно скопирован в буфер обмена
+  en: The path to the section has been successfully copied to the clipboard
+  hy: Ճանապարհը դեպի բաժնի հաջողությամբ պատճենահանվել է clipboard
+sites-structure-windowtitle-urlcopiederror:
+  ru: Путь не скопирован
+  en: The path is not copied
+  hy: Ճանապարհը չի պատճենահանվել
+sites-structure-windowtitle-urlcopiederrortext:
+  ru: Не получилось скопировать путь к разделу
+  en: Couldn't copy the path to the partition
+  hy: Չհաջողվեց պատճենել բաժնի ճանապարհը
 ...
