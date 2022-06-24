@@ -22,6 +22,7 @@ use Colibri\Data\Models\DataModelException;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
 use Colibri\Data\DataAccessPoint;
+use Colibri\Common\NoLangHelper;
 
 class DataController extends WebController
 {
@@ -75,7 +76,14 @@ class DataController extends WebController
 
         $dataArray = [];
         foreach($datarows as $datarow) {
-            $dataArray[] = $datarow->ToArray(true);
+            $dArray = $datarow->ToArray(true);
+            if(App::$moduleManager->lang) {
+                $dArray = App::$moduleManager->lang->ParseArray($dArray);
+            }
+            else {
+                $dArray = NoLangHelper::ParseArray($dArray);
+            }
+            $dataArray[] = $dArray;
         }
         return $this->Finish(200, 'ok', $dataArray);
 

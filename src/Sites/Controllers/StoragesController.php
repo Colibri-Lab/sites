@@ -24,6 +24,8 @@ use Colibri\Data\Storages\Storages;
 use Colibri\Utils\Config\Config;
 use Colibri\Data\Storages\Storage;
 use Colibri\Data\Storages\Fields\Field;
+use Colibri\Common\DateHelper;
+use Colibri\Common\VariableHelper;
 
 class StoragesController extends WebController
 {
@@ -173,6 +175,28 @@ class StoragesController extends WebController
                 
             }
             $data['note'] && $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;'.$data['note'].'}';
+
+            if(isset($data['values']) && is_array($data['values'])) {
+                $newValues = [];
+                foreach($data['values'] as $value) {
+                    
+                    if(preg_match('/[^\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\0-9]/', $value['title'])) {
+
+                        try {
+                            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-values-'.$value['value'].'.' . $currentLang, $value['title']);
+                        }
+                        catch(\Throwable $e) {
+                            
+                        }
+                        $value['title'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-values-'.$value['value'].';'.$value['title'].'}';
+                    
+                    }
+                    
+                    $newValues[] = $value;
+                    
+                }
+                $data['values'] = $newValues;
+            }
 
         }
 
