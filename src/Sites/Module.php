@@ -16,6 +16,11 @@ use Colibri\Utils\Debug;
 use App\Modules\Sites\Controllers\Controller;
 use Colibri\Utils\Menu\Item;
 use Colibri\Data\Storages\Storages;
+use Colibri\Utils\Logs\Logger;
+use App\Modules\Sites\Models\Domains;
+use App\Modules\Sites\Models\Pages;
+use App\Modules\Sites\Models\Publications;
+use App\Modules\Sites\Models\Texts;
 
 /**
  * Описание модуля
@@ -101,6 +106,31 @@ class Module extends BaseModule
 
 
         return $permissions;
+    }
+    
+    public function Backup(Logger $logger, string $path) {
+        // Do nothing        
+
+        $logger->debug('Exporting data...');
+
+        $modulePath = $path . 'modules/Sites/';
+
+        $logger->debug('Exporting Domains...');
+        $table = Domains::LoadAll();
+        $table->ExportJson($modulePath . 'domains.json');
+
+        $logger->debug('Exporting Pages...');
+        $table = Pages::LoadAll();
+        $table->ExportJson($modulePath . 'pages.json');
+
+        $logger->debug('Exporting Publications...');
+        $table = Publications::LoadAll();
+        $table->ExportJson($modulePath . 'publications.json');
+
+        $logger->debug('Exporting Texts...');
+        $table = Texts::LoadAll();
+        $table->ExportJson($modulePath . 'texts.json');
+
     }
 
 }
