@@ -105,7 +105,7 @@ class Text extends BaseModelDataRow {
 
         }
 
-        return $xml->xml;
+        return $xml->SaveHTML();
     }
 
 }
