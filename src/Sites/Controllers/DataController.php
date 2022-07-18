@@ -153,8 +153,17 @@ class DataController extends WebController
             $pub->Save();
             $pub = $pub->ToArray(true);
         }
+
+
+        $dArray = $datarow->ToArray(true);
+        if(App::$moduleManager->lang) {
+            $dArray = App::$moduleManager->lang->ParseArray($dArray);
+        }
+        else {
+            $dArray = NoLangHelper::ParseArray($dArray);
+        }
         
-        return $this->Finish(200, 'ok', ['datarow' => $datarow->ToArray(true), 'pub' => $pub]);
+        return $this->Finish(200, 'ok', ['datarow' => $dArray, 'pub' => $pub]);
 
     }
 
