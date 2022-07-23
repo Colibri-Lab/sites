@@ -99,6 +99,11 @@ class Installer
             return;
         }
 
+        // берем точку входа
+        $webRoot = \getenv('COLIBRI_WEBROOT');
+        if(!$webRoot) {
+            $webRoot = 'web'; 
+        }
         $mode = self::_getMode($configDir.'app.yaml');
 
         // копируем конфиг
