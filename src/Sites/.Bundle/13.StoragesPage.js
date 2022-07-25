@@ -559,6 +559,47 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: false
                         },
+                        list: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        greed: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
+                            note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
+                            component: 'Text',
+                            default: ''
+                        },
+                        viewer: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
+                            note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
+                            component: 'Select',
+                            default: '',
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            params: {
+                                readonly: true
+                            },
+                            lookup: {
+                                method: () => new Promise((resolve, reject) => {
+                                    resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
+                                })
+                            }
+                        },
+
+                        vertical: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-vertical;Отображать обьект вертикально}',
+                            note: '#{sites-storages-fieldparams-vertical-note;Работает только с обьектами типа Object и Array}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+
                         visual: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-visual;Отображать в виде визуального редактора}',
@@ -592,50 +633,18 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 {value: 'yaml', title: 'YAML'}
                             ]
                         },
-                        list: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
-                            component: 'Checkbox',
-                            default: false
-                        },
-                        greed: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
-                            note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
-                            component: 'Text',
-                            default: ''
-                        },
-                        vertical: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-vertical;Отображать обьект вертикально}',
-                            note: '#{sites-storages-fieldparams-vertical-note;Работает только с обьектами типа Object и Array}',
-                            component: 'Checkbox',
-                            default: false
-                        },
-                        viewer: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
-                            note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
-                            component: 'Select',
-                            default: '',
-                            selector: {
-                                value: 'value',
-                                title: 'title'
-                            },
-                            params: {
-                                readonly: true
-                            },
-                            lookup: {
-                                method: () => new Promise((resolve, reject) => {
-                                    resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
-                                })
-                            }
-                        },
                         mask: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-mask;Маска ввода}',
                             note: '#{sites-storages-fieldparams-mask-note;Работает только с обьектами типа Text}',
                             component: 'Text',
+                            default: ''
+                        },
+                        generator: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-generator;Генератор значений}',
+                            note: '#{sites-storages-fieldparams-generator-note;Работает только с обьектами типа Text,TextArea}',
+                            component: 'TextArea',
                             default: ''
                         },
                     }
