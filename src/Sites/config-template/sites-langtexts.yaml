@@ -1065,4 +1065,8 @@ sites-structure-windowtitle-urlcopiederrortext:
   ru: Не получилось скопировать путь к разделу
   en: Couldn't copy the path to the partition
   hy: Չհաջողվեց պատճենել բաժնի ճանապարհը
+sites-storages-fieldparams-generator:
+  ru: Генератор значений
+sites-storages-fieldparams-generator-note:
+  ru: Работает только с обьектами типа Text,TextArea
 ...
