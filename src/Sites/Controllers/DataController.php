@@ -4,25 +4,11 @@ namespace App\Modules\Sites\Controllers;
 
 
 use Colibri\App;
-use Colibri\Events\EventsContainer;
-use Colibri\IO\FileSystem\File;
-use Colibri\Utils\Cache\Bundle;
-use Colibri\Utils\Debug;
-use Colibri\Utils\ExtendedObject;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
-use Colibri\Web\Templates\PhpTemplate;
-use Colibri\Web\View;
-use ScssPhp\ScssPhp\Compiler;
-use ScssPhp\ScssPhp\OutputStyle;
-use App\Modules\Sites\Models\Pages;
 use App\Modules\Security\Module as SecurityModule;
-use App\Modules\Sites\Module;
-use Colibri\Data\Models\DataModelException;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
-use Colibri\Data\DataAccessPoint;
-use Colibri\Common\NoLangHelper;
 
 class DataController extends WebController
 {
@@ -76,14 +62,7 @@ class DataController extends WebController
 
         $dataArray = [];
         foreach($datarows as $datarow) {
-            $dArray = $datarow->ToArray(true);
-            if(App::$moduleManager->lang) {
-                $dArray = App::$moduleManager->lang->ParseArray($dArray);
-            }
-            else {
-                $dArray = NoLangHelper::ParseArray($dArray);
-            }
-            $dataArray[] = $dArray;
+            $dataArray[] = $datarow->ToArray(true);
         }
         return $this->Finish(200, 'ok', $dataArray);
 
@@ -154,16 +133,7 @@ class DataController extends WebController
             $pub = $pub->ToArray(true);
         }
 
-
-        $dArray = $datarow->ToArray(true);
-        if(App::$moduleManager->lang) {
-            $dArray = App::$moduleManager->lang->ParseArray($dArray);
-        }
-        else {
-            $dArray = NoLangHelper::ParseArray($dArray);
-        }
-        
-        return $this->Finish(200, 'ok', ['datarow' => $dArray, 'pub' => $pub]);
+        return $this->Finish(200, 'ok', ['datarow' => $datarow->ToArray(true), 'pub' => $pub]);
 
     }
 

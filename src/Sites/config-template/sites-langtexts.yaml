@@ -1067,6 +1067,10 @@ sites-structure-windowtitle-urlcopiederrortext:
   hy: Չհաջողվեց պատճենել բաժնի ճանապարհը
 sites-storages-fieldparams-generator:
   ru: Генератор значений
+  en: Value Generator
+  hy: Արժեքների գեներատոր
 sites-storages-fieldparams-generator-note:
   ru: Работает только с обьектами типа Text,TextArea
+  en: Works only with objects of type Text,TextArea
+  hy: Աշխատում է միայն Text,TextArea տիպի օբյեկտների հետ
 ...
