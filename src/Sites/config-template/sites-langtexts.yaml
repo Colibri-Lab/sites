@@ -1073,4 +1073,31 @@ sites-storages-fieldparams-generator-note:
   ru: Работает только с обьектами типа Text,TextArea
   en: Works only with objects of type Text,TextArea
   hy: Աշխատում է միայն Text,TextArea տիպի օբյեկտների հետ
+sites-storages-fieldlookup-storage-depends:
+  ru: Связь с другим полем
+sites-storages-fieldlookup-controller-depends:
+  ru: Связь с другим полем
+sites-storages-fieldlookup-storage-select:
+  ru: Поля в выборке
+sites-storages-fieldlookup-storage-group:
+  ru: Поле для группы
+sites-storages-fieldlookup-storage-select-note:
+  ru: Внимание, название полей в списке необходимо писать в фигурных скобках
+sites-storages-fieldlookup-storage-title-note:
+  ru: Название поля, без фигурных скобок
+sites-storages-fieldlookup-storage-value-note:
+  ru: Название поля, без фигурных скобок
+sites-storages-fieldlookup-storage-group-note:
+  ru: Название поля, без фигурных скобок
+sites-storages-fieldlookup-storage-order:
+  ru: Сортировка
+sites-storages-fieldlookup-storage-order-note:
+  ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
+sites-storages-fieldlookup-storage-depends-note:
+  ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап необходимо
+    наличие такого поля, так же как и исходной таблице
+sites-storages-fieldlookup-storage-controller-note:
+  ru: Куда обращаться за получением данных по выборке
+sites-storages-fieldselector-group:
+  ru: Поле для группировки
 ...

@@ -703,20 +703,48 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                         });
                                     },
                                 },
+                                select: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-select;Поля в выборке}',
+                                    note: '#{sites-storages-fieldlookup-storage-select-note;Внимание, название полей в списке необходимо писать в фигурных скобках}',
+                                    default: '*'
+                                },
                                 title: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-title;Поле для вывода}'
+                                    desc: '#{sites-storages-fieldlookup-storage-title;Поле для вывода}',
+                                    note: '#{sites-storages-fieldlookup-storage-title-note;Название поля, без фигурных скобок}',
                                 },
                                 value: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-value;Поле для значения}'
+                                    desc: '#{sites-storages-fieldlookup-storage-value;Поле для значения}',
+                                    note: '#{sites-storages-fieldlookup-storage-value-note;Название поля, без фигурных скобок}',
+                                },
+                                group: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-group;Поле для группы}',
+                                    note: '#{sites-storages-fieldlookup-storage-group-note;Название поля, без фигурных скобок}',
+                                },
+                                order: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-order;Сортировка}',
+                                    note: '#{sites-storages-fieldlookup-storage-order-note;Внимание, название полей в сортировке необходимо писать в фигурных скобках}'
+                                },
+                                depends: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-depends;Связь с другим полем}',
+                                    note: '#{sites-storages-fieldlookup-storage-depends-note;Название поля, без фигурных скобок. В хранилище из которого делается лукап необходимо наличие такого поля, так же как и исходной таблице}',
                                 },
                                 controller: {
                                     type: 'json',
                                     component: 'Object',
                                     desc: '#{sites-storages-fieldlookup-storage-controller;Контроллер (JS)}',
+                                    note: '#{sites-storages-fieldlookup-storage-controller-note;Куда обращаться за получением данных по выборке}',
                                     fields: {
                                         module: {
                                             type: 'varchar',
@@ -775,6 +803,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     type: 'varchar',
                                     component: 'Text',
                                     desc: '#{sites-storages-fieldlookup-controller-method;Метод}'
+                                },
+                                depends: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-controller-depends;Связь с другим полем}'
                                 },
                             },
                             params: {
@@ -869,6 +902,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             type: 'varchar',
                             component: 'Text',
                             desc: '#{sites-storages-fieldselector-title;Поле заголовка}'
+                        },
+                        group: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldselector-group;Поле для группировки}'
                         },
                         __render: {
                             type: 'varchar',

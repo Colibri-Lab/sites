@@ -9,6 +9,7 @@ use Colibri\Web\Controller as WebController;
 use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
+use Colibri\Data\SqlClient\QueryInfo;
 
 class DataController extends WebController
 {
@@ -125,7 +126,10 @@ class DataController extends WebController
             $datarow->$key = $value;
         }
 
-        $datarow->Save();
+        $result = $datarow->Save();
+        if($result instanceof QueryInfo) {
+            return $this->Finish(500, $result->error);
+        }
 
         if($pub) {
             $pub = Publications::LoadById($pub);
