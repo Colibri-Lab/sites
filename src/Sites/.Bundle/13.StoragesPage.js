@@ -428,41 +428,47 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         return new Promise((rs, rj) => {
                             Manage.Store.AsyncQuery('manage.modules').then((modules) => {
                                 let components = [];
+                                console.log(Colibri.UI.Forms.Field.Components);
+                                Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
+                                    components.push({ value: value.className, title: name, icon: value.icon });
+                                });
 
-                                for (const module of modules) {
-                                    try {
-                                        const moduleComponents = eval('Object.keys(App.Modules.' + module.name + '.UI)');
-                                        for (const name of moduleComponents) {
-                                            if (eval('App.Modules.' + module.name + '.' + name + '.prototype instanceof Colibri.UI.Forms.Field')) {
-                                                components.push({ value: 'App.Modules.' + module.name + '.UI.' + name, title: name, icon: Colibri.UI.FieldIcons['App.Modules.' + module.name + '.UI.' + name] });
-                                            }
-                                        }
-                                    }
-                                    catch (e) { }
-                                }
+                                // for (const module of modules) {
+                                //     try {
+                                //         const moduleComponents = eval('Object.keys(App.Modules.' + module.name + '.UI)');
+                                //         for (const name of moduleComponents) {
+                                //             if (eval('App.Modules.' + module.name + '.' + name + '.prototype instanceof Colibri.UI.Forms.Field')) {
+                                //                 components.push({ value: 'App.Modules.' + module.name + '.UI.' + name, title: name, icon: Colibri.UI.FieldIcons['App.Modules.' + module.name + '.UI.' + name] });
+                                //             }
+                                //         }
+                                //     }
+                                //     catch (e) { }
+                                // }
 
-                                try {
-                                    const manageComponents = Object.keys(App.Modules.Manage.UI);
-                                    for (const name of manageComponents) {
-                                        if (eval('App.Modules.Manage.UI.' + name + '.prototype instanceof Colibri.UI.Forms.Field')) {
-                                            components.push({ value: 'App.Modules.Manage.UI.' + name, title: name, icon: Colibri.UI.FieldIcons['App.Modules.Manage.UI.' + name] });
-                                        }
-                                    }
-                                }
-                                catch (e) { }
+                                // try {
+                                //     const manageComponents = Object.keys(App.Modules.Manage.UI);
+                                //     for (const name of manageComponents) {
+                                //         if (eval('App.Modules.Manage.UI.' + name + '.prototype instanceof Colibri.UI.Forms.Field')) {
+                                //             components.push({ value: 'App.Modules.Manage.UI.' + name, title: name, icon: Colibri.UI.FieldIcons['App.Modules.Manage.UI.' + name] });
+                                //         }
+                                //     }
+                                // }
+                                // catch (e) { }
 
-                                const standartComponents = Object.keys(Colibri.UI.Forms);
-                                for (const name of standartComponents) {
-                                    if (['Field', 'Form'].indexOf(name) === -1) {
-                                        components.push({ value: name, title: name, icon: Colibri.UI.FieldIcons[name] });
-                                    }
-                                }
+                                // const standartComponents = Object.keys(Colibri.UI.Forms);
+                                // for (const name of standartComponents) {
+                                //     if (['Field', 'Form'].indexOf(name) === -1) {
+                                //         components.push({ value: name, title: name, icon: Colibri.UI.FieldIcons[name] });
+                                //     }
+                                // }
 
                                 rs({ result: components });
                             });
                         });
                     },
                     params: {
+                        required: true,
+                        readonly: true,
                         validate: [{
                             message: '#{sites-storages-fieldcomponent-validation-required;Пожалуйста, выберите компоненту}',
                             method: '(field, validator) => !!field.value'
