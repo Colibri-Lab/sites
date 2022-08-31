@@ -14,6 +14,9 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(Colibri.UI.FieldIcons[field.component]) {
             return Colibri.UI.FieldIcons[field.component];
         }
+        else if(Colibri.UI.FieldIcons['Colibri.UI.Forms.' + field.component]) {
+            return Colibri.UI.FieldIcons['Colibri.UI.Forms.' + field.component];
+        }
         else {
             return Colibri.UI.FieldIcons['Text'];
         }

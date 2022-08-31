@@ -153,7 +153,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Object',
                     desc: '#{sites-storages-storagecomponents;Компоненты}',
                     note: '#{sites-storages-storagecomponents-note;Компоненты для отображения, если проект в режиме «Приложение»}',
-                    vertical: true,
+                    params: {
+                        vertical: true,
+                    },
                     fields: {
                         default: {
                             type: 'varchar',
@@ -229,7 +231,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Object',
                     desc: '#{sites-storages-storagetemplates;Шаблоны}',
                     note: '#{sites-storages-storagetemplates-note;Шаблоны для отображения, если проект в режиме «Вебсайт»}',
-                    vertical: true,
+                    params: {
+                        vertical: true,
+                    },
                     fields: {
                         default: {
                             type: 'varchar',
@@ -310,7 +314,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Object',
                     group: '#{sites-storages-storageadditional;Дополнительные параметры}',
                     desc: '#{sites-storages-storageadditional;Дополнительные параметры}',
-                    vertical: true,
+                    params: {
+                        vertical: true,
+                    },
                     fields: {
                         visible: {
                             type: 'bool',
@@ -428,40 +434,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         return new Promise((rs, rj) => {
                             Manage.Store.AsyncQuery('manage.modules').then((modules) => {
                                 let components = [];
-                                console.log(Colibri.UI.Forms.Field.Components);
                                 Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
                                     components.push({ value: value.className, title: name, icon: value.icon });
                                 });
-
-                                // for (const module of modules) {
-                                //     try {
-                                //         const moduleComponents = eval('Object.keys(App.Modules.' + module.name + '.UI)');
-                                //         for (const name of moduleComponents) {
-                                //             if (eval('App.Modules.' + module.name + '.' + name + '.prototype instanceof Colibri.UI.Forms.Field')) {
-                                //                 components.push({ value: 'App.Modules.' + module.name + '.UI.' + name, title: name, icon: Colibri.UI.FieldIcons['App.Modules.' + module.name + '.UI.' + name] });
-                                //             }
-                                //         }
-                                //     }
-                                //     catch (e) { }
-                                // }
-
-                                // try {
-                                //     const manageComponents = Object.keys(App.Modules.Manage.UI);
-                                //     for (const name of manageComponents) {
-                                //         if (eval('App.Modules.Manage.UI.' + name + '.prototype instanceof Colibri.UI.Forms.Field')) {
-                                //             components.push({ value: 'App.Modules.Manage.UI.' + name, title: name, icon: Colibri.UI.FieldIcons['App.Modules.Manage.UI.' + name] });
-                                //         }
-                                //     }
-                                // }
-                                // catch (e) { }
-
-                                // const standartComponents = Object.keys(Colibri.UI.Forms);
-                                // for (const name of standartComponents) {
-                                //     if (['Field', 'Form'].indexOf(name) === -1) {
-                                //         components.push({ value: name, title: name, icon: Colibri.UI.FieldIcons[name] });
-                                //     }
-                                // }
-
                                 rs({ result: components });
                             });
                         });
@@ -542,7 +517,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Object',
                     group: '#{sites-storages-fieldparams;Дополнительные параметры}',
                     desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
-                    vertical: true,
+                    params: {
+                        vertical: true,
+                    },
                     fields: {
                         required: {
                             type: 'bool',
@@ -661,7 +638,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     group: '#{sites-storages-fieldlookup;Связка}',
                     desc: '#{sites-storages-fieldlookup;Связка}',
                     note: '#{sites-storages-fieldlookup-note;Связь с другими хранилищами}',
-                    vertical: true,
+                    params: {
+                        vertical: true,
+                    },
                     fields: {
                         _oneof: {
                             type: 'varchar',
@@ -1040,7 +1019,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     component: 'Object',
                     group: 'window',
                     desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
-                    vertical: true,
+                    params: {
+                        vertical: true,
+                    },
                     fields: {
                         list: {
                             type: 'bool',
