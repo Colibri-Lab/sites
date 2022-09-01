@@ -568,11 +568,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 readonly: true
                             },
-                            lookup: {
-                                method: () => new Promise((resolve, reject) => {
-                                    resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
-                                })
-                            }
+                            lookup: () => new Promise((resolve, reject) => {
+                                resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
+                            })
                         },
 
                         vertical: {
@@ -679,6 +677,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     selector: {
                                         value: 'name',
                                         title: 'desc'
+                                    },
+                                    params: {
+                                        readonly: true
                                     },
                                     lookup: () => {
                                         return new Promise((rs, rj) => {
@@ -1049,11 +1050,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 readonly: true
                             },
-                            lookup: {
-                                method: () => new Promise((resolve, reject) => {
-                                    resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
-                                })
-                            }
+                            lookup:  () => new Promise((resolve, reject) => {
+                                resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
+                            })
                         },
                     }
                 },
