@@ -432,13 +432,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     },
                     lookup: () => {
                         return new Promise((rs, rj) => {
-                            Manage.Store.AsyncQuery('manage.modules').then((modules) => {
-                                let components = [];
-                                Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
-                                    components.push({ value: value.className, title: name, icon: value.icon });
-                                });
-                                rs({ result: components });
+                            let components = [];
+                            Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
+                                components.push({ value: value.className, title: name, icon: value.icon });
                             });
+                            rs({ result: components });
                         });
                     },
                     params: {

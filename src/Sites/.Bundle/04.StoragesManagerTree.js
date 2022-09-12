@@ -10,16 +10,19 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
 
     _searchForFieldIcon(field) {
-        
-        if(Colibri.UI.FieldIcons[field.component]) {
-            return Colibri.UI.FieldIcons[field.component];
+    
+        let icon = '';
+        Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
+            if(value.className === field.component) {
+                icon = field.icon;
+            }
+        });
+
+        if(!icon) {
+            icon = Colibri.UI.FieldIcons['Colibri.UI.Forms.Text'];
         }
-        else if(Colibri.UI.FieldIcons['Colibri.UI.Forms.' + field.component]) {
-            return Colibri.UI.FieldIcons['Colibri.UI.Forms.' + field.component];
-        }
-        else {
-            return Colibri.UI.FieldIcons['Text'];
-        }
+
+        return icon;
         
     }
 
