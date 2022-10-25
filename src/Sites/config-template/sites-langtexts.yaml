@@ -1075,29 +1075,58 @@ sites-storages-fieldparams-generator-note:
   hy: Աշխատում է միայն Text,TextArea տիպի օբյեկտների հետ
 sites-storages-fieldlookup-storage-depends:
   ru: Связь с другим полем
+  en: Connection to another field
+  hy: Կապ այլ դաշտի հետ
 sites-storages-fieldlookup-controller-depends:
   ru: Связь с другим полем
+  en: Connection to another field
+  hy: Կապ այլ դաշտի հետ
 sites-storages-fieldlookup-storage-select:
   ru: Поля в выборке
+  en: Fields in the selection
+  hy: Նմուշի դաշտերը
 sites-storages-fieldlookup-storage-group:
   ru: Поле для группы
+  en: Field for the group
+  hy: Դաշտը խմբի համար
 sites-storages-fieldlookup-storage-select-note:
   ru: Внимание, название полей в списке необходимо писать в фигурных скобках
+  en: Attention, the names of the fields in the list must be written in curly brackets
+  hy: Ուշադրություն, ցուցակում դաշտերի անունը պետք է գրվի ձեւավոր փակագծերում
 sites-storages-fieldlookup-storage-title-note:
   ru: Название поля, без фигурных скобок
+  en: Field name, without curly brackets
+  hy: Դաշտի անվանումը, առանց ձևավոր փակագծերի
 sites-storages-fieldlookup-storage-value-note:
   ru: Название поля, без фигурных скобок
+  en: Field name, without curly brackets
+  hy: Դաշտի անվանումը, առանց ձևավոր փակագծերի
 sites-storages-fieldlookup-storage-group-note:
   ru: Название поля, без фигурных скобок
+  en: Field name, without curly brackets
+  hy: Դաշտի անվանումը, առանց ձևավոր փակագծերի
 sites-storages-fieldlookup-storage-order:
   ru: Сортировка
+  en: Sorting
+  hy: Դասավորում
 sites-storages-fieldlookup-storage-order-note:
   ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
+  en: Attention, the names of the fields in the sorting must be written in curly brackets
+  hy: Ուշադրություն, տեսակավորման դաշտերի անունը պետք է գրվի ձեւավոր փակագծերում
 sites-storages-fieldlookup-storage-depends-note:
   ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап необходимо
     наличие такого поля, так же как и исходной таблице
+  en: The name of the field, without curly brackets. In the repository from which
+    the snapshot is made, it is necessary to have such a field, as well as the source
+    table
+  hy: Դաշտի անվանումը ՝ առանց ձևավոր փակագծերի։ Պահոցում, որից կատարվում է լուկապը,
+    անհրաժեշտ է նման դաշտի առկայությունը, ինչպես նաեւ մեկնարկային աղյուսակը
 sites-storages-fieldlookup-storage-controller-note:
   ru: Куда обращаться за получением данных по выборке
+  en: Where to apply for sample data
+  hy: Որտեղ դիմել ընտրանքի տվյալների ստացման համար
 sites-storages-fieldselector-group:
   ru: Поле для группировки
+  en: Field for grouping
+  hy: Դաշտ խմբավորման համար
 ...
