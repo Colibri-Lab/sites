@@ -43,6 +43,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     __searchInputFilled(event, args) {
         const selected = this._storages.selected;
         if(!selected || selected.tag === 'module') {
+            this._data.storage = null;
             this._data.ClearAll(); 
             return;           
         }

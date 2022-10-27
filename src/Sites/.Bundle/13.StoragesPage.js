@@ -244,7 +244,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 method: (term, dependsValue) => new Promise((resolve, reject) => { 
                                     let ret = [{value: "", title: "Шаблон не выбран"}]; 
                                     Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
-                                        templates && templates.forEach(template => {
+                                        templates && Array.isArray(templates) && templates.forEach(template => {
                                             ret.push({value: template.path, title: template.path}); 
                                         });
                                         resolve(ret); 
@@ -268,7 +268,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 method: (term, dependsValue) => new Promise((resolve, reject) => { 
                                     let ret = [{value: "", title: "Шаблон не выбран"}]; 
                                     Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
-                                        templates && templates.forEach(template => {
+                                        templates && Array.isArray(templates) && templates.forEach(template => {
                                             ret.push({value: template.path, title: template.path}); 
                                         });
                                         resolve(ret); 
@@ -292,7 +292,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 method: (term, dependsValue) => new Promise((resolve, reject) => { 
                                     let ret = [{value: "", title: "Шаблон не выбран"}]; 
                                     Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
-                                        templates && templates.forEach(template => {
+                                        templates && Array.isArray(templates) && templates.forEach(template => {
                                             ret.push({value: template.path, title: template.path}); 
                                         });
                                         resolve(ret); 

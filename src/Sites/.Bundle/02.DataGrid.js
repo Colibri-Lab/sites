@@ -1,8 +1,14 @@
 App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
     set storage(value) {
-        this._storageChanged = this._storage?.name != value.name;
-        this._storage = value;
+        if(value === null) {
+            this._storageChanged = true;
+            this._storage = null;    
+        }
+        else {
+            this._storageChanged = this._storage?.name != value.name;
+            this._storage = value;
+        }
     }
 
     get storage() {
@@ -35,7 +41,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             this.ClearAllRows();
         }
 
-        if(this._storage && this._storage.fields && this._storageChanged) {
+        if(this._storage && this._storage?.fields && this._storageChanged) {
                 
             let idColumn = this.header.columns.Children('id');
             if(!idColumn) {
