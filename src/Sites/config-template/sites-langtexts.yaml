@@ -1129,4 +1129,8 @@ sites-storages-fieldselector-group:
   ru: Поле для группировки
   en: Field for grouping
   hy: Դաշտ խմբավորման համար
+sites-storages-storagegroup:
+  ru: Группа
+sites-storages-storagegroup-note:
+  ru: Группа, в свободной форме
 ...

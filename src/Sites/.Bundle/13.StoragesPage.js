@@ -100,6 +100,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
+                group: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-storagegroup;Группа}',
+                    note: '#{sites-storages-storagegroup-note;Группа, в свободной форме}',
+                    params: {
+                        required: false,
+                    }
+                },
                 'access-point': {
                     type: 'varchar',
                     group: 'window',

@@ -172,8 +172,9 @@ domains:
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
                   { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
                   + dependsValue.module?.toLowerCase() + ")").then((templates) =>
-                  { templates && Array.isArray(templates) && templates.forEach(template => { ret.push({value:
-                  template.path, title: template.path}); }); resolve(ret); }); });'
+                  { templates && Array.isArray(templates) && templates.forEach(template
+                  => { ret.push({value: template.path, title: template.path}); });
+                  resolve(ret); }); });'
         parameters:
           type: json
           class: ArrayField
@@ -646,9 +647,8 @@ texts:
       length: "255"
       class: string
       component: Colibri.UI.Forms.Text
-      desc: '#{sites-storages-texts-fields-title-desc;Заголовок}'
-      note: '#{sites-storages-texts-fields-title-note;Введите заголовок текстового
-        блока, если не обходимо}'
+      desc: Заголовок
+      note: Введите заголовок текстового блока, если не обходимо
       params:
         required: false
         enabled: true
@@ -665,8 +665,8 @@ texts:
     html:
       type: longtext
       class: string
-      desc: '#{sites-storages-texts-fields-html-desc;Содержание блока}'
-      note: '#{sites-storages-texts-fields-html-note;Введите содержание блока}'
+      desc: Содержание блока
+      note: Введите содержание блока
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: true
@@ -688,9 +688,6 @@ texts:
       type: NORMAL
       method: BTREE
       name: texts_title_idx
-  components:
-    default: App.Modules.Pravosudie.Templates.TextsDefaultTemplate
-    list: App.Modules.Pravosudie.Templates.TextsDefaultTemplate
-    item: App.Modules.Pravosudie.Templates.TextsItemTemplate
   note: ""
+  group: Основные
 ...
