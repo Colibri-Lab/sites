@@ -40,7 +40,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                         groupNode = moduleNode.nodes.Add(storage.group);
                         groupNode.text = storage.group;
                         groupNode.tag = 'group';
-                        groupNode.icon = App.Modules.Sites.Icons.ModuleIcon;
+                        groupNode.icon = Colibri.UI.FolderIcon;
                     }
                 }
 
@@ -66,7 +66,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
 
                 return true;
 
-            });ё
+            });
            
         });
        

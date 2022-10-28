@@ -48,7 +48,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!storageNode) {
             storageNode = moduleNode.nodes.Add(storage.name);
         }
-        storageNode.text = storage.desc + ' (' + storage.name + ')';
+        storageNode.text = (storage.group ? storage.group + ': ' : '') + storage.desc + ' (' + storage.name + ')';
         storageNode.isLeaf = Object.countKeys(storage.fields) == 0;
         storageNode.icon = App.Modules.Sites.Icons.StorageIcon;
         storageNode.tag.entry = storage;

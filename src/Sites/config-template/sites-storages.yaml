@@ -689,5 +689,4 @@ texts:
       method: BTREE
       name: texts_title_idx
   note: ""
-  group: Основные
 ...
