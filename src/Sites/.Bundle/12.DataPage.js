@@ -42,7 +42,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     
     __searchInputFilled(event, args) {
         const selected = this._storages.selected;
-        if(!selected || selected.tag === 'module') {
+        if(!selected || (selected.tag === 'module' || selected.tag === 'group')) {
             this._data.storage = null;
             this._data.ClearAll(); 
             return;           
@@ -56,11 +56,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
         const selection = this._storages.selected;
         
-        this._searchInput.enabled = selection != null && selection.tag !== 'module';
-        this._data.enabled = selection != null && selection.tag !== 'module';
+        this._searchInput.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
+        this._data.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._data.UnselectAllRows();
         this._data.UncheckAllRows();
-        this._addData.enabled = selection != null && selection.tag !== 'module';
+        this._addData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._editData.enabled = false;
         this._dublData.enabled = false;
         this._deleteData.enabled = false;
