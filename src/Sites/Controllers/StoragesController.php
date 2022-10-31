@@ -65,6 +65,9 @@ class StoragesController extends WebController
             App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $name . '-desc.' . $currentLang, $data['desc']);
             $data['desc'] = '#{' . strtolower($module) . '-storages-' . $name . '-desc;'.$data['desc'].'}';
 
+            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $name . '-group.' . $currentLang, $data['group']);
+            $data['group'] = '#{' . strtolower($module) . '-storages-' . $name . '-group;'.$data['group'].'}';
+
         }
 
         $data['module'] = $module;
