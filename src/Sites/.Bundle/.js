@@ -6,7 +6,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     constructor() {
         super('Sites');
     }
-
+ 
     
 
     InitializeModule() {
