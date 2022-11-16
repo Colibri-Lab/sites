@@ -1133,4 +1133,10 @@ sites-storages-storagegroup:
   ru: Группа
 sites-storages-storagegroup-note:
   ru: Группа, в свободной форме
+sites-storages-fieldparams-simplearraywidth:
+  ru: Длина массива данных
+sites-storages-fieldparams-simplearraywidth-note:
+  ru: Работает только с обьектами типа SimpleArray
+sites-storages-fieldparams-simplearrayheight:
+  ru: Высота массива данных
 ...

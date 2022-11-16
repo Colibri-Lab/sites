@@ -636,6 +636,20 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'TextArea',
                             default: ''
                         },
+                        simplearraywidth: {
+                            type: 'int',
+                            placeholder: '#{sites-storages-fieldparams-simplearraywidth;Длина массива данных}',
+                            note: '#{sites-storages-fieldparams-simplearraywidth-note;Работает только с обьектами типа SimpleArray}',
+                            component: 'Number',
+                            default: ''
+                        },
+                        simplearrayheight: {
+                            type: 'int',
+                            placeholder: '#{sites-storages-fieldparams-simplearrayheight;Высота массива данных}',
+                            note: '#{sites-storages-fieldparams-simplearraywidth-note;Работает только с обьектами типа SimpleArray}',
+                            component: 'Number',
+                            default: ''
+                        },
                     }
                 },
                 lookup: {
