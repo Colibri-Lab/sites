@@ -1139,4 +1139,6 @@ sites-storages-fieldparams-simplearraywidth-note:
   ru: Работает только с обьектами типа SimpleArray
 sites-storages-fieldparams-simplearrayheight:
   ru: Высота массива данных
+sites-storages-fieldparams-addlink:
+  ru: Текст ссылки для добавления строки в массив
 ...

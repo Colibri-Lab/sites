@@ -650,6 +650,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Number',
                             default: ''
                         },
+                        addlink: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-addlink;Текст ссылки для добавления строки в массив}',
+                            note: '#{sites-storages-fieldparams-simplearraywidth-note;Работает только с обьектами типа Array}',
+                            component: 'Text',
+                            default: ''
+                        },
                     }
                 },
                 lookup: {

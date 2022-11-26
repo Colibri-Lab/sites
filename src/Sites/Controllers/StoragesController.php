@@ -171,13 +171,23 @@ class StoragesController extends WebController
             if(!$data['note']) {
                 $data['note'] = null;
             }
-            try {
-                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']);
-            }
-            catch(\Throwable $e) {
-                
-            }
+
+            try { App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']); } catch(\Throwable $e) {}
             $data['note'] && $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;'.$data['note'].'}';
+
+            if($data['group'] !== 'window') {
+                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group.' . $currentLang, $data['group']);
+                $data['group'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group;'.$data['group'].'}';
+            }
+
+            if(isset($data['params'])) {
+
+                if($data['params']['addlink'] ?? '') {
+                    App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-addlink.' . $currentLang, $data['params']['addlink']);
+                    $data['params']['addlink'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-addlink;'.$data['params']['addlink'].'}';
+                }
+    
+            }
 
             if(isset($data['values']) && is_array($data['values'])) {
                 $newValues = [];
