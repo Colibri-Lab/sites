@@ -556,6 +556,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: false
                         },
+                        multiple: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-multiple;Мультивыбор}',
+                            note: '#{sites-storages-fieldparams-readonly-note;Работает только с компонентом типа Select}',
+                            component: 'Checkbox',
+                            default: false
+                        },
                         greed: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',

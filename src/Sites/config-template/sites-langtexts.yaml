@@ -1159,4 +1159,6 @@ sites-storages-fieldparams-size:
   ru: Разрешенные размер файлов в байтах
 sites-storages-fieldparams-fieldgenerator:
   ru: Генератор параметров поля
+sites-storages-fieldparams-multiple:
+  ru: Мультивыбор
 ...
