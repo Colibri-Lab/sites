@@ -175,7 +175,7 @@ class StoragesController extends WebController
             try { App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']); } catch(\Throwable $e) {}
             $data['note'] && $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;'.$data['note'].'}';
 
-            if($data['group'] !== 'window') {
+            if(isset($data['group']) && $data['group'] !== 'window') {
                 App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group.' . $currentLang, $data['group']);
                 $data['group'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group;'.$data['group'].'}';
             }
