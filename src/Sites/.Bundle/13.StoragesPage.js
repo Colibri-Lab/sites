@@ -580,7 +580,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
                             })
                         },
-
                         vertical: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-vertical;Отображать обьект вертикально}',
@@ -588,7 +587,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: false
                         },
-
                         visual: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-visual;Отображать в виде визуального редактора}',
@@ -629,11 +627,23 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Text',
                             default: ''
                         },
+                        fieldgenerator: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-fieldgenerator;Генератор параметров поля}',
+                            component: 'TextArea',
+                            default: ''
+                        },
                         generator: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-generator;Генератор значений}',
                             note: '#{sites-storages-fieldparams-generator-note;Работает только с обьектами типа Text,TextArea}',
                             component: 'TextArea',
+                            default: ''
+                        },
+                        noteClass: {
+                            type: 'varchar',
+                            component: 'Text',
+                            placeholder: '#{sites-storages-fieldparams-note-class;Класс для подсказки}',
                             default: ''
                         },
                         simplearraywidth: {
@@ -657,6 +667,32 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Text',
                             default: ''
                         },
+                        maxadd: {
+                            type: 'int',
+                            component: 'Number',
+                            placeholder: '#{sites-storages-fieldparams-maxadd;Максимальное количество строк в массиве}',
+                            note: '#{sites-storages-fieldparams-maxadd-note;Работает только с обьектами типа Array}',
+                            default: ''
+                        },
+                        title: {
+                            type: 'varchar',
+                            component: 'TextArea',
+                            placeholder: '#{sites-storages-fieldparams-title;Метод формирования заголовка в массиве}',
+                            note: '#{sites-storages-fieldparams-title-note;Работает только с обьектами типа Array: (object, array) => {}}',
+                            default: ''
+                        },
+                        allow: {
+                            type: 'varchar',
+                            component: 'Text',
+                            placeholder: '#{sites-storages-fieldparams-allow;Разрешенные типы файлов}',
+                            note: '#{sites-storages-fieldparams-allow-note;Работает только с обьектами типа File/Files}',
+                        },
+                        size: {
+                            type: 'int',
+                            component: 'Number',
+                            placeholder: '#{sites-storages-fieldparams-size;Разрешенные размер файлов в байтах}',
+                            note: '#{sites-storages-fieldparams-allow-note;Работает только с обьектами типа File/Files}',
+                        }
                     }
                 },
                 lookup: {

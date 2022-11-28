@@ -1141,4 +1141,22 @@ sites-storages-fieldparams-simplearrayheight:
   ru: Высота массива данных
 sites-storages-fieldparams-addlink:
   ru: Текст ссылки для добавления строки в массив
+sites-storages-fieldparams-maxadd:
+  ru: Максимальное количество строк в массиве
+sites-storages-fieldparams-maxadd-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-title:
+  ru: Метод формирования заголовка в массиве
+sites-storages-fieldparams-title-note:
+  ru: 'Работает только с обьектами типа Array: (object, array) => {'
+sites-storages-fieldparams-note-class:
+  ru: Класс для подсказки
+sites-storages-fieldparams-allow:
+  ru: Разрешенные типы файлов
+sites-storages-fieldparams-allow-note:
+  ru: Работает только с обьектами типа File/Files
+sites-storages-fieldparams-size:
+  ru: Разрешенные размер файлов в байтах
+sites-storages-fieldparams-fieldgenerator:
+  ru: Генератор параметров поля
 ...
