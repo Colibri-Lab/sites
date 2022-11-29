@@ -1161,4 +1161,12 @@ sites-storages-fieldparams-fieldgenerator:
   ru: Генератор параметров поля
 sites-storages-fieldparams-multiple:
   ru: Мультивыбор
+sites-storages-fieldparams-validate:
+  ru: Проверка значения поля
+sites-storages-fieldparams-validate-message:
+  ru: Сообщение
+sites-storages-fieldparams-validate-method:
+  ru: Метод
+sites-storages-fieldparams-validate-addlink:
+  ru: Добавить проверку
 ...

@@ -186,6 +186,17 @@ class StoragesController extends WebController
                     App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-addlink.' . $currentLang, $data['params']['addlink']);
                     $data['params']['addlink'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-addlink;'.$data['params']['addlink'].'}';
                 }
+
+                if($data['params']['validate'] ?? '') {
+                    $validate = $data['params']['validate'];
+                    foreach($validate as $index => $validator) {
+                        $key = strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-validator.'.$index;
+                        App::$moduleManager->lang->Save($key.'.' . $currentLang.'.' . $currentLang, $validator['message']);
+                        $validator['message'] = '#{' . $key . ';'.$validator['message'].'}';
+                        $validate[$index] = $validator;
+                    }
+                    $data['params']['validate'] = $validate;
+                }
     
             }
 

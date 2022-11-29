@@ -699,6 +699,26 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Number',
                             placeholder: '#{sites-storages-fieldparams-size;Разрешенные размер файлов в байтах}',
                             note: '#{sites-storages-fieldparams-allow-note;Работает только с обьектами типа File/Files}',
+                        },
+                        validate: {
+                            component: 'Array',
+                            desc: '#{sites-storages-fieldparams-validate;Проверка значения поля}',
+                            placeholder: '#{sites-storages-fieldparams-validate;Проверка значения поля}',
+                            params: {
+                                vertical: true,
+                                addlink: '#{sites-storages-fieldparams-validate-addlink;Добавить проверку}'
+                            },
+                            fields: {
+                                message: {
+                                    component: 'Text',
+                                    placeholder: '#{sites-storages-fieldparams-validate-message;Сообщение}'
+                                },
+                                method: {
+                                    component: 'TextArea',
+                                    placeholder: '#{sites-storages-fieldparams-validate-method;Метод}',
+                                    default: '(field, validator) => { return true; /* false */ }'
+                                },
+                            }
                         }
                     }
                 },
