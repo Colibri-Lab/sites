@@ -52,8 +52,8 @@ class Page extends BaseModelDataRow
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
-            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
-            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
 			'domain' => Domain::JsonSchema,
 			'parent' => Page::JsonSchema,

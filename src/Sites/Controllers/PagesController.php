@@ -4,6 +4,7 @@ namespace App\Modules\Sites\Controllers;
 
 
 use Colibri\App;
+use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Events\EventsContainer;
 use Colibri\IO\FileSystem\File;
 use Colibri\Utils\Cache\Bundle;
@@ -200,7 +201,17 @@ class PagesController extends WebController
                 $page->$k = $v;
             }
         }
-        $page->Save();
+
+        try {
+            $domain->Validate(true);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, $e->getMessage());
+        }
+ 
+        $result = $page->Save();
+        if ($result instanceof QueryInfo) {
+            return $this->Finish(500, $result->error);
+        }
 
         return $this->Finish(200, 'ok', $page->ToArray(true));
 
@@ -234,7 +245,16 @@ class PagesController extends WebController
             }
         }
 
-        $domain->Save();
+        try {
+            $domain->Validate(true);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, $e->getMessage());
+        }
+
+        $result = $domain->Save();
+        if ($result instanceof QueryInfo) {
+            return $this->Finish(500, $result->error);
+        }
 
         return $this->Finish(200, 'ok', $domain->ToArray(true));
 
