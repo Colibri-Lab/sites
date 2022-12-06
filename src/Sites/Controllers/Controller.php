@@ -101,11 +101,11 @@ class Controller extends WebController
                 // компилируем html в javascript
                 $componentName = $file->filename;
                 $res = preg_match('/ComponentName="([^"]*)"/i', $args->content, $matches);
-                if($res > 0) {
+                if ($res > 0) {
                     $componentName = $matches[1];
                 }
                 $compiledContent = str_replace('\'', '\\\'', str_replace("\n", "", str_replace("\r", "", $args->content)));
-                $compiledContent = str_replace('ComponentName="'.$componentName.'"', 'namespace="'.$componentName.'"', $compiledContent);
+                $compiledContent = str_replace('ComponentName="' . $componentName . '"', 'namespace="' . $componentName . '"', $compiledContent);
                 $args->content = 'Colibri.UI.AddTemplate(\'' . $componentName . '\', \'' . $compiledContent . '\');' . "\n";
             }
         });
@@ -115,12 +115,13 @@ class Controller extends WebController
         ]);
         $cssBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.css', 'scss', array(
             ['path' => App::$moduleManager->Sites->modulePath . '.Bundle/'],
-        ));
+        )
+        );
 
         return $this->Finish(
             200,
             'Bundle created successfuly',
-            (object)[
+            (object) [
                 'js' => str_replace('http://', 'https://', App::$request->address) . $jsBundle,
                 'css' => str_replace('http://', 'https://', App::$request->address) . $cssBundle
             ],

@@ -16,68 +16,66 @@ class DataController extends WebController
 
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if(!SecurityModule::$instance->current) {
+        if (!SecurityModule::$instance->current) {
             return $this->Finish(403, 'Permission denied');
         }
 
         $storage = $post->storage;
-        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage.'.list')) {
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             return $this->Finish(403, 'Permission denied');
         }
 
         $term = $post->term;
         $sortField = $post->sortfield;
         $sortOrder = $post->sortorder;
-        $page = (int)$post->page ?: 1;
-        $pagesize = (int)$post->pagesize ?: 20;
+        $page = (int) $post->page ?: 1;
+        $pagesize = (int) $post->pagesize ?: 20;
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         $filters = [];
-        foreach($storage->fields as $field) {
-            if($field->class === 'string') {
-                $filters[] = '{'.$field->name.'} like [[term:string]]';
+        foreach ($storage->fields as $field) {
+            if ($field->class === 'string') {
+                $filters[] = '{' . $field->name . '} like [[term:string]]';
             }
         }
 
-        if(!$sortField) {
+        if (!$sortField) {
             $sortField = '{datecreated}';
+        } else {
+            $sortField = '{' . $sortField . '}';
         }
-        else {
-            $sortField = '{'.$sortField.'}';
-        }
-        if(!$sortOrder) {
+        if (!$sortOrder) {
             $sortOrder = 'asc';
         }
 
-        if(!empty($filters)) {
-            $datarows = $tableClass::LoadByFilter($page, $pagesize, implode(' or ', $filters), $sortField.' '.$sortOrder, ['term' => '%'.$term.'%']);
+        if (!empty($filters)) {
+            $datarows = $tableClass::LoadByFilter($page, $pagesize, implode(' or ', $filters), $sortField . ' ' . $sortOrder, ['term' => '%' . $term . '%']);
+        } else {
+            $datarows = $tableClass::LoadByFilter($page, $pagesize, '', $sortField . ' ' . $sortOrder);
         }
-        else {
-            $datarows = $tableClass::LoadByFilter($page, $pagesize, '', $sortField.' '.$sortOrder);
-        }
-        if(!$datarows) {
+        if (!$datarows) {
             return $this->Finish(400, 'Bad request');
         }
 
         $dataArray = [];
-        foreach($datarows as $datarow) {
+        foreach ($datarows as $datarow) {
             $dataArray[] = $datarow->ToArray(true);
         }
         return $this->Finish(200, 'ok', $dataArray);
 
 
     }
-    
+
     public function Row(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if(!SecurityModule::$instance->current) {
+        if (!SecurityModule::$instance->current) {
             return $this->Finish(403, 'Permission denied');
         }
 
         $storage = $post->storage;
-        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage.'.list')) {
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             return $this->Finish(403, 'Permission denied');
         }
 
@@ -86,52 +84,57 @@ class DataController extends WebController
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadById($id);
-        if(!$datarow) {
+        if (!$datarow) {
             return $this->Finish(400, 'Bad request');
         }
-        
+
         return $this->Finish(200, 'ok', $datarow->ToArray(true));
 
     }
 
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if(!SecurityModule::$instance->current) {
+        if (!SecurityModule::$instance->current) {
             return $this->Finish(403, 'Permission denied');
         }
 
         $storage = $post->storage;
-        $data = (object)$post->data;
+        $data = (object) $post->data;
         $pub = $post->pub;
 
-        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage.($data->id ?? 0 ? '.edit' : '.add'))) {
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . ($data->id ?? 0 ? '.edit' : '.add'))) {
             return $this->Finish(403, 'Permission denied');
         }
 
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
-        
-        if($data->id ?? 0) {
+
+        if ($data->id ?? 0) {
             $datarow = $tableClass::LoadById($data->id);
-            if(!$datarow) {
+            if (!$datarow) {
                 return $this->Finish(400, 'Bad request');
-            }    
-        }
-        else {
+            }
+        } else {
             $datarow = $tableClass::LoadEmpty();
         }
 
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $datarow->$key = $value;
         }
 
+        try {
+            $datarow->Validate(true);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, $e->getMessage());
+        }
+
         $result = $datarow->Save();
-        if($result instanceof QueryInfo) {
+        if ($result instanceof QueryInfo) {
             return $this->Finish(500, $result->error);
         }
 
-        if($pub) {
+        if ($pub) {
             $pub = Publications::LoadById($pub);
             $pub->Save();
             $pub = $pub->ToArray(true);
@@ -144,32 +147,32 @@ class DataController extends WebController
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if(!SecurityModule::$instance->current) {
+        if (!SecurityModule::$instance->current) {
             return $this->Finish(403, 'Permission denied');
         }
 
-        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
             return $this->Finish(403, 'Permission denied');
         }
 
         $storage = $post->storage;
-        if(!$storage) {
+        if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
-        
-        if(!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.'.$storage.'.remove')) {
+
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
             return $this->Finish(403, 'Permission denied');
         }
 
         $ids = $post->ids;
-        if(!$ids) {
+        if (!$ids) {
             return $this->Finish(400, 'Bad request');
         }
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
-        if(!$tableClass::DeleteAllByIds(explode(',', $ids))) {
+        if (!$tableClass::DeleteAllByIds(explode(',', $ids))) {
             return $this->Finish(400, 'Bad request');
         }
 

@@ -27,12 +27,40 @@ use Colibri\Utils\ExtendedObject;
  * @property int|null $row ID записи в хранилище
  * @property string|null $ft Полнотекстовый поиск
  * @property ObjectField|null $object Данные строки
- * @property int|null $order Позиция в рамках страницы
+ * @property float|null $order Позиция в рамках страницы
  * endregion Properties;
  */
 class Publication extends BaseModelDataRow 
 {
 
+    public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+			'domain',
+			'page',
+			'storage',
+			'row',
+			# endregion SchemaRequired;
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'domain' => Domain::JsonSchema,
+			'page' => Page::JsonSchema,
+			'storage' => ['type' => 'string', 'maxLength' => 255],
+			'row' => ['type' => 'integer', ],
+			'ft' => ['type' => ['string', 'null'], ],
+			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => 'string']]]],
+			'order' => ['type' => ['number', 'null'], ],
+			# endregion SchemaProperties;
+        ]
+    ];
     public function Next(): ?Publication
     {
         $domain = $this->domain;

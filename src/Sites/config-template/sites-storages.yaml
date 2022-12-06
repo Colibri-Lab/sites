@@ -206,6 +206,7 @@ domains:
               type: varchar
               length: 20
               desc: Тип
+              class: string
               component: Colibri.UI.Forms.Text
               default: varchar
               attrs:
@@ -213,6 +214,7 @@ domains:
             length:
               type: int
               desc: Длина
+              class: int
               component: Colibri.UI.Forms.Number
               attrs:
                 width: 15%
@@ -325,7 +327,7 @@ pages:
     published:
       type: tinyint
       length: 1
-      class: bool
+      class: int
       desc: Опубликована
       note: Выберите «Да» если хотите опубликовать сайт
       component: Colibri.UI.Forms.Radio
@@ -453,6 +455,7 @@ pages:
               type: varchar
               length: 20
               desc: Тип
+              class: string
               component: Colibri.UI.Forms.Text
               default: varchar
               attrs:
@@ -460,6 +463,7 @@ pages:
             length:
               type: int
               desc: Длина
+              class: int
               component: Colibri.UI.Forms.Number
               attrs:
                 width: 15%

@@ -3,11 +3,11 @@
 namespace App\Modules\Sites\Models;
 
 # region Uses:
+use Colibri\Data\Storages\Fields\DateTimeField;
 use App\Modules\Sites\Models\Domain;
 use Colibri\Data\Storages\Fields\ObjectField;
 use App\Modules\Sites\Models\Fields\ParametersField;
 # endregion Uses;
-use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Common\StringHelper;
@@ -26,15 +26,46 @@ use Colibri\App;
  * @property Page|null $parent Отцовская страница
  * @property string|null $name Наименование раздела
  * @property string|null $description Описание страницы
- * @property bool|null $published Опубликована
+ * @property int|null $published Опубликована
  * @property ObjectField|null $additional Всякое
  * @property ParametersField|null $parameters 
- * @property int|null $order Позиция в рамках parent-а
+ * @property float|null $order Позиция в рамках parent-а
  * endregion Properties;
  * @property-read string $path полный путь от домена
  */
 class Page extends BaseModelDataRow 
 {
+    
+    public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+			'domain',
+			'parent',
+			'name',
+			'description',
+			'published',
+			# endregion SchemaRequired;
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'domain' => Domain::JsonSchema,
+			'parent' => Page::JsonSchema,
+			'name' => ['type' => 'string', 'maxLength' => 255],
+			'description' => ['type' => 'string', 'maxLength' => 255],
+			'published' => ['type' => 'integer', 'enum' => ['0', '1'],],
+			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => ['type' => ['string', 'null'], 'maxLength' => 512],'description' => ['type' => ['string', 'null'], 'maxLength' => 1024],'keywords' => ['type' => ['string', 'null'], 'maxLength' => 1024],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => ['type' => ['string', 'null'], 'maxLength' => 255],'template' => ['type' => ['string', 'null'], 'maxLength' => 255],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['type' => ['string', 'null'], 'maxLength' => 50],'description' => ['type' => ['string', 'null'], 'maxLength' => 255],'type' => ['type' => ['string', 'null'], 'maxLength' => 20],'length' => ['type' => ['integer', 'null'], ],'default' => ['type' => ['string', 'null'], 'maxLength' => 255],'class' => ['type' => ['string', 'null'], 'maxLength' => 255],'component' => ['type' => ['string', 'null'], 'maxLength' => 255],]]],]],
+			'parameters' => ParametersField::JsonSchema,
+			'order' => ['type' => ['number', 'null'], ],
+			# endregion SchemaProperties;
+        ]
+    ];
 
     public function Publications(int $page = -1, $pagesize = 20): Publications
     {

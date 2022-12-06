@@ -349,7 +349,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
             })
             .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                App.Notices.Add(new Colibri.UI.Notice(error.result, Colibri.UI.Notice.Error, 15000));
                 console.error(error);
             });
     }

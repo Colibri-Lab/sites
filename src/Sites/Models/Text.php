@@ -24,10 +24,31 @@ use Colibri\Utils\ExtendedObject;
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
  * @property string|null $title Заголовок
- * @property string $html Содержание
+ * @property string|null $html Содержание блока
  * endregion Properties;
  */
 class Text extends BaseModelDataRow {
+
+    public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+			'html',
+			# endregion SchemaRequired;
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'title' => ['type' => ['string', 'null'], 'maxLength' => 255],
+			'html' => ['type' => 'string', ],
+			# endregion SchemaProperties;
+        ]
+    ];
 
     public function Delete(): QueryInfo
     {
