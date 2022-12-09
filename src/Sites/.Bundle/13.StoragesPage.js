@@ -397,6 +397,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     }
                 },
+                placeholder: {
+                    type: 'varchar',
+                    component: 'TextArea',
+                    group: 'window',
+                    desc: '#{sites-storages-fieldplaceholder;Замещающий текст}',
+                    note: '#{sites-storages-fieldplaceholder-note;Замещающий текст, отображается внутри поля серым текстом}',
+                    params: {
+                        required: false
+                    }
+                },
                 note: {
                     type: 'varchar',
                     component: 'TextArea',

@@ -1169,4 +1169,8 @@ sites-storages-fieldparams-validate-method:
   ru: Метод
 sites-storages-fieldparams-validate-addlink:
   ru: Добавить проверку
+sites-storages-fieldplaceholder:
+  ru: Замещающий текст
+sites-storages-fieldplaceholder-note:
+  ru: Замещающий текст, отображается внутри поля серым текстом
 ...

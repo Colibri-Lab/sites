@@ -158,6 +158,12 @@ class StoragesController extends WebController
             }
             $data['note'] && $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;' . $data['note'] . '}';
 
+            try {
+                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-placeholder.' . $currentLang, $data['placeholder']);
+            } catch (\Throwable $e) {
+            }
+            $data['placeholder'] && $data['placeholder'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-placeholder;' . $data['placeholder'] . '}';
+
             if (isset($data['group']) && $data['group'] !== 'window') {
                 App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group.' . $currentLang, $data['group']);
                 $data['group'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group;' . $data['group'] . '}';
