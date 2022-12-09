@@ -175,7 +175,7 @@ class Publication extends BaseModelDataRow
         return Publications::CreatePublication($domain, $to, $datarow);
     }
 
-    public function Save(): bool
+    public function Save(bool $performValidationBeforeSave = false): bool
     {
         $datarow = $this->DataRow();
         if(!$datarow) {
@@ -184,7 +184,7 @@ class Publication extends BaseModelDataRow
         }
         $this->ft = $datarow->ToString();
         $this->object = json_encode($datarow);
-        return parent::Save();
+        return parent::Save($performValidationBeforeSave);
     }
 
     public function Out(mixed $args = [], string $templateType = 'item'): string
