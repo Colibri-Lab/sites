@@ -4,6 +4,7 @@ namespace App\Modules\Sites\Controllers;
 
 
 use Colibri\App;
+use Colibri\Exceptions\ValidationException;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use App\Modules\Security\Module as SecurityModule;
@@ -125,6 +126,8 @@ class DataController extends WebController
 
         try {
             $datarow->Validate(true);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
         } catch (\Throwable $e) {
             return $this->Finish(500, $e->getMessage());
         }
