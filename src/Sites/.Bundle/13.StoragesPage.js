@@ -553,6 +553,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: true
                         },
+                        canbeempty: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canbeempty;Принимает пустые значения}',
+                            note: '#{sites-storages-fieldparams-canbeempty-note;Значение сможет быть пустым, например пустая строка, или 0 в случае числа}',
+                            component: 'Checkbox',
+                            default: true
+                        },
                         readonly: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-readonly;Только для чтения}',

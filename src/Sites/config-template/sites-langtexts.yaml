@@ -1193,4 +1193,8 @@ sites-storages-fieldparams-removedesc:
   ru: Удалять заголовок поля?
 sites-storages-fieldparams-removedesc-note:
   ru: Работает только с обьектами типа Object/Array
+sites-storages-fieldparams-canbeempty:
+  ru: Принимает пустые значения
+sites-storages-fieldparams-canbeempty-note:
+  ru: Значение сможет быть пустым, например пустая строка, или 0 в случае числа
 ...
