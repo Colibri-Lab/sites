@@ -6,6 +6,7 @@ namespace App\Modules\Sites\Controllers;
 use Colibri\App;
 use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Events\EventsContainer;
+use Colibri\Exceptions\ValidationException;
 use Colibri\IO\FileSystem\File;
 use Colibri\Utils\Cache\Bundle;
 use Colibri\Utils\Debug;
@@ -14,6 +15,7 @@ use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\Templates\PhpTemplate;
 use Colibri\Web\View;
+use InvalidArgumentException;
 use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
 use App\Modules\Sites\Models\Pages;
@@ -136,8 +138,26 @@ class PagesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $datarow->parameters = $post->data;
-        $datarow->Save();
+        $accessPoint = $datarow->Storage()->accessPoint;
+        $accessPoint->Begin();
+
+        try {
+
+            $datarow->parameters = $post->data;
+            $datarow->Save();
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
+
+        $accessPoint->Commit();
 
         return $this->Finish(200, 'ok', $datarow->parameters->ToArray());
     }
@@ -196,23 +216,37 @@ class PagesController extends WebController
             $page = Pages::LoadById($id);
         }
 
-        foreach ($post as $k => $v) {
-            if (!in_array($k, ['domain', 'id', 'parent', 'order'])) {
-                $page->$k = $v;
-            }
-        }
+
+        $accessPoint = $page->Storage()->accessPoint;
+        $accessPoint->Begin();
 
         try {
-            $domain->Validate(true);
-        } catch (\Throwable $e) {
-            return $this->Finish(500, $e->getMessage());
-        }
- 
-        $result = $page->Save();
-        if ($result instanceof QueryInfo) {
-            return $this->Finish(500, $result->error);
-        }
 
+            foreach ($post as $k => $v) {
+                if (!in_array($k, ['domain', 'id', 'parent', 'order'])) {
+                    $page->$k = $v;
+                }
+            }
+
+            if ( ($res = $page->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400); 
+            }
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
+
+        $accessPoint->Commit();
+
+ 
+ 
         return $this->Finish(200, 'ok', $page->ToArray(true));
 
     }
@@ -239,22 +273,33 @@ class PagesController extends WebController
             $domain = Domains::LoadById($id);
         }
 
-        foreach ($post as $k => $v) {
-            if (!in_array($k, ['id', 'datecreated'])) {
-                $domain->$k = $v;
-            }
-        }
+        $accessPoint = $domain->Storage()->accessPoint;
+        $accessPoint->Begin();
 
         try {
-            $domain->Validate(true);
-        } catch (\Throwable $e) {
-            return $this->Finish(500, $e->getMessage());
-        }
 
-        $result = $domain->Save();
-        if ($result instanceof QueryInfo) {
-            return $this->Finish(500, $result->error);
-        }
+            foreach ($post as $k => $v) {
+                if (!in_array($k, ['id', 'datecreated'])) {
+                    $domain->$k = $v;
+                }
+            }
+
+            if ( ($res = $domain->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400); 
+            }
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
+
+        $accessPoint->Commit();
 
         return $this->Finish(200, 'ok', $domain->ToArray(true));
 
@@ -342,19 +387,38 @@ class PagesController extends WebController
 
         $to = $to ? Pages::LoadById($to) : null;
 
-        if (!$sibling || !$to) {
-            if (!$move->MoveTo($to ?: $domain)) {
-                return $this->Finish(400, 'Bad request');
+        
+        $accessPoint = $domain->Storage()->accessPoint;
+        $accessPoint->Begin();
+
+        try {
+
+            if (!$sibling || !$to) {
+                if (!$move->MoveTo($to ?: $domain)) {
+                    throw new InvalidArgumentException('Bad request', 400); 
+                }
+            } else if ($sibling == 'before') {
+                if (!$move->MoveBefore($to)) {
+                    throw new InvalidArgumentException('Bad request', 400); 
+                }
+            } else if ($sibling == 'after') {
+                if (!$move->MoveAfter($to)) {
+                    throw new InvalidArgumentException('Bad request', 400); 
+                }
             }
-        } else if ($sibling == 'before') {
-            if (!$move->MoveBefore($to)) {
-                return $this->Finish(400, 'Bad request');
-            }
-        } else if ($sibling == 'after') {
-            if (!$move->MoveAfter($to)) {
-                return $this->Finish(400, 'Bad request');
-            }
-        }
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
+
+        $accessPoint->Commit();
 
         $pages = Pages::LoadAll();
         $pagesArray = [];

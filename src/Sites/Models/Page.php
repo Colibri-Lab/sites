@@ -22,11 +22,11 @@ use Colibri\App;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property Domain|null $domain Домен
- * @property Page|null $parent Отцовская страница
- * @property string|null $name Наименование раздела
- * @property string|null $description Описание страницы
- * @property int|null $published Опубликована
+ * @property Domain $domain Домен
+ * @property Page $parent Отцовская страница
+ * @property string $name Наименование раздела
+ * @property string $description Описание страницы
+ * @property int $published Опубликована
  * @property ObjectField|null $additional Всякое
  * @property ParametersField|null $parameters 
  * @property float|null $order Позиция в рамках parent-а
@@ -56,13 +56,13 @@ class Page extends BaseModelDataRow
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
 			'domain' => Domain::JsonSchema,
-			'parent' => Page::JsonSchema,
+			'parent' => [ '$ref' => '#' ], 
 			'name' => ['type' => 'string', 'maxLength' => 255],
 			'description' => ['type' => 'string', 'maxLength' => 255],
-			'published' => ['type' => 'integer', 'enum' => ['0', '1'],],
-			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => ['type' => ['string', 'null'], 'maxLength' => 512],'description' => ['type' => ['string', 'null'], 'maxLength' => 1024],'keywords' => ['type' => ['string', 'null'], 'maxLength' => 1024],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => ['type' => ['string', 'null'], 'maxLength' => 255],'template' => ['type' => ['string', 'null'], 'maxLength' => 255],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['type' => ['string', 'null'], 'maxLength' => 50],'description' => ['type' => ['string', 'null'], 'maxLength' => 255],'type' => ['type' => ['string', 'null'], 'maxLength' => 20],'length' => ['type' => ['integer', 'null'], ],'default' => ['type' => ['string', 'null'], 'maxLength' => 255],'class' => ['type' => ['string', 'null'], 'maxLength' => 255],'component' => ['type' => ['string', 'null'], 'maxLength' => 255],]]],]],
+			'published' => ['type' => 'integer', 'enum' => [0, 1],],
+			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 512] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024] ] ],'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024] ] ],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],'type' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20] ] ],'length' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],]]],]],
 			'parameters' => ParametersField::JsonSchema,
-			'order' => ['type' => ['number', 'null'], ],
+			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
 			# endregion SchemaProperties;
         ]
     ];

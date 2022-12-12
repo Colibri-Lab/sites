@@ -12,7 +12,8 @@ domains:
   fields:
     name:
       type: varchar
-      class: ValueField
+      length: 255
+      class: string
       component: Colibri.UI.Forms.Select
       desc: '#{sites-storages-domains-key;Ключ домена}'
       note: '#{sites-storages-domains-key-desc;В конфигурации должны быть указаны
@@ -35,24 +36,15 @@ domains:
         required: true
         readonly: false
     closed:
-      type: tinyint
-      length: 1
+      type: bool
       class: bool
       desc: Закрыт
       note: Выберите «Да» если хотите закрыть сайт
-      component: Colibri.UI.Forms.Radio
+      component: Colibri.UI.Forms.Checkbox
       params:
         required: true
         readonly: false
-      default: "0"
-      selector:
-        value: value
-        title: title
-      values:
-      - value: "0"
-        title: Нет
-      - value: "1"
-        title: Да
+      default: false
     additional:
       type: json
       class: ObjectField
@@ -571,7 +563,7 @@ pubs:
       desc: Страница
       note: Выберите страницу
       params:
-        required: true
+        required: false
         readonly: false
       lookup:
         storage:

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Sites\Models;
 
+use Colibri\Data\MySql\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use App\Modules\Sites\Models\Page;
@@ -11,6 +12,7 @@ use Colibri\Data\Storages\Storages;
 use Colibri\Web\Templates\PhpTemplate;
 use Colibri\Web\Templates\Template;
 use Colibri\Utils\ExtendedObject;
+use InvalidArgumentException;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -21,10 +23,10 @@ use Colibri\Utils\ExtendedObject;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property Domain|null $domain Домен
+ * @property Domain $domain Домен
  * @property Page|null $page Страница
- * @property string|null $storage Хранилище материалов
- * @property int|null $row ID записи в хранилище
+ * @property string $storage Хранилище материалов
+ * @property int $row ID записи в хранилище
  * @property string|null $ft Полнотекстовый поиск
  * @property ObjectField|null $object Данные строки
  * @property float|null $order Позиция в рамках страницы
@@ -41,7 +43,6 @@ class Publication extends BaseModelDataRow
             'datemodified',
             # region SchemaRequired:
 			'domain',
-			'page',
 			'storage',
 			'row',
 			# endregion SchemaRequired;
@@ -52,12 +53,12 @@ class Publication extends BaseModelDataRow
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
 			'domain' => Domain::JsonSchema,
-			'page' => Page::JsonSchema,
+			'page' => [ 'oneOf' => [ [ 'type' => 'null'], Page::JsonSchema ] ],
 			'storage' => ['type' => 'string', 'maxLength' => 255],
 			'row' => ['type' => 'integer', ],
-			'ft' => ['type' => ['string', 'null'], ],
-			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => 'string']]]],
-			'order' => ['type' => ['number', 'null'], ],
+			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
+			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number','string','boolean','object','array','null']]]]],
+			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
 			# endregion SchemaProperties;
         ]
     ];
@@ -98,8 +99,12 @@ class Publication extends BaseModelDataRow
         $prev->order = $thisOrder;
         $this->order = $prevOrder;
         
-        $this->Save();
-        $prev->Save();
+        if( ($res = $this->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
+        if( ($res = $prev->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
 
         return true;
 
@@ -117,9 +122,13 @@ class Publication extends BaseModelDataRow
         $thisOrder = $this->order;
         $next->order = $thisOrder;
         $this->order = $nextOrder;
-        
-        $this->Save();
-        $next->Save();
+
+        if( ($res = $this->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
+        if( ($res = $next->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
         
         return true;
     }
@@ -134,7 +143,9 @@ class Publication extends BaseModelDataRow
             $referencePrev = $reference->Previous();
             $this->order = (($referencePrev ? $referencePrev->order : 0) + $reference->order) / 2;
         }
-        $this->Save();
+        if( ($res = $this->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
         return true;
     }
 
@@ -154,7 +165,9 @@ class Publication extends BaseModelDataRow
         else {
             $this->order = $lastPub->order + Publications::StartOrder;
         }
-        $this->Save();
+        if( ($res = $this->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
         return true;
 
     }
@@ -175,7 +188,7 @@ class Publication extends BaseModelDataRow
         return Publications::CreatePublication($domain, $to, $datarow);
     }
 
-    public function Save(bool $performValidationBeforeSave = false): bool
+    public function Save(bool $performValidationBeforeSave = false): bool|QueryInfo
     {
         $datarow = $this->DataRow();
         if(!$datarow) {

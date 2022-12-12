@@ -3,6 +3,7 @@
 namespace App\Modules\Sites\Controllers;
 
 
+use Colibri\Exceptions\ValidationException;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use App\Modules\Sites\Models\Pages;
@@ -10,6 +11,7 @@ use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
 use App\Modules\Sites\Models\Domains;
+use InvalidArgumentException;
 
 class PublicationsController extends WebController
 {
@@ -145,15 +147,43 @@ class PublicationsController extends WebController
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadEmpty();
-        foreach ($data as $field => $value) {
-            $datarow->$field = $value;
-        }
-        if (!$datarow->Save()) {
-            return $this->Finish(500, 'Can not save row');
-        }
+        
 
-        $newPub = Publications::CreatePublication($domain, $folder, $datarow);
-        $newPub->Save();
+        $accessPoint1 = $domain->Storage()->accessPoint;
+        $accessPoint1->Begin();
+
+        $accessPoint2 = $datarow->Storage()->accessPoint;
+        $accessPoint2->Begin();
+
+        try {
+            foreach ($data as $field => $value) {
+                $datarow->$field = $value;
+            }
+            if ( ($res = $datarow->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400); 
+            }
+    
+            $newPub = Publications::CreatePublication($domain, $folder, $datarow);
+            if( ($res = $newPub->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400); 
+            }
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint1->Rollback();
+            $accessPoint2->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint1->Rollback();
+            $accessPoint2->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint1->Rollback();
+            $accessPoint2->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
+
+        $accessPoint1->Commit();
+        $accessPoint2->Commit();
 
         return $this->Finish(200, 'ok', $newPub->ToArray(true));
 
@@ -183,19 +213,40 @@ class PublicationsController extends WebController
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
-        $pubArray = [];
-        foreach ($ids as $id) {
+        $accessPoint = $domain->Storage()->accessPoint;
+        $accessPoint->Begin();
 
-            $datarow = $tableClass::LoadById($id);
-            if (!$datarow) {
-                continue;
+        try {
+
+            $pubArray = [];
+            foreach ($ids as $id) {
+
+                $datarow = $tableClass::LoadById($id);
+                if (!$datarow) {
+                    continue;
+                }
+
+                $pub = Publications::CreatePublication($domain, $folder, $datarow);
+                if (($res = $pub->Save(true)) !== true) {
+                    throw new InvalidArgumentException($res->error, 400);
+                }
+                $pubArray[] = $pub->ToArray(true);
+
             }
+            
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
 
-            $pub = Publications::CreatePublication($domain, $folder, $datarow);
-            $pub->Save();
-            $pubArray[] = $pub->ToArray(true);
-
-        }
+        $accessPoint->Commit();
 
         return $this->Finish(200, 'ok', $pubArray);
 
@@ -224,7 +275,26 @@ class PublicationsController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $pub->MoveBefore($before);
+
+        $accessPoint = $pub->Storage()->accessPoint;
+        $accessPoint->Begin();
+
+        try {
+
+            $pub->MoveBefore($before);
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
+
+        $accessPoint->Commit();
 
         return $this->Finish(200, 'ok', $pub->ToArray(true));
 

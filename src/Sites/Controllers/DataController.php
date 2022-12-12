@@ -11,6 +11,7 @@ use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
 use Colibri\Data\SqlClient\QueryInfo;
+use InvalidArgumentException;
 
 class DataController extends WebController
 {
@@ -124,24 +125,36 @@ class DataController extends WebController
             $datarow->$key = $value;
         }
 
+        $accessPoint = $datarow->Storage()->accessPoint;
+        $accessPoint->Begin();
+
         try {
-            $datarow->Validate(true);
+            /** @var QueryInfo $res */
+            if ( ($res = $datarow->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400);
+            }
+
+            if ($pub) {
+                $pub = Publications::LoadById($pub);
+                if ( ($res = $pub->Save(true)) !== true) {
+                    throw new InvalidArgumentException($res->error, 400); 
+                }
+                $pub = $pub->ToArray(true);
+            }
+    
+    
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
+            $accessPoint->Rollback();
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
         } catch (\Throwable $e) {
-            return $this->Finish(500, $e->getMessage());
-        }
+            $accessPoint->Rollback();
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        } 
 
-        $result = $datarow->Save();
-        if ($result instanceof QueryInfo) {
-            return $this->Finish(500, $result->error);
-        }
-
-        if ($pub) {
-            $pub = Publications::LoadById($pub);
-            $pub->Save();
-            $pub = $pub->ToArray(true);
-        }
+        $accessPoint->Commit();
 
         return $this->Finish(200, 'ok', ['datarow' => $datarow->ToArray(true), 'pub' => $pub]);
 
