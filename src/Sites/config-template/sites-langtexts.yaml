@@ -1173,4 +1173,24 @@ sites-storages-fieldplaceholder:
   ru: Замещающий текст
 sites-storages-fieldplaceholder-note:
   ru: Замещающий текст, отображается внутри поля серым текстом
+sites-storages-fieldparams-simplearrayheight-note:
+  ru: Работает только с обьектами типа SimpleArray
+sites-storages-fieldparams-addlink-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-removelink:
+  ru: Отобразить удаление обьекта из массива
+sites-storages-fieldparams-removelink-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-updownlink:
+  ru: Отобразить стрелки вверх/вниз
+sites-storages-fieldparams-updownlink-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-initempty:
+  ru: Создать пустой обьект при инициализации?
+sites-storages-fieldparams-initempty-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-removedesc:
+  ru: Удалять заголовок поля?
+sites-storages-fieldparams-removedesc-note:
+  ru: Работает только с обьектами типа Object/Array
 ...

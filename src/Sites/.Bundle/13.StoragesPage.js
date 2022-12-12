@@ -673,16 +673,37 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         simplearrayheight: {
                             type: 'int',
                             placeholder: '#{sites-storages-fieldparams-simplearrayheight;Высота массива данных}',
-                            note: '#{sites-storages-fieldparams-simplearraywidth-note;Работает только с обьектами типа SimpleArray}',
+                            note: '#{sites-storages-fieldparams-simplearrayheight-note;Работает только с обьектами типа SimpleArray}',
                             component: 'Number',
                             default: ''
                         },
-                        addlink: {
+                        addlink: { 
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-addlink;Текст ссылки для добавления строки в массив}',
-                            note: '#{sites-storages-fieldparams-simplearraywidth-note;Работает только с обьектами типа Array}',
+                            note: '#{sites-storages-fieldparams-addlink-note;Работает только с обьектами типа Array}',
                             component: 'Text',
                             default: ''
+                        },
+                        removelink: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-removelink;Отобразить удаление обьекта из массива}',
+                            note: '#{sites-storages-fieldparams-removelink-note;Работает только с обьектами типа Array}',
+                            component: 'Checkbox',
+                            default: true
+                        },
+                        updownlink: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-updownlink;Отобразить стрелки вверх/вниз}',
+                            note: '#{sites-storages-fieldparams-updownlink-note;Работает только с обьектами типа Array}',
+                            component: 'Checkbox',
+                            default: true
+                        },
+                        initempty: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-initempty;Создать пустой обьект при инициализации?}',
+                            note: '#{sites-storages-fieldparams-initempty-note;Работает только с обьектами типа Array}',
+                            component: 'Checkbox',
+                            default: true
                         },
                         maxadd: {
                             type: 'int',
@@ -697,6 +718,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             placeholder: '#{sites-storages-fieldparams-title;Метод формирования заголовка в массиве}',
                             note: '#{sites-storages-fieldparams-title-note;Работает только с обьектами типа Array: (object, array) => {}}',
                             default: ''
+                        },
+                        removedesc: {
+                            type: 'bool',
+                            component: 'Checkbox',
+                            placeholder: '#{sites-storages-fieldparams-removedesc;Удалять заголовок поля?}',
+                            note: '#{sites-storages-fieldparams-removedesc-note;Работает только с обьектами типа Object/Array}',
+                            default: true
                         },
                         allow: {
                             type: 'varchar',
