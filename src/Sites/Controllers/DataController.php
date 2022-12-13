@@ -84,6 +84,9 @@ class DataController extends WebController
         $id = $post->row;
 
         $storage = Storages::Create()->Load($storage);
+        if(!$storage) {
+            return $this->Finish(400, 'Bad request');
+        }
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadById($id);
         if (!$datarow) {
