@@ -137,7 +137,7 @@ domains:
                 title: title
               params:
                 readonly: true
-                required: true
+                required: false
               lookup:
                 depends: additional?.settings
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
@@ -158,7 +158,7 @@ domains:
                 title: title
               params:
                 readonly: true
-                required: true
+                required: false
               lookup:
                 depends: additional?.settings
                 method: ' (term, dependsValue) => new Promise((resolve, reject) =>
@@ -388,6 +388,9 @@ pages:
               component: Colibri.UI.Forms.Select
               desc: Шаблон
               note: Введите описание сайта
+              params:
+                required: false
+                readonly: false
               selector:
                 value: value
                 title: title
@@ -406,6 +409,9 @@ pages:
               component: Colibri.UI.Forms.Select
               desc: Шаблон
               note: Введите описание сайта
+              params:
+                required: false
+                readonly: false
               selector:
                 value: value
                 title: title

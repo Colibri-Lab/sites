@@ -44,7 +44,7 @@ class Text extends BaseModelDataRow {
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255] ] ],
+			'title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'html' => ['type' => 'string', ],
 			# endregion SchemaProperties;
         ]

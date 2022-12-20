@@ -179,7 +179,7 @@ class StoragesController extends WebController
                 if ($data['params']['validate'] ?? '') {
                     $validate = $data['params']['validate'];
                     foreach ($validate as $index => $validator) {
-                        $key = strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-validator.' . $index;
+                        $key = strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-validator-' . $index;
                         App::$moduleManager->lang->Save($key . '.' . $currentLang . '.' . $currentLang, $validator['message']);
                         $validator['message'] = '#{' . $key . ';' . $validator['message'] . '}';
                         $validate[$index] = $validator;
