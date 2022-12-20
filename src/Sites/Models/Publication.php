@@ -55,10 +55,10 @@ class Publication extends BaseModelDataRow
 			'domain' => Domain::JsonSchema,
 			'page' => [ 'oneOf' => [ [ 'type' => 'null'], Page::JsonSchema ] ],
 			'storage' => ['type' => 'string', 'maxLength' => 255, ],
-			'row' => ['type' => 'integer', 'minLength' => 1, ],
+			'row' => ['type' => 'integer', ],
 			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
 			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number','string','boolean','object','array','null']]]]],
-			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', 'minLength' => 1, ] ] ],
+			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
 			# endregion SchemaProperties;
         ]
     ];
