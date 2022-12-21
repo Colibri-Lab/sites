@@ -26,7 +26,7 @@ use Colibri\App;
  * @property Page|null $parent Отцовская страница
  * @property string $name Наименование раздела
  * @property string $description Описание страницы
- * @property int $published Опубликована
+ * @property bool $published Опубликована
  * @property ObjectField|null $additional Всякое
  * @property ParametersField|null $parameters 
  * @property float|null $order Позиция в рамках parent-а
@@ -58,7 +58,7 @@ class Page extends BaseModelDataRow
 			'parent' => [ 'oneOf' => [ [ 'type' => 'null' ], ['$ref' => '#'] ] ], 
 			'name' => ['type' => 'string', 'maxLength' => 255, ],
 			'description' => ['type' => 'string', 'maxLength' => 255, ],
-			'published' => ['type' => 'integer', 'enum' => [0, 1],],
+			'published' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 512, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'type' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],'length' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],]],
 			'parameters' => [ 'oneOf' => [ [ 'type' => 'null'], ParametersField::JsonSchema ] ],
 			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],

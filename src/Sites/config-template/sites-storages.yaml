@@ -317,24 +317,17 @@ pages:
         runtime: (field, form) => { const nameField = form.FindField("name"); if(!nameField.value)
           { nameField.value = field.value.CyrToUrl(3); } }
     published:
-      type: tinyint
-      length: 1
-      class: int
+      type: boolean
+      class: bool
       desc: Опубликована
-      note: Выберите «Да» если хотите опубликовать сайт
-      component: Colibri.UI.Forms.Radio
+      component: Colibri.UI.Forms.Checkbox
       params:
         required: true
         readonly: false
-      default: "0"
+      default: false
       selector:
         value: value
         title: title
-      values:
-      - value: "0"
-        title: Нет
-      - value: "1"
-        title: Да
     additional:
       type: json
       class: ObjectField
