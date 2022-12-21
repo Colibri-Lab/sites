@@ -23,7 +23,7 @@ use Colibri\App;
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
  * @property Domain $domain Домен
- * @property Page $parent Отцовская страница
+ * @property Page|null $parent Отцовская страница
  * @property string $name Наименование раздела
  * @property string $description Описание страницы
  * @property int $published Опубликована
@@ -44,7 +44,6 @@ class Page extends BaseModelDataRow
             'datemodified',
             # region SchemaRequired:
 			'domain',
-			'parent',
 			'name',
 			'description',
 			'published',
@@ -56,7 +55,7 @@ class Page extends BaseModelDataRow
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
 			'domain' => Domain::JsonSchema,
-			'parent' => [ '$ref' => '#' ], 
+			'parent' => [ 'oneOf' => [ [ 'type' => 'null' ], ['$ref' => '#'] ] ], 
 			'name' => ['type' => 'string', 'maxLength' => 255, ],
 			'description' => ['type' => 'string', 'maxLength' => 255, ],
 			'published' => ['type' => 'integer', 'enum' => [0, 1],],

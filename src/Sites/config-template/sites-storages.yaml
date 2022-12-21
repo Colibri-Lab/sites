@@ -289,7 +289,7 @@ pages:
       desc: Отцовская страница
       default: "0"
       params:
-        required: true
+        required: false
         readonly: false
       lookup:
         storage:
