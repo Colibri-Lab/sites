@@ -1,0 +1,93 @@
+sites-structure-folders-title:
+  ru: Разделы сайта
+sites-structure-publications-title:
+  ru: Публикации
+sites-structure-search-placeholder:
+  ru: Поиск
+sites-structure-publicationsempty:
+  ru: Публикаций не найдено
+sites-structure-publications-created:
+  ru: Создана
+sites-structure-publications-page:
+  ru: Страница
+sites-structure-publications-mainpage:
+  ru: Главная страница
+sites-structure-publications-storage:
+  ru: Хранилище
+sites-structure-publications-row:
+  ru: Строка
+sites-structure-publications-data:
+  ru: Данные
+sites-structure-buttons-publish:
+  ru: Публикация
+sites-structure-buttons-adddata:
+  ru: Данные
+sites-structure-buttons-editdata:
+  ru: Редактировать
+sites-structure-buttons-deletedata:
+  ru: Удалить
+sites-structure-contextmenu-newdomain:
+  ru: Новый домен
+sites-structure-contextmenu-newchild:
+  ru: Новый дочерний раздел
+sites-structure-contextmenu-editdomain:
+  ru: Редактировать домен
+sites-structure-contextmenu-editprops:
+  ru: Редактировать доп. свойства
+sites-structure-contextmenu-deletedomain:
+  ru: Удалить домен
+sites-structure-contextmenu-editpage:
+  ru: Редактировать раздел
+sites-structure-contextmenu-deletepage:
+  ru: Удалить раздел
+sites-structure-contextmenu-copypath:
+  ru: Скопировать путь (ссылку)
+sites-structure-windowtitle-newdomain:
+  ru: Новый домен
+sites-structure-windowtitle-editdomain:
+  ru: Редактировать домен
+sites-structure-windowtitle-editdomainprops:
+  ru: Редактировать доп. свойства домена
+sites-structure-windowtitle-noeditdomainprops:
+  ru: Свойства не найдены
+sites-structure-deletedomain:
+  ru: Удаление домена
+sites-structure-deletedomainmessage:
+  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены
+    безвозвратно
+sites-structure-windowtitle-newchildpage:
+  ru: Новый дочерний раздел
+sites-structure-windowtitle-editpage:
+  ru: Редактировать раздел
+sites-structure-windowtitle-editpageprops:
+  ru: Редактировать доп. свойства страницы
+sites-structure-windowtitle-noeditpageprops:
+  ru: Свойства не найдены
+sites-structure-deletepage:
+  ru: Удаление папки
+sites-structure-deletepagemessage:
+  ru: Вы уверены, что хотите удалить папку?
+sites-structure-windowtitle-urlcopied:
+  ru: Путь скопирован
+sites-structure-windowtitle-urlcopiedtext:
+  ru: Путь к разделу успешно скопирован в буфер обмена
+sites-structure-windowtitle-urlcopiederror:
+  ru: Путь не скопирован
+sites-structure-windowtitle-urlcopiederrortext:
+  ru: Не получилось скопировать путь к разделу
+sites-structure-contextmenu-editpub:
+  ru: Редактировать данные публикации
+sites-structure-windowtitle-deletepub:
+  ru: Удалить публикацию
+sites-structure-messages-removepublication:
+  ru: Удаление публикации
+sites-structure-messages-removepublicationmessage:
+  ru: Вы уверены, что хотите удалить выбранную публикацию?
+sites-structure-messages-removepublications:
+  ru: Удаление публикаций
+sites-structure-messages-removepublicationsmessage:
+  ru: Вы уверены, что хотите удалить выбранные публикации?
+sites-structure-windowtitle-newrow:
+  ru: Новая строка
+sites-structure-windowtitle-publish:
+  ru: Публикация данных

@@ -1,0 +1,500 @@
+sites-storages-contextmenu-add:
+  ru: Новое хранилище
+  en: New storage
+sites-storages-contextmenu-editfields:
+  ru: Редактировать свойства хранилища
+  en: Edit storage properties
+sites-storages-contextmenu-remove:
+  ru: Удалить хранилище
+  en: Delete storage
+sites-storages-contextmenu-newfield:
+  ru: Новое свойство
+  en: New property
+sites-storages-contextmenu-newindex:
+  ru: Новый индекс
+  en: New index
+sites-storages-contextmenu-newvirtualfield:
+  ru: Новое виртуальное свойство
+  en: New virtual property
+sites-storages-contextmenu-editfield:
+  ru: Редактировать свойство
+  en: Edit property
+sites-storages-contextmenu-removefield:
+  ru: Удалить свойство
+  en: Delete property
+sites-storages-contextmenu-editindex:
+  ru: Редактировать индекс
+  en: Edit index
+sites-storages-contextmenu-removeindex:
+  ru: Удалить индекс
+  en: Delete index
+sites-storages-storagename:
+  ru: Наименование хранилища
+  en: Storage name
+sites-storages-storagename-note:
+  ru: Пожалуйста, введите наименование. Внимание! должно содержать только
+    латинские буквы и цифры без тире, дефисов и пробелов
+  en: Please enter a name. Attention! must contain only latin letters and numbers
+    without dashes, hyphens and spaces
+sites-storages-storagename-validation-required:
+  ru: Пожалуйста, введите наименование хранилища
+  en: Please enter a storage name
+sites-storages-storagename-validation-regexp:
+  ru: Введенный текст не соответствует требованиям
+  en: The entered text does not match the requirements
+sites-storages-storagedesc:
+  ru: Описание
+  en: Description
+sites-storages-storagedesc-note:
+  ru: Описание, в свободной форме
+  en: Description, in free form
+sites-storages-storagedesc-validation-required:
+  ru: Пожалуйста, введите описание хранилища
+  en: Please enter a description
+sites-storages-storagegroup:
+  ru: Группа
+  en: Group
+sites-storages-storagegroup-note:
+  ru: Группа, в свободной форме
+sites-storages-storageaccesspoint:
+  ru: Подключение
+  en: Access point
+sites-storages-storageaccesspoint-note:
+  ru: Внинание! Предполагается, что вы знаете, что делаете!
+  en: Attention! You are supposed to know what you are doing!
+sites-storages-storageaccesspoint-validation-required:
+  ru: Пожалуйста, выберите подключение
+  en: Please select an access point
+sites-storages-storagemodels:
+  ru: Модели
+  en: Models
+sites-storages-storagemodels-note:
+  ru: Название классов моделей. Внимание! Неймспейс должен начинаться с Models\\
+  en: The name of the model classes. Attention! Namespace must start with Models\\
+sites-storages-storagemodels-table:
+  ru: Таблица
+  en: Table model
+sites-storages-storagemodels-row:
+  ru: Строка
+  en: Row model
+sites-storages-storagemodels-validation-required:
+  ru: Пожалуйста, введите наименование классов моделей таблицы и строки
+  en: Please enter the name of the table and row model classes
+sites-storages-storagecomponents:
+  ru: Компоненты
+  en: Components
+sites-storages-storagecomponents-note:
+  ru: Компоненты для отображения, если проект в режиме «Приложение»
+  en: Components to display if the project is in Application mode
+sites-storages-storagecomponents-default:
+  ru: Компонент по умолчанию
+  en: Default Component
+sites-storages-storagecomponents-list:
+  ru: Компонент в списке
+  en: Component in the list
+sites-storages-storagecomponents-item:
+  ru: Компонент карточка
+  en: Card component
+sites-storages-storagetemplates:
+  ru: Шаблоны
+  en: Templates
+sites-storages-storagetemplates-note:
+  ru: Шаблоны для отображения, если проект в режиме «Вебсайт»
+  en: Templates to display if the project is in Website mode
+sites-storages-storagetemplates-default:
+  ru: Шаблон по умолчанию
+  en: Default template
+sites-storages-storagetemplates-list:
+  ru: Шаблон в списке
+  en: Template in the list
+sites-storages-storagetemplates-item:
+  ru: Шаблон карточка
+  en: Card template
+sites-storages-storageadditional:
+  ru: Дополнительные параметры
+  en: Extra options
+sites-storages-storageadditional-visible:
+  ru: Отображать в менеджере хранилищ
+  en: Show in storage manager
+sites-storages-storageadditional-maybepublished:
+  ru: Данные могут быть опубликованы
+  en: Data may be published
+sites-storages-fieldname:
+  ru: Наименование свойства
+  en: Property name
+sites-storages-fieldname-note:
+  ru: Пожалуйста, введите наименование. Внимание! должно содержать только
+    латинские буквы и цифры без тире, дефисов и пробелов.
+  en: Please enter a name. Attention! must contain only Latin letters and numbers
+    without dashes, hyphens and spaces.
+sites-storages-fieldname-validation-required:
+  ru: Пожалуйста, введите наименование свойства
+  en: Please enter a property name
+sites-storages-fieldname-validation-regexp:
+  ru: Введенный текст не соответствует требованиям
+  en: The entered text does not match the requirements
+sites-storages-fieldgroup:
+  ru: Группа свойств
+sites-storages-fieldgroup-note:
+  ru: Наименование группы, если нужно оставить в основной то нужно написать
+    "window"
+sites-storages-fieldgroup-validation-required:
+  ru: Пожалуйста, введите группу свойств
+sites-storages-fielddesc:
+  ru: Описание свойства
+sites-storages-fielddesc-note:
+  ru: Можно на русском языке. Внимание! Описание должно полностью описывать
+    свойство, учитывайте, что модель будет возвращать модель указанную в поле
+    Класс.
+sites-storages-fielddesc-validation-required:
+  ru: Пожалуйста, опишите свойство
+sites-storages-fieldplaceholder:
+  ru: Замещающий текст
+sites-storages-fieldplaceholder-note:
+  ru: Замещающий текст, отображается внутри поля серым текстом
+sites-storages-fieldnote:
+  ru: Подсказка
+sites-storages-fieldnote-note:
+  ru: Подсказка, отображается под полем серым текстом
+sites-storages-fieldtype:
+  ru: Тип свойства (для хранения в источнике данных)
+sites-storages-fieldtype-note:
+  ru: Внинание! Предполагается, что вы знаете, что делаете!
+sites-storages-fieldtype-validation-required:
+  ru: Пожалуйста, введите тип свойства
+sites-storages-fieldlength:
+  ru: Длина в байтах
+sites-storages-fieldlength-note:
+  ru: Внинание! Предполагается, что вы знаете, что делаете!
+sites-storages-fieldcomponent:
+  ru: Компонента
+sites-storages-fieldcomponent-note:
+  ru: Выберите компоненту, которая будет использоваться в формах для ввода и
+    редактирования данных
+sites-storages-fieldcomponent-validation-required:
+  ru: Пожалуйста, выберите компоненту
+sites-storages-fieldclass:
+  ru: Класс (PHP)
+sites-storages-fieldclass-note:
+  ru: Внимание! Класс должен существовать
+sites-storages-fieldclass-validation-required:
+  ru: Пожалуйста, выберите наименование класса
+sites-storages-fieldsetdefault:
+  ru: Указать значение по умолчанию
+sites-storages-fielddefault:
+  ru: Значение по умолчанию
+sites-storages-fielddefault-note:
+  ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что
+    делаете
+sites-storages-fieldattrs:
+  ru: Аттрибуты
+sites-storages-fieldattrs-note:
+  ru: Атрибуты компонента
+sites-storages-fieldattrs-width:
+  ru: Ширина
+sites-storages-fieldattrs-height:
+  ru: Высота
+sites-storages-fieldattrs-class:
+  ru: Класс
+sites-storages-fieldparams:
+  ru: Дополнительные параметры
+sites-storages-fieldparams-required:
+  ru: Обязательное поле
+sites-storages-fieldparams-required-note:
+  ru: Будет требоваться ввести значение в форме. Пустое значение будет
+    трактоваться как "нет значения"
+sites-storages-fieldparams-enabled:
+  ru: Поле включено
+sites-storages-fieldparams-enabled-note:
+  ru: Не будет возможности ввести или изменить поле. Значение не будет
+    передаваться в форме, если не будет введено
+sites-storages-fieldparams-canbeempty:
+  ru: Принимает пустые значения
+sites-storages-fieldparams-canbeempty-note:
+  ru: Значение сможет быть пустым, например пустая строка, или 0 в случае числа
+sites-storages-fieldparams-readonly:
+  ru: Только для чтения
+sites-storages-fieldparams-readonly-note:
+  ru: Работает только с компонентом типа Select
+sites-storages-fieldparams-list:
+  ru: Отображать в списке
+sites-storages-fieldparams-multiple:
+  ru: Мультивыбор
+sites-storages-fieldparams-greed:
+  ru: Жадность в списке
+sites-storages-fieldparams-greed-note:
+  ru: Указывается в процентах
+sites-storages-fieldparams-viewer:
+  ru: Класс Viewer (для отображения в списках)
+sites-storages-fieldparams-viewer-note:
+  ru: Выберите из списка
+sites-storages-fieldparams-vertical:
+  ru: Отображать обьект вертикально
+sites-storages-fieldparams-vertical-note:
+  ru: Работает только с обьектами типа Object и Array
+sites-storages-fieldparams-visual:
+  ru: Отображать в виде визуального редактора
+sites-storages-fieldparams-visual-note:
+  ru: Используется только в большом текстовом поле
+sites-storages-fieldparams-code:
+  ru: Отображать в виде редактора кода
+sites-storages-fieldparams-code-note:
+  ru: Используется только в большом текстовом поле
+sites-storages-fieldparams-mask:
+  ru: Маска ввода
+sites-storages-fieldparams-mask-note:
+  ru: Работает только с обьектами типа Text
+sites-storages-fieldparams-fieldgenerator:
+  ru: Генератор параметров поля
+sites-storages-fieldparams-generator:
+  ru: Генератор значений
+sites-storages-fieldparams-generator-note:
+  ru: Работает только с обьектами типа Text,TextArea
+sites-storages-fieldparams-note-class:
+  ru: Класс для подсказки
+sites-storages-fieldparams-simplearraywidth:
+  ru: Длина массива данных
+sites-storages-fieldparams-simplearraywidth-note:
+  ru: Работает только с обьектами типа SimpleArray
+sites-storages-fieldparams-simplearrayheight:
+  ru: Высота массива данных
+sites-storages-fieldparams-simplearrayheight-note:
+  ru: Работает только с обьектами типа SimpleArray
+sites-storages-fieldparams-addlink:
+  ru: Текст ссылки для добавления строки в массив
+sites-storages-fieldparams-addlink-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-removelink:
+  ru: Отобразить удаление обьекта из массива
+sites-storages-fieldparams-removelink-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-updownlink:
+  ru: Отобразить стрелки вверх/вниз
+sites-storages-fieldparams-updownlink-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-initempty:
+  ru: Создать пустой обьект при инициализации?
+sites-storages-fieldparams-initempty-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-maxadd:
+  ru: Максимальное количество строк в массиве
+sites-storages-fieldparams-maxadd-note:
+  ru: Работает только с обьектами типа Array
+sites-storages-fieldparams-title:
+  ru: Метод формирования заголовка в массиве
+sites-storages-fieldparams-title-note:
+  ru: "Работает только с обьектами типа Array: (object, array) => {"
+sites-storages-fieldparams-removedesc:
+  ru: Удалять заголовок поля?
+sites-storages-fieldparams-removedesc-note:
+  ru: Работает только с обьектами типа Object/Array
+sites-storages-fieldparams-allow:
+  ru: Разрешенные типы файлов
+sites-storages-fieldparams-allow-note:
+  ru: Работает только с обьектами типа File/Files
+sites-storages-fieldparams-size:
+  ru: Разрешенные размер файлов в байтах
+sites-storages-fieldparams-validate:
+  ru: Проверка значения поля
+sites-storages-fieldparams-validate-addlink:
+  ru: Добавить проверку
+sites-storages-fieldparams-validate-message:
+  ru: Сообщение
+sites-storages-fieldparams-validate-method:
+  ru: Метод
+sites-storages-fieldlookup:
+  ru: Связка
+sites-storages-fieldlookup-note:
+  ru: Связь с другими хранилищами
+sites-storages-fieldlookup-oneof-none:
+  ru: Нет связи
+sites-storages-fieldlookup-oneof-storage:
+  ru: Хранилище
+sites-storages-fieldlookup-oneof-accesspoint:
+  ru: Точка доступа
+sites-storages-fieldlookup-oneof-method:
+  ru: Метод
+sites-storages-fieldlookup-oneof-binding:
+  ru: Байдинг к данным
+sites-storages-fieldlookup-oneof-controller:
+  ru: Контроллер
+sites-storages-fieldlookup-storage:
+  ru: Хранилище
+sites-storages-fieldlookup-storage-name:
+  ru: Хранилище
+sites-storages-fieldlookup-storage-select:
+  ru: Поля в выборке
+sites-storages-fieldlookup-storage-select-note:
+  ru: Внимание, название полей в списке необходимо писать в фигурных скобках
+sites-storages-fieldlookup-storage-title:
+  ru: Поле для вывода
+sites-storages-fieldlookup-storage-title-note:
+  ru: Название поля, без фигурных скобок
+sites-storages-fieldlookup-storage-value:
+  ru: Поле для значения
+sites-storages-fieldlookup-storage-value-note:
+  ru: Название поля, без фигурных скобок
+sites-storages-fieldlookup-storage-group:
+  ru: Поле для группы
+sites-storages-fieldlookup-storage-group-note:
+  ru: Название поля, без фигурных скобок
+sites-storages-fieldlookup-storage-order:
+  ru: Сортировка
+sites-storages-fieldlookup-storage-order-note:
+  ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
+sites-storages-fieldlookup-storage-depends:
+  ru: Связь с другим полем
+sites-storages-fieldlookup-storage-depends-note:
+  ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап
+    необходимо наличие такого поля, так же как и исходной таблице
+sites-storages-fieldlookup-storage-controller:
+  ru: Контроллер (JS)
+sites-storages-fieldlookup-storage-controller-note:
+  ru: Куда обращаться за получением данных по выборке
+sites-storages-fieldlookup-storage-controller-module:
+  ru: Модуль
+sites-storages-fieldlookup-storage-controller-class:
+  ru: Класс
+sites-storages-fieldlookup-storage-controller-method:
+  ru: Метод
+sites-storages-fieldlookup-controller:
+  ru: Контроллер (JS)
+sites-storages-fieldlookup-controller-module:
+  ru: Модуль
+sites-storages-fieldlookup-controller-class:
+  ru: Класс
+sites-storages-fieldlookup-controller-method:
+  ru: Метод
+sites-storages-fieldlookup-controller-depends:
+  ru: Связь с другим полем
+sites-storages-fieldlookup-binding:
+  ru: Байндинг
+sites-storages-fieldlookup-method:
+  ru: Метод
+sites-storages-fieldlookup-accesspoint:
+  ru: Точка доступа
+sites-storages-fieldlookup-accesspoint-table:
+  ru: Таблица
+sites-storages-fieldlookup-accesspoint-fields:
+  ru: Список полей
+sites-storages-fieldlookup-accesspoint-filter:
+  ru: Фильтр
+sites-storages-fieldlookup-accesspoint-order:
+  ru: Сортировка
+sites-storages-fieldvalues:
+  ru: Значения
+sites-storages-fieldvalues-value:
+  ru: Поле для значения
+sites-storages-fieldvalues-title:
+  ru: Поле для вывода
+sites-storages-fieldselector:
+  ru: Выборка
+sites-storages-fieldselector-note:
+  ru: Дополнительные настройки для компонента Select
+sites-storages-fieldselector-value:
+  ru: Поле значения
+sites-storages-fieldselector-title:
+  ru: Поле заголовка
+sites-storages-fieldselector-group:
+  ru: Поле для группировки
+sites-storages-fieldselector-render:
+  ru: Метод для вывода выборки
+sites-storages-fieldselector-ondemand:
+  ru: Загружать при запросе
+sites-storages-fieldexpression:
+  ru: Выражение
+sites-storages-fieldexpression-note:
+  ru: Введите выражение для создания поля. Внимание! Предполагается что вы знаете
+    что делаете
+sites-storages-indexname:
+  ru: Наименование индекса
+sites-storages-indexname-note:
+  ru: "Внимание! Рекомендуется индекс называть следующим образом:
+    storage_fields_idx, где storage название хранилища fields - список полей
+    через _"
+sites-storages-indexname-validation-required:
+  ru: Пожалуйста, введите наименование индекса
+sites-storages-indexname-validation-regexp:
+  ru: Введенный текст не соответствует требованиям
+sites-storages-indexfields:
+  ru: Спосок свойств
+sites-storages-indexfields-note:
+  ru: Выберите список свойств по которым необходимо индексировать
+sites-storages-indexfields-validation-required:
+  ru: Пожалуйста, выберите свойства
+sites-storages-indextype:
+  ru: Тип индекса
+sites-storages-indextype-note:
+  ru: Внинание! Предполагается, что вы знаете, что делаете!
+sites-storages-indextype-validation-required:
+  ru: Пожалуйста, выберите тип индекса
+sites-storages-indexmethod:
+  ru: Компонента
+sites-storages-indexmethod-note:
+  ru: Выберите компоненту, которая будет использоваться в формах для ввода и
+    редактирования данных
+sites-storages-values-binary:
+  ru: Бинарное дерево
+sites-storages-values-hash:
+  ru: Хэш функция
+sites-storages-indexmethod-validation-required:
+  ru: Пожалуйста, выберите метод индексирования
+sites-storages-windowtitle-newstorage:
+  ru: Новое хранилище
+  en: New storage
+sites-storages-windowtitle-editstorage:
+  ru: Редактировать хранилище
+  en: Edit storage
+sites-storages-messages-removestorage:
+  ru: Удаление хранилища данных
+  en: Delete storage
+sites-storages-messages-removestoragemessage:
+  ru: Вы уверены, что хотите удалить хранилище данных?
+  en: Are you sure you want to delete the datastore?
+sites-storages-windowtitle-newproperty:
+  ru: Новое свойство
+  en: New property
+sites-storages-windowtitle-newvirtualproperty:
+  ru: Новое виртуальное свойство
+  en: New virtual property
+sites-storages-windowtitle-editproperty:
+  ru: Редактировать свойство
+  en: Edit property
+sites-storages-messages-removeproperty:
+  ru: Удаление свойства
+  en: Delete property
+sites-storages-messages-removepropertymessage:
+  ru: Вы уверены, что хотите удалить свойство?
+  en: Are you sure you want to delete the property?
+sites-storages-windowtitle-newindex:
+  ru: Новый индекс
+  en: New index
+sites-storages-windowtitle-editindex:
+  ru: Редактировать индекс
+  en: Edit index
+sites-storages-messages-removeindex:
+  ru: Удаление индекса
+  en: Delete index
+sites-storages-messages-removeindexmessage:
+  ru: Вы уверены, что хотите удалить индекс?
+  en: Are you sure you want to delete the index?
+sites-storagesmanager-title:
+  ru: Хранилища материалов
+sites-storages-storagetemplates-default-: {}
+sites-storages-storagetemplates-default-unselected:
+  ru: Шаблон не выбран
+  en: Template is not selected
+sites-storages-fieldvalues-type:
+  ru: Тип значения
+sites-storages-fieldvalues-type-:
+  ru: Тип значения
+sites-storages-fieldvalues-type-text:
+  ru: Текст
+sites-storages-fieldvalues-type-number:
+  ru: Число
+sites-storages-storagegroupenabled:
+  ru: Включить группу
+  en: Enable group
+sites-storages-fieldgroupenabled:
+  ru: Включить группу
+  en: Enable group

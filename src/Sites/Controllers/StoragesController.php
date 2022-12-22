@@ -38,17 +38,10 @@ class StoragesController extends WebController
         $name = $data['name'];
         unset($data['name']);
 
-        // если есть мультиязыковая поддержка
-        if (App::$moduleManager->lang) {
-            // desc, note
-            $currentLang = App::$moduleManager->lang->current;
-
-            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $name . '-desc.' . $currentLang, $data['desc']);
-            $data['desc'] = '#{' . strtolower($module) . '-storages-' . $name . '-desc;' . $data['desc'] . '}';
-
-            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $name . '-group.' . $currentLang, $data['group']);
-            $data['group'] = '#{' . strtolower($module) . '-storages-' . $name . '-group;' . $data['group'] . '}';
-
+        if(!$data['group_enabled'] || $data['group_enabled'] === false) {
+            unset($data['group']);
+            unset($data['group_enabled']);
+            $data['group'] = null;
         }
 
         $data['module'] = $module;
@@ -140,77 +133,12 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        // если есть мультиязыковая поддержка
-        if (App::$moduleManager->lang) {
-            // desc, note
-            $currentLang = App::$moduleManager->lang->current;
-
-            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-desc.' . $currentLang, $data['desc']);
-            $data['desc'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-desc;' . $data['desc'] . '}';
-
-            if (!$data['note']) {
-                $data['note'] = null;
-            }
-
-            try {
-                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note.' . $currentLang, $data['note']);
-            } catch (\Throwable $e) {
-            }
-            $data['note'] && $data['note'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-note;' . $data['note'] . '}';
-
-            try {
-                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-placeholder.' . $currentLang, $data['placeholder']);
-            } catch (\Throwable $e) {
-            }
-            $data['placeholder'] && $data['placeholder'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-placeholder;' . $data['placeholder'] . '}';
-
-            if (isset($data['group']) && $data['group'] !== 'window') {
-                App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group.' . $currentLang, $data['group']);
-                $data['group'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-group;' . $data['group'] . '}';
-            }
-
-            if (isset($data['params'])) {
-
-                if ($data['params']['addlink'] ?? '') {
-                    App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-addlink.' . $currentLang, $data['params']['addlink']);
-                    $data['params']['addlink'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-addlink;' . $data['params']['addlink'] . '}';
-                }
-
-                if ($data['params']['validate'] ?? '') {
-                    $validate = $data['params']['validate'];
-                    foreach ($validate as $index => $validator) {
-                        $key = strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-params-validator-' . $index;
-                        App::$moduleManager->lang->Save($key . '.' . $currentLang . '.' . $currentLang, $validator['message']);
-                        $validator['message'] = '#{' . $key . ';' . $validator['message'] . '}';
-                        $validate[$index] = $validator;
-                    }
-                    $data['params']['validate'] = $validate;
-                }
-
-            }
-
-            if (isset($data['values']) && is_array($data['values'])) {
-                $newValues = [];
-                foreach ($data['values'] as $value) {
-
-                    if (preg_match('/[^\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\0-9]/', $value['title'])) {
-
-                        try {
-                            App::$moduleManager->lang->Save(strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-values-' . $value['value'] . '.' . $currentLang, $value['title']);
-                        } catch (\Throwable $e) {
-
-                        }
-                        $value['title'] = '#{' . strtolower($module) . '-storages-' . $storage->name . '-fields-' . str_replace('/', '-', $path) . '-values-' . $value['value'] . ';' . $value['title'] . '}';
-
-                    }
-
-                    $newValues[] = $value;
-
-                }
-                $data['values'] = $newValues;
-            }
-
+        if(!$data['group_enabled'] || $data['group_enabled'] === false) {
+            unset($data['group']);
+            unset($data['group_enabled']);
+            $data['group'] = 'window';
         }
+
 
         if ($field) {
             // добавляем

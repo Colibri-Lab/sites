@@ -1,0 +1,51 @@
+sites-storages-messages-properties-saved:
+  ru: Свойства сохранены
+  en: Custom properties saved
+sites-storages-messages-pages-saved:
+  ru: Страница сохранена
+  en: Page saved
+sites-storages-messages-domains-saved:
+  ru: Домен сохранен
+  en: Domain saved
+sites-storages-messages-domains-deleted:
+  ru: Домен удален
+  en: Domain deleted
+sites-storages-messages-pages-deleted:
+  ru: Страница удалена
+  en: Page deleted
+sites-storages-messages-pages-moved:
+  ru: Страница перенесена
+  en: Page moved
+sites-storages-messages-publications-copied:
+  ru: Публикация скопирована
+  en: Publication copied
+sites-storages-messages-publications-moved:
+  ru: Публикация перемещена
+  en: Publication moved
+sites-storages-messages-publications-deleted:
+  ru: Публикация удалена
+  en: Publication removed
+sites-storages-messages-data-deleted:
+  ru: Данные удалены
+  en: Data saved
+sites-storages-messages-storage-saved:
+  ru: Хранилище сохранено
+  en: Storage saved
+sites-storages-messages-storage-deleted:
+  ru: Хранилище удалено
+  en: Storage deleted
+sites-storages-messages-field-saved:
+  ru: Свойство сохранено
+  en: Property saved
+sites-storages-messages-field-deleted:
+  ru: Свойство удалено
+  en: Property deleted
+sites-storages-messages-field-moved:
+  ru: Свойство перемещено
+  en: Property moved
+sites-storages-messages-index-saved:
+  ru: Индекс сохранено
+  en: Index saved
+sites-storages-messages-index-deleted:
+  ru: Индекс удален
+  en: Index deleted

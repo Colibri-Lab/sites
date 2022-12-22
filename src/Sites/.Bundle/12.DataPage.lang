@@ -1,0 +1,16 @@
+sites-storages-storages-title:
+  ru: Хранилища
+sites-storages-data-title:
+  ru: Данные
+sites-storages-search-placeholder:
+  ru: Поиск
+sites-storages-dataempty:
+  ru: Данные не найдены
+sites-storages-buttons-adddata:
+  ru: Добавить
+sites-storages-buttons-dublicatedata:
+  ru: Дублировать
+sites-storages-buttons-editdata:
+  ru: Редактировать
+sites-storages-buttons-deletedata:
+  ru: Удалить

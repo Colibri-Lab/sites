@@ -48,7 +48,11 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!storageNode) {
             storageNode = moduleNode.nodes.Add(storage.name);
         }
-        storageNode.text = (storage.group ? storage.group + ': ' : '') + storage.desc + ' (' + storage.name + ')';
+        
+        const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
+        const desc = storage.desc[Lang.Current] ?? storage.desc;
+
+        storageNode.text = group + desc + ' (' + storage.name + ')';
         storageNode.isLeaf = Object.countKeys(storage.fields) == 0;
         storageNode.icon = App.Modules.Sites.Icons.StorageIcon;
         storageNode.tag.entry = storage;
@@ -60,7 +64,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!fieldsNode) {
             fieldsNode = storageNode.nodes.Add(storage.name + '_fields');
         }
-        fieldsNode.text = '#{sites-storages-fields;Свойства}';
+        fieldsNode.text = '#{sites-storages-fields}';
         fieldsNode.isLeaf = Object.countKeys(storage.fields) == 0;
         fieldsNode.icon = App.Modules.Sites.Icons.FieldsIcon;
         fieldsNode.tag.entry = null;
@@ -73,7 +77,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!indicesNode) {
             indicesNode = storageNode.nodes.Add(storage.name + '_indices');
         }
-        indicesNode.text = '#{sites-storages-indices;Индексы}';
+        indicesNode.text = '#{sites-storages-indices}';
         indicesNode.isLeaf = !storage.indices || Object.countKeys(storage.indices) == 0;
         indicesNode.icon = App.Modules.Sites.Icons.IndexesIcon;
         indicesNode.tag.entry = null;
@@ -98,7 +102,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             storageNode.nodes.Move(fieldNode, index);
         }
 
-        fieldNode.text = field.desc + 
+        fieldNode.text = (field.desc[Lang.Current] ?? field.desc) + 
             ' (' + name + (field?.params?.list ? ', <span class="inlist">inlist</span>' : '') + 
             (field?.params?.greed ? ', <span class="greed">' + field?.params?.greed + '</span>' : '') + 
             (field?.params?.viewer ? ', <span class="viewer">' + field?.params?.viewer + '</span>' : '') + 
@@ -169,7 +173,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
                 const moduleNode = this._insertModuleNode(module);
             });
         }
-        else if(path.indexOf('.storages') !== -1) {
+        else if(path.indexOf('.rawstorages') !== -1) {
 
             this._names.clear();
             

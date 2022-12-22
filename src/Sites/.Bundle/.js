@@ -103,7 +103,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         this.Call('Pages', 'SaveProperties', {type: type, object: obj?.id, data: data})
             .then((response) => {
                 const saved = response.result;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-properties-saved;Свойства сохранены}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-properties-saved}', Colibri.UI.Notice.Success, 3000));
                 let rows = Object.values(this._store.Query('sites.' + type));
                 for(const row of rows) {
                     if(row.id == obj.id) {
@@ -123,7 +123,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         this.Call('Pages', 'Save', data)
             .then((response) => {
                 const saved = response.result;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-saved;Страница сохранена}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-saved}', Colibri.UI.Notice.Success, 3000));
                 const pages = Object.values(this._store.Query('sites.pages'));
                 let found = null;
                 pages.forEach((page) => {
@@ -156,7 +156,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         this.Call('Pages', 'SaveDomain', data)
             .then((response) => {
                 const saved = response.result;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-saved;Домен сохранен}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-saved}', Colibri.UI.Notice.Success, 3000));
                 let domains = Object.values(this._store.Query('sites.domains'));
                 if(!data?.id) {
                     domains.push(saved);
@@ -175,7 +175,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteDomain(id) {
         this.Call('Pages', 'DeleteDomain', {id: id})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-deleted;Домен удален}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-deleted}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.domains', response.result);
             })
             .catch(error => {
@@ -187,7 +187,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteFolder(id) {
         this.Call('Pages', 'Delete', {id: id})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-deleted;Страница удалена}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-deleted}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
             })
             .catch(error => {
@@ -199,7 +199,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     MoveFolder(move, domain, to, siblingStatus) {
         this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved;Страница перенесена}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
             })
             .catch(error => {
@@ -211,7 +211,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     CopyPublication(pub, domain, to) {
         this.Call('Publications', 'Copy', {pub: pub.id, domain: domain.id, to: to?.id ?? null})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-copied;Публикация скопирована}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-copied}', Colibri.UI.Notice.Success, 3000));
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -229,7 +229,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 }
                 pubs = pubs.map((p) => p.id == movedPub.id ? movedPub : p);
                 this._store.Set('sites.pubs', pubs);
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-moved;Публикация перемещена}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-moved}', Colibri.UI.Notice.Success, 3000));
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -240,7 +240,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeletePublication(pubIds) {
         this.Call('Publications', 'Delete', {pubs: pubIds.join(',')})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-deleted;Публикация удалена}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-deleted}', Colibri.UI.Notice.Success, 3000));
 
                 let pubs = this._store.Query('sites.pubs');
                 if(!pubs || !Array.isArray(pubs)) {
@@ -264,7 +264,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteData(storage, dataIds) {
         this.Call('Data', 'Delete', {storage: storage.name, ids: dataIds.join(',')})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted;Данные удалены}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
 
                 let data = this._store.Query('sites.data');
                 if(!data || !Array.isArray(data)) {
@@ -419,8 +419,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     SaveStorage(module, data) {
         this.Call('Storages', 'Save', {module: module?.name ?? module, data: data})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-storage-saved;Хранилище сохранено}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-storage-saved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -431,8 +432,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteStorage(module, storage) {
         this.Call('Storages', 'Delete', {module: module?.name ?? module, storage: storage?.name ?? storage})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-storage-deleted;Хранилище удалено}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-storage-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -443,8 +445,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     SaveField(module, storage, path, data) {
         this.Call('Storages', 'SaveField', {module: module?.name ?? module, storage: storage?.name ?? storage, path: path, data: data})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-saved;Свойство сохранено}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-saved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -455,8 +458,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteField(module, storage, path) {
         this.Call('Storages', 'DeleteField', {module: module?.name ?? module, storage: storage?.name ?? storage, path: path})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-deleted;Свойство удалено}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -467,8 +471,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     MoveField(module, storage, pathToMove, pathRelative, sibling) {
         this.Call('Storages', 'MoveField', {module: module?.name ?? module, storage: storage?.name ?? storage, move: pathToMove, relative: pathRelative, sibling: sibling})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-moved;Свойство перемещено}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-moved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -480,8 +485,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     SaveIndex(module, storage, data) {
         this.Call('Storages', 'SaveIndex', {module: module?.name ?? module, storage: storage?.name ?? storage, data: data})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-saved;Индекс сохранено}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-saved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -492,8 +498,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     DeleteIndex(module, storage, index) {
         this.Call('Storages', 'DeleteIndex', {module: module?.name ?? module, storage: storage?.name ?? storage, index: index?.name ?? index})
             .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-deleted;Индекс удален}', Colibri.UI.Notice.Success, 3000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
+                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
