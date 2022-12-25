@@ -498,3 +498,6 @@ sites-storages-storagegroupenabled:
 sites-storages-fieldgroupenabled:
   ru: Включить группу
   en: Enable group
+sites-storages-fieldlookup-depends:
+  ru: Зависимость от другого значения
+  en: Depends with other value

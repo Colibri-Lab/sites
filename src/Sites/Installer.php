@@ -21,14 +21,20 @@ class Installer
         return $appConfig['mode'];
     }
 
-    private static function _injectIntoModuleConfig($file): void
+    private static function _injectIntoModuleConfig($file): bool
     {
 
         $modules = self::_loadConfig($file);
+        $hasLangModule = false;
         if(is_array($modules['entries'])) {
+            foreach($modules['entries'] as $moduleEntry) {
+                if($moduleEntry['name'] === 'Lang') {
+                    $hasLangModule = true;
+                }
+            }
             foreach($modules['entries'] as $entry) {
                 if($entry['name'] === 'Sites') {
-                    return;
+                    return $hasLangModule;
                 }
             }
         }
@@ -47,6 +53,8 @@ class Installer
         ];
 
         self::_saveConfig($file, $modules);
+
+        return $hasLangModule;
 
     }
     private static function _copyOrSymlink($mode, $pathFrom, $pathTo, $fileFrom, $fileTo): void 
@@ -113,7 +121,11 @@ class Installer
         self::_copyOrSymlink($mode, $configPath, $configDir, 'sites-langtexts.yaml', 'sites-langtexts.yaml');
 
         print_r('Встраиваем модуль'."\n");
-        self::_injectIntoModuleConfig($configDir.'modules.yaml');
+        $hasLangModule = self::_injectIntoModuleConfig($configDir.'modules.yaml');
+
+        print_r('Докопируем конфиги'."\n");
+        self::_copyOrSymlink($mode, $configPath, $configDir, 'domains-storage-'.($hasLangModule ? 'lang' : 'nolang').'.yaml', 'domains-storage.yaml');
+        self::_copyOrSymlink($mode, $configPath, $configDir, 'pages-storage-'.($hasLangModule ? 'lang' : 'nolang').'.yaml', 'pages-storage.yaml');
 
         print_r('Установка скриптов'."\n");
         self::_copyOrSymlink($mode, $path.'/src/Sites/bin/', './bin/', 'sites-migrate.sh', 'sites-migrate.sh');

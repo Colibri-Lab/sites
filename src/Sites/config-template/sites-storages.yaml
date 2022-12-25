@@ -1,543 +1,16 @@
 ---
-domains:
-  access-point: sites
-  module: Sites
-  models:
-    row: Models\Domain
-    table: Models\Domains
-  desc: Сайты
-  params:
-    visible: false
-    maybepublished: false
-  fields:
-    name:
-      type: varchar
-      length: 255
-      class: string
-      component: Colibri.UI.Forms.Select
-      desc: '#{sites-storages-domains-key;Ключ домена}'
-      note: '#{sites-storages-domains-key-desc;В конфигурации должны быть указаны
-        паттерны доменов, которые подходят под этот ключ}'
-      selector:
-        value: value
-        title: title
-      params:
-        readonly: true
-        required: true
-      lookup:
-        binding: app.sites.domainkeys
-    description:
-      type: varchar
-      length: 255
-      class: string
-      desc: Описание страницы
-      note: Введите описание сайта
-      params:
-        required: true
-        readonly: false
-    closed:
-      type: bool
-      class: bool
-      desc: Закрыт
-      note: Выберите «Да» если хотите закрыть сайт
-      component: Colibri.UI.Forms.Checkbox
-      params:
-        required: true
-        readonly: false
-      default: false
-    additional:
-      type: json
-      class: ObjectField
-      component: Colibri.UI.Forms.Tabs
-      desc: Дополнительные параметры
-      default: json_object()
-      fields:
-        meta:
-          type: json
-          class: ObjectField
-          desc: Мета данные
-          component: Colibri.UI.Forms.Object
-          params:
-            vertical: true
-          default: json_object()
-          fields:
-            title:
-              type: varchar
-              length: 512
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Заголовок страницы
-              note: Введите заголовок страницы
-            description:
-              type: varchar
-              length: 1024
-              class: string
-              component: Colibri.UI.Forms.TextArea
-              description: Описание сайта
-              note: Введите мета описание сайта
-            keywords:
-              type: varchar
-              length: 1024
-              class: string
-              component: Colibri.UI.Forms.TextArea
-              description: Ключевые слова
-              note: Введите ключевые слова
-        settings:
-          type: json
-          class: ObjectField
-          component: Colibri.UI.Forms.Object
-          desc: Технические данные
-          params:
-            vertical: true
-          default: json_object()
-          fields:
-            type:
-              type: enum
-              class: ValueField
-              component: Colibri.UI.Forms.Select
-              default: application
-              desc: Тип приложения
-              params:
-                readonly: true
-                required: true
-              values:
-              - value: application
-                title: Приложение (javascript)
-              - value: website
-                title: Обычный вебсайт (php/js)
-            module:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Select
-              desc: Стартовый модуль
-              note: Выжерите модуль, который будет стартовать
-              selector:
-                value: value
-                title: title
-              params:
-                readonly: true
-                required: true
-                runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues();
-                  }
-              lookup:
-                method: ' () => new Promise((resolve, reject) => { Manage.Store.AsyncQuery("manage.modules").then((modules)
-                  => { const ret = []; for(const module of modules) { ret.push({value:module.name,
-                  title: module.desc + " (" + module.name + ")"}); } resolve(ret);
-                  }); });'
-            component:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Select
-              desc: Компонент по умолчанию
-              note: Выберите компонент по умолчанию
-              selector:
-                value: value
-                title: title
-              params:
-                readonly: true
-                required: false
-              lookup:
-                depends: additional?.settings
-                method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
-                  => { if(module != dependsValue?.module) { return true; } Object.forEach(eval(''App.Modules.''
-                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
-                  { ret.push({value: name, title: module + ''.'' + name}); } }); });
-                  resolve(ret); }); '
-            template:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Select
-              desc: Шаблон по умолчанию
-              note: Выберите шаблон по умолчанию
-              selector:
-                value: value
-                title: title
-              params:
-                readonly: true
-                required: false
-              lookup:
-                depends: additional?.settings
-                method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
-                  + dependsValue.module?.toLowerCase() + ")").then((templates) =>
-                  { templates && Array.isArray(templates) && templates.forEach(template
-                  => { ret.push({value: template.path, title: template.path}); });
-                  resolve(ret); }); });'
-        parameters:
-          type: json
-          class: ArrayField
-          component: Colibri.UI.Forms.Array
-          desc: Дополнительные свойства
-          default: json_array()
-          attrs:
-            className: app-field-wrap
-          params:
-            addlink: Добавить параметр
-          fields:
-            name:
-              type: varchar
-              length: 50
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Наименование поля
-              attrs:
-                width: 30%
-            description:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Описание поля
-              attrs:
-                width: 68%
-            type:
-              type: varchar
-              length: 20
-              desc: Тип
-              class: string
-              component: Colibri.UI.Forms.Text
-              default: varchar
-              attrs:
-                width: 19.5%
-            length:
-              type: int
-              desc: Длина
-              class: int
-              component: Colibri.UI.Forms.Number
-              attrs:
-                width: 15%
-            default:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Значение по умолчанию
-              attrs:
-                width: 20%
-            class:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Класс (PHP)
-              attrs:
-                width: 20%
-            component:
-              type: varchar
-              length: 255
-              class: string
-              default: Text
-              component: Colibri.UI.Forms.Select
-              desc: Компонента (JS)
-              selector:
-                value: value
-                title: title
-              lookup:
-                method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
-                  (name, value) => { ret.push({value: name, title: value.description});
-                  }); resolve(ret); })'
-              attrs:
-                width: 22%
-    parameters:
-      type: json
-      component: Colibri.UI.Forms.Object
-      class: ParametersField
-      default: json_object()
-      params:
-        hidden: true
-        required: false
-        readonly: false
-  indices:
-    domains_name_idx:
-      fields:
-      - name
-      type: NORMAL
-      method: BTREE
-pages:
-  access-point: sites
-  module: Sites
-  models:
-    row: Models\Page
-    table: Models\Pages
-  desc: Страницы
-  params:
-    visible: false
-    maybepublished: false
-  fields:
-    domain:
-      type: bigint unsigned
-      class: App\Modules\Sites\Models\Domain
-      component: Colibri.UI.Forms.Hidden
-      desc: Домен
-      default: "0"
-      params:
-        required: true
-        readonly: true
-      lookup:
-        storage:
-          name: domains
-          title: description
-          value: id
-    parent:
-      type: bigint unsigned
-      class: App\Modules\Sites\Models\Page
-      component: Colibri.UI.Forms.Hidden
-      desc: Отцовская страница
-      default: "0"
-      params:
-        required: false
-        readonly: false
-      lookup:
-        storage:
-          name: pages
-          title: description
-          value: id
-    name:
-      type: varchar
-      length: 255
-      class: string
-      desc: Наименование раздела
-      note: Введите наименование страницы, наименование будет использовано в URL
-      params:
-        required: true
-        readonly: false
-    description:
-      type: varchar
-      length: 255
-      class: string
-      desc: Описание страницы
-      note: Введите описание сайта
-      params:
-        required: true
-        readonly: false
-        runtime: (field, form) => { const nameField = form.FindField("name"); if(!nameField.value)
-          { nameField.value = field.value.CyrToUrl(3); } }
-    published:
-      type: boolean
-      class: bool
-      desc: Опубликована
-      component: Colibri.UI.Forms.Checkbox
-      params:
-        required: true
-        readonly: false
-      default: false
-      selector:
-        value: value
-        title: title
-    additional:
-      type: json
-      class: ObjectField
-      component: Colibri.UI.Forms.Tabs
-      desc: Всякое
-      default: json_object()
-      fields:
-        meta:
-          type: json
-          class: ObjectField
-          desc: Мета данные
-          component: Colibri.UI.Forms.Object
-          params:
-            vertical: true
-          default: json_object()
-          fields:
-            title:
-              type: varchar
-              length: 512
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Заголовок страницы
-              note: Введите заголовок страницы
-            description:
-              type: varchar
-              length: 1024
-              class: string
-              component: Colibri.UI.Forms.TextArea
-              description: Описание сайта
-              note: Введите мета описание сайта
-            keywords:
-              type: varchar
-              length: 1024
-              class: string
-              component: Colibri.UI.Forms.TextArea
-              description: Ключевые слова
-              note: Введите ключевые слова
-        settings:
-          type: json
-          class: ObjectField
-          component: Colibri.UI.Forms.Object
-          desc: Технические данные
-          params:
-            vertical: true
-          default: json_object()
-          fields:
-            component:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Select
-              desc: Шаблон
-              note: Введите описание сайта
-              params:
-                required: false
-                readonly: false
-              selector:
-                value: value
-                title: title
-              lookup:
-                depends: domain
-                method: '(term, dependsValue) => new Promise((resolve, reject) =>
-                  { let ret = [{value: "", title: "Шаблон не выбран"}]; const module
-                  = dependsValue?.additional?.settings.module; Object.forEach(eval("App.Modules."
-                  + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
-                  { ret.push({value: name, title: module + ''.'' + name}); } }); resolve(ret);
-                  }); '
-            template:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Select
-              desc: Шаблон
-              note: Введите описание сайта
-              params:
-                required: false
-                readonly: false
-              selector:
-                value: value
-                title: title
-              lookup:
-                depends: domain
-                method: '(term, dependsValue) => new Promise((resolve, reject) =>
-                  { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
-                  + dependsValue?.additional?.settings.module.toLowerCase() + ")").then((templates)
-                  => { templates.forEach(template => { ret.push({value: template.path,
-                  title: template.path}); }); resolve(ret); }); }); '
-        parameters:
-          type: json
-          class: ArrayField
-          component: Colibri.UI.Forms.Array
-          desc: Дополнительные свойства
-          default: json_array()
-          attrs:
-            className: app-field-wrap
-          params:
-            addlink: Добавить параметр
-          fields:
-            name:
-              type: varchar
-              length: 50
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Наименование поля
-              attrs:
-                width: 30%
-            description:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Описание поля
-              attrs:
-                width: 68%
-            type:
-              type: varchar
-              length: 20
-              desc: Тип
-              class: string
-              component: Colibri.UI.Forms.Text
-              default: varchar
-              attrs:
-                width: 19.5%
-            length:
-              type: int
-              desc: Длина
-              class: int
-              component: Colibri.UI.Forms.Number
-              attrs:
-                width: 15%
-            default:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Значение по умолчанию
-              attrs:
-                width: 20%
-            class:
-              type: varchar
-              length: 255
-              class: string
-              component: Colibri.UI.Forms.Text
-              desc: Класс (PHP)
-              attrs:
-                width: 20%
-            component:
-              type: varchar
-              length: 255
-              class: string
-              default: Text
-              component: Colibri.UI.Forms.Select
-              desc: Компонента (JS)
-              selector:
-                value: value
-                title: title
-              lookup:
-                method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
-                  (name, value) => { ret.push({value: name, title: value.description});
-                  }); resolve(ret); })'
-              attrs:
-                width: 22%
-    parameters:
-      type: json
-      component: Colibri.UI.Forms.Object
-      class: ParametersField
-      default: json_object()
-      params:
-        hidden: true
-        required: false
-        readonly: false
-    order:
-      type: double
-      class: float
-      default: "0"
-      component: Colibri.UI.Forms.Hidden
-      desc: Позиция в рамках parent-а
-  indices:
-    pages_domain_idx:
-      fields:
-      - domain
-      type: NORMAL
-      method: BTREE
-    pages_parent_idx:
-      fields:
-      - parent
-      type: NORMAL
-      method: BTREE
-    pages_name_idx:
-      fields:
-      - name
-      type: NORMAL
-      method: BTREE
-    pages_order_idx:
-      fields:
-      - order
-      type: NORMAL
-      method: BTREE
-    pages_published_idx:
-      fields:
-      - published
-      type: NORMAL
-      method: BTREE
-pubs:
+domains: include(domains-storage.yaml)
+pages: include(pages-storage.yaml)
+pubs: 
   access-point: sites
   module: Sites
   models:
     row: Models\Publication
     table: Models\Publications
-  desc: Публикации
+  desc:
+    ru: Публикации
+    en: Publications
+    hy: Հրապարակումներ
   params:
     visible: false
     maybepublished: false
@@ -637,51 +110,160 @@ texts:
     visible: true
     maybepublished: true
   fields:
+    lang:
+      desc:
+        ru: Язык
+        en: Language
+        hy: Լեզու
+      placeholder:
+        ru: ""
+        en: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        hy: ""
+      type: varchar
+      length: 10
+      component: Colibri.UI.Forms.Select
+      class: string
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: true
+        list: true
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        initempty: true
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate: []
+      lookup:
+        method: "() => new Promise((resolve, reject) => { \n     Lang.Store.AsyncQuery(\"lang.langs\").then((langs)
+          => { \n          const ret = [];\n          Object.forEach(langs, (lang,
+          langData) => {\n            ret.push({value: lang, title: langData.desc});\n
+          \         }); console.log(ret);\n          resolve(ret);\n     });\n});"
+      group: window
     title:
       type: varchar
       length: "255"
       class: string
       component: Colibri.UI.Forms.Text
-      desc: Заголовок
-      note: Введите заголовок текстового блока, если не обходимо
+      desc:
+        ru: Заголовок
+        en: Title
+        hy: Վերնագիր
+      note:
+        ru: Введите заголовок текстового блока, если не обходимо
+        en: Введите заголовок текстового блока, если не обходимо
+        hy: Введите заголовок текстового блока, если не обходимо
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        list: true
+        multiple: false
+        greed: 30%
+        viewer: ~
+        vertical: false
         visual: false
         code: ""
-        list: true
-        greed: 30%
-        vertical: false
-        viewer: ~
         mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        initempty: true
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate: []
       group: window
       attrs: []
+      placeholder:
+        ru: ""
+        en: ""
+        hy: ""
     html:
       type: longtext
       class: string
-      desc: Содержание блока
-      note: Введите содержание блока
+      desc:
+        ru: Содержание блока
+        en: Block content
+        hy: Բովանդակություն
+      note:
+        ru: Введите содержание блока
+        en: Введите содержание блока
+        hy: Введите содержание блока
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        list: true
+        multiple: false
+        greed: 55%
+        viewer: ~
+        vertical: false
         visual: true
         code: ""
-        list: true
-        greed: 55%
-        vertical: false
-        viewer: ~
         mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        initempty: true
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate: []
       group: window
       attrs: []
+      placeholder:
+        ru: ""
+        en: ""
+        hy: ""
   indices:
-    texts_title_idx:
-      fields:
-      - title
-      type: NORMAL
-      method: BTREE
-      name: texts_title_idx
   note: ""
 ...

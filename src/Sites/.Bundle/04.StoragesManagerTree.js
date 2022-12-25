@@ -102,7 +102,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             storageNode.nodes.Move(fieldNode, index);
         }
 
-        fieldNode.text = (field.desc[Lang.Current] ?? field.desc) + 
+        let desc = field.desc;
+        try { desc = (field.desc[Lang.Current] ?? field.desc); } catch(e) {}
+        if(!desc) {
+            desc = '';
+        }
+
+        fieldNode.text = desc + 
             ' (' + name + (field?.params?.list ? ', <span class="inlist">inlist</span>' : '') + 
             (field?.params?.greed ? ', <span class="greed">' + field?.params?.greed + '</span>' : '') + 
             (field?.params?.viewer ? ', <span class="viewer">' + field?.params?.viewer + '</span>' : '') + 

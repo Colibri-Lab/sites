@@ -120,6 +120,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
 
     SaveFolder(data) {
+        data = Object.assign(data, {__raw: 1});
         this.Call('Pages', 'Save', data)
             .then((response) => {
                 const saved = response.result;
@@ -153,6 +154,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     SaveDomain(data) {
+        data = Object.assign(data, {__raw: 1});
         this.Call('Pages', 'SaveDomain', data)
             .then((response) => {
                 const saved = response.result;
@@ -173,7 +175,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     DeleteDomain(id) {
-        this.Call('Pages', 'DeleteDomain', {id: id})
+        this.Call('Pages', 'DeleteDomain', {id: id, __raw: 1})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-deleted}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.domains', response.result);
@@ -185,7 +187,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     DeleteFolder(id) {
-        this.Call('Pages', 'Delete', {id: id})
+        this.Call('Pages', 'Delete', {id: id, __raw: 1})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-deleted}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
@@ -197,7 +199,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     MoveFolder(move, domain, to, siblingStatus) {
-        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus})
+        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus, __raw: 1})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
@@ -509,7 +511,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     Pages(returnPromise = false) {
-        const promise = this.Call('Pages', 'List')
+        const promise = this.Call('Pages', 'List', {__raw: 1})
         if(returnPromise) {
             return promise;
         }
@@ -526,7 +528,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
     
     Domains(returnPromise = false) {
-        const promise = this.Call('Pages', 'Domains')
+        const promise = this.Call('Pages', 'Domains', {__raw: 1})
         if(returnPromise) {
             return promise;
         }

@@ -5,6 +5,7 @@ namespace App\Modules\Sites\Models;
 # region Uses:
 use Colibri\Data\Storages\Fields\DateTimeField;
 use App\Modules\Sites\Models\Domain;
+use App\Modules\Lang\Models\Fields\Text;
 use Colibri\Data\Storages\Fields\ObjectField;
 use App\Modules\Sites\Models\Fields\ParametersField;
 # endregion Uses;
@@ -25,10 +26,10 @@ use Colibri\App;
  * @property Domain $domain Домен
  * @property Page|null $parent Отцовская страница
  * @property string $name Наименование раздела
- * @property string $description Описание страницы
+ * @property Text $description Описание страницы
  * @property bool $published Опубликована
  * @property ObjectField|null $additional Всякое
- * @property ParametersField|null $parameters 
+ * @property ParametersField|null $parameters Параметры
  * @property float|null $order Позиция в рамках parent-а
  * endregion Properties;
  * @property-read string $path полный путь от домена
@@ -57,9 +58,9 @@ class Page extends BaseModelDataRow
 			'domain' => Domain::JsonSchema,
 			'parent' => [ 'oneOf' => [ [ 'type' => 'null' ], ['$ref' => '#'] ] ], 
 			'name' => ['type' => 'string', 'maxLength' => 255, ],
-			'description' => ['type' => 'string', 'maxLength' => 255, ],
+			'description' => [ 'oneOf' => [ [ 'type' => 'string', 'maxLength' => 512], Text::JsonSchema ] ],
 			'published' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 512, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'type' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],'length' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],]],
+			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 256], Text::JsonSchema ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 1024], Text::JsonSchema ] ],'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 1024], Text::JsonSchema ] ],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 256], Text::JsonSchema ] ],'type' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],'length' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],]],
 			'parameters' => [ 'oneOf' => [ [ 'type' => 'null'], ParametersField::JsonSchema ] ],
 			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
 			# endregion SchemaProperties;

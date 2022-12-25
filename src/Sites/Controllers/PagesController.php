@@ -223,7 +223,7 @@ class PagesController extends WebController
         try {
 
             foreach ($post as $k => $v) {
-                if (!in_array($k, ['domain', 'id', 'parent', 'order'])) {
+                if (!in_array($k, ['domain', 'id', 'parent', 'order', '__raw'])) {
                     $page->$k = $v;
                 }
             }
@@ -279,7 +279,7 @@ class PagesController extends WebController
         try {
 
             foreach ($post as $k => $v) {
-                if (!in_array($k, ['id', 'datecreated'])) {
+                if (!in_array($k, ['id', 'datecreated', '__raw'])) {
                     $domain->$k = $v;
                 }
             }

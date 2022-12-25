@@ -96,7 +96,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         required: true,
                         validate: [{
                             message: '#{sites-storages-storagedesc-validation-required}',
-                            method: '(field, validator) => !!field.value'
+                            method: '(field, validator) => { console.log(Object.values(Object.map(field.value, (key, value) => !!value)).indexOf(true)); return Object.values(Object.map(field.value, (key, value) => !!value)).indexOf(true) !== -1; }'
                         }]
                     }
                 },
@@ -538,13 +538,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     },
                     fields: {
                         width: {
-                            type: 'int',
-                            component: 'Number',
+                            type: 'varchar',
+                            component: 'Text',
                             desc: '#{sites-storages-fieldattrs-width;Ширина}',
                         },
                         height: {
-                            type: 'int',
-                            component: 'Number',
+                            type: 'varchar',
+                            component: 'Text',
                             desc: '#{sites-storages-fieldattrs-height;Высота}',
                         },
                         class: {
@@ -774,12 +774,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             desc: '#{sites-storages-fieldparams-validate;Проверка значения поля}',
                             placeholder: '#{sites-storages-fieldparams-validate;Проверка значения поля}',
                             params: {
+                                readonly: false, 
+                                required: false,
                                 vertical: true,
                                 addlink: '#{sites-storages-fieldparams-validate-addlink;Добавить проверку}'
                             },
                             fields: {
                                 message: {
-                                    component: 'Text',
+                                    component: 'App.Modules.Lang.UI.TextArea',
                                     placeholder: '#{sites-storages-fieldparams-validate-message;Сообщение}'
                                 },
                                 method: {
@@ -801,6 +803,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         vertical: true,
                     },
                     fields: {
+
                         _oneof: {
                             type: 'varchar',
                             component: 'Radio',
@@ -1005,7 +1008,18 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     value: 'accesspoint',
                                 }
                             }
-                        }
+                        },
+
+                        depends: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldlookup-depends}',
+                            default: '',
+                            params: {
+                                required: false,
+                                readonly: false,
+                            }
+                        },
                     }
                 },
                 values: {
@@ -1052,7 +1066,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         },
                         title_text: {
                             type: 'varchar',
-                            component: 'App.Modules.Lang.UI.Text',
+                            component: 'App.Modules.Lang.UI.TextArea',
                             desc: '#{sites-storages-fieldvalues-title;Поле для вывода}',
                             params: {
                                 condition: {

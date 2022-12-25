@@ -1,0 +1,533 @@
+access-point: sites
+module: Sites
+models:
+  row: Models\Domain
+  table: Models\Domains
+desc:
+  ru: Сайты/Домены
+  en: Sites/Domains
+  hy: Կայտեր/Դոմեններ
+params:
+  visible: false
+  maybepublished: false
+fields:
+  name:
+    type: varchar
+    length: 255
+    class: string
+    component: Colibri.UI.Forms.Select
+    desc:
+      en: Domain Key
+      ru: Ключ домена
+      hy: Դոմեյն բանալին
+    note:
+      en: The configuration must specify the domain patterns that fit this key.
+      ru: В конфигурации должны быть указаны паттерны доменов, которые подходят
+        под этот ключ
+      hy: Կոնֆիգուրացիայում պետք է նշվեն դոմենների պատվերները, որոնք համապատասխանում
+        են այս բանալին
+    selector:
+      value: value
+      title: title
+    params:
+      readonly: true
+      required: true
+    lookup:
+      binding: app.sites.domainkeys
+  description:
+    type: varchar
+    length: 512
+    class: string
+    desc:
+      ru: Описание сайта/домена
+      en: Domain/Site description
+      hy: Դոմենի/Կայքի նկարագրություն
+    note:
+      ru: Введите описание сайта
+      en: Enter a description of the site
+      hy: Մուտքագրեք կայքի նկարագրությունը
+    params:
+      required: true
+      enabled: true
+      canbeempty: true
+      readonly: false
+      list: false
+      multiple: false
+      greed: ""
+      viewer: ~
+      vertical: false
+      visual: false
+      code: ""
+      mask: ""
+      fieldgenerator: ""
+      generator: ""
+      noteClass: ""
+      simplearraywidth: ""
+      simplearrayheight: ""
+      addlink:
+        ru: ""
+        en: ""
+        hy: ""
+      removelink: true
+      updownlink: true
+      initempty: true
+      maxadd: ""
+      title: ""
+      removedesc: true
+      allow: ""
+      size: ""
+      validate: []
+    placeholder:
+      ru: ""
+      en: ""
+      hy: ""
+    component: Colibri.UI.Forms.Text
+    attrs: []
+    group: window
+  closed:
+    type: bool
+    class: bool
+    desc:
+      ru: Закрыт
+      en: Closed
+      hy: Փակված է
+    note:
+      ru: Выберите «Да» если хотите закрыть сайт
+      en: Select "Yes" if you want to close the site
+      hy: Ընտրեք «Այո», եթե ցանկանում եք փակել կայքը
+    component: Colibri.UI.Forms.Checkbox
+    params:
+      required: true
+      readonly: false
+    default: false
+  additional:
+    type: json
+    class: ObjectField
+    component: Colibri.UI.Forms.Tabs
+    desc:
+      ru: Дополнительные параметры
+      en: Additional properties
+      hy: Լրացուցիչ հատկություններ
+    default: json_object()
+    fields:
+      meta:
+        type: json
+        class: ObjectField
+        desc:
+          ru: Мета данные
+          en: Page metadata
+          hy: Էջի մետատվյալներ
+        component: Colibri.UI.Forms.Object
+        params:
+          vertical: true
+        default: json_object()
+        fields:
+          title:
+            type: varchar
+            length: 256
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Заголовок страницы
+              en: Page title
+              hy: Էջի վերնագիր
+            note:
+              ru: Введите заголовок страницы
+              en: Enter the page title
+              hy: Մուտքագրեք էջի անվանումը
+            placeholder:
+              ru: ""
+              en: ""
+              hy: ""
+            attrs: []
+            params:
+              required: false
+              enabled: true
+              canbeempty: true
+              readonly: false
+              list: false
+              multiple: false
+              greed: ""
+              viewer: ~
+              vertical: false
+              visual: false
+              code: ""
+              mask: ""
+              fieldgenerator: ""
+              generator: ""
+              noteClass: ""
+              simplearraywidth: ""
+              simplearrayheight: ""
+              addlink:
+                ru: ""
+                en: ""
+                hy: ""
+              removelink: true
+              updownlink: true
+              initempty: true
+              maxadd: ""
+              title: ""
+              removedesc: true
+              allow: ""
+              size: ""
+              validate: []
+            group: window
+          description:
+            type: varchar
+            length: 1024
+            class: string
+            component: Colibri.UI.Forms.TextArea
+            desc:
+              ru: Описание страницы
+              en: Page description
+              hy: Էջի նկարագրություն
+            note:
+              ru: Введите мета описание сайта
+              en: Enter the description in meta header
+              hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
+            placeholder:
+              ru: ""
+              en: ""
+              hy: ""
+            attrs: []
+            params:
+              required: false
+              enabled: true
+              canbeempty: true
+              readonly: false
+              list: false
+              multiple: false
+              greed: ""
+              viewer: ~
+              vertical: false
+              visual: false
+              code: ""
+              mask: ""
+              fieldgenerator: ""
+              generator: ""
+              noteClass: ""
+              simplearraywidth: ""
+              simplearrayheight: ""
+              addlink:
+                ru: ""
+                en: ""
+                hy: ""
+              removelink: true
+              updownlink: true
+              initempty: true
+              maxadd: ""
+              title: ""
+              removedesc: true
+              allow: ""
+              size: ""
+              validate: []
+            group: window
+          keywords:
+            type: varchar
+            length: 1024
+            class: string
+            component: Colibri.UI.Forms.TextArea
+            desc:
+              ru: Ключевые слова
+              en: Page keywords
+              hy: Էջի հիմնաբառեր
+            note:
+              ru: Введите ключевые слова
+              en: Enter the meta keywords
+              hy: Մուտքագրեք մետա հիմնաբառերը
+            placeholder:
+              ru: ""
+              en: ""
+              hy: ""
+            attrs: []
+            params:
+              required: false
+              enabled: true
+              canbeempty: true
+              readonly: false
+              list: false
+              multiple: false
+              greed: ""
+              viewer: ~
+              vertical: false
+              visual: false
+              code: ""
+              mask: ""
+              fieldgenerator: ""
+              generator: ""
+              noteClass: ""
+              simplearraywidth: ""
+              simplearrayheight: ""
+              addlink:
+                ru: ""
+                en: ""
+                hy: ""
+              removelink: true
+              updownlink: true
+              initempty: true
+              maxadd: ""
+              title: ""
+              removedesc: true
+              allow: ""
+              size: ""
+              validate: []
+            group: window
+      settings:
+        type: json
+        class: ObjectField
+        component: Colibri.UI.Forms.Object
+        desc: Технические данные
+        params:
+          vertical: true
+        default: json_object()
+        fields:
+          type:
+            type: enum
+            class: ValueField
+            component: Colibri.UI.Forms.Select
+            default: application
+            desc: Тип приложения
+            params:
+              readonly: true
+              required: true
+            values:
+            - value: application
+              title: Приложение (javascript)
+            - value: website
+              title: Обычный вебсайт (php/js)
+          module:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Select
+            desc: Стартовый модуль
+            note: Выжерите модуль, который будет стартовать
+            selector:
+              value: value
+              title: title
+            params:
+              readonly: true
+              required: true
+              runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues();
+                }
+            lookup:
+              method: ' () => new Promise((resolve, reject) => { Manage.Store.AsyncQuery("manage.modules").then((modules)
+                => { const ret = []; for(const module of modules) { ret.push({value:module.name,
+                title: module.desc + " (" + module.name + ")"}); } resolve(ret);
+                }); });'
+          component:
+            type: varchar
+            length: "255"
+            class: string
+            component: Colibri.UI.Forms.Select
+            desc:
+              ru: Компонент по умолчанию
+              en: Компонент по умолчанию
+              hy: Компонент по умолчанию
+            note:
+              ru: Выберите компонент по умолчанию
+              en: Выберите компонент по умолчанию
+              hy: Выберите компонент по умолчанию
+            selector:
+              value: value
+              title: title
+              group: ""
+            params:
+              required: false
+              enabled: true
+              canbeempty: true
+              readonly: true
+              list: false
+              multiple: false
+              greed: ""
+              viewer: ~
+              vertical: false
+              visual: false
+              code: ""
+              mask: ""
+              fieldgenerator: ""
+              generator: ""
+              noteClass: ""
+              simplearraywidth: ""
+              simplearrayheight: ""
+              addlink:
+                ru: ""
+                en: ""
+                hy: ""
+              removelink: true
+              updownlink: true
+              initempty: true
+              maxadd: ""
+              title: ""
+              removedesc: true
+              allow: ""
+              size: ""
+              validate: []
+            lookup:
+              method: ' (term, dependsValue) => new Promise((resolve, reject) =>
+                { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                => { if(module != dependsValue?.module) { return true; } Object.forEach(eval(''App.Modules.''
+                + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
+                { ret.push({value: name, title: module + ''.'' + name}); } }); });
+                resolve(ret); }); '
+              depends: additional?.settings
+            placeholder:
+              ru: ""
+              en: ""
+              hy: ""
+            attrs: []
+            group: window
+          template:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Select
+            desc: Шаблон по умолчанию
+            note: Выберите шаблон по умолчанию
+            selector:
+              value: value
+              title: title
+            params:
+              readonly: true
+              required: false
+            lookup:
+              method: ' (term, dependsValue) => new Promise((resolve, reject) =>
+                { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                + dependsValue.module?.toLowerCase() + ")").then((templates) =>
+                { templates && Array.isArray(templates) && templates.forEach(template
+                => { ret.push({value: template.path, title: template.path}); });
+                resolve(ret); }); });'
+              depends: additional?.settings
+      parameters:
+        type: json
+        class: ArrayField
+        component: Colibri.UI.Forms.Array
+        desc: Дополнительные свойства
+        default: json_array()
+        attrs:
+          className: app-field-wrap
+        params:
+          addlink: Добавить параметр
+        fields:
+          name:
+            type: varchar
+            length: 50
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc: Наименование поля
+            attrs:
+              width: 30%
+          description:
+            type: varchar
+            length: 256
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Описание поля
+              en: Описание поля
+              hy: Описание поля
+            attrs:
+              width: 68%
+            placeholder:
+              ru: ""
+              en: ""
+              hy: ""
+            note:
+              ru: ""
+              en: ""
+              hy: ""
+            params:
+              required: false
+              enabled: true
+              canbeempty: true
+              readonly: false
+              list: false
+              multiple: false
+              greed: ""
+              viewer: ~
+              vertical: false
+              visual: false
+              code: ""
+              mask: ""
+              fieldgenerator: ""
+              generator: ""
+              noteClass: ""
+              simplearraywidth: ""
+              simplearrayheight: ""
+              addlink:
+                ru: ""
+                en: ""
+                hy: ""
+              removelink: true
+              updownlink: true
+              initempty: true
+              maxadd: ""
+              title: ""
+              removedesc: true
+              allow: ""
+              size: ""
+              validate: []
+            group: window
+          type:
+            type: varchar
+            length: 20
+            desc: Тип
+            class: string
+            component: Colibri.UI.Forms.Text
+            default: varchar
+            attrs:
+              width: 19.5%
+          length:
+            type: int
+            desc: Длина
+            class: int
+            component: Colibri.UI.Forms.Number
+            attrs:
+              width: 15%
+          default:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc: Значение по умолчанию
+            attrs:
+              width: 20%
+          class:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc: Класс (PHP)
+            attrs:
+              width: 20%
+          component:
+            type: varchar
+            length: 255
+            class: string
+            default: Text
+            component: Colibri.UI.Forms.Select
+            desc: Компонента (JS)
+            selector:
+              value: value
+              title: title
+            lookup:
+              method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                (name, value) => { ret.push({value: name, title: value.description});
+                }); resolve(ret); })'
+            attrs:
+              width: 22%
+  parameters:
+    type: json
+    component: Colibri.UI.Forms.Object
+    class: ParametersField
+    default: json_object()
+    params:
+      hidden: true
+      required: false
+      readonly: false
+indices:
+  domains_name_idx:
+    fields:
+    - name
+    type: NORMAL
+    method: BTREE

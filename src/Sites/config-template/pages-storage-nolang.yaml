@@ -1,0 +1,394 @@
+access-point: sites
+module: Sites
+models:
+  row: Models\Page
+  table: Models\Pages
+desc:
+  ru: Страницы
+  en: Pages
+  hy: Էջեր
+params:
+  visible: false
+  maybepublished: false
+fields:
+  domain:
+    type: bigint unsigned
+    class: App\Modules\Sites\Models\Domain
+    component: Colibri.UI.Forms.Hidden
+    desc:
+      ru: Домен
+      en: Domain
+      hy: Դոմեն
+    default: "0"
+    params:
+      required: true
+      readonly: true
+    lookup:
+      storage:
+        name: domains
+        title: description
+        value: id
+  parent:
+    type: bigint unsigned
+    class: App\Modules\Sites\Models\Page
+    component: Colibri.UI.Forms.Hidden
+    desc:
+      ru: Отцовская страница
+      en: Parent page
+      hy: Ծնողական էջ
+    default: "0"
+    params:
+      required: false
+      readonly: false
+    lookup:
+      storage:
+        name: pages
+        title: description
+        value: id
+  name:
+    type: varchar
+    length: 255
+    class: string
+    desc:
+      ru: Наименование раздела
+      en: Page name
+      hy: Էջի անունը
+    note:
+      ru: Введите наименование страницы, наименование будет использовано в URL
+      en: Enter the name of the page, the name will be used in the URL
+      hy: Մուտքագրեք էջի անունը, անունը կօգտագործվի URL-ում
+    params:
+      required: true
+      readonly: false
+  description:
+    type: varchar
+    length: 512
+    class: string
+    desc:
+      ru: Описание страницы
+      en: Page description
+      hy: Էջի նկարագրություն
+    note:
+      ru: Введите описание сайта
+      en: Enter site description
+      hy: Մուտքագրեք կայքի նկարագրությունը
+    params:
+      required: true
+      enabled: true
+      canbeempty: true
+      readonly: false
+      list: false
+      multiple: false
+      greed: ""
+      viewer: ~
+      vertical: false
+      visual: false
+      code: ""
+      mask: ""
+      fieldgenerator: ""
+      generator: ""
+      noteClass: ""
+      simplearraywidth: ""
+      simplearrayheight: ""
+      addlink:
+        ru: ""
+        en: ""
+        hy: ""
+      removelink: true
+      updownlink: true
+      initempty: true
+      maxadd: ""
+      title: ""
+      removedesc: true
+      allow: ""
+      size: ""
+      validate: []
+    placeholder:
+      ru: ""
+      en: ""
+      hy: ""
+    component: Colibri.UI.Forms.Text
+    attrs: []
+    group: window
+  published:
+    type: boolean
+    class: bool
+    desc:
+      ru: Опубликована
+      en: Published
+      hy: Հրատարակվել է
+    component: Colibri.UI.Forms.Checkbox
+    params:
+      required: true
+      readonly: false
+    default: false
+    selector:
+      value: value
+      title: title
+  additional:
+    type: json
+    class: ObjectField
+    component: Colibri.UI.Forms.Tabs
+    desc:
+      ru: Всякое
+      en: Additional
+      hy: Լրացուցիչ
+    default: json_object()
+    fields:
+      meta:
+        type: json
+        class: ObjectField
+        desc:
+          ru: Мета данные
+          en: Page metadata
+          hy: Էջի մետատվյալներ
+        component: Colibri.UI.Forms.Object
+        params:
+          vertical: true
+        default: json_object()
+        fields:
+          title:
+            type: varchar
+            length: 512
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Заголовок страницы
+              en: Page title
+              hy: Էջի վերնագիր
+            note:
+              ru: Введите заголовок страницы
+              en: Enter the page title
+              hy: Մուտքագրեք էջի անվանումը
+          description:
+            type: varchar
+            length: 1024
+            class: string
+            component: Colibri.UI.Forms.TextArea
+            desc:
+              ru: Описание страницы
+              en: Page description
+              hy: Էջի նկարագրություն
+            note:
+              ru: Введите мета описание сайта
+              en: Enter the description in meta header
+              hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
+          keywords:
+            type: varchar
+            length: 1024
+            class: string
+            component: Colibri.UI.Forms.TextArea
+            desc:
+              ru: Ключевые слова
+              en: Page keywords
+              hy: Էջի հիմնաբառեր
+            note:
+              ru: Введите ключевые слова
+              en: Enter the meta keywords
+              hy: Մուտքագրեք մետա հիմնաբառերը
+      settings:
+        type: json
+        class: ObjectField
+        component: Colibri.UI.Forms.Object
+        desc:
+          ru: Технические данные
+          en: Technical information
+          hy: Տեխնիկական տեղեկատվություն
+        params:
+          vertical: true
+        default: json_object()
+        fields:
+          component:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Select
+            desc:
+              ru: Компонента
+              en: Component
+              hy: Բաղադրիչ
+            note: ""
+            params:
+              required: false
+              readonly: false
+            selector:
+              value: value
+              title: title
+            lookup:
+              method: '(term, dependsValue) => new Promise((resolve, reject) =>
+                { let ret = [{value: "", title: "Шаблон не выбран"}]; const module
+                = dependsValue?.additional?.settings.module; Object.forEach(eval("App.Modules."
+                + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
+                { ret.push({value: name, title: module + ''.'' + name}); } }); resolve(ret);
+                }); '
+              depends: domain
+          template:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Select
+            desc:
+              ru: Шаблон
+              en: Template
+              hy: Կաղապար
+            note: ""
+            params:
+              required: false
+              readonly: false
+            selector:
+              value: value
+              title: title
+            lookup:
+              method: '(term, dependsValue) => new Promise((resolve, reject) =>
+                { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                + dependsValue?.additional?.settings.module.toLowerCase() + ")").then((templates)
+                => { templates.forEach(template => { ret.push({value: template.path,
+                title: template.path}); }); resolve(ret); }); }); '
+              depends: domain
+      parameters:
+        type: json
+        class: ArrayField
+        component: Colibri.UI.Forms.Array
+        desc:
+          ru: Дополнительные свойства
+          en: Additional properties
+          hy: Լրացուցիչ հատկություններ
+        default: json_array()
+        attrs:
+          className: app-field-wrap
+        params:
+          addlink:
+            ru: Добавить параметр
+            en: Add parameter
+            hy: Ավելացնել
+        fields:
+          name:
+            type: varchar
+            length: 50
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Наименование поля
+              en: Param name
+              hy: Պարամետրի անվանումը
+            attrs:
+              width: 30%
+          description:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Описание поля
+              en: Param description
+              hy: Պարամետրի նկարագրությունը
+            attrs:
+              width: 68%
+          type:
+            type: varchar
+            length: 20
+            desc:
+              ru: Тип
+              en: Type
+              hy: Տիպ
+            class: string
+            component: Colibri.UI.Forms.Text
+            default: varchar
+            attrs:
+              width: 19.5%
+          length:
+            type: int
+            desc:
+              ru: Длина
+              en: Length
+              hy: Երկարություն
+            class: int
+            component: Colibri.UI.Forms.Number
+            attrs:
+              width: 15%
+          default:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Значение по умолчанию
+              en: Default value
+              hy: Կանխադրված արժեք
+            attrs:
+              width: 20%
+          class:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Класс (PHP)
+              en: Class name (PHP)
+              hy: Դասի անվանումը (PHP)
+            attrs:
+              width: 20%
+          component:
+            type: varchar
+            length: 255
+            class: string
+            default: Text
+            component: Colibri.UI.Forms.Select
+            desc:
+              ru: Компонента (JS)
+              en: UI Component (JS)
+              hy: UI բաղադրիչ (JS)
+            selector:
+              value: value
+              title: title
+            lookup:
+              method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                (name, value) => { ret.push({value: name, title: value.description});
+                }); resolve(ret); })'
+            attrs:
+              width: 22%
+  parameters:
+    type: json
+    component: Colibri.UI.Forms.Object
+    desc:
+      ru: Параметры
+      en: Parameters
+      hy: Պարամետրեր
+    class: ParametersField
+    default: json_object()
+    params:
+      hidden: true
+      required: false
+      readonly: false
+  order:
+    type: double
+    class: float
+    default: "0"
+    component: Colibri.UI.Forms.Hidden
+    desc: Позиция в рамках parent-а
+indices:
+  pages_domain_idx:
+    fields:
+    - domain
+    type: NORMAL
+    method: BTREE
+  pages_parent_idx:
+    fields:
+    - parent
+    type: NORMAL
+    method: BTREE
+  pages_name_idx:
+    fields:
+    - name
+    type: NORMAL
+    method: BTREE
+  pages_order_idx:
+    fields:
+    - order
+    type: NORMAL
+    method: BTREE
+  pages_published_idx:
+    fields:
+    - published
+    type: NORMAL
+    method: BTREE
