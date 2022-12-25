@@ -138,3 +138,27 @@ sites-structure-windowtitle-newrow:
 sites-structure-windowtitle-publish:
   ru: Публикация данных
   en: Publication of data
+sites-structure-windowtitle-noeditdomainprops-close:
+  ru: Закрыть
+  en: Close
+sites-structure-deletedomainmessage-delete:
+  ru: Удалить!
+  en: Delete
+sites-structure-windowtitle-noeditpageprops-close:
+  ru: Закрыть
+  en: Close
+sites-structure-windowtitle-urlcopiedtext-close:
+  ru: Закрыть
+  en: Close
+sites-structure-windowtitle-urlcopiederrortext-close:
+  ru: Закрыть
+  en: Close
+sites-structure-messages-removepublicationmessage-delete:
+  ru: Удалить!
+  en: Delete
+sites-structure-messages-removepublicationsmessage-delete:
+  ru: Удалить!
+  en: Delete
+sites-structure-deletepagemessage-delete:
+  ru: Удалить!
+  en: Delete

@@ -1439,7 +1439,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if (menuData.name == 'remove-storage') {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
-            App.Confirm.Show('#{sites-storages-messages-removestorage}', '#{sites-storages-messages-removestoragemessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-storages-messages-removestorage}', '#{sites-storages-messages-removestoragemessage}', '#{sites-storages-messages-removestoragemessage-delete}').then(() => {
                 Sites.DeleteStorage(moduleNode.tag.entry, node.tag.entry);
             });
         }
@@ -1502,7 +1502,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             const selectedNode = this.selected;
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                App.Confirm.Show('#{sites-storages-messages-removeproperty}', '#{sites-storages-messages-removepropertymessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+                App.Confirm.Show('#{sites-storages-messages-removeproperty}', '#{sites-storages-messages-removepropertymessage}', '#{sites-storages-messages-removepropertymessage-delete}').then(() => {
                     Sites.DeleteField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node));
                 });
             }
@@ -1544,7 +1544,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                App.Confirm.Show('#{sites-storages-messages-removeindex}', '#{sites-storages-messages-removeindexmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+                App.Confirm.Show('#{sites-storages-messages-removeindex}', '#{sites-storages-messages-removeindexmessage}', '#{sites-storages-messages-removeindexmessage-delete}').then(() => {
                     Sites.DeleteIndex(moduleNode.tag.entry, storageNode.tag.entry, node.tag.entry);
                 });
             }

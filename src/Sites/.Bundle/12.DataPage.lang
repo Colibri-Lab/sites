@@ -49,3 +49,9 @@ sites-structure-deletedatas: {}
 sites-structure-deletedatasmessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
+sites-structure-deletedatamessage-delete:
+  ru: Удалить!
+  en: Delete
+sites-structure-deletedatasmessage-delete:
+  ru: Удалить!
+  en: Delete

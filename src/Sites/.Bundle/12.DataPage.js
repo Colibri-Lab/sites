@@ -101,12 +101,12 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             return;
         }
         if(this._data.checked.length == 0) {
-            App.Confirm.Show('#{sites-structure-deletedata}', '#{sites-structure-deletedatamessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedata}', '#{sites-structure-deletedatamessage}', '#{sites-structure-deletedatamessage-delete}').then(() => {
                 Sites.DeleteData(storage, [this._data.selected?.value?.id]);
             });
         }
         else {
-            App.Confirm.Show('#{sites-structure-deletedatas}', '#{sites-structure-deletedatasmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedatas}', '#{sites-structure-deletedatasmessage}', '#{sites-structure-deletedatasmessage-delete}').then(() => {
                 let ids = [];
                 this._data.checked.forEach((row) => {
                     ids.push(row.value.id);

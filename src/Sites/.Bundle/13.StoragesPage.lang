@@ -687,3 +687,12 @@ sites-storages-indextype-spatial:
 sites-storages-indextype-normal:
   ru: Нормальный
   en: Normal
+sites-storages-messages-removestoragemessage-delete:
+  ru: Удалить!
+  en: Delete
+sites-storages-messages-removepropertymessage-delete:
+  ru: Удалить!
+  en: Delete
+sites-storages-messages-removeindexmessage-delete:
+  ru: Удалить!
+  en: Delete

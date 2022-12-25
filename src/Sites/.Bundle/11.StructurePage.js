@@ -123,7 +123,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                                 .catch(() => {});
                         }
                         else {
-                            App.Alert.Show('#{sites-structure-windowtitle-editdomainprops}', '#{sites-structure-windowtitle-noeditdomainprops}', '#{app-alert-close;Закрыть}');
+                            App.Alert.Show('#{sites-structure-windowtitle-editdomainprops}', '#{sites-structure-windowtitle-noeditdomainprops}', '#{sites-structure-windowtitle-noeditdomainprops-close}');
                         }
                     });
             }
@@ -133,7 +133,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         }
         else if(menuData.name == 'remove-domain') {
-            App.Confirm.Show('#{sites-structure-deletedomain}', '#{sites-structure-deletedomainmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedomain}', '#{sites-structure-deletedomainmessage}', '#{sites-structure-deletedomainmessage-delete}').then(() => {
                 Sites.DeleteDomain(item.tag.data.id);
             });
         }
@@ -198,7 +198,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                                 .catch(() => {});
                         }
                         else {
-                            App.Alert.Show('#{sites-structure-windowtitle-editpageprops}', '#{sites-structure-windowtitle-noeditpageprops}', '#{app-alert-close;Закрыть}');
+                            App.Alert.Show('#{sites-structure-windowtitle-editpageprops}', '#{sites-structure-windowtitle-noeditpageprops}', '#{sites-structure-windowtitle-noeditpageprops-close}');
                         }
                         
                     });
@@ -209,16 +209,16 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         }
         else if(menuData.name == 'remove-folder') {
-            App.Confirm.Show('#{sites-structure-deletepage}', '#{sites-structure-deletepagemessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletepage}', '#{sites-structure-deletepagemessage}', '#{sites-structure-deletepagemessage-delete}').then(() => {
                 Sites.DeleteFolder(item.tag.data.id);
             });
         }
         else if(menuData.name == 'copy-path') {
             const path = this._getPath(item);
             path.copyToClipboard().then(() => {
-                App.Alert.Show('#{sites-structure-windowtitle-urlcopied}', '#{sites-structure-windowtitle-urlcopiedtext}', '#{app-alert-close;Закрыть}');
+                App.Alert.Show('#{sites-structure-windowtitle-urlcopied}', '#{sites-structure-windowtitle-urlcopiedtext}', '#{sites-structure-windowtitle-urlcopiedtext-close}');
             }).catch(() => {
-                App.Alert.Show('#{sites-structure-windowtitle-urlcopiederror}', '#{sites-structure-windowtitle-urlcopiederrortext}', '#{app-alert-close;Закрыть}');
+                App.Alert.Show('#{sites-structure-windowtitle-urlcopiederror}', '#{sites-structure-windowtitle-urlcopiederrortext}', '#{sites-structure-windowtitle-urlcopiederrortext-close}');
             })
         }
     }
@@ -406,12 +406,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     __deleteDataButtonClicked(event, args) {
         if(this._publications.checked.length == 0) {
-            App.Confirm.Show('#{sites-structure-messages-removepublication}', '#{sites-structure-messages-removepublicationmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-messages-removepublication}', '#{sites-structure-messages-removepublicationmessage}', '#{sites-structure-messages-removepublicationmessage-delete}').then(() => {
                 Sites.DeletePublication([this._publications.selected.value.id]);
             });
         }
         else {
-            App.Confirm.Show('#{sites-structure-messages-removepublications}', '#{sites-structure-messages-removepublicationsmessage;Вы уверены, что хотите удалить выбранные публикации?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-messages-removepublications}', '#{sites-structure-messages-removepublicationsmessage;Вы уверены, что хотите удалить выбранные публикации?}', '#{sites-structure-messages-removepublicationsmessage-delete}').then(() => {
                 let ids = [];
                 this._publications.checked.forEach((row) => {
                     ids.push(row.value.id);
