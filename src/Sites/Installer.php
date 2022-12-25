@@ -27,12 +27,10 @@ class Installer
         $modules = self::_loadConfig($file);
         $hasLangModule = false;
         if(is_array($modules['entries'])) {
-            foreach($modules['entries'] as $moduleEntry) {
-                if($moduleEntry['name'] === 'Lang') {
+            foreach($modules['entries'] as $entry) {
+                if($entry['name'] === 'Lang') {
                     $hasLangModule = true;
                 }
-            }
-            foreach($modules['entries'] as $entry) {
                 if($entry['name'] === 'Sites') {
                     return $hasLangModule;
                 }
