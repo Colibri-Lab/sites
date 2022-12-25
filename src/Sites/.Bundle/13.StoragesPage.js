@@ -1033,13 +1033,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         addlink: 'Добавить значение'
                     },
                     fields: {
-                        value: {
+                        title: {
                             type: 'varchar',
-                            component: 'Text',
-                            desc: '#{sites-storages-fieldvalues-value;Поле для значения}',
-                            attrs: {
-                                width: 410
-                            }
+                            component: 'App.Modules.Lang.UI.Text',
+                            desc: '#{sites-storages-fieldvalues-title;Поле для вывода}'
                         },
                         type: {
                             type: 'varchar',
@@ -1064,28 +1061,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }
                             ]
                         },
-                        title_text: {
+                        value: {
                             type: 'varchar',
-                            component: 'App.Modules.Lang.UI.TextArea',
-                            desc: '#{sites-storages-fieldvalues-title;Поле для вывода}',
-                            params: {
-                                condition: {
-                                    field: 'type',
-                                    value: 'text'
-                                }
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldvalues-value;Поле для значения}',
+                            attrs: {
+                                width: 410
                             }
-                        },
-                        title_number: {
-                            type: 'float',
-                            component: 'Number',
-                            desc: '#{sites-storages-fieldvalues-title;Поле для вывода}',
-                            params: {
-                                condition: {
-                                    field: 'type',
-                                    value: 'number'
-                                }
-                            }
-                        },
+                        }
+                        
+                        
                     }
                 },
                 selector: {
@@ -1502,32 +1487,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fieldData.group_enabled = true;
                 }
 
-                if(fieldData.values) {
-                    for(const val of fieldData.values) {
-                        if(val.type === 'text') {
-                            val.title_text = val.title;
-                        }
-                        else {
-                            val.title_number = val.title;
-                        }
-                        delete val.title;
-                    }
-                }
-
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty}', 1024, fieldData.virtual ? this._fieldVirtualFields() : this._fieldFields(node.parentNode.tag.type === 'fields'), fieldData)
                     .then((data) => {
-                        if(data.values) {
-                            for(const val of data.values) {
-                                if(val.type === 'text') {
-                                    val.title = val.title_text;
-                                }
-                                else {
-                                    val.title = val.title_number;
-                                }
-                                delete val.title_text;
-                                delete val.title_number;
-                            }        
-                        }
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);
                     })
                     .catch(() => { });
