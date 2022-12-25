@@ -1,7 +1,7 @@
 ---
 domains: include(domains-storage.yaml)
 pages: include(pages-storage.yaml)
-pubs: 
+pubs:
   access-point: sites
   module: Sites
   models:
@@ -105,7 +105,10 @@ texts:
   models:
     table: Models\Texts
     row: Models\Text
-  desc: '#{sites-storages-texts-desc;Текстовые данные}'
+  desc:
+    ru: Текстовые данные
+    en: Text data
+    hy: Տեքստային տվյալներ
   params:
     visible: true
     maybepublished: true
@@ -176,8 +179,8 @@ texts:
         hy: Վերնագիր
       note:
         ru: Введите заголовок текстового блока, если не обходимо
-        en: Введите заголовок текстового блока, если не обходимо
-        hy: Введите заголовок текстового блока, если не обходимо
+        en: Enter a title for the text block if needed
+        hy: Անհրաժեշտության դեպքում մուտքագրեք վերնագիր տեքստային բլոկի համար
       params:
         required: false
         enabled: true
@@ -224,8 +227,8 @@ texts:
         hy: Բովանդակություն
       note:
         ru: Введите содержание блока
-        en: Введите содержание блока
-        hy: Введите содержание блока
+        en: Enter block content
+        hy: Մուտքագրեք բլոկի բովանդակությունը
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: true
@@ -265,5 +268,11 @@ texts:
         en: ""
         hy: ""
   indices:
+    texts_lang_idx:
+      fields:
+      - lang
+      type: NORMAL
+      method: BTREE
   note: ""
+  group: ~
 ...

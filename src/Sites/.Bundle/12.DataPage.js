@@ -101,12 +101,12 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             return;
         }
         if(this._data.checked.length == 0) {
-            App.Confirm.Show('#{sites-structure-deletedata1;Удаление данных}', '#{sites-structure-deletedata1message;Вы уверены, что хотите удалить выбранную строку?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedata}', '#{sites-structure-deletedatamessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 Sites.DeleteData(storage, [this._data.selected?.value?.id]);
             });
         }
         else {
-            App.Confirm.Show('#{sites-structure-deletedata;Удаление данных}', '#{sites-structure-deletedatamessage;Вы уверены, что хотите удалить выбранные строки?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedatas}', '#{sites-structure-deletedatasmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 let ids = [];
                 this._data.checked.forEach((row) => {
                     ids.push(row.value.id);
@@ -124,7 +124,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', {})
+            Manage.FormWindow.Show('#{sites-structure-newrow} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', {})
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })
@@ -146,7 +146,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+            Manage.FormWindow.Show('#{sites-structure-newrow} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })
@@ -169,7 +169,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         delete dta.id;
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+            Manage.FormWindow.Show('#{sites-structure-newrow} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })
@@ -185,9 +185,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     __renderDataContextMenu(event, args) {
         let contextmenu = [];
         
-        contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate;Дублировать данные}', icon: Colibri.UI.ContextMenuDublicateIcon});
-        contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-edit;Редактировать данные}', icon: Colibri.UI.ContextMenuEditIcon});
-        contextmenu.push({name: 'remove-pub', title: '#{sites-structure-contextmenu-delete;Удалить}', icon: Colibri.UI.ContextMenuRemoveIcon});
+        contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate}', icon: Colibri.UI.ContextMenuDublicateIcon});
+        contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-edit}', icon: Colibri.UI.ContextMenuEditIcon});
+        contextmenu.push({name: 'remove-pub', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon});
 
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);

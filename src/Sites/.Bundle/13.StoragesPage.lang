@@ -135,310 +135,469 @@ sites-storages-fieldname-validation-regexp:
   en: The entered text does not match the requirements
 sites-storages-fieldgroup:
   ru: Группа свойств
+  en: Properties group
 sites-storages-fieldgroup-note:
   ru: Наименование группы, если нужно оставить в основной то нужно написать
     "window"
+  en: The name of the group, if you want to leave it in the main one, you need to
+    write "window"
 sites-storages-fieldgroup-validation-required:
   ru: Пожалуйста, введите группу свойств
+  en: Please enter a property group
 sites-storages-fielddesc:
   ru: Описание свойства
+  en: Property description
 sites-storages-fielddesc-note:
   ru: Можно на русском языке. Внимание! Описание должно полностью описывать
     свойство, учитывайте, что модель будет возвращать модель указанную в поле
     Класс.
+  en: It is possible in Russian. Attention! The description must fully describe
+    the property, keep in mind that the model will return the model specified in
+    the Class field.
 sites-storages-fielddesc-validation-required:
   ru: Пожалуйста, опишите свойство
+  en: Please describe the property
 sites-storages-fieldplaceholder:
   ru: Замещающий текст
+  en: Property placeholder
 sites-storages-fieldplaceholder-note:
   ru: Замещающий текст, отображается внутри поля серым текстом
+  en: Alternative text, displayed inside the field as gray text
 sites-storages-fieldnote:
   ru: Подсказка
+  en: Note
 sites-storages-fieldnote-note:
   ru: Подсказка, отображается под полем серым текстом
+  en: Note, displayed below the field in gray text
 sites-storages-fieldtype:
   ru: Тип свойства (для хранения в источнике данных)
+  en: Property type (to be stored in the data source)
 sites-storages-fieldtype-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
+  en: Attention! You are supposed to know what you are doing!
 sites-storages-fieldtype-validation-required:
   ru: Пожалуйста, введите тип свойства
+  en: Please enter a property type
 sites-storages-fieldlength:
   ru: Длина в байтах
+  en: Length in bytes
 sites-storages-fieldlength-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
+  en: Attention! You are supposed to know what you are doing!
 sites-storages-fieldcomponent:
   ru: Компонента
+  en: Component
 sites-storages-fieldcomponent-note:
   ru: Выберите компоненту, которая будет использоваться в формах для ввода и
     редактирования данных
+  en: Select the component that will be used in the forms for entering and editing
+    data
 sites-storages-fieldcomponent-validation-required:
   ru: Пожалуйста, выберите компоненту
+  en: Please select a component
 sites-storages-fieldclass:
   ru: Класс (PHP)
+  en: Class (PHP)
 sites-storages-fieldclass-note:
   ru: Внимание! Класс должен существовать
+  en: Attention! The class must exist
 sites-storages-fieldclass-validation-required:
   ru: Пожалуйста, выберите наименование класса
+  en: Please select a class name
 sites-storages-fieldsetdefault:
   ru: Указать значение по умолчанию
+  en: Specify a default value
 sites-storages-fielddefault:
   ru: Значение по умолчанию
+  en: Default value
 sites-storages-fielddefault-note:
   ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что
     делаете
+  en: Enter a default value. Attention! You are supposed to know what you are doing
 sites-storages-fieldattrs:
   ru: Аттрибуты
+  en: Attributes
 sites-storages-fieldattrs-note:
   ru: Атрибуты компонента
+  en: Component attributes
 sites-storages-fieldattrs-width:
   ru: Ширина
+  en: Width
 sites-storages-fieldattrs-height:
   ru: Высота
+  en: Height
 sites-storages-fieldattrs-class:
   ru: Класс
+  en: Class name (css)
 sites-storages-fieldparams:
   ru: Дополнительные параметры
+  en: Additional parameters
 sites-storages-fieldparams-required:
   ru: Обязательное поле
+  en: Property is required
 sites-storages-fieldparams-required-note:
   ru: Будет требоваться ввести значение в форме. Пустое значение будет
     трактоваться как "нет значения"
+  en: You will be required to enter a value in the form. You will be required to
+    enter a value in the form. Вам будет необходимо ввести значение в форму. You
+    will be asked to enter a value in the form. Вам будет предложено ввести
+    значение в форму.  An empty value will be treated as "no value"
 sites-storages-fieldparams-enabled:
   ru: Поле включено
+  en: Property is enabled
 sites-storages-fieldparams-enabled-note:
   ru: Не будет возможности ввести или изменить поле. Значение не будет
     передаваться в форме, если не будет введено
+  en: It will not be possible to enter or change the field. The value will not be
+    passed in the form unless it is entered
 sites-storages-fieldparams-canbeempty:
   ru: Принимает пустые значения
+  en: Accepts empty values
 sites-storages-fieldparams-canbeempty-note:
   ru: Значение сможет быть пустым, например пустая строка, или 0 в случае числа
+  en: The value can be empty, such as an empty string, or 0 in the case of a number
 sites-storages-fieldparams-readonly:
   ru: Только для чтения
+  en: Property is readonly
 sites-storages-fieldparams-readonly-note:
   ru: Работает только с компонентом типа Select
+  en: Works only with a Select component
 sites-storages-fieldparams-list:
   ru: Отображать в списке
+  en: Show in list
 sites-storages-fieldparams-multiple:
   ru: Мультивыбор
+  en: Multiple
 sites-storages-fieldparams-greed:
   ru: Жадность в списке
+  en: Greed is on the list
 sites-storages-fieldparams-greed-note:
   ru: Указывается в процентах
+  en: Indicated as a percentage
 sites-storages-fieldparams-viewer:
   ru: Класс Viewer (для отображения в списках)
+  en: Viewer class (for display in lists)
 sites-storages-fieldparams-viewer-note:
   ru: Выберите из списка
+  en: Select from the list
 sites-storages-fieldparams-vertical:
   ru: Отображать обьект вертикально
+  en: Show object vertically
 sites-storages-fieldparams-vertical-note:
   ru: Работает только с обьектами типа Object и Array
+  en: Работает только с обьектами типа Object и Array
 sites-storages-fieldparams-visual:
   ru: Отображать в виде визуального редактора
+  en: Display as visual editor
 sites-storages-fieldparams-visual-note:
   ru: Используется только в большом текстовом поле
+  en: Used only in a large text field
 sites-storages-fieldparams-code:
   ru: Отображать в виде редактора кода
+  en: Display as code editor
 sites-storages-fieldparams-code-note:
   ru: Используется только в большом текстовом поле
+  en: Used only in a large text field
 sites-storages-fieldparams-mask:
   ru: Маска ввода
+  en: Input mask
 sites-storages-fieldparams-mask-note:
   ru: Работает только с обьектами типа Text
+  en: Works only with objects of type Text
 sites-storages-fieldparams-fieldgenerator:
   ru: Генератор параметров поля
+  en: Field parameter generator
 sites-storages-fieldparams-generator:
   ru: Генератор значений
+  en: Property value generator
 sites-storages-fieldparams-generator-note:
   ru: Работает только с обьектами типа Text,TextArea
+  en: Works only with objects of type Text,TextArea
 sites-storages-fieldparams-note-class:
   ru: Класс для подсказки
+  en: Hint class
 sites-storages-fieldparams-simplearraywidth:
   ru: Длина массива данных
+  en: Data array length
 sites-storages-fieldparams-simplearraywidth-note:
   ru: Работает только с обьектами типа SimpleArray
+  en: Works only with objects of type Simple Array
 sites-storages-fieldparams-simplearrayheight:
   ru: Высота массива данных
+  en: Data array height
 sites-storages-fieldparams-simplearrayheight-note:
   ru: Работает только с обьектами типа SimpleArray
+  en: Works only with objects of type Simple Array
 sites-storages-fieldparams-addlink:
   ru: Текст ссылки для добавления строки в массив
+  en: Link text to add string to array
 sites-storages-fieldparams-addlink-note:
   ru: Работает только с обьектами типа Array
+  en: Works only with objects of type Array
 sites-storages-fieldparams-removelink:
   ru: Отобразить удаление обьекта из массива
+  en: Display the removal of an object from an array
 sites-storages-fieldparams-removelink-note:
   ru: Работает только с обьектами типа Array
+  en: Works only with objects of type Array
 sites-storages-fieldparams-updownlink:
   ru: Отобразить стрелки вверх/вниз
+  en: Show Up/Down Arrows
 sites-storages-fieldparams-updownlink-note:
   ru: Работает только с обьектами типа Array
+  en: Works only with objects of type Array
 sites-storages-fieldparams-initempty:
   ru: Создать пустой обьект при инициализации?
+  en: Create an empty object on initialization?
 sites-storages-fieldparams-initempty-note:
   ru: Работает только с обьектами типа Array
+  en: Works only with objects of type Array
 sites-storages-fieldparams-maxadd:
   ru: Максимальное количество строк в массиве
+  en: Maximum number of rows in an array
 sites-storages-fieldparams-maxadd-note:
   ru: Работает только с обьектами типа Array
+  en: Works only with objects of type Array
 sites-storages-fieldparams-title:
   ru: Метод формирования заголовка в массиве
+  en: Heading Formation Method in Array
 sites-storages-fieldparams-title-note:
-  ru: "Работает только с обьектами типа Array: (object, array) => {"
+  ru: "Работает только с обьектами типа Array: function(object, array)"
+  en: "Only works with Array objects: function(object, array)"
 sites-storages-fieldparams-removedesc:
   ru: Удалять заголовок поля?
+  en: Remove field header?
 sites-storages-fieldparams-removedesc-note:
   ru: Работает только с обьектами типа Object/Array
+  en: Works only with objects of type Object/Array
 sites-storages-fieldparams-allow:
   ru: Разрешенные типы файлов
+  en: Allowed File Types
 sites-storages-fieldparams-allow-note:
   ru: Работает только с обьектами типа File/Files
+  en: Works only with objects of type File/Files
 sites-storages-fieldparams-size:
   ru: Разрешенные размер файлов в байтах
+  en: Allowed file size in bytes
 sites-storages-fieldparams-validate:
   ru: Проверка значения поля
+  en: Property validation
 sites-storages-fieldparams-validate-addlink:
   ru: Добавить проверку
+  en: Add validation
 sites-storages-fieldparams-validate-message:
   ru: Сообщение
+  en: Message
 sites-storages-fieldparams-validate-method:
   ru: Метод
+  en: Method
 sites-storages-fieldlookup:
   ru: Связка
+  en: Lookup
 sites-storages-fieldlookup-note:
   ru: Связь с другими хранилищами
+  en: Communication with other repositories
 sites-storages-fieldlookup-oneof-none:
   ru: Нет связи
+  en: No lookup
 sites-storages-fieldlookup-oneof-storage:
   ru: Хранилище
+  en: Storage
 sites-storages-fieldlookup-oneof-accesspoint:
   ru: Точка доступа
+  en: Access point
 sites-storages-fieldlookup-oneof-method:
   ru: Метод
+  en: Method
 sites-storages-fieldlookup-oneof-binding:
   ru: Байдинг к данным
+  en: Data binding
 sites-storages-fieldlookup-oneof-controller:
   ru: Контроллер
+  en: Controller
 sites-storages-fieldlookup-storage:
   ru: Хранилище
+  en: Storage
 sites-storages-fieldlookup-storage-name:
   ru: Хранилище
+  en: Storage
 sites-storages-fieldlookup-storage-select:
   ru: Поля в выборке
+  en: Properties in selection
 sites-storages-fieldlookup-storage-select-note:
   ru: Внимание, название полей в списке необходимо писать в фигурных скобках
+  en: Attention, the name of the fields in the list must be written in curly
+    brackets
 sites-storages-fieldlookup-storage-title:
   ru: Поле для вывода
+  en: Property to show
 sites-storages-fieldlookup-storage-title-note:
   ru: Название поля, без фигурных скобок
+  en: Field name, without curly braces
 sites-storages-fieldlookup-storage-value:
   ru: Поле для значения
+  en: Property for value
 sites-storages-fieldlookup-storage-value-note:
   ru: Название поля, без фигурных скобок
+  en: Field name, without curly braces
 sites-storages-fieldlookup-storage-group:
   ru: Поле для группы
+  en: Property for group
 sites-storages-fieldlookup-storage-group-note:
   ru: Название поля, без фигурных скобок
+  en: Field name, without curly braces
 sites-storages-fieldlookup-storage-order:
   ru: Сортировка
+  en: Order
 sites-storages-fieldlookup-storage-order-note:
   ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
+  en: Attention, the field names in sorting must be written in curly brackets
 sites-storages-fieldlookup-storage-depends:
   ru: Связь с другим полем
+  en: Depends on
 sites-storages-fieldlookup-storage-depends-note:
   ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап
     необходимо наличие такого поля, так же как и исходной таблице
+  en: The name of the field, without curly braces. The storage from which the
+    lookup is made must have such a field, just like the original table
 sites-storages-fieldlookup-storage-controller:
   ru: Контроллер (JS)
+  en: Controller (JS)
 sites-storages-fieldlookup-storage-controller-note:
   ru: Куда обращаться за получением данных по выборке
+  en: Where to apply for sample data
 sites-storages-fieldlookup-storage-controller-module:
   ru: Модуль
+  en: Module
 sites-storages-fieldlookup-storage-controller-class:
   ru: Класс
+  en: Class name
 sites-storages-fieldlookup-storage-controller-method:
   ru: Метод
+  en: Method name
 sites-storages-fieldlookup-controller:
   ru: Контроллер (JS)
+  en: Controller (JS)
 sites-storages-fieldlookup-controller-module:
   ru: Модуль
+  en: Module
 sites-storages-fieldlookup-controller-class:
   ru: Класс
+  en: Class name
 sites-storages-fieldlookup-controller-method:
   ru: Метод
+  en: Method name
 sites-storages-fieldlookup-controller-depends:
   ru: Связь с другим полем
+  en: Depends on
 sites-storages-fieldlookup-binding:
   ru: Байндинг
+  en: Data binding
 sites-storages-fieldlookup-method:
   ru: Метод
+  en: Method (JS)
 sites-storages-fieldlookup-accesspoint:
   ru: Точка доступа
+  en: Access point
 sites-storages-fieldlookup-accesspoint-table:
   ru: Таблица
+  en: Table
 sites-storages-fieldlookup-accesspoint-fields:
   ru: Список полей
+  en: Fields list
 sites-storages-fieldlookup-accesspoint-filter:
   ru: Фильтр
+  en: Filter
 sites-storages-fieldlookup-accesspoint-order:
   ru: Сортировка
+  en: Order
 sites-storages-fieldvalues:
   ru: Значения
+  en: Values
 sites-storages-fieldvalues-value:
   ru: Поле для значения
+  en: Value
 sites-storages-fieldvalues-title:
   ru: Поле для вывода
+  en: Title field
 sites-storages-fieldselector:
   ru: Выборка
+  en: Selector
 sites-storages-fieldselector-note:
   ru: Дополнительные настройки для компонента Select
+  en: Additional settings for the Select component
 sites-storages-fieldselector-value:
   ru: Поле значения
+  en: Value field
 sites-storages-fieldselector-title:
   ru: Поле заголовка
+  en: Title field
 sites-storages-fieldselector-group:
   ru: Поле для группировки
+  en: Group field
 sites-storages-fieldselector-render:
   ru: Метод для вывода выборки
+  en: Custom render method
 sites-storages-fieldselector-ondemand:
   ru: Загружать при запросе
+  en: Download on demand
 sites-storages-fieldexpression:
   ru: Выражение
+  en: Expression
 sites-storages-fieldexpression-note:
   ru: Введите выражение для создания поля. Внимание! Предполагается что вы знаете
     что делаете
+  en: Enter an expression to create the field. Attention! You are supposed to know
+    what you are doing
 sites-storages-indexname:
   ru: Наименование индекса
+  en: Index name
 sites-storages-indexname-note:
   ru: "Внимание! Рекомендуется индекс называть следующим образом:
     storage_fields_idx, где storage название хранилища fields - список полей
     через _"
+  en: "Attention! It is recommended to name the index as follows:
+    storage_fields_idx, where storage is the name of the storage fields - the
+    list of fields separated by _"
 sites-storages-indexname-validation-required:
   ru: Пожалуйста, введите наименование индекса
+  en: Please enter an index name
 sites-storages-indexname-validation-regexp:
   ru: Введенный текст не соответствует требованиям
+  en: The entered text does not match the requirements
 sites-storages-indexfields:
   ru: Спосок свойств
+  en: Properties list
 sites-storages-indexfields-note:
   ru: Выберите список свойств по которым необходимо индексировать
+  en: Select a list of properties to index by
 sites-storages-indexfields-validation-required:
   ru: Пожалуйста, выберите свойства
+  en: Please select properties
 sites-storages-indextype:
   ru: Тип индекса
+  en: Index type
 sites-storages-indextype-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
+  en: Attention! You are supposed to know what you are doing!
 sites-storages-indextype-validation-required:
   ru: Пожалуйста, выберите тип индекса
+  en: Please select an index type
 sites-storages-indexmethod:
-  ru: Компонента
+  ru: Метод индексирования
+  en: Indexing method
 sites-storages-indexmethod-note:
-  ru: Выберите компоненту, которая будет использоваться в формах для ввода и
-    редактирования данных
+  ru: Выберите тип индексирования
+  en: Select an indexing method
 sites-storages-values-binary:
   ru: Бинарное дерево
+  en: Binary tree
 sites-storages-values-hash:
   ru: Хэш функция
+  en: Hash function
 sites-storages-indexmethod-validation-required:
   ru: Пожалуйста, выберите метод индексирования
+  en: Please select indexing method
 sites-storages-windowtitle-newstorage:
   ru: Новое хранилище
   en: New storage
@@ -480,18 +639,22 @@ sites-storages-messages-removeindexmessage:
   en: Are you sure you want to delete the index?
 sites-storagesmanager-title:
   ru: Хранилища материалов
+  en: Storages
 sites-storages-storagetemplates-default-: {}
 sites-storages-storagetemplates-default-unselected:
   ru: Шаблон не выбран
   en: Template is not selected
 sites-storages-fieldvalues-type:
   ru: Тип значения
+  en: Value type
 sites-storages-fieldvalues-type-:
   ru: Тип значения
 sites-storages-fieldvalues-type-text:
   ru: Текст
+  en: Text
 sites-storages-fieldvalues-type-number:
   ru: Число
+  en: Numeric
 sites-storages-storagegroupenabled:
   ru: Включить группу
   en: Enable group
@@ -499,5 +662,28 @@ sites-storages-fieldgroupenabled:
   ru: Включить группу
   en: Enable group
 sites-storages-fieldlookup-depends:
-  ru: Зависимость от другого значения
-  en: Depends with other value
+  ru: Зависимость от другого свойства
+  en: Depends with other property
+sites-storages-fieldattrs-group: {}
+sites-storages-fieldparams-group:
+  ru: Дополнительные параметры
+  en: Additional parameters
+sites-storages-fieldlookup-group: {}
+sites-storages-fieldvalues-group:
+  ru: Значения
+  en: Values
+sites-storages-indextype-Полнотекстовый': {}
+sites-storages-indextype-valueПолнотекстовый': {}
+sites-storages-indextype-fulltestПолнотекстовый': {}
+sites-storages-indextype-fulltext:
+  ru: Полнотекстовый
+  en: Full text
+sites-storages-indextype-unique:
+  ru: Уникальный
+  en: Unique
+sites-storages-indextype-spatial:
+  ru: Пространственный
+  en: Spatial
+sites-storages-indextype-normal:
+  ru: Нормальный
+  en: Normal

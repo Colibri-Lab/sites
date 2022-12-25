@@ -1,16 +1,51 @@
 sites-storages-storages-title:
   ru: Хранилища
+  en: Storages
 sites-storages-data-title:
   ru: Данные
+  en: Data
 sites-storages-search-placeholder:
   ru: Поиск
+  en: Search
 sites-storages-dataempty:
   ru: Данные не найдены
+  en: Data not found
 sites-storages-buttons-adddata:
   ru: Добавить
+  en: Add
 sites-storages-buttons-dublicatedata:
   ru: Дублировать
+  en: Dublicate
 sites-storages-buttons-editdata:
   ru: Редактировать
+  en: Edit
 sites-storages-buttons-deletedata:
   ru: Удалить
+  en: Delete
+sites-structure-deletedata1:
+  ru: Удаление данных
+  en: Delete data row
+sites-structure-deletedata1message:
+  ru: Вы уверены, что хотите удалить выбранную строку?
+  en: Are you sure you want to delete the selected row?
+sites-structure-deletedata:
+  ru: Удаление данных
+  en: Data row delete
+sites-structure-deletedatamessage:
+  ru: Вы уверены, что хотите удалить выбранные строки?
+sites-structure-newrow:
+  ru: Новая строка
+  en: New row
+sites-structure-contextmenu-dublicate:
+  ru: Дублировать данные
+  en: Dublicate data
+sites-structure-contextmenu-edit:
+  ru: Редактировать данные
+  en: Edit data
+sites-structure-contextmenu-delete:
+  ru: Удалить
+  en: Delete
+sites-structure-deletedatas: {}
+sites-structure-deletedatasmessage:
+  ru: Вы уверены, что хотите удалить выбранные строки?
+  en: Are you sure you want to delete the selected rows?

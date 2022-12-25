@@ -1,4 +1,3 @@
----
 sites-storages-fields:
   ru: Свойства
   en: Properties
@@ -48,10 +47,10 @@ sites-storages-storagename:
   en: Storage name
   hy: Պահպանման անվանումը
 sites-storages-storagename-note:
-  ru: Пожалуйста, введите наименование. Внимание! должно содержать только латинские
-    буквы и цифры без тире, дефисов и пробелов
-  en: Please, enter the name of storage. Warning! Name must contains only the latin
-    alphabet letters and numbers, without special symbols
+  ru: Пожалуйста, введите наименование. Внимание! должно содержать только
+    латинские буквы и цифры без тире, дефисов и пробелов
+  en: Please, enter the name of storage. Warning! Name must contains only the
+    latin alphabet letters and numbers, without special symbols
   hy: Խնդրում ենք մուտքագրել անուն Ուշադրություն. պետք է պարունակի միայն լատինական
     տառեր և թվեր՝ առանց գծիկների, գծիկների և բացատների
 sites-storages-storagename-validation-required:
@@ -85,7 +84,7 @@ sites-storages-storageaccesspoint:
 sites-storages-storageaccesspoint-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
-  hy: 'Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում:'
+  hy: "Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում:"
 sites-storages-storageaccesspoint-validation-required:
   ru: Пожалуйста, выберите подключение
   en: Please select an access point
@@ -97,7 +96,8 @@ sites-storages-storagecomponents:
 sites-storages-storagecomponents-note:
   ru: Компоненты для отображения, если проект в режиме «Приложение»
   en: Components to display if the project is in Application mode
-  hy: Բաղադրիչներ, որոնք ցուցադրվելու են, եթե նախագիծը գտնվում է Application ռեժիմում
+  hy: Բաղադրիչներ, որոնք ցուցադրվելու են, եթե նախագիծը գտնվում է Application
+    ռեժիմում
 sites-storages-storagecomponents-default:
   ru: Компонент по умолчанию
   en: Default Component
@@ -117,7 +117,8 @@ sites-storages-storagemodels:
 sites-storages-storagemodels-note:
   ru: Название классов моделей. Внимание! Неймспейс должен начинаться с Models\\
   en: The name of the model classes. Attention! Namespace must start with Models\\
-  hy: Մոդելի դասերի անվանումը. Ուշադրություն. Անվանատարածքը պետք է սկսվի Models-ով\\
+  hy: Մոդելի դասերի անվանումը. Ուշադրություն. Անվանատարածքը պետք է սկսվի
+    Models-ով\\
 sites-storages-storagemodels-table:
   ru: Таблица
   en: Table
@@ -147,12 +148,12 @@ sites-storages-fieldname:
   en: Property name
   hy: Գույքի անվանումը
 sites-storages-fieldname-note:
-  ru: Пожалуйста, введите наименование. Внимание! должно содержать только латинские
-    буквы и цифры без тире, дефисов и пробелов.
+  ru: Пожалуйста, введите наименование. Внимание! должно содержать только
+    латинские буквы и цифры без тире, дефисов и пробелов.
   en: Please enter a name. Attention! must contain only Latin letters and numbers
     without dashes, hyphens and spaces.
-  hy: 'Խնդրում ենք մուտքագրել անուն: Ուշադրություն. պետք է պարունակի միայն լատինական
-    տառեր և թվեր՝ առանց գծիկների, գծիկների և բացատների:'
+  hy: "Խնդրում ենք մուտքագրել անուն: Ուշադրություն. պետք է պարունակի միայն
+    լատինական տառեր և թվեր՝ առանց գծիկների, գծիկների և բացատների:"
 sites-storages-fieldname-validation-required:
   ru: Пожалуйста, введите наименование свойства
   en: Please enter a property name
@@ -166,10 +167,12 @@ sites-storages-fieldgroup:
   en: Property Group
   hy: Հատկությունների խումբ
 sites-storages-fieldgroup-note:
-  ru: Наименование группы, если нужно оставить в основной то нужно написать "window"
-  en: The name of the group, if you need to leave it in the main one, then you need
-    to write "window"
-  hy: Խմբի անվանումը, եթե անհրաժեշտ է թողնել հիմնական, ապա դուք պետք է գրեք "պատուհան"
+  ru: Наименование группы, если нужно оставить в основной то нужно написать
+    "window"
+  en: The name of the group, if you need to leave it in the main one, then you
+    need to write "window"
+  hy: Խմբի անվանումը, եթե անհրաժեշտ է թողնել հիմնական, ապա դուք պետք է գրեք
+    "պատուհան"
 sites-storages-fieldgroup-validation-required:
   ru: Пожалуйста, введите группу свойств
   en: Please enter a group of properties
@@ -179,13 +182,15 @@ sites-storages-fielddesc:
   en: Property Description
   hy: Հատկությունների նկարագրությունը
 sites-storages-fielddesc-note:
-  ru: Можно на русском языке. Внимание! Описание должно полностью описывать свойство,
-    учитывайте, что модель будет возвращать модель указанную в поле Класс.
+  ru: Можно на русском языке. Внимание! Описание должно полностью описывать
+    свойство, учитывайте, что модель будет возвращать модель указанную в поле
+    Класс.
   en: It is possible in Russian. Attention! The description should fully describe
-    the property, keep in mind that the model will return the model specified in the
-    Class field.
-  hy: 'Դուք կարող եք ռուսերեն լեզվով: Ուշադրություն! Նկարագրությունը պետք է ամբողջությամբ
-    նկարագրել գույքը, հաշվի առնել, որ մոդելը կվերադարձնի մոդելը նշված է դասի դաշտում.'
+    the property, keep in mind that the model will return the model specified in
+    the Class field.
+  hy: "Դուք կարող եք ռուսերեն լեզվով: Ուշադրություն! Նկարագրությունը պետք է
+    ամբողջությամբ նկարագրել գույքը, հաշվի առնել, որ մոդելը կվերադարձնի մոդելը
+    նշված է դասի դաշտում."
 sites-storages-fielddesc-validation-required:
   ru: Пожалуйста, опишите свойство
   en: Please describe the property
@@ -215,12 +220,12 @@ sites-storages-fieldcomponent:
   en: Component
   hy: Բաղադրիչ
 sites-storages-fieldcomponent-note:
-  ru: Выберите компоненту, которая будет использоваться в формах для ввода и редактирования
-    данных
+  ru: Выберите компоненту, которая будет использоваться в формах для ввода и
+    редактирования данных
   en: Select the component that will be used in the forms for entering and editing
     data
-  hy: Ընտրեք այն բաղադրիչը, որը կօգտագործվի տվյալների մուտքագրման եւ խմբագրման ձեւերի
-    մեջ
+  hy: Ընտրեք այն բաղադրիչը, որը կօգտագործվի տվյալների մուտքագրման եւ խմբագրման
+    ձեւերի մեջ
 sites-storages-fieldcomponent-validation-required:
   ru: Пожалуйста, выберите компоненту
   en: Please select the component
@@ -242,11 +247,12 @@ sites-storages-fielddefault:
   en: Default value
   hy: Լռելյայն արժեք
 sites-storages-fielddefault-note:
-  ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что делаете
+  ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что
+    делаете
   en: Enter the default value. Attention! It is assumed that you know what you are
     doing
-  hy: Մուտքագրեք լռելյայն արժեքը. Ուշադրություն! Ենթադրվում է, որ դուք գիտեք, թե ինչ
-    եք անում
+  hy: Մուտքագրեք լռելյայն արժեքը. Ուշադրություն! Ենթադրվում է, որ դուք գիտեք, թե
+    ինչ եք անում
 sites-storages-fieldattrs:
   ru: Аттрибуты
   en: Attributes
@@ -276,21 +282,21 @@ sites-storages-fieldparams-required:
   en: Required field
   hy: Պարտադիր դաշտ
 sites-storages-fieldparams-required-note:
-  ru: Будет требоваться ввести значение в форме. Пустое значение будет трактоваться
-    как "нет значения"
-  en: You will be required to enter a value in the form. An empty value will be treated
-    as "no value"
-  hy: Պահանջվում է մուտքագրել արժեքը ձեւով. Դատարկ արժեքը կարող է մեկնաբանվել որպես"ոչ
-    մի արժեք"
+  ru: Будет требоваться ввести значение в форме. Пустое значение будет
+    трактоваться как "нет значения"
+  en: You will be required to enter a value in the form. An empty value will be
+    treated as "no value"
+  hy: Պահանջվում է մուտքագրել արժեքը ձեւով. Դատարկ արժեքը կարող է մեկնաբանվել
+    որպես"ոչ մի արժեք"
 sites-storages-fieldparams-enabled:
   ru: Поле включено
   en: The field is enabled
   hy: Դաշտը ներառված է
 sites-storages-fieldparams-enabled-note:
-  ru: Не будет возможности ввести или изменить поле. Значение не будет передаваться
-    в форме, если не будет введено
-  en: There will be no way to enter or change the field. The value will not be passed
-    in the form if it is not entered
+  ru: Не будет возможности ввести или изменить поле. Значение не будет
+    передаваться в форме, если не будет введено
+  en: There will be no way to enter or change the field. The value will not be
+    passed in the form if it is not entered
   hy: Դաշտը մուտքագրելու կամ փոխելու հնարավորություն չի լինի։ Արժեքը չի փոխանցվում
     է ձեւով, եթե չի ներկայացրել
 sites-storages-fieldparams-readonly:
@@ -498,12 +504,15 @@ sites-storages-indexname:
   en: Name of the index
   hy: Ինդեքսի անվանումը
 sites-storages-indexname-note:
-  ru: 'Внимание! Рекомендуется индекс называть следующим образом: storage_fields_idx,
-    где storage название хранилища fields - список полей через _'
-  en: 'Attention! It is recommended to name the index as follows: storage_fields_idx,
-    where storage is the name of the storage fields - a list of fields via _'
-  hy: 'Ուշադրություն! Խորհուրդ է տրվում, որ ցուցանիշը կոչվում է հետեւյալ կերպ: storage_fields_idx,
-    որտեղ storage անունը fields storage - ցանկը ոլորտներում միջոցով _'
+  ru: "Внимание! Рекомендуется индекс называть следующим образом:
+    storage_fields_idx, где storage название хранилища fields - список полей
+    через _"
+  en: "Attention! It is recommended to name the index as follows:
+    storage_fields_idx, where storage is the name of the storage fields - a list
+    of fields via _"
+  hy: "Ուշադրություն! Խորհուրդ է տրվում, որ ցուցանիշը կոչվում է հետեւյալ կերպ:
+    storage_fields_idx, որտեղ storage անունը fields storage - ցանկը ոլորտներում
+    միջոցով _"
 sites-storages-indexname-validation-required:
   ru: Пожалуйста, введите наименование индекса
   en: Please enter the name of the index
@@ -541,12 +550,12 @@ sites-storages-indexmethod:
   en: Component
   hy: Բաղադրիչ
 sites-storages-indexmethod-note:
-  ru: Выберите компоненту, которая будет использоваться в формах для ввода и редактирования
-    данных
+  ru: Выберите компоненту, которая будет использоваться в формах для ввода и
+    редактирования данных
   en: Select the component that will be used in the forms for entering and editing
     data
-  hy: Ընտրեք այն բաղադրիչը, որը կօգտագործվի տվյալների մուտքագրման եւ խմբագրման ձեւերի
-    մեջ
+  hy: Ընտրեք այն բաղադրիչը, որը կօգտագործվի տվյալների մուտքագրման եւ խմբագրման
+    ձեւերի մեջ
 sites-storages-indexmethod-validation-required:
   ru: Пожалуйста, выберите метод индексирования
   en: Please choose the indexing method
@@ -582,7 +591,7 @@ sites-storages-messages-removestorage:
 sites-storages-messages-removestoragemessage:
   ru: Вы уверены, что хотите удалить хранилище данных?
   en: Are you sure you want to delete the data warehouse?
-  hy: 'Համոզված եք, որ ցանկանում եք ջնջել տվյալների պահեստը:'
+  hy: "Համոզված եք, որ ցանկանում եք ջնջել տվյալների պահեստը:"
 sites-storages-messages-removeproperty:
   ru: Удаление свойства
   en: Deleting a property
@@ -598,7 +607,7 @@ sites-storages-messages-removeindex:
 sites-storages-messages-removeindexmessage:
   ru: Вы уверены, что хотите удалить индекс?
   en: Are you sure you want to delete the index?
-  hy: 'Վստահ եք, որ ցանկանում եք ջնջել ցուցանիշը:'
+  hy: "Վստահ եք, որ ցանկանում եք ջնջել ցուցանիշը:"
 sites-storages-messages-properties-saved:
   ru: Свойства сохранены
   en: Properties saved
@@ -772,11 +781,12 @@ sites-structure-deletedomain:
   en: Deleting a domain
   hy: Դոմենի հեռացում
 sites-structure-deletedomainmessage:
-  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены безвозвратно
-  en: Are you sure you want to delete the domain? All folders and publications will
-    be permanently deleted
-  hy: Վստահ եք, որ ցանկանում եք հեռացնել տիրույթը? Բոլոր թղթապանակները եւ հրապարակումները
-    կհեռացվեն անվերադարձ
+  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены
+    безвозвратно
+  en: Are you sure you want to delete the domain? All folders and publications
+    will be permanently deleted
+  hy: Վստահ եք, որ ցանկանում եք հեռացնել տիրույթը? Բոլոր թղթապանակները եւ
+    հրապարակումները կհեռացվեն անվերադարձ
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child section
@@ -796,7 +806,7 @@ sites-structure-deletepage:
 sites-structure-deletepagemessage:
   ru: Вы уверены, что хотите удалить папку?
   en: Are you sure you want to delete the folder?
-  hy: 'Համոզված եք, որ ցանկանում եք ջնջել թղթապանակը:'
+  hy: "Համոզված եք, որ ցանկանում եք ջնջել թղթապանակը:"
 sites-structure-contextmenu-editpub:
   ru: Редактировать данные публикации
   en: Edit publication data
@@ -816,7 +826,7 @@ sites-structure-messages-removepublication:
 sites-structure-messages-removepublicationmessage:
   ru: Вы уверены, что хотите удалить выбранную публикацию?
   en: Are you sure you want to delete the selected post?
-  hy: 'Համոզված եք, որ ցանկանում եք ջնջել ընտրված Հրապարակումը:'
+  hy: "Համոզված եք, որ ցանկանում եք ջնջել ընտրված Հրապարակումը:"
 sites-structure-messages-removepublications:
   ru: Удаление публикаций
   en: Deleting publications
@@ -824,7 +834,7 @@ sites-structure-messages-removepublications:
 sites-structure-messages-removepublicationsmessage:
   ru: Вы уверены, что хотите удалить выбранные публикации?
   en: Are you sure you want to delete the selected posts?
-  hy: 'Համոզված եք, որ ցանկանում եք ջնջել ընտրված հրապարակումները:'
+  hy: "Համոզված եք, որ ցանկանում եք ջնջել ընտրված հրապարակումները:"
 sites-structure-windowtitle-newrow:
   ru: Новая строка
   en: New line
@@ -872,7 +882,7 @@ sites-structure-deletedata1:
 sites-structure-deletedata1message:
   ru: Вы уверены, что хотите удалить выбранную строку?
   en: Are you sure you want to delete the selected row?
-  hy: 'Վստահ եք, որ ցանկանում եք ջնջել ընտրված գիծը:'
+  hy: "Վստահ եք, որ ցանկանում եք ջնջել ընտրված գիծը:"
 sites-structure-deletedata:
   ru: Удаление данных
   en: Deleting data
@@ -880,7 +890,7 @@ sites-structure-deletedata:
 sites-structure-deletedatamessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
-  hy: 'Վստահ եք, որ ցանկանում եք ջնջել ընտրված տողերը:'
+  hy: "Վստահ եք, որ ցանկանում եք ջնջել ընտրված տողերը:"
 sites-structure-newrow:
   ru: Новая строка
   en: New line
@@ -974,8 +984,8 @@ sites-storages-fieldexpression-note:
     что делаете
   en: Enter the expression to create the field. Attention! It is assumed that you
     know what you are doing
-  hy: Մուտքագրեք արտահայտությունը ստեղծել դաշտ. Ուշադրություն! Ենթադրվում է, որ դուք
-    գիտեք, թե ինչ եք անում
+  hy: Մուտքագրեք արտահայտությունը ստեղծել դաշտ. Ուշադրություն! Ենթադրվում է, որ
+    դուք գիտեք, թե ինչ եք անում
 sites-storages-windowtitle-newvirtualproperty:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -1001,22 +1011,22 @@ sites-menu-storages:
   en: Storage facilities
   hy: Պահեստարաններ
 sites-menu-storages-desc:
-  ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный
-    интерфейс
-  en: Data warehouse editor. Create repositories for materials using a user-friendly
-    interface
-  hy: 'Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով հարմար
-    ինտերֆեյս'
+  ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя
+    удобный интерфейс
+  en: Data warehouse editor. Create repositories for materials using a
+    user-friendly interface
+  hy: "Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով
+    հարմար ինտերֆեյս"
 sites-storages-domains-key:
   en: Domain Key
   ru: Ключ домена
   hy: Դոմեյն բանալին
 sites-storages-domains-key-desc:
   en: The configuration must specify the domain patterns that fit this key.
-  ru: В конфигурации должны быть указаны паттерны доменов, которые подходят под этот
-    ключ
-  hy: Կոնֆիգուրացիայում պետք է նշվեն դոմենների պատվերները, որոնք համապատասխանում են
-    այս բանալին
+  ru: В конфигурации должны быть указаны паттерны доменов, которые подходят под
+    этот ключ
+  hy: Կոնֆիգուրացիայում պետք է նշվեն դոմենների պատվերները, որոնք համապատասխանում
+    են այս բանալին
 sites-storages-texts-desc:
   ru: Текстовые данные
   en: Text data
@@ -1091,7 +1101,8 @@ sites-storages-fieldlookup-storage-group:
   hy: Դաշտը խմբի համար
 sites-storages-fieldlookup-storage-select-note:
   ru: Внимание, название полей в списке необходимо писать в фигурных скобках
-  en: Attention, the names of the fields in the list must be written in curly brackets
+  en: Attention, the names of the fields in the list must be written in curly
+    brackets
   hy: Ուշադրություն, ցուցակում դաշտերի անունը պետք է գրվի ձեւավոր փակագծերում
 sites-storages-fieldlookup-storage-title-note:
   ru: Название поля, без фигурных скобок
@@ -1111,16 +1122,18 @@ sites-storages-fieldlookup-storage-order:
   hy: Դասավորում
 sites-storages-fieldlookup-storage-order-note:
   ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
-  en: Attention, the names of the fields in the sorting must be written in curly brackets
+  en: Attention, the names of the fields in the sorting must be written in curly
+    brackets
   hy: Ուշադրություն, տեսակավորման դաշտերի անունը պետք է գրվի ձեւավոր փակագծերում
 sites-storages-fieldlookup-storage-depends-note:
-  ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап необходимо
-    наличие такого поля, так же как и исходной таблице
+  ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап
+    необходимо наличие такого поля, так же как и исходной таблице
   en: The name of the field, without curly brackets. In the repository from which
-    the snapshot is made, it is necessary to have such a field, as well as the source
-    table
-  hy: Դաշտի անվանումը ՝ առանց ձևավոր փակագծերի։ Պահոցում, որից կատարվում է լուկապը,
-    անհրաժեշտ է նման դաշտի առկայությունը, ինչպես նաեւ մեկնարկային աղյուսակը
+    the snapshot is made, it is necessary to have such a field, as well as the
+    source table
+  hy: Դաշտի անվանումը ՝ առանց ձևավոր փակագծերի։ Պահոցում, որից կատարվում է
+    լուկապը, անհրաժեշտ է նման դաշտի առկայությունը, ինչպես նաեւ մեկնարկային
+    աղյուսակը
 sites-storages-fieldlookup-storage-controller-note:
   ru: Куда обращаться за получением данных по выборке
   en: Where to apply for sample data
@@ -1148,7 +1161,7 @@ sites-storages-fieldparams-maxadd-note:
 sites-storages-fieldparams-title:
   ru: Метод формирования заголовка в массиве
 sites-storages-fieldparams-title-note:
-  ru: 'Работает только с обьектами типа Array: (object, array) => {'
+  ru: "Работает только с обьектами типа Array: (object, array) => {"
 sites-storages-fieldparams-note-class:
   ru: Класс для подсказки
 sites-storages-fieldparams-allow:
@@ -1197,4 +1210,76 @@ sites-storages-fieldparams-canbeempty:
   ru: Принимает пустые значения
 sites-storages-fieldparams-canbeempty-note:
   ru: Значение сможет быть пустым, например пустая строка, или 0 в случае числа
-...
+sites-instruments:
+  ru: Сайты и разделы
+  en: Sites and folders
+sites-instruments-structure: {}
+sites-permissions:
+  ru: Сайты и разделы
+  en: Sites and pages
+sites-instruments-structure-permissions: {}
+sites-structure-permissions:
+  ru: Доступ к редактору страниц и публикаций
+  en: Access to the page and post editor
+sites-structure-addpage-permissions:
+  ru: Создать страницу
+  en: Create a page
+sites-structure-editpage-permissions:
+  ru: Редактировать страницу
+  en: Edit a page
+sites-structure-deletepage-permissions:
+  ru: Удалить страницу
+  en: Delete a page
+sites-structure-pubs-permissions: {}
+sites-structure-pubslist-permissions:
+  ru: Список публикаций
+  en: List the publications
+sites-structure-pubsadd-permissions:
+  ru: Создать публикацию
+  en: Create a publication
+sites-structure-pubsdelete-permissions:
+  ru: Удалить публикацию
+  en: Delete a publication\
+sites-storages-permissions:
+  ru: Доступ к редактору хранилищь
+  en: Access to the storage editor
+sites-structure-addstorage-permissions:
+  ru: Создать хранилище
+  en: Create a storage
+sites-structure-editstorage-permissions:
+  ru: Редактировать хранилище
+  en: Edit a storage
+sites-structure-deletestorage-permissions:
+  ru: Удалить хранилище
+  en: Delete a storage
+sites-storage-permissions:
+  ru: Доступ к хранилищу
+  en: Access to storage
+sites-storage-list-permissions:
+  ru: Просматривать список строк
+  en: List the rows
+sites-storage-fields-permissions:
+  ru: Редактировать хранилище
+  en: Edit the storage
+sites-storage-indices-permissions:
+  ru: Индексировать строки
+  en: Create an index
+sites-storage-addrow-permissions: {}
+sites-storage-add-permissions:
+  ru: Добавить строку
+  en: Add row
+sites-storage-edit-permissions:
+  ru: Редактировать строку
+  en: Edit a row
+sites-storage-delete-permissions:
+  ru: Удалить строку
+  en: Delete the row
+sites-storage-export-permissions:
+  ru: Экспорт строк
+  en: Export rows
+sites-storage-import-permissions:
+  ru: Импорт строк
+  en: Import rows
+sites-references-permissions:
+  ru: Доступ к редактору справочников
+  en: Access to the references editor

@@ -2,20 +2,20 @@
 
     <Split name="split" shown="true" hasHandle="true">
         <Pane name="storages-pane" shown="true">
-            <H2 name="ttl" shown="true">#{sites-storages-storages-title;Хранилища}</H2>
+            <H2 name="ttl" shown="true">#{sites-storages-storages-title}</H2>
             <App.Modules.Sites.StoragesTree name="storages" shown="true" binding="app.manage.storages" />
         </Pane>
         <Pane name="data-pane" shown="true">
-            <H2 name="ttl" shown="true">#{sites-storages-data-title;Данные}</H2>
+            <H2 name="ttl" shown="true">#{sites-storages-data-title}</H2>
             <Pane name="search-pane" shown="true">
-                <Input name="search-input" shown="true" placeholder="#{sites-storages-search-placeholder;Поиск}" enabled="false" />
+                <Input name="search-input" shown="true" placeholder="#{sites-storages-search-placeholder}" enabled="false" />
             </Pane>
-            <App.Modules.Sites.DataGrid name="data" shown="true" enabled="false" binding="app.sites.data" selectionMode="fullrow" showCheckboxes="true" hasContextMenu="true" emptyMessage="#{sites-storages-dataempty;Данные не найдены}" />
+            <App.Modules.Sites.DataGrid name="data" shown="true" enabled="false" binding="app.sites.data" selectionMode="fullrow" showCheckboxes="true" hasContextMenu="true" emptyMessage="#{sites-storages-dataempty}" />
             <FlexBox name="buttons-pane" shown="true">
-                <SuccessButton name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">#{sites-storages-buttons-adddata;Добавить}</SuccessButton>
-                <SuccessButton name="dubl-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuDublicateIcon">#{sites-storages-buttons-dublicatedata;Дублировать}</SuccessButton>
-                <SuccessButton name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">#{sites-storages-buttons-editdata;Редактировать}</SuccessButton>
-                <SuccessButton name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">#{sites-storages-buttons-deletedata;Удалить}</SuccessButton>
+                <SuccessButton name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">#{sites-storages-buttons-adddata}</SuccessButton>
+                <SuccessButton name="dubl-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuDublicateIcon">#{sites-storages-buttons-dublicatedata}</SuccessButton>
+                <SuccessButton name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">#{sites-storages-buttons-editdata}</SuccessButton>
+                <SuccessButton name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">#{sites-storages-buttons-deletedata}</SuccessButton>
             </FlexBox>
         </Pane>
     </Split>    

@@ -52,12 +52,12 @@ class Module extends BaseModule
     {
 
         return [
-            Item::Create('struct', '#{mainframe-menu-struct;Структура}', '', 'App.Modules.MainFrame.Icons.StructureIcon', '')->Add([
-                Item::Create('structure', '#{sites-menu-struct;Структура сайта}', '#{sites-menu-struct-desc;Структура проекта, папки и конечные страницы, публикация данных}', 'App.Modules.Sites.Icons.FoldersIcon', 'App.Modules.Sites.StructurePage'),
-                Item::Create('data', '#{sites-menu-storagesdata;Материалы}', '#{sites-menu-storagesdata-desc;Редактор материалов, которые содержатся в хранилищах данных}', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.DataPage'),
+            Item::Create('struct', '#{mainframe-menu-struct}', '', 'App.Modules.MainFrame.Icons.StructureIcon', '')->Add([
+                Item::Create('structure', '#{sites-menu-struct}', '#{sites-menu-struct-desc}', 'App.Modules.Sites.Icons.FoldersIcon', 'App.Modules.Sites.StructurePage'),
+                Item::Create('data', '#{sites-menu-storagesdata}', '#{sites-menu-storagesdata-desc}', 'App.Modules.Sites.Icons.StoragesIcon', 'App.Modules.Sites.DataPage'),
             ]),
-            Item::Create('dev', '#{mainframe-menu-dev;Разработка}', '', 'App.Modules.MainFrame.Icons.DevIcon', '')->Add([
-                Item::Create('storages', '#{sites-menu-storages;Хранилища}', '#{sites-menu-storages-desc;Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс}', 'App.Modules.Sites.Icons.StoragesManageIcon', 'App.Modules.Sites.StoragesPage'),
+            Item::Create('dev', '#{mainframe-menu-dev}', '', 'App.Modules.MainFrame.Icons.DevIcon', '')->Add([
+                Item::Create('storages', '#{sites-menu-storages}', '#{sites-menu-storages-desc}', 'App.Modules.Sites.Icons.StoragesManageIcon', 'App.Modules.Sites.StoragesPage'),
                 // Item::Create('sources', 'Источники данных', 'Создайте справочники. Внимание! Справочник - это не хранилище, таблица для хранения данных должна уже существовать', '', 'Sites.RouteTo("/sources/")')
 
             ])
@@ -70,19 +70,19 @@ class Module extends BaseModule
 
         $permissions = parent::GetPermissions();
 
-        $permissions['sites'] = 'Инструменты';
-        $permissions['sites.structure'] = 'Доступ к редактору страниц и публикаций';
-        $permissions['sites.structure.add'] = 'Создать страницу';
-        $permissions['sites.structure.edit'] = 'Редактировать страницу';
-        $permissions['sites.structure.remove'] = 'Удалить страницу';
-        $permissions['sites.structure.pubs'] = 'Список публикаций';
-        $permissions['sites.structure.pubs.add'] = 'Создать публикацию';
-        $permissions['sites.structure.pubs.remove'] = 'Удалить публикацию';
+        $permissions['sites'] = '#{sites-permissions}';
+        $permissions['sites.structure'] = '#{sites-structure-permissions}';
+        $permissions['sites.structure.add'] = '#{sites-structure-addpage-permissions}';
+        $permissions['sites.structure.edit'] = '#{sites-structure-editpage-permissions}';
+        $permissions['sites.structure.remove'] = '#{sites-structure-deletepage-permissions}';
+        $permissions['sites.structure.pubs'] = '#{sites-structure-pubslist-permissions}';
+        $permissions['sites.structure.pubs.add'] = '#{sites-structure-pubsadd-permissions}';
+        $permissions['sites.structure.pubs.remove'] = '#{sites-structure-pubsdelete-permissions}';
 
-        $permissions['sites.storages'] = 'Доступ к редактору хранилищь';
-        $permissions['sites.storages.add'] = 'Создать хранилище';
-        $permissions['sites.storages.edit'] = 'Редактировать хранилище';
-        $permissions['sites.storages.remove'] = 'Удалить хранилище';
+        $permissions['sites.storages'] = '#{sites-storages-permissions}';
+        $permissions['sites.storages.add'] = '#{sites-structure-addstorage-permissions}';
+        $permissions['sites.storages.edit'] = '#{sites-structure-editstorage-permissions}';
+        $permissions['sites.storages.remove'] = '#{sites-structure-deletestorage-permissions}';
 
         $storages = Storages::Create()->GetStorages();
         foreach ($storages as $storage) {
@@ -90,18 +90,18 @@ class Module extends BaseModule
                 continue;
             }
 
-            $permissions['sites.storages.' . $storage->name] = 'Доступ к хранилищу «' . $storage->desc . '»';
-            $permissions['sites.storages.' . $storage->name . '.list'] = 'Просматривать список строк';
-            $permissions['sites.storages.' . $storage->name . '.fields'] = 'Редактировать хранилище';
-            $permissions['sites.storages.' . $storage->name . '.indices'] = 'Индексировать строки';
-            $permissions['sites.storages.' . $storage->name . '.add'] = 'Добавить строку';
-            $permissions['sites.storages.' . $storage->name . '.edit'] = 'Редактировать строку';
-            $permissions['sites.storages.' . $storage->name . '.remove'] = 'Удалить строку';
-            $permissions['sites.storages.' . $storage->name . '.export'] = 'Экспорт строк';
-            $permissions['sites.storages.' . $storage->name . '.import'] = 'Импорт строк';
+            $permissions['sites.storages.' . $storage->name] = '#{sites-storage-permissions} «' . $storage->desc . '»';
+            $permissions['sites.storages.' . $storage->name . '.list'] = '#{sites-storage-list-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.fields'] = '#{sites-storage-fields-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.indices'] = '#{sites-storage-indices-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.add'] = '#{sites-storage-add-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.edit'] = '#{sites-storage-edit-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.remove'] = '#{sites-storage-delete-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.export'] = '#{sites-storage-export-permissions}';
+            $permissions['sites.storages.' . $storage->name . '.import'] = '#{sites-storage-import-permissions}';
         }
 
-        $permissions['sites.references'] = 'Доступ к редактору справочников';
+        $permissions['sites.references'] = '#{sites-references-permissions}';
 
 
         return $permissions;

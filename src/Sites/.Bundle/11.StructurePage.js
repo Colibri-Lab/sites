@@ -47,7 +47,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         
         const itemData = args.item?.tag;
         if(!itemData) {
-            contextmenu.push({name: 'new-domain', title: '#{sites-structure-contextmenu-newdomain;Новый домен}', icon: Colibri.UI.ContextMenuAddIcon});
+            contextmenu.push({name: 'new-domain', title: '#{sites-structure-contextmenu-newdomain}', icon: Colibri.UI.ContextMenuAddIcon});
 
             this._folders.contextmenu = contextmenu;
             this._folders.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RT, Colibri.UI.ContextMenu.LT], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
@@ -55,19 +55,19 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
         else {
             
-            contextmenu.push({name: 'new-child-folder', title: '#{sites-structure-contextmenu-newchild;Новый дочерний раздел}', icon: Colibri.UI.ContextMenuAddIcon});
+            contextmenu.push({name: 'new-child-folder', title: '#{sites-structure-contextmenu-newchild}', icon: Colibri.UI.ContextMenuAddIcon});
             if(itemData.type == 'domain') {
-                contextmenu.push({name: 'edit-domain', title: '#{sites-structure-contextmenu-editdomain;Редактировать домен}', icon: Colibri.UI.ContextMenuEditIcon});
-                contextmenu.push({name: 'edit-domain-props', title: '#{sites-structure-contextmenu-editprops;Редактировать доп. свойства}', icon: Colibri.UI.ContextMenuEditIcon});
-                contextmenu.push({name: 'remove-domain', title: '#{sites-structure-contextmenu-deletedomain;Удалить домен}', icon: Colibri.UI.ContextMenuRemoveIcon});
+                contextmenu.push({name: 'edit-domain', title: '#{sites-structure-contextmenu-editdomain}', icon: Colibri.UI.ContextMenuEditIcon});
+                contextmenu.push({name: 'edit-domain-props', title: '#{sites-structure-contextmenu-editprops}', icon: Colibri.UI.ContextMenuEditIcon});
+                contextmenu.push({name: 'remove-domain', title: '#{sites-structure-contextmenu-deletedomain}', icon: Colibri.UI.ContextMenuRemoveIcon});
             }
             else {
-                contextmenu.push({name: 'edit-folder', title: '#{sites-structure-contextmenu-editpage;Редактировать раздел}', icon: Colibri.UI.ContextMenuEditIcon});
-                contextmenu.push({name: 'edit-folder-props', title: '#{sites-structure-contextmenu-editprops;Редактировать доп. свойства}', icon: Colibri.UI.ContextMenuEditIcon});
-                contextmenu.push({name: 'remove-folder', title: '#{sites-structure-contextmenu-deletepage;Удалить раздел}', icon: Colibri.UI.ContextMenuRemoveIcon});
+                contextmenu.push({name: 'edit-folder', title: '#{sites-structure-contextmenu-editpage}', icon: Colibri.UI.ContextMenuEditIcon});
+                contextmenu.push({name: 'edit-folder-props', title: '#{sites-structure-contextmenu-editprops}', icon: Colibri.UI.ContextMenuEditIcon});
+                contextmenu.push({name: 'remove-folder', title: '#{sites-structure-contextmenu-deletepage}', icon: Colibri.UI.ContextMenuRemoveIcon});
             }
             contextmenu.push({name: '-'});
-            contextmenu.push({name: 'copy-path', title: '#{sites-structure-contextmenu-copypath;Скопировать путь (ссылку)}', icon: Colibri.UI.CopyIcon});
+            contextmenu.push({name: 'copy-path', title: '#{sites-structure-contextmenu-copypath}', icon: Colibri.UI.CopyIcon});
 
             args.item.contextmenu = contextmenu;
             args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
@@ -86,7 +86,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         if(menuData.name == 'new-domain') {
             if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain;Новый домен}', 1024, 'app.manage.storages(domains)', {})
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(domains)', {})
                     .then((data) => {
                         Sites.SaveDomain(data);
                     })
@@ -99,7 +99,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         else if(menuData.name == 'edit-domain') {
 
             if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain;Редактировать домен}', 1024, 'app.manage.storages(domains)', item.tag.data)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(domains)', item.tag.data)
                     .then((data) => {
                         Sites.SaveDomain(data);
                     })
@@ -116,14 +116,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 Sites.Properties('domains', item.tag.data)
                     .then((properties) => {
                         if(Object.countKeys(properties.fields) > 0) {                            
-                            Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops;Редактировать доп. свойства домена}', 750, properties, item.tag.data.parameters)
+                            Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops}', 750, properties, item.tag.data.parameters)
                                 .then((data) => {
                                     Sites.SaveProperties('domains', item.tag.data, data);
                                 })
                                 .catch(() => {});
                         }
                         else {
-                            App.Alert.Show('#{sites-structure-windowtitle-editdomainprops;Редактировать доп. свойства домена}', '#{sites-structure-windowtitle-noeditdomainprops;Свойства не найдены}', '#{app-alert-close;Закрыть}');
+                            App.Alert.Show('#{sites-structure-windowtitle-editdomainprops}', '#{sites-structure-windowtitle-noeditdomainprops}', '#{app-alert-close;Закрыть}');
                         }
                     });
             }
@@ -133,7 +133,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         }
         else if(menuData.name == 'remove-domain') {
-            App.Confirm.Show('#{sites-structure-deletedomain;Удаление домена}', '#{sites-structure-deletedomainmessage;Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены безвозвратно}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletedomain}', '#{sites-structure-deletedomainmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 Sites.DeleteDomain(item.tag.data.id);
             });
         }
@@ -151,7 +151,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     dta.parent = item.tag.data;
                 }
 
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newchildpage;Новый дочерний раздел}', 1024, 'app.manage.storages(pages)', dta)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newchildpage}', 1024, 'app.manage.storages(pages)', dta)
                     .then((data) => {
                         if(item.tag.type == 'domain') {
                             data.domain = item.tag.data.id;    
@@ -173,7 +173,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
         else if(menuData.name == 'edit-folder') {
             if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage;Редактировать раздел}', 1024, 'app.manage.storages(pages)', item.tag.data)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(pages)', item.tag.data)
                     .then((data) => {
                         data.domain = item.tag?.data?.domain?.id;
                         data.parent = item.tag?.data?.parent?.id ?? 0;
@@ -191,14 +191,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 Sites.Properties('pages', item.tag.data)
                     .then((properties) => {
                         if(Object.countKeys(properties.fields) > 0) {                            
-                            Manage.FormWindow.Show('#{sites-structure-windowtitle-editpageprops;Редактировать доп. свойства страницы}', 750, properties, item.tag.data.parameters)
+                            Manage.FormWindow.Show('#{sites-structure-windowtitle-editpageprops}', 750, properties, item.tag.data.parameters)
                                 .then((data) => {
                                     Sites.SaveProperties('pages', item.tag.data, data);
                                 })
                                 .catch(() => {});
                         }
                         else {
-                            App.Alert.Show('#{sites-structure-windowtitle-editpageprops;Редактировать доп. свойства страницы}', '#{sites-structure-windowtitle-noeditpageprops;Свойства не найдены}', '#{app-alert-close;Закрыть}');
+                            App.Alert.Show('#{sites-structure-windowtitle-editpageprops}', '#{sites-structure-windowtitle-noeditpageprops}', '#{app-alert-close;Закрыть}');
                         }
                         
                     });
@@ -209,16 +209,16 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         }
         else if(menuData.name == 'remove-folder') {
-            App.Confirm.Show('#{sites-structure-deletepage;Удаление папки}', '#{sites-structure-deletepagemessage;Вы уверены, что хотите удалить папку?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-deletepage}', '#{sites-structure-deletepagemessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 Sites.DeleteFolder(item.tag.data.id);
             });
         }
         else if(menuData.name == 'copy-path') {
             const path = this._getPath(item);
             path.copyToClipboard().then(() => {
-                App.Alert.Show('#{sites-structure-windowtitle-urlcopied;Путь скопирован}', '#{sites-structure-windowtitle-urlcopiedtext;Путь к разделу успешно скопирован в буфер обмена}', '#{app-alert-close;Закрыть}');
+                App.Alert.Show('#{sites-structure-windowtitle-urlcopied}', '#{sites-structure-windowtitle-urlcopiedtext}', '#{app-alert-close;Закрыть}');
             }).catch(() => {
-                App.Alert.Show('#{sites-structure-windowtitle-urlcopiederror;Путь не скопирован}', '#{sites-structure-windowtitle-urlcopiederrortext;Не получилось скопировать путь к разделу}', '#{app-alert-close;Закрыть}');
+                App.Alert.Show('#{sites-structure-windowtitle-urlcopiederror}', '#{sites-structure-windowtitle-urlcopiederrortext}', '#{app-alert-close;Закрыть}');
             })
         }
     }
@@ -226,8 +226,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
     __renderPublicationsContextMenu(event, args) {
         let contextmenu = [];
         
-        contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-editpub;Редактировать данные публикации}', icon: Colibri.UI.ContextMenuEditIcon});
-        contextmenu.push({name: 'remove-pub', title: '#{sites-structure-windowtitle-deletepub;Удалить публикацию}', icon: Colibri.UI.ContextMenuRemoveIcon});
+        contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-editpub}', icon: Colibri.UI.ContextMenuEditIcon});
+        contextmenu.push({name: 'remove-pub', title: '#{sites-structure-windowtitle-deletepub}', icon: Colibri.UI.ContextMenuRemoveIcon});
 
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
@@ -254,7 +254,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         const item = this._folders.selected;
         if(!item) {
             if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain;Новый домен}', 1024, 'app.manage.storages(domains)', {})
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(domains)', {})
                     .then((data) => {
                         Sites.SaveDomain(data);
                     })
@@ -267,14 +267,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         else {
             if(Security.IsCommandAllowed('sites.structure.edit')) {
                 if(item.tag.type == 'domain') {
-                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain;Редактировать домен}', 1024, 'app.manage.storages(domains)', item.tag.data)
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(domains)', item.tag.data)
                         .then((data) => {
                             Sites.SaveDomain(data);
                         })
                         .catch(() => {});
                 }
                 else if(item.tag.type == 'page') {
-                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage;Редактировать раздел}', 1024, 'app.manage.storages(pages)', item.tag.data)
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(pages)', item.tag.data)
                         .then((data) => {
                             data.parent = item.tag?.parent?.id ?? 0;
                             data.domain = item.tag?.data?.domain?.id;
@@ -406,12 +406,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     __deleteDataButtonClicked(event, args) {
         if(this._publications.checked.length == 0) {
-            App.Confirm.Show('#{sites-structure-messages-removepublication;Удаление публикации}', '#{sites-structure-messages-removepublicationmessage;Вы уверены, что хотите удалить выбранную публикацию?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-messages-removepublication}', '#{sites-structure-messages-removepublicationmessage}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 Sites.DeletePublication([this._publications.selected.value.id]);
             });
         }
         else {
-            App.Confirm.Show('#{sites-structure-messages-removepublications;Удаление публикаций}', '#{sites-structure-messages-removepublicationsmessage;Вы уверены, что хотите удалить выбранные публикации?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
+            App.Confirm.Show('#{sites-structure-messages-removepublications}', '#{sites-structure-messages-removepublicationsmessage;Вы уверены, что хотите удалить выбранные публикации?}', '#{app-confirm-buttons-delete;Удалить!}').then(() => {
                 let ids = [];
                 this._publications.checked.forEach((row) => {
                     ids.push(row.value.id);
@@ -438,7 +438,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 contextMenuObject.Hide();
                 const menuData = args.menuData;
                 if(Security.IsCommandAllowed('sites.storages.' + menuData.name + '.edit')) {
-                    Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow;Новая строка} «' + menuData.title + '»', 1024, 'app.manage.storages(' + menuData.name + ')', {})
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + menuData.title + '»', 1024, 'app.manage.storages(' + menuData.name + ')', {})
                         .then((data) => {
                             const selected = this._folders.selected.tag;
                             if(selected.type == 'domain') {
@@ -479,7 +479,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             const storage = responses[0];
             const data = responses[1];
             if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow;Новая строка} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', data)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', data)
                     .then((data) => {
                         Sites.SaveData(storage.name, data, pub);
                     })
@@ -493,7 +493,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     __publishButtonClicked(event, args) {
 
-        const wnd = new App.Modules.Sites.DataWindow('publish', document.body, '#{sites-structure-windowtitle-publish;Публикация данных}');
+        const wnd = new App.Modules.Sites.DataWindow('publish', document.body, '#{sites-structure-windowtitle-publish}');
         wnd.Show((storage, dataIds) => {
             const selected = this._folders.selected?.tag;
             if(selected.type == 'domain') {

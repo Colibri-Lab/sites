@@ -392,8 +392,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'App.Modules.Lang.UI.Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldgroup;Группа свойств}',
-                    note: '#{sites-storages-fieldgroup-note;Наименование группы, если нужно оставить в основной то нужно написать "window"}',
+                    desc: '#{sites-storages-fieldgroup}',
+                    note: '#{sites-storages-fieldgroup-note}',
                     default: 'window',
                     params: {
                         required: true,
@@ -402,7 +402,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             value: true,
                         },
                         validate: [{
-                            message: '#{sites-storages-fieldgroup-validation-required;Пожалуйста, введите группу свойств}',
+                            message: '#{sites-storages-fieldgroup-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -411,12 +411,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'App.Modules.Lang.UI.TextArea',
                     group: 'window',
-                    desc: '#{sites-storages-fielddesc;Описание свойства}',
-                    note: '#{sites-storages-fielddesc-note;Можно на русском языке. Внимание! Описание должно полностью описывать свойство, учитывайте, что модель будет возвращать модель указанную в поле Класс.}',
+                    desc: '#{sites-storages-fielddesc}',
+                    note: '#{sites-storages-fielddesc-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fielddesc-validation-required;Пожалуйста, опишите свойство}',
+                            message: '#{sites-storages-fielddesc-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -425,8 +425,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'App.Modules.Lang.UI.TextArea',
                     group: 'window',
-                    desc: '#{sites-storages-fieldplaceholder;Замещающий текст}',
-                    note: '#{sites-storages-fieldplaceholder-note;Замещающий текст, отображается внутри поля серым текстом}',
+                    desc: '#{sites-storages-fieldplaceholder}',
+                    note: '#{sites-storages-fieldplaceholder-note}',
                     params: {
                         required: false
                     }
@@ -435,8 +435,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'App.Modules.Lang.UI.TextArea',
                     group: 'window',
-                    desc: '#{sites-storages-fieldnote;Подсказка}',
-                    note: '#{sites-storages-fieldnote-note;Подсказка, отображается под полем серым текстом}',
+                    desc: '#{sites-storages-fieldnote}',
+                    note: '#{sites-storages-fieldnote-note}',
                     params: {
                         required: false
                     }
@@ -445,12 +445,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldtype;Тип свойства (для хранения в источнике данных)}',
-                    note: '#{sites-storages-fieldtype-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    desc: '#{sites-storages-fieldtype}',
+                    note: '#{sites-storages-fieldtype-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fieldtype-validation-required;Пожалуйста, введите тип свойства}',
+                            message: '#{sites-storages-fieldtype-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -459,8 +459,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'integer',
                     component: 'Number',
                     group: 'window',
-                    desc: '#{sites-storages-fieldlength;Длина в байтах}',
-                    note: '#{sites-storages-fieldlength-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    desc: '#{sites-storages-fieldlength}',
+                    note: '#{sites-storages-fieldlength-note}',
                     params: {
                         required: false,
                     }
@@ -469,8 +469,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Select',
                     group: 'window',
-                    desc: '#{sites-storages-fieldcomponent;Компонента}',
-                    note: '#{sites-storages-fieldcomponent-note;Выберите компоненту, которая будет использоваться в формах для ввода и редактирования данных}',
+                    desc: '#{sites-storages-fieldcomponent}',
+                    note: '#{sites-storages-fieldcomponent-note}',
                     selector: {
                         __render: (itemData) => '<div style="display: flex; align-items: center;">' + (itemData.icon ?? '<svg width="28" height="28"></svg>') + '<span style="display: block; margin-left: 10px;">' + itemData.title + '</span></div>'
                     },
@@ -487,7 +487,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         required: true,
                         readonly: true,
                         validate: [{
-                            message: '#{sites-storages-fieldcomponent-validation-required;Пожалуйста, выберите компоненту}',
+                            message: '#{sites-storages-fieldcomponent-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -496,12 +496,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldclass;Класс (PHP)}',
-                    note: '#{sites-storages-fieldclass-note;Внимание! Класс должен существовать}',
+                    desc: '#{sites-storages-fieldclass}',
+                    note: '#{sites-storages-fieldclass-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fieldclass-validation-required;Пожалуйста, выберите наименование класса}',
+                            message: '#{sites-storages-fieldclass-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -511,14 +511,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'bool',
                     group: 'window',
                     component: 'Checkbox',
-                    placeholder: '#{sites-storages-fieldsetdefault;Указать значение по умолчанию}'
+                    placeholder: '#{sites-storages-fieldsetdefault}'
                 },
                 default: {
                     type: 'varchar',
                     group: 'window',
                     component: 'TextArea',
-                    desc: '#{sites-storages-fielddefault;Значение по умолчанию}',
-                    note: '#{sites-storages-fielddefault-note;Введите значение по умолчанию. Внимание! Предполагается что вы знаете что делаете}',
+                    desc: '#{sites-storages-fielddefault}',
+                    note: '#{sites-storages-fielddefault-note}',
                     params: {
                         condition: {
                             field: 'hasdefault',
@@ -530,9 +530,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 attrs: {
                     type: 'json',
                     component: 'Object',
-                    group: '#{sites-storages-fieldattrs;Аттрибуты}',
-                    desc: '#{sites-storages-fieldattrs;Аттрибуты}',
-                    note: '#{sites-storages-fieldattrs-note;Атрибуты компонента}',
+                    group: '#{sites-storages-fieldattrs-group}',
+                    desc: '#{sites-storages-fieldattrs}',
+                    note: '#{sites-storages-fieldattrs-note}',
                     params: {
                         required: false
                     },
@@ -540,81 +540,81 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         width: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldattrs-width;Ширина}',
+                            desc: '#{sites-storages-fieldattrs-width}',
                         },
                         height: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldattrs-height;Высота}',
+                            desc: '#{sites-storages-fieldattrs-height}',
                         },
                         class: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldattrs-class;Класс}',
+                            desc: '#{sites-storages-fieldattrs-class}',
                         },
                     }
                 },
                 params: {
                     type: 'json',
                     component: 'Object',
-                    group: '#{sites-storages-fieldparams;Дополнительные параметры}',
-                    desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
+                    group: '#{sites-storages-fieldparams-group}',
+                    desc: '#{sites-storages-fieldparams}',
                     params: {
                         vertical: true,
                     },
                     fields: {
                         required: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-required;Обязательное поле}',
-                            note: '#{sites-storages-fieldparams-required-note;Будет требоваться ввести значение в форме. Пустое значение будет трактоваться как "нет значения"}',
+                            placeholder: '#{sites-storages-fieldparams-required}',
+                            note: '#{sites-storages-fieldparams-required-note}',
                             component: 'Checkbox',
                             default: false
                         },
                         enabled: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-enabled;Поле включено}',
-                            note: '#{sites-storages-fieldparams-enabled-note;Не будет возможности ввести или изменить поле. Значение не будет передаваться в форме, если не будет введено}',
+                            placeholder: '#{sites-storages-fieldparams-enabled}',
+                            note: '#{sites-storages-fieldparams-enabled-note}',
                             component: 'Checkbox',
                             default: true
                         },
                         canbeempty: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-canbeempty;Принимает пустые значения}',
-                            note: '#{sites-storages-fieldparams-canbeempty-note;Значение сможет быть пустым, например пустая строка, или 0 в случае числа}',
+                            placeholder: '#{sites-storages-fieldparams-canbeempty}',
+                            note: '#{sites-storages-fieldparams-canbeempty-note}',
                             component: 'Checkbox',
                             default: true
                         },
                         readonly: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-readonly;Только для чтения}',
-                            note: '#{sites-storages-fieldparams-readonly-note;Не будет возможности ввести или изменить данные}',
+                            placeholder: '#{sites-storages-fieldparams-readonly}',
+                            note: '#{sites-storages-fieldparams-readonly-note}',
                             component: 'Checkbox',
                             default: false
                         },
                         list: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
+                            placeholder: '#{sites-storages-fieldparams-list}',
                             component: 'Checkbox',
                             default: false
                         },
                         multiple: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-multiple;Мультивыбор}',
-                            note: '#{sites-storages-fieldparams-readonly-note;Работает только с компонентом типа Select}',
+                            placeholder: '#{sites-storages-fieldparams-multiple}',
+                            note: '#{sites-storages-fieldparams-readonly-note}',
                             component: 'Checkbox',
                             default: false
                         },
                         greed: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
-                            note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
+                            placeholder: '#{sites-storages-fieldparams-greed}',
+                            note: '#{sites-storages-fieldparams-greed-note}',
                             component: 'Text',
                             default: ''
                         },
                         viewer: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
-                            note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
+                            placeholder: '#{sites-storages-fieldparams-viewer}',
+                            note: '#{sites-storages-fieldparams-viewer-note}',
                             component: 'Select',
                             default: '',
                             selector: {
@@ -630,22 +630,22 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         },
                         vertical: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-vertical;Отображать обьект вертикально}',
-                            note: '#{sites-storages-fieldparams-vertical-note;Работает только с обьектами типа Object и Array}',
+                            placeholder: '#{sites-storages-fieldparams-vertical}',
+                            note: '#{sites-storages-fieldparams-vertical-note}',
                             component: 'Checkbox',
                             default: false
                         },
                         visual: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-visual;Отображать в виде визуального редактора}',
-                            note: '#{sites-storages-fieldparams-visual-note;Используется только в большом текстовом поле}',
+                            placeholder: '#{sites-storages-fieldparams-visual}',
+                            note: '#{sites-storages-fieldparams-visual-note}',
                             component: 'Checkbox',
                             default: false
                         },
                         code: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-code;Отображать в виде редактора кода}',
-                            note: '#{sites-storages-fieldparams-code-note;Используется только в большом текстовом поле}',
+                            placeholder: '#{sites-storages-fieldparams-code}',
+                            note: '#{sites-storages-fieldparams-code-note}',
                             component: 'Select',
                             default: '',
                             params: {
@@ -670,123 +670,122 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         },
                         mask: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-mask;Маска ввода}',
-                            note: '#{sites-storages-fieldparams-mask-note;Работает только с обьектами типа Text}',
+                            placeholder: '#{sites-storages-fieldparams-mask}',
+                            note: '#{sites-storages-fieldparams-mask-note}',
                             component: 'Text',
                             default: ''
                         },
                         fieldgenerator: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-fieldgenerator;Генератор параметров поля}',
+                            placeholder: '#{sites-storages-fieldparams-fieldgenerator}',
                             component: 'TextArea',
                             default: ''
                         },
                         generator: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-generator;Генератор значений}',
-                            note: '#{sites-storages-fieldparams-generator-note;Работает только с обьектами типа Text,TextArea}',
+                            placeholder: '#{sites-storages-fieldparams-generator}',
+                            note: '#{sites-storages-fieldparams-generator-note}',
                             component: 'TextArea',
                             default: ''
                         },
                         noteClass: {
                             type: 'varchar',
                             component: 'Text',
-                            placeholder: '#{sites-storages-fieldparams-note-class;Класс для подсказки}',
+                            placeholder: '#{sites-storages-fieldparams-note-class}',
                             default: ''
                         },
                         simplearraywidth: {
                             type: 'int',
-                            placeholder: '#{sites-storages-fieldparams-simplearraywidth;Длина массива данных}',
-                            note: '#{sites-storages-fieldparams-simplearraywidth-note;Работает только с обьектами типа SimpleArray}',
+                            placeholder: '#{sites-storages-fieldparams-simplearraywidth}',
+                            note: '#{sites-storages-fieldparams-simplearraywidth-note}',
                             component: 'Number',
                             default: ''
                         },
                         simplearrayheight: {
                             type: 'int',
-                            placeholder: '#{sites-storages-fieldparams-simplearrayheight;Высота массива данных}',
-                            note: '#{sites-storages-fieldparams-simplearrayheight-note;Работает только с обьектами типа SimpleArray}',
+                            placeholder: '#{sites-storages-fieldparams-simplearrayheight}',
+                            note: '#{sites-storages-fieldparams-simplearrayheight-note}',
                             component: 'Number',
                             default: ''
                         },
                         addlink: { 
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-addlink;Текст ссылки для добавления строки в массив}',
-                            note: '#{sites-storages-fieldparams-addlink-note;Работает только с обьектами типа Array}',
+                            placeholder: '#{sites-storages-fieldparams-addlink}',
+                            note: '#{sites-storages-fieldparams-addlink-note}',
                             component: 'App.Modules.Lang.UI.TextArea',
                             default: ''
                         },
                         removelink: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-removelink;Отобразить удаление обьекта из массива}',
-                            note: '#{sites-storages-fieldparams-removelink-note;Работает только с обьектами типа Array}',
+                            placeholder: '#{sites-storages-fieldparams-removelink}',
+                            note: '#{sites-storages-fieldparams-removelink-note}',
                             component: 'Checkbox',
                             default: true
                         },
                         updownlink: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-updownlink;Отобразить стрелки вверх/вниз}',
-                            note: '#{sites-storages-fieldparams-updownlink-note;Работает только с обьектами типа Array}',
+                            placeholder: '#{sites-storages-fieldparams-updownlink}',
+                            note: '#{sites-storages-fieldparams-updownlink-note}',
                             component: 'Checkbox',
                             default: true
                         },
                         initempty: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-initempty;Создать пустой обьект при инициализации?}',
-                            note: '#{sites-storages-fieldparams-initempty-note;Работает только с обьектами типа Array}',
+                            placeholder: '#{sites-storages-fieldparams-initempty}',
+                            note: '#{sites-storages-fieldparams-initempty-note}',
                             component: 'Checkbox',
                             default: true
                         },
                         maxadd: {
                             type: 'int',
                             component: 'Number',
-                            placeholder: '#{sites-storages-fieldparams-maxadd;Максимальное количество строк в массиве}',
-                            note: '#{sites-storages-fieldparams-maxadd-note;Работает только с обьектами типа Array}',
+                            placeholder: '#{sites-storages-fieldparams-maxadd}',
+                            note: '#{sites-storages-fieldparams-maxadd-note}',
                             default: ''
                         },
                         title: {
                             type: 'varchar',
                             component: 'TextArea',
-                            placeholder: '#{sites-storages-fieldparams-title;Метод формирования заголовка в массиве}',
-                            note: '#{sites-storages-fieldparams-title-note;Работает только с обьектами типа Array: (object, array) => {}}',
+                            placeholder: '#{sites-storages-fieldparams-title}',
+                            note: '#{sites-storages-fieldparams-title-note}',
                             default: ''
                         },
                         removedesc: {
                             type: 'bool',
                             component: 'Checkbox',
-                            placeholder: '#{sites-storages-fieldparams-removedesc;Удалять заголовок поля?}',
-                            note: '#{sites-storages-fieldparams-removedesc-note;Работает только с обьектами типа Object/Array}',
+                            placeholder: '#{sites-storages-fieldparams-removedesc}',
+                            note: '#{sites-storages-fieldparams-removedesc-note}',
                             default: true
                         },
                         allow: {
                             type: 'varchar',
                             component: 'Text',
-                            placeholder: '#{sites-storages-fieldparams-allow;Разрешенные типы файлов}',
-                            note: '#{sites-storages-fieldparams-allow-note;Работает только с обьектами типа File/Files}',
+                            placeholder: '#{sites-storages-fieldparams-allow}',
+                            note: '#{sites-storages-fieldparams-allow-note}',
                         },
                         size: {
                             type: 'int',
                             component: 'Number',
-                            placeholder: '#{sites-storages-fieldparams-size;Разрешенные размер файлов в байтах}',
-                            note: '#{sites-storages-fieldparams-allow-note;Работает только с обьектами типа File/Files}',
+                            placeholder: '#{sites-storages-fieldparams-size}',
+                            note: '#{sites-storages-fieldparams-allow-note}',
                         },
                         validate: {
                             component: 'Array',
-                            desc: '#{sites-storages-fieldparams-validate;Проверка значения поля}',
-                            placeholder: '#{sites-storages-fieldparams-validate;Проверка значения поля}',
+                            desc: '#{sites-storages-fieldparams-validate}',
                             params: {
                                 readonly: false, 
                                 required: false,
                                 vertical: true,
-                                addlink: '#{sites-storages-fieldparams-validate-addlink;Добавить проверку}'
+                                addlink: '#{sites-storages-fieldparams-validate-addlink}'
                             },
                             fields: {
                                 message: {
                                     component: 'App.Modules.Lang.UI.TextArea',
-                                    placeholder: '#{sites-storages-fieldparams-validate-message;Сообщение}'
+                                    placeholder: '#{sites-storages-fieldparams-validate-message}'
                                 },
                                 method: {
                                     component: 'TextArea',
-                                    placeholder: '#{sites-storages-fieldparams-validate-method;Метод}',
+                                    placeholder: '#{sites-storages-fieldparams-validate-method}',
                                     default: '(field, validator) => { return true; /* false */ }'
                                 },
                             }
@@ -796,9 +795,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 lookup: {
                     type: 'json',
                     component: 'Object',
-                    group: '#{sites-storages-fieldlookup;Связка}',
-                    desc: '#{sites-storages-fieldlookup;Связка}',
-                    note: '#{sites-storages-fieldlookup-note;Связь с другими хранилищами}',
+                    group: '#{sites-storages-fieldlookup-group}',
+                    desc: '#{sites-storages-fieldlookup}',
+                    note: '#{sites-storages-fieldlookup-note}',
                     params: {
                         vertical: true,
                     },
@@ -810,33 +809,33 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             default: 'none',      
                             values: [{
                                 value: 'none',
-                                title: '#{sites-storages-fieldlookup-oneof-none;Нет связи}'
+                                title: '#{sites-storages-fieldlookup-oneof-none}'
                             }, {
                                 value: 'storage',
-                                title: '#{sites-storages-fieldlookup-oneof-storage;Хранилище}'
+                                title: '#{sites-storages-fieldlookup-oneof-storage}'
                             }, {
                                 value: 'accesspoint',
-                                title: '#{sites-storages-fieldlookup-oneof-accesspoint;Точка доступа}'
+                                title: '#{sites-storages-fieldlookup-oneof-accesspoint}'
                             }, {
                                 value: 'method',
-                                title: '#{sites-storages-fieldlookup-oneof-method;Метод}'
+                                title: '#{sites-storages-fieldlookup-oneof-method}'
                             }, {
                                 value: 'binding',
-                                title: '#{sites-storages-fieldlookup-oneof-binding;Байдинг к данным}'
+                                title: '#{sites-storages-fieldlookup-oneof-binding}'
                             }, {
                                 value: 'controller',
-                                title: '#{sites-storages-fieldlookup-oneof-controller;Контроллер}'
+                                title: '#{sites-storages-fieldlookup-oneof-controller}'
                             }]                      
                         },
 
                         storage: {
                             type: 'json',
                             component: 'Object',
-                            desc: '#{sites-storages-fieldlookup-storage;Хранилище}',
+                            desc: '#{sites-storages-fieldlookup-storage}',
                             fields: {
                                 name: {
                                     type: 'varchar',
-                                    desc: '#{sites-storages-fieldlookup-storage-name;Хранилище}',
+                                    desc: '#{sites-storages-fieldlookup-storage-name}',
                                     component: 'Select',
                                     selector: {
                                         value: 'name',
@@ -856,60 +855,60 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 select: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-select;Поля в выборке}',
-                                    note: '#{sites-storages-fieldlookup-storage-select-note;Внимание, название полей в списке необходимо писать в фигурных скобках}',
+                                    desc: '#{sites-storages-fieldlookup-storage-select}',
+                                    note: '#{sites-storages-fieldlookup-storage-select-note}',
                                     default: '*'
                                 },
                                 title: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-title;Поле для вывода}',
-                                    note: '#{sites-storages-fieldlookup-storage-title-note;Название поля, без фигурных скобок}',
+                                    desc: '#{sites-storages-fieldlookup-storage-title}',
+                                    note: '#{sites-storages-fieldlookup-storage-title-note}',
                                 },
                                 value: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-value;Поле для значения}',
-                                    note: '#{sites-storages-fieldlookup-storage-value-note;Название поля, без фигурных скобок}',
+                                    desc: '#{sites-storages-fieldlookup-storage-value}',
+                                    note: '#{sites-storages-fieldlookup-storage-value-note}',
                                 },
                                 group: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-group;Поле для группы}',
-                                    note: '#{sites-storages-fieldlookup-storage-group-note;Название поля, без фигурных скобок}',
+                                    desc: '#{sites-storages-fieldlookup-storage-group}',
+                                    note: '#{sites-storages-fieldlookup-storage-group-note}',
                                 },
                                 order: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-order;Сортировка}',
-                                    note: '#{sites-storages-fieldlookup-storage-order-note;Внимание, название полей в сортировке необходимо писать в фигурных скобках}'
+                                    desc: '#{sites-storages-fieldlookup-storage-order}',
+                                    note: '#{sites-storages-fieldlookup-storage-order-note}'
                                 },
                                 depends: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-depends;Связь с другим полем}',
-                                    note: '#{sites-storages-fieldlookup-storage-depends-note;Название поля, без фигурных скобок. В хранилище из которого делается лукап необходимо наличие такого поля, так же как и исходной таблице}',
+                                    desc: '#{sites-storages-fieldlookup-storage-depends}',
+                                    note: '#{sites-storages-fieldlookup-storage-depends-note}',
                                 },
                                 controller: {
                                     type: 'json',
                                     component: 'Object',
-                                    desc: '#{sites-storages-fieldlookup-storage-controller;Контроллер (JS)}',
-                                    note: '#{sites-storages-fieldlookup-storage-controller-note;Куда обращаться за получением данных по выборке}',
+                                    desc: '#{sites-storages-fieldlookup-storage-controller}',
+                                    note: '#{sites-storages-fieldlookup-storage-controller-note}',
                                     fields: {
                                         module: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller-module;Модуль}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-module}'
                                         },
                                         class: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller-class;Класс}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-class}'
                                         },
                                         method: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller-method;Метод}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-method}'
                                         },
                                     }
                                 }
@@ -926,12 +925,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         controller: {
                             type: 'json',
                             component: 'Object',
-                            desc: '#{sites-storages-fieldlookup-controller;Контроллер (JS)}',
+                            desc: '#{sites-storages-fieldlookup-controller}',
                             fields: {
                                 module: {
                                     type: 'varchar',
                                     component: 'Select',
-                                    desc: '#{sites-storages-fieldlookup-controller-module;Модуль}',
+                                    desc: '#{sites-storages-fieldlookup-controller-module}',
                                     lookup: () => {
                                         return new Promise((rs, rj) => {
                                             Manage.Store.AsyncQuery('manage.modules').then((modules) => {
@@ -947,12 +946,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 class: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-controller-class;Класс}'
+                                    desc: '#{sites-storages-fieldlookup-controller-class}'
                                 },
                                 method: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-controller-method;Метод}'
+                                    desc: '#{sites-storages-fieldlookup-controller-method}'
                                 },
                                 depends: {
                                     type: 'varchar',
@@ -970,7 +969,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         binding: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldlookup-binding;Байндинг}',
+                            desc: '#{sites-storages-fieldlookup-binding}',
                             default: '',
                             params: {
                                 condition: {
@@ -982,7 +981,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         method: {
                             type: 'varchar',
                             component: 'TextArea',
-                            desc: '#{sites-storages-fieldlookup-method;Метод}',
+                            desc: '#{sites-storages-fieldlookup-method}',
                             default: '',
                             params: {
                                 condition: {
@@ -994,13 +993,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         accesspoint: {
                             type: 'json',
                             component: 'Object',
-                            desc: '#{sites-storages-fieldlookup-accesspoint;Точка доступа}',
+                            desc: '#{sites-storages-fieldlookup-accesspoint}',
                             default: '',
                             fields: {
-                                table:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-table;Таблица}'},
-                                fields: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-fields;Список полей}'},
-                                filter:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-filter;Фильтр}'},
-                                order: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-order;Сортировка}'},
+                                table:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-table}'},
+                                fields: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-fields}'},
+                                filter:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-filter}'},
+                                order: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-order}'},
                             },
                             params: {
                                 condition: {
@@ -1025,8 +1024,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 values: {
                     type: 'json',
                     component: 'Array',
-                    group: '#{sites-storages-fieldvalues;Значения}',
-                    desc: '#{sites-storages-fieldvalues;Значения}',
+                    group: '#{sites-storages-fieldvalues-group}',
+                    desc: '#{sites-storages-fieldvalues}',
                     default: [],
                     params: {
                         vertical: true,
@@ -1036,12 +1035,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         title: {
                             type: 'varchar',
                             component: 'App.Modules.Lang.UI.Text',
-                            desc: '#{sites-storages-fieldvalues-title;Поле для вывода}'
+                            desc: '#{sites-storages-fieldvalues-title}'
                         },
                         type: {
                             type: 'varchar',
                             component: 'Select',
-                            desc: '#{sites-storages-fieldvalues-type;Тип значения}',
+                            desc: '#{sites-storages-fieldvalues-type}',
                             default: 'text',
                             attrs: {
                                 width: 413
@@ -1053,18 +1052,18 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             values: [
                                 {
                                     value: 'text',
-                                    title: '#{sites-storages-fieldvalues-type-text;Текст}',
+                                    title: '#{sites-storages-fieldvalues-type-text}',
                                 },
                                 {
                                     value: 'number',
-                                    title: '#{sites-storages-fieldvalues-type-number;Число}',
+                                    title: '#{sites-storages-fieldvalues-type-number}',
                                 }
                             ]
                         },
                         value: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldvalues-value;Поле для значения}',
+                            desc: '#{sites-storages-fieldvalues-value}',
                             attrs: {
                                 width: 410
                             }
@@ -1075,9 +1074,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 },
                 selector: {
                     type: 'json',
-                    group: '#{sites-storages-fieldselector;Выборка}',
-                    desc: '#{sites-storages-fieldselector;Выборка}',
-                    note: '#{sites-storages-fieldselector-note;Дополнительные настройки для компонента Select}',
+                    group: '#{sites-storages-fieldselector-group}',
+                    desc: '#{sites-storages-fieldselector}',
+                    note: '#{sites-storages-fieldselector-note}',
                     component: 'Object',
                     params: {
                         vertical: true,
@@ -1086,28 +1085,28 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         value: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldselector-value;Поле значения}'
+                            desc: '#{sites-storages-fieldselector-value}'
                         },
                         title: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldselector-title;Поле заголовка}'
+                            desc: '#{sites-storages-fieldselector-title}'
                         },
                         group: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldselector-group;Поле для группировки}'
+                            desc: '#{sites-storages-fieldselector-group}'
                         },
                         __render: {
                             type: 'varchar',
                             component: 'TextArea',
-                            desc: '#{sites-storages-fieldselector-render;Метод для вывода выборки}'
+                            desc: '#{sites-storages-fieldselector-render}'
                         },
                         ondemand: {
                             type: 'bool',
                             component: 'Checkbox',
                             default: 0,
-                            desc: '#{sites-storages-fieldselector-ondemand;Загружать при запросе}',
+                            desc: '#{sites-storages-fieldselector-ondemand}',
                         },
                     }
                 },
@@ -1130,15 +1129,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldname;Наименование свойства}',
-                    note: '#{sites-storages-fieldname-note;Пожалуйста, введите наименование. Внимание! должно содержать только латинские буквы и цифры без тире, дефисов и пробелов.}',
+                    desc: '#{sites-storages-fieldname}',
+                    note: '#{sites-storages-fieldname-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fieldname-validation-required;Пожалуйста, введите наименование свойства}',
+                            message: '#{sites-storages-fieldname-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }, {
-                            message: '#{sites-storages-fieldname-validation-regexp;Введенный текст не соответствует требованиям}',
+                            message: '#{sites-storages-fieldname-validation-regexp}',
                             method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
                         }]
                     }
@@ -1157,13 +1156,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'App.Modules.Lang.UI.Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldgroup;Группа свойств}',
-                    note: '#{sites-storages-fieldgroup-note;Наименование группы, если нужно оставить в основной то нужно написать "window"}',
+                    desc: '#{sites-storages-fieldgroup}',
+                    note: '#{sites-storages-fieldgroup-note}',
                     default: 'window',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fieldgroup-validation-required;Пожалуйста, введите группу свойств}',
+                            message: '#{sites-storages-fieldgroup-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -1172,12 +1171,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'App.Modules.Lang.UI.TextArea',
                     group: 'window',
-                    desc: '#{sites-storages-fielddesc;Описание свойства}',
-                    note: '#{sites-storages-fielddesc-note;Можно на русском языке. Внимание! Описание должно полностью описывать свойство, учитывайте, что модель будет возвращать модель указанную в поле Класс.}',
+                    desc: '#{sites-storages-fielddesc}',
+                    note: '#{sites-storages-fielddesc-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fielddesc-validation-required;Пожалуйста, опишите свойство}',
+                            message: '#{sites-storages-fielddesc-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -1186,12 +1185,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldtype;Тип свойства (для хранения в источнике данных)}',
-                    note: '#{sites-storages-fieldtype-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    desc: '#{sites-storages-fieldtype}',
+                    note: '#{sites-storages-fieldtype-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fieldtype-validation-required;Пожалуйста, введите тип свойства}',
+                            message: '#{sites-storages-fieldtype-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -1200,8 +1199,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'integer',
                     component: 'Number',
                     group: 'window',
-                    desc: '#{sites-storages-fieldlength;Длина в байтах}',
-                    note: '#{sites-storages-fieldlength-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    desc: '#{sites-storages-fieldlength}',
+                    note: '#{sites-storages-fieldlength-note}',
                     params: {
                         required: false,
                     }
@@ -1210,12 +1209,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Text',
                     group: 'window',
-                    desc: '#{sites-storages-fieldclass;Класс (PHP)}',
-                    note: '#{sites-storages-fieldclass-note;Внимание! Класс должен существовать}',
+                    desc: '#{sites-storages-fieldclass}',
+                    note: '#{sites-storages-fieldclass-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-fieldclass-validation-required;Пожалуйста, выберите наименование класса}',
+                            message: '#{sites-storages-fieldclass-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -1225,36 +1224,36 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     group: 'window',
                     component: 'TextArea',
-                    desc: '#{sites-storages-fieldexpression;Выражение}',
-                    note: '#{sites-storages-fieldexpression-note;Введите выражение для создания поля. Внимание! Предполагается что вы знаете что делаете}'
+                    desc: '#{sites-storages-fieldexpression}',
+                    note: '#{sites-storages-fieldexpression-note}'
                 },
                 
                 params: {
                     type: 'json',
                     component: 'Object',
                     group: 'window',
-                    desc: '#{sites-storages-fieldparams;Дополнительные параметры}',
+                    desc: '#{sites-storages-fieldparams}',
                     params: {
                         vertical: true,
                     },
                     fields: {
                         list: {
                             type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-list;Отображать в списке}',
+                            placeholder: '#{sites-storages-fieldparams-list}',
                             component: 'Checkbox',
                             default: false
                         },
                         greed: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-greed;Жадность в списке}',
-                            note: '#{sites-storages-fieldparams-greed-note;Указывается в процентах}',
+                            placeholder: '#{sites-storages-fieldparams-greed}',
+                            note: '#{sites-storages-fieldparams-greed-note}',
                             component: 'Text',
                             default: ''
                         },
                         viewer: {
                             type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-viewer;Класс Viewer (для отображения в списках)}',
-                            note: '#{sites-storages-fieldparams-viewer-note;Выберите из списка}',
+                            placeholder: '#{sites-storages-fieldparams-viewer}',
+                            note: '#{sites-storages-fieldparams-viewer-note}',
                             component: 'Select',
                             default: '',
                             selector: {
@@ -1294,15 +1293,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 name: {
                     type: 'varchar',
                     component: 'Text',
-                    desc: '#{sites-storages-indexname;Наименование индекса}',
-                    note: '#{sites-storages-indexname-note;Внимание! Рекомендуется индекс называть следующим образом: storage_fields_idx, где storage название хранилища fields - список полей через _}',
+                    desc: '#{sites-storages-indexname}',
+                    note: '#{sites-storages-indexname-note}',
                     params: {
                         required: true,
                         validate: [{
-                            message: '#{sites-storages-indexname-validation-required;Пожалуйста, введите наименование индекса}',
+                            message: '#{sites-storages-indexname-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }, {
-                            message: '#{sites-storages-indexname-validation-regexp;Введенный текст не соответствует требованиям}',
+                            message: '#{sites-storages-indexname-validation-regexp}',
                             method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
                         }]
                     }
@@ -1311,8 +1310,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     type: 'varchar',
                     component: 'Select',
                     multiple: true,
-                    desc: '#{sites-storages-indexfields;Спосок свойств}',
-                    note: '#{sites-storages-indexfields-note;Выберите список свойств по которым необходимо индексировать}',
+                    desc: '#{sites-storages-indexfields}',
+                    note: '#{sites-storages-indexfields-note}',
                     lookup: () => {
                         return new Promise((rs, rj) => {
                             Manage.Store.AsyncQuery('manage.storages(' + storageName + ')').then((storage) => {
@@ -1330,7 +1329,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         required: true,
                         readonly: true,
                         validate: [{
-                            message: '#{sites-storages-indexfields-validation-required;Пожалуйста, выберите свойства}',
+                            message: '#{sites-storages-indexfields-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
@@ -1338,39 +1337,39 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 type: {
                     type: 'varchar',
                     component: 'Select',
-                    desc: '#{sites-storages-indextype;Тип индекса}',
-                    note: '#{sites-storages-indextype-note;Внинание! Предполагается, что вы знаете, что делаете!}',
+                    desc: '#{sites-storages-indextype}',
+                    note: '#{sites-storages-indextype-note}',
                     params: {
                         required: true,
                         readonly: true,
                         validate: [{
-                            message: '#{sites-storages-indextype-validation-required;Пожалуйста, выберите тип индекса}',
+                            message: '#{sites-storages-indextype-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     },
                     default: 'NORMAL',
                     values: [
-                        {value: 'FULLTEXT', title: 'Полнотекстовый'},
-                        {value: 'NORMAL', title: 'Нормальный'},
-                        {value: 'SPATIAL', title: 'Пространственный'},
-                        {value: 'UNIQUE', title: 'Уникальный'},
+                        {value: 'FULLTEXT', title: '#{sites-storages-indextype-fulltext}'},
+                        {value: 'NORMAL', title: '#{sites-storages-indextype-normal}'},
+                        {value: 'SPATIAL', title: '#{sites-storages-indextype-spatial}'},
+                        {value: 'UNIQUE', title: '#{sites-storages-indextype-unique}'},
                     ]
                 },
                 method: {
                     type: 'varchar',
                     component: 'Select',
-                    desc: '#{sites-storages-indexmethod;Компонента}',
-                    note: '#{sites-storages-indexmethod-note;Выберите компоненту, которая будет использоваться в формах для ввода и редактирования данных}',
+                    desc: '#{sites-storages-indexmethod}',
+                    note: '#{sites-storages-indexmethod-note}',
                     default: 'BTREE',
                     values: [
-                        {value: 'BTREE', title: '#{sites-storages-values-binary;Бинарное дерево}'},
-                        {value: 'HASH', title: '#{sites-storages-values-hash;Хэш функция}'},
+                        {value: 'BTREE', title: '#{sites-storages-values-binary}'},
+                        {value: 'HASH', title: '#{sites-storages-values-hash}'},
                     ],
                     params: {
                         required: true,
                         readonly: true,
                         validate: [{
-                            message: '#{sites-storages-indexmethod-validation-required;Пожалуйста, выберите метод индексирования}',
+                            message: '#{sites-storages-indexmethod-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
                     }
