@@ -216,7 +216,7 @@ fields:
               title: title
             lookup:
               method: '(term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = [{value: "", title: "Шаблон не выбран"}]; const module
+                { let ret = []; const module
                 = dependsValue?.additional?.settings.module; Object.forEach(eval("App.Modules."
                 + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
                 { ret.push({value: name, title: module + ''.'' + name}); } }); resolve(ret);
@@ -240,9 +240,9 @@ fields:
               title: title
             lookup:
               method: '(term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                { let ret = []; Manage.Store.AsyncQuery("manage.templates("
                 + dependsValue?.additional?.settings.module.toLowerCase() + ")").then((templates)
-                => { templates.forEach(template => { ret.push({value: template.path,
+                => { templates && Array.isArray(templates) && templates.forEach(template => { ret.push({value: template.path,
                 title: template.path}); }); resolve(ret); }); }); '
               depends: domain
       parameters:
