@@ -365,7 +365,7 @@ fields:
               validate: []
             lookup:
               method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                { let ret = []; Object.keys(App.Modules).forEach((module)
                 => { if(module != dependsValue?.module) { return true; } Object.forEach(eval(''App.Modules.''
                 + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
                 { ret.push({value: name, title: module + ''.'' + name}); } }); });
@@ -392,7 +392,7 @@ fields:
               required: false
             lookup:
               method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                { let ret = []; Manage.Store.AsyncQuery("manage.templates("
                 + dependsValue.module?.toLowerCase() + ")").then((templates) =>
                 { templates && Array.isArray(templates) && templates.forEach(template
                 => { ret.push({value: template.path, title: template.path}); });

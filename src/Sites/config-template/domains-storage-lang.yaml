@@ -272,7 +272,10 @@ fields:
         type: json
         class: ObjectField
         component: Colibri.UI.Forms.Object
-        desc: Технические данные
+        desc: 
+          ru: Технические данные
+          en: Technical information
+          hy: Տեխնիկական տեղեկատվություն
         params:
           vertical: true
         default: json_object()
@@ -282,22 +285,37 @@ fields:
             class: ValueField
             component: Colibri.UI.Forms.Select
             default: application
-            desc: Тип приложения
+            desc: 
+              ru: Тип приложения
+              en: Application type
+              hy: Ցրագրի տեսակե
             params:
               readonly: true
               required: true
             values:
             - value: application
-              title: Приложение (javascript)
+              title: 
+                ru: Приложение (javascript)
+                en: Application (javascript)
+                hy: Ցրագիր (javascript)
             - value: website
-              title: Обычный вебсайт (php/js)
+              title: 
+                ru: Обычный вебсайт (php/js)
+                en: Website (php/js)
+                hy: Վեբսայտ (javascript)
           module:
             type: varchar
             length: 255
             class: string
             component: Colibri.UI.Forms.Select
-            desc: Стартовый модуль
-            note: Выжерите модуль, который будет стартовать
+            desc: 
+              ru: Стартовый модуль
+              en: Module to start
+              hy: Հավելվածի մեկնարկային մոդուլ
+            note: 
+              ru: Выберите модуль, который будет стартовать
+              en: Select the module wich will start
+              hy: Ընտրեք մոդուլը, որը կսկսվի
             selector:
               value: value
               title: title
@@ -318,12 +336,12 @@ fields:
             component: Colibri.UI.Forms.Select
             desc:
               ru: Компонент по умолчанию
-              en: Компонент по умолчанию
-              hy: Компонент по умолчанию
+              en: Default Component
+              hy: Կանխադրված բաղադրիչ
             note:
               ru: Выберите компонент по умолчанию
-              en: Выберите компонент по умолчанию
-              hy: Выберите компонент по умолчанию
+              en: Choose a default component
+              hy: Ընտրեք լռելյայն բաղադրիչ
             selector:
               value: value
               title: title
@@ -361,7 +379,7 @@ fields:
               validate: []
             lookup:
               method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = [{value: "", title: "Шаблон не выбран"}]; Object.keys(App.Modules).forEach((module)
+                { let ret = []; Object.keys(App.Modules).forEach((module)
                 => { if(module != dependsValue?.module) { return true; } Object.forEach(eval(''App.Modules.''
                 + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
                 { ret.push({value: name, title: module + ''.'' + name}); } }); });
@@ -378,8 +396,14 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Select
-            desc: Шаблон по умолчанию
-            note: Выберите шаблон по умолчанию
+            desc: 
+              ru: Шаблон по умолчанию
+              en: Default Template
+              hy: Կանխադրված ձևանմուշ
+            note: 
+              ru: Выберите шаблон по умолчанию
+              en: Choose a default template
+              hy: Ընտրեք լռելյայն ձևանմուշ
             selector:
               value: value
               title: title
@@ -388,7 +412,7 @@ fields:
               required: false
             lookup:
               method: ' (term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = [{value: "", title: "Шаблон не выбран"}]; Manage.Store.AsyncQuery("manage.templates("
+                { let ret = []; Manage.Store.AsyncQuery("manage.templates("
                 + dependsValue.module?.toLowerCase() + ")").then((templates) =>
                 { templates && Array.isArray(templates) && templates.forEach(template
                 => { ret.push({value: template.path, title: template.path}); });
@@ -398,19 +422,28 @@ fields:
         type: json
         class: ArrayField
         component: Colibri.UI.Forms.Array
-        desc: Дополнительные свойства
+        desc: 
+          ru: Дополнительные свойства
+          en: Additional properties
+          hy: Լրացուցիչ հատկություններ
         default: json_array()
         attrs:
           className: app-field-wrap
         params:
-          addlink: Добавить параметр
+          addlink: 
+            ru: Добавить параметр
+            en: Add parameter
+            hy: Ավելացնել պարամետր
         fields:
           name:
             type: varchar
             length: 50
             class: string
             component: Colibri.UI.Forms.Text
-            desc: Наименование поля
+            desc: 
+              ru: Наименование поля
+              en: Field name
+              hy: Դաշտի անվանումը
             attrs:
               width: 30%
           description:
@@ -419,8 +452,8 @@ fields:
             component: App.Modules.Lang.UI.Text
             desc:
               ru: Описание поля
-              en: Описание поля
-              hy: Описание поля
+              en: Field description
+              hy: Դաշտի նկարագրությունը
             attrs:
               width: 68%
             placeholder:
@@ -466,7 +499,10 @@ fields:
           type:
             type: varchar
             length: 20
-            desc: Тип
+            desc: 
+              ru: Тип
+              en: Type
+              hy: Տիպ
             class: string
             component: Colibri.UI.Forms.Text
             default: varchar
@@ -474,7 +510,10 @@ fields:
               width: 19.5%
           length:
             type: int
-            desc: Длина
+            desc: 
+              ru: Длина
+              en: Length
+              hy: Երկարություն
             class: int
             component: Colibri.UI.Forms.Number
             attrs:
@@ -484,7 +523,10 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc: Значение по умолчанию
+            desc: 
+              ru: Значение по умолчанию
+              en: Default value
+              hy: Կանխադրված արժեք
             attrs:
               width: 20%
           class:
@@ -492,7 +534,10 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc: Класс (PHP)
+            desc: 
+              ru: Класс (PHP)
+              en: Class (PHP)
+              hy: Կլաս (PHP)
             attrs:
               width: 20%
           component:
@@ -501,7 +546,10 @@ fields:
             class: string
             default: Text
             component: Colibri.UI.Forms.Select
-            desc: Компонента (JS)
+            desc: 
+              ru: Компонента (JS)
+              en: Component (JS)
+              hy: Կոմպոնենտ (JS)
             selector:
               value: value
               title: title
