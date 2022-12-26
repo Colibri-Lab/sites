@@ -533,8 +533,8 @@ sites-storages-fieldselector-title:
   ru: Поле заголовка
   en: Title field
 sites-storages-fieldselector-group:
-  ru: Поле для группировки
-  en: Group field
+  ru: Настройка выборки
+  en: Selector settings
 sites-storages-fieldselector-render:
   ru: Метод для вывода выборки
   en: Custom render method
@@ -664,7 +664,9 @@ sites-storages-fieldgroupenabled:
 sites-storages-fieldlookup-depends:
   ru: Зависимость от другого свойства
   en: Depends with other property
-sites-storages-fieldattrs-group: {}
+sites-storages-fieldattrs-group:
+  ru: Аттрибуты
+  en: Attributes
 sites-storages-fieldparams-group:
   ru: Дополнительные параметры
   en: Additional parameters
@@ -701,3 +703,12 @@ sites-global-notallowed:
 sites-storagespage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
+sites-storages-fieldselector-group-desc:
+  ru: Поле для группировки
+  en: Group field
+sites-storages-fieldselector-render-desc:
+  ru: Метод для вывода выборки
+  en: Custom render method
+sites-storages-fieldselector-ondemand-desc:
+  ru: Загружать при запросе
+  en: Download on demand

@@ -1095,18 +1095,18 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         group: {
                             type: 'varchar',
                             component: 'Text',
-                            desc: '#{sites-storages-fieldselector-group}'
+                            desc: '#{sites-storages-fieldselector-group-desc}'
                         },
                         __render: {
                             type: 'varchar',
                             component: 'TextArea',
-                            desc: '#{sites-storages-fieldselector-render}'
+                            desc: '#{sites-storages-fieldselector-render-desc}'
                         },
                         ondemand: {
                             type: 'bool',
                             component: 'Checkbox',
                             default: 0,
-                            desc: '#{sites-storages-fieldselector-ondemand}',
+                            desc: '#{sites-storages-fieldselector-ondemand-desc}',
                         },
                     }
                 },
