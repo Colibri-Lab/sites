@@ -956,7 +956,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 depends: {
                                     type: 'varchar',
                                     component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-controller-depends;Связь с другим полем}'
+                                    desc: '#{sites-storages-fieldlookup-controller-depends}'
                                 },
                             },
                             params: {

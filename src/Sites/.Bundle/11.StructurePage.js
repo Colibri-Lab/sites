@@ -411,7 +411,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             });
         }
         else {
-            App.Confirm.Show('#{sites-structure-messages-removepublications}', '#{sites-structure-messages-removepublicationsmessage;Вы уверены, что хотите удалить выбранные публикации?}', '#{sites-structure-messages-removepublicationsmessage-delete}').then(() => {
+            App.Confirm.Show('#{sites-structure-messages-removepublications}', '#{sites-structure-messages-removepublicationsmessage}', '#{sites-structure-messages-removepublicationsmessage-delete}').then(() => {
                 let ids = [];
                 this._publications.checked.forEach((row) => {
                     ids.push(row.value.id);
