@@ -55,3 +55,9 @@ sites-structure-deletedatamessage-delete:
 sites-structure-deletedatasmessage-delete:
   ru: Удалить!
   en: Delete
+sites-global-notallowed:
+  ru: Действие запрещено
+  en: Operation not permitted
+sites-datapage-notallowed:
+  ru: Действие запрещено
+  en: Operation not permitted

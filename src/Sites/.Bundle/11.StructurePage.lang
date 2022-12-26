@@ -162,3 +162,9 @@ sites-structure-messages-removepublicationsmessage-delete:
 sites-structure-deletepagemessage-delete:
   ru: Удалить!
   en: Delete
+sites-global-notallowed:
+  ru: Действие запрещено
+  en: Operation not permitted
+sites-structurepage-notallowed:
+  ru: Действие запрещено
+  en: Operation not permitted

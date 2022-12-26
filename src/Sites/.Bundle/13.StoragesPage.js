@@ -1416,7 +1416,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else if (menuData.name == 'edit-storage') {
@@ -1433,7 +1433,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -1454,7 +1454,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else if (menuData.name == 'new-virtual-field') {
@@ -1469,7 +1469,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else if (menuData.name == 'edit-field') {
@@ -1493,7 +1493,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -1507,7 +1507,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -1522,7 +1522,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else if (menuData.name == 'edit-index') {
@@ -1536,7 +1536,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     .catch(() => { });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -1549,7 +1549,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }

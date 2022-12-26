@@ -93,7 +93,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .catch(() => {});
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else if(menuData.name == 'edit-domain') {
@@ -106,7 +106,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .catch(() => {});
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -128,7 +128,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -167,7 +167,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .catch(() => {});
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -182,7 +182,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .catch(() => {});
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else if(menuData.name == 'edit-folder-props') {
@@ -204,7 +204,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     });
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
         }
@@ -261,7 +261,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .catch(() => {});
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
         else {
@@ -284,7 +284,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 }
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
     }
@@ -451,7 +451,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         .catch(() => {});
                 }
                 else {
-                    App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
                 }
                 contextMenuObject.Dispose();
             });
@@ -486,7 +486,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .catch(() => {});
             }
             else {
-                App.Notices.Add(new Colibri.UI.Notice('#{security-global-notallowed;Действие запрещено}', Colibri.UI.Notice.Error, 5000));
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }    
         });
     }
