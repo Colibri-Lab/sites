@@ -35,10 +35,11 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                 }
 
                 if(storage.group) {
-                    let groupNode = moduleNode.nodes.Children(storage.group);
+                    const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
+                    let groupNode = moduleNode.nodes.Children(group);
                     if(!groupNode) {
-                        groupNode = moduleNode.nodes.Add(storage.group);
-                        groupNode.text = storage.group;
+                        groupNode = moduleNode.nodes.Add(group);
+                        groupNode.text = group;
                         groupNode.tag = 'group';
                         groupNode.icon = Colibri.UI.FolderIcon;
                     }
@@ -52,14 +53,17 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                     return true;
                 }
                 
+                const desc = storage.desc[Lang.Current] ?? storage.desc;
+                const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
+
                 let moduleNode = this.FindNode(storage.module);
-                let groupNode = storage.group ? moduleNode.nodes.Children(storage.group) : null;
+                let groupNode = group ? moduleNode.nodes.Children(group) : null;
 
                 let newNode = this.FindNode(storage.name);
                 if(!newNode) {
                     newNode = (groupNode ? groupNode : moduleNode).nodes.Add(storage.name);
                 }
-                newNode.text = storage.desc;
+                newNode.text = desc;
                 newNode.isLeaf = true;
                 newNode.icon = App.Modules.Sites.Icons.StorageIcon;
                 newNode.tag = storage;

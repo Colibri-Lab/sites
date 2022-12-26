@@ -423,7 +423,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-storage-saved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -436,7 +435,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-storage-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -449,7 +447,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-saved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -462,7 +459,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -475,7 +471,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-moved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -489,7 +484,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-saved}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
@@ -502,7 +496,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
-                Manage.Store.Reload('manage.rawstorages', false);
             })
             .catch(error => {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));

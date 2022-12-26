@@ -179,7 +179,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
                 const moduleNode = this._insertModuleNode(module);
             });
         }
-        else if(path.indexOf('.rawstorages') !== -1) {
+        else if(path.indexOf('.storages') !== -1) {
 
             this._names.clear();
             
