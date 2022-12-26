@@ -640,7 +640,6 @@ sites-storages-messages-removeindexmessage:
 sites-storagesmanager-title:
   ru: Хранилища материалов
   en: Storages
-sites-storages-storagetemplates-default-: {}
 sites-storages-storagetemplates-default-unselected:
   ru: Шаблон не выбран
   en: Template is not selected
@@ -670,13 +669,9 @@ sites-storages-fieldattrs-group:
 sites-storages-fieldparams-group:
   ru: Дополнительные параметры
   en: Additional parameters
-sites-storages-fieldlookup-group: {}
 sites-storages-fieldvalues-group:
   ru: Значения
   en: Values
-sites-storages-indextype-Полнотекстовый': {}
-sites-storages-indextype-valueПолнотекстовый': {}
-sites-storages-indextype-fulltestПолнотекстовый': {}
 sites-storages-indextype-fulltext:
   ru: Полнотекстовый
   en: Full text
