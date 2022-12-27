@@ -94,7 +94,7 @@ class PagesController extends WebController
 
         if ($post->type == 'domains') {
             $parameters = $datarow->additional->parameters->ToArray();
-        } else if ($post->type == 'pages') {
+        } elseif ($post->type == 'pages') {
             $path = $datarow->Path();
             $parameters = $datarow->domain->additional->parameters->ToArray();
             foreach ($path as $page) {
@@ -145,7 +145,7 @@ class PagesController extends WebController
 
             $datarow->parameters = $post->data;
             $datarow->Save();
-    
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -155,7 +155,7 @@ class PagesController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 
@@ -191,7 +191,7 @@ class PagesController extends WebController
         $id = $post->id;
         if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
             return $this->Finish(403, 'Permission denied');
-        } else if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+        } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
             return $this->Finish(403, 'Permission denied');
         }
 
@@ -228,10 +228,10 @@ class PagesController extends WebController
                 }
             }
 
-            if ( ($res = $page->Save(true)) !== true) {
-                throw new InvalidArgumentException($res->error, 400); 
+            if (($res = $page->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400);
             }
-    
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -241,12 +241,12 @@ class PagesController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 
- 
- 
+
+
         return $this->Finish(200, 'ok', $page->ToArray(true));
 
     }
@@ -262,7 +262,7 @@ class PagesController extends WebController
         $id = $post->id;
         if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
             return $this->Finish(403, 'Permission denied');
-        } else if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+        } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
             return $this->Finish(403, 'Permission denied');
         }
 
@@ -284,10 +284,10 @@ class PagesController extends WebController
                 }
             }
 
-            if ( ($res = $domain->Save(true)) !== true) {
-                throw new InvalidArgumentException($res->error, 400); 
+            if (($res = $domain->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400);
             }
-    
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -297,7 +297,7 @@ class PagesController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 
@@ -387,7 +387,7 @@ class PagesController extends WebController
 
         $to = $to ? Pages::LoadById($to) : null;
 
-        
+
         $accessPoint = $domain->Storage()->accessPoint;
         $accessPoint->Begin();
 
@@ -395,18 +395,18 @@ class PagesController extends WebController
 
             if (!$sibling || !$to) {
                 if (!$move->MoveTo($to ?: $domain)) {
-                    throw new InvalidArgumentException('Bad request', 400); 
+                    throw new InvalidArgumentException('Bad request', 400);
                 }
-            } else if ($sibling == 'before') {
+            } elseif ($sibling == 'before') {
                 if (!$move->MoveBefore($to)) {
-                    throw new InvalidArgumentException('Bad request', 400); 
+                    throw new InvalidArgumentException('Bad request', 400);
                 }
-            } else if ($sibling == 'after') {
+            } elseif ($sibling == 'after') {
                 if (!$move->MoveAfter($to)) {
-                    throw new InvalidArgumentException('Bad request', 400); 
+                    throw new InvalidArgumentException('Bad request', 400);
                 }
             }
-    
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -416,7 +416,7 @@ class PagesController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 
