@@ -91,3 +91,7 @@ sites-storage-import-permissions:
 sites-references-permissions:
   ru: Доступ к редактору справочников
   en: Access to the references editor
+sites-structure-deletedatas:
+  en: ""
+sites-storages-fieldlookup-group:
+  en: ""

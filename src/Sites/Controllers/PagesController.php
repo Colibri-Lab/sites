@@ -104,13 +104,13 @@ class PagesController extends WebController
 
         $fields = [];
         foreach ($parameters as $parameter) {
-            $fields[$parameter->name] = [
-                'type' => $parameter->type,
-                'length' => $parameter->length,
-                'class' => $parameter->class,
-                'component' => $parameter->component,
-                'default' => $parameter->default,
-                'desc' => $parameter->description
+            $fields[$parameter['name']] = [
+                'type' => $parameter['type'],
+                'length' => $parameter['length'],
+                'class' => $parameter['class'],
+                'component' => $parameter['component'],
+                'default' => $parameter['default'],
+                'desc' => $parameter['description']
             ];
         }
 
