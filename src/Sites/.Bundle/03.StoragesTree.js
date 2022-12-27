@@ -35,7 +35,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                 }
 
                 if(storage.group) {
-                    const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
+                    const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group)) : '');
                     let groupNode = moduleNode.nodes.Children(group);
                     if(!groupNode) {
                         groupNode = moduleNode.nodes.Add(group);
@@ -54,7 +54,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                 }
                 
                 const desc = storage.desc[Lang.Current] ?? storage.desc;
-                const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
+                const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group)) : '');
 
                 let moduleNode = this.FindNode(storage.module);
                 let groupNode = group ? moduleNode.nodes.Children(group) : null;

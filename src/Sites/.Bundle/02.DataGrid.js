@@ -64,7 +64,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 }
                 let column = this.header.columns.Children(name);
                 if(!column) {
-                    column = this.header.columns.Add(name, field.desc); // , {width: (85/columnCount).toFixed(2) + '%'}
+                    column = this.header.columns.Add(name, field.desc[Lang.Current] ?? field.desc ?? ''); // , {width: (85/columnCount).toFixed(2) + '%'}
                     if(field.params?.greed) {
                         column.width = field.params?.greed;
                     }
