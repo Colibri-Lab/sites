@@ -30,7 +30,7 @@
                                     render: (cell, row) => {
                                         Manage.Store.AsyncQuery('manage.storages').then(storages => {
                                             const storage = storages[row.value.storage];
-                                            cell.valueContainer.value = storage.desc;
+                                            cell.valueContainer.value = storage.desc[Lang.Current] ?? storage.desc ?? '';
                                         });
                                     }
                                 }

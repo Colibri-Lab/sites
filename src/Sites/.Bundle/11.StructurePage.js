@@ -428,7 +428,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             const contextmenu = [];
             Object.forEach(storages, (name, storage) => {
                 if(storage.params.visible && storage.params.maybepublished) {
-                    contextmenu.push({name: storage.name, title: storage.desc, icon: App.Modules.Sites.Icons.ContextMenuStorageIcon});
+                    contextmenu.push({name: storage.name, title: storage.desc[Lang.Current] ?? storage.desc, icon: App.Modules.Sites.Icons.ContextMenuStorageIcon});
                 }
             });
 
@@ -479,7 +479,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             const storage = responses[0];
             const data = responses[1];
             if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + storage.desc + '»', 1024, 'app.manage.storages(' + storage.name + ')', data)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc) + '»', 1024, 'app.manage.storages(' + storage.name + ')', data)
                     .then((data) => {
                         Sites.SaveData(storage.name, data, pub);
                     })
