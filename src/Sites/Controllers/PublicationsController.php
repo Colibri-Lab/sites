@@ -147,7 +147,7 @@ class PublicationsController extends WebController
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadEmpty();
-        
+
 
         $accessPoint1 = $domain->Storage()->accessPoint;
         $accessPoint1->Begin();
@@ -159,15 +159,15 @@ class PublicationsController extends WebController
             foreach ($data as $field => $value) {
                 $datarow->$field = $value;
             }
-            if ( ($res = $datarow->Save(true)) !== true) {
-                throw new InvalidArgumentException($res->error, 400); 
+            if (($res = $datarow->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400);
             }
-    
+
             $newPub = Publications::CreatePublication($domain, $folder, $datarow);
-            if( ($res = $newPub->Save(true)) !== true) {
-                throw new InvalidArgumentException($res->error, 400); 
+            if (($res = $newPub->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 400);
             }
-    
+
         } catch (InvalidArgumentException $e) {
             $accessPoint1->Rollback();
             $accessPoint2->Rollback();
@@ -180,7 +180,7 @@ class PublicationsController extends WebController
             $accessPoint1->Rollback();
             $accessPoint2->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint1->Commit();
         $accessPoint2->Commit();
@@ -233,8 +233,8 @@ class PublicationsController extends WebController
                 $pubArray[] = $pub->ToArray(true);
 
             }
-            
-    
+
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -244,7 +244,7 @@ class PublicationsController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 
@@ -282,7 +282,7 @@ class PublicationsController extends WebController
         try {
 
             $pub->MoveBefore($before);
-    
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -292,7 +292,7 @@ class PublicationsController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 

@@ -34,9 +34,9 @@ use Colibri\App;
  * endregion Properties;
  * @property-read string $path полный путь от домена
  */
-class Page extends BaseModelDataRow 
+class Page extends BaseModelDataRow
 {
-    
+
     public const JsonSchema = [
         'type' => 'object',
         'required' => [
@@ -44,26 +44,28 @@ class Page extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'domain',
-			'name',
-			'description',
-			'published',
-			# endregion SchemaRequired;
+            'domain',
+            'name',
+            'description',
+            'published',
+            # endregion SchemaRequired;
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'domain' => Domain::JsonSchema,
-			'parent' => [ 'oneOf' => [ [ 'type' => 'null' ], ['$ref' => '#'] ] ], 
-			'name' => ['type' => 'string', 'maxLength' => 255, ],
-			'description' => [ 'oneOf' => [ [ 'type' => 'string', 'maxLength' => 512], Text::JsonSchema ] ],
-			'published' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 256], Text::JsonSchema ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 1024], Text::JsonSchema ] ],'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 1024], Text::JsonSchema ] ],]],'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 256], Text::JsonSchema ] ],'type' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],'length' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],]],
-			'parameters' => [ 'oneOf' => [ [ 'type' => 'null'], ParametersField::JsonSchema ] ],
-			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
-			# endregion SchemaProperties;
+            'domain' => Domain::JsonSchema,
+            'parent' => ['oneOf' => [['type' => 'null'], ['$ref' => '#']]],
+            'name' => ['type' => 'string', 'maxLength' => 255,
+            ],
+            'description' => ['oneOf' => [['type' => 'string', 'maxLength' => 512], Text::JsonSchema]],
+            'published' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+            ],
+            'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 256], Text::JsonSchema]], 'description' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 1024], Text::JsonSchema]], 'keywords' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 1024], Text::JsonSchema]],]], 'settings' => ['type' => 'object', 'required' => [], 'properties' => ['component' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'template' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],]], 'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 50,]]], 'description' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 256], Text::JsonSchema]], 'type' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 20,]]], 'length' => ['oneOf' => [['type' => 'null'], ['type' => 'integer',]]], 'default' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'class' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'component' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],]]],]],
+            'parameters' => ['oneOf' => [['type' => 'null'], ParametersField::JsonSchema]],
+            'order' => ['oneOf' => [['type' => 'null'], ['type' => 'number',]]],
+            # endregion SchemaProperties;
         ]
     ];
 
@@ -77,23 +79,23 @@ class Page extends BaseModelDataRow
         return Pages::LoadByParent($this->domain, $this, $page, $pagesize);
     }
 
-    public function Next(): ?Page
+    public function Next(): ? Page
     {
         $parent = $this->parent;
         $order = $this->order;
         $pages = Pages::LoadByFilter(1, 1, '{parent}=[[parent:integer]] and {order}>[[order:integer]]', '{order} asc', ['parent' => $parent ? $parent->id : 0, 'order' => $order]);
-        if($pages->Count() > 0) {
+        if ($pages->Count() > 0) {
             return $pages->First();
         }
         return null;
     }
 
-    public function Previous(): ?Page
+    public function Previous(): ? Page
     {
         $parent = $this->parent;
         $order = $this->order;
         $pages = Pages::LoadByFilter(1, 1, '{parent}=[[parent:integer]] and {order}<[[order:integer]]', '{order} desc', ['parent' => $parent ? $parent->id : 0, 'order' => $order]);
-        if($pages->Count() > 0) {
+        if ($pages->Count() > 0) {
             return $pages->First();
         }
         return null;
@@ -103,7 +105,7 @@ class Page extends BaseModelDataRow
     {
 
         $prev = $this->Previous();
-        if(!$prev) {
+        if (!$prev) {
             return false;
         }
 
@@ -111,7 +113,7 @@ class Page extends BaseModelDataRow
         $thisOrder = $this->order;
         $prev->order = $thisOrder;
         $this->order = $prevOrder;
-        
+
         $this->Save();
         $prev->Save();
 
@@ -121,9 +123,9 @@ class Page extends BaseModelDataRow
 
     public function MoveDown(): bool
     {
-        
+
         $next = $this->Next();
-        if(!$next) {
+        if (!$next) {
             return false;
         }
 
@@ -131,20 +133,19 @@ class Page extends BaseModelDataRow
         $thisOrder = $this->order;
         $next->order = $thisOrder;
         $this->order = $nextOrder;
-        
+
         $this->Save();
         $next->Save();
-        
+
         return true;
     }
 
-    public function MoveBefore(?Page $reference = null): bool
+    public function MoveBefore(? Page $reference = null): bool
     {
-        if(!$reference) {
+        if (!$reference) {
             $fristPub = Pages::LoadByParent($this->parent ?: 0, 1, 1)->First();
             $this->order = $fristPub ? $fristPub->order / 2 : Pages::StartOrder / 2;
-        }
-        else {
+        } else {
             $referencePrev = $reference->Previous();
             $this->order = (($referencePrev ? $referencePrev->order : 0) + $reference->order) / 2;
         }
@@ -152,13 +153,12 @@ class Page extends BaseModelDataRow
         return true;
     }
 
-    public function MoveAfter(?Page $reference = null): bool
+    public function MoveAfter(? Page $reference = null): bool
     {
-        if(!$reference) {
+        if (!$reference) {
             $lastPub = Pages::LoadByParentReverce($this->parent ?: 0, 1, 1)->First();
             $this->order = $lastPub ? $lastPub->order + Pages::StartOrder : Pages::StartOrder;
-        }
-        else {
+        } else {
             $referenceNext = $reference->Next();
             $this->order = (($referenceNext ? $referenceNext->order : 0) + $reference->order) / 2;
         }
@@ -176,10 +176,9 @@ class Page extends BaseModelDataRow
 
         $pubs = Pages::LoadByFilter(1, 1, '{parent}=[[parent:string]]', '{order} desc', ['parent' => $this->parent?->id ?: 0]);
         $lastPage = $pubs->First();
-        if(!$lastPage) {
+        if (!$lastPage) {
             $this->order = Publications::StartOrder;
-        }
-        else {
+        } else {
             $this->order = $lastPage->order + Publications::StartOrder;
         }
         $this->Save();
@@ -187,20 +186,20 @@ class Page extends BaseModelDataRow
 
     }
 
-    private function _moveBranch() {
+    private function _moveBranch()
+    {
         $children = $this->Children();
-        foreach($children as $child) {
+        foreach ($children as $child) {
             $child->MoveTo($this, false);
         }
     }
 
     public function MoveTo(Page|Domain $page, bool $moveToEnd = true): bool
     {
-        if($page instanceof Domain) {
+        if ($page instanceof Domain) {
             $this->parent = 0;
             $this->domain = $page;
-        }
-        else {
+        } else {
             $this->domain = $page->domain;
             $this->parent = $page;
         }
@@ -216,24 +215,24 @@ class Page extends BaseModelDataRow
         Publications::DeleteAllByPage($this);
 
         $childs = $this->Children();
-        foreach($childs as $child) {
+        foreach ($childs as $child) {
             $child->Delete();
         }
-        
-        return parent::Delete();    
-    
+
+        return parent::Delete();
+
     }
 
     public function Path(): array
     {
 
-        if(!$this->parent) {
+        if (!$this->parent) {
             return [$this];
         }
-        
+
         $ret = [$this];
         $parent = $this->parent;
-        while($parent) {
+        while ($parent) {
             $ret[] = $parent;
             $parent = $parent->parent;
         }
@@ -247,31 +246,31 @@ class Page extends BaseModelDataRow
     {
         $url = [];
         $path = $this->Path();
-        foreach($path as $page) {
+        foreach ($path as $page) {
             $url[] = $page->name;
         }
-        $uri = StringHelper::AddToQueryString('/'.implode('/', $url).'/', $params, true);
+        $uri = StringHelper::AddToQueryString('/' . implode('/', $url) . '/', $params, true);
         return App::$router->Uri($uri);
     }
 
     public function Template(): ?string
     {
         $template = $this->additional?->settings?->template;
-        if($template) {
+        if ($template) {
             return $template;
         }
 
         $parent = $this->parent;
-        while($parent) {
+        while ($parent) {
             /** @var Page $parent */
             $template = $parent->additional->settings->template;
-            if($template) {
+            if ($template) {
                 break;
             }
             $parent = $parent->parent;
         }
 
-        if($template) {
+        if ($template) {
             return $template;
         }
 
@@ -282,21 +281,21 @@ class Page extends BaseModelDataRow
     public function Component(): ?string
     {
         $component = $this->additional?->settings?->component;
-        if($component) {
+        if ($component) {
             return $component;
         }
 
         $parent = $this->parent;
-        while($parent) {
+        while ($parent) {
             /** @var Page $parent */
             $component = $parent->additional->settings->component;
-            if($component) {
+            if ($component) {
                 break;
             }
             $parent = $parent->parent;
         }
 
-        if($component) {
+        if ($component) {
             return $component;
         }
 
@@ -308,7 +307,7 @@ class Page extends BaseModelDataRow
     {
         $ret = [];
         $path = $this->Path();
-        foreach($path as $p) {
+        foreach ($path as $p) {
             $ret[] = $p->name;
         }
         return implode('/', $ret);
@@ -316,7 +315,7 @@ class Page extends BaseModelDataRow
 
     public function IsChildOf(Page $page): bool
     {
-        return strpos($this->path.'/', $page->path.'/') === 0;
+        return strpos($this->path . '/', $page->path . '/') === 0;
     }
 
     public function GetMeta(): object

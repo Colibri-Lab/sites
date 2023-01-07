@@ -19,7 +19,8 @@ use App\Modules\Sites\Models\Text;
  * @method Text _read()
  * 
  */
-class Texts extends BaseModelDataTable {
+class Texts extends BaseModelDataTable
+{
 
     /**
      * Конструктор
@@ -34,7 +35,7 @@ class Texts extends BaseModelDataTable {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
 
-    
+
     /**
      * Создание модели по названию хранилища
      * @param int $page страница
@@ -44,16 +45,16 @@ class Texts extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Texts
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Texts
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Texts
     {
         $storage = Storages::Create()->Load('texts');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name . 
-                ($filter ? ' where ' . $filter : '') . 
-                ($order ? ' order by ' . $order : ''), 
+            'select * from ' . $storage->name .
+            ($filter ? ' where ' . $filter : '') .
+            ($order ? ' order by ' . $order : ''),
             $additionalParams
         );
     }
@@ -64,7 +65,7 @@ class Texts extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Texts 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Texts
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false): ? Texts
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
@@ -74,7 +75,7 @@ class Texts extends BaseModelDataTable {
      * @param int $id ID строки
      * @return Text|null
      */
-    static function LoadById(int $id) : Text|null 
+    static function LoadById(int $id): Text|null
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
@@ -84,13 +85,13 @@ class Texts extends BaseModelDataTable {
      * Создание модели по названию хранилища
      * @return Text
      */
-    static function LoadEmpty() : Text
+    static function LoadEmpty(): Text
     {
         $table = self::LoadByFilter(-1, 20, 'false', null, [], false);
         return $table->CreateEmptyRow();
     }
 
-    
+
     /**
      * Удаляет все по списку ID
      * @param int[] $ids ID строки
@@ -98,7 +99,7 @@ class Texts extends BaseModelDataTable {
      */
     static function DeleteAllByIds(array $ids): bool
     {
-        return self::DeleteAllByFilter('{id} in ('.implode(',', $ids).')');
+        return self::DeleteAllByFilter('{id} in (' . implode(',', $ids) . ')');
     }
 
     /**
@@ -108,7 +109,7 @@ class Texts extends BaseModelDataTable {
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        if(!self::DeleteByFilter('texts', $filter)) {
+        if (!self::DeleteByFilter('texts', $filter)) {
             return false;
         }
         return Publications::DeleteAllNotExistsInStorage('texts');

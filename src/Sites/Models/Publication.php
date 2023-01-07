@@ -32,7 +32,7 @@ use InvalidArgumentException;
  * @property float|null $order Позиция в рамках страницы
  * endregion Properties;
  */
-class Publication extends BaseModelDataRow 
+class Publication extends BaseModelDataRow
 {
 
     public const JsonSchema = [
@@ -42,45 +42,47 @@ class Publication extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'domain',
-			'storage',
-			'row',
-			# endregion SchemaRequired;
+            'domain',
+            'storage',
+            'row',
+            # endregion SchemaRequired;
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'domain' => Domain::JsonSchema,
-			'page' => [ 'oneOf' => [ [ 'type' => 'null'], Page::JsonSchema ] ],
-			'storage' => ['type' => 'string', 'maxLength' => 255, ],
-			'row' => ['type' => 'integer', ],
-			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
-			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number','string','boolean','object','array','null']]]]],
-			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
-			# endregion SchemaProperties;
+            'domain' => Domain::JsonSchema,
+            'page' => ['oneOf' => [['type' => 'null'], Page::JsonSchema]],
+            'storage' => ['type' => 'string', 'maxLength' => 255,
+            ],
+            'row' => ['type' => 'integer',
+            ],
+            'ft' => ['oneOf' => [['type' => 'null'], ['type' => 'string',]]],
+            'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number', 'string', 'boolean', 'object', 'array', 'null']]]]],
+            'order' => ['oneOf' => [['type' => 'null'], ['type' => 'number',]]],
+            # endregion SchemaProperties;
         ]
     ];
-    public function Next(): ?Publication
+    public function Next(): ? Publication
     {
         $domain = $this->domain;
         $page = $this->page;
         $order = $this->order;
         $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]] and {order}>[[order:integer]]', '{order} asc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
-        if($pubs->Count() > 0) {
+        if ($pubs->Count() > 0) {
             return $pubs->First();
         }
         return null;
     }
 
-    public function Previous(): ?Publication
+    public function Previous(): ? Publication
     {
         $domain = $this->domain;
         $page = $this->page;
         $order = $this->order;
         $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]] and {order}<[[order:integer]]', '{order} desc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
-        if($pubs->Count() > 0) {
+        if ($pubs->Count() > 0) {
             return $pubs->First();
         }
         return null;
@@ -90,7 +92,7 @@ class Publication extends BaseModelDataRow
     {
 
         $prev = $this->Previous();
-        if(!$prev) {
+        if (!$prev) {
             return false;
         }
 
@@ -98,11 +100,11 @@ class Publication extends BaseModelDataRow
         $thisOrder = $this->order;
         $prev->order = $thisOrder;
         $this->order = $prevOrder;
-        
-        if( ($res = $this->Save(true)) !== true) {
+
+        if (($res = $this->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
-        if( ($res = $prev->Save(true)) !== true) {
+        if (($res = $prev->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
 
@@ -112,9 +114,9 @@ class Publication extends BaseModelDataRow
 
     public function MoveDown(): bool
     {
-        
+
         $next = $this->Next();
-        if(!$next) {
+        if (!$next) {
             return false;
         }
 
@@ -123,27 +125,26 @@ class Publication extends BaseModelDataRow
         $next->order = $thisOrder;
         $this->order = $nextOrder;
 
-        if( ($res = $this->Save(true)) !== true) {
+        if (($res = $this->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
-        if( ($res = $next->Save(true)) !== true) {
+        if (($res = $next->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
-        
+
         return true;
     }
 
-    public function MoveBefore(?Publication $reference = null): bool
+    public function MoveBefore(? Publication $reference = null): bool
     {
-        if(!$reference) {
+        if (!$reference) {
             $fristPub = Publications::LoadByPage($this->domain, $this->page)->First();
             $this->order = $fristPub ? $fristPub->order / 2 : Publications::StartOrder / 2;
-        }
-        else {
+        } else {
             $referencePrev = $reference->Previous();
             $this->order = (($referencePrev ? $referencePrev->order : 0) + $reference->order) / 2;
         }
-        if( ($res = $this->Save(true)) !== true) {
+        if (($res = $this->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
         return true;
@@ -159,13 +160,12 @@ class Publication extends BaseModelDataRow
 
         $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:string]]', '{order} desc', ['page' => $this->page->id]);
         $lastPub = $pubs->First();
-        if(!$lastPub) {
+        if (!$lastPub) {
             $this->order = Publications::StartOrder;
-        }
-        else {
+        } else {
             $this->order = $lastPub->order + Publications::StartOrder;
         }
-        if( ($res = $this->Save(true)) !== true) {
+        if (($res = $this->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
         return true;
@@ -179,10 +179,10 @@ class Publication extends BaseModelDataRow
         return $tableClass::LoadById($this->row);
     }
 
-    public function Copy(Domain $domain, ?Page $to = null): ?Publication
+    public function Copy(Domain $domain, ? Page $to = null): ? Publication
     {
         $datarow = $this->DataRow();
-        if(!$datarow) {
+        if (!$datarow) {
             return null;
         }
         return Publications::CreatePublication($domain, $to, $datarow);
@@ -191,7 +191,7 @@ class Publication extends BaseModelDataRow
     public function Save(bool $performValidationBeforeSave = false): bool|QueryInfo
     {
         $datarow = $this->DataRow();
-        if(!$datarow) {
+        if (!$datarow) {
             // Не получилось
             return false;
         }
@@ -201,13 +201,13 @@ class Publication extends BaseModelDataRow
     }
 
     public function Out(mixed $args = [], string $templateType = 'item'): string
-	{
+    {
         $datarow = $this->DataRow();
         $storage = $datarow->Storage();
-		$module = $storage->GetModule();
-		$templates = $storage->GetTemplates();
-		$template = new PhpTemplate($module->modulePath . 'templates/web/' . $templates[$templateType] ?? $templates['default'] ?? Template::Dummy);
-		return $template->Render(array_merge($args instanceof ExtendedObject ? $args->GetData() : $args, ['datarow' => $datarow, 'pub' => $this, 'storage' => $storage]));
-	}
+        $module = $storage->GetModule();
+        $templates = $storage->GetTemplates();
+        $template = new PhpTemplate($module->modulePath . 'templates/web/' . $templates[$templateType] ?? $templates['default'] ?? Template::Dummy);
+        return $template->Render(array_merge($args instanceof ExtendedObject ? $args->GetData() : $args, ['datarow' => $datarow, 'pub' => $this, 'storage' => $storage]));
+    }
 
 }

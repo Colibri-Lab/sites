@@ -26,17 +26,16 @@ class Installer
 
         $modules = self::_loadConfig($file);
         $hasLangModule = false;
-        if(is_array($modules['entries'])) {
-            foreach($modules['entries'] as $entry) {
-                if($entry['name'] === 'Lang') {
+        if (is_array($modules['entries'])) {
+            foreach ($modules['entries'] as $entry) {
+                if ($entry['name'] === 'Lang') {
                     $hasLangModule = true;
                 }
-                if($entry['name'] === 'Sites') {
+                if ($entry['name'] === 'Sites') {
                     return $hasLangModule;
                 }
             }
-        }
-        else {
+        } else {
             $modules['entries'] = [];
         }
 
@@ -55,81 +54,80 @@ class Installer
         return $hasLangModule;
 
     }
-    private static function _copyOrSymlink($mode, $pathFrom, $pathTo, $fileFrom, $fileTo): void 
+    private static function _copyOrSymlink($mode, $pathFrom, $pathTo, $fileFrom, $fileTo): void
     {
-        print_r('Копируем '.$mode.' '.$pathFrom.' '.$pathTo.' '.$fileFrom.' '.$fileTo."\n");
-        if(!file_exists($pathFrom.$fileFrom)) {
-            print_r('Файл '.$pathFrom.$fileFrom.' не существует'."\n");
+        print_r('Копируем ' . $mode . ' ' . $pathFrom . ' ' . $pathTo . ' ' . $fileFrom . ' ' . $fileTo . "\n");
+        if (!file_exists($pathFrom . $fileFrom)) {
+            print_r('Файл ' . $pathFrom . $fileFrom . ' не существует' . "\n");
             return;
         }
 
-        if(file_exists($pathTo.$fileTo)) {
-            print_r('Файл '.$pathTo.$fileTo.' существует'."\n");
+        if (file_exists($pathTo . $fileTo)) {
+            print_r('Файл ' . $pathTo . $fileTo . ' существует' . "\n");
             return;
         }
 
-        if($mode === 'local') {
-            shell_exec('ln -s '.realpath($pathFrom.$fileFrom).' '.$pathTo.($fileTo != $fileFrom ? $fileTo : ''));
-        }
-        else {
-            shell_exec('cp -R '.realpath($pathFrom.$fileFrom).' '.$pathTo.$fileTo);
+        if ($mode === 'local') {
+            shell_exec('ln -s ' . realpath($pathFrom . $fileFrom) . ' ' . $pathTo . ($fileTo != $fileFrom ? $fileTo : ''));
+        } else {
+            shell_exec('cp -R ' . realpath($pathFrom . $fileFrom) . ' ' . $pathTo . $fileTo);
         }
 
         // если это исполняемый скрипт
-        if(strstr($pathTo.$fileTo, '/bin/') !== false) {
-            chmod($pathTo.$fileTo, 0777);
+        if (strstr($pathTo . $fileTo, '/bin/') !== false) {
+            chmod($pathTo . $fileTo, 0777);
         }
     }
 
 
     /**
      *
-     * @param PackageEvent $event
+     * @param \Composer\Installer\PackageEvent $event
      * @return void
      */
     public static function PostPackageInstall($event)
     {
 
-        print_r('Установка и настройка модуля Colibri Sites Module'."\n");
+        print_r('Установка и настройка модуля Colibri Sites Module' . "\n");
 
-        $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir').'/';
+        $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir') . '/';
         $operation = $event->getOperation();
         $installedPackage = $operation->getPackage();
         $targetDir = $installedPackage->getName();
-        $path = $vendorDir.$targetDir;
-        $configPath = $path.'/src/Sites/config-template/';
+        $path = $vendorDir . $targetDir;
+        $configPath = $path . '/src/Sites/config-template/';
         $configDir = './config/';
 
-        if(!file_exists($configDir.'app.yaml')) {
-            print_r('Не найден файл конфигурации app.yaml'."\n");
+        if (!file_exists($configDir . 'app.yaml')) {
+            print_r('Не найден файл конфигурации app.yaml' . "\n");
             return;
         }
 
         // берем точку входа
         $webRoot = \getenv('COLIBRI_WEBROOT');
-        if(!$webRoot) {
-            $webRoot = 'web'; 
+        if (!$webRoot) {
+            $webRoot = 'web';
         }
-        $mode = self::_getMode($configDir.'app.yaml');
+        $mode = self::_getMode($configDir . 'app.yaml');
 
         // копируем конфиг
-        print_r('Копируем файлы конфигурации'."\n");
-        self::_copyOrSymlink($mode, $configPath, $configDir, 'module-'.$mode.'.yaml', 'sites.yaml');
+        print_r('Копируем файлы конфигурации' . "\n");
+        self::_copyOrSymlink($mode, $configPath, $configDir, 'module-' . $mode . '.yaml', 'sites.yaml');
         self::_copyOrSymlink($mode, $configPath, $configDir, 'sites-storages.yaml', 'sites-storages.yaml');
         self::_copyOrSymlink($mode, $configPath, $configDir, 'sites-langtexts.yaml', 'sites-langtexts.yaml');
 
-        print_r('Встраиваем модуль'."\n");
-        $hasLangModule = self::_injectIntoModuleConfig($configDir.'modules.yaml');
+        print_r('Встраиваем модуль' . "\n");
+        $hasLangModule = self::_injectIntoModuleConfig($configDir . 'modules.yaml');
 
-        print_r('Докопируем конфиги'."\n");
-        self::_copyOrSymlink($mode, $configPath, $configDir, 'domains-storage-'.($hasLangModule ? 'lang' : 'nolang').'.yaml', 'domains-storage.yaml');
-        self::_copyOrSymlink($mode, $configPath, $configDir, 'pages-storage-'.($hasLangModule ? 'lang' : 'nolang').'.yaml', 'pages-storage.yaml');
+        print_r('Докопируем конфиги' . "\n");
+        self::_copyOrSymlink($mode, $configPath, $configDir, 'domains-storage-' . ($hasLangModule ? 'lang' : 'nolang') . '.yaml', 'domains-storage.yaml');
+        self::_copyOrSymlink($mode, $configPath, $configDir, 'pages-storage-' . ($hasLangModule ? 'lang' : 'nolang') . '.yaml', 'pages-storage.yaml');
 
-        print_r('Установка скриптов'."\n");
-        self::_copyOrSymlink($mode, $path.'/src/Sites/bin/', './bin/', 'sites-migrate.sh', 'sites-migrate.sh');
-        self::_copyOrSymlink($mode, $path.'/src/Sites/bin/', './bin/', 'sites-models-generate.sh', 'sites-models-generate.sh');
+        print_r('Установка скриптов' . "\n");
+        self::_copyOrSymlink($mode, $path . '/src/Sites/bin/', './bin/', 'sites-migrate.sh', 'sites-migrate.sh');
+        self::_copyOrSymlink($mode, $path . '/src/Sites/bin/', './bin/', 'sites-models-generate.sh', 'sites-models-generate.sh');
 
-        print_r('Установка завершена'."\n");
+        print_r('Установка завершена' . "\n");
 
     }
 }

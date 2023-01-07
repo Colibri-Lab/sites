@@ -29,7 +29,8 @@ use Colibri\App;
  * @property ParametersField|null $parameters 
  * endregion Properties;
  */
-class Domain extends BaseModelDataRow {
+class Domain extends BaseModelDataRow
+{
 
     public const JsonSchema = [
         'type' => 'object',
@@ -38,22 +39,24 @@ class Domain extends BaseModelDataRow {
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'name',
-			'description',
-			'closed',
-			# endregion SchemaRequired;
+            'name',
+            'description',
+            'closed',
+            # endregion SchemaRequired;
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'name' => ['type' => 'string', 'maxLength' => 255, ],
-			'description' => [ 'oneOf' => [ [ 'type' => 'string', 'maxLength' => 512], Text::JsonSchema ] ],
-			'closed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 256], Text::JsonSchema ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 1024], Text::JsonSchema ] ],'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 1024], Text::JsonSchema ] ],]],'settings' => ['type' => 'object', 'required' => ['type','module',], 'properties' => ['type' => ['type' => 'string', 'enum' => ['application', 'website']],'module' => ['type' => 'string', 'maxLength' => 255, ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]],'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'description' => [ 'oneOf' => [ [ 'type' => 'null'], [ 'type' => 'string', 'maxLength' => 256], Text::JsonSchema ] ],'type' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],'length' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],]],
-			'parameters' => [ 'oneOf' => [ [ 'type' => 'null'], ParametersField::JsonSchema ] ],
-			# endregion SchemaProperties;
+            'name' => ['type' => 'string', 'maxLength' => 255,
+            ],
+            'description' => ['oneOf' => [['type' => 'string', 'maxLength' => 512], Text::JsonSchema]],
+            'closed' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+            ],
+            'additional' => ['type' => 'object', 'required' => [], 'properties' => ['meta' => ['type' => 'object', 'required' => [], 'properties' => ['title' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 256], Text::JsonSchema]], 'description' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 1024], Text::JsonSchema]], 'keywords' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 1024], Text::JsonSchema]],]], 'settings' => ['type' => 'object', 'required' => ['type', 'module',], 'properties' => ['type' => ['type' => 'string', 'enum' => ['application', 'website']], 'module' => ['type' => 'string', 'maxLength' => 255,], 'component' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'template' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],]], 'parameters' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 50,]]], 'description' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 256], Text::JsonSchema]], 'type' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 20,]]], 'length' => ['oneOf' => [['type' => 'null'], ['type' => 'integer',]]], 'default' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'class' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'component' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],]]],]],
+            'parameters' => ['oneOf' => [['type' => 'null'], ParametersField::JsonSchema]],
+            # endregion SchemaProperties;
         ]
     ];
 
@@ -67,7 +70,7 @@ class Domain extends BaseModelDataRow {
     {
         return $this->additional?->settings?->template;
     }
-    
+
     public function Component(): ?string
     {
         return $this->additional?->settings?->component;
@@ -79,7 +82,7 @@ class Domain extends BaseModelDataRow {
         $meta->canonical = $this->Url();
         return $meta;
     }
-    
+
     public function Url(array $params = []): string
     {
         $uri = StringHelper::AddToQueryString('/', $params, true);

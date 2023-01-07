@@ -84,7 +84,7 @@ class DataController extends WebController
         $id = $post->row;
 
         $storage = Storages::Create()->Load($storage);
-        if(!$storage) {
+        if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
         [$tableClass, $rowClass] = $storage->GetModelClasses();
@@ -133,19 +133,19 @@ class DataController extends WebController
 
         try {
             /** @var QueryInfo $res */
-            if ( ($res = $datarow->Save(true)) !== true) {
+            if (($res = $datarow->Save(true)) !== true) {
                 throw new InvalidArgumentException($res->error, 400);
             }
 
             if ($pub) {
                 $pub = Publications::LoadById($pub);
-                if ( ($res = $pub->Save(true)) !== true) {
-                    throw new InvalidArgumentException($res->error, 400); 
+                if (($res = $pub->Save(true)) !== true) {
+                    throw new InvalidArgumentException($res->error, 400);
                 }
                 $pub = $pub->ToArray(true);
             }
-    
-    
+
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -155,7 +155,7 @@ class DataController extends WebController
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
-        } 
+        }
 
         $accessPoint->Commit();
 

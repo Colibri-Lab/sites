@@ -27,7 +27,8 @@ use Colibri\Utils\ExtendedObject;
  * @property string $html Содержание блока
  * endregion Properties;
  */
-class Text extends BaseModelDataRow {
+class Text extends BaseModelDataRow
+{
 
     public const JsonSchema = [
         'type' => 'object',
@@ -36,17 +37,18 @@ class Text extends BaseModelDataRow {
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'html',
-			# endregion SchemaRequired;
+            'html',
+            # endregion SchemaRequired;
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
-			'html' => ['type' => 'string', ],
-			# endregion SchemaProperties;
+            'title' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],
+            'html' => ['type' => 'string',
+            ],
+            # endregion SchemaProperties;
         ]
     ];
 
@@ -54,14 +56,14 @@ class Text extends BaseModelDataRow {
     {
         // удаляем все публикации
         Publications::DeleteAllByRow($this);
-        return parent::Delete();    
+        return parent::Delete();
     }
 
     public static function ClearHtmlText(string $text, string $linkControllerClass, string $linkMethod): string
     {
 
         $text = StringHelper::StripHtmlAndBody($text);
-        if($text == '') {
+        if ($text == '') {
             return '';
         }
 
@@ -72,13 +74,13 @@ class Text extends BaseModelDataRow {
                 '/href="(https?\:\/\/[^\"\']+)/im',
                 function ($v) use ($linkControllerClass, $linkMethod) {
                     $v1 = explode('.', $v[1]);
-                    if (in_array(end($v1), array('jpg','png','gif','jpeg','avi','mpg'))) {
-                        return 'href="'.$v[1];
+                    if (in_array(end($v1), array('jpg', 'png', 'gif', 'jpeg', 'avi', 'mpg'))) {
+                        return 'href="' . $v[1];
                     }
                     try {
-                        $ret = 'href="'.$linkControllerClass::GetEntryPoint($linkMethod, 'json', ['url' => bin2hex($v[1])]);
+                        $ret = 'href="' . $linkControllerClass::GetEntryPoint($linkMethod, 'json', ['url' => bin2hex($v[1])]);
                     } catch (\Throwable $e) {
-                        $ret = 'href="'.$v[1];
+                        $ret = 'href="' . $v[1];
                     }
                     return $ret;
                 },
@@ -97,29 +99,28 @@ class Text extends BaseModelDataRow {
         $text = preg_replace('/srcset="([^"]*)"/', '', $text);
 
         return $text;
-        
+
     }
 
     public static function ApplyComponents(string $text, Template $parent, string $snippetsPath, ExtendedObject $args): string
     {
         $xml = XmlNode::LoadHtmlNode($text, 'utf-8');
         $components = $xml->Query('//component');
-        foreach($components->getIterator() as $component) {
+        foreach ($components->getIterator() as $component) {
             /** @var XmlNode $component */
 
             $args = $args->GetData();
-            foreach($component->attributes as $attr) {
-                if(!in_array($attr->name, ['component', 'contenteditable', 'style', 'shown'])) {
+            foreach ($component->attributes as $attr) {
+                if (!in_array($attr->name, ['component', 'contenteditable', 'style', 'shown'])) {
                     $args[$attr->name] = $attr->value;
                 }
             }
-            
+
             $template = $component->attributes->component->value;
-            $content = $parent->Insert($snippetsPath.$template, $args);
-            if(!$content) {
+            $content = $parent->Insert($snippetsPath . $template, $args);
+            if (!$content) {
                 $component->Remove();
-            }
-            else {
+            } else {
                 $newNode = XmlNode::LoadHtmlNode($content, 'utf-8');
                 $component->ReplaceTo($newNode);
             }

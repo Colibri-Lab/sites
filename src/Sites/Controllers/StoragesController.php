@@ -38,7 +38,7 @@ class StoragesController extends WebController
         $name = $data['name'];
         unset($data['name']);
 
-        if(!$data['group_enabled'] || $data['group_enabled'] === false) {
+        if (!$data['group_enabled'] || $data['group_enabled'] === false) {
             unset($data['group']);
             unset($data['group_enabled']);
             $data['group'] = null;
@@ -133,7 +133,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        if(!$data['group_enabled'] || $data['group_enabled'] === false) {
+        if (!$data['group_enabled'] || $data['group_enabled'] === false) {
             unset($data['group']);
             unset($data['group_enabled']);
             $data['group'] = 'window';
