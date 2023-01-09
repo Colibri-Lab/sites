@@ -42,26 +42,24 @@ class Publication extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-            'domain',
-            'storage',
-            'row',
-            # endregion SchemaRequired;
+			'domain',
+			'storage',
+			'row',
+			# endregion SchemaRequired;
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-            'domain' => Domain::JsonSchema,
-            'page' => ['oneOf' => [['type' => 'null'], Page::JsonSchema]],
-            'storage' => ['type' => 'string', 'maxLength' => 255,
-            ],
-            'row' => ['type' => 'integer',
-            ],
-            'ft' => ['oneOf' => [['type' => 'null'], ['type' => 'string',]]],
-            'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number', 'string', 'boolean', 'object', 'array', 'null']]]]],
-            'order' => ['oneOf' => [['type' => 'null'], ['type' => 'number',]]],
-            # endregion SchemaProperties;
+			'domain' => Domain::JsonSchema,
+			'page' => [ 'oneOf' => [ [ 'type' => 'null'], Page::JsonSchema ] ],
+			'storage' => ['type' => 'string', 'maxLength' => 255, ],
+			'row' => ['type' => 'integer', ],
+			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
+			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number','string','boolean','object','array','null']]]]],
+			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
+			# endregion SchemaProperties;
         ]
     ];
     public function Next(): ? Publication

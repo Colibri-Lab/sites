@@ -23,6 +23,7 @@ use Colibri\Utils\ExtendedObject;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
+ * @property string $lang Язык
  * @property string|null $title Заголовок
  * @property string $html Содержание блока
  * endregion Properties;
@@ -37,18 +38,19 @@ class Text extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-            'html',
-            # endregion SchemaRequired;
+			'lang',
+			'html',
+			# endregion SchemaRequired;
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-            'title' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],
-            'html' => ['type' => 'string',
-            ],
-            # endregion SchemaProperties;
+			'lang' => ['type' => 'string', 'maxLength' => 10, ],
+			'title' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'html' => ['type' => 'string', ],
+			# endregion SchemaProperties;
         ]
     ];
 
