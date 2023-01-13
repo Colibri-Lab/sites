@@ -707,3 +707,6 @@ sites-storages-fieldselector-render-desc:
 sites-storages-fieldselector-ondemand-desc:
   ru: Загружать при запросе
   en: Download on demand
+sites-storages-fieldlookup-group:
+  ru: Связка
+  en: Lookup
