@@ -7,8 +7,18 @@ use Colibri\Web\Controller as WebController;
 use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Domains;
 
+/**
+ * Checks controller
+ */
 class ChecksController extends WebController
 {
+    /**
+     * Returns a domain data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Domain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         $domain = Domains::LoadByName($post->current);

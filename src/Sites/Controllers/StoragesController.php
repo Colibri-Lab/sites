@@ -2,17 +2,26 @@
 
 namespace App\Modules\Sites\Controllers;
 
-
-use Colibri\App;
-use Colibri\Web\RequestCollection;
-use Colibri\Web\Controller as WebController;
 use App\Modules\Security\Module as SecurityModule;
-use Colibri\Data\Storages\Storages;
+use Colibri\App;
 use Colibri\Data\Storages\Storage;
+use Colibri\Data\Storages\Storages;
+use Colibri\Web\Controller as WebController;
+use Colibri\Web\RequestCollection;
 
+/**
+ * Storages controller
+ */
 class StoragesController extends WebController
 {
-
+    
+    /**
+     * Saves a storage data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -60,6 +69,13 @@ class StoragesController extends WebController
 
     }
 
+    /**
+     * Deletes a storage
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -97,6 +113,13 @@ class StoragesController extends WebController
 
     }
 
+    /**
+     * Saves a field
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function SaveField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -151,6 +174,14 @@ class StoragesController extends WebController
 
         return $this->Finish(200, 'ok');
     }
+
+    /**
+     * Moves a field
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function MoveField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -205,6 +236,14 @@ class StoragesController extends WebController
 
         return $this->Finish(200, 'ok');
     }
+
+    /**
+     * Deletes a field
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function DeleteField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -244,6 +283,13 @@ class StoragesController extends WebController
         return $this->Finish(200, 'ok');
     }
 
+    /**
+     * Saves an index
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function SaveIndex(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -289,6 +335,13 @@ class StoragesController extends WebController
         return $this->Finish(200, 'ok');
     }
 
+    /**
+     * Deletes an index
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function DeleteIndex(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 

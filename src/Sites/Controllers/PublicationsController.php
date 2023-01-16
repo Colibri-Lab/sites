@@ -2,19 +2,28 @@
 
 namespace App\Modules\Sites\Controllers;
 
-
-use Colibri\Exceptions\ValidationException;
-use Colibri\Web\RequestCollection;
-use Colibri\Web\Controller as WebController;
-use App\Modules\Sites\Models\Pages;
 use App\Modules\Security\Module as SecurityModule;
+use App\Modules\Sites\Models\Domains;
+use App\Modules\Sites\Models\Pages;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
-use App\Modules\Sites\Models\Domains;
+use Colibri\Exceptions\ValidationException;
+use Colibri\Web\Controller as WebController;
+use Colibri\Web\RequestCollection;
 use InvalidArgumentException;
 
+/**
+ * Publications controller
+ */
 class PublicationsController extends WebController
 {
+    /**
+     * Returns a list of publications in given domain or page
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -58,6 +67,13 @@ class PublicationsController extends WebController
         return $this->Finish(200, 'ok', $pubsArray);
     }
 
+    /**
+     * Copies a publication
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Copy(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -98,6 +114,13 @@ class PublicationsController extends WebController
 
     }
 
+    /**
+     * Deletes a publication
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -119,6 +142,14 @@ class PublicationsController extends WebController
         return $this->Finish(200, 'ok');
     }
 
+    /**
+     * Creates a publication
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @throws InvalidArgumentException
+     * @return object
+     */
     public function Create(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -189,6 +220,14 @@ class PublicationsController extends WebController
 
     }
 
+    /**
+     * Publishes data from given storage
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @throws InvalidArgumentException
+     * @return object
+     */
     public function Publish(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -252,6 +291,13 @@ class PublicationsController extends WebController
 
     }
 
+    /**
+     * Moves a publication
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {

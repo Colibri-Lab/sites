@@ -2,31 +2,29 @@
 
 namespace App\Modules\Sites\Controllers;
 
-
-use Colibri\App;
-use Colibri\Data\SqlClient\QueryInfo;
-use Colibri\Events\EventsContainer;
-use Colibri\Exceptions\ValidationException;
-use Colibri\IO\FileSystem\File;
-use Colibri\Utils\Cache\Bundle;
-use Colibri\Utils\Debug;
-use Colibri\Utils\ExtendedObject;
-use Colibri\Web\RequestCollection;
-use Colibri\Web\Controller as WebController;
-use Colibri\Web\Templates\PhpTemplate;
-use Colibri\Web\View;
-use InvalidArgumentException;
-use ScssPhp\ScssPhp\Compiler;
-use ScssPhp\ScssPhp\OutputStyle;
-use App\Modules\Sites\Models\Pages;
 use App\Modules\Security\Module as SecurityModule;
-use App\Modules\Sites\Module;
-use Colibri\Data\Models\DataModelException;
 use App\Modules\Sites\Models\Domains;
+use App\Modules\Sites\Models\Pages;
+use Colibri\App;
+use Colibri\Data\Models\DataModelException;
 use Colibri\Data\Storages\Storages;
+use Colibri\Exceptions\ValidationException;
+use Colibri\Web\Controller as WebController;
+use Colibri\Web\RequestCollection;
+use InvalidArgumentException;
 
+/**
+ * Pages controller
+ */
 class PagesController extends WebController
 {
+    /**
+     * Returns a domain list
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Domains(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -70,6 +68,14 @@ class PagesController extends WebController
 
         return $this->Finish(200, 'ok', $return);
     }
+
+    /**
+     * Returns a custom properties for domain or folder
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Properties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -117,6 +123,13 @@ class PagesController extends WebController
         return $this->Finish(200, 'ok', ['fields' => $fields]);
     }
 
+    /**
+     * Saves a custom properties data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function SaveProperties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -162,6 +175,13 @@ class PagesController extends WebController
         return $this->Finish(200, 'ok', $datarow->parameters->ToArray());
     }
 
+    /**
+     * Returns a pages list
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -181,6 +201,14 @@ class PagesController extends WebController
         return $this->Finish(200, 'ok', $pagesArray);
     }
 
+    /**
+     * Saves a page data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @throws InvalidArgumentException
+     * @return object
+     */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -251,7 +279,14 @@ class PagesController extends WebController
 
     }
 
-
+    /**
+     * Saves a domain
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @throws InvalidArgumentException
+     * @return object
+     */
     public function SaveDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -305,6 +340,13 @@ class PagesController extends WebController
 
     }
 
+    /**
+     * Deletes a page
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -332,6 +374,13 @@ class PagesController extends WebController
 
     }
 
+    /**
+     * Deletes a domain
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function DeleteDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -359,6 +408,14 @@ class PagesController extends WebController
 
     }
 
+    /**
+     * Moves a page
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @throws InvalidArgumentException
+     * @return object
+     */
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 

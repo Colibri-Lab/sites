@@ -2,20 +2,28 @@
 
 namespace App\Modules\Sites\Controllers;
 
-
-use Colibri\App;
-use Colibri\Exceptions\ValidationException;
-use Colibri\Web\RequestCollection;
-use Colibri\Web\Controller as WebController;
 use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
-use Colibri\Data\Storages\Storages;
 use Colibri\Data\SqlClient\QueryInfo;
+use Colibri\Data\Storages\Storages;
+use Colibri\Exceptions\ValidationException;
+use Colibri\Web\Controller as WebController;
+use Colibri\Web\RequestCollection;
 use InvalidArgumentException;
 
+/**
+ * Data controller
+ */
 class DataController extends WebController
 {
 
+    /**
+     * Returns a list of rows
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -70,6 +78,13 @@ class DataController extends WebController
 
     }
 
+    /**
+     * Returns a row full data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Row(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -97,6 +112,14 @@ class DataController extends WebController
 
     }
 
+    /**
+     * Saves a row data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @throws InvalidArgumentException
+     * @return object
+     */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
@@ -163,6 +186,13 @@ class DataController extends WebController
 
     }
 
+    /**
+     * Deletes a row
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
