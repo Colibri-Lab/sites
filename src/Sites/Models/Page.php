@@ -67,9 +67,9 @@ class Page extends BaseModelDataRow
         ]
     ];
 
-    public function Publications(int $page = -1, $pagesize = 20): Publications
+    public function Publications(int $page = -1, $pagesize = 20, string $term = ''): Publications
     {
-        return Publications::LoadByPage($this->domain, $this, $page, $pagesize);
+        return Publications::LoadByPage($this->domain, $this, $term, $page, $pagesize);
     }
 
     public function Children(int $page = -1, int $pagesize = 20): Pages
