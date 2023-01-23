@@ -6,7 +6,7 @@
                 <Pane name="search-pane" shown="true">
                     <Input name="search-input" shown="true" placeholder="#{sites-datawindow-search-placeholder}" enabled="false" />
                 </Pane>
-                <App.Modules.Sites.DataGrid name="data" shown="true" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="#{sites-datawindow-dataempty}" />
+                <App.Modules.Sites.DataGrid name="data" shown="true" binding="app.sites.data" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="#{sites-datawindow-dataempty}" />
             </Pane>
         </Split>
     </component-container>
