@@ -60,4 +60,3 @@ sites-global-notallowed:
 sites-datapage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
-sites-structure-deletedatas: {}
