@@ -120,7 +120,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
 
     SaveFolder(data) {
-        data = Object.assign(data, {__raw: 1});
+        data = Object.assign(data);
         this.Call('Pages', 'Save', data)
             .then((response) => {
                 const saved = response.result;
@@ -154,7 +154,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     SaveDomain(data) {
-        data = Object.assign(data, {__raw: 1});
+        data = Object.assign(data);
         this.Call('Pages', 'SaveDomain', data)
             .then((response) => {
                 const saved = response.result;
@@ -175,7 +175,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     DeleteDomain(id) {
-        this.Call('Pages', 'DeleteDomain', {id: id, __raw: 1})
+        this.Call('Pages', 'DeleteDomain', {id: id})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-deleted}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.domains', response.result);
@@ -187,7 +187,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     DeleteFolder(id) {
-        this.Call('Pages', 'Delete', {id: id, __raw: 1})
+        this.Call('Pages', 'Delete', {id: id})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-deleted}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
@@ -199,7 +199,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     MoveFolder(move, domain, to, siblingStatus) {
-        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus, __raw: 1})
+        this.Call('Pages', 'Move', {move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus})
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved}', Colibri.UI.Notice.Success, 3000));
                 this._store.Set('sites.pages', response.result);
@@ -504,7 +504,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     Pages(returnPromise = false) {
-        const promise = this.Call('Pages', 'List', {__raw: 1})
+        const promise = this.Call('Pages', 'List')
         if(returnPromise) {
             return promise;
         }
@@ -521,7 +521,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
     
     Domains(returnPromise = false) {
-        const promise = this.Call('Pages', 'Domains', {__raw: 1})
+        const promise = this.Call('Pages', 'Domains')
         if(returnPromise) {
             return promise;
         }
@@ -535,6 +535,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 timeout: 5000
             });
         });
+    }
+
+    Call(controller, method, params = null, headers= {}, withCredentials= true, requestKeyword = Date.Mc()) {
+        if(!params) {
+            params = {};
+        }
+        params['__raw'] = 1;
+        return super.Call(controller, method, params, headers, withCredentials, requestKeyword);
     }
 
 
