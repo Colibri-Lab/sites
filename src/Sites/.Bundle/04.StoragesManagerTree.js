@@ -14,7 +14,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         let icon = '';
         Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
             if(value.className === field.component) {
-                icon = field.icon;
+                icon = value.icon;
             }
         });
 
