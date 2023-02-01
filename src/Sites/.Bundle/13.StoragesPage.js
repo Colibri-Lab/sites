@@ -1318,7 +1318,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 const components = [];
                                 Object.forEach(storage.fields, (name, field) => {
                                     if(['json'].indexOf(field.type)) {
-                                        components.push({ value: name, title: field.desc + ' (' + name + ')' });
+                                        components.push({ value: name, title: (field.desc[Lang.Current] ?? field.desc) + ' (' + name + ')' });
                                     }
                                 });
                                 rs({ result: components });
