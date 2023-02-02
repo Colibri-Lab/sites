@@ -210,7 +210,7 @@ fields:
             note: ""
             params:
               required: false
-              readonly: false
+              readonly: true
             selector:
               value: value
               title: title
@@ -234,7 +234,7 @@ fields:
             note: ""
             params:
               required: false
-              readonly: false
+              readonly: true
             selector:
               value: value
               title: title

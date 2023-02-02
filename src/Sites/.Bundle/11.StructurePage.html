@@ -19,7 +19,7 @@
                             <params>
                                 {
                                     render: (cell, row) => {
-                                        return row.value.page?.description ?? "#{sites-structure-publications-mainpage}";
+                                        return row.value.page?.description[Lang.Current] ?? row.value.page?.description ?? "#{sites-structure-publications-mainpage}";
                                     }
                                 }
                             </params>
