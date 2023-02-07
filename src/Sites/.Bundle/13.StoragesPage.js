@@ -485,7 +485,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     },
                     params: {
                         required: true,
-                        readonly: true,
+                        readonly: false,
+                        searchable: false,
                         validate: [{
                             message: '#{sites-storages-fieldcomponent-validation-required}',
                             method: '(field, validator) => !!field.value'
@@ -588,6 +589,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-readonly}',
                             note: '#{sites-storages-fieldparams-readonly-note}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        searchable: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-searchable}',
+                            note: '#{sites-storages-fieldparams-searchable-note}',
                             component: 'Checkbox',
                             default: false
                         },

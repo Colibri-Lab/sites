@@ -710,3 +710,11 @@ sites-storages-fieldselector-ondemand-desc:
 sites-storages-fieldlookup-group:
   ru: Связка
   en: Lookup
+sites-storages-fieldparams-searchable:
+  ru: Поиск в выпадающем списке (только для списков)
+  en: Search in select menu (only for selects)
+  hy: Որոնել ընտրացանկից (միայն ընտրվածների համար)
+sites-storages-fieldparams-searchable-note:
+  ru: Указывает возможен ли в выпадающем списке поиск по тексту
+  hy: Նշում է, թե արդյոք բացվող ցանկը կարող է որոնվել տեքստով
+  en: Indicates whether text search is possible in the drop-down list
