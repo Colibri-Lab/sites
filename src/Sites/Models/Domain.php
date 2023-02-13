@@ -87,4 +87,9 @@ class Domain extends BaseModelDataRow
         return App::$router->Uri($uri);
     }
 
+    public function Publications(int $page = -1, $pagesize = 20, string $term = ''): Publications
+    {
+        return Publications::LoadByPage($this, 0, $term, $page, $pagesize);
+    }
+
 }
