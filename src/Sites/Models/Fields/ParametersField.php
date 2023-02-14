@@ -14,7 +14,7 @@ class ParametersField extends ObjectField
     {
         parent::__construct($data, $storage, $field);
 
-        $parameters = $datarow->additional->parameters;
+        $parameters = $datarow->{'additional'}->parameters;
         foreach ($parameters as $parameter) {
             $this->_field->AddField($parameter->name, [
                 'type' => $parameter->type,

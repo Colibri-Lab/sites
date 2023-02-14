@@ -17,6 +17,7 @@ use App\Modules\Sites\Models\Domain;
  * @method Domain[] getIterator()
  * @method Domain _createDataRowObject()
  * @method Domain _read()
+ * @method Domain offsetGet(mixed $offset)
  * 
  */
 class Domains extends BaseModelDataTable
@@ -92,28 +93,6 @@ class Domains extends BaseModelDataTable
         $table = self::LoadByFilter(1, 1, '{name}=[[name:string]]', null, ['name' => $name]);
         return $table && $table->Count() > 0 ? $table->First() : null;
     }
-
-    /**
-     * Возвращает модель домену
-     * @param string $domain
-     * @return Domain|null
-     */
-    static function LoadByDomain(string $domain): Domain|null
-    {
-        $table = self::LoadAll();
-        foreach ($table as $d) {
-            /** @var Domain $d */
-            $list = $d->domains;
-            foreach ($list as $dd) {
-                $res = preg_match('/' . $dd . '/', $domain, $matches);
-                if ($res > 0) {
-                    return $d;
-                }
-            }
-        }
-        return null;
-    }
-
 
     /**
      * Создание модели по названию хранилища

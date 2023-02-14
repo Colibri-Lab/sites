@@ -90,11 +90,11 @@ class Module extends BaseModule
 
         $storages = Storages::Create()->GetStorages();
         foreach ($storages as $storage) {
-            if (($storage->params['visible'] ?? true) === false) {
+            if (($storage->{'params'}['visible'] ?? true) === false) {
                 continue;
             }
 
-            $permissions['sites.storages.' . $storage->name] = '#{sites-storage-permissions} «' . $storage->desc . '»';
+            $permissions['sites.storages.' . $storage->name] = '#{sites-storage-permissions} «' . $storage->{'desc'} . '»';
             $permissions['sites.storages.' . $storage->name . '.list'] = '#{sites-storage-list-permissions}';
             $permissions['sites.storages.' . $storage->name . '.fields'] = '#{sites-storage-fields-permissions}';
             $permissions['sites.storages.' . $storage->name . '.indices'] = '#{sites-storage-indices-permissions}';

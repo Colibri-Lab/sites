@@ -108,7 +108,7 @@ class Text extends BaseModelDataRow
     {
         $xml = XmlNode::LoadHtmlNode($text, 'utf-8');
         $components = $xml->Query('//component');
-        foreach ($components->getIterator() as $component) {
+        foreach ($components as $component) {
             /** @var XmlNode $component */
 
             $args = $args->GetData();
@@ -118,7 +118,7 @@ class Text extends BaseModelDataRow
                 }
             }
 
-            $template = $component->attributes->component->value;
+            $template = $component->attributes->{'component'}->value;
             $content = $parent->Insert($snippetsPath . $template, $args);
             if (!$content) {
                 $component->Remove();

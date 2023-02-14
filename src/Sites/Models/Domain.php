@@ -78,7 +78,7 @@ class Domain extends BaseModelDataRow
     public function GetMeta(): object
     {
         $meta = $this->additional->meta;
-        $meta->canonical = $this->Url();
+        $meta->{'canonical'} = $this->Url();
         return $meta;
     }
 
