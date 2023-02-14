@@ -29,14 +29,14 @@ class AdditionalObjectField extends ObjectField
         'required' => [
             # region SchemaRequired:
 
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
 			'meta' => [  'oneOf' => [ AdditionalMetaObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'settings' => [  'oneOf' => [ AdditionalSettingsObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'parameters' => [  'oneOf' => [ AdditionalParametersArrayField::JsonSchema, [ 'type' => 'null'] ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }

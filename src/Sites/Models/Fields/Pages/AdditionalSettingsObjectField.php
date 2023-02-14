@@ -25,13 +25,13 @@ class AdditionalSettingsObjectField extends ObjectField
         'required' => [
             # region SchemaRequired:
 
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
 			'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }

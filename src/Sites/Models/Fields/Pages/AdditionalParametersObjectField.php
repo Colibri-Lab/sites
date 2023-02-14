@@ -30,7 +30,7 @@ class AdditionalParametersObjectField extends ObjectField
         'required' => [
             # region SchemaRequired:
 
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
@@ -41,7 +41,7 @@ class AdditionalParametersObjectField extends ObjectField
 			'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }

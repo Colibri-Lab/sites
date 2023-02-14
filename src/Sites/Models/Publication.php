@@ -57,7 +57,7 @@ class Publication extends BaseModelDataRow
 			'storage' => ['type' => 'string', 'maxLength' => 255, ],
 			'row' => ['type' => 'integer', ],
 			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
-			'object' => [  'oneOf' => [ ObjectObjectField::JsonSchema, [ 'type' => 'null'] ] ],
+			'object' => [  'oneOf' => [ ObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
 			# endregion SchemaProperties;
         ]

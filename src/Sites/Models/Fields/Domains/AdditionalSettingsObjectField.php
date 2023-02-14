@@ -28,7 +28,7 @@ class AdditionalSettingsObjectField extends ObjectField
             # region SchemaRequired:
 			'type',
 			'module',
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
@@ -36,7 +36,7 @@ class AdditionalSettingsObjectField extends ObjectField
 			'module' => ['type' => 'string', 'maxLength' => 255, ],
 			'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }

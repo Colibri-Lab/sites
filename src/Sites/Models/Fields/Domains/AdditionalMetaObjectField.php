@@ -26,14 +26,14 @@ class AdditionalMetaObjectField extends ObjectField
         'required' => [
             # region SchemaRequired:
 
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
 			'title' => [ 'oneOf' => [ [ 'type' => 'null'], Text::JsonSchema ] ],
 			'description' => [ 'oneOf' => [ [ 'type' => 'null'], Text::JsonSchema ] ],
 			'keywords' => [ 'oneOf' => [ [ 'type' => 'null'], Text::JsonSchema ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }
