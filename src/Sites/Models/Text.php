@@ -20,9 +20,9 @@ use Colibri\Utils\ExtendedObject;
  * @package App\Modules\Sites\Models
  * 
  * region Properties:
- * @property-read int $id ID строки
- * @property-read DateTimeField $datecreated Дата создания строки
- * @property-read DateTimeField $datemodified Дата последнего обновления строки
+ * @property int $id ID строки
+ * @property DateTimeField $datecreated Дата создания строки
+ * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property string $lang Язык
  * @property string|null $title Заголовок
  * @property string $html Содержание блока

@@ -20,9 +20,9 @@ use InvalidArgumentException;
  * @package App\Modules\Sites\Models
  * 
  * region Properties:
- * @property-read int $id ID строки
- * @property-read DateTimeField $datecreated Дата создания строки
- * @property-read DateTimeField $datemodified Дата последнего обновления строки
+ * @property int $id ID строки
+ * @property DateTimeField $datecreated Дата создания строки
+ * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property Domain $domain Домен
  * @property Page|null $page Страница
  * @property string $storage Хранилище материалов
@@ -57,7 +57,7 @@ class Publication extends BaseModelDataRow
 			'storage' => ['type' => 'string', 'maxLength' => 255, ],
 			'row' => ['type' => 'integer', ],
 			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
-			'object' => ['type' => 'object', 'required' => [], 'properties' => ['patternProperties' => ['.*' => ['type' => ['number','string','boolean','object','array','null']]]]],
+			'object' => [  'oneOf' => [ ObjectObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'order' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'number', ] ] ],
 			# endregion SchemaProperties;
         ]
