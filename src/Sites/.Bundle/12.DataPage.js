@@ -184,10 +184,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     
     __renderDataContextMenu(event, args) {
         let contextmenu = [];
+        this._data.selected = args.item;
         
         contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate}', icon: Colibri.UI.ContextMenuDublicateIcon});
         contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-edit}', icon: Colibri.UI.ContextMenuEditIcon});
-        contextmenu.push({name: 'remove-pub', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon});
+        contextmenu.push({name: 'remove-data', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon});
 
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
@@ -208,7 +209,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         else if(menuData.name == 'dubl-data') {
             this._dublData.Dispatch('Clicked');
         }
-        else if(menuData.name == 'remove-pub') {
+        else if(menuData.name == 'remove-data') {
             this._deleteData.Dispatch('Clicked');
         }
     }
