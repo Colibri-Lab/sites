@@ -21,7 +21,7 @@ class ChecksController extends WebController
      */
     public function Domain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        $domain = Domains::LoadByName($post->current);
+        $domain = Domains::LoadByName($post->{'current'});
         if (!$domain) {
             return $this->Finish(200, 'Not found');
         }

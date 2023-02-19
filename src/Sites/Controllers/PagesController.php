@@ -87,20 +87,20 @@ class PagesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $storage = Storages::Create()->Load($post->type);
+        $storage = Storages::Create()->Load($post->{'type'});
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
 
         [$tableClass, $rowClass] = $storage->GetModelClasses();
-        $datarow = $tableClass::LoadById($post->object);
+        $datarow = $tableClass::LoadById($post->{'object'});
         if (!$datarow) {
             return $this->Finish(400, 'Bad request');
         }
 
-        if ($post->type == 'domains') {
+        if ($post->{'type'} == 'domains') {
             $parameters = $datarow->additional->parameters->ToArray();
-        } elseif ($post->type == 'pages') {
+        } elseif ($post->{'type'} == 'pages') {
             $path = $datarow->Path();
             $parameters = $datarow->domain->additional->parameters->ToArray();
             foreach ($path as $page) {
@@ -140,13 +140,13 @@ class PagesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $storage = Storages::Create()->Load($post->type);
+        $storage = Storages::Create()->Load($post->{'type'});
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
 
         [$tableClass, $rowClass] = $storage->GetModelClasses();
-        $datarow = $tableClass::LoadById($post->object);
+        $datarow = $tableClass::LoadById($post->{'object'});
         if (!$datarow) {
             return $this->Finish(400, 'Bad request');
         }
@@ -156,7 +156,7 @@ class PagesController extends WebController
 
         try {
 
-            $datarow->parameters = $post->data;
+            $datarow->parameters = $post->{'data'};
             $datarow->Save();
 
         } catch (InvalidArgumentException $e) {
@@ -216,21 +216,21 @@ class PagesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $id = $post->id;
+        $id = $post->{'id'};
         if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
             return $this->Finish(403, 'Permission denied');
         } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
             return $this->Finish(403, 'Permission denied');
         }
 
-        $domain = $post->domain;
+        $domain = $post->{'domain'};
         if (!$domain) {
             return $this->Finish(400, 'Bad request');
         }
 
         $domain = Domains::LoadById($domain);
 
-        $parent = $post->parent;
+        $parent = $post->{'parent'};
         if ($parent) {
             $parent = Pages::LoadById($parent);
         } else {
@@ -239,7 +239,7 @@ class PagesController extends WebController
 
         if (!$id) {
             $page = Pages::LoadEmpty($domain, $parent);
-            $page->name = $post->name;
+            $page->name = $post->{'name'};
         } else {
             $page = Pages::LoadById($id);
         }
@@ -294,7 +294,7 @@ class PagesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $id = $post->id;
+        $id = $post->{'id'};
         if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
             return $this->Finish(403, 'Permission denied');
         } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
@@ -303,7 +303,7 @@ class PagesController extends WebController
 
         if (!$id) {
             $domain = Domains::LoadEmpty();
-            $domain->name = $post->name;
+            $domain->name = $post->{'name'};
         } else {
             $domain = Domains::LoadById($id);
         }
@@ -357,7 +357,7 @@ class PagesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $id = $post->id;
+        $id = $post->{'id'};
         $page = Pages::LoadById($id);
         try {
             $page->Delete();
@@ -391,7 +391,7 @@ class PagesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $id = $post->id;
+        $id = $post->{'id'};
         $domain = Domains::LoadById($id);
         try {
             $domain->Delete();
@@ -419,10 +419,10 @@ class PagesController extends WebController
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        $move = $post->move;
-        $domain = $post->domain;
-        $to = $post->to;
-        $sibling = $post->sibling;
+        $move = $post->{'move'};
+        $domain = $post->{'domain'};
+        $to = $post->{'to'};
+        $sibling = $post->{'sibling'};
 
         if (!SecurityModule::$instance->current) {
             return $this->Finish(403, 'Permission denied');

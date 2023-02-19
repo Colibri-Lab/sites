@@ -28,7 +28,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -38,7 +38,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $data = $post->data;
+        $data = $post->{'data'};
         $storage = Storages::Create()->Load($data['name']);
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . ($storage != null ? '.edit' : '.add'))) {
             return $this->Finish(403, 'Permission denied');
@@ -87,7 +87,7 @@ class StoragesController extends WebController
         }
 
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -97,7 +97,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -127,7 +127,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -137,7 +137,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -147,8 +147,8 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $data = $post->data;
-        $path = $post->path;
+        $data = $post->{'data'};
+        $path = $post->{'path'};
 
         $field = $storage->GetField($path);
 
@@ -189,7 +189,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -199,7 +199,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -210,9 +210,9 @@ class StoragesController extends WebController
         }
 
 
-        $move = $post->move;
-        $relative = $post->relative;
-        $sibling = $post->sibling;
+        $move = $post->{'move'};
+        $relative = $post->{'relative'};
+        $sibling = $post->{'sibling'};
 
         $move = $storage->GetField($move);
         $relative = $storage->GetField($relative);
@@ -251,7 +251,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -261,7 +261,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -271,7 +271,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $path = $post->path;
+        $path = $post->{'path'};
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.fields')) {
             return $this->Finish(403, 'Permission denied');
@@ -301,7 +301,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -311,7 +311,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -321,7 +321,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $data = $post->data;
+        $data = $post->{'data'};
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.indices')) {
             return $this->Finish(403, 'Permission denied');
@@ -353,7 +353,7 @@ class StoragesController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $module = $post->module;
+        $module = $post->{'module'};
         if (!$module) {
             return $this->Finish(400, 'Bad request');
         }
@@ -363,7 +363,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -373,7 +373,7 @@ class StoragesController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $name = $post->index;
+        $name = $post->{'index'};
         if (!$name) {
             return $this->Finish(400, 'Bad request');
         }

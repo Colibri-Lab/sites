@@ -35,7 +35,7 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $domain = $post->domain;
+        $domain = $post->{'domain'};
         if (!$domain) {
             return $this->Finish(400, 'Bad request');
         }
@@ -45,7 +45,7 @@ class PublicationsController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $folder = $post->folder;
+        $folder = $post->{'folder'};
         if ($folder) {
             $folder = Pages::LoadById($folder);
             if (!$folder) {
@@ -55,9 +55,9 @@ class PublicationsController extends WebController
             $folder = 0;
         }
 
-        $term = $post->term;
-        $page = (int) $post->page ?: 1;
-        $pagesize = (int) $post->pagesize ?: 20;
+        $term = $post->{'term'};
+        $page = (int) $post->{'page'} ?: 1;
+        $pagesize = (int) $post->{'pagesize'} ?: 20;
 
         $pubs = Publications::LoadByPage($domain, $folder, $term, $page, $pagesize);
         $pubsArray = [];
@@ -84,14 +84,14 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $domain = $post->domain;
+        $domain = $post->{'domain'};
         if (!$domain) {
             return $this->Finish(400, 'Bad request');
         }
 
         $domain = Domains::LoadById($domain);
 
-        $pub = $post->pub;
+        $pub = $post->{'pub'};
         if (!$pub) {
             return $this->Finish(400, 'Bad request');
         }
@@ -101,7 +101,7 @@ class PublicationsController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $to = $post->to;
+        $to = $post->{'to'};
         $to = $to ? Pages::LoadById($to) : null;
 
         $newPub = $pub->Copy($domain, $to);
@@ -132,7 +132,7 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $pubs = $post->pubs;
+        $pubs = $post->{'pubs'};
         if (!$pubs) {
             return $this->Finish(400, 'Bad request');
         }
@@ -160,10 +160,10 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $domain = $post->domain;
-        $folder = $post->folder;
-        $storage = $post->storage;
-        $data = $post->data;
+        $domain = $post->{'domain'};
+        $folder = $post->{'folder'};
+        $storage = $post->{'storage'};
+        $data = $post->{'data'};
 
         if (!$storage || !$data) {
             return $this->Finish(400, 'Bad request');
@@ -238,12 +238,12 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $domain = $post->domain;
+        $domain = $post->{'domain'};
         $domain = Domains::LoadById($domain);
 
-        $folder = $post->folder;
-        $storage = $post->storage;
-        $ids = $post->ids ? explode(',', $post->ids) : [];
+        $folder = $post->{'folder'};
+        $storage = $post->{'storage'};
+        $ids = $post->{'ids'} ? explode(',', $post->{'ids'}) : [];
         if (!$ids || !$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -308,8 +308,8 @@ class PublicationsController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $pub = $post->pub;
-        $before = $post->before;
+        $pub = $post->{'pub'};
+        $before = $post->{'before'};
 
         if (!$pub || !$before) {
             return $this->Finish(400, 'Bad request');

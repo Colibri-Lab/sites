@@ -30,16 +30,16 @@ class DataController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             return $this->Finish(403, 'Permission denied');
         }
 
-        $term = $post->term;
-        $sortField = $post->sortfield;
-        $sortOrder = $post->sortorder;
-        $page = (int) $post->page ?: 1;
-        $pagesize = (int) $post->pagesize ?: 20;
+        $term = $post->{'term'};
+        $sortField = $post->{'sortfield'};
+        $sortOrder = $post->{'sortorder'};
+        $page = (int) $post->{'page'} ?: 1;
+        $pagesize = (int) $post->{'pagesize'} ?: 20;
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
@@ -91,12 +91,12 @@ class DataController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             return $this->Finish(403, 'Permission denied');
         }
 
-        $id = $post->row;
+        $id = $post->{'row'};
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
@@ -126,9 +126,9 @@ class DataController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $storage = $post->storage;
-        $data = (object) $post->data;
-        $pub = $post->pub;
+        $storage = $post->{'storage'};
+        $data = (object) $post->{'data'};
+        $pub = $post->{'pub'};
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . ($data->id ?? 0 ? '.edit' : '.add'))) {
             return $this->Finish(403, 'Permission denied');
@@ -204,7 +204,7 @@ class DataController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $storage = $post->storage;
+        $storage = $post->{'storage'};
         if (!$storage) {
             return $this->Finish(400, 'Bad request');
         }
@@ -213,7 +213,7 @@ class DataController extends WebController
             return $this->Finish(403, 'Permission denied');
         }
 
-        $ids = $post->ids;
+        $ids = $post->{'ids'};
         if (!$ids) {
             return $this->Finish(400, 'Bad request');
         }
