@@ -1,0 +1,54 @@
+<div ComponentName="App.Modules.Sites.Widgets.StoragesWidget">
+    <!-- sites-widgets-storageswidget -->
+
+    <Grid shown="true" name="storages" selectionMode="fullrow" multiple="false" cycleSelection="true" >
+        <component-header>
+            <component-columns>
+                <Grid.Column shown="true" name="Name" value="#{sites-widgets-storageswidget-name}" />
+                <Grid.Column shown="true" name="Version" value="#{sites-widgets-storageswidget-version}" />
+                <Grid.Column shown="true" name="Engine" value="#{sites-widgets-storageswidget-engine}" />
+                <Grid.Column shown="true" name="Row_format"  value="#{sites-widgets-storageswidget-row-format}" />
+                <Grid.Column shown="true" name="Create_time" value="#{sites-widgets-storageswidget-create-time}" viewer="Colibri.UI.DateTimeViewer" />
+                <Grid.Column shown="true" name="Update_time"  value="#{sites-widgets-storageswidget-update-time}" viewer="Colibri.UI.DateTimeViewer" />
+                <Grid.Column shown="true" name="Auto_increment" value="#{sites-widgets-storageswidget-autoincrement}" viewer="Colibri.UI.NumberViewer" halign="right" />
+                <Grid.Column shown="true" name="Avg_row_length" value="#{sites-widgets-storageswidget-avg-row-length}" viewer="Colibri.UI.NumberViewer" halign="right">
+                    <params>
+                        {
+                            format: 'bytes'
+                        }
+                    </params>
+                </Grid.Column>
+                <Grid.Column shown="true" name="Collation" value="#{sites-widgets-storageswidget-collation}" />
+                <Grid.Column shown="true" name="Rows" value="#{sites-widgets-storageswidget-rows}" viewer="Colibri.UI.NumberViewer" halign="right">
+                    <params>
+                        {
+                            format: 'bytes'
+                        }
+                    </params>
+                </Grid.Column>
+                <Grid.Column shown="true" name="Data_free" value="#{sites-widgets-storageswidget-data-free}" viewer="Colibri.UI.NumberViewer" halign="right">
+                    <params>
+                        {
+                            format: 'bytes'
+                        }
+                    </params>
+                </Grid.Column>
+                <Grid.Column shown="true" name="Data_length" value="#{sites-widgets-storageswidget-data-length}" viewer="Colibri.UI.NumberViewer" halign="right">
+                    <params>
+                        {
+                            format: 'bytes'
+                        }
+                    </params>
+                </Grid.Column>
+                <Grid.Column shown="true" name="Index_length" value="#{sites-widgets-storageswidget-index-length}" viewer="Colibri.UI.NumberViewer" halign="right">
+                    <params>
+                        {
+                            format: 'bytes'
+                        }
+                    </params>
+                </Grid.Column>
+            </component-columns>
+        </component-header>
+    </Grid>
+    
+</div>

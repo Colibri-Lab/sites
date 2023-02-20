@@ -16,6 +16,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         this._store.AddPathLoader('sites.domains', () => this.Domains(true));
         this._store.AddPathLoader('sites.pages', () => this.Pages(true));
         this._store.AddPathLoader('sites.domainkeys', () => this.DomainKeys(true));
+        this._store.AddPathLoader('sites.status', () => this.Status(true));
 
         App.Store.AddPathHandler('app.settings.current', (current) => {
             this.Check(current).then((domainSettings) => {
@@ -32,6 +33,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
         App.AddHandler('ApplicationReady', (event, args) => {
             this.Render(document.body);
+            this.Status();
         });
 
 
@@ -61,6 +63,20 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
 
     /** API */
+
+    Status(returnPromise = false) {
+        const promise = this.Call('Dashboard', 'Status');
+        if(returnPromise) {
+            return promise;
+        }
+        promise.then((response) => {
+                this._store.Set('sites.status', response.result);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });    
+    }
 
     Check(current) {
         return new Promise((resolve, reject) => {

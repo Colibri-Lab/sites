@@ -1,0 +1,44 @@
+sites-widgets-storageswidget-title:
+  ru: Состояние хранилищ
+  en: Storages state
+sites-widgets-storageswidget-name:
+  ru: Наименование
+  en: Name
+sites-widgets-storageswidget-version:
+  ru: Версия
+  en: Version
+sites-widgets-storageswidget-engine:
+  ru: Тип хранилища
+  en: Engine
+sites-widgets-storageswidget-row: {}
+sites-widgets-storageswidget-row-format:
+  ru: Формат строк
+  en: Row format
+sites-widgets-storageswidget-create-time:
+  en: Create time
+  ru: Дата создания
+sites-widgets-storageswidget-update-time:
+  en: Update time
+  ru: Дата обновления
+sites-widgets-storageswidget-autoincrement:
+  en: Current autoincrement value
+  ru: Текущее значение автоинкремента
+sites-widgets-storageswidget-avg-row-length:
+  en: Avg row length
+  ru: Средний размер строки
+sites-widgets-storageswidget-collation:
+  en: Collation type
+  ru: Сопоставление
+sites-widgets-storageswidget-rows:
+  en: Rows count
+  ru: Количество строк
+sites-widgets-storageswidget-data-free:
+  en: Free data available
+  ru: Свободное место
+sites-widgets-storageswidget-data-length:
+  en: Current data length
+  ru: Текущий размер таблицы
+sites-widgets-storageswidget-index-length:
+  en: Current index length
+  ru: Текущий размер индексов
+sites-widgets-storageswidget-index-lengthэ: {}
