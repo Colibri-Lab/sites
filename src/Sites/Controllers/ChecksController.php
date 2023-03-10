@@ -23,7 +23,7 @@ class ChecksController extends WebController
     {
         $domain = Domains::LoadByName($post->{'current'});
         if (!$domain) {
-            return $this->Finish(200, 'Not found', []);
+            return $this->Finish(200, 'Not found');
         }
         return $this->Finish(200, 'ok', $domain->ToArray(true));
     }
