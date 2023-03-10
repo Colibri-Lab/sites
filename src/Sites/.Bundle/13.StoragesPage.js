@@ -797,6 +797,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     default: '(field, validator) => { return true; /* false */ }'
                                 },
                             }
+                        },
+                        valuegenerator: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-valuegenerator}',
+                            component: 'TextArea',
+                            default: ''
                         }
                     }
                 },
