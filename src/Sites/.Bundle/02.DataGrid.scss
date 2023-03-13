@@ -1,0 +1,12 @@
+.app-manager-datagrid-component {
+
+    .app-ui-row + .app-ui-row-template {
+        display: none;
+    }
+
+    .app-ui-row.row-selected + .app-ui-row-template {
+        display: table-row;
+    }
+
+
+}

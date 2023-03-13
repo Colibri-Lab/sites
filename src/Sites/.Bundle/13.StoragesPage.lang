@@ -721,3 +721,37 @@ sites-storages-fieldparams-searchable-note:
 sites-storages-fieldparams-valuegenerator:
   ru: Генератор значения
   en: Value generator
+sites-storages-fieldparams-template:
+  ru: Отображать в шаблоне
+  en: Show in row template
+sites-storages-fieldparams-template-args:
+  ru: Аргументы для шаблона
+sites-storages-fieldparams-template-args-: {}
+sites-storages-fieldparams-template-args-rows:
+  ru: Количество строк
+  en: Template rows
+sites-storages-fieldparams-template-args-columns:
+  ru: Количество колонок
+  en: Template columns
+sites-storages-fieldparams-template-args-orientation:
+  ru: Направление
+  en: Orientation
+sites-storages-fieldparams-template-args-orientation-vr:
+  ru: Вертикально
+  en: Vertical
+sites-storages-fieldparams-template-args-orientation-hr:
+  ru: Горизонтально
+  en: Horizontal
+sites-storages-fieldparams-template-args-flow:
+  ru: Поток
+  en: Flow
+sites-storages-fieldparams-template-args-flow-vr: {}
+sites-storages-fieldparams-template-args-flow-row:
+  ru: Строки
+  en: Rows
+sites-storages-fieldparams-template-args-flow-column:
+  ru: Колонки
+  en: Columns
+sites-storages-fieldparams-template-args-gap:
+  ru: Отступы
+  en: Gap

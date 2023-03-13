@@ -1,0 +1,92 @@
+.app-modules-sites-ui-datagridrowtemplatecomponent {
+    width: 100%;
+    padding: 10px 20px;
+    > .app-component-pane {
+        &.app-component-shown {
+            display: grid;
+        }
+        gap: 5px 16px;
+        > div {
+            padding: 0px 0px 5px 0px !important;
+            > *:first-child {
+                white-space: nowrap;
+                padding-right: 20px;
+
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+
+            }
+
+            > div {
+                width: 100%;
+                color: #0B1F35;
+                font-style: normal;
+                font-size: 16px;
+                .app-viewer-component {
+                    font-weight: 500;
+                    font-style: normal;
+                    font-size: 15px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                    max-width: 250px;
+                }
+            }
+        }
+    }
+    
+    .app-field-pane  .app-field-title {
+        padding-bottom: 0px;
+        text-align: left !important;
+        .app-component-icon {
+            path {
+                stroke: #4298FF;
+            }
+        }
+    }
+
+    .app-select-viewer-component {
+        dd {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 80%;
+        }
+    }
+    
+    &.-hr {
+        > .app-component-pane {
+            padding: 0px 0px 0px 0px !important;
+            > div {
+                &.app-component-shown {
+                    display: flex;
+                }    
+                align-items: center;
+                > *:first-child {
+                    flex: 0 0;
+                }
+                > div {
+                    width: 100%;
+                }
+                
+            }
+        }
+    }
+    &.-column {
+        > .app-component-pane {
+            grid-auto-flow: column;
+        }
+    }
+
+    > .app-component-link {
+        svg {
+            path {
+                stroke: #4298FF
+            }
+        }
+    }
+}

@@ -349,7 +349,45 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             placeholder: '#{sites-storages-storageadditional-maybepublished}',
                             component: 'Checkbox',
                             default: true
-                        }
+                        },
+                        template_args: {
+                            type: 'object',
+                            desc: '#{sites-storages-fieldparams-template-args}',
+                            component: 'Object',
+                            params: {
+                                vertical: true,
+                            },
+                            fields: {
+                                rows: {
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldparams-template-args-rows}'
+                                },
+                                columns: {
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldparams-template-args-columns}'
+                                },
+                                orientation: {
+                                    component: 'Select',
+                                    desc: '#{sites-storages-fieldparams-template-args-orientation}',
+                                    values: [
+                                        {value: 'vr', title: '#{sites-storages-fieldparams-template-args-orientation-vr}'},
+                                        {value: 'hr', title: '#{sites-storages-fieldparams-template-args-orientation-hr}'}
+                                    ]
+                                },
+                                flow: {
+                                    component: 'Select',
+                                    desc: '#{sites-storages-fieldparams-template-args-flow}',
+                                    values: [
+                                        {value: 'row', title: '#{sites-storages-fieldparams-template-args-flow-row}'},
+                                        {value: 'column', title: '#{sites-storages-fieldparams-template-args-flow-column}'}
+                                    ]
+                                },
+                                gap: {
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldparams-template-args-gap}'
+                                }
+                            }
+                        },
                     }
                 }
             }
@@ -602,6 +640,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         list: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-list}',
+                            component: 'Checkbox',
+                            default: false
+                        },
+                        template: {  
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-template}',
                             component: 'Checkbox',
                             default: false
                         },

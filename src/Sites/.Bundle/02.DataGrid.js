@@ -1,5 +1,10 @@
 App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
+    constructor(name, container) {
+        super(name, container);
+        this.AddClass('app-manager-datagrid-component')
+    }
+
     set storage(value) {
         if(value === null) {
             this._storageChanged = true;
@@ -58,7 +63,12 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 dateCreatedColumn.sortable = true;
             }
 
+            const intemplate = {};
+
             Object.forEach(this._storage.fields, (name, field, index) => {
+                if(field.params?.template === true) {
+                    intemplate[name] = field;
+                }
                 if(field.params?.list !== true) {
                     return true;
                 }
@@ -83,6 +93,14 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 }
                 return true;
             });
+
+            if(Object.countKeys(intemplate) > 0) {
+                this.rowTemplateComponent = 'App.Modules.Sites.UI.DataGridRowTemplateComponent';
+                this.rowTemplateAttrs = Object.assign({fields: intemplate}, {rows: 'max-content', columns: 3, orientation: 'hr', gap: '0px 0px', flow: 'row'}, this._storage.params.template_args);
+                console.log(this.rowTemplateAttrs);
+            } else {
+                this.rowTemplateComponent = null;
+            }
 
             this.header.columns.Children('lastChild').resizable = false;
 
