@@ -755,3 +755,6 @@ sites-storages-fieldparams-template-args-flow-column:
 sites-storages-fieldparams-template-args-gap:
   ru: Отступы
   en: Gap
+sites-storages-fieldselector-chooser-desc:
+  ru: Компонента для выборки
+  en: Component for Chooser

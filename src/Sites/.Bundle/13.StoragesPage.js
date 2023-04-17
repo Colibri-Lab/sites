@@ -1166,6 +1166,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             default: 0,
                             desc: '#{sites-storages-fieldselector-ondemand-desc}',
                         },
+                        chooser: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldselector-chooser-desc}',
+                        }
                     }
                 },
 
