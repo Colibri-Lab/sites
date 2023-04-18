@@ -166,7 +166,7 @@ texts:
         method: "() => new Promise((resolve, reject) => { \n     Lang.Store.AsyncQuery(\"lang.langs\").then((langs)
           => { \n          const ret = [];\n          Object.forEach(langs, (lang,
           langData) => {\n            ret.push({value: lang, title: langData.desc});\n
-          \         }); console.log(ret);\n          resolve(ret);\n     });\n});"
+          \         });\n          resolve(ret);\n     });\n});"
       group: window
     title:
       type: varchar

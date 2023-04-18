@@ -847,7 +847,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             placeholder: '#{sites-storages-fieldparams-valuegenerator}',
                             component: 'TextArea',
                             default: ''
-                        }
+                        },
+                        onchangehandler: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-onchangehandler}',
+                            component: 'TextArea',
+                            default: ''
+                        },
                     }
                 },
                 lookup: {
@@ -940,6 +946,18 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     component: 'Text',
                                     desc: '#{sites-storages-fieldlookup-storage-order}',
                                     note: '#{sites-storages-fieldlookup-storage-order-note}'
+                                },
+                                limit: {
+                                    type: 'bigint',
+                                    component: 'Number',
+                                    desc: '#{sites-storages-fieldlookup-storage-limit}',
+                                    note: '#{sites-storages-fieldlookup-storage-limit-note}'
+                                },
+                                filter: {
+                                    type: 'varchar',
+                                    component: 'TextArea',
+                                    desc: '#{sites-storages-fieldlookup-storage-filter}',
+                                    note: '#{sites-storages-fieldlookup-storage-filter-note}'
                                 },
                                 depends: {
                                     type: 'varchar',
@@ -1172,7 +1190,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             desc: '#{sites-storages-fieldselector-chooser-desc}',
                         }
                     }
-                },
+                }
 
                 
             }

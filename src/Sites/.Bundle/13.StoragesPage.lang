@@ -308,11 +308,11 @@ sites-storages-fieldparams-fieldgenerator:
   ru: Генератор параметров поля
   en: Field parameter generator
 sites-storages-fieldparams-generator:
-  ru: Генератор значений
-  en: Property value generator
+  ru: Генератор значений по умолчанию
+  en: Property default value generator
 sites-storages-fieldparams-generator-note:
-  ru: Работает только с обьектами типа Text,TextArea
-  en: Works only with objects of type Text,TextArea
+  ru: Генерация значений по умолчанию
+  en: Generates a default value for property
 sites-storages-fieldparams-note-class:
   ru: Класс для подсказки
   en: Hint class
@@ -719,8 +719,8 @@ sites-storages-fieldparams-searchable-note:
   hy: Նշում է, թե արդյոք բացվող ցանկը կարող է որոնվել տեքստով
   en: Indicates whether text search is possible in the drop-down list
 sites-storages-fieldparams-valuegenerator:
-  ru: Генератор значения
-  en: Value generator
+  ru: Генератор значений в режиме работы формы
+  en: Runtime value generator
 sites-storages-fieldparams-template:
   ru: Отображать в шаблоне
   en: Show in row template
@@ -758,3 +758,18 @@ sites-storages-fieldparams-template-args-gap:
 sites-storages-fieldselector-chooser-desc:
   ru: Компонента для выборки
   en: Component for Chooser
+sites-storages-fieldparams-onchangehandler:
+  ru: Обработчик OnChanged
+  en: OnChanged Handler
+sites-storages-fieldlookup-storage-limit:
+  ru: Лимит строк
+  en: Rows limit
+sites-storages-fieldlookup-storage-limit-note:
+  ru: Введите лимит строк, по умолчанию 1000
+  en: Enter the rows limit, default is 1000
+sites-storages-fieldlookup-storage-filter:
+  ru: Фильтр
+  en: Filter
+sites-storages-fieldlookup-storage-filter-note:
+  ru: Используйте [[term:string]] для указания текста поиска
+  en: Use [[term:string]] for search term
