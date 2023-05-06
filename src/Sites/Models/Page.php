@@ -7,6 +7,8 @@ use App\Modules\Lang\Models\Fields\Text;
 use App\Modules\Sites\Models\Domain;
 use App\Modules\Sites\Models\Fields\Pages\AdditionalObjectField;
 use App\Modules\Sites\Models\Fields\ParametersField;
+use Colibri\AppException;
+use Colibri\Data\SqlClient\IDataReader;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ObjectField;
 # endregion Uses;
@@ -333,10 +335,12 @@ class Page extends BaseModelDataRow
     private function _checkOrder(): void 
     {
         $reader = $this->Storage()->accessPoint->Query('select * from pages where '.($this->id ? 'pages_id<>'.$this->id.' and' : '').' pages_parent='.$this->parent->id.' and  pages_order='.$this->order, ['page' => 1, 'pagesize' => 1]);
-        if($reader->Count() > 0) {
+        if($reader instanceof IDataReader && $reader->Count() > 0) {
             // такой уже есть, значит нужно обновить
             $reader = $this->Storage()->accessPoint->Query('select max(pages_order) as max_order from pages where pages_parent='.$this->parent->id, ['page' => 1, 'pagesize' => 1]);
             $this->order = $reader->Read()->max_order + Pages::StartOrder;
+        } else {
+            throw new AppException($reader->error . ' ' . $reader->query);
         }
     }
 
