@@ -339,7 +339,7 @@ class Page extends BaseModelDataRow
             // такой уже есть, значит нужно обновить
             $reader = $this->Storage()->accessPoint->Query('select max(pages_order) as max_order from pages where pages_parent='.($this->parent?->id ?? 0), ['page' => 1, 'pagesize' => 1]);
             $this->order = $reader->Read()->max_order + Pages::StartOrder;
-        } else {
+        } else if($reader instanceof QueryInfo) {
             throw new AppException($reader->error . ' ' . $reader->query);
         }
     }
