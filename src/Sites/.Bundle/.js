@@ -24,7 +24,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                     return;
                 }
                 const module = eval(domainSettings.additional.settings.module);
-                module.Render();
+                module.Render(domainSettings);
                 App.Router.HandleDomReady();
             });
         });
