@@ -773,3 +773,4 @@ sites-storages-fieldlookup-storage-filter:
 sites-storages-fieldlookup-storage-filter-note:
   ru: Используйте [[term:string]] для указания текста поиска
   en: Use [[term:string]] for search term
+sites-storag(es-storagetemplates-default-unselected: {}

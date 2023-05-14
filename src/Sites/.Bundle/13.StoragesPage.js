@@ -264,7 +264,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 depends: 'module',
                                 method: (term, dependsValue) => new Promise((resolve, reject) => { 
                                     let ret = [{value: "", title: "#{sites-storages-storagetemplates-default-unselected}"}]; 
-                                    Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
+                                    Manage.Store.AsyncQuery("manage.templates" + (dependsValue ? "(" + dependsValue.toLowerCase() + ")" : ""), null, true).then((templates) => {
                                         templates && Array.isArray(templates) && templates.forEach(template => {
                                             ret.push({value: template.path, title: template.path}); 
                                         });
@@ -288,7 +288,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 depends: 'module',
                                 method: (term, dependsValue) => new Promise((resolve, reject) => { 
                                     let ret = [{value: "", title: "#{sites-storages-storagetemplates-default-unselected}"}]; 
-                                    Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
+                                    Manage.Store.AsyncQuery("manage.templates" + (dependsValue ? "(" + dependsValue.toLowerCase() + ")" : ""), null, true).then((templates) => {
                                         templates && Array.isArray(templates) && templates.forEach(template => {
                                             ret.push({value: template.path, title: template.path}); 
                                         });
@@ -312,7 +312,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 depends: 'module',
                                 method: (term, dependsValue) => new Promise((resolve, reject) => { 
                                     let ret = [{value: "", title: "#{sites-storages-storagetemplates-default-unselected}"}]; 
-                                    Manage.Store.AsyncQuery("manage.templates(" + dependsValue.toLowerCase() + ")", null, true).then((templates) => {
+                                    Manage.Store.AsyncQuery("manage.templates" + (dependsValue ? "(" + dependsValue.toLowerCase() + ")" : ""), null, true).then((templates) => {
                                         templates && Array.isArray(templates) && templates.forEach(template => {
                                             ret.push({value: template.path, title: template.path}); 
                                         });
