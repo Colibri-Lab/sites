@@ -97,7 +97,6 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             if(Object.countKeys(intemplate) > 0) {
                 this.rowTemplateComponent = 'App.Modules.Sites.UI.DataGridRowTemplateComponent';
                 this.rowTemplateAttrs = Object.assign({fields: intemplate}, {rows: 'max-content', columns: 3, orientation: 'hr', gap: '0px 0px', flow: 'row'}, this._storage.params.template_args);
-                console.log(this.rowTemplateAttrs);
             } else {
                 this.rowTemplateComponent = null;
             }
