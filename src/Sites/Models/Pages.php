@@ -162,7 +162,7 @@ class Pages extends BaseModelDataTable
 
         $page = 0;
         foreach ($path as $name) {
-            $page = self::LoadByName($domain, $page, $name);
+            $page = self::LoadByName($domain, $page ?: 0, $name);
         }
 
         return $page;
