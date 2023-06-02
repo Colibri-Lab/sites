@@ -97,10 +97,12 @@ class Module extends BaseModule
             }
 
             $storageDesc = $storage->{'desc'};
-            if(App::$moduleManager->{'lang'}) {
-                $storageDesc = App::$moduleManager->{'lang'}->ParseArray($storageDesc);
-            } else {
-                $storageDesc = NoLangHelper::ParseArray($storageDesc);
+            if(!is_string($storageDesc)) {
+                if(App::$moduleManager->{'lang'}) {
+                    $storageDesc = App::$moduleManager->{'lang'}->ParseArray($storageDesc);
+                } else {
+                    $storageDesc = NoLangHelper::ParseArray($storageDesc);
+                }
             }
 
             $permissions['sites.storages.' . $storage->name] = '#{sites-storage-permissions} «' . $storage->{'desc'} . '»';
