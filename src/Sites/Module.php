@@ -10,6 +10,7 @@
  */
 namespace App\Modules\Sites;
 
+use Colibri\Common\NoLangHelper;
 use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
 use Colibri\Data\Storages\Storages;
@@ -92,6 +93,13 @@ class Module extends BaseModule
         foreach ($storages as $storage) {
             if (($storage->{'params'}['visible'] ?? true) === false) {
                 continue;
+            }
+
+            $storageDesc = $storage->{'desc'};
+            if(App::$moduleManager->{'lang'}) {
+                $storageDesc = App::$moduleManager->{'lang'}->ParseArray($storageDesc);
+            } else {
+                $storageDesc = NoLangHelper::ParseArray($storageDesc);
             }
 
             $permissions['sites.storages.' . $storage->name] = '#{sites-storage-permissions} «' . $storage->{'desc'} . '»';
