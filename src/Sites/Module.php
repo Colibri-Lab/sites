@@ -10,6 +10,7 @@
  */
 namespace App\Modules\Sites;
 
+use Colibri\App;
 use Colibri\Common\NoLangHelper;
 use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
