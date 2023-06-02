@@ -99,9 +99,9 @@ class Module extends BaseModule
             $storageDesc = $storage->{'desc'};
             if(!is_string($storageDesc)) {
                 if(App::$moduleManager->{'lang'}) {
-                    $storageDesc = App::$moduleManager->{'lang'}->ParseArray($storageDesc);
+                    $storageDesc = App::$moduleManager->{'lang'}->Translate($storageDesc);
                 } else {
-                    $storageDesc = NoLangHelper::ParseArray($storageDesc);
+                    $storageDesc = json_encode($storageDesc);
                 }
             }
 
