@@ -325,8 +325,8 @@ fields:
               method: '(term, dependsValue) => new Promise((resolve, reject) =>
                 { let ret = []; const module
                 = dependsValue?.additional?.settings.module; Object.forEach(eval("App.Modules."
-                + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
-                { ret.push({value: name, title: module + ''.'' + name}); } }); resolve(ret);
+                + module + ".Pages"), (name, value) => { ret.push({value: name, title: module + 
+                ''.Pages.'' + name}); }); resolve(ret);
                 }); '
               depends: domain
           template:
