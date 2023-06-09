@@ -367,8 +367,8 @@ fields:
               method: ' (term, dependsValue) => new Promise((resolve, reject) =>
                 { let ret = []; Object.keys(App.Modules).forEach((module)
                 => { if(module != dependsValue?.module) { return true; } Object.forEach(eval(''App.Modules.''
-                + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
-                { ret.push({value: name, title: module + ''.'' + name}); } }); });
+                + module + ''.Pages''), (name, value) => { ret.push({
+                  value: name, title: module + ''.'' + name}); }); });
                 resolve(ret); }); '
               depends: additional?.settings
             placeholder:

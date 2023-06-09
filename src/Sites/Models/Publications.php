@@ -55,7 +55,7 @@ class Publications extends BaseModelDataTable
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name .
+            'select * from ' . $storage->table .
             ($filter ? ' where ' . $filter : '') .
             ($order ? ' order by ' . $order : ''),
             $additionalParams
@@ -172,7 +172,8 @@ class Publications extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('pubs', $filter);
+        $storage = Storages::Create()->Load('pubs');
+        return self::DeleteByFilter($storage->table, $filter);
     }
 
     static function DeleteAllByPage(Page|int $page = 0): bool
@@ -190,7 +191,7 @@ class Publications extends BaseModelDataTable
         if (is_string($storage)) {
             $storage = Storages::Create()->Load($storage);
         }
-        return self::DeleteAllByFilter('{storage}=\'' . $storage->name . '\' and not {row} in (select ' . $storage->name . '_id from ' . $storage->name . ')');
+        return self::DeleteAllByFilter('{storage}=\'' . $storage->name . '\' and not {row} in (select ' . $storage->name . '_id from ' . $storage->table . ')');
     }
 
     static function DeleteAllByDomain(Domain|int $domain): bool

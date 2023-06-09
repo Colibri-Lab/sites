@@ -52,7 +52,7 @@ class Texts extends BaseModelDataTable
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name .
+            'select * from ' . $storage->table .
             ($filter ? ' where ' . $filter : '') .
             ($order ? ' order by ' . $order : ''),
             $additionalParams
@@ -109,7 +109,8 @@ class Texts extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        if (!self::DeleteByFilter('texts', $filter)) {
+        $storage = Storages::Create()->Load('texts');
+        if (!self::DeleteByFilter($storage->table, $filter)) {
             return false;
         }
         return Publications::DeleteAllNotExistsInStorage('texts');
