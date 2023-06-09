@@ -350,6 +350,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: true
                         },
+                        softdeletes: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-storageadditional-softdeletes}',
+                            component: 'Checkbox',
+                            default: false
+                        },
                         template_args: {
                             type: 'object',
                             desc: '#{sites-storages-fieldparams-template-args}',

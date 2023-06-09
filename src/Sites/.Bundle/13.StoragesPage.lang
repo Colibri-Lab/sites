@@ -774,3 +774,6 @@ sites-storages-fieldlookup-storage-filter-note:
   ru: Используйте [[term:string]] для указания текста поиска
   en: Use [[term:string]] for search term
 sites-storag(es-storagetemplates-default-unselected: {}
+sites-storages-storageadditional-softdeletes:
+  ru: Мягкое удаление
+  en: Soft deletes
