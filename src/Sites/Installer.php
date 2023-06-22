@@ -126,10 +126,6 @@ class Installer
         self::_copyOrSymlink($mode, $configPath, $configDir, 'domains-storage-' . ($hasLangModule ? 'lang' : 'nolang') . '.yaml', 'domains-storage.yaml');
         self::_copyOrSymlink($mode, $configPath, $configDir, 'pages-storage-' . ($hasLangModule ? 'lang' : 'nolang') . '.yaml', 'pages-storage.yaml');
 
-        print_r('Установка скриптов' . "\n");
-        self::_copyOrSymlink($mode, $path . '/src/Sites/bin/', './bin/', 'sites-migrate.sh', 'sites-migrate.sh');
-        self::_copyOrSymlink($mode, $path . '/src/Sites/bin/', './bin/', 'sites-models-generate.sh', 'sites-models-generate.sh');
-
         print_r('Установка завершена' . "\n");
 
     }
