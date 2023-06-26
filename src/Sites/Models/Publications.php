@@ -173,7 +173,7 @@ class Publications extends BaseModelDataTable
     static function DeleteAllByFilter(string $filter): bool
     {
         $storage = Storages::Create()->Load('pubs');
-        return self::DeleteByFilter($storage->table, $filter);
+        return self::DeleteByFilter($storage, $filter);
     }
 
     static function DeleteAllByPage(Page|int $page = 0): bool
