@@ -28,7 +28,7 @@ databases:
     points:
       sites: 
         connection: sites
-        database: products
+        database: productivity
 
   storages: include(sites-storages.yaml)
       
