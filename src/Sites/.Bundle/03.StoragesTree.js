@@ -3,6 +3,15 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
     constructor(name, container) {
         super(name, container);
         this._foldersList = [];
+
+        this.AddHandler('NodeClicked', (event, args) => this.__thisNodeClicked(event, args));
+
+    }
+
+    __thisNodeClicked(event, args) {
+        if(args.item.tag === 'module') {
+            args.item.Expand();
+        }
     }
 
 

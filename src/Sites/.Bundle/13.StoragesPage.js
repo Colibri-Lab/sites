@@ -697,7 +697,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 title: 'title'
                             },
                             params: {
-                                readonly: true
+                                readonly: false,
+                                searchable: false
                             },
                             lookup: () => new Promise((resolve, reject) => {
                                 resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
@@ -724,7 +725,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Select',
                             default: '',
                             params: {
-                                readonly: true,
+                                readonly: false,
+                                searchable: false,
                                 required: false  
                             },
                             selector: {
@@ -929,7 +931,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                         title: 'desc'
                                     },
                                     params: {
-                                        readonly: true
+                                        readonly: false,
+                                        searchable: false,
                                     },
                                     lookup: () => {
                                         return new Promise((rs, rj) => {
@@ -1040,6 +1043,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                                 rs({ result: components });
                                             });
                                         });
+                                    },
+                                    params: {
+                                        readonly: false,
+                                        searchable: false
                                     }
                                 },
                                 class: {
@@ -1145,7 +1152,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 width: 413
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
+                                searchable: false,
                                 required: true,
                             },
                             values: [
@@ -1365,7 +1373,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 title: 'title'
                             },
                             params: {
-                                readonly: true
+                                readonly: false,
+                                searchable: false,
                             },
                             lookup:  () => new Promise((resolve, reject) => {
                                 resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
@@ -1430,7 +1439,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         });
                     },
                     params: {
-                        required: true,
+                        required: false,
+                        searchable: false,
                         readonly: true,
                         validate: [{
                             message: '#{sites-storages-indexfields-validation-required}',
@@ -1444,7 +1454,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-indextype}',
                     note: '#{sites-storages-indextype-note}',
                     params: {
-                        required: true,
+                        required: false,
+                        searchable: false,
                         readonly: true,
                         validate: [{
                             message: '#{sites-storages-indextype-validation-required}',
@@ -1470,7 +1481,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         {value: 'HASH', title: '#{sites-storages-values-hash}'},
                     ],
                     params: {
-                        required: true,
+                        required: false,
+                        searchable: false,
                         readonly: true,
                         validate: [{
                             message: '#{sites-storages-indexmethod-validation-required}',
