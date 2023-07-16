@@ -137,8 +137,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         });
                     },
                     params: {
-                        readonly: true,
+                        readonly: false,
                         required: true,
+                        searchable: false,
                         validate: [{
                             message: '#{sites-storages-storageaccesspoint-validation-required}',
                             method: '(field, validator) => !!field.value'
@@ -197,8 +198,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }) 
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
                                 required: false,
+                                searchable: false
                             }
                         },
                         list: {
@@ -219,8 +221,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }) 
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
                                 required: false,
+                                searchable: false
                             }
                         },
                         item: {
@@ -241,8 +244,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }) 
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
                                 required: false,
+                                searchable: false
                             }
                         }
                     }
@@ -273,8 +277,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }) 
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
                                 required: false,
+                                searchable: false
                             },
                             selector: {
                                 ondemand: true
@@ -297,8 +302,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }) 
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
                                 required: false,
+                                searchable: false
                             },
                             selector: {
                                 ondemand: true
@@ -321,7 +327,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }) 
                             },
                             params: {
-                                readonly: true,
+                                readonly: false,
+                                searchable: false,
                                 required: false,
                             },
                             selector: {
@@ -378,7 +385,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     values: [
                                         {value: 'vr', title: '#{sites-storages-fieldparams-template-args-orientation-vr}'},
                                         {value: 'hr', title: '#{sites-storages-fieldparams-template-args-orientation-hr}'}
-                                    ]
+                                    ],
+                                    params: {
+                                        readonly: false,
+                                        searchable: false,
+                                        required: false
+                                    }
                                 },
                                 flow: {
                                     component: 'Select',
@@ -386,7 +398,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     values: [
                                         {value: 'row', title: '#{sites-storages-fieldparams-template-args-flow-row}'},
                                         {value: 'column', title: '#{sites-storages-fieldparams-template-args-flow-column}'}
-                                    ]
+                                    ],
+                                    params: {
+                                        readonly: false,
+                                        searchable: false,
+                                        required: false
+                                    }
                                 },
                                 gap: {
                                     component: 'Text',
