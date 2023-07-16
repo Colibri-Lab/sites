@@ -135,7 +135,8 @@ texts:
         required: true
         enabled: true
         canbeempty: true
-        readonly: true
+        readonly: false
+        searchable: false
         list: true
         multiple: false
         greed: ""

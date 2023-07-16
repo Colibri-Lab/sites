@@ -317,7 +317,8 @@ fields:
             note: ""
             params:
               required: false
-              readonly: true
+              readonly: false
+              searchable: false
             selector:
               value: value
               title: title
@@ -341,7 +342,8 @@ fields:
             note: ""
             params:
               required: false
-              readonly: true
+              readonly: false
+              searchable: false
             selector:
               value: value
               title: title
@@ -440,6 +442,9 @@ fields:
             class: string
             default: Text
             component: Colibri.UI.Forms.Select
+            params:
+              readonly: false
+              searchable: false
             desc:
               ru: Компонента (JS)
               en: UI Component (JS)

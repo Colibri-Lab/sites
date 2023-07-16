@@ -210,7 +210,8 @@ fields:
             note: ""
             params:
               required: false
-              readonly: true
+              readonly: false
+              searchable: false
             selector:
               value: value
               title: title

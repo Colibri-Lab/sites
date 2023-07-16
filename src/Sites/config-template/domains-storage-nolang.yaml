@@ -30,7 +30,8 @@ fields:
       value: value
       title: title
     params:
-      readonly: true
+      readonly: false
+      searchable: false
       required: true
     lookup:
       binding: app.sites.domainkeys
@@ -288,7 +289,8 @@ fields:
             default: application
             desc: Тип приложения
             params:
-              readonly: true
+              readonly: false
+              searchable: false
               required: true
             values:
             - value: application
@@ -306,7 +308,8 @@ fields:
               value: value
               title: title
             params:
-              readonly: true
+              readonly: false
+              searchable: false
               required: true
               runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues();
                 }
@@ -336,7 +339,8 @@ fields:
               required: false
               enabled: true
               canbeempty: true
-              readonly: true
+              readonly: false
+              searchable: false
               list: false
               multiple: false
               greed: ""
@@ -388,7 +392,8 @@ fields:
               value: value
               title: title
             params:
-              readonly: true
+              readonly: false
+              searchable: false
               required: false
             lookup:
               method: ' (term, dependsValue) => new Promise((resolve, reject) =>
