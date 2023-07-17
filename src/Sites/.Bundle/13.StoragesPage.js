@@ -1439,9 +1439,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         });
                     },
                     params: {
-                        required: false,
+                        required: true,
                         searchable: false,
-                        readonly: true,
+                        readonly: false,
                         validate: [{
                             message: '#{sites-storages-indexfields-validation-required}',
                             method: '(field, validator) => !!field.value'
@@ -1454,9 +1454,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-indextype}',
                     note: '#{sites-storages-indextype-note}',
                     params: {
-                        required: false,
+                        required: true,
                         searchable: false,
-                        readonly: true,
+                        readonly: false,
                         validate: [{
                             message: '#{sites-storages-indextype-validation-required}',
                             method: '(field, validator) => !!field.value'
@@ -1481,9 +1481,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         {value: 'HASH', title: '#{sites-storages-values-hash}'},
                     ],
                     params: {
-                        required: false,
+                        required: true,
                         searchable: false,
-                        readonly: true,
+                        readonly: false,
                         validate: [{
                             message: '#{sites-storages-indexmethod-validation-required}',
                             method: '(field, validator) => !!field.value'
