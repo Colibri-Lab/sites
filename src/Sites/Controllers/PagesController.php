@@ -116,7 +116,8 @@ class PagesController extends WebController
                 'class' => $parameter['class'],
                 'component' => $parameter['component'],
                 'default' => $parameter['default'],
-                'desc' => $parameter['description']
+                'desc' => $parameter['description'],
+                'attrs' => $parameter['attrs']
             ];
         }
 

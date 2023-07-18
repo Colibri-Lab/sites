@@ -107,6 +107,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         return new Promise((resolve, reject) => {
             this.Call('Pages', 'Properties', {type: type, object: obj.id})
                 .then((response) => {
+                    Object.forEach(response.result.fields, (name, field) => {
+                        if(field.attrs) {
+                            eval('field.attrs = ' + field.attrs + ';');
+                        }
+                    });
                     resolve(response.result);
                 })
                 .catch(error => {
