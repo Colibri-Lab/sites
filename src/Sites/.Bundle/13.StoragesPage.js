@@ -1033,6 +1033,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     type: 'varchar',
                                     component: 'Select',
                                     desc: '#{sites-storages-fieldlookup-controller-module}',
+                                    default: 'Manage',
                                     lookup: () => {
                                         return new Promise((rs, rj) => {
                                             Manage.Store.AsyncQuery('manage.modules').then((modules) => {
@@ -1052,11 +1053,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 class: {
                                     type: 'varchar',
                                     component: 'Text',
+                                    default: 'Lookup',
                                     desc: '#{sites-storages-fieldlookup-controller-class}'
                                 },
                                 method: {
                                     type: 'varchar',
                                     component: 'Text',
+                                    default: 'Get',
                                     desc: '#{sites-storages-fieldlookup-controller-method}'
                                 },
                                 depends: {
