@@ -36,6 +36,7 @@ use Colibri\App;
  * @property float|null $order Позиция в рамках parent-а
  * endregion Properties;
  * @property-read string $path полный путь от домена
+ * @property-read int $publications количество публицакий
  */
 class Page extends BaseModelDataRow
 {
@@ -312,6 +313,12 @@ class Page extends BaseModelDataRow
             $ret[] = $p->name;
         }
         return implode('/', $ret);
+    }
+
+    public function getPropertyPublications(): int
+    {
+        $publications = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]]', null, ['domain' => $this->domain->id, 'page' => $this->id], true);
+        return (int)$publications->Affected();
     }
 
     public function IsChildOf(Page $page): bool

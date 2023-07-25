@@ -17,7 +17,8 @@ use App\Modules\Sites\Models\Page;
  * @method Page[] getIterator()
  * @method Page _createDataRowObject()
  * @method Page _read()
- * 
+ * @method Page offsetGet(mixed $offset)
+ *
  */
 class Pages extends BaseModelDataTable
 {
