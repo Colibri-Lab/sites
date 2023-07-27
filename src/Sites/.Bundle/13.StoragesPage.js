@@ -96,7 +96,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         required: true,
                         validate: [{
                             message: '#{sites-storages-storagedesc-validation-required}',
-                            method: '(field, validator) => { console.log(Object.values(Object.map(field.value, (key, value) => !!value)).indexOf(true)); return Object.values(Object.map(field.value, (key, value) => !!value)).indexOf(true) !== -1; }'
+                            method: '(field, validator) => Object.values(Object.map(field.value, (key, value) => !!value)).indexOf(true) !== -1'
                         }]
                     }
                 },
