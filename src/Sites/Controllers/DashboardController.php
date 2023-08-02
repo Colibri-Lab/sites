@@ -31,22 +31,13 @@ class DashboardController extends WebController
         $code = 200;
         $result = [];
         $message = 'Result message';
-        try {
 
-            $storages = Storages::Create();
-            $list = $storages->GetStorages();
-            foreach($list as $storage) {
-                $result[] = $storage->GetStatus();
-            }
-
-        } catch (\Throwable $e) {
-            // если что то не так то выводим ошибку
-            $message = $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine();
-            $code = $e->getCode();
-            App::$log->debug($message);
+        $storages = Storages::Create();
+        $list = $storages->GetStorages();
+        foreach($list as $storage) {
+            $result[] = $storage->GetStatus();
         }
 
-        // финишируем контроллер
         return $this->Finish(
             $code,
             $message,
