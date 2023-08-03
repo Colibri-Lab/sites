@@ -36,6 +36,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             this.Status();
         });
 
+        this.AddHandler('CallError', (event, args) => {
+            if(args.status === 403) {
+                location.reload();
+            }
+        });
 
     }
 

@@ -7,6 +7,9 @@ use App\Modules\Sites\Models\Domains;
 use App\Modules\Sites\Models\Pages;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\Storages\Storages;
+use Colibri\Exceptions\ApplicationErrorException;
+use Colibri\Exceptions\BadRequestException;
+use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\RequestCollection;
@@ -28,28 +31,28 @@ class PublicationsController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $domain = $post->{'domain'};
         if (!$domain) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $domain = Domains::LoadById($domain);
         if (!$domain) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $folder = $post->{'folder'};
         if ($folder) {
             $folder = Pages::LoadById($folder);
             if (!$folder) {
-                return $this->Finish(400, 'Bad request');
+                throw new BadRequestException('Bad request', 400);
             }
         } else {
             $folder = 0;
@@ -64,6 +67,7 @@ class PublicationsController extends WebController
         foreach ($pubs as $pub) {
             $pubsArray[] = $pub->ToArray(true);
         }
+        
         return $this->Finish(200, 'ok', $pubsArray);
     }
 
@@ -77,28 +81,28 @@ class PublicationsController extends WebController
     public function Copy(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $domain = $post->{'domain'};
         if (!$domain) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $domain = Domains::LoadById($domain);
 
         $pub = $post->{'pub'};
         if (!$pub) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $pub = Publications::LoadById($pub);
         if (!$pub) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $to = $post->{'to'};
@@ -106,7 +110,7 @@ class PublicationsController extends WebController
 
         $newPub = $pub->Copy($domain, $to);
         if (!$newPub) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
         $newPub->Save();
 
@@ -125,16 +129,16 @@ class PublicationsController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $pubs = $post->{'pubs'};
         if (!$pubs) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         Publications::DeleteAllByIds(explode(',', $pubs));
@@ -153,11 +157,11 @@ class PublicationsController extends WebController
     public function Create(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $domain = $post->{'domain'};
@@ -166,12 +170,12 @@ class PublicationsController extends WebController
         $data = $post->{'data'};
 
         if (!$storage || !$data) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $domain = Domains::LoadById($domain);
         if (!$domain) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $folder = $folder ? Pages::LoadById($folder) : null;
@@ -202,15 +206,15 @@ class PublicationsController extends WebController
         } catch (InvalidArgumentException $e) {
             $accessPoint1->Rollback();
             $accessPoint2->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint1->Rollback();
             $accessPoint2->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint1->Rollback();
             $accessPoint2->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint1->Commit();
@@ -231,11 +235,11 @@ class PublicationsController extends WebController
     public function Publish(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $domain = $post->{'domain'};
@@ -245,7 +249,7 @@ class PublicationsController extends WebController
         $storage = $post->{'storage'};
         $ids = $post->{'ids'} ? explode(',', $post->{'ids'}) : [];
         if (!$ids || !$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $folder = $folder ? Pages::LoadById($folder) : null;
@@ -276,13 +280,13 @@ class PublicationsController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();
@@ -301,24 +305,24 @@ class PublicationsController extends WebController
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $pub = $post->{'pub'};
         $before = $post->{'before'};
 
         if (!$pub || !$before) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $pub = Publications::LoadById($pub);
         $before = Publications::LoadById($before);
         if (!$pub || !$before) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
 
@@ -331,13 +335,13 @@ class PublicationsController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();

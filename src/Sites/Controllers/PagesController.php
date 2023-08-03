@@ -8,6 +8,9 @@ use App\Modules\Sites\Models\Pages;
 use Colibri\App;
 use Colibri\Data\Models\DataModelException;
 use Colibri\Data\Storages\Storages;
+use Colibri\Exceptions\ApplicationErrorException;
+use Colibri\Exceptions\BadRequestException;
+use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\RequestCollection;
@@ -29,11 +32,11 @@ class PagesController extends WebController
     {
 
         if (!SecurityModule::$instance?->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance?->current?->IsCommandAllowed('sites.structure')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $domains = Domains::LoadAll();
@@ -48,11 +51,11 @@ class PagesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $config = App::$config->Query('hosts.domains')->AsArray();
@@ -80,22 +83,22 @@ class PagesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage = Storages::Create()->Load($post->{'type'});
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadById($post->{'object'});
         if (!$datarow) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         if ($post->{'type'} == 'domains') {
@@ -134,22 +137,22 @@ class PagesController extends WebController
     public function SaveProperties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage = Storages::Create()->Load($post->{'type'});
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadById($post->{'object'});
         if (!$datarow) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $accessPoint = $datarow->Storage()->accessPoint;
@@ -162,13 +165,13 @@ class PagesController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();
@@ -187,11 +190,11 @@ class PagesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $pages = Pages::LoadAll();
@@ -214,19 +217,19 @@ class PagesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'id'};
         if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $domain = $post->{'domain'};
         if (!$domain) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $domain = Domains::LoadById($domain);
@@ -263,13 +266,13 @@ class PagesController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();
@@ -292,14 +295,14 @@ class PagesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'id'};
         if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!$id) {
@@ -326,13 +329,13 @@ class PagesController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();
@@ -351,11 +354,11 @@ class PagesController extends WebController
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.remove')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'id'};
@@ -363,7 +366,7 @@ class PagesController extends WebController
         try {
             $page->Delete();
         } catch (DataModelException $e) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $pages = Pages::LoadAll();
@@ -385,11 +388,11 @@ class PagesController extends WebController
     public function DeleteDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.remove')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'id'};
@@ -397,7 +400,7 @@ class PagesController extends WebController
         try {
             $domain->Delete();
         } catch (DataModelException $e) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $domains = Domains::LoadAll();
@@ -426,21 +429,21 @@ class PagesController extends WebController
         $sibling = $post->{'sibling'};
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $move = Pages::LoadById($move);
         if (!$move) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $domain = Domains::LoadById($domain);
         if (!$domain) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $to = $to ? Pages::LoadById($to) : null;
@@ -467,13 +470,13 @@ class PagesController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();

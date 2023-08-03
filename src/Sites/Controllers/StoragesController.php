@@ -6,6 +6,8 @@ use App\Modules\Security\Module as SecurityModule;
 use Colibri\App;
 use Colibri\Data\Storages\Storage;
 use Colibri\Data\Storages\Storages;
+use Colibri\Exceptions\BadRequestException;
+use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\RequestCollection;
 
@@ -25,23 +27,23 @@ class StoragesController extends WebController
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $data = $post->{'data'};
         $storage = Storages::Create()->Load($data['name']);
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . ($storage != null ? '.edit' : '.add'))) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $name = $data['name'];
@@ -79,32 +81,32 @@ class StoragesController extends WebController
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.remove')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage->Delete();
@@ -124,27 +126,27 @@ class StoragesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $data = $post->{'data'};
@@ -153,7 +155,7 @@ class StoragesController extends WebController
         $field = $storage->GetField($path);
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.fields')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!$data['group_enabled'] || $data['group_enabled'] === false) {
@@ -186,27 +188,27 @@ class StoragesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
 
@@ -218,11 +220,11 @@ class StoragesController extends WebController
         $relative = $storage->GetField($relative);
 
         if (!$move || !$relative) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.fields')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $parentField = $move->parent;
@@ -248,33 +250,33 @@ class StoragesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $path = $post->{'path'};
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.fields')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage->DeleteField($path);
@@ -294,37 +296,37 @@ class StoragesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $data = $post->{'data'};
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.indices')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $name = $data['name'];
@@ -346,40 +348,40 @@ class StoragesController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $name = $post->{'index'};
         if (!$name) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage->name . '.indices')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage->DeleteIndex($name);

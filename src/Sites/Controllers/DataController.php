@@ -6,6 +6,9 @@ use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
 use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Storages;
+use Colibri\Exceptions\ApplicationErrorException;
+use Colibri\Exceptions\BadRequestException;
+use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\RequestCollection;
@@ -27,12 +30,12 @@ class DataController extends WebController
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage = $post->{'storage'};
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $term = $post->{'term'};
@@ -66,7 +69,7 @@ class DataController extends WebController
             $datarows = $tableClass::LoadByFilter($page, $pagesize, '', $sortField . ' ' . $sortOrder);
         }
         if (!$datarows) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $dataArray = [];
@@ -88,24 +91,24 @@ class DataController extends WebController
     public function Row(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage = $post->{'storage'};
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'row'};
 
         $storage = Storages::Create()->Load($storage);
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadById($id);
         if (!$datarow) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         return $this->Finish(200, 'ok', $datarow->ToArray(true));
@@ -123,7 +126,7 @@ class DataController extends WebController
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage = $post->{'storage'};
@@ -131,7 +134,7 @@ class DataController extends WebController
         $pub = $post->{'pub'};
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . ($data->id ?? 0 ? '.edit' : '.add'))) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
 
@@ -141,7 +144,7 @@ class DataController extends WebController
         if ($data->id ?? 0) {
             $datarow = $tableClass::LoadById($data->id);
             if (!$datarow) {
-                return $this->Finish(400, 'Bad request');
+                throw new BadRequestException('Bad request', 400);
             }
         } else {
             $datarow = $tableClass::LoadEmpty();
@@ -171,13 +174,13 @@ class DataController extends WebController
 
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+            throw new BadRequestException($e->getMessage(), 400, $e);
         } catch (ValidationException $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         } catch (\Throwable $e) {
             $accessPoint->Rollback();
-            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
         }
 
         $accessPoint->Commit();
@@ -197,32 +200,32 @@ class DataController extends WebController
     {
 
         if (!SecurityModule::$instance->current) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $storage = $post->{'storage'};
         if (!$storage) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
-            return $this->Finish(403, 'Permission denied');
+            throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $ids = $post->{'ids'};
         if (!$ids) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         if (!$tableClass::DeleteAllByIds(explode(',', $ids))) {
-            return $this->Finish(400, 'Bad request');
+            throw new BadRequestException('Bad request', 400);
         }
 
         return $this->Finish(200, 'ok');

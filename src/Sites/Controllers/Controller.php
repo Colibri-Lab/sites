@@ -48,27 +48,14 @@ class Controller extends WebController
             'payload' => $payload
         ]);
 
-        try {
-            // пробуем запустить генерацию html
-            $html = $view->Render($template, $args);
-        } catch (\Throwable $e) {
-            // если что то не так то выводим ошибку
-            $html = $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine();
-        }
+        $html = $view->Render($template, $args);
 
         // финишируем контроллер
         return $this->Finish(
             200,
             $html,
             [],
-            'utf-8',
-            [
-                'tab_key' => 'tools-list',
-                'tab_type' => 'tab',
-                'tab_title' => 'Colibri Sites Module',
-                'tab_color' => 'orange',
-                'tab_header' => 'Colibri Sites Module',
-            ]
+            'utf-8'
         );
     }
 
