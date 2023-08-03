@@ -3,14 +3,14 @@
     <Split name="split" shown="true" hasHandle="true">
         <Pane name="folders-pane" shown="true">
             <H2 name="ttl" shown="true">#{sites-structure-folders-title}</H2>
-            <App.Modules.Sites.FoldersTree name="folders" shown="true" hasContextMenu="true" hasTreeContextMenu="true" binding="app.sites.domains;app.sites.pages" />
+            <FoldersTree name="folders" shown="true" hasContextMenu="true" hasTreeContextMenu="true" binding="app.sites.domains;app.sites.pages" expandOnClick="true"  />
         </Pane>
         <Pane name="publications-pane" shown="true">
             <H2 name="ttl" shown="true">#{sites-structure-publications-title}</H2>
             <Pane name="search-pane" shown="true">
                 <Input name="search-input" enabled="false" shown="true" placeholder="#{sites-structure-search-placeholder}" />
             </Pane>
-            <App.Modules.Sites.PublicationsGrid name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="#{sites-structure-publicationsempty}">
+            <PublicationsGrid name="publications" shown="true" enabled="false" hasContextMenu="true" selectionMode="fullrow" showCheckboxes="true" binding="app.sites.pubs" emptyMessage="#{sites-structure-publicationsempty}">
                 <component-header>
                     <component-columns>
                         <Grid.Column name="id" shown="true" value="#" width="10%" resizable="true" />
@@ -40,7 +40,7 @@
                         <Grid.Column name="ft" shown="true" value="#{sites-structure-publications-data}" width="45%" resizable="false" viewer="Colibri.UI.HtmlDataViewer" />
                     </component-columns>
                 </component-header>
-            </App.Modules.Sites.PublicationsGrid>
+            </PublicationsGrid>
 
             <FlexBox name="buttons-pane" shown="true">
                 <SuccessButton name="publish" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">#{sites-structure-buttons-publish}</SuccessButton>
