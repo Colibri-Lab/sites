@@ -12,7 +12,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     InitializeModule() {
         super.InitializeModule();
 
-        this._store = App.Store.AddChild('app.sites', {});
+        this._store = App.Store.AddChild('app.sites', {}, this);
         this._store.AddPathLoader('sites.domains', () => this.Domains(true));
         this._store.AddPathLoader('sites.pages', () => this.Pages(true));
         this._store.AddPathLoader('sites.domainkeys', () => this.DomainKeys(true));
@@ -35,8 +35,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             this.Render(document.body);
             this.Status();
         });
-
+        this._store.AddHandler('StoreLoaderCrushed', (event, args) => {
+            if(args.status === 403) {
+                location.reload();
+            }
+        });
         this.AddHandler('CallError', (event, args) => {
+            console.log('sites', args);
             if(args.status === 403) {
                 location.reload();
             }
@@ -555,11 +560,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         promise.then((response) => {
             this._store.Set('sites.domains', response.result);
         }).catch((response) => {
-            App.Notices && App.Notices.Add({
-                severity: 'error',
-                title: response.result,
-                timeout: 5000
-            });
+            App.Notices && App.Notices.Add(new Colibri.UI.Notice(response.result));
         });
     }
 
