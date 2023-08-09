@@ -1565,8 +1565,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         else if (menuData.name == 'new-field') {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(node.tag.type === 'fields'), {})
+            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) { // node.tag.type === 'fields'
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(), {})
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
                     })
@@ -1605,7 +1605,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fieldData.group_enabled = true;
                 }
 
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty}', 1024, fieldData.virtual ? this._fieldVirtualFields() : this._fieldFields(node.parentNode.tag.type === 'fields'), fieldData)
+                // node.parentNode.tag.type === 'fields'
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty}', 1024, fieldData.virtual ? this._fieldVirtualFields() : this._fieldFields(), fieldData)
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);
                     })
