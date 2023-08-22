@@ -8,16 +8,18 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
         this.rows = 'auto';
         this.columns = 'auto';
         this.orientation = 'vr'; 
+        this._rows = 1;
+        this._columns = 1;
     }
 
     _createFields(fields = null, value = null, contentElement = null, showTitles = true) {
         super._createFields(fields, value, contentElement, showTitles);
         
-        this._shown.styles = {'grid-template-rows':  (this._rows + '').isNumeric() ? 'repeat(' + this._rows + ', 1fr)' : this._rows};
-        this._hidden && (this._hidden.styles = {'grid-template-rows': (this._rows + '').isNumeric() ? 'repeat(' + this._rows + ', 1fr)' : this._rows});
+        this._shown.styles = {'grid-template-rows':  this._rows && (this._rows + '').isNumeric() ? 'repeat(' + this._rows + ', 1fr)' : this._rows};
+        this._hidden && (this._hidden.styles = {'grid-template-rows': this._rows && (this._rows + '').isNumeric() ? 'repeat(' + this._rows + ', 1fr)' : this._rows});
         
-        this._shown.styles = {'grid-template-columns': (this._columns + '').isNumeric() ? 'repeat(' + this._columns + ', 1fr)' : this._columns};
-        this._hidden && (this._hidden.styles = {'grid-template-columns': (this._columns + '').isNumeric() ? 'repeat(' + this._columns + ', 1fr)' : this._columns});
+        this._shown.styles = {'grid-template-columns': this._columns && (this._columns + '').isNumeric() ? 'repeat(' + this._columns + ', 1fr)' : this._columns};
+        this._hidden && (this._hidden.styles = {'grid-template-columns': this._columns && (this._columns + '').isNumeric() ? 'repeat(' + this._columns + ', 1fr)' : this._columns});
 
         this._shown.styles = {'gap': this._gap};
         this._hidden && (this._hidden.styles = {'gap': this._gap});
@@ -38,7 +40,6 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
      */
     set rows(value) {
         this._rows = value;
-        this._createFields();
     }
 
     /**
@@ -54,7 +55,6 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
      */
     set columns(value) {
         this._columns = value;
-        this._createFields();
     }
     
     /**
@@ -118,8 +118,8 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
      */
     set gap(value) {
         this._gap = value;
-        this._createFields();
     }
 
+    
 
 }

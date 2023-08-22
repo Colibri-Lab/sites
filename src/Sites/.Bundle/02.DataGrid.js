@@ -64,7 +64,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             }
 
             const intemplate = {};
-
+            let column = null;
             Object.forEach(this._storage.fields, (name, field, index) => {
                 if(field.params?.template === true) {
                     intemplate[name] = field;
@@ -72,7 +72,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 if(field.params?.list !== true) {
                     return true;
                 }
-                let column = this.header.columns.Children(name);
+                column = this.header.columns.Children(name);
                 if(!column) {
                     column = this.header.columns.Add(name, field.desc[Lang.Current] ?? field.desc ?? ''); // , {width: (85/columnCount).toFixed(2) + '%'}
                     if(field.params?.greed) {
@@ -96,12 +96,13 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
             if(Object.countKeys(intemplate) > 0) {
                 this.rowTemplateComponent = 'App.Modules.Sites.UI.DataGridRowTemplateComponent';
-                this.rowTemplateAttrs = Object.assign({fields: intemplate}, {rows: 'max-content', columns: 3, orientation: 'hr', gap: '0px 0px', flow: 'row'}, this._storage.params.template_args);
+                Object.forEach(this._storage.params.template_args, (key, val) => !val ? (delete this._storage.params.template_args[key]) : null);
+                this.rowTemplateAttrs = Object.assign({rows: 'max-content', columns: 3, orientation: 'hr', gap: '0px 0px', flow: 'row'}, this._storage.params.template_args, {fields: intemplate});
             } else {
                 this.rowTemplateComponent = null;
             }
 
-            this.header.columns.Children('lastChild').resizable = false;
+            column.resizable = false;
 
         }
 
