@@ -23,6 +23,34 @@
                 height: 30px;
             }
         }
+        [data-object-name="search-pane"] {
+            flex-wrap: nowrap;
+            width: 100%;
+            align-items: flex-start;
+            justify-content: stretch;
+            gap: 10px;
+            [data-object-name="search-input"] {
+                
+            }
+            [data-object-name="filters"] {
+                flex: 0 0 32px;
+                height: 32px;
+                padding: 0px;
+                border: 1px solid #c0c0c0;
+                border-radius: 2px;
+                cursor: pointer;
+                svg {
+                    margin: 2px;
+                    height: 26px;
+                    width: 26px;
+                }
+                &.ui-disabled {
+                    svg path {
+                        fill: #c0c0c0;
+                    }
+                }
+            }
+        }
         .app-component-split-left {
             flex: 0 0 20%;
         }

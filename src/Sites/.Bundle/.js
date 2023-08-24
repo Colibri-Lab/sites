@@ -422,9 +422,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-    LoadData(storage, term = null, sortField = null, sortOrder = null, page = 1, pagesize = 20, returnPromise = false) {
+    LoadData(storage, term = null, filters = null, sortField = null, sortOrder = null, page = 1, pagesize = 20, returnPromise = false) {
 
-        const promise = this.Call('Data', 'List', {storage: storage.name, term: term, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize});
+        const promise = this.Call('Data', 'List', {storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize});
         if(returnPromise) {
             return promise;
         }
