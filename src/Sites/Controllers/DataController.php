@@ -46,17 +46,59 @@ class DataController extends WebController
         $page = (int) $post->{'page'} ?: 1;
         $pagesize = (int) $post->{'pagesize'} ?: 20;
 
-        $searchFilters = [];
-        $filterFields = VariableHelper::ToJsonFilters($filterFields);
-        foreach($filterFields as $key => $value) {
-            $exploded = StringHelper::Explode($key, ['[', '.'], true);
-            $fieldName = $exploded[0];
-            $filterKey = substr($key, strlen($fieldName));
-            $searchFilters[$fieldName] = ['$'.$filterKey, $value];
-        }
-
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
+
+        $filterFields = VariableHelper::ToJsonFilters($filterFields);
+
+        $searchFilters = [];
+        foreach($filterFields as $key => $filterData) {
+            $parts = StringHelper::Explode($key, ['[', '.']);
+            $fieldName = $parts[0];
+            $filterPath = substr($key, strlen($fieldName));
+            $filterPath = '$'.str_replace('[0]', '[*]', $filterPath);
+
+            if($filterPath === '$') {
+                $searchFilters[$fieldName] = $filterData;
+            } else {
+                if(!isset($searchFilters[$fieldName])) {
+                    $searchFilters[$fieldName] = [];
+                }
+                $searchFilters[$fieldName][$filterPath] = $filterData;
+            }
+        }
+
+        $jsonTables = [];
+        $fields = [];
+        $fieldIndex = 0;
+        foreach($searchFilters as $fieldName => $fieldParams) {
+            $field = $storage->GetField($fieldName);
+            if($field->type === 'json') {
+                foreach($fieldParams as $path => $value) {
+                    $jsonTables[] = '
+                        inner join (
+                            select
+                                {id}, t_'.$fieldIndex.'.json_field_'.$fieldIndex.'
+                            from '.$storage->table.', json_table(
+                                {'.$fieldName.'},
+                                \''.$path.'\'
+                                columns (
+                                    json_field_'.$fieldIndex.' varchar(1024) path \'$\'
+                                )
+                            ) t_'.$fieldIndex.'
+                        ) json_table_'.$fieldIndex.' on json_table_'.$fieldIndex.'.{id}='.$storage->table.'.{id}';
+
+                    $fieldPath = str_replace('[*]', '', $path);
+                    $fieldPath = str_replace('$', '', $fieldPath);
+                    $fieldPath = str_replace('.', '/', $fieldPath);
+                    $fieldPath = str_replace('//', '/', $fieldName . '/' . $fieldPath);
+                    $fields['json_field_'.$fieldIndex] = [$storage->GetField($fieldPath), $value];
+                    $fieldIndex++;
+                }
+            } else {
+                $fields[$fieldName] = [$field, $fieldParams];
+            }
+        }
 
         $filters = [];
         $params = [];
@@ -69,72 +111,43 @@ class DataController extends WebController
             $params['term'] = '%' . $term . '%';
         }
 
+        foreach($fields as $fieldName => $fieldData) {
+            $field = $fieldData[0];
+            $value = $fieldData[1];
 
-        foreach($searchFilters as $fieldName => $filterData) {
-            $fieldPath = str_replace('.', '/', $filterData[0]);
-            $fieldPath = str_replace('$', '', $fieldPath);
-            $fieldPath = preg_replace('/\[\d+\]/', '', $fieldPath);
-
-            $mainField = $storage->GetField($fieldName);
-            $field = null;
-            if($fieldPath) {
-                $field = $storage->GetField(str_replace('//', '/', $fieldName . '/' . $fieldPath));
-            }
-
-            if($mainField->type === 'json') {
-                $isDate = in_array($field->component, ['Colibri.UI.Forms.Date', 'Colibri.UI.Forms.DateTime']);
-                $spl = '\'';
-                $fname = 'JSON_EXTRACT({'.$fieldName.'}, \''.$filterData[0].'\')';
-                if(in_array($field->component, [
-                    'Colibri.UI.Forms.Date',
-                    'Colibri.UI.Forms.DateTime',
-                    'Colibri.UI.Forms.Number'
-                ])) {
-                    $filters[] =
-                        $fname . ' >= ' . $spl . $filterData[1][0] . $spl .
-                        (isset($filterData[1][1]) ?
-                            ' and ' . $fname . ' <= ' . $spl . $filterData[1][1] . $spl : ''
-                        );
-                } else {
-                    $filters[] =
-                        $fname . ' in (' .
-                            $spl . implode($spl . ',' . $spl, $filterData[1]) . $spl .
-                        ')';
-
-                }
-
-
+            if(in_array($field->component, [
+                'Colibri.UI.Forms.Date',
+                'Colibri.UI.Forms.DateTime',
+                'Colibri.UI.Forms.Number'
+            ])) {
+                $filters[] = (strstr($fieldName, 'json_') !== false ? $fieldName : '{' . $fieldName . '}').
+                    ' between [['.
+                        $fieldName . '0:' . $field->param . ']] and [[' .
+                        $fieldName . '1:' . $field->param . ']]';
+                $params[$fieldName.'0'] = $value[0];
+                $params[$fieldName.'1'] = $value[1];
             } else {
-
-                if(in_array($field->component, [
-                    'Colibri.UI.Forms.Date',
-                    'Colibri.UI.Forms.DateTime',
-                    'Colibri.UI.Forms.Number'
-                ])) {
-                    $filters[] = '{' . $fieldName . '} between [['.
-                        $fieldName.'0:'.$mainField->param.']] and [['.
-                        $fieldName.'1:'.$mainField->param.']]';
-                    $params[$fieldName.'0'] = $filterData[1][0];
-                    $params[$fieldName.'1'] = $filterData[1][1];
-
-                } else {
-                    $values = $filterData[1];
-                    if(!is_array($values)) {
-                        $values = [$values];
-                    }
-                    foreach($values as $index => $value) {
-                        $eq = '=';
-                        if($mainField->param === 'string') {
-                            $eq = 'like';
-                        }
-                        $filters[] = '{' . $fieldName . '} '.$eq.' [['.$fieldName.$index.':'.$mainField->param.']]';
-                        $params[$fieldName.$index] = $filterData[1];
-                    }
+                if(!is_array($value)) {
+                    $value = [$value];
                 }
-
+                $flts = [];
+                foreach($value as $index => $v) {
+                    $eq = '=';
+                    if($field->param === 'string') {
+                        $eq = 'like';
+                    }
+                    $flts[] = (strstr($fieldName, 'json_') !== false ? $fieldName :
+                        '{' . $fieldName . '}').' '.$eq.' [['.$fieldName.$index.':'.$field->param.']]';
+                    $params[$fieldName.$index] = $v;
+                }
+                $filters[] = implode(' or ', $flts);
             }
 
+        }
 
+
+        if(!empty($jsonTables)) {
+            $params['__jsonTables'] = $jsonTables;
         }
 
         if (!$sortField) {
@@ -146,22 +159,14 @@ class DataController extends WebController
             $sortOrder = 'asc';
         }
 
-        if (!empty($params)) {
-            $datarows = $tableClass::LoadByFilter(
-                $page,
-                $pagesize,
-                implode(' or ', $filters),
-                $sortField . ' ' . $sortOrder,
-                $params
-            );
-        } else {
-            $datarows = $tableClass::LoadByFilter(
-                $page,
-                $pagesize,
-                !empty($filters) ? implode(' ane ', $filters) : '',
-                $sortField . ' ' . $sortOrder
-            );
-        }
+        $datarows = $tableClass::LoadByFilter(
+            $page,
+            $pagesize,
+            implode(' or ', $filters),
+            $sortField . ' ' . $sortOrder,
+            $params
+        );
+
         if (!$datarows) {
             throw new BadRequestException(BadRequestException::BadRequestExceptionMessage, 400);
         }

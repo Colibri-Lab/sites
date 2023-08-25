@@ -45,8 +45,14 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         Manage.FilterWindow.Show('#{sites-structure-filter} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 800, 'app.manage.storages(' + storage.name + ')', this._filterData)
             .then((data) => {
                 this._filterData = data;
-                this._data.storage = selected.tag;
-                this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, 1);
+                console.log(this._filterData);
+                if(Object.countKeys(this._filterData) > 0) {
+                    this._searchFilter.AddClass('-selected');
+                } else {
+                    this._searchFilter.RemoveClass('-selected');
+                }
+                this._data.storage = storage;
+                this._loadDataPage(storage, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, 1);
             })
             .catch(() => {});
     }

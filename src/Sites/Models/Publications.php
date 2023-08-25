@@ -51,15 +51,7 @@ class Publications extends BaseModelDataTable
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Publications
     {
         $storage = Storages::Create()->Load('pubs');
-        $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
-        $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
-        return self::LoadByQuery(
-            $storage,
-            'select * from ' . $storage->table .
-            ($filter ? ' where ' . $filter : '') .
-            ($order ? ' order by ' . $order : ''),
-            $additionalParams
-        );
+        return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
 
     }
 

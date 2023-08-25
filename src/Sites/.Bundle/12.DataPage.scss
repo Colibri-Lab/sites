@@ -44,6 +44,11 @@
                     height: 26px;
                     width: 26px;
                 }
+                &.-selected {
+                    svg path {
+                        fill: #ff0000;
+                    }
+                }
                 &.ui-disabled {
                     svg path {
                         fill: #c0c0c0;
