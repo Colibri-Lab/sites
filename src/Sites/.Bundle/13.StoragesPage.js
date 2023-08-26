@@ -1000,17 +1000,20 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                         module: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller-module}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-module}',
+                                            default: 'Manage'
                                         },
                                         class: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller-class}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-class}',
+                                            default: 'Lookup'
                                         },
                                         method: {
                                             type: 'varchar',
                                             component: 'Text',
-                                            desc: '#{sites-storages-fieldlookup-storage-controller-method}'
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-method}',
+                                            default: 'Get'
                                         },
                                     }
                                 }
