@@ -99,11 +99,11 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
             let domains = responses[0];
             let data = responses[1];
 
-            if(!Array.isArray(domains) && domains instanceof Object) {
+            if(Object.isObject(domains)) {
                 domains = Object.values(domains);
             }
 
-            if(!Array.isArray(data) && data instanceof Object) {
+            if(Object.isObject(data)) {
                 data = Object.values(data);
             }
     
