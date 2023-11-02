@@ -151,7 +151,7 @@ class DataController extends WebController
         }
 
         if (!$sortField) {
-            $sortField = '{datecreated}';
+            $sortField = '{id}';
         } else {
             $sortField = '{' . $sortField . '}';
         }
