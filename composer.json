@@ -7,7 +7,7 @@
     "require": {
         "colibri/core": "dev-master",
         "colibri/ui": "dev-master",
-        "scssphp/scssphp": "dev-master"
+        "scssphp/scssphp": "dev-main"
     },
     "autoload": {
         "psr-4": {
