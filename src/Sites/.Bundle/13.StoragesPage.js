@@ -5,6 +5,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         this.AddClass('app-sites-storages-page-component');
 
+        this._copiedField = null;
         this._storages = this.Children('storages-pane/storages');
 
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
@@ -42,12 +43,19 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             case 'fields':
                 contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
                 contextmenu.push({ name: 'new-virtual-field', title: '#{sites-storages-contextmenu-newvirtualfield}', icon: Colibri.UI.ContextMenuAddIcon });
+                if(this._copiedField !== null) {
+                    contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
+                }
                 break;
             case 'field':
                 contextmenu.push({ name: 'edit-field', title: '#{sites-storages-contextmenu-editfield}', icon: Colibri.UI.ContextMenuEditIcon });
                 contextmenu.push({ name: 'remove-field', title: '#{sites-storages-contextmenu-removefield}', icon: Colibri.UI.ContextMenuRemoveIcon });
                 if (this._canAddFieldAsChild(tag.entry)) {
                     contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
+                }
+                contextmenu.push({ name: 'copy-field', title: '#{sites-storages-contextmenu-copyfield}', icon: Colibri.UI.ContextMenuCopyIcon });
+                if (this._canAddFieldAsChild(tag.entry) && this._copiedField !== null) {
+                    contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
                 }
                 break;
             case 'indices':
@@ -1564,6 +1572,21 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             App.Confirm.Show('#{sites-storages-messages-removestorage}', '#{sites-storages-messages-removestoragemessage}', '#{sites-storages-messages-removestoragemessage-delete}').then(() => {
                 Sites.DeleteStorage(moduleNode.tag.entry, node.tag.entry);
             });
+        }
+        else if (menuData.name == 'copy-field') {
+            if(node.tag.type === 'field') {
+                this._copiedField = node.tag.entry;
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldcopied}', Colibri.UI.Notice.Success, 5000));
+            }
+        }
+        else if (menuData.name == 'paste-field') {
+            const data = this._copiedField;
+            const moduleNode = node.FindParent((node) => node.tag.type === 'module');
+            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
+            Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
+
+            App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
+            this._copiedField = null;
         }
         else if (menuData.name == 'new-field') {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');

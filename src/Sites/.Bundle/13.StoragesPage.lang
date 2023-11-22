@@ -777,3 +777,19 @@ sites-storag(es-storagetemplates-default-unselected: {}
 sites-storages-storageadditional-softdeletes:
   ru: Мягкое удаление
   en: Soft deletes
+sites-storages-contextmenu-copyfield:
+  ru: Скопировать
+  en: Copy
+  hy: Պատճենել
+sites-storages-contextmenu-pastefield:
+  ru: Вставить поле
+  en: Paste field
+  hy: Կպցնել
+sites-storagespage-fieldcopied:
+  ru: Данные поля скопированы
+  en: Field data is copied
+  hy: Դաշտային տվյալները պատճենվում են
+sites-storagespage-fieldpasted:
+  ru: Поле успешно вставлено
+  en: Field is successfully passed
+  hy: Դաշտը հաջողությամբ անցել է
