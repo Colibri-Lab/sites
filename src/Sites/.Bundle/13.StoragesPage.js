@@ -814,6 +814,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: true
                         },
+                        hasscroll: { 
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-hasscroll}',
+                            note: '#{sites-storages-fieldparams-hasscroll-note}',
+                            component: 'Checkbox',
+                            default: true
+                        },
                         initempty: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-initempty}',

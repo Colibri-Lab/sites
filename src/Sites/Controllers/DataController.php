@@ -232,13 +232,15 @@ class DataController extends WebController
         $data = (object) $post->{'data'};
         $pub = $post->{'pub'};
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . ($data->id ?? 0 ? '.edit' : '.add'))) {
+        if (!SecurityModule::$instance->current->IsCommandAllowed(
+            'sites.storages.' . $storage . ($data->id ?? 0 ? '.edit' : '.add')
+        )) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
 
         $storage = Storages::Create()->Load($storage);
-        [$tableClass, $rowClass] = $storage->GetModelClasses();
+        [$tableClass, ] = $storage->GetModelClasses();
 
         if ($data->id ?? 0) {
             $datarow = $tableClass::LoadById($data->id);

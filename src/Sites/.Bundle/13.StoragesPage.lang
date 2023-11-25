@@ -793,3 +793,9 @@ sites-storagespage-fieldpasted:
   ru: Поле успешно вставлено
   en: Field is successfully passed
   hy: Դաշտը հաջողությամբ անցել է
+sites-storages-fieldparams-hasscroll:
+  ru: Есть скролл в списке массива
+  en: Has scroll on array items
+sites-storages-fieldparams-hasscroll-note:
+  ru: Ограничить список массива 500 пикселей и показать прокрутку
+  en: Limit array list to 500px and show scrolling
