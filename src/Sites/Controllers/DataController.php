@@ -78,7 +78,7 @@ class DataController extends WebController
                     $jsonTables[] = '
                         inner join (
                             select
-                                {id}, t_'.$fieldIndex.'.json_field_'.$fieldIndex.'
+                                {id} as t_'.$fieldIndex.'_id, t_'.$fieldIndex.'.json_field_'.$fieldIndex.'
                             from '.$storage->table.', json_table(
                                 {'.$fieldName.'},
                                 \''.$path.'\'
@@ -86,7 +86,8 @@ class DataController extends WebController
                                     json_field_'.$fieldIndex.' varchar(1024) path \'$\'
                                 )
                             ) t_'.$fieldIndex.'
-                        ) json_table_'.$fieldIndex.' on json_table_'.$fieldIndex.'.{id}='.$storage->table.'.{id}';
+                        ) json_table_'.$fieldIndex.' on '.
+                        'json_table_'.$fieldIndex.'.t_'.$fieldIndex.'_id='.$storage->table.'.{id}';
 
                     $fieldPath = str_replace('[*]', '', $path);
                     $fieldPath = str_replace('$', '', $fieldPath);
