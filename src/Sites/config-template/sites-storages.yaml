@@ -226,17 +226,21 @@ texts:
         ru: Содержание блока
         en: Block content
         hy: Բովանդակություն
+        it: ""
       note:
         ru: Введите содержание блока
         en: Enter block content
         hy: Մուտքագրեք բլոկի բովանդակությունը
+        it: ""
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
-        required: true
+        required: false
         enabled: true
         canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
         multiple: false
         greed: 55%
         viewer: ~
@@ -253,8 +257,10 @@ texts:
           ru: ""
           en: ""
           hy: ""
+          it: ""
         removelink: true
         updownlink: true
+        hasscroll: true
         initempty: true
         maxadd: ""
         title: ""
@@ -262,12 +268,15 @@ texts:
         allow: ""
         size: ""
         validate: []
+        valuegenerator: ""
+        onchangehandler: ""
       group: window
       attrs: []
       placeholder:
         ru: ""
         en: ""
         hy: ""
+        it: ""
   indices:
     texts_lang_idx:
       fields:
