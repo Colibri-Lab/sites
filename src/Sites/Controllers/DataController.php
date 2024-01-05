@@ -68,14 +68,14 @@ class DataController extends WebController
             }
         }
 
-        $jsonTables = [];
+        $joinTables = [];
         $fields = [];
         $fieldIndex = 0;
         foreach($searchFilters as $fieldName => $fieldParams) {
             $field = $storage->GetField($fieldName);
             if($field->type === 'json') {
                 foreach($fieldParams as $path => $value) {
-                    $jsonTables[] = '
+                    $joinTables[] = '
                         inner join (
                             select
                                 {id} as t_'.$fieldIndex.'_id, t_'.$fieldIndex.'.json_field_'.$fieldIndex.'
@@ -147,8 +147,8 @@ class DataController extends WebController
         }
 
 
-        if(!empty($jsonTables)) {
-            $params['__jsonTables'] = $jsonTables;
+        if(!empty($joinTables)) {
+            $params['__joinTables'] = $joinTables;
         }
 
         if (!$sortField) {
