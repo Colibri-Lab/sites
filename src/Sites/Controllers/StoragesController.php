@@ -16,7 +16,6 @@ use Colibri\Web\RequestCollection;
  */
 class StoragesController extends WebController
 {
-    
     /**
      * Saves a storage data
      * @param RequestCollection $get
@@ -42,7 +41,9 @@ class StoragesController extends WebController
 
         $data = $post->{'data'};
         $storage = Storages::Create()->Load($data['name']);
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . ($storage != null ? '.edit' : '.add'))) {
+        if (!SecurityModule::$instance->current->IsCommandAllowed(
+            'sites.storages.' . ($storage != null ? '.edit' : '.add')
+        )) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
