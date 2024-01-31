@@ -7,6 +7,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         this.AddClass('app-manager-tree-component');
         this._foldersList = [];
         this._names = new Map();
+        this.removeHiddenNodes = true;
     }
 
     _searchForFieldIcon(field) {
