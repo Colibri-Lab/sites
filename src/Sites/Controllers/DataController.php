@@ -360,8 +360,6 @@ class DataController extends WebController
         $filterFields = $post->{'filters'};
         $sortField = $post->{'sortfield'};
         $sortOrder = $post->{'sortorder'};
-        $page = (int) $post->{'page'} ?: 1;
-        $pagesize = (int) $post->{'pagesize'} ?: 20;
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
@@ -478,8 +476,8 @@ class DataController extends WebController
         }
 
         $datarows = $tableClass::LoadByFilter(
-            $page,
-            $pagesize,
+            -1,
+            20,
             implode(' or ', $filters),
             $sortField . ' ' . $sortOrder,
             $params
