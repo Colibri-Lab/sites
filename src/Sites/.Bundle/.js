@@ -387,6 +387,19 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
+    ExportData(storage, term = null, filters = null, sortField = null, sortOrder = null) {
+        this.Call('Data', 'Export', {storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder})
+            .then((response) => {
+                if(response.result?.filename) {
+                    window.open(response.result?.filename);
+                }
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
     LoadRow(storage, rowId) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Row', {storage: storage, row: rowId}).then((response) => {

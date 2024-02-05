@@ -64,3 +64,6 @@ sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
 sites-structure-deletedatas: {}
+sites-storages-buttons-exportdata:
+  ru: Выгрузить данные
+  en: Export data

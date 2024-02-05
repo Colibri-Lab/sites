@@ -15,6 +15,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._dublData = this.Children('split/data-pane/buttons-pane/dubl-data');
         this._editData = this.Children('split/data-pane/buttons-pane/edit-data');
         this._deleteData = this.Children('split/data-pane/buttons-pane/delete-data');
+        this._exportData = this.Children('split/data-pane/buttons-pane/export-data');
 
         this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
 
@@ -30,6 +31,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
         this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
         this._dublData.AddHandler('Clicked', (event, args) => this.__dublDataButtonClicked(event, args));
+        this._exportData.AddHandler('Clicked', (event, args) => this.__exportDataButtonClicked(event, args));
 
         this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
         this._searchFilter.AddHandler('Clicked', (event, args) => this.__searchFilterClicked(event, args)); 
@@ -90,6 +92,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._data.UnselectAllRows();
         this._data.UncheckAllRows();
         this._addData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
+        this._exportData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._editData.enabled = false;
         this._dublData.enabled = false;
         this._deleteData.enabled = false;
@@ -208,6 +211,16 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
         }
 
+    }
+
+    __exportDataButtonClicked(event, args) {
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        if(!storage) {
+            return;
+        }
+
+        Sites.ExportData(storage, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder);
     }
 
     
