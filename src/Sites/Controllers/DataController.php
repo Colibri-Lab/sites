@@ -13,6 +13,7 @@ use Colibri\Exceptions\ApplicationErrorException;
 use Colibri\Exceptions\BadRequestException;
 use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Exceptions\ValidationException;
+use Colibri\IO\FileSystem\File;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
 use Colibri\Web\RequestCollection;
@@ -490,7 +491,8 @@ class DataController extends WebController
         $datarows->ExportXML($cachePath . $fileName);
 
         $result = [
-            'filename' => '/' . $cacheUrl . $fileName
+            'filename' => '/' . $cacheUrl . $fileName,
+            'filecontent' => base64_encode(File::Read($cachePath . $fileName))
         ];
         
         return $this->Finish(200, 'ok', $result);
