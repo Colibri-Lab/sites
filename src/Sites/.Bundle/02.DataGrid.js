@@ -2,7 +2,15 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
     constructor(name, container) {
         super(name, container);
-        this.AddClass('app-manager-datagrid-component')
+        this.AddClass('app-manager-datagrid-component');
+
+        this.AddHandler('ColumnClicked', (event, args) => this.__clickOnDataColumn(event, args));        
+        this._sortData = {name: '', order: ''};
+    }
+
+    __clickOnDataColumn(event, args) {
+        this._sortChanged = JSON.stringify(this._sortData) != JSON.stringify({name: this.sortColumn?.name, order: this.sortOrder});
+        this._sortData = {name: this.sortColumn?.name, order: this.sortOrder};
     }
 
     set storage(value) {
@@ -42,7 +50,10 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             this.ClearAll();
         }
 
-        this.ClearAllRows();
+        if(this._sortChanged) {
+            this.ClearAllRows();
+            this._sortChanged = false;
+        }
 
         if(this._storage && this._storage?.fields && this._storageChanged) {
                 

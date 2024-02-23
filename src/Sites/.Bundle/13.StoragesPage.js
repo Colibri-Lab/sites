@@ -425,7 +425,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         };
     }
 
-    _fieldFields(showGroup = true) {
+    _fieldFields(showGroup = true, moduleNode) {
         const fields = {
             name: 'Field',
             desc: 'Свойство',
@@ -949,10 +949,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                         readonly: false,
                                         searchable: false,
                                     },
-                                    lookup: () => {
+                                    lookup: (term, dependsValue, dependsField, obj) => {
                                         return new Promise((rs, rj) => {
+                                            console.log(moduleNode);
                                             Manage.Store.AsyncQuery('manage.storages').then((storages) => {
-                                                rs({ result: Object.values(storages).filter((s => s.params.visible)) });
+                                                rs({ 
+                                                    result: Object.values(storages)
+                                                        .filter((s => s.params.visible && s.module === moduleNode.name)) 
+                                                });
                                             });
                                         });
                                     },
@@ -1591,7 +1595,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
-
+            
             App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
             this._copiedField = null;
         }
@@ -1599,7 +1603,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
             if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) { // node.tag.type === 'fields'
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(), {})
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, moduleNode.tag.entry), {})
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
                     })
@@ -1639,7 +1643,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 // node.parentNode.tag.type === 'fields'
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty}', 1024, fieldData.virtual ? this._fieldVirtualFields() : this._fieldFields(), fieldData)
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty}', 1024, fieldData.virtual ? this._fieldVirtualFields(moduleNode.tag.entry) : this._fieldFields(true, moduleNode.tag.entry), fieldData)
                     .then((data) => {
                         Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node), data);
                     })
