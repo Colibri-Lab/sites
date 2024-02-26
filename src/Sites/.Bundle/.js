@@ -434,24 +434,25 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     LoadData(storage, term = null, filters = null, sortField = null, sortOrder = null, page = 1, pagesize = 20, returnPromise = false) {
-
+        App.Loading.Show();
         const promise = this.Call('Data', 'List', {storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize});
         if(returnPromise) {
             return promise;
         }
 
         promise.then((response) => {
-            if(page == 1) {
-                this._store.Set('sites.data', response.result);
-            }
-            else if(Array.isArray(response.result)) {
-                let data = this._store.Query('sites.data');
-                if(!data || !Array.isArray(data)) {
-                    data = [];
-                }
-                data = data.concat(response.result);
-                this._store.Set('sites.data', data);
-            }
+            this._store.Set('sites.data', response.result);
+            App.Loading.Hide();
+            // if(page == 1) {
+            // }
+            // else if(Array.isArray(response.result)) {
+            //     let data = this._store.Query('sites.data');
+            //     if(!data || !Array.isArray(data)) {
+            //         data = [];
+            //     }
+            //     data = data.concat(response.result);
+            //     this._store.Set('sites.data', data);
+            // }
         })
         .catch(error => {
             App.Notices.Add(new Colibri.UI.Notice(error.result));

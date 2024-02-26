@@ -16,10 +16,13 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._editData = this.Children('split/data-pane/buttons-pane/edit-data');
         this._deleteData = this.Children('split/data-pane/buttons-pane/delete-data');
         this._exportData = this.Children('split/data-pane/buttons-pane/export-data');
+        this._pagerData = this.Children('split/data-pane/buttons-pane/pager');
+        
 
         this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
 
-        this._data.AddHandler('ScrolledToBottom', (event, args) => this.__dataScrolledToBottom(event, args));
+        // this._data.AddHandler('ScrolledToBottom', (event, args) => this.__dataScrolledToBottom(event, args));
+        this._pagerData.AddHandler('Changed', (event, args) => this.__pagerDataChanged(event, args));   
         this._data.AddHandler('SelectionChanged', (event, args) => this.__dataSelectionChanged(event, args));
         this._data.AddHandler('CheckChanged', (event, args) => this.__checkChangedOnData(event, args));
         this._data.AddHandler('DoubleClicked', (event, args) => this.__doubleClickedOnData(event, args));
@@ -47,7 +50,6 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         Manage.FilterWindow.Show('#{sites-structure-filter} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 800, 'app.manage.storages(' + storage.name + ')', this._filterData)
             .then((data) => {
                 this._filterData = data;
-                console.log(this._filterData);
                 if(Object.countKeys(this._filterData) > 0) {
                     this._searchFilter.AddClass('-selected');
                 } else {
@@ -65,7 +67,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
     
     _loadDataPage(storage, searchTerm, searchFilters, sortField, sortOrder, page) {
-        this._dataCurrentPage = page;
+        this._pagerData.value = page;
         Sites.LoadData(storage, searchTerm, searchFilters, sortField, sortOrder, page, 20);
     }
 
@@ -96,16 +98,21 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._editData.enabled = false;
         this._dublData.enabled = false;
         this._deleteData.enabled = false;
+        this._pagerData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
 
         this.__searchInputFilled(event, args);
         
     }
 
-    
-    __dataScrolledToBottom(event, args) {
+    __pagerDataChanged(event, args) {
         const selected = this._storages.selected;
-        this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._dataCurrentPage + 1);
+        this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._pagerData.value);        
     }
+    
+    // __dataScrolledToBottom(event, args) {
+    //     const selected = this._storages.selected;
+    //     this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._dataCurrentPage + 1);
+    // }
 
     __dataSelectionChanged(event, args) {
         const checked = this._data.checked;

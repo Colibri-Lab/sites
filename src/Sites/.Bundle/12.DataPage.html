@@ -11,13 +11,14 @@
                 <Input name="search-input" shown="true" placeholder="#{sites-storages-search-placeholder}" enabled="false" />
                 <Icon shown="true" name="filters" iconSVG="Colibri.UI.Filters"  enabled="false" />
             </FlexBox>
-            <DataGrid name="data" shown="true" enabled="false" binding="app.sites.data" selectionMode="fullrow" showCheckboxes="true" hasContextMenu="true" emptyMessage="#{sites-storages-dataempty}" />
+            <DataGrid name="data" shown="true" enabled="false" binding="app.sites.data" selectionMode="fullrow" showCheckboxes="true" hasContextMenu="true" emptyMessage="#{sites-storages-dataempty}" clearOnChange="true" />
             <FlexBox name="buttons-pane" shown="true">
                 <SuccessButton name="add-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuAddIcon">#{sites-storages-buttons-adddata}</SuccessButton>
                 <SuccessButton name="dubl-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuDublicateIcon">#{sites-storages-buttons-dublicatedata}</SuccessButton>
                 <SuccessButton name="edit-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuEditIcon">#{sites-storages-buttons-editdata}</SuccessButton>
                 <SuccessButton name="delete-data" shown="true" enabled="false" icon="Colibri.UI.ContextMenuRemoveIcon">#{sites-storages-buttons-deletedata}</SuccessButton>
                 <SuccessButton name="export-data" shown="true" enabled="false">#{sites-storages-buttons-exportdata}</SuccessButton>
+                <UI.Pager shown="true" name="pager" hasMaxPages="false" enabled="false" />
             </FlexBox>
         </Pane>
     </Split>    

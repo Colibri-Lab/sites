@@ -75,7 +75,28 @@ class DataController extends WebController
         $fields = [];
         $fieldIndex = 0;
         foreach($searchFilters as $fieldName => $fieldParams) {
-            $field = $storage->GetField($fieldName);
+            if(in_array($fieldName, ['id', 'datecreated', 'datemodified'])) {
+                $field = (object)[
+                    'component' => $fieldName === 'id' ? 'Colibri.UI.Forms.Number' : 'Colibri.UI.Forms.DateTime',
+                    'desc' => [
+                        'id' => 'ID',
+                        'datecreated' => 'Дата создания',
+                        'datemodified' => 'Дата изменения'
+                    ][$fieldName],
+                    'type' => [
+                        'id' => 'int',
+                        'datecreated' => 'datetime',
+                        'datemodified' => 'datetime'
+                    ][$fieldName],
+                    'param' => [
+                        'id' => 'integer',
+                        'datecreated' => 'string',
+                        'datemodified' => 'string'
+                    ][$fieldName],
+                ];
+            } else {
+                $field = $storage->GetField($fieldName);
+            }
             if($field->type === 'json') {
                 foreach($fieldParams as $path => $value) {
                     $joinTables[] = '
@@ -142,7 +163,7 @@ class DataController extends WebController
                     }
                     $flts[] = (strstr($fieldName, 'json_') !== false ? $fieldName :
                         '{' . $fieldName . '}').' '.$eq.' [['.$fieldName.$index.':'.$field->param.']]';
-                    $params[$fieldName.$index] = $v;
+                    $params[$fieldName.$index] = $eq === 'like' ? '%' . $v . '%' : $v;
                 }
                 $filters[] = implode(' or ', $flts);
             }

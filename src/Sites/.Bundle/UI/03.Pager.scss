@@ -1,0 +1,46 @@
+.app-modules-sites-ui-pager {
+ 
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: auto;
+    [data-object-name="current-page"] {
+        flex: 0 0 30px;
+        padding: 0px;
+        border: 0px;
+        input {
+            text-align: center;
+        }
+    }
+
+    [data-object-name="max-pages"] {
+        line-height: 21px;
+    }
+
+    [data-object-name="left"], [data-object-name="right"] {
+        width: 32px;
+        height: 32px;
+        border-radius: 3px;
+        border: 1px solid #c0c0c0;
+        &.app-component-shown {
+            display: flex;
+        }
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        &.ui-disabled {
+            svg {
+                opacity: .3;
+            }
+        }
+
+    }
+    
+}

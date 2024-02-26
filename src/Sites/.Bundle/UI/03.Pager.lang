@@ -1,0 +1,4 @@
+sites-ui-pager-: {}
+sites-ui-pager-of:
+  ru: "из "
+  en: "of "

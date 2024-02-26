@@ -35,6 +35,22 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
     get value() {
         return super.value;
     }
+
+    /**
+     * Clear on every change of rows
+     * @type {Boolean}
+     */
+    get clearOnChange() {
+        return this._clearOnChange;
+    }
+    /**
+     * Clear on every change of rows
+     * @type {Boolean}
+     */
+    set clearOnChange(value) {
+        value = this._convertProperty('Boolean', value);
+        this._clearOnChange = value;
+    }
     
     __renderBoundedValues(data) {
 
@@ -53,6 +69,10 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         if(this._sortChanged) {
             this.ClearAllRows();
             this._sortChanged = false;
+        }
+
+        if(this._clearOnChange) {
+            this.ClearAllRows();
         }
 
         if(this._storage && this._storage?.fields && this._storageChanged) {
