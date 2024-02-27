@@ -9,6 +9,8 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._right = this.Children('right');
         this._maxPagesO = this.Children('max-pages');
         this._currentPage = this.Children('current-page');
+        this._reload = this.Children('reload');
+        
         
         this.maxPages = 1;
         this._affected = 1;
@@ -17,7 +19,15 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._left.AddHandler('Clicked', (event, args) => this.__leftClicked(event, args));
         this._right.AddHandler('Clicked', (event, args) => this.__rightClicked(event, args)); 
         this._currentPage.AddHandler(['Filled', 'Cleared'], (event, args) => this.__currentPageChanged(event, args));   
+        this._reload.AddHandler('Clicked', (event, args) => this.__reloadClicked(event, args));
 
+    }
+
+    __reloadClicked(event, args) {
+        if(!this.enabled) {
+            return;
+        }
+        this.Dispatch('Changed', {value: this.value});
     }
 
     /**
