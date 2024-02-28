@@ -14,10 +14,10 @@ sites-storages-buttons-adddata:
   ru: Добавить
   en: Add
 sites-storages-buttons-dublicatedata:
-  ru: Дублировать
+  ru: Дуб.
   en: Dublicate
 sites-storages-buttons-editdata:
-  ru: Редактировать
+  ru: Ред.
   en: Edit
 sites-storages-buttons-deletedata:
   ru: Удалить
@@ -65,5 +65,5 @@ sites-structure-filter:
   en: Rows filter
 sites-structure-deletedatas: {}
 sites-storages-buttons-exportdata:
-  ru: Выгрузить данные
-  en: Export data
+  ru: Выгрузить
+  en: Export
