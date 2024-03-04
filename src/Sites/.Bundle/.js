@@ -485,16 +485,49 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-    SaveField(module, storage, path, data) {
-        this.Call('Storages', 'SaveField', {module: module?.name ?? module, storage: storage?.name ?? storage, path: path, data: data})
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-saved}', Colibri.UI.Notice.Success, 3000));
-                Manage.Store.Reload('manage.storages', false);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+    _checkFieldExists(storage, pathTo) {
+        let fieldExistance = null;
+        const pathConverted = 'fieldExistance = storage.fields[\'' + pathTo.replaceAll('/', '\'].fields[\'') + '\'];';
+        try {
+            eval(pathConverted);
+        } catch(e) {
+            fieldExistance = null;
+        }
+
+        return !!fieldExistance;
+    }
+
+    SaveField(module, storage, pathTo, data) {
+        return new Promise((resolve, reject) => {
+            if(this._checkFieldExists(storage, pathTo)) {
+                App.Prompt.Show('#{sites-storages-messages-field-exists}', {
+                    name: {
+                        component: 'Text',
+                        default: data.name
+                    }
+                }, '#{sites-storages-messages-field-save}').then((newData) => {
+                    data.name = newData.name;
+                    pathTo = pathTo.replaceLastPart('/', newData.name);
+                    return this.SaveField(module, storage, pathTo, data);
+                }).catch(() => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-exist}'));
+                    console.error({message: '#{sites-storages-messages-field-exist}'});
+                    reject({message: '#{sites-storages-messages-field-exist}'});
+                });
+            } else {
+                this.Call('Storages', 'SaveField', {module: module?.name ?? module, storage: storage?.name ?? storage, path: pathTo, data: data})
+                    .then((response) => {
+                        App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-field-saved}', Colibri.UI.Notice.Success, 3000));
+                        Manage.Store.Reload('manage.storages', false);
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        App.Notices.Add(new Colibri.UI.Notice(error.result));
+                        console.error(error);
+                        reject(response);
+                    });
+            }
+        });
     }
 
     DeleteField(module, storage, path) {

@@ -49,3 +49,15 @@ sites-storages-messages-index-saved:
 sites-storages-messages-index-deleted:
   ru: Индекс удален
   en: Index deleted
+sites-storages-messages-field-exists:
+  ru: Поле существует, пожалуйста, переименуйте
+  en: Field exists, please rename
+  hy: Դաշտը գոյություն ունի, խնդրում ենք վերանվանել
+sites-storages-messages-field-save:
+  ru: Сохранить
+  en: Save
+  hy: Պահպանել
+sites-storages-messages-field-exist:
+  ru: Поле существует
+  en: Field exists
+  hy: Դաշտը արդեն գոյություն ունի

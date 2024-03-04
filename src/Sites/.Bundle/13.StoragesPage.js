@@ -1595,10 +1595,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             const data = this._copiedField;
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
             const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data);
-            
-            App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
-            this._copiedField = null;
+            Sites.SaveField(moduleNode.tag.entry, storageNode.tag.entry, this._getPath(node, data.name), data).then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
+                this._copiedField = null;
+            });
         }
         else if (menuData.name == 'new-field') {
             const moduleNode = node.FindParent((node) => node.tag.type === 'module');
