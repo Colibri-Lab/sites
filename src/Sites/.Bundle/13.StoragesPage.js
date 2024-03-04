@@ -7,6 +7,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         this._copiedField = null;
         this._storages = this.Children('storages-pane/storages');
+        this._storagesPane = this.Children('storages-pane');
+        this._storagesCannotchange = this.Children('storages-cannotchange');
+        
 
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
@@ -16,6 +19,17 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
         this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
         this._storages.sorting = true;    
+
+        App.Store.AsyncQuery('app.settings').then((settings) => {
+            if(settings.mode != 'local') {
+                this._storagesPane.shown = false;
+                this._storagesCannotchange.shown = true;
+            } else {
+                this._storagesPane.shown = true;
+                this._storagesCannotchange.shown = false;
+                this._storages.binding = 'app.manage.modules;app.manage.storages';
+            }
+        });
 
     }
 

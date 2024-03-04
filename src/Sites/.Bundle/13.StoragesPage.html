@@ -2,7 +2,11 @@
 
     <Pane name="storages-pane" shown="true">
         <H2 name="ttl" shown="true">#{sites-storagesmanager-title}</H2>
-        <StoragesManagerTree name="storages" shown="true" hasContextMenu="true" binding="app.manage.modules;app.manage.storages" expandOnClick="true"  />
+        <StoragesManagerTree name="storages" shown="true" hasContextMenu="true" expandOnClick="true"  />
+    </Pane>
+
+    <Pane shown="false" name="storages-cannotchange">
+        <H2 name="ttl" shown="true">#{sites-storagesmanager-cannotchange}</H2>
     </Pane>
 
 </div>

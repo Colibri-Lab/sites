@@ -799,3 +799,10 @@ sites-storages-fieldparams-hasscroll:
 sites-storages-fieldparams-hasscroll-note:
   ru: Ограничить список массива 500 пикселей и показать прокрутку
   en: Limit array list to 500px and show scrolling
+sites-storagesmanager-cannotchange:
+  ru: Структура хранилищь может быть изменена только в локальном режиме,
+    пожалуйста, обратитесь к администратору
+  hy: Պահպանման կառուցվածքը կարող է փոխվել միայն տեղական ռեժիմում, խնդրում ենք
+    դիմել ձեր ադմինիստրատորին
+  en: The storage structure can only be changed in local mode, please contact your
+    administrator
