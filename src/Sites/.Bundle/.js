@@ -497,9 +497,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         return !!fieldExistance;
     }
 
-    SaveField(module, storage, pathTo, data) {
+    SaveField(module, storage, pathTo, data, checkExistance = true) {
         return new Promise((resolve, reject) => {
-            if(this._checkFieldExists(storage, pathTo)) {
+            if(checkExistance && this._checkFieldExists(storage, pathTo)) {
                 App.Prompt.Show('#{sites-storages-messages-field-exists}', {
                     name: {
                         component: 'Text',
