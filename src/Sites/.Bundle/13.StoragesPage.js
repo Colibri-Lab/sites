@@ -549,6 +549,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
                                 components.push({ value: value.className, title: name, icon: value.icon });
                             });
+                            components.push({value: 'Colibri.UI.Forms.Hidden', title: 'Hidden'});
                             rs({ result: components });
                         });
                     },
