@@ -38,4 +38,4 @@ App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
     }
 }
 
-try{ MainFrame.RegisterWidget('storages-stats', App.Modules.Sites.Widgets.StoragesWidget); } catch(e) {}
+try{ MainFrame && MainFrame.RegisterWidget('storages-stats', App.Modules.Sites.Widgets.StoragesWidget); } catch(e) {}
