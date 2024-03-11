@@ -33,7 +33,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
         App.AddHandler('ApplicationReady', (event, args) => {
             this.Render(document.body);
-            this.Status();
+            // this.Status();
         });
         this._store.AddHandler('StoreLoaderCrushed', (event, args) => {
             if(args.status === 403) {
@@ -75,17 +75,18 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     /** API */
 
     Status(returnPromise = false) {
+        debugger;
         const promise = this.Call('Dashboard', 'Status');
         if(returnPromise) {
             return promise;
         }
         promise.then((response) => {
-                this._store.Set('sites.status', response.result);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });    
+            this._store.Set('sites.status', response.result);
+        })
+        .catch(error => {
+            App.Notices.Add(new Colibri.UI.Notice(error.result));
+            console.error(error);
+        });    
     }
 
     Check(current) {
