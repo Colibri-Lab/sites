@@ -75,7 +75,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     /** API */
 
     Status(returnPromise = false) {
-        debugger;
         const promise = this.Call('Dashboard', 'Status');
         if(returnPromise) {
             return promise;
