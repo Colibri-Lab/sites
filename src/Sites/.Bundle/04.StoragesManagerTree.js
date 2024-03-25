@@ -199,5 +199,27 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         }
 
     }
+
+    /**
+     * Value Array
+     * @type {Array}
+     */
+    get value() {
+        return this._value;
+    }
+    /**
+     * Value Array
+     * @type {Array}
+     */
+    set value(value) {
+        this._value = value;
+        this._showValue();
+    }
+    _showValue() {
+        this.nodes.Clear();
+        this._value.forEach((storage) => {
+            this._insertStorageNode(this, storage);
+        });
+    }
     
 }

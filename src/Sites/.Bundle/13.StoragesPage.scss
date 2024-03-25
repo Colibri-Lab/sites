@@ -18,5 +18,16 @@
         justify-content: center;
         
     }
+
+    [data-object-name="split"] {
+        .app-component-split-left {
+            flex: 0 0 25%;
+            height: 100%;
+        }
+        .app-component-split-right {
+            height: 100%;
+            padding-left: 10px;
+        }
+    }
     
 }

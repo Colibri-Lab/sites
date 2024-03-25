@@ -1,0 +1,16 @@
+.app-manager-module-list-component {
+    height: 100%;
+    [data-object-name="modules_group"] {
+        > div {
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            flex-direction: column;
+            gap: 0px;
+            .app-component-list-item:not(.disable-default) {
+                
+            }
+        }
+    }
+
+}

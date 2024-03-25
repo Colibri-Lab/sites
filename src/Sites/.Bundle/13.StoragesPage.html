@@ -2,7 +2,14 @@
 
     <Pane name="storages-pane" shown="true">
         <H2 name="ttl" shown="true">#{sites-storagesmanager-title}</H2>
-        <StoragesManagerTree name="storages" shown="true" hasContextMenu="true" expandOnClick="true"  />
+        <Split shown="true" name="split">
+            <Pane shown="true" name="left">
+                <ModulesManagerList shown="true" name="modules"></ModulesManagerList>
+            </Pane>
+            <Pane shown="true" name="right">
+                <StoragesManagerTree name="storages" shown="true" hasContextMenu="true" expandOnClick="true"  />
+            </Pane>
+        </Split>
     </Pane>
 
     <Pane shown="false" name="storages-cannotchange">
