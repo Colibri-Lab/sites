@@ -176,27 +176,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             data = Object.values(data);
         }
 
-        if(path.indexOf('.modules') !== -1) {
-            data.forEach((module) => {
-                const moduleNode = this._insertModuleNode(module);
-            });
-        }
-        else if(path.indexOf('.storages') !== -1) {
-
-            this._names.clear();
-            
-            data.forEach((storage) => {
-                const moduleNode = this.FindNode(storage.module);
-                const storageNode = this._insertStorageNode(moduleNode, storage);
-            });
-
-            for(const node of this._allNodes) {
-                if(node.tag.type !== 'module' && !this._names.has(node.name)) {
-                    node.Dispose();
-                }
-            }
-
-        }
+        this.value = data;
 
     }
 
@@ -217,9 +197,32 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
     _showValue() {
         this.nodes.Clear();
+        if(!this._module) {
+            return;
+        }
+
         this._value.forEach((storage) => {
-            this._insertStorageNode(this, storage);
+            if(storage.module === this._module) {
+                this._insertStorageNode(this, storage);
+            }    
         });
+    }
+
+
+    /**
+     * Module name
+     * @type {String}
+     */
+    get module() {
+        return this._module;
+    }
+    /**
+     * Module name
+     * @type {String}
+     */
+    set module(value) {
+        this._module = value;
+        this._showValue();
     }
     
 }

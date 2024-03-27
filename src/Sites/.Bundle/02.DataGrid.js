@@ -92,6 +92,16 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 dateCreatedColumn.sortable = true;
             }
 
+            if(this._storage.params.softdeletes && this._storage.params.deletedautoshow) {
+                let dateDeletedColumn = this.header.columns.Children('datedeleted');
+                if(!dateDeletedColumn) {
+                    dateDeletedColumn = this.header.columns.Add('datedeleted', '#{sites-structure-datagrid-deleted}', {width: '10%'});
+                    dateDeletedColumn.viewer = 'Colibri.UI.DateTimeViewer';
+                    dateDeletedColumn.resizable = true;
+                    dateDeletedColumn.sortable = true;
+                }   
+            }
+
             const intemplate = {};
             let column = null;
             Object.forEach(this._storage.fields, (name, field, index) => {

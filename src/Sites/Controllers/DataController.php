@@ -51,7 +51,10 @@ class DataController extends WebController
 
         $storage = Storages::Create()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
-
+        if($storage->isSoftDelete && $storage->isShowDeletedRows) {
+            $tableClass::SetFullSelect(true);
+        }
+        
         $filterFields = VariableHelper::ToJsonFilters($filterFields);
 
         $searchFilters = [];
@@ -200,6 +203,11 @@ class DataController extends WebController
         foreach ($datarows as $datarow) {
             $dataArray[] = $datarow->ToArray(true);
         }
+
+        if($storage->isSoftDelete && $storage->isShowDeletedRows) {
+            $tableClass::SetFullSelect(false);
+        }
+
         return $this->Finish(200, 'ok', $dataArray);
 
 

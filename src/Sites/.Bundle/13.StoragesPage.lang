@@ -806,3 +806,8 @@ sites-storagesmanager-cannotchange:
     դիմել ձեր ադմինիստրատորին
   en: The storage structure can only be changed in local mode, please contact your
     administrator
+sites-storages-storageadditional-showdeleted: {}
+sites-storages-storageadditional-deletedautoshow:
+  ru: Показывать удаленные записи в бэкенд-е
+  en: Show deleted items in backend
+  hy: Ցույց տալ ջնջված գրառումները

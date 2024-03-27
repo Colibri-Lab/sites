@@ -26,17 +26,26 @@ class StoragesController extends WebController
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
         if (!SecurityModule::$instance->current) {
-            throw new PermissionDeniedException('Permission denied', 403);
+            throw new PermissionDeniedException(
+                PermissionDeniedException::PermissionDeniedMessage,
+                PermissionDeniedException::PermissionDeniedCode
+            );
         }
 
         $module = $post->{'module'};
         if (!$module) {
-            throw new BadRequestException('Bad request', 400);
+            throw new BadRequestException(
+                BadRequestException::BadRequestExceptionMessage,
+                BadRequestException::BadRequestExceptionCode
+            );
         }
 
         $moduleObject = App::$moduleManager->$module;
         if (!$moduleObject) {
-            throw new BadRequestException('Bad request', 400);
+            throw new BadRequestException(
+                BadRequestException::BadRequestExceptionMessage,
+                BadRequestException::BadRequestExceptionCode
+            );
         }
 
         $data = $post->{'data'};
@@ -44,7 +53,10 @@ class StoragesController extends WebController
         if (!SecurityModule::$instance->current->IsCommandAllowed(
             'sites.storages.' . ($storage != null ? '.edit' : '.add')
         )) {
-            throw new PermissionDeniedException('Permission denied', 403);
+            throw new PermissionDeniedException(
+                PermissionDeniedException::PermissionDeniedMessage,
+                PermissionDeniedException::PermissionDeniedCode
+            );
         }
 
         $name = $data['name'];
