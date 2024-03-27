@@ -237,7 +237,13 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         
         contextmenu.push({name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate}', icon: Colibri.UI.ContextMenuDublicateIcon});
         contextmenu.push({name: 'edit-data', title: '#{sites-structure-contextmenu-edit}', icon: Colibri.UI.ContextMenuEditIcon});
-        contextmenu.push({name: 'remove-data', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon});
+
+        if(!args.item.value.datedeleted) {
+            contextmenu.push({name: 'remove-data', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon});
+        } else {
+            contextmenu.push({name: 'restore-data', title: '#{sites-structure-contextmenu-restore}', icon: Colibri.UI.ContextMenuRemoveIcon});
+        }
+
 
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
