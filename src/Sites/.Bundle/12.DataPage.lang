@@ -64,7 +64,9 @@ sites-datapage-notallowed:
 sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
-sites-structure-deletedatas: {}
+sites-structure-deletedatas:
+  ru: Удаление строк
+  en: Delete rows
 sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
@@ -73,3 +75,24 @@ sites-structure-contextmenu-restore:
   ru: Восстановить
   en: Restore
   hy: Վերականգնել
+sites-storages-buttons-restoredata:
+  ru: Восстановить
+  en: Restore
+sites-structure-restoredata:
+  ru: Восстановление данных
+  en: Restore data
+sites-structure-restoredatamessage:
+  ru: Вы уверены, что хотите восстановить выбранные строки?
+  en: Are you sure you want to restore the selected rows?
+sites-structure-restoredatamessage-delete:
+  ru: Восстановить!
+  en: Restore!
+sites-structure-restoredatas:
+  ru: Восстановление данных
+  en: Restore data
+sites-structure-restoredatasmessage:
+  ru: Вы уверены, что хотите восстановить выбранные строки?
+  en: Are you sure you want to restore the selected rows?
+sites-structure-restoredatasmessage-delete:
+  ru: Восстановить!
+  en: Restore!

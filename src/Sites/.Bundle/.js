@@ -306,9 +306,39 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 
                 let newData = [];
                 data.map((p) => {
-                    if(dataIds.indexOf(p.id) === -1) {
+                    if(storage.params.softdeletes && storage.params.deletedautoshow) {
+                        p.datedeleted = Date.Now();
                         newData.push(p);
+                    } else {
+                        if(dataIds.indexOf(p.id) === -1) {
+                            newData.push(p);
+                        }    
                     }
+                });
+                this._store.Set('sites.data', newData);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
+    RestoreData(storage, dataIds) {
+        this.Call('Data', 'Restore', {storage: storage.name, ids: dataIds.join(',')})
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-restored}', Colibri.UI.Notice.Success, 3000));
+
+                let data = this._store.Query('sites.data');
+                if(!data || !Array.isArray(data)) {
+                    data = [];
+                }
+                
+                let newData = [];
+                data.map((p) => {
+                    if(dataIds.indexOf(p.id) !== -1) {
+                        p.datedeleted = null;
+                    }
+                    newData.push(p);
                 });
                 this._store.Set('sites.data', newData);
             })

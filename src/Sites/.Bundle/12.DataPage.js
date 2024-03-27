@@ -15,6 +15,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._dublData = this.Children('split/data-pane/buttons-pane/dubl-data');
         this._editData = this.Children('split/data-pane/buttons-pane/edit-data');
         this._deleteData = this.Children('split/data-pane/buttons-pane/delete-data');
+        this._restoreData = this.Children('split/data-pane/buttons-pane/restore-data');
         this._exportData = this.Children('split/data-pane/buttons-pane/export-data');
         this._pagerData = this.Children('split/data-pane/buttons-pane/pager');
         
@@ -31,6 +32,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._data.AddHandler('ColumnClicked', (event, args) => this.__clickOnDataColumn(event, args));        
 
         this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
+        this._restoreData.AddHandler('Clicked', (event, args) => this.__restoreDataButtonClicked(event, args));
         this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
         this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
         this._dublData.AddHandler('Clicked', (event, args) => this.__dublDataButtonClicked(event, args));
@@ -131,6 +133,28 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
     __doubleClickedOnData(event, args) {
         this._editData.Dispatch('Clicked');
+    }
+
+    __restoreDataButtonClicked(event, args) {
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        if(!storage) {
+            return;
+        }
+        if(this._data.checked.length == 0) {
+            App.Confirm.Show('#{sites-structure-restoredata}', '#{sites-structure-restoredatamessage}', '#{sites-structure-restoredatamessage-delete}').then(() => {
+                Sites.RestoreData(storage, [this._data.selected?.value?.id]);
+            });
+        }
+        else {
+            App.Confirm.Show('#{sites-structure-restoredatas}', '#{sites-structure-restoredatasmessage}', '#{sites-structure-restoredatasmessage-delete}').then(() => {
+                let ids = [];
+                this._data.checked.forEach((row) => {
+                    ids.push(row.value.id);
+                });
+                Sites.RestoreData(storage, ids);
+            });
+        }
     }
 
     __deleteDataButtonClicked(event, args) {
@@ -244,7 +268,6 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             contextmenu.push({name: 'restore-data', title: '#{sites-structure-contextmenu-restore}', icon: Colibri.UI.ContextMenuRemoveIcon});
         }
 
-
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? {left: args.domEvent.clientX, top: args.domEvent.clientY} : null);
         
@@ -266,6 +289,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
         else if(menuData.name == 'remove-data') {
             this._deleteData.Dispatch('Clicked');
+        }
+        else if(menuData.name == 'restore-data') {
+            this._restoreData.Dispatch('Clicked');
         }
     }
 

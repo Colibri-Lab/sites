@@ -61,3 +61,6 @@ sites-storages-messages-field-exist:
   ru: Поле существует
   en: Field exists
   hy: Դաշտը արդեն գոյություն ունի
+sites-storages-messages-data-restored:
+  ru: Данные восстановлены
+  en: Data restored
