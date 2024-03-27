@@ -41,14 +41,17 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
 
     _insertStorageNode(moduleNode, storage) {
+       
+        let storageNode = this.FindNode(storage.name);
         if(!storage.params.visible) {
+            storageNode.Dispose();
             return null;
         }
-        this._names.set(storage.name, storage.name);
-        let storageNode = this.FindNode(storage.name);
         if(!storageNode) {
             storageNode = moduleNode.nodes.Add(storage.name);
         }
+
+        this._names.set(storage.name, storage.name);
         
         const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
         const desc = storage.desc[Lang.Current] ?? storage.desc;
@@ -196,8 +199,9 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         this._showValue();
     }
     _showValue() {
-        this.nodes.Clear();
+        
         if(!this._module) {
+            this.nodes.Clear();
             return;
         }
 
@@ -222,6 +226,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
      */
     set module(value) {
         this._module = value;
+        this.nodes.Clear();
         this._showValue();
     }
     
