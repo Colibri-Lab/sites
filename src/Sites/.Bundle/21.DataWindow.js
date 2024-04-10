@@ -28,16 +28,31 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnDataColumn(event, args) {
         this.__searchInputFilled(event, args);
     }
 
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dataScrolledToBottom(event, args) {
         const selected = this._storages.selected;
         this._loadDataPage(selected?.tag, this._searchInput.value, this._data.sortColumn?.name, this._data.sortOrder, this._dataCurrentPage + 1);
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __searchInputFilled(event, args) {
         const selected = this._storages.selected;
         if(!selected || (selected.tag === 'module' || selected.tag === 'group')) {
@@ -55,6 +70,11 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         Sites.LoadData(storage, searchTerm, sortField, sortOrder, page, 20);
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __storagesSelectionChanged(event, args) {
         const selection = this._storages.selected;
         if(!selection) {
@@ -73,12 +93,22 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dataSelectionChanged(event, args) {
         const checked = this._data.checked;
         const selected = this._data.selected;
         this._save.enabled = checked.length > 0 || !!selected;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __saveClicked(event, args) {
         const storage = this._storages.selected;
         const dataChecked = this._data.checked;

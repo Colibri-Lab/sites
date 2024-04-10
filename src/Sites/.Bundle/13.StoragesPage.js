@@ -42,6 +42,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return field.type === 'json';
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __modulesSelectionChanged(event, args) {
         const selected = this._modules.selected;
         if(!selected) {
@@ -57,6 +62,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __renderStoragesContextMenu(event, args) {
 
         let contextmenu = [];
@@ -1576,6 +1586,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return path;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnStoragesContextMenu(event, args) {
 
         const node = this._storages.selected;
@@ -1754,6 +1769,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __storagesDoubleClick(event, args) {
         const node = this._storages.selected;
         if (!node) {
@@ -1770,6 +1790,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dragDropOver(event, args) {
         const dragged = args.dragged;
         const droppedTo = args.droppedTo;
@@ -1801,6 +1826,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dragDropComplete(event, args) {
         
         const dragged = args.dragged;

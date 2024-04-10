@@ -8,6 +8,11 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this._sortData = {name: '', order: ''};
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnDataColumn(event, args) {
         this._sortChanged = JSON.stringify(this._sortData) != JSON.stringify({name: this.sortColumn?.name, order: this.sortOrder});
         this._sortData = {name: this.sortColumn?.name, order: this.sortOrder};

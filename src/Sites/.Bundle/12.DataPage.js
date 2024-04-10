@@ -63,6 +63,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
             .catch(() => {});
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __searchFilterClicked(event, args) {
         this._showFilters();
     }
@@ -74,6 +79,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     }
 
     
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __searchInputFilled(event, args) {
         const selected = this._storages.selected;
         if(!selected || (selected.tag === 'module' || selected.tag === 'group')) {
@@ -86,6 +96,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, 1);
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __storagesSelectionChanged(event, args) {
 
         const selection = this._storages.selected;
@@ -106,16 +121,21 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __pagerDataChanged(event, args) {
         const selected = this._storages.selected;
         this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._pagerData.value);        
     }
-    
-    // __dataScrolledToBottom(event, args) {
-    //     const selected = this._storages.selected;
-    //     this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._dataCurrentPage + 1);
-    // }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dataSelectionChanged(event, args) {
         const checked = this._data.checked;
         const selected = this._data.selected;
@@ -124,6 +144,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._deleteData.enabled = checked.length > 0 || !!selected;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __checkChangedOnData(event, args) { 
         const checked = this._data.checked;
         const selected = this._data.selected;
@@ -131,10 +156,20 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         this._deleteData.enabled = checked.length > 0 || !!selected;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __doubleClickedOnData(event, args) {
         this._editData.Dispatch('Clicked');
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __restoreDataButtonClicked(event, args) {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -157,6 +192,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __deleteDataButtonClicked(event, args) {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -179,6 +219,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __addDataButtonClicked(event, args) {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -200,6 +245,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __editDataButtonClicked(event, args) {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -221,6 +271,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dublDataButtonClicked(event, args) {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -244,6 +299,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __exportDataButtonClicked(event, args) {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -255,6 +315,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
     }
 
     
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __renderDataContextMenu(event, args) {
         let contextmenu = [];
         this._data.selected = args.item;
@@ -273,6 +338,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnDataContextMenu(event, args) {
 
         const item = args?.item;
@@ -295,6 +365,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnDataColumn(event, args) {
         this.__searchInputFilled(event, args);
     }

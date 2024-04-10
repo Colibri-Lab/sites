@@ -23,6 +23,11 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __reloadClicked(event, args) {
         if(!this.enabled) {
             return;
@@ -30,14 +35,17 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.Dispatch('Changed', {value: this.value});
     }
 
-    /**
-     * Register events
-     */
+    /** @protected */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('Changed', false, 'When page changed');
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __leftClicked(event, args) {
         if(!this._left.enabled) {
             return;
@@ -45,6 +53,11 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.value = this.value - 1;
         this.Dispatch('Changed', {value: this.value});
     }
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __rightClicked(event, args) {
         if(!this._right.enabled) {
             return;
@@ -53,6 +66,11 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.Dispatch('Changed', {value: this.value});
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __currentPageChanged(event, args) {
         if(!this.hasMaxPages || (this._currentPage.value >= 1 && this._currentPage.value <= this._maxPages)) {
             this.value = this._currentPage.value;

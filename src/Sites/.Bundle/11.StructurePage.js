@@ -41,6 +41,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __renderFoldersContextMenu(event, args) {
 
         let contextmenu = [];
@@ -76,6 +81,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnFoldersContextMenu(event, args) {
 
         const item = args?.item;
@@ -223,6 +233,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __renderPublicationsContextMenu(event, args) {
         let contextmenu = [];
         
@@ -234,6 +249,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __clickOnPublicationsContextMenu(event, args) {
 
         const item = args?.item;
@@ -250,6 +270,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __foldersDoubleClick(event, args) {
         const item = this._folders.selected;
         if(!item) {
@@ -289,6 +314,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dragDropOver(event, args) {
         const dragged = args.dragged;
         const droppedTo = args.droppedTo;
@@ -307,6 +337,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __dragDropComplete(event, args) {
 
         const dragged = args.dragged;
@@ -363,16 +398,31 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __searchInputFilled(event, args) {
         const selected = this._folders.selected;
         this._loadPublicationsPage(selected?.tag, this._searchInput.value, 1);
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __publicationsScrolledToBottom(event, args) {
         const selected = this._folders.selected;
         this._loadPublicationsPage(selected?.tag, this._searchInput.value, this._publicationsCurrentPage + 1);
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __selectionChangedOnFolder(event, args) {
 
         const selected = this._folders.selected;
@@ -390,6 +440,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __selectionChangedOnPublication(event, args) {
         const checked = this._publications.checked;
         const selected = this._publications.selected;
@@ -397,6 +452,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         this._deleteData.enabled = checked.length > 0 || !!selected;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __checkChangedOnPublications(event, args) { 
         const checked = this._publications.checked;
         const selected = this._publications.selected;
@@ -404,6 +464,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         this._deleteData.enabled = checked.length > 0 || !!selected;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __deleteDataButtonClicked(event, args) {
         if(this._publications.checked.length == 0) {
             App.Confirm.Show('#{sites-structure-messages-removepublication}', '#{sites-structure-messages-removepublicationmessage}', '#{sites-structure-messages-removepublicationmessage-delete}').then(() => {
@@ -421,6 +486,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __addDataButtonClicked(event, args) {
 
         Manage.Store.AsyncQuery('manage.storages').then((storages) => {
@@ -461,10 +531,20 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __doubleClickedOnPublication(event, args) {
         this._editData.Dispatch('Clicked');
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __editDataButtonClicked(event, args) {
         if(!this._publications.selected) {
             return;
@@ -491,6 +571,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         });
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __publishButtonClicked(event, args) {
 
         const wnd = new App.Modules.Sites.DataWindow('publish', document.body, '#{sites-structure-windowtitle-publish}');

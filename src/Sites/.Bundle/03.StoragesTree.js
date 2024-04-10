@@ -8,6 +8,11 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
 
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __thisNodeClicked(event, args) {
         // if(args.item.tag === 'module') {
         args.item.Expand();
