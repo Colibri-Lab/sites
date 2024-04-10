@@ -57,7 +57,14 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this._clearOnChange = value;
     }
     
-    __renderBoundedValues(data) {
+
+    /**
+     * Render bounded to component data
+     * @protected
+     * @param {*} data 
+     * @param {String} path 
+     */
+    __renderBoundedValues(data, path) {
 
         if(!data) {
             data = [];

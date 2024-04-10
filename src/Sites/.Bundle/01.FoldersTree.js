@@ -87,9 +87,15 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
                 node.Dispose();
             }
         });
-    }
+    } 
 
-    __renderBoundedValues(data) {
+    /**
+     * Render bounded to component data
+     * @protected
+     * @param {*} data 
+     * @param {String} path 
+     */
+    __renderBoundedValues(data, path) {
 
         Promise.all([
             Sites.Store.AsyncQuery('sites.domains'),

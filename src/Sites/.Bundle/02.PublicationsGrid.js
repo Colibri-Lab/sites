@@ -1,6 +1,13 @@
 App.Modules.Sites.PublicationsGrid = class extends Colibri.UI.Grid {
  
-    __renderBoundedValues(data) {
+
+    /**
+     * Render bounded to component data
+     * @protected
+     * @param {*} data 
+     * @param {String} path 
+     */
+    __renderBoundedValues(data, path) {
 
         if(!data) {
             data = [];
