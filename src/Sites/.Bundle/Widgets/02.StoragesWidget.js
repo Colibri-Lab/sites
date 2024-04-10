@@ -16,6 +16,11 @@ App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
 
     }
 
+    /**
+     * @protected
+     * @param {Array<Operation>} data 
+     * @param {String} path 
+     */
     __renderBoundedValues(data, path) {
         if(!data) {
             return;

@@ -17,6 +17,11 @@ App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
 
     }
 
+    /**
+     * @protected
+     * @param {Array<Operation>} data 
+     * @param {String} path 
+     */
     __renderBoundedValues(data, path) {
         
         if(!data) {

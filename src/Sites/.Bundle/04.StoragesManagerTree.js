@@ -169,6 +169,11 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
 
 
+    /**
+     * @protected
+     * @param {Array<Operation>} data 
+     * @param {String} path 
+     */
     __renderBoundedValues(data, path) {
         
         if(!data) {
