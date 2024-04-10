@@ -554,7 +554,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                     .catch(error => {
                         App.Notices.Add(new Colibri.UI.Notice(error.result));
                         console.error(error);
-                        reject(response);
+                        reject(error);
                     });
             }
         });
