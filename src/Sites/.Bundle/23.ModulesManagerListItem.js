@@ -6,9 +6,21 @@ App.Modules.Sites.ModulesManagerListItem = class extends Colibri.UI.Pane {
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.ModulesManagerListItem']);
         this.AddClass('app-manager-module-list-item-component');
         
-        this._ttl = this.Children('ttl2');
-        this._nam = this.Children('nam');
-        
+        this._ttl = this.Children('container/ttl2');
+        this._nam = this.Children('container/nam');
+        this.hasContextMenu = true;
+
+        this.AddHandler('ContextMenuIconClicked', (event, args) => this.__thisContextMenuItemClicked(event, args));
+
+    }
+
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
+    __thisContextMenuItemClicked(event, args) {
+        this.parent.Dispatch('ContextMenuIconClicked', args);
     }
 
     /**
@@ -28,7 +40,7 @@ App.Modules.Sites.ModulesManagerListItem = class extends Colibri.UI.Pane {
     }
     _showValue() {
         this._ttl.value = this._value.desc;
-        this._nam.value = this._value.name
+        this._nam.value = this._value.name;
     }
 
 }

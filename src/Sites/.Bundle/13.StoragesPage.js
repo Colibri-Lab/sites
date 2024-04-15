@@ -13,6 +13,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         this._modules = this.Children('storages-pane/split/left/modules');
         
 
+        this._modules.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderModulesContextMenu(event, args))
+        this._modules.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnModulesContextMenu(event, args));
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
         this._storages.AddHandler('DoubleClicked', (event, args) => this.__storagesDoubleClick(event, args));
@@ -60,6 +62,19 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             //     this._storages.value = storagesList;
             // });
         }
+    }
+
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
+    __renderModulesContextMenu(event, args) {
+        let contextmenu = [];
+        contextmenu.push({ name: 'new-storage', title: '#{sites-storages-contextmenu-add}', icon: Colibri.UI.ContextMenuAddIcon });
+        args.item.contextmenu = contextmenu;
+        args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
+
     }
 
     /**
@@ -1584,6 +1599,38 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         add && paths.push(add);
         let path = paths.join('/').trim(/\//);
         return path;
+    }
+
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
+    __clickOnModulesContextMenu(event, args) {
+        const item = this._modules.selected;
+        if(!item) {
+            return false;
+        }
+
+        const menuData = args.menuData;
+        if (!menuData) {
+            return false;
+        }
+
+        if (menuData.name == 'new-storage') {
+            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
+            if (Security.IsCommandAllowed('sites.storages.add')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newstorage}', 800, this._storageFields(), {})
+                    .then((data) => {
+                        Sites.SaveStorage(moduleNode.value, data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
+        
     }
 
     /**
