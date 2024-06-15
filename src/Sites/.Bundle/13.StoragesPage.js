@@ -894,6 +894,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Checkbox',
                             default: true
                         },
+                        displayed_columns: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-displayed_columns}',
+                            note: '#{sites-storages-fieldparams-displayed_columns-note}',
+                            component: 'Text',
+                            default: ''
+                        },
                         maxadd: {
                             type: 'int',
                             component: 'Number',
@@ -1017,7 +1024,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     },
                                     lookup: (term, dependsValue, dependsField, obj) => {
                                         return new Promise((rs, rj) => {
-                                            console.log(moduleNode);
                                             Manage.Store.AsyncQuery('manage.storages').then((storages) => {
                                                 rs({ 
                                                     result: Object.values(storages)
@@ -1311,6 +1317,17 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Text',
                             desc: '#{sites-storages-fieldselector-chooser-desc}',
                         }
+                    }
+                },
+                tag: {
+                    type: 'json',
+                    component: 'KeyValueObject',
+                    group: '#{sites-storages-fieldtag-group}',
+                    desc: '#{sites-storages-fieldtag}',
+                    params: {
+                        simplearrayheight: 1,
+                        simplearraywidth: 1,
+                        initempty: false
                     }
                 }
 

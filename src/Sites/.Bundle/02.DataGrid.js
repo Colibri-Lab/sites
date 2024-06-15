@@ -21,16 +21,16 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
     set storage(value) {
         if(value === null) {
             this._storageChanged = true;
-            this._storage = null;    
+            this._storageObject = null;    
         }
         else {
-            this._storageChanged = this._storage?.name != value.name;
-            this._storage = value;
+            this._storageChanged = this._storageObject?.name != value.name;
+            this._storageObject = value;
         }
     }
 
     get storage() {
-        return this._storage;
+        return this._storageObject;
     }
 
     set value(value) {
@@ -87,7 +87,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             this.ClearAllRows();
         }
 
-        if(this._storage && this._storage?.fields && this._storageChanged) {
+        if(this._storageObject && this._storageObject?.fields && this._storageChanged) {
                 
             let idColumn = this.header.columns.Children('id');
             if(!idColumn) {
@@ -104,7 +104,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 dateCreatedColumn.sortable = true;
             }
 
-            if(this._storage.params.softdeletes && this._storage.params.deletedautoshow) {
+            if(this._storageObject.params.softdeletes && this._storageObject.params.deletedautoshow) {
                 let dateDeletedColumn = this.header.columns.Children('datedeleted');
                 if(!dateDeletedColumn) {
                     dateDeletedColumn = this.header.columns.Add('datedeleted', '#{sites-structure-datagrid-deleted}', {width: '10%'});
@@ -116,7 +116,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
             const intemplate = {};
             let column = null;
-            Object.forEach(this._storage.fields, (name, field, index) => {
+            Object.forEach(this._storageObject.fields, (name, field, index) => {
                 if(field.params?.template === true) {
                     intemplate[name] = field;
                 }
@@ -147,8 +147,8 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
             if(Object.countKeys(intemplate) > 0) {
                 this.rowTemplateComponent = 'App.Modules.Sites.UI.DataGridRowTemplateComponent';
-                Object.forEach(this._storage.params.template_args, (key, val) => !val ? (delete this._storage.params.template_args[key]) : null);
-                this.rowTemplateAttrs = Object.assign({rows: 'max-content', columns: 3, orientation: 'hr', gap: '0px 0px', flow: 'row'}, this._storage.params.template_args, {fields: intemplate});
+                Object.forEach(this._storageObject.params.template_args, (key, val) => !val ? (delete this._storageObject.params.template_args[key]) : null);
+                this.rowTemplateAttrs = Object.assign({rows: 'max-content', columns: 3, orientation: 'hr', gap: '0px 0px', flow: 'row'}, this._storageObject.params.template_args, {fields: intemplate});
             } else {
                 this.rowTemplateComponent = null;
             }

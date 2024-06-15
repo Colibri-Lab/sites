@@ -259,7 +259,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component
         }
 
         if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+            Manage.FormWindow.Show('#{sites-structure-editrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
                 .then((data) => {
                     Sites.SaveData(storage.name, data);
                 })

@@ -811,3 +811,16 @@ sites-storages-storageadditional-deletedautoshow:
   ru: Показывать удаленные записи в бэкенд-е
   en: Show deleted items in backend
   hy: Ցույց տալ ջնջված գրառումները
+sites-storages-fieldtag-group:
+  ru: Тэги
+  en: Tags
+sites-storages-fieldtag:
+  en: Tags
+  ru: Тэги
+sites-storages-fieldtag-note: {}
+sites-storages-fieldparams-displayed_columns:
+  ru: Список отображаемых в списке полей
+  en: Grid columns for ArrayGrid
+sites-storages-fieldparams-displayed_columns-note:
+  ru: Работает только с полями типа ArrayGrid
+  en: Works only with ArrayGrid

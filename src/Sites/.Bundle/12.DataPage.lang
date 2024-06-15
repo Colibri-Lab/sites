@@ -96,3 +96,7 @@ sites-structure-restoredatasmessage:
 sites-structure-restoredatasmessage-delete:
   ru: Восстановить!
   en: Restore!
+sites-structure-editrow:
+  ru: Редактирование строки
+  en: Edit row
+  hy: Խմբագրում
