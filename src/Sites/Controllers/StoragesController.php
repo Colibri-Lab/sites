@@ -157,7 +157,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Create()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }

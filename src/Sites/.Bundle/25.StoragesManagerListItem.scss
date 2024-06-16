@@ -1,0 +1,17 @@
+.app-manager-storage-list-item-component {
+
+    [data-object-name="ttl"] {
+        &.app-component-shown {
+            display: block
+        }
+    }
+
+    [data-object-name="nam"] {
+        &.app-component-shown {
+            display: block
+        }
+    }
+
+    padding: 20px;
+
+}

@@ -9,6 +9,7 @@ App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
         this._names = new Map();
         this.removeHiddenNodes = true;
 
+        this.idField = 'name';
         this.AddClass('-has-search');
         this.rendererComponent = 'App.Modules.Sites.ModulesManagerListItem';
 

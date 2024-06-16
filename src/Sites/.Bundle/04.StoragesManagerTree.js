@@ -40,28 +40,28 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return moduleNode;
     }
 
-    _insertStorageNode(moduleNode, storage) {
+    _insertStorageNode(storageNode, storage) {
        
-        let storageNode = this.FindNode(storage.name);
-        if(!storage.params.visible) {
-            storageNode.Dispose();
-            return null;
-        }
-        if(!storageNode) {
-            storageNode = moduleNode.nodes.Add(storage.name);
-        }
+        // let storageNode = this.FindNode(storage.name);
+        // if(!storage.params.visible) {
+        //     storageNode.Dispose();
+        //     return null;
+        // }
+        // if(!storageNode) {
+        //     storageNode = moduleNode.nodes.Add(storage.name);
+        // }
 
-        this._names.set(storage.name, storage.name);
+        // this._names.set(storage.name, storage.name);
         
-        const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
-        const desc = storage.desc[Lang.Current] ?? storage.desc;
+        // const group = (storage.group ? ((storage.group[Lang.Current] ?? storage.group) + ': ') : '');
+        // const desc = storage.desc[Lang.Current] ?? storage.desc;
 
-        storageNode.text = group + desc + ' (' + storage.name + ')';
-        storageNode.isLeaf = Object.countKeys(storage.fields) == 0;
-        storageNode.icon = App.Modules.Sites.Icons.StorageIcon;
-        storageNode.tag.entry = storage;
-        storageNode.tag.type = 'storage';
-        storageNode.isLeaf = false;
+        // storageNode.text = group + desc + ' (' + storage.name + ')';
+        // storageNode.isLeaf = Object.countKeys(storage.fields) == 0;
+        // storageNode.icon = App.Modules.Sites.Icons.StorageIcon;
+        // storageNode.tag.entry = storage;
+        // storageNode.tag.type = 'storage';
+        // storageNode.isLeaf = false;
 
         this._names.set(storage.name + '_fields', storage.name + '_fields');
         let fieldsNode = this.FindNode(storage.name + '_fields');
@@ -90,7 +90,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         this._insertFieldIndexes(indicesNode, storage);
 
 
-        moduleNode.isLeaf = false;
+        // moduleNode.isLeaf = false;
 
         return storageNode;
     }
@@ -178,62 +178,44 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     __renderBoundedValues(data, path) {
         
         if(!data) {
-            return;
-        }
-
-        if(Object.isObject(data)) {
-            data = Object.values(data);
-        }
-
-        this.value = data;
-
-    }
-
-    /**
-     * Value Array
-     * @type {Array}
-     */
-    get value() {
-        return this._value;
-    }
-    /**
-     * Value Array
-     * @type {Array}
-     */
-    set value(value) {
-        this._value = value;
-        this._showValue();
-    }
-    _showValue() {
-        
-        if(!this._module) {
             this.nodes.Clear();
             return;
         }
 
-        this._value.forEach((storage) => {
-            if(storage.module === this._module) {
-                this._insertStorageNode(this, storage);
-            }    
-        });
+        if(Object.countKeys(data) === 0) {
+            this.nodes.Clear();
+            return;
+        }
+
+        this._storageObject = data;
+        this._insertStorageNode(this, data);
+
     }
 
 
     /**
-     * Module name
-     * @type {String}
+     * Storage object
+     * @type {Object}
      */
-    get module() {
-        return this._module;
+    get storage() {
+        return this._storageObject;
     }
     /**
-     * Module name
-     * @type {String}
+     * Storage object
+     * @type {Object}
      */
-    set module(value) {
-        this._module = value;
-        this.nodes.Clear();
-        this._showValue();
+    set storage(value) {
+
+        this._storageObject = value;
+        if(value) {
+            this.binding = 'app.manage.storages.' + this._storageObject.name; 
+            this.nodes.Clear();
+            this._insertStorageNode(this, this._storageObject);
+        } else {
+            this.nodes.Clear();
+        }
+
+  
     }
     
 }

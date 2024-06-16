@@ -824,3 +824,7 @@ sites-storages-fieldparams-displayed_columns:
 sites-storages-fieldparams-displayed_columns-note:
   ru: Работает только с полями типа ArrayGrid
   en: Works only with ArrayGrid
+sites-storages-contextmenu-copyfieldwithchilds:
+  ru: Скопировать все дерево
+  en: Copy with childs
+  hy: Պատճենել ամբողճը

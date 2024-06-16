@@ -19,15 +19,56 @@
         
     }
 
+    [data-object-name="modules"] {
+        height: 100%;
+        overflow: auto;
+    }
+
     [data-object-name="split"] {
-        .app-component-split-left {
+        width: 100%;
+        height: 100%;
+        > .app-component-split-left {
             flex: 0 0 25%;
             height: 100%;
+            overflow: auto;
+            [data-object-name="split2"] {
+                width: 100%;
+                height: 100%;
+                > .app-component-split-left {
+                    flex: 0 0 50%;
+                    height: 100%;
+                    overflow: auto;
+                }
+                > .app-component-split-right {
+                    height: 100%;
+                    padding-left: 10px;
+                    overflow: auto;
+                    [data-object-name="right"] {
+                        overflow: auto;
+                    }
+                }
+                > .app-component-split-handler {
+                    height: 100%;
+                }
+            }        
         }
-        .app-component-split-right {
+        > .app-component-split-right {
             height: 100%;
-            padding-left: 10px;
+            padding-top: 10px;
+            overflow: auto;
+        }
+        > .app-component-split-handler {
+            width: 100%;
         }
     }
+
+    [data-object-name="left"] {
+        overflow: auto;
+    }
+
+    [data-object-name="bottom"] {
+        overflow: auto;
+    }
+
     
 }

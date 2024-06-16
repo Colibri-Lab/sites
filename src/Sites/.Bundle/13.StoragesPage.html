@@ -2,12 +2,17 @@
 
     <Pane name="storages-pane" shown="true">
         <H2 name="ttl" shown="true">#{sites-storagesmanager-title}</H2>
-        <Split shown="true" name="split">
-            <Pane shown="true" name="left">
-                <ModulesManagerList shown="true" name="modules"></ModulesManagerList>
-            </Pane>
-            <Pane shown="true" name="right">
-                <StoragesManagerTree name="storages" shown="true" hasContextMenu="true" expandOnClick="true"  />
+        <Split shown="true" name="split" orientation="horizontal">
+            <Split shown="true" name="split2" orientation="vertical">
+                <Pane shown="true" name="left">
+                    <ModulesManagerList shown="true" name="modules"></ModulesManagerList>
+                </Pane>
+                <Pane shown="true" name="right">
+                    <StoragesManagerList shown="true" name="storages"></StoragesManagerList>
+                </Pane>
+            </Split>
+            <Pane shown="true" name="bottom">
+                <StoragesManagerTree name="storage" shown="true" hasContextMenu="true" expandOnClick="true"  />
             </Pane>
         </Split>
     </Pane>

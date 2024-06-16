@@ -9,22 +9,27 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         this._storagesPane = this.Children('storages-pane');
         this._storagesCannotchange = this.Children('storages-cannotchange');
 
-        this._storages = this.Children('storages-pane/split/right/storages');
-        this._modules = this.Children('storages-pane/split/left/modules');
+        this._modules = this.Children('left/modules');
+        this._storages = this.Children('right/storages');
+        this._storage = this.Children('bottom/storage');
         
 
         this._modules.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderModulesContextMenu(event, args))
         this._modules.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnModulesContextMenu(event, args));
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
-        this._storages.AddHandler('DoubleClicked', (event, args) => this.__storagesDoubleClick(event, args));
+        this._storage.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStorageContextMenu(event, args))
+        this._storage.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStorageContextMenu(event, args));
+
+        this._storage.AddHandler('DoubleClicked', (event, args) => this.__storagesDoubleClick(event, args));
 
         this._modules.AddHandler('SelectionChanged', (event, args) => this.__modulesSelectionChanged(event, args)); 
+        this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args)); 
 
-        this._dragManager = new Colibri.UI.DragManager([this._storages], [this._storages]);
-        this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
-        this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
-        this._storages.sorting = true;    
+        // this._dragManager = new Colibri.UI.DragManager([this._storages], [this._storages]);
+        // this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
+        // this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
+        // this._storages.sorting = true;    
 
         App.Store.AsyncQuery('app.settings').then((settings) => {
             if(settings.mode != 'local') {
@@ -34,7 +39,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 this._storagesPane.shown = true;
                 this._storagesCannotchange.shown = false;
                 this._modules.binding = 'app.manage.modules';
-                this._storages.binding = 'app.manage.storages';
+                // this._storages.binding = 'app.manage.storages';
+                // this._storage.binding = 'app.manage.storages';
             }
         });
 
@@ -52,15 +58,22 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     __modulesSelectionChanged(event, args) {
         const selected = this._modules.selected;
         if(!selected) {
-            this._storages.value = null;
+            this._storages.module = null;
+            this._storage.storage = null;
         } else {
-
+            this._storage.storage = null;
             const module = selected.value;
-            this._storages.module = module.name;
-            // App.Store.AsyncQuery('app.manage.storages').then(storages => {
-            //     const storagesList = Object.values(storages).filter(v => v.module == module.name);
-            //     this._storages.value = storagesList;
-            // });
+            this._storages.module = module;
+        }
+    }
+
+    __storagesSelectionChanged(event, args) {
+        const selected = this._storages.selected;
+        if(!selected) {
+            this._storage.storage = null;
+        } else {
+            const storage = selected.value;
+            this._storage.storage = storage;
         }
     }
 
@@ -86,19 +99,24 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         let contextmenu = [];
 
+        contextmenu.push({ name: 'edit-storage', title: '#{sites-storages-contextmenu-editfields}', icon: Colibri.UI.ContextMenuEditIcon });
+        contextmenu.push({ name: 'remove-storage', title: '#{sites-storages-contextmenu-remove}', icon: Colibri.UI.ContextMenuRemoveIcon });
+        contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
+        contextmenu.push({ name: 'new-index', title: '#{sites-storages-contextmenu-newindex}', icon: Colibri.UI.ContextMenuAddIcon });
+
+        args.item.contextmenu = contextmenu;
+        args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
+
+    }
+
+    __renderStorageContextMenu(event, args) {
+
+        let contextmenu = [];
+
         const node = args.item;
         const tag = node.tag;
         const nodeType = tag.type;
         switch (nodeType) {
-            case 'module':
-                contextmenu.push({ name: 'new-storage', title: '#{sites-storages-contextmenu-add}', icon: Colibri.UI.ContextMenuAddIcon });
-                break;
-            case 'storage':
-                contextmenu.push({ name: 'edit-storage', title: '#{sites-storages-contextmenu-editfields}', icon: Colibri.UI.ContextMenuEditIcon });
-                contextmenu.push({ name: 'remove-storage', title: '#{sites-storages-contextmenu-remove}', icon: Colibri.UI.ContextMenuRemoveIcon });
-                contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
-                contextmenu.push({ name: 'new-index', title: '#{sites-storages-contextmenu-newindex}', icon: Colibri.UI.ContextMenuAddIcon });
-                break;
             case 'fields':
                 contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
                 contextmenu.push({ name: 'new-virtual-field', title: '#{sites-storages-contextmenu-newvirtualfield}', icon: Colibri.UI.ContextMenuAddIcon });
@@ -1657,8 +1675,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
      */ 
     __clickOnStoragesContextMenu(event, args) {
 
-        const node = this._storages.selected;
-        if (!node) {
+        const module = this._modules.selected;
+        if(!module) {
+            return false;
+        }
+
+        const storage = this._storages.selected;
+        if (!storage) {
             return false;
         }
 
@@ -1667,30 +1690,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             return false;
         }
 
-        if (menuData.name == 'new-storage') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            if (Security.IsCommandAllowed('sites.storages.add')) {
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newstorage}', 800, this._storageFields(), {})
-                    .then((data) => {
-                        Sites.SaveStorage(moduleNode.value, data);
-                    })
-                    .catch(() => { });
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
-            }
-        }
-        else if (menuData.name == 'edit-storage') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
+        if (menuData.name == 'edit-storage') {
             if (Security.IsCommandAllowed('sites.storages.edit')) {
-                const storageData = node.tag.entry;
-                if(storageData.group) {
-                    storageData.group_enabled = true;
+                if(storage.value.group) {
+                    storage.value.group_enabled = true;
                 }
-                console.log(storageData);
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editstorage}', 800, this._storageFields(), storageData)
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-editstorage}', 800, this._storageFields(), storage.value)
                     .then((data) => {
-                        Sites.SaveStorage(moduleNode.value, data);
+                        Sites.SaveStorage(module.value, data);
                     })
                     .catch(() => { });
             }
@@ -1700,33 +1707,19 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-storage') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            App.Confirm.Show('#{sites-storages-messages-removestorage}', '#{sites-storages-messages-removestoragemessage}', '#{sites-storages-messages-removestoragemessage-delete}').then(() => {
-                Sites.DeleteStorage(moduleNode.value, node.tag.entry);
-            });
-        }
-        else if (menuData.name == 'copy-field') {
-            if(node.tag.type === 'field') {
-                this._copiedField = node.tag.entry;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldcopied}', Colibri.UI.Notice.Success, 5000));
-            }
-        }
-        else if (menuData.name == 'paste-field') {
-            const data = this._copiedField;
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            Sites.SaveField(moduleNode.value, storageNode.tag.entry, this._getPath(node, data.name), data, true).then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
-                this._copiedField = null;
+            App.Confirm.Show(
+                '#{sites-storages-messages-removestorage}',
+                '#{sites-storages-messages-removestoragemessage}',
+                '#{sites-storages-messages-removestoragemessage-delete}'
+            ).then(() => {
+                Sites.DeleteStorage(module.value, storage.value);
             });
         }
         else if (menuData.name == 'new-field') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) { // node.tag.type === 'fields'
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, moduleNode.value), {})
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {})
                     .then((data) => {
-                        Sites.SaveField(moduleNode.value, storageNode.tag.entry, this._getPath(node, data.name), data, true);
+                        Sites.SaveField(module.value, storage.value, data.name, data, true);
                     })
                     .catch(() => { });
             }
@@ -1735,13 +1728,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-virtual-field') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {})
                     .then((data) => {
                         data.virtual = true;
-                        Sites.SaveField(moduleNode.value, storageNode.tag.entry, this._getPath(node, data.name), data, true);
+                        Sites.SaveField(module.value, storage.value, data.name, data, true);
                     })
                     .catch(() => { });
             }
@@ -1749,10 +1740,82 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
         }
+        else if (menuData.name == 'new-index') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
+                    .then((data) => {
+                        Sites.SaveIndex(module.value, storage.value, data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
+
+    }
+
+    __clickOnStorageContextMenu(event, args) {
+        const module = this._modules.selected;
+        if(!module) {
+            return;
+        }
+
+        const storage = this._storages.selected;
+        if(!storage) {
+            return;
+        }
+
+        const node = this._storage.selected;
+        if (!node) {
+            return false;
+        }
+
+        const menuData = args.menuData;
+        if (!menuData) {
+            return false;
+        }
+
+        if (menuData.name == 'copy-field') {
+            if(node.tag.type === 'field') {
+                this._copiedField = node.tag.entry;
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldcopied}', Colibri.UI.Notice.Success, 5000));
+            }
+        }
+        else if (menuData.name == 'new-field') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {})
+                    .then((data) => {
+                        Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
+        else if (menuData.name == 'new-virtual-field') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {})
+                    .then((data) => {
+                        data.virtual = true;
+                        Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
+        else if (menuData.name == 'paste-field') {
+            const data = this._copiedField;
+            Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
+                this._copiedField = null;
+            });
+        }
         else if (menuData.name == 'edit-field') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
                 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -1764,11 +1827,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 // node.parentNode.tag.type === 'fields'
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editproperty}', 1024, fieldData.virtual ? this._fieldVirtualFields(moduleNode.value) : this._fieldFields(true, moduleNode.value), fieldData)
-                    .then((data) => {
-                        Sites.SaveField(moduleNode.value, storageNode.tag.entry, this._getPath(node), data, false);
-                    })
-                    .catch(() => { });
+                Manage.FormWindow.Show(
+                    '#{sites-storages-windowtitle-editproperty}', 
+                    1024, 
+                    fieldData.virtual ? this._fieldVirtualFields(module.value) : this._fieldFields(true, module.value), 
+                    fieldData
+                ).then((data) => {
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), data, false);
+                })
+                .catch(() => { });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -1776,12 +1843,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-field') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            const selectedNode = this.selected;
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                App.Confirm.Show('#{sites-storages-messages-removeproperty}', '#{sites-storages-messages-removepropertymessage}', '#{sites-storages-messages-removepropertymessage-delete}').then(() => {
-                    Sites.DeleteField(moduleNode.value, storageNode.tag.entry, this._getPath(node));
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                App.Confirm.Show(
+                    '#{sites-storages-messages-removeproperty}', 
+                    '#{sites-storages-messages-removepropertymessage}', 
+                    '#{sites-storages-messages-removepropertymessage-delete}'
+                ).then(() => {
+                    Sites.DeleteField(module.value, storage.value, this._getPath(node));
                 });
             }
             else {
@@ -1789,27 +1857,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
 
         }
-        else if (menuData.name == 'new-index') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.indexes')) {
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storageNode.tag.entry.name), {})
-                    .then((data) => {
-                        Sites.SaveIndex(moduleNode.value, storageNode.tag.entry, data);
-                    })
-                    .catch(() => { });
-            }
-            else {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
-            }
-        }
         else if (menuData.name == 'edit-index') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.indexes')) {
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-editindex}', 800, this._fieldIndex(storageNode.tag.entry.name), node.tag.entry)
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-editindex}', 800, this._fieldIndex(storage.value.name), node.tag.entry)
                     .then((data) => {
-                        Sites.SaveIndex(moduleNode.value, storageNode.tag.entry, data);
+                        Sites.SaveIndex(storage.value, storage.value, data);
                     })
                     .catch(() => { });
             }
@@ -1819,17 +1871,30 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-index') {
-            const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
-            const storageNode = node.FindParent((node) => node.tag.type === 'storage');
-            if (Security.IsCommandAllowed('sites.storages.' + storageNode.tag.entry.name + '.fields')) {
-                App.Confirm.Show('#{sites-storages-messages-removeindex}', '#{sites-storages-messages-removeindexmessage}', '#{sites-storages-messages-removeindexmessage-delete}').then(() => {
-                    Sites.DeleteIndex(moduleNode.value, storageNode.tag.entry, node.tag.entry);
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                App.Confirm.Show(
+                    '#{sites-storages-messages-removeindex}', 
+                    '#{sites-storages-messages-removeindexmessage}', 
+                    '#{sites-storages-messages-removeindexmessage-delete}'
+                ).then(() => {
+                    Sites.DeleteIndex(module.value, storage.value, node.tag.entry);
                 });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
+        } else if (menuData.name == 'new-index') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
+                    .then((data) => {
+                        Sites.SaveIndex(module.value, storage.value, data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
         }
     }
 
