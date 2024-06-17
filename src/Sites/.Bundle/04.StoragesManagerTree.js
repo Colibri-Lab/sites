@@ -176,7 +176,6 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
      * @param {String} path 
      */
     __renderBoundedValues(data, path) {
-        
         if(!data) {
             this.nodes.Clear();
             return;
@@ -205,13 +204,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
      * @type {Object}
      */
     set storage(value) {
-
         this._storageObject = value;
         if(value) {
             this.binding = 'app.manage.storages.' + this._storageObject.name; 
             this.nodes.Clear();
             this._insertStorageNode(this, this._storageObject);
         } else {
+            this.binding = null; 
             this.nodes.Clear();
         }
 
