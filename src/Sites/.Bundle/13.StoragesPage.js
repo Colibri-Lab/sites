@@ -26,10 +26,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         this._modules.AddHandler('SelectionChanged', (event, args) => this.__modulesSelectionChanged(event, args)); 
         this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args)); 
 
-        // this._dragManager = new Colibri.UI.DragManager([this._storages], [this._storages]);
-        // this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
-        // this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
-        // this._storages.sorting = true;    
+        this._dragManager = new Colibri.UI.DragManager([this._storage], [this._storage]);
+        this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
+        this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
+        this._storage.sorting = true;    
 
         App.Store.AsyncQuery('app.settings').then((settings) => {
             if(settings.mode != 'local') {
@@ -1935,16 +1935,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if(dragged.tag.type === 'field') {
 
-            const draggedField = dragged.tag.entry;
             const draggedFieldParent = dragged.parentNode;
-            const draggedStorage = dragged.FindParent((node) => node.tag.type === 'storage');
 
-            const droppedToField = droppedTo.tag.entry;
             const droppedToFieldParent = droppedTo.parentNode;
-            const droppedToStorage = droppedTo.FindParent((node) => node.tag.type === 'storage');
             const dropSibling = droppedToElement.attr('drop');
 
-            if(!dropSibling || !draggedStorage || !droppedToStorage || draggedStorage.tag.entry.name != droppedToStorage.tag.entry.name || draggedFieldParent != droppedToFieldParent) {
+            if(!dropSibling || draggedFieldParent != droppedToFieldParent) {
                 effects.effectAllowed = 'none';
                 effects.dropEffect = 'none';
             }
@@ -1968,9 +1964,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         const dropSibling = droppedToElement.attr('drop');
 
         const moduleNode = this._modules.selected; // dragged.FindParent((node) => node.tag.type === 'module');
-        const storageNode = dragged.FindParent((node) => node.tag.type === 'storage');
+        const storageNode = this._storages.selected; 
 
-        Sites.MoveField(moduleNode.value, storageNode.tag.entry, this._getPath(dragged), this._getPath(droppedTo), dropSibling);
+        Sites.MoveField(moduleNode.value, storageNode.value, this._getPath(dragged), this._getPath(droppedTo), dropSibling);
 
     }
 
