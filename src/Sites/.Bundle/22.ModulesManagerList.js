@@ -34,7 +34,18 @@ App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
             data = Object.values(data);
         }
 
+        const selected = this.selected?.value ?? null;
+        
         this._group.value = data;
+
+
+        if(selected) {
+            const newSelected = this._group.FindByKey(selected.name);
+            if(newSelected != null) {
+                const s = this._group.Items(newSelected);
+                this.SelectItem(s);            
+            }
+        }
 
     }
     

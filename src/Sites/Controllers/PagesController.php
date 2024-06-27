@@ -42,7 +42,12 @@ class PagesController extends WebController
         $domains = Domains::LoadAll();
         $domainsArray = [];
         foreach ($domains as $domain) {
-            $domainsArray[$domain->id] = $domain->ToArray(true);
+            if(
+                (App::$moduleManager->{'manage'} && App::$moduleManager->{$domain->additional->settings->module}) ||
+                !App::$moduleManager->{'manage'}
+            ) {
+                $domainsArray[$domain->id] = $domain->ToArray(true);
+            }
         }
         return $this->Finish(200, 'ok', $domainsArray);
     }

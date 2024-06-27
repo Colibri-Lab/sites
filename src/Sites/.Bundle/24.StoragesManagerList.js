@@ -33,7 +33,7 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
 
         if(selected) {
             const newSelected = this._group.FindByKey(selected.name);
-            if(newSelected) {
+            if(newSelected != null) {
                 const s = this._group.Items(newSelected);
                 this.SelectItem(s);            
             }

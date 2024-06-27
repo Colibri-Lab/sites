@@ -163,8 +163,16 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         if(!storage.fields) {
             return;
         }
+
+        const founds = [];
         Object.forEach(storage.indices, (name, index) => {
-            this._insertIndexNode(storageNode, name, index);
+            const indexNode = this._insertIndexNode(storageNode, name, index);
+            founds.push(indexNode.name);
+        });
+        storageNode.nodes.ForEach((name, node) => {
+            if(founds.indexOf(name) === -1) {
+                node.Dispose();
+            }
         });
     }
 
