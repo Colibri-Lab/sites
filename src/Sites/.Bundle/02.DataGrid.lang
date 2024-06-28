@@ -1,6 +1,8 @@
 sites-structure-datagrid-created:
   ru: Дата создания
   en: Date created
+  hy: Ստեղճման ամսաթիվ
 sites-structure-datagrid-deleted:
   ru: Удалена
   en: Deleted
+  hy: Ջնջված է
