@@ -1,54 +1,71 @@
 sites-storages-messages-properties-saved:
   ru: Свойства сохранены
   en: Custom properties saved
+  hy: Պահպանված հատկությունները
 sites-storages-messages-pages-saved:
   ru: Страница сохранена
   en: Page saved
+  hy: Էջը պահված է
 sites-storages-messages-domains-saved:
   ru: Домен сохранен
   en: Domain saved
+  hy: Դոմենը պահպանված է
 sites-storages-messages-domains-deleted:
   ru: Домен удален
   en: Domain deleted
+  hy: Դոմենը ջնջված է
 sites-storages-messages-pages-deleted:
   ru: Страница удалена
   en: Page deleted
+  hy: Էջը ջնջված է
 sites-storages-messages-pages-moved:
   ru: Страница перенесена
   en: Page moved
+  hy: Էջը տեղափոխվեց
 sites-storages-messages-publications-copied:
   ru: Публикация скопирована
   en: Publication copied
+  hy: Գրառումը պատճենված է
 sites-storages-messages-publications-moved:
   ru: Публикация перемещена
   en: Publication moved
+  hy: Գրառումը տեղափոխվեց
 sites-storages-messages-publications-deleted:
   ru: Публикация удалена
   en: Publication removed
+  hy: Գրառումը ջնջված է
 sites-storages-messages-data-deleted:
   ru: Данные удалены
   en: Data saved
+  hy: Տվյալները ջնջված են
 sites-storages-messages-storage-saved:
   ru: Хранилище сохранено
   en: Storage saved
+  hy: Պահպանվել է
 sites-storages-messages-storage-deleted:
   ru: Хранилище удалено
   en: Storage deleted
+  hy: Պահեստը ջնջված է
 sites-storages-messages-field-saved:
   ru: Свойство сохранено
   en: Property saved
+  hy: Պահպանված է
 sites-storages-messages-field-deleted:
   ru: Свойство удалено
   en: Property deleted
+  hy: Հեռացվաճ է
 sites-storages-messages-field-moved:
   ru: Свойство перемещено
   en: Property moved
+  hy: Տեղափոխվաճ է
 sites-storages-messages-index-saved:
-  ru: Индекс сохранено
+  ru: Индекс сохранен
   en: Index saved
+  hy: Պահպանված է
 sites-storages-messages-index-deleted:
   ru: Индекс удален
   en: Index deleted
+  hy: Հեռացվաճ է
 sites-storages-messages-field-exists:
   ru: Поле существует, пожалуйста, переименуйте
   en: Field exists, please rename
@@ -64,3 +81,4 @@ sites-storages-messages-field-exist:
 sites-storages-messages-data-restored:
   ru: Данные восстановлены
   en: Data restored
+  hy: Տվյալները վերականգնվել են

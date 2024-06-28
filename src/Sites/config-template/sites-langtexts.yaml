@@ -28,69 +28,91 @@ sites-menu-storages-desc:
 sites-permissions:
   ru: Сайты и разделы
   en: Sites and pages
+  hy: Կայքեր և բաժիններ
 sites-structure-permissions:
   ru: Доступ к редактору страниц и публикаций
   en: Access to the page and post editor
+  hy: Մուտք դեպի էջ և գրառման խմբագրիչ
 sites-structure-addpage-permissions:
   ru: Создать страницу
   en: Create a page
+  hy: Ստեղծեք էջ
 sites-structure-editpage-permissions:
   ru: Редактировать страницу
   en: Edit a page
+  hy: Խմբագրել էջը
 sites-structure-deletepage-permissions:
   ru: Удалить страницу
   en: Delete a page
+  hy: Ջնջել էջը
 sites-structure-pubslist-permissions:
   ru: Список публикаций
   en: List the publications
+  hy: Հրապարակումների ցանկ
 sites-structure-pubsadd-permissions:
   ru: Создать публикацию
   en: Create a publication
+  hy: Ստեղծել հրապարակում
 sites-structure-pubsdelete-permissions:
   ru: Удалить публикацию
   en: Delete a publication
+  hy: Ջնջել գրառումը
 sites-storages-permissions:
   ru: Доступ к редактору хранилищь
   en: Access to the storage editor
+  hy: Մուտք դեպի պահեստի խմբագրիչ
 sites-structure-addstorage-permissions:
   ru: Создать хранилище
   en: Create a storage
+  hy: Ստեղծեք պահեստ
 sites-structure-editstorage-permissions:
   ru: Редактировать хранилище
   en: Edit a storage
+  hy: Խմբագրել պահոցը
 sites-structure-deletestorage-permissions:
   ru: Удалить хранилище
   en: Delete a storage
+  hy: Ջնջել պահեստը
 sites-storage-permissions:
   ru: Доступ к хранилищу
   en: Access to storage
+  hy: Պահպանման հասանելիություն
 sites-storage-list-permissions:
   ru: Просматривать список строк
   en: List the rows
+  hy: Դիտեք տողերի ցանկը
 sites-storage-fields-permissions:
   ru: Редактировать хранилище
   en: Edit the storage
+  hy: Խմբագրել պահոցը
 sites-storage-indices-permissions:
   ru: Индексировать строки
   en: Create an index
+  hy: Ինդեքսային տողեր
 sites-storage-add-permissions:
   ru: Добавить строку
   en: Add row
+  hy: Ավելացնել տող
 sites-storage-edit-permissions:
   ru: Редактировать строку
   en: Edit a row
+  hy: Խմբագրել տողը
 sites-storage-delete-permissions:
   ru: Удалить строку
   en: Delete the row
+  hy: Ջնջել տողը
 sites-storage-export-permissions:
   ru: Экспорт строк
   en: Export rows
+  hy: Արտահանել տողեր
 sites-storage-import-permissions:
   ru: Импорт строк
   en: Import rows
+  hy: Տողերի ներմուծում
 sites-references-permissions:
   ru: Доступ к редактору справочников
   en: Access to the references editor
+  hy: Մուտք գործեք գրացուցակի խմբագրին
 sites-structure-deletedatas:
   en: ""
 sites-storages-fieldlookup-group:

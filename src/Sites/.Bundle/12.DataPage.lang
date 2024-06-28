@@ -1,27 +1,34 @@
 sites-storages-storages-title:
   ru: Хранилища
   en: Storages
+  hy: Տակառներ
 sites-storages-data-title:
   ru: Данные
   en: Data
+  hy: Տվյալներ
 sites-storages-search-placeholder:
   ru: Поиск
   en: Search
+  hy: Որոնում
 sites-storages-dataempty:
   ru: Данные не найдены
   en: Data not found
 sites-storages-buttons-adddata:
   ru: Добавить
   en: Add
+  hy: Ավելացնել
 sites-storages-buttons-dublicatedata:
   ru: Дуб.
   en: Dublicate
+  hy: Կրկն
 sites-storages-buttons-editdata:
   ru: Ред.
   en: Edit
+  hy: Խմբ
 sites-storages-buttons-deletedata:
   ru: Удалить
   en: Delete
+  hy: Ջնջել
 sites-structure-deletedata1:
   ru: Удаление данных
   en: Delete data row
@@ -31,17 +38,22 @@ sites-structure-deletedata1message:
 sites-structure-deletedata:
   ru: Удаление данных
   en: Data row delete
+  hy: Տվյալների ջնջում
 sites-structure-deletedatamessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
+  hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված տողերը:"
 sites-structure-newrow:
   ru: Новая строка
   en: New row
+  hy: Նոր տող
 sites-structure-contextmenu-dublicate:
   ru: Дублировать данные
   en: Dublicate data
+  hy: Կրկնվող տվյալներ
 sites-structure-contextmenu-edit:
   ru: Редактировать данные
   en: Edit data
+  hy: Խմբագրել տվյալները
 sites-structure-contextmenu-delete:
   ru: Удалить
   en: Delete
@@ -49,27 +61,34 @@ sites-structure-contextmenu-delete:
 sites-structure-deletedatasmessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
+  hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված տողերը:"
 sites-structure-deletedatamessage-delete:
   ru: Удалить!
   en: Delete
+  hy: Ջնջել!
 sites-structure-deletedatasmessage-delete:
   ru: Удалить!
   en: Delete
+  hy: Ջնջել!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
 sites-datapage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
+  hy: Գործողությունն արգելված է
 sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
+  hy: Տողերի զտիչ
 sites-structure-deletedatas:
   ru: Удаление строк
   en: Delete rows
+  hy: Տողերի հեռացում
 sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
+  hy: Բեռնաթափել
 sites-structure-contextmenu-respotre: {}
 sites-structure-contextmenu-restore:
   ru: Восстановить
@@ -78,24 +97,31 @@ sites-structure-contextmenu-restore:
 sites-storages-buttons-restoredata:
   ru: Восстановить
   en: Restore
+  hy: Վերականգնել
 sites-structure-restoredata:
   ru: Восстановление данных
   en: Restore data
+  hy: Տվյալների վերականգնում
 sites-structure-restoredatamessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
+  hy: "Իսկապե՞ս ուզում եք վերականգնել ընտրված տողերը:"
 sites-structure-restoredatamessage-delete:
   ru: Восстановить!
   en: Restore!
+  hy: Վերականգնել
 sites-structure-restoredatas:
   ru: Восстановление данных
   en: Restore data
+  hy: Տվյալների վերականգնում
 sites-structure-restoredatasmessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
+  hy: "Իսկապե՞ս ուզում եք վերականգնել ընտրված տողերը:"
 sites-structure-restoredatasmessage-delete:
   ru: Восстановить!
   en: Restore!
+  hy: Վերականգնել
 sites-structure-editrow:
   ru: Редактирование строки
   en: Edit row

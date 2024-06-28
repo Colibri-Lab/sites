@@ -1,4 +1,4 @@
-sites-ui-pager-: {}
 sites-ui-pager-of:
-  ru: "из "
-  en: "of "
+  ru: из %s
+  en: of %s
+  hy: "%s-ից "

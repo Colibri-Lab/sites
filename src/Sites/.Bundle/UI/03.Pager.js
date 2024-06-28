@@ -141,7 +141,7 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._showMaxPages();
     }
     _showMaxPages() {
-        this._maxPagesO.value = '#{sites-ui-pager-of}' + this._maxPages;
+        this._maxPagesO.value = '#{sites-ui-pager-of}'.replaceAll('%s', this._maxPages);
         this.value = 1;
     }
 

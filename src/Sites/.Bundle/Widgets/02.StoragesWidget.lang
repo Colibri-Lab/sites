@@ -1,44 +1,56 @@
 sites-widgets-storageswidget-title:
   ru: Состояние хранилищ
   en: Storages state
+  hy: Պահեստները վիճակ
 sites-widgets-storageswidget-name:
   ru: Наименование
   en: Name
+  hy: Անուն
 sites-widgets-storageswidget-version:
   ru: Версия
   en: Version
+  hy: Տարբերակ
 sites-widgets-storageswidget-engine:
   ru: Тип хранилища
   en: Engine
-sites-widgets-storageswidget-row: {}
+  hy: Շարժիչ
 sites-widgets-storageswidget-row-format:
   ru: Формат строк
   en: Row format
+  hy: Շարքի ձևաչափ
 sites-widgets-storageswidget-create-time:
   en: Create time
   ru: Дата создания
+  hy: Ստեղծեք ժամանակ
 sites-widgets-storageswidget-update-time:
   en: Update time
   ru: Дата обновления
+  hy: Թարմացման ժամանակը
 sites-widgets-storageswidget-autoincrement:
   en: Current autoincrement value
   ru: Текущее значение автоинкремента
+  hy: Ընթացիկ ինքնաաճացման արժեքը
 sites-widgets-storageswidget-avg-row-length:
   en: Avg row length
   ru: Средний размер строки
+  hy: Շարքի միջին երկարությունը
 sites-widgets-storageswidget-collation:
   en: Collation type
   ru: Сопоставление
+  hy: Հավաքման տեսակը
 sites-widgets-storageswidget-rows:
   en: Rows count
   ru: Количество строк
+  hy: Շարքերը հաշվում են
 sites-widgets-storageswidget-data-free:
   en: Free data available
   ru: Свободное место
+  hy: Անվճար տվյալների հասանելիություն
 sites-widgets-storageswidget-data-length:
   en: Current data length
   ru: Текущий размер таблицы
+  hy: Ընթացիկ տվյալների երկարությունը
 sites-widgets-storageswidget-index-length:
   en: Current index length
   ru: Текущий размер индексов
-sites-widgets-storageswidget-index-lengthэ: {}
+  hy: Ընթացիկ ինդեքսի երկարությունը

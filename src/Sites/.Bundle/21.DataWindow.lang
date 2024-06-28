@@ -1,12 +1,15 @@
 sites-datawindow-search-placeholder:
   ru: Поиск
   en: Search
+  hy: Որոնում
 sites-datawindow-dataempty:
   ru: Данные не найдены
   en: Data not found
 sites-datawindow-buttons-publish:
   ru: Опубликовать выбранное
   en: Publish selected rows
+  hy: Հրապարակեք ընտրված տողերը
 sites-datawindow-buttons-close:
   ru: Закрыть
   en: Close
+  hy: Փակել

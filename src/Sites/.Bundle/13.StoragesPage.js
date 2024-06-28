@@ -152,7 +152,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     _storageFields() {
         return {
             name: 'Storage',
-            desc: 'Хранилища',
+            desc: '#{sites-storages-storages}',
             fields: {
                 name: {
                     type: 'varchar',

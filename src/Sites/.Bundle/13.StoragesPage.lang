@@ -1,152 +1,201 @@
 sites-storages-contextmenu-add:
   ru: Новое хранилище
   en: New storage
+  hy: Նոր տակառ
 sites-storages-contextmenu-editfields:
   ru: Редактировать свойства хранилища
   en: Edit storage properties
+  hy: Խմբագրել տակառի հատկությունները
 sites-storages-contextmenu-remove:
   ru: Удалить хранилище
   en: Delete storage
+  hy: Ջնջել պահեստը
 sites-storages-contextmenu-newfield:
   ru: Новое свойство
   en: New property
+  hy: Նոր հատկություն
 sites-storages-contextmenu-newindex:
   ru: Новый индекс
   en: New index
+  hy: Նոր ցուցանիշ
 sites-storages-contextmenu-newvirtualfield:
   ru: Новое виртуальное свойство
   en: New virtual property
+  hy: Նոր վիրտուալ հատկութկուն
 sites-storages-contextmenu-editfield:
   ru: Редактировать свойство
   en: Edit property
+  hy: Խմբագրել
 sites-storages-contextmenu-removefield:
   ru: Удалить свойство
   en: Delete property
+  hy: Ջնջել
 sites-storages-contextmenu-editindex:
   ru: Редактировать индекс
   en: Edit index
+  hy: Խմբագրել
 sites-storages-contextmenu-removeindex:
   ru: Удалить индекс
   en: Delete index
+  hy: Ջնջել
 sites-storages-storagename:
   ru: Наименование хранилища
   en: Storage name
+  hy: Պահեստների անվանումը
 sites-storages-storagename-note:
   ru: Пожалуйста, введите наименование. Внимание! должно содержать только
     латинские буквы и цифры без тире, дефисов и пробелов
   en: Please enter a name. Attention! must contain only latin letters and numbers
     without dashes, hyphens and spaces
+  hy: "Խնդրում ենք մուտքագրել անուն: Ուշադրություն. պետք է պարունակի միայն
+    լատինական տառեր և թվեր՝ առանց գծիկների, գծիկների և բացատների"
 sites-storages-storagename-validation-required:
   ru: Пожалуйста, введите наименование хранилища
   en: Please enter a storage name
+  hy: Խնդրում ենք մուտքագրել պահեստի անունը
 sites-storages-storagename-validation-regexp:
   ru: Введенный текст не соответствует требованиям
   en: The entered text does not match the requirements
+  hy: Ձեր մուտքագրած տեքստը չի համապատասխանում պահանջներին
 sites-storages-storagedesc:
   ru: Описание
   en: Description
+  hy: Նկարագրություն
 sites-storages-storagedesc-note:
   ru: Описание, в свободной форме
   en: Description, in free form
+  hy: Նկարագրություն՝ անվճար
 sites-storages-storagedesc-validation-required:
   ru: Пожалуйста, введите описание хранилища
   en: Please enter a description
+  hy: Խնդրում ենք մուտքագրել պահեստի նկարագրությունը
 sites-storages-storagegroup:
   ru: Группа
   en: Group
-sites-storages-storagegroup-note:
-  ru: Группа, в свободной форме
+  hy: Խումբ
 sites-storages-storageaccesspoint:
   ru: Подключение
   en: Access point
+  hy: Միացում
 sites-storages-storageaccesspoint-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
+  hy: "Ուշադրություն. Ակնկալվում է, որ դուք իմանաք, թե ինչ եք անում:"
 sites-storages-storageaccesspoint-validation-required:
   ru: Пожалуйста, выберите подключение
   en: Please select an access point
+  hy: Խնդրում ենք ընտրել կապ
 sites-storages-storagemodels:
   ru: Модели
   en: Models
+  hy: Մոդելներ
 sites-storages-storagemodels-note:
   ru: Название классов моделей. Внимание! Неймспейс должен начинаться с Models\\
   en: The name of the model classes. Attention! Namespace must start with Models\\
+  hy: Մոդելի դասերի անվանումը. Ուշադրություն. Անվանատարածքը պետք է սկսվի
+    Models-ով\\
 sites-storages-storagemodels-table:
   ru: Таблица
   en: Table model
+  hy: Աղյուսակ
 sites-storages-storagemodels-row:
   ru: Строка
   en: Row model
+  hy: Գիծ
 sites-storages-storagemodels-validation-required:
   ru: Пожалуйста, введите наименование классов моделей таблицы и строки
   en: Please enter the name of the table and row model classes
+  hy: Խնդրում ենք մուտքագրել աղյուսակի և տողի մոդելի դասերի անվանումը
 sites-storages-storagecomponents:
   ru: Компоненты
   en: Components
+  hy: Բաղադրիչներ
 sites-storages-storagecomponents-note:
   ru: Компоненты для отображения, если проект в режиме «Приложение»
   en: Components to display if the project is in Application mode
+  hy: Բաղադրիչներ, որոնք ցուցադրվելու են, եթե նախագիծը գտնվում է Application
+    ռեժիմում
 sites-storages-storagecomponents-default:
   ru: Компонент по умолчанию
   en: Default Component
+  hy: Կանխադրված բաղադրիչ
 sites-storages-storagecomponents-list:
   ru: Компонент в списке
   en: Component in the list
+  hy: Բաղադրիչը ցանկում
 sites-storages-storagecomponents-item:
   ru: Компонент карточка
   en: Card component
+  hy: Քարտի բաղադրիչ
 sites-storages-storagetemplates:
   ru: Шаблоны
   en: Templates
+  hy: Կաղապարներ
 sites-storages-storagetemplates-note:
   ru: Шаблоны для отображения, если проект в режиме «Вебсайт»
   en: Templates to display if the project is in Website mode
+  hy: Կաղապարներ՝ ցուցադրելու համար, եթե նախագիծը «Վեբկայք» ռեժիմում է
 sites-storages-storagetemplates-default:
   ru: Шаблон по умолчанию
   en: Default template
+  hy: Կանխադրված ձևանմուշ
 sites-storages-storagetemplates-list:
   ru: Шаблон в списке
   en: Template in the list
+  hy: Կաղապարը ցանկում
 sites-storages-storagetemplates-item:
   ru: Шаблон карточка
   en: Card template
+  hy: Քարտի ձևանմուշ
 sites-storages-storageadditional:
   ru: Дополнительные параметры
   en: Extra options
+  hy: Լրացուցիչ ընտրանքներ
 sites-storages-storageadditional-visible:
   ru: Отображать в менеджере хранилищ
   en: Show in storage manager
+  hy: Ցույց տալ պահեստի կառավարիչում
 sites-storages-storageadditional-maybepublished:
   ru: Данные могут быть опубликованы
   en: Data may be published
+  hy: Տվյալները կարող են հրապարակվել
 sites-storages-fieldname:
   ru: Наименование свойства
   en: Property name
+  hy: Գույքի անվանումը
 sites-storages-fieldname-note:
   ru: Пожалуйста, введите наименование. Внимание! должно содержать только
     латинские буквы и цифры без тире, дефисов и пробелов.
   en: Please enter a name. Attention! must contain only Latin letters and numbers
     without dashes, hyphens and spaces.
+  hy: "Խնդրում ենք մուտքագրել անուն: Ուշադրություն. պետք է պարունակի միայն
+    լատինական տառեր և թվեր՝ առանց գծիկների, գծիկների և բացատների:"
 sites-storages-fieldname-validation-required:
   ru: Пожалуйста, введите наименование свойства
   en: Please enter a property name
+  hy: Խնդրում ենք մուտքագրել սեփականության անվանումը
 sites-storages-fieldname-validation-regexp:
   ru: Введенный текст не соответствует требованиям
   en: The entered text does not match the requirements
+  hy: Մուտքագրված տեքստը չի համապատասխանում պահանջներին
 sites-storages-fieldgroup:
   ru: Группа свойств
   en: Properties group
+  hy: Հատկությունների խումբ
 sites-storages-fieldgroup-note:
   ru: Наименование группы, если нужно оставить в основной то нужно написать
     "window"
   en: The name of the group, if you want to leave it in the main one, you need to
     write "window"
+  hy: Խմբի անունը, եթե ուզում եք թողնել հիմնականում, պետք է գրել «պատուհան»
 sites-storages-fieldgroup-validation-required:
   ru: Пожалуйста, введите группу свойств
   en: Please enter a property group
+  hy: Խնդրում ենք մուտքագրել սեփականության խումբ
 sites-storages-fielddesc:
   ru: Описание свойства
   en: Property description
+  hy: Գույքի նկարագրությունը
 sites-storages-fielddesc-note:
   ru: Можно на русском языке. Внимание! Описание должно полностью описывать
     свойство, учитывайте, что модель будет возвращать модель указанную в поле
@@ -154,87 +203,117 @@ sites-storages-fielddesc-note:
   en: It is possible in Russian. Attention! The description must fully describe
     the property, keep in mind that the model will return the model specified in
     the Class field.
+  hy: "Դա հնարավոր է ռուսերեն. Ուշադրություն. Նկարագրությունը պետք է ամբողջությամբ
+    նկարագրի գույքը, նկատի ունեցեք, որ մոդելը կվերադարձնի Class դաշտում նշված
+    մոդելը:"
 sites-storages-fielddesc-validation-required:
   ru: Пожалуйста, опишите свойство
   en: Please describe the property
+  hy: Խնդրում ենք նկարագրել գույքը
 sites-storages-fieldplaceholder:
   ru: Замещающий текст
   en: Property placeholder
+  hy: Գույքի տեղապահ
 sites-storages-fieldplaceholder-note:
   ru: Замещающий текст, отображается внутри поля серым текстом
   en: Alternative text, displayed inside the field as gray text
+  hy: Այլընտրանքային տեքստ, որը ցուցադրվում է դաշտի ներսում որպես մոխրագույն տեքստ
 sites-storages-fieldnote:
   ru: Подсказка
   en: Note
+  hy: Նշում
 sites-storages-fieldnote-note:
   ru: Подсказка, отображается под полем серым текстом
   en: Note, displayed below the field in gray text
+  hy: Նշում, որը ցուցադրվում է դաշտի տակ մոխրագույն տեքստով
 sites-storages-fieldtype:
   ru: Тип свойства (для хранения в источнике данных)
   en: Property type (to be stored in the data source)
+  hy: Սեփականության տեսակը (պահվում է տվյալների աղբյուրում)
 sites-storages-fieldtype-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
+  hy: "Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում:"
 sites-storages-fieldtype-validation-required:
   ru: Пожалуйста, введите тип свойства
   en: Please enter a property type
+  hy: Խնդրում ենք մուտքագրել սեփականության տեսակը
 sites-storages-fieldlength:
   ru: Длина в байтах
   en: Length in bytes
+  hy: Երկարությունը բայթերով
 sites-storages-fieldlength-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
+  hy: "Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում:"
 sites-storages-fieldcomponent:
   ru: Компонента
   en: Component
+  hy: Բաղադրիչ
 sites-storages-fieldcomponent-note:
   ru: Выберите компоненту, которая будет использоваться в формах для ввода и
     редактирования данных
   en: Select the component that will be used in the forms for entering and editing
     data
+  hy: Ընտրեք բաղադրիչը, որը կօգտագործվի տվյալների մուտքագրման և խմբագրման ձևերում
 sites-storages-fieldcomponent-validation-required:
   ru: Пожалуйста, выберите компоненту
   en: Please select a component
+  hy: Խնդրում ենք ընտրել բաղադրիչ
 sites-storages-fieldclass:
   ru: Класс (PHP)
   en: Class (PHP)
+  hy: Դասարան (PHP)
 sites-storages-fieldclass-note:
   ru: Внимание! Класс должен существовать
   en: Attention! The class must exist
+  hy: Ուշադրություն. Դասարանը պետք է գոյություն ունենա
 sites-storages-fieldclass-validation-required:
   ru: Пожалуйста, выберите наименование класса
   en: Please select a class name
+  hy: Խնդրում ենք ընտրել դասի անունը
 sites-storages-fieldsetdefault:
   ru: Указать значение по умолчанию
   en: Specify a default value
+  hy: Նշեք լռելյայն արժեք
 sites-storages-fielddefault:
   ru: Значение по умолчанию
   en: Default value
+  hy: Կանխադրված արժեք
 sites-storages-fielddefault-note:
   ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что
     делаете
   en: Enter a default value. Attention! You are supposed to know what you are doing
+  hy: "Մուտքագրեք լռելյայն արժեք: Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե
+    ինչ եք անում"
 sites-storages-fieldattrs:
   ru: Аттрибуты
   en: Attributes
+  hy: Հատկանիշներ
 sites-storages-fieldattrs-note:
   ru: Атрибуты компонента
   en: Component attributes
+  hy: Բաղադրիչի հատկանիշներ
 sites-storages-fieldattrs-width:
   ru: Ширина
   en: Width
+  hy: Լայնությունը
 sites-storages-fieldattrs-height:
   ru: Высота
   en: Height
+  hy: Բարձրություն
 sites-storages-fieldattrs-class:
   ru: Класс
   en: Class name (css)
+  hy: Դասի անվանումը (css)
 sites-storages-fieldparams:
   ru: Дополнительные параметры
   en: Additional parameters
+  hy: Լրացուցիչ պարամետրեր
 sites-storages-fieldparams-required:
   ru: Обязательное поле
   en: Property is required
+  hy: Պահանջվում է գույք
 sites-storages-fieldparams-required-note:
   ru: Будет требоваться ввести значение в форме. Пустое значение будет
     трактоваться как "нет значения"
@@ -242,299 +321,402 @@ sites-storages-fieldparams-required-note:
     enter a value in the form. Вам будет необходимо ввести значение в форму. You
     will be asked to enter a value in the form. Вам будет предложено ввести
     значение в форму.  An empty value will be treated as "no value"
+  hy: "Ձեզանից կպահանջվի մուտքագրել արժեք ձևաթղթում: Ձեզանից կպահանջվի մուտքագրել
+    արժեք ձևաթղթում: Ձեզանից կպահանջվի մուտքագրել արժեքը ձևի մեջ: Ձեզանից
+    կպահանջվի մուտքագրել արժեք ձևի մեջ: Ձեզ կառաջարկվի արժեք մուտքագրել ձևի
+    մեջ:  Դատարկ արժեքը կդիտվի որպես «ոչ արժեք»"
 sites-storages-fieldparams-enabled:
   ru: Поле включено
   en: Property is enabled
+  hy: Գույքը միացված է
 sites-storages-fieldparams-enabled-note:
   ru: Не будет возможности ввести или изменить поле. Значение не будет
     передаваться в форме, если не будет введено
   en: It will not be possible to enter or change the field. The value will not be
     passed in the form unless it is entered
+  hy: Դաշտ մտնել կամ փոխել հնարավոր չի լինի։ Արժեքը ձևի մեջ չի փոխանցվի, քանի դեռ
+    այն չի մուտքագրվել
 sites-storages-fieldparams-canbeempty:
   ru: Принимает пустые значения
   en: Accepts empty values
+  hy: Ընդունում է դատարկ արժեքներ
 sites-storages-fieldparams-canbeempty-note:
   ru: Значение сможет быть пустым, например пустая строка, или 0 в случае числа
   en: The value can be empty, such as an empty string, or 0 in the case of a number
+  hy: Արժեքը կարող է դատարկ լինել, օրինակ՝ դատարկ տող, կամ 0 թվի դեպքում
 sites-storages-fieldparams-readonly:
   ru: Только для чтения
   en: Property is readonly
+  hy: Գույքը միայն կարդալու է
 sites-storages-fieldparams-readonly-note:
   ru: Работает только с компонентом типа Select
   en: Works only with a Select component
+  hy: Աշխատում է միայն Select բաղադրիչի հետ
 sites-storages-fieldparams-list:
   ru: Отображать в списке
   en: Show in list
+  hy: Ցույց տալ ցանկում
 sites-storages-fieldparams-multiple:
   ru: Мультивыбор
   en: Multiple
+  hy: Բազմաթիվ
 sites-storages-fieldparams-greed:
   ru: Жадность в списке
   en: Greed is on the list
+  hy: Ագահությունը ցուցակում է
 sites-storages-fieldparams-greed-note:
   ru: Указывается в процентах
   en: Indicated as a percentage
+  hy: Նշված է որպես տոկոս
 sites-storages-fieldparams-viewer:
   ru: Класс Viewer (для отображения в списках)
   en: Viewer class (for display in lists)
+  hy: Դիտողի դաս (ցուցակներում ցուցադրելու համար)
 sites-storages-fieldparams-viewer-note:
   ru: Выберите из списка
   en: Select from the list
+  hy: Ընտրեք ցանկից
 sites-storages-fieldparams-vertical:
   ru: Отображать обьект вертикально
   en: Show object vertically
+  hy: Ցույց տալ օբյեկտը ուղղահայաց
 sites-storages-fieldparams-vertical-note:
   ru: Работает только с обьектами типа Object и Array
   en: Работает только с обьектами типа Object и Array
+  hy: Աշխատում է միայն Object և Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-visual:
   ru: Отображать в виде визуального редактора
   en: Display as visual editor
+  hy: Ցուցադրել որպես տեսողական խմբագիր
 sites-storages-fieldparams-visual-note:
   ru: Используется только в большом текстовом поле
   en: Used only in a large text field
+  hy: Օգտագործվում է միայն մեծ տեքստային դաշտում
 sites-storages-fieldparams-code:
   ru: Отображать в виде редактора кода
   en: Display as code editor
+  hy: Ցուցադրել որպես կոդի խմբագրիչ
 sites-storages-fieldparams-code-note:
   ru: Используется только в большом текстовом поле
   en: Used only in a large text field
+  hy: Օգտագործվում է միայն մեծ տեքստային դաշտում
 sites-storages-fieldparams-mask:
   ru: Маска ввода
   en: Input mask
+  hy: Ներածման դիմակ
 sites-storages-fieldparams-mask-note:
   ru: Работает только с обьектами типа Text
   en: Works only with objects of type Text
+  hy: Աշխատում է միայն Text տեսակի օբյեկտների հետ
 sites-storages-fieldparams-fieldgenerator:
   ru: Генератор параметров поля
   en: Field parameter generator
+  hy: Դաշտի պարամետրերի գեներատոր
 sites-storages-fieldparams-generator:
   ru: Генератор значений по умолчанию
   en: Property default value generator
+  hy: Գույքի լռելյայն արժեքի գեներատոր
 sites-storages-fieldparams-generator-note:
   ru: Генерация значений по умолчанию
   en: Generates a default value for property
+  hy: Ստեղծում է լռելյայն արժեք սեփականության համար
 sites-storages-fieldparams-note-class:
   ru: Класс для подсказки
   en: Hint class
+  hy: Ակնարկ դաս
 sites-storages-fieldparams-simplearraywidth:
   ru: Длина массива данных
   en: Data array length
+  hy: Տվյալների զանգվածի երկարությունը
 sites-storages-fieldparams-simplearraywidth-note:
   ru: Работает только с обьектами типа SimpleArray
   en: Works only with objects of type Simple Array
+  hy: Աշխատում է միայն Simple Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-simplearrayheight:
   ru: Высота массива данных
   en: Data array height
+  hy: Տվյալների զանգվածի բարձրությունը
 sites-storages-fieldparams-simplearrayheight-note:
   ru: Работает только с обьектами типа SimpleArray
   en: Works only with objects of type Simple Array
+  hy: Աշխատում է միայն Simple Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-addlink:
   ru: Текст ссылки для добавления строки в массив
   en: Link text to add string to array
+  hy: Կցեք տեքստը զանգվածին տող ավելացնելու համար
 sites-storages-fieldparams-addlink-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
+  hy: Աշխատում է միայն Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-removelink:
   ru: Отобразить удаление обьекта из массива
   en: Display the removal of an object from an array
+  hy: Ցուցադրել առարկայի հեռացումը զանգվածից
 sites-storages-fieldparams-removelink-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
+  hy: Աշխատում է միայն Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-updownlink:
   ru: Отобразить стрелки вверх/вниз
   en: Show Up/Down Arrows
+  hy: Ցույց տալ վեր/ներքև սլաքները
 sites-storages-fieldparams-updownlink-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
+  hy: Աշխատում է միայն Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-initempty:
   ru: Создать пустой обьект при инициализации?
   en: Create an empty object on initialization?
+  hy: "Ստեղծե՞լ դատարկ օբյեկտ սկզբնավորման ժամանակ:"
 sites-storages-fieldparams-initempty-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
+  hy: Աշխատում է միայն Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-maxadd:
   ru: Максимальное количество строк в массиве
   en: Maximum number of rows in an array
+  hy: Զանգվածի տողերի առավելագույն քանակը
 sites-storages-fieldparams-maxadd-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
+  hy: Աշխատում է միայն Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-title:
   ru: Метод формирования заголовка в массиве
   en: Heading Formation Method in Array
+  hy: Վերնագրերի ձևավորման մեթոդ զանգվածում
 sites-storages-fieldparams-title-note:
   ru: "Работает только с обьектами типа Array: function(object, array)"
   en: "Only works with Array objects: function(object, array)"
+  hy: Աշխատում է միայն զանգվածի օբյեկտների հետ՝ ֆունկցիա (օբյեկտ, զանգված)
 sites-storages-fieldparams-removedesc:
   ru: Удалять заголовок поля?
   en: Remove field header?
+  hy: "Հեռացնե՞լ դաշտի վերնագիրը:"
 sites-storages-fieldparams-removedesc-note:
   ru: Работает только с обьектами типа Object/Array
   en: Works only with objects of type Object/Array
+  hy: Աշխատում է միայն Object/Array տիպի օբյեկտների հետ
 sites-storages-fieldparams-allow:
   ru: Разрешенные типы файлов
   en: Allowed File Types
+  hy: Թույլատրված ֆայլերի տեսակները
 sites-storages-fieldparams-allow-note:
   ru: Работает только с обьектами типа File/Files
   en: Works only with objects of type File/Files
+  hy: Աշխատում է միայն File/Files տիպի օբյեկտների հետ
 sites-storages-fieldparams-size:
   ru: Разрешенные размер файлов в байтах
   en: Allowed file size in bytes
+  hy: Թույլատրված ֆայլի չափը բայթերով
 sites-storages-fieldparams-validate:
   ru: Проверка значения поля
   en: Property validation
+  hy: Գույքի վավերացում
 sites-storages-fieldparams-validate-addlink:
   ru: Добавить проверку
   en: Add validation
+  hy: Ավելացնել վավերացում
 sites-storages-fieldparams-validate-message:
   ru: Сообщение
   en: Message
+  hy: Հաղորդագրություն
 sites-storages-fieldparams-validate-method:
   ru: Метод
   en: Method
+  hy: Մեթոդ
 sites-storages-fieldlookup:
   ru: Связка
   en: Lookup
+  hy: Փնտրել
 sites-storages-fieldlookup-note:
   ru: Связь с другими хранилищами
   en: Communication with other repositories
+  hy: Հաղորդակցություն այլ պահեստների հետ
 sites-storages-fieldlookup-oneof-none:
   ru: Нет связи
   en: No lookup
+  hy: Որոնում չկա
 sites-storages-fieldlookup-oneof-storage:
   ru: Хранилище
   en: Storage
+  hy: Պահպանում
 sites-storages-fieldlookup-oneof-accesspoint:
   ru: Точка доступа
   en: Access point
+  hy: Մուտքի կետ
 sites-storages-fieldlookup-oneof-method:
   ru: Метод
   en: Method
+  hy: Մեթոդ
 sites-storages-fieldlookup-oneof-binding:
   ru: Байдинг к данным
   en: Data binding
+  hy: Տվյալների պարտադիր կապ
 sites-storages-fieldlookup-oneof-controller:
   ru: Контроллер
   en: Controller
+  hy: Վերահսկիչ
 sites-storages-fieldlookup-storage:
   ru: Хранилище
   en: Storage
+  hy: Պահպանում
 sites-storages-fieldlookup-storage-name:
   ru: Хранилище
   en: Storage
+  hy: Պահպանում
 sites-storages-fieldlookup-storage-select:
   ru: Поля в выборке
   en: Properties in selection
+  hy: Հատկություններ ընտրության մեջ
 sites-storages-fieldlookup-storage-select-note:
   ru: Внимание, название полей в списке необходимо писать в фигурных скобках
   en: Attention, the name of the fields in the list must be written in curly
     brackets
+  hy: Ուշադրություն, ցանկի դաշտերի անվանումը պետք է գրված լինի գանգուր փակագծերում
 sites-storages-fieldlookup-storage-title:
   ru: Поле для вывода
   en: Property to show
+  hy: Ցույց տալու սեփականություն
 sites-storages-fieldlookup-storage-title-note:
   ru: Название поля, без фигурных скобок
   en: Field name, without curly braces
+  hy: Դաշտի անվանումը՝ առանց գանգուր փակագծերի
 sites-storages-fieldlookup-storage-value:
   ru: Поле для значения
   en: Property for value
+  hy: Գույքը արժեքի համար
 sites-storages-fieldlookup-storage-value-note:
   ru: Название поля, без фигурных скобок
   en: Field name, without curly braces
+  hy: Դաշտի անվանումը՝ առանց գանգուր փակագծերի
 sites-storages-fieldlookup-storage-group:
   ru: Поле для группы
   en: Property for group
+  hy: Գույք խմբի համար
 sites-storages-fieldlookup-storage-group-note:
   ru: Название поля, без фигурных скобок
   en: Field name, without curly braces
+  hy: Դաշտի անվանումը՝ առանց գանգուր փակագծերի
 sites-storages-fieldlookup-storage-order:
   ru: Сортировка
   en: Order
+  hy: Պատվեր
 sites-storages-fieldlookup-storage-order-note:
   ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
   en: Attention, the field names in sorting must be written in curly brackets
+  hy: Ուշադրություն, տեսակավորման ժամանակ դաշտերի անվանումները պետք է գրվեն
+    գանգուր փակագծերում
 sites-storages-fieldlookup-storage-depends:
   ru: Связь с другим полем
   en: Depends on
+  hy: Կախված
 sites-storages-fieldlookup-storage-depends-note:
   ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап
     необходимо наличие такого поля, так же как и исходной таблице
   en: The name of the field, without curly braces. The storage from which the
     lookup is made must have such a field, just like the original table
+  hy: Դաշտի անվանումը՝ առանց գանգուր փակագծերի։ Պահեստը, որտեղից կատարվում է
+    որոնումը, պետք է ունենա նման դաշտ, ինչպես սկզբնական աղյուսակը
 sites-storages-fieldlookup-storage-controller:
   ru: Контроллер (JS)
   en: Controller (JS)
+  hy: Վերահսկիչ (JS)
 sites-storages-fieldlookup-storage-controller-note:
   ru: Куда обращаться за получением данных по выборке
   en: Where to apply for sample data
+  hy: Որտեղ դիմել նմուշի տվյալների համար
 sites-storages-fieldlookup-storage-controller-module:
   ru: Модуль
   en: Module
+  hy: Մոդուլ
 sites-storages-fieldlookup-storage-controller-class:
   ru: Класс
   en: Class name
+  hy: Դասի անվանումը
 sites-storages-fieldlookup-storage-controller-method:
   ru: Метод
   en: Method name
+  hy: Մեթոդի անվանումը
 sites-storages-fieldlookup-controller:
   ru: Контроллер (JS)
   en: Controller (JS)
+  hy: Վերահսկիչ (JS)
 sites-storages-fieldlookup-controller-module:
   ru: Модуль
   en: Module
+  hy: Մոդուլ
 sites-storages-fieldlookup-controller-class:
   ru: Класс
   en: Class name
+  hy: Դասի անվանումը
 sites-storages-fieldlookup-controller-method:
   ru: Метод
   en: Method name
+  hy: Մեթոդի անվանումը
 sites-storages-fieldlookup-controller-depends:
   ru: Связь с другим полем
   en: Depends on
+  hy: Կախված
 sites-storages-fieldlookup-binding:
   ru: Байндинг
   en: Data binding
+  hy: Տվյալների պարտադիր կապ
 sites-storages-fieldlookup-method:
   ru: Метод
   en: Method (JS)
+  hy: Մեթոդ (JS)
 sites-storages-fieldlookup-accesspoint:
   ru: Точка доступа
   en: Access point
+  hy: Մուտքի կետ
 sites-storages-fieldlookup-accesspoint-table:
   ru: Таблица
   en: Table
+  hy: Աղյուսակ
 sites-storages-fieldlookup-accesspoint-fields:
   ru: Список полей
   en: Fields list
+  hy: Դաշտերի ցուցակ
 sites-storages-fieldlookup-accesspoint-filter:
   ru: Фильтр
   en: Filter
+  hy: Զտել
 sites-storages-fieldlookup-accesspoint-order:
   ru: Сортировка
   en: Order
+  hy: Պատվեր
 sites-storages-fieldvalues:
   ru: Значения
   en: Values
+  hy: Արժեքներ
 sites-storages-fieldvalues-value:
   ru: Поле для значения
   en: Value
+  hy: Արժեք
 sites-storages-fieldvalues-title:
   ru: Поле для вывода
   en: Title field
+  hy: Վերնագրի դաշտ
 sites-storages-fieldselector:
   ru: Выборка
   en: Selector
+  hy: Ընտրիչ
 sites-storages-fieldselector-note:
   ru: Дополнительные настройки для компонента Select
   en: Additional settings for the Select component
+  hy: Ընտրել բաղադրիչի լրացուցիչ կարգավորումներ
 sites-storages-fieldselector-value:
   ru: Поле значения
   en: Value field
+  hy: Արժեքի դաշտ
 sites-storages-fieldselector-title:
   ru: Поле заголовка
   en: Title field
+  hy: Վերնագրի դաշտ
 sites-storages-fieldselector-group:
   ru: Настройка выборки
   en: Selector settings
+  hy: Ընտրիչի կարգավորումներ
 sites-storages-fieldselector-render:
   ru: Метод для вывода выборки
   en: Custom render method
@@ -544,14 +726,18 @@ sites-storages-fieldselector-ondemand:
 sites-storages-fieldexpression:
   ru: Выражение
   en: Expression
+  hy: Արտահայտություն
 sites-storages-fieldexpression-note:
   ru: Введите выражение для создания поля. Внимание! Предполагается что вы знаете
     что делаете
   en: Enter an expression to create the field. Attention! You are supposed to know
     what you are doing
+  hy: "Մուտքագրեք արտահայտություն՝ դաշտը ստեղծելու համար: Ուշադրություն.
+    Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում"
 sites-storages-indexname:
   ru: Наименование индекса
   en: Index name
+  hy: Ցուցանիշի անվանումը
 sites-storages-indexname-note:
   ru: "Внимание! Рекомендуется индекс называть следующим образом:
     storage_fields_idx, где storage название хранилища fields - список полей
@@ -559,224 +745,291 @@ sites-storages-indexname-note:
   en: "Attention! It is recommended to name the index as follows:
     storage_fields_idx, where storage is the name of the storage fields - the
     list of fields separated by _"
+  hy: Ուշադրություն. Ցուցանիշը խորհուրդ է տրվում անվանել հետևյալ կերպ.
+    storage_fields_idx, որտեղ պահեստավորումը պահեստավորման դաշտերի անունն է.
 sites-storages-indexname-validation-required:
   ru: Пожалуйста, введите наименование индекса
   en: Please enter an index name
+  hy: Խնդրում ենք մուտքագրել ինդեքսի անունը
 sites-storages-indexname-validation-regexp:
   ru: Введенный текст не соответствует требованиям
   en: The entered text does not match the requirements
+  hy: Մուտքագրված տեքստը չի համապատասխանում պահանջներին
 sites-storages-indexfields:
   ru: Спосок свойств
   en: Properties list
+  hy: Հատկությունների ցանկ
 sites-storages-indexfields-note:
   ru: Выберите список свойств по которым необходимо индексировать
   en: Select a list of properties to index by
+  hy: Ընտրեք ինդեքսավորման համար նախատեսված հատկությունների ցանկը
 sites-storages-indexfields-validation-required:
   ru: Пожалуйста, выберите свойства
   en: Please select properties
+  hy: Խնդրում ենք ընտրել հատկությունները
 sites-storages-indextype:
   ru: Тип индекса
   en: Index type
+  hy: Ինդեքսի տեսակը
 sites-storages-indextype-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
+  hy: "Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում:"
 sites-storages-indextype-validation-required:
   ru: Пожалуйста, выберите тип индекса
   en: Please select an index type
+  hy: Խնդրում ենք ընտրել ինդեքսի տեսակը
 sites-storages-indexmethod:
   ru: Метод индексирования
   en: Indexing method
+  hy: Ինդեքսավորման մեթոդ
 sites-storages-indexmethod-note:
   ru: Выберите тип индексирования
   en: Select an indexing method
+  hy: Ընտրեք ինդեքսավորման մեթոդ
 sites-storages-values-binary:
   ru: Бинарное дерево
   en: Binary tree
+  hy: Երկուական ծառ
 sites-storages-values-hash:
   ru: Хэш функция
   en: Hash function
+  hy: Հեշ ֆունկցիա
 sites-storages-indexmethod-validation-required:
   ru: Пожалуйста, выберите метод индексирования
   en: Please select indexing method
+  hy: Խնդրում ենք ընտրել ինդեքսավորման մեթոդը
 sites-storages-windowtitle-newstorage:
   ru: Новое хранилище
   en: New storage
+  hy: Նոր պահեստ
 sites-storages-windowtitle-editstorage:
   ru: Редактировать хранилище
   en: Edit storage
+  hy: Խմբագրել պահեստը
 sites-storages-messages-removestorage:
   ru: Удаление хранилища данных
   en: Delete storage
+  hy: Ջնջել պահեստը
 sites-storages-messages-removestoragemessage:
   ru: Вы уверены, что хотите удалить хранилище данных?
   en: Are you sure you want to delete the datastore?
+  hy: "Վստա՞հ եք, որ ցանկանում եք ջնջել տվյալների պահեստը:"
 sites-storages-windowtitle-newproperty:
   ru: Новое свойство
   en: New property
+  hy: Նոր սեփականություն
 sites-storages-windowtitle-newvirtualproperty:
   ru: Новое виртуальное свойство
   en: New virtual property
+  hy: Նոր վիրտուալ սեփականություն
 sites-storages-windowtitle-editproperty:
   ru: Редактировать свойство
   en: Edit property
+  hy: Խմբագրել սեփականությունը
 sites-storages-messages-removeproperty:
   ru: Удаление свойства
   en: Delete property
+  hy: Ջնջել սեփականությունը
 sites-storages-messages-removepropertymessage:
   ru: Вы уверены, что хотите удалить свойство?
   en: Are you sure you want to delete the property?
+  hy: "Իսկապե՞ս ուզում եք ջնջել սեփականությունը:"
 sites-storages-windowtitle-newindex:
   ru: Новый индекс
   en: New index
+  hy: Նոր ցուցանիշ
 sites-storages-windowtitle-editindex:
   ru: Редактировать индекс
   en: Edit index
+  hy: Խմբագրել ինդեքսը
 sites-storages-messages-removeindex:
   ru: Удаление индекса
   en: Delete index
+  hy: Ջնջել ինդեքսը
 sites-storages-messages-removeindexmessage:
   ru: Вы уверены, что хотите удалить индекс?
   en: Are you sure you want to delete the index?
+  hy: "Վստա՞հ եք, որ ցանկանում եք ջնջել ինդեքսը:"
 sites-storagesmanager-title:
   ru: Хранилища материалов
   en: Storages
+  hy: Նյութերի պահեստավորում
 sites-storages-storagetemplates-default-unselected:
   ru: Шаблон не выбран
   en: Template is not selected
+  hy: Կաղապար ընտրված չէ
 sites-storages-fieldvalues-type:
   ru: Тип значения
   en: Value type
+  hy: Արժեքի տեսակը
 sites-storages-fieldvalues-type-:
   ru: Тип значения
 sites-storages-fieldvalues-type-text:
   ru: Текст
   en: Text
+  hy: Տեքստ
 sites-storages-fieldvalues-type-number:
   ru: Число
   en: Numeric
+  hy: Թվային
 sites-storages-storagegroupenabled:
   ru: Включить группу
   en: Enable group
+  hy: Միացնել խումբը
 sites-storages-fieldgroupenabled:
   ru: Включить группу
   en: Enable group
+  hy: Միացնել խումբը
 sites-storages-fieldlookup-depends:
   ru: Зависимость от другого свойства
   en: Depends with other property
+  hy: Կախված է այլ գույքից
 sites-storages-fieldattrs-group:
   ru: Аттрибуты
   en: Attributes
+  hy: Հատկանիշներ
 sites-storages-fieldparams-group:
   ru: Дополнительные параметры
   en: Additional parameters
+  hy: Լրացուցիչ պարամետրեր
 sites-storages-fieldvalues-group:
   ru: Значения
   en: Values
+  hy: Արժեքներ
 sites-storages-indextype-fulltext:
   ru: Полнотекстовый
   en: Full text
+  hy: Ամբողջական տեքստը
 sites-storages-indextype-unique:
   ru: Уникальный
   en: Unique
+  hy: Յուրահատուկ
 sites-storages-indextype-spatial:
   ru: Пространственный
   en: Spatial
+  hy: Տարածական
 sites-storages-indextype-normal:
   ru: Нормальный
   en: Normal
+  hy: Նորմալ
 sites-storages-messages-removestoragemessage-delete:
   ru: Удалить!
   en: Delete
+  hy: Ջնջել
 sites-storages-messages-removepropertymessage-delete:
   ru: Удалить!
   en: Delete
+  hy: Ջնջել
 sites-storages-messages-removeindexmessage-delete:
   ru: Удалить!
   en: Delete
+  hy: Ջնջել
 sites-global-notallowed:
   ru: Действие запрещено
 sites-storagespage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
+  hy: Գործողությունը չի թույլատրվում
 sites-storages-fieldselector-group-desc:
   ru: Поле для группировки
   en: Group field
+  hy: Խմբային դաշտ
 sites-storages-fieldselector-render-desc:
   ru: Метод для вывода выборки
   en: Custom render method
+  hy: Պատվերով մատուցման մեթոդ
 sites-storages-fieldselector-ondemand-desc:
   ru: Загружать при запросе
   en: Download on demand
+  hy: Ներբեռնեք ըստ պահանջի
 sites-storages-fieldlookup-group:
   ru: Связка
   en: Lookup
+  hy: Փնտրել
 sites-storages-fieldparams-searchable:
   ru: Поиск в выпадающем списке (только для списков)
   en: Search in select menu (only for selects)
   hy: Որոնել ընտրացանկից (միայն ընտրվածների համար)
 sites-storages-fieldparams-searchable-note:
   ru: Указывает возможен ли в выпадающем списке поиск по тексту
-  hy: Նշում է, թե արդյոք բացվող ցանկը կարող է որոնվել տեքստով
+  hy: Ցույց է տալիս, թե արդյոք հնարավոր է տեքստի որոնում բացվող ցանկում
   en: Indicates whether text search is possible in the drop-down list
 sites-storages-fieldparams-valuegenerator:
   ru: Генератор значений в режиме работы формы
   en: Runtime value generator
+  hy: Գործողության արժեքի գեներատոր
 sites-storages-fieldparams-template:
   ru: Отображать в шаблоне
   en: Show in row template
+  hy: Ցույց տալ տողով ձևանմուշը
 sites-storages-fieldparams-template-args:
   ru: Аргументы для шаблона
-sites-storages-fieldparams-template-args-: {}
+  hy: Փաստարկներ կաղապարի համար
 sites-storages-fieldparams-template-args-rows:
   ru: Количество строк
   en: Template rows
+  hy: Տողերի քանակը
 sites-storages-fieldparams-template-args-columns:
   ru: Количество колонок
   en: Template columns
+  hy: Սյունակների քանակը
 sites-storages-fieldparams-template-args-orientation:
   ru: Направление
   en: Orientation
+  hy: Ուղղություն
 sites-storages-fieldparams-template-args-orientation-vr:
   ru: Вертикально
   en: Vertical
+  hy: Ուղղահայաց
 sites-storages-fieldparams-template-args-orientation-hr:
   ru: Горизонтально
   en: Horizontal
+  hy: Հորիզոնական
 sites-storages-fieldparams-template-args-flow:
   ru: Поток
   en: Flow
-sites-storages-fieldparams-template-args-flow-vr: {}
+  hy: Հոսք
 sites-storages-fieldparams-template-args-flow-row:
   ru: Строки
   en: Rows
+  hy: Պայմանները
 sites-storages-fieldparams-template-args-flow-column:
   ru: Колонки
   en: Columns
+  hy: Սյունակներ
 sites-storages-fieldparams-template-args-gap:
   ru: Отступы
   en: Gap
+  hy: Նեղացումներ
 sites-storages-fieldselector-chooser-desc:
   ru: Компонента для выборки
   en: Component for Chooser
+  hy: Բաղադրիչ ընտրողի համար
 sites-storages-fieldparams-onchangehandler:
   ru: Обработчик OnChanged
   en: OnChanged Handler
+  hy: OnChanged handler
 sites-storages-fieldlookup-storage-limit:
   ru: Лимит строк
   en: Rows limit
+  hy: Շարքերի սահմանափակում
 sites-storages-fieldlookup-storage-limit-note:
   ru: Введите лимит строк, по умолчанию 1000
   en: Enter the rows limit, default is 1000
+  hy: Մուտքագրեք տողերի սահմանը, լռելյայն 1000 է
 sites-storages-fieldlookup-storage-filter:
   ru: Фильтр
   en: Filter
+  hy: Զտել
 sites-storages-fieldlookup-storage-filter-note:
   ru: Используйте [[term:string]] для указания текста поиска
   en: Use [[term:string]] for search term
-sites-storag(es-storagetemplates-default-unselected: {}
+  hy: Օգտագործեք [[term:string]] որոնման բառի համար
 sites-storages-storageadditional-softdeletes:
   ru: Мягкое удаление
   en: Soft deletes
+  hy: Փափուկ հեռացում
 sites-storages-contextmenu-copyfield:
   ru: Скопировать
   en: Copy
@@ -784,7 +1037,7 @@ sites-storages-contextmenu-copyfield:
 sites-storages-contextmenu-pastefield:
   ru: Вставить поле
   en: Paste field
-  hy: Կպցնել
+  hy: Տեղադրել
 sites-storagespage-fieldcopied:
   ru: Данные поля скопированы
   en: Field data is copied
@@ -796,9 +1049,11 @@ sites-storagespage-fieldpasted:
 sites-storages-fieldparams-hasscroll:
   ru: Есть скролл в списке массива
   en: Has scroll on array items
+  hy: Ունի ոլորում զանգվածի տարրերի վրա
 sites-storages-fieldparams-hasscroll-note:
   ru: Ограничить список массива 500 пикселей и показать прокрутку
   en: Limit array list to 500px and show scrolling
+  hy: Սահմանափակեք զանգվածների ցանկը 500px-ով և ցուցադրեք ոլորումը
 sites-storagesmanager-cannotchange:
   ru: Структура хранилищь может быть изменена только в локальном режиме,
     пожалуйста, обратитесь к администратору
@@ -806,25 +1061,32 @@ sites-storagesmanager-cannotchange:
     դիմել ձեր ադմինիստրատորին
   en: The storage structure can only be changed in local mode, please contact your
     administrator
-sites-storages-storageadditional-showdeleted: {}
 sites-storages-storageadditional-deletedautoshow:
   ru: Показывать удаленные записи в бэкенд-е
   en: Show deleted items in backend
-  hy: Ցույց տալ ջնջված գրառումները
+  hy: Ցույց տալ ջնջված գրառումները հետնամասում
 sites-storages-fieldtag-group:
   ru: Тэги
   en: Tags
+  hy: Պիտակներ
 sites-storages-fieldtag:
   en: Tags
   ru: Тэги
-sites-storages-fieldtag-note: {}
+  hy: Պիտակներ
 sites-storages-fieldparams-displayed_columns:
   ru: Список отображаемых в списке полей
   en: Grid columns for ArrayGrid
+  hy: Ցանց սյունակներ ArrayGrid-ի համար
 sites-storages-fieldparams-displayed_columns-note:
   ru: Работает только с полями типа ArrayGrid
   en: Works only with ArrayGrid
+  hy: Աշխատում է միայն ArrayGrid-ի հետ
 sites-storages-contextmenu-copyfieldwithchilds:
   ru: Скопировать все дерево
   en: Copy with childs
   hy: Պատճենել ամբողճը
+sites-storages-storages:
+  ru: Хранилища
+  en: Storages
+  it: Magazzinaggio
+  hy: Պահպանում
