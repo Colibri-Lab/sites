@@ -570,4 +570,80 @@ class DataController extends WebController
 
 
     
+    /**
+     * Saves a data list
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function SaveDataList(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        if (!SecurityModule::$instance->current) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        $storage = $post->{'storage'};
+        $dataList = (array) $post->{'data'};
+
+        $storage = Storages::Create()->Load($storage);
+        [$tableClass, ] = $storage->GetModelClasses();
+
+        $accessPoint = $storage->accessPoint;
+        $accessPoint->Begin();
+        try {
+
+            $ret = [];
+            foreach($dataList as $data) {
+                $data = (object)$data;
+
+                if (!SecurityModule::$instance->current->IsCommandAllowed(
+                    'sites.storages.' . $storage->name . ($data->id ?? 0 ? '.edit' : '.add')
+                )) {
+                    throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+                }
+        
+                if ($data->id ?? 0) {
+                    $datarow = $tableClass::LoadById($data->id);
+                    if (!$datarow) {
+                        throw new BadRequestException('Bad request', 400);
+                    }
+                } else {
+                    $datarow = $tableClass::LoadEmpty();
+                }
+        
+                foreach ($data as $key => $value) {
+                    $datarow->$key = $value;
+                }
+        
+                /** @var QueryInfo $res */
+                if (($res = $datarow->Save(true)) !== true) {
+                    throw new InvalidArgumentException($res->error, 400);
+                }
+
+                
+                $ret[] = $datarow->ToArray(true);
+                
+            }
+            
+        } catch (InvalidArgumentException $e) {
+            $accessPoint->Rollback();
+            throw new BadRequestException($e->getMessage(), 400, $e);
+        } catch (ValidationException $e) {
+            $accessPoint->Rollback();
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
+        } catch (\Throwable $e) {
+            $accessPoint->Rollback();
+            throw new ApplicationErrorException($e->getMessage(), 500, $e);
+        }
+
+        $accessPoint->Commit();
+
+        return $this->Finish(200, 'ok', $ret);
+
+    }
+
+
+    
 }

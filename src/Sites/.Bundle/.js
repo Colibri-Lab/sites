@@ -417,6 +417,17 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
+    SaveDataInList(storage, data) {
+        return this.Call('Data', 'SaveDataList', {storage: storage, data: data})
+            .then((response) => {
+                this._store.IntersectList('sites.data', 'id', response.result);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result, Colibri.UI.Notice.Error, 15000));
+                console.error(error);
+            });
+    }
+
     ExportData(storage, term = null, filters = null, sortField = null, sortOrder = null) {
         this.Call('Data', 'Export', {storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder})
             .then((response) => {

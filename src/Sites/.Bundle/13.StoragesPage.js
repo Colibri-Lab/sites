@@ -976,12 +976,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         valuegenerator: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-valuegenerator}',
+                            note: '#{sites-storages-fieldparams-valuegenerator-note}',
                             component: 'TextArea',
                             default: ''
                         },
                         onchangehandler: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-onchangehandler}',
+                            note: '#{sites-storages-fieldparams-onchangehandler-note}',
                             component: 'TextArea',
                             default: ''
                         },

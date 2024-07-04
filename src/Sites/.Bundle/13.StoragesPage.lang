@@ -1090,3 +1090,11 @@ sites-storages-storages:
   en: Storages
   it: Magazzinaggio
   hy: Պահպանում
+sites-storages-fieldparams-valuegenerator-note:
+  ru: "Например: (fieldValue, formValue, fieldComponent, component) => {}"
+  en: "For example: (fieldValue, formValue, fieldComponent, component) => {}"
+  hy: Օրինակ՝ (fieldValue, formValue, fieldComponent, component) => {}
+sites-storages-fieldparams-onchangehandler-note:
+  ru: "Например: (event, args) => {}"
+  en: "For example: (event, args) => {}"
+  hy: Օրինակ՝ (event, args) => {}

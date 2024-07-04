@@ -429,6 +429,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
      * @param {*} args event arguments
      */
     __clickOnDataColumn(event, args) {
+        if(this._data.sortColumn?.name === 'button-container-for-row-selection') {
+            return;
+        }
         this.__searchInputFilled(event, args);
     }
 
