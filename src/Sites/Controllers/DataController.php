@@ -165,7 +165,7 @@ class DataController extends WebController
                         $eq = 'like';
                     }
                     $flts[] = (strstr($fieldName, 'json_') !== false ? $fieldName :
-                        '{' . $fieldName . '}').' '.$eq.' [['.$fieldName.$index.':'.$field->param.']]';
+                        '{' . $fieldName . '}').' '.$eq.' [['.$fieldName.$index.':'.($field->param ?: 'string').']]';
                     $params[$fieldName.$index] = $eq === 'like' ? '%' . $v . '%' : $v;
                 }
                 $filters[] = implode(' or ', $flts);
@@ -622,7 +622,6 @@ class DataController extends WebController
                     throw new InvalidArgumentException($res->error, 400);
                 }
 
-                
                 $ret[] = $datarow->ToArray(true);
                 
             }
