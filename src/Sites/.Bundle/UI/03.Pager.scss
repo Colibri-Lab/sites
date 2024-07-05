@@ -5,13 +5,17 @@
     justify-content: flex-start;
     gap: 10px;
     width: auto;
-    [data-object-name="current-page"] {
+    [data-object-name="current-page"], [data-object-name="current-pagesize"] {
         flex: 0 0 30px;
         padding: 0px;
         border: 0px;
         input {
             text-align: center;
         }
+    }
+
+    [data-object-name="current-pagesize"] {
+        flex: 0 0 50px;
     }
 
     [data-object-name="max-pages"] {

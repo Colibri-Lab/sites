@@ -92,7 +92,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
     _loadDataPage(storage, searchTerm, searchFilters, sortField, sortOrder, page) {
         this._pagerData.value = page;
-        Sites.LoadData(storage, searchTerm, searchFilters, sortField, sortOrder, page, 20);
+        Sites.LoadData(storage, searchTerm, searchFilters, sortField, sortOrder, page, this._pagerData.pageSize);
     }
 
 

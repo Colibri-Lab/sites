@@ -10,6 +10,8 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._maxPagesO = this.Children('max-pages');
         this._currentPage = this.Children('current-page');
         this._reload = this.Children('reload');
+        this._currentPagesize = this.Children('current-pagesize');
+        
         
         
         this.maxPages = 1;
@@ -19,6 +21,7 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._left.AddHandler('Clicked', (event, args) => this.__leftClicked(event, args));
         this._right.AddHandler('Clicked', (event, args) => this.__rightClicked(event, args)); 
         this._currentPage.AddHandler(['Filled', 'Cleared'], (event, args) => this.__currentPageChanged(event, args));   
+        this._currentPagesize.AddHandler(['Filled', 'Cleared'], (event, args) => this.__currentPagesizeChanged(event, args));   
         this._reload.AddHandler('Clicked', (event, args) => this.__reloadClicked(event, args));
 
     }
@@ -76,6 +79,15 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
             this.value = this._currentPage.value;
         } else {
             this.value = 1;
+        }
+        this.Dispatch('Changed', {value: this.value});
+    }
+
+    __currentPagesizeChanged(event, args) {
+        if(!this.hasMaxPages || (this._currentPagesize.value >= 1 && this._currentPagesize.value <= this._affected)) {
+            this.pageSize = this._currentPagesize.value;
+        } else {
+            this.pageSize = 20;
         }
         this.Dispatch('Changed', {value: this.value});
     }
