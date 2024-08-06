@@ -190,7 +190,7 @@ class DataController extends WebController
         $datarows = $tableClass::LoadByFilter(
             $page,
             $pagesize,
-            implode(' or ', $filters),
+            implode(' and ', $filters),
             $sortField . ' ' . $sortOrder,
             $params
         );
