@@ -131,11 +131,13 @@ class DataController extends WebController
         $filters = [];
         $params = [];
         if($term) {
+            $termFilters = [];
             foreach ($storage->fields as $field) {
                 if ($field->class === 'string') {
-                    $filters[] = '{' . $field->name . '} like [[term:string]]';
+                    $termFilters[] = '{' . $field->name . '} like [[term:string]]';
                 }
             }
+            $filters[] = '(' . implode(' or ', $termFilters) . ')';
             $params['term'] = '%' . $term . '%';
         }
 
