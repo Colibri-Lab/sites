@@ -17,6 +17,8 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._restoreData = this.Children('split/data-pane/buttons-pane/restore-data');
         this._exportData = this.Children('split/data-pane/buttons-pane/export-data');
         this._pagerData = this.Children('split/data-pane/buttons-pane/pager');
+        this._additionalData = this.Children('split/data-pane/buttons-pane/additional');
+
 
 
         this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
@@ -54,6 +56,28 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         if (m?.DataPageAdditionalMethods ?? false) {
             m.DataPageAdditionalMethods(this, storage).then(methods => {
                 storage.methods = methods;
+                this._additionalData.Clear();
+                if(storage.methods?.buttons) {
+                    for(const button of storage.methods?.buttons) {
+                        const b = new Colibri.UI.SuccessButton(button.name, this._additionalData);
+                        b.shown = true;
+                        b.value = button.title;
+                        b.icon = button.icon;
+                        b.AddHandler('Clicked', (event, args) => {
+                            m?.DataPageAdditionalExecuteMethod(button, storage, {filter: this._filterData, search: this._searchInput.value}).then(() => {
+                                this._loadDataPage(
+                                    storage, 
+                                    this._searchInput.value, 
+                                    this._filterData, 
+                                    this._data.sortColumn?.name, 
+                                    this._data.sortOrder, 
+                                    this._pagerData.value
+                                );
+                            });
+                        });
+                    }
+                }
+
             });
         }
 
