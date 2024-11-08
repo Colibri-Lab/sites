@@ -454,7 +454,7 @@ fields:
               title: title
             lookup:
               method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
-                (name, value) => { ret.push({value: name, title: value.description});
+                (name, value) => { ret.push({value: value.className, title: value.description});
                 }); resolve(ret); })'
             attrs:
               width: 22%
