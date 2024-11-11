@@ -507,7 +507,6 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             contextMenuObject.AddHandler('Clicked', (event, args) => {
                 contextMenuObject.Hide();
                 const menuData = args.menuData;
-                debugger;
                 if(Security.IsCommandAllowed('sites.storages.' + menuData.name + '.edit')) {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + menuData.title + '»', 1024, 'app.manage.storages(' + menuData.name + ')', {})
                         .then((data) => {
