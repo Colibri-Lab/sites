@@ -67,7 +67,7 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
     _loadDataPage(storage, searchTerm, sortField, sortOrder, page) {
         this._dataCurrentPage = page;
-        Sites.LoadData(storage, searchTerm, sortField, sortOrder, page, 20);
+        Sites.LoadData(storage, searchTerm, {}, sortField, sortOrder, page, 20);
     }
 
     /**
