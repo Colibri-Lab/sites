@@ -48,9 +48,32 @@ class Domains extends BaseModelDataTable
      */
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Domains
     {
-        $storage = Storages::Create()->Load('domains');
+        $storage = Storages::Create()->Load('domains', 'sites');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
 
+    }
+
+    /**
+     * Create table by any filters
+     * @param int $page page
+     * @param int $pagesize page size
+     * @param ?array $filtersArray filters array|object
+     * @param string $sortField sort field
+     * @param string $sortOrder sort order, default asc
+     * @return ?Pages
+     */
+    public static function LoadBy(
+        int $page = -1, 
+        int $pagesize = 20, 
+        ?string $searchTerm = null,
+        ?array $filtersArray = null,
+        ?string $sortField = null,
+        string $sortOrder = 'asc'
+    ) : ?Pages
+    {
+        $storage = Storages::Create()->Load('domains', 'sites');
+        [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
+        return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
 
     /**
@@ -113,7 +136,7 @@ class Domains extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('domains');
+        $storage = Storages::Create()->Load('domains', 'sites');
         if (!self::DeleteByFilter($storage->table, $filter)) {
             return false;
         }

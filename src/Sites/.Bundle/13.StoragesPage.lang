@@ -1098,3 +1098,9 @@ sites-storages-fieldparams-onchangehandler-note:
   ru: "Например: (event, args) => {}"
   en: "For example: (event, args) => {}"
   hy: Օրինակ՝ (event, args) => {}
+sites-storages-field: {}
+sites-storages-fieldindexed:
+  ru: Индексировать
+  en: Indexed
+  it: Indice
+  hy: Ցուցանիշ

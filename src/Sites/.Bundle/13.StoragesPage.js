@@ -116,10 +116,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         const node = args.item;
         const tag = node.tag;
         const nodeType = tag.type;
+        const storage = this._storages.selected.value;
+        const dbms = storage.dbms;
+
         switch (nodeType) {
             case 'fields':
                 contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
-                contextmenu.push({ name: 'new-virtual-field', title: '#{sites-storages-contextmenu-newvirtualfield}', icon: Colibri.UI.ContextMenuAddIcon });
+                dbms === 'relational' && contextmenu.push({ name: 'new-virtual-field', title: '#{sites-storages-contextmenu-newvirtualfield}', icon: Colibri.UI.ContextMenuAddIcon });
                 if(this._copiedField !== null) {
                     contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
                 }
@@ -146,7 +149,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         node.contextmenu = contextmenu;
         node.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.LB], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
-
+        
     }
 
     _storageFields() {
@@ -509,6 +512,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _fieldFields(showGroup = true, moduleNode) {
+        const storage = this._storages.selected.value;
+        const dbms = storage.dbms;
         const fields = {
             name: 'Field',
             desc: 'Свойство',
@@ -595,7 +600,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 },
                 type: {
                     type: 'varchar',
-                    component: 'Text',
+                    component: 'Select',
                     group: 'window',
                     desc: '#{sites-storages-fieldtype}',
                     note: '#{sites-storages-fieldtype-note}',
@@ -605,7 +610,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             message: '#{sites-storages-fieldtype-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
-                    }
+                    },
+                    lookup: () => new Promise((resolve, reject) => resolve(Object.keys(storage.allowedTypes).map((k, v) => {
+                        return {value: k, title: k};
+                    })))
                 },
                 length: {
                     type: 'integer',
@@ -615,6 +623,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     note: '#{sites-storages-fieldlength-note}',
                     params: {
                         required: false,
+                        condition: {
+                            field: 'type',
+                            method: (fieldValue, data, type, empty, inverse, fieldData) => {
+                                let found = Object.filter(storage.allowedTypes, (k, v) => k === fieldValue);
+                                let t = Object.values(found)[0];
+                                return t?.length ?? true;
+                            }
+                        }
                     }
                 },
                 component: {
@@ -657,7 +673,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         validate: [{
                             message: '#{sites-storages-fieldclass-validation-required}',
                             method: '(field, validator) => !!field.value'
-                        }]
+                        }],
+                        valuegenerator: (value, rootValue, component, rootComponent) => {
+                            if(!value) {
+                                const type = rootValue.type;
+                                let found = Object.filter(storage.allowedTypes, (k, v) => k === type);
+                                let o = Object.values(found)[0];
+                                return o?.generic ?? value;
+                            }
+                            return value;
+                        }
                     }
                 },
                 
@@ -679,6 +704,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             value: true,
                         }
                     }
+                },
+
+                indexed: {
+                    type: 'bool',
+                    group: 'window',
+                    component: dbms === 'relational' ? 'Colibri.UI.Forms.Hidden' : 'Checkbox',
+                    placeholder: '#{sites-storages-fieldindexed}',
+                    default: true
                 },
                 
                 attrs: {
@@ -1350,13 +1383,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         initempty: false
                     }
                 }
-
-                
             }
         };
         if(!showGroup) {
             delete fields.fields.group;
         }
+        
         return fields;
     }
 
