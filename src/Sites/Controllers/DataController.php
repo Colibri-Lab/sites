@@ -147,7 +147,9 @@ class DataController extends WebController
         }
 
         foreach ($data as $key => $value) {
-            $datarow->$key = $value;
+            if(!in_array($key, ['id','datecreated','datemodified'])) {
+                $datarow->$key = $value;
+            }
         }
 
         $accessPoint = $datarow->Storage()->accessPoint;

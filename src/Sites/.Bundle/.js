@@ -303,11 +303,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 if(!data || !Array.isArray(data)) {
                     data = [];
                 }
-                
+
                 let newData = [];
                 data.map((p) => {
                     if(storage.params.softdeletes && storage.params.deletedautoshow) {
-                        p.datedeleted = Date.Now();
+                        if(dataIds.indexOf(p.id) !== -1) {
+                            p.datedeleted = Date.Now();
+                        }
                         newData.push(p);
                     } else {
                         if(dataIds.indexOf(p.id) === -1) {
