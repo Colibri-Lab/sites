@@ -659,7 +659,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         validate: [{
                             message: '#{sites-storages-fieldcomponent-validation-required}',
                             method: '(field, validator) => !!field.value'
-                        }]
+                        }],
+                        valuegenerator: (value, rootValue, component, rootComponent, changedComponent) => {
+                            if(changedComponent.name === 'type') {
+                                const type = rootValue.type;
+                                let found = Object.filter(storage.allowedTypes, (k, v) => k === type);
+                                let o = Object.values(found)[0];
+                                return o?.component ?? '';
+                            }
+                            return value;
+                        }
                     }
                 },
                 class: {
