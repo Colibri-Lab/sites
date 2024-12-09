@@ -41,39 +41,37 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
 
     _insertStorageNode(storageNode, storage) {
-        Manage.Store.AsyncQuery('manage.datapoints').then((points) => {
-            const accessPoint = points[storage['access-point']];
 
-            this._names.set(storage.name + '_fields', storage.name + '_fields');
-            let fieldsNode = this.FindNode(storage.name + '_fields');
-            if(!fieldsNode) {
-                fieldsNode = storageNode.nodes.Add(storage.name + '_fields');
-            }
-            fieldsNode.text = '#{sites-storages-fields}';
-            fieldsNode.isLeaf = Object.countKeys(storage.fields) == 0;
-            fieldsNode.icon = App.Modules.Sites.Icons.FieldsIcon;
-            fieldsNode.tag.entry = null;
-            fieldsNode.tag.type = 'fields';
-            
-            this._insertFieldFields(fieldsNode, storage);
-    
-            if(accessPoint.dbms === 'relational') {
 
-                this._names.set(storage.name + '_indices', storage.name + '_indices');
-                let indicesNode = this.FindNode(storage.name + '_indices');
-                if(!indicesNode) {
-                    indicesNode = storageNode.nodes.Add(storage.name + '_indices');
-                }
-                indicesNode.text = '#{sites-storages-indices}';
-                indicesNode.isLeaf = !storage.indices || Object.countKeys(storage.indices) == 0;
-                indicesNode.icon = App.Modules.Sites.Icons.IndexesIcon;
-                indicesNode.tag.entry = null;
-                indicesNode.tag.type = 'indices';
+        this._names.set(storage.name + '_fields', storage.name + '_fields');
+        let fieldsNode = this.FindNode(storage.name + '_fields');
+        if(!fieldsNode) {
+            fieldsNode = storageNode.nodes.Add(storage.name + '_fields');
+        }
+        fieldsNode.text = '#{sites-storages-fields}';
+        fieldsNode.isLeaf = Object.countKeys(storage.fields) == 0;
+        fieldsNode.icon = App.Modules.Sites.Icons.FieldsIcon;
+        fieldsNode.tag.entry = null;
+        fieldsNode.tag.type = 'fields';
         
-                this._insertFieldIndexes(indicesNode, storage);
+        this._insertFieldFields(fieldsNode, storage);
+
+        if(storage.dbms === 'relational') {
+
+            this._names.set(storage.name + '_indices', storage.name + '_indices');
+            let indicesNode = this.FindNode(storage.name + '_indices');
+            if(!indicesNode) {
+                indicesNode = storageNode.nodes.Add(storage.name + '_indices');
             }
+            indicesNode.text = '#{sites-storages-indices}';
+            indicesNode.isLeaf = !storage.indices || Object.countKeys(storage.indices) == 0;
+            indicesNode.icon = App.Modules.Sites.Icons.IndexesIcon;
+            indicesNode.tag.entry = null;
+            indicesNode.tag.type = 'indices';
     
-        });
+            this._insertFieldIndexes(indicesNode, storage);
+        }
+
        
 
         // moduleNode.isLeaf = false;
