@@ -1568,6 +1568,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             type: NORMAL
             method: BTREE
          */
+        const storage = this._storages.selected.value;
+        const hasMultiFieldIndexes = storage.hasMultiFieldIndexes;
+        const allowedTypes = storage.allowedTypes;
         return {
             name: 'Field',
             desc: 'Свойство',
@@ -1579,19 +1582,23 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     note: '#{sites-storages-indexname-note}',
                     params: {
                         required: true,
+                        readonly: true,
                         validate: [{
                             message: '#{sites-storages-indexname-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }, {
                             message: '#{sites-storages-indexname-validation-regexp}',
                             method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
-                        }]
+                        }],
+                        valuegenerator: (value, rootValue, component, rootComponent, changedComponent) => {
+                            return storageName + '_' + (Array.isArray(rootValue.fields) ? rootValue.fields.join('_') : rootValue.fields) + '_idx';
+                        }
                     }
                 },
                 fields: {
                     type: 'varchar',
                     component: 'Select',
-                    multiple: true,
+                    multiple: hasMultiFieldIndexes,
                     desc: '#{sites-storages-indexfields}',
                     note: '#{sites-storages-indexfields-note}',
                     lookup: () => {
@@ -1599,7 +1606,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             Manage.Store.AsyncQuery('manage.storages(' + storageName + ')').then((storage) => {
                                 const components = [];
                                 Object.forEach(storage.fields, (name, field) => {
-                                    if(['json'].indexOf(field.type)) {
+                                    const allowedType = allowedTypes[field.type];
+                                    if((allowedType?.index ?? true)) {
                                         components.push({ value: name, title: (field.desc[Lang.Current] ?? field.desc) + ' (' + name + ')' });
                                     }
                                 });
@@ -1787,6 +1795,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
                     .then((data) => {
+                        if(!Array.isArray(data.fields)) {
+                            data.fields = [data.fields];
+                        }
                         Sites.SaveIndex(module.value, storage.value, data);
                     })
                     .catch(() => { });
@@ -1904,7 +1915,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-editindex}', 800, this._fieldIndex(storage.value.name), node.tag.entry)
                     .then((data) => {
-                        Sites.SaveIndex(storage.value, storage.value, data);
+                        if(!Array.isArray(data.fields)) {
+                            data.fields = [data.fields];
+                        }
+                        Sites.SaveIndex(module.value, storage.value, data);
                     })
                     .catch(() => { });
             }
@@ -1931,6 +1945,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
                     .then((data) => {
+                        if(!Array.isArray(data.fields)) {
+                            data.fields = [data.fields];
+                        }
                         Sites.SaveIndex(module.value, storage.value, data);
                     })
                     .catch(() => { });

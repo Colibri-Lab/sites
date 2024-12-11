@@ -308,7 +308,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 data.map((p) => {
                     if(storage.params.softdeletes && storage.params.deletedautoshow) {
                         if(dataIds.indexOf(p.id) !== -1) {
-                            p.datedeleted = Date.Now();
+                            p.datedeleted = Date.Now().toDbDate();
                         }
                         newData.push(p);
                     } else {
@@ -338,7 +338,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 let newData = [];
                 data.map((p) => {
                     if(dataIds.indexOf(p.id) !== -1) {
-                        p.datedeleted = null;
+                        p.datedeleted = '';
                     }
                     newData.push(p);
                 });
