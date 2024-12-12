@@ -1405,6 +1405,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _fieldVirtualFields() {
+        const storage = this._storages.selected.value;
+        const dbms = storage.dbms;
         const fields = {
             name: 'Field',
             desc: 'Свойство',
@@ -1467,7 +1469,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 },
                 type: {
                     type: 'varchar',
-                    component: 'Text',
+                    component: 'Select',
                     group: 'window',
                     desc: '#{sites-storages-fieldtype}',
                     note: '#{sites-storages-fieldtype-note}',
@@ -1477,7 +1479,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             message: '#{sites-storages-fieldtype-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }]
-                    }
+                    },
+                    lookup: () => new Promise((resolve, reject) => resolve(Object.keys(storage.allowedTypes).map((k, v) => {
+                        return {value: k, title: k};
+                    })))
                 },
                 length: {
                     type: 'integer',
@@ -1574,6 +1579,8 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         const storage = this._storages.selected.value;
         const hasMultiFieldIndexes = storage.hasMultiFieldIndexes;
         const allowedTypes = storage.allowedTypes;
+        const indexTypes = storage.indexTypes;
+        const indexMethods = storage.indexMethods;
         return {
             name: 'Field',
             desc: 'Свойство',
@@ -1643,12 +1650,22 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         }]
                     },
                     default: 'NORMAL',
-                    values: [
-                        {value: 'FULLTEXT', title: '#{sites-storages-indextype-fulltext}'},
-                        {value: 'NORMAL', title: '#{sites-storages-indextype-normal}'},
-                        {value: 'SPATIAL', title: '#{sites-storages-indextype-spatial}'},
-                        {value: 'UNIQUE', title: '#{sites-storages-indextype-unique}'},
-                    ]
+                    lookup: () => new Promise((resolve, reject) => {
+                        let indexes = [
+                            {value: 'FULLTEXT', title: '#{sites-storages-indextype-fulltext}'},
+                            {value: 'NORMAL', title: '#{sites-storages-indextype-normal}'},
+                            {value: 'SPATIAL', title: '#{sites-storages-indextype-spatial}'},
+                            {value: 'UNIQUE', title: '#{sites-storages-indextype-unique}'},
+                        ];
+                        let i = [];
+                        for(const type of indexTypes) {
+                            const oo = Array.findObject(indexes, 'value', type);
+                            if(oo) {
+                                i.push(oo);
+                            }
+                        }
+                        resolve(i);
+                    })
                 },
                 method: {
                     type: 'varchar',
@@ -1656,10 +1673,24 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-indexmethod}',
                     note: '#{sites-storages-indexmethod-note}',
                     default: 'BTREE',
-                    values: [
-                        {value: 'BTREE', title: '#{sites-storages-values-binary}'},
-                        {value: 'HASH', title: '#{sites-storages-values-hash}'},
-                    ],
+                    lookup: () => new Promise((resolve, reject) => {
+                        let indexes = [
+                            {value: 'BTREE', title: '#{sites-storages-values-binary}'},
+                            {value: 'HASH', title: '#{sites-storages-values-hash}'},
+                            {value: 'GIST', title: '#{sites-storages-values-gist}'}, 
+                            {value: 'SPGIST', title: '#{sites-storages-values-spgist}'}, 
+                            {value: 'GIN', title: '#{sites-storages-values-gin}'}, 
+                            {value: 'BRIN', title: '#{sites-storages-values-brin}'}
+                        ];
+                        let i = [];
+                        for(const type of indexMethods) {
+                            const oo = Array.findObject(indexes, 'value', type);
+                            if(oo) {
+                                i.push(oo);
+                            }
+                        }
+                        resolve(i);
+                    }),
                     params: {
                         required: true,
                         searchable: false,

@@ -1104,3 +1104,19 @@ sites-storages-fieldindexed:
   en: Indexed
   it: Indice
   hy: Ցուցանիշ
+sites-storages-values-gist:
+  en: Generalized Search Tree
+  ru: Обобщенное дерево поиска
+  hy: Ընդհանրացված որոնման ծառ
+sites-storages-values-spgist:
+  en: Space-Partitioned Generalized Search Tree
+  hy: Տիեզերական բաժանված ընդհանրացված որոնման ծառ
+  ru: Обобщенное дерево поиска с пространственным разделением
+sites-storages-values-gin:
+  en: Generalized Inverted Index
+  ru: Обобщенный инвертированный индекс
+  hy: Ընդհանրացված շրջված ինդեքս
+sites-storages-values-brin:
+  en: Block Range Index
+  ru: Индекс диапазона блоков
+  hy: Արգելափակման տիրույթի ինդեքս
