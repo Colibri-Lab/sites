@@ -688,6 +688,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 const type = rootValue.type;
                                 let found = Object.filter(storage.allowedTypes, (k, v) => k === type);
                                 let o = Object.values(found)[0];
+                                if(Object.isObject(o?.generic)) {
+                                    return o?.generic[rootValue.component] ?? value;
+                                } 
                                 return o?.generic ?? value;
                             }
                             return value;
