@@ -1581,6 +1581,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         const allowedTypes = storage.allowedTypes;
         const indexTypes = storage.indexTypes;
         const indexMethods = storage.indexMethods;
+        const jsonIndexes = storage.jsonIndexes;
         return {
             name: 'Field',
             desc: 'Свойство',
@@ -1601,7 +1602,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
                         }],
                         valuegenerator: (value, rootValue, component, rootComponent, changedComponent) => {
-                            return storageName + '_' + (Array.isArray(rootValue.fields) ? rootValue.fields.join('_') : rootValue.fields) + '_idx';
+                            return storageName + '_' + (Array.isArray(rootValue.fields) ? rootValue.fields.map(v => v.replaceAll('.', '_')).join('_') : rootValue.fields.replaceAll('.', '_')) + '_idx';
                         }
                     }
                 },
@@ -1615,12 +1616,20 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         return new Promise((rs, rj) => {
                             Manage.Store.AsyncQuery('manage.storages(' + storageName + ')').then((storage) => {
                                 const components = [];
-                                Object.forEach(storage.fields, (name, field) => {
-                                    const allowedType = allowedTypes[field.type];
-                                    if((allowedType?.index ?? true)) {
-                                        components.push({ value: name, title: (field.desc[Lang.Current] ?? field.desc) + ' (' + name + ')' });
-                                    }
-                                });
+                                const getIndexNames = (fields, parentName = '') => {
+                                    Object.forEach(fields, (name, field) => {
+                                        const allowedType = allowedTypes[field.type];
+                                        const n = (parentName ? parentName + '.' : '') + name;
+                                        const tab = '----'.repeat(n.countCharIn(/\./));
+                                        if((allowedType?.index ?? true)) {
+                                            components.push({ value: n, title: (tab ? tab + ' ' : '') + (field.desc[Lang.Current] ?? field.desc) + ' (' + n + ')' });
+                                        }
+                                        if(field.type === 'json') {
+                                            getIndexNames(field.fields, n);
+                                        }
+                                    });    
+                                };
+                                getIndexNames(storage.fields, '');
                                 rs({ result: components });
                             });
                         });
