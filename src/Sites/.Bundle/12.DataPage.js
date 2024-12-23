@@ -370,7 +370,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         contextmenu.push({ name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate}', icon: Colibri.UI.ContextMenuDublicateIcon });
         contextmenu.push({ name: 'edit-data', title: '#{sites-structure-contextmenu-edit}', icon: Colibri.UI.ContextMenuEditIcon });
 
-        if ( (args.item.value.datedeleted.isNumeric() && parseInt(args.item.value.datedeleted) == 0) || !args.item.value.datedeleted) {
+        if ( (args.item.value.datedeleted && args.item.value.datedeleted.isNumeric() && parseInt(args.item.value.datedeleted) == 0) || !args.item.value.datedeleted) {
             contextmenu.push({ name: 'remove-data', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon });
         } else {
             contextmenu.push({ name: 'restore-data', title: '#{sites-structure-contextmenu-restore}', icon: Colibri.UI.ContextMenuRemoveIcon });

@@ -27,8 +27,7 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
         }
 
         const selected = this.selected?.value ?? null;
-
-        const storagesList = Object.values(data).filter(v => v.module == this._module.name);
+        const storagesList = Object.values(data).filter(v => v.module == this._module.name && (v?.params?.visible ?? true) === true);
         this._group.value = storagesList;
 
         if(selected) {
@@ -65,7 +64,7 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
 
         this.binding = 'app.manage.storages';
         App.Store.AsyncQuery('app.manage.storages').then(storages => {
-            const storagesList = Object.values(storages).filter(v => v.module == this._module.name);
+            const storagesList = Object.values(storages).filter(v => v.module == this._module.name && (v?.params?.visible ?? true) === true);
             this._group.value = storagesList;
         });    
     }
