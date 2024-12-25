@@ -669,6 +669,7 @@ sites-storages-fieldlookup-accesspoint:
   ru: Точка доступа
   en: Access point
   hy: Մուտքի կետ
+  it: Punto di accesso
 sites-storages-fieldlookup-accesspoint-table:
   ru: Таблица
   en: Table
@@ -1120,3 +1121,8 @@ sites-storages-values-brin:
   en: Block Range Index
   ru: Индекс диапазона блоков
   hy: Արգելափակման տիրույթի ինդեքս
+sites-storages-fieldlookup-accesspoint-point:
+  ru: Точка доступа
+  en: Access point
+  hy: Մուտքի կետ
+  it: Punto di accesso

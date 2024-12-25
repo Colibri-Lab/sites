@@ -1264,12 +1264,62 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             desc: '#{sites-storages-fieldlookup-accesspoint}',
                             default: '',
                             fields: {
+                                point: { type: 'varchar', component: 'Select', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-point}', lookup: () => new Promise((rs, rj) => {
+                                    Manage.Store.AsyncQuery('manage.datapoints').then((points) => {
+                                        rs({ result: Object.keys(points).map(k => { return { value: k, title: k }; }) });
+                                    });
+                                })},
                                 table:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-table}'},
                                 fields: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-fields}'},
                                 filter:  { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-filter}'},
                                 order: { type: 'varchar', component: 'Text', default: '', desc: '#{sites-storages-fieldlookup-accesspoint-order}'},
+                                title: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-title}',
+                                    note: '#{sites-storages-fieldlookup-storage-title-note}',
+                                },
+                                value: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-value}',
+                                    note: '#{sites-storages-fieldlookup-storage-value-note}',
+                                },
+                                limit: {
+                                    type: 'bigint',
+                                    component: 'Number',
+                                    desc: '#{sites-storages-fieldlookup-storage-limit}',
+                                    note: '#{sites-storages-fieldlookup-storage-limit-note}'
+                                },
+                                controller: {
+                                    type: 'json',
+                                    component: 'Object',
+                                    desc: '#{sites-storages-fieldlookup-storage-controller}',
+                                    note: '#{sites-storages-fieldlookup-storage-controller-note}',
+                                    fields: {
+                                        module: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-module}',
+                                            default: 'Manage'
+                                        },
+                                        class: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-class}',
+                                            default: 'Lookup'
+                                        },
+                                        method: {
+                                            type: 'varchar',
+                                            component: 'Text',
+                                            desc: '#{sites-storages-fieldlookup-storage-controller-method}',
+                                            default: 'Get'
+                                        },
+                                    }
+                                }
                             },
                             params: {
+                                vertical: true,
                                 condition: {
                                     field: '_oneof',
                                     value: 'accesspoint',
