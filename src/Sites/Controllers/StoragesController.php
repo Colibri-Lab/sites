@@ -171,7 +171,7 @@ class StoragesController extends WebController
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!$data['group_enabled'] || $data['group_enabled'] === false) {
+        if (!isset($data['group_enabled']) || $data['group_enabled'] === false) {
             unset($data['group']);
             unset($data['group_enabled']);
             $data['group'] = 'window';
