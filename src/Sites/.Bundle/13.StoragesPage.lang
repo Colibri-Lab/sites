@@ -2,22 +2,27 @@ sites-storages-contextmenu-add:
   ru: Новое хранилище
   en: New storage
   hy: Նոր տակառ
+  it: Nuovo archivio
 sites-storages-contextmenu-editfields:
   ru: Редактировать свойства хранилища
   en: Edit storage properties
   hy: Խմբագրել տակառի հատկությունները
+  it: Modifica le proprietà dell'archivio
 sites-storages-contextmenu-remove:
   ru: Удалить хранилище
   en: Delete storage
   hy: Ջնջել պահեստը
+  it: Elimina archivio
 sites-storages-contextmenu-newfield:
   ru: Новое свойство
   en: New property
   hy: Նոր հատկություն
+  it: Nuova proprietà
 sites-storages-contextmenu-newindex:
   ru: Новый индекс
   en: New index
   hy: Նոր ցուցանիշ
+  it: Nuovo indice
 sites-storages-contextmenu-newvirtualfield:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -1126,3 +1131,13 @@ sites-storages-fieldlookup-accesspoint-point:
   en: Access point
   hy: Մուտքի կետ
   it: Punto di accesso
+sites-storages-fieldselector-emptytitle-desc:
+  ru: Заголовок, когда ничего не выбрано
+  en: Title when nothing is selected
+  it: Titolo quando non è selezionato nulla
+  hy: Վերնագիր, երբ ոչինչ չի ընտրվել
+sites-storages-fieldselector-emptyvalue-desc:
+  ru: Значение, когда ничего не выбрано
+  en: Value when nothing is selected
+  it: Valore quando non è selezionato nulla
+  hy: Արժեք, երբ ոչինչ չի ընտրվել

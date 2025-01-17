@@ -1416,6 +1416,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Text',
                             desc: '#{sites-storages-fieldselector-group-desc}'
                         },
+                        emptytitle: {
+                            type: 'json',
+                            component: 'App.Modules.Lang.UI.Text',
+                            desc: '#{sites-storages-fieldselector-emptytitle-desc}'
+                        },
+                        emptyvalue: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldselector-emptyvalue-desc}'
+                        },
                         __render: {
                             type: 'varchar',
                             component: 'TextArea',
