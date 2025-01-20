@@ -125,12 +125,15 @@ class Publications extends BaseModelDataTable
             $folder = $folder->id;
         }
 
-        $params = ['domain' => $domain, 'folder' => $folder];
+        $params = ['domain' => $domain];
+        if($folder !== 0) {
+            $params['folder'] = $folder;
+        }
         if ($term) {
             $params['term'] = '%' . $term . '%';
         }
 
-        return self::LoadByFilter($page, $pagesize, 'pubs_domain=[[domain:integer]] and pubs_page=[[folder:integer]]' . ($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params, $calculateAffected);
+        return self::LoadByFilter($page, $pagesize, 'pubs_domain=[[domain:integer]] and pubs_page' . ($folder !== 0 ? '=[[folder:integer]]' : ' is null') . ($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params, $calculateAffected);
     }
 
     /**
