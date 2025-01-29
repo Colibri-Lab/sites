@@ -667,7 +667,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 let o = Object.values(found)[0];
                                 return o?.component ?? '';
                             }
-                            return value;
+                            return component.value;
                         }
                     }
                 },
@@ -683,17 +683,18 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             message: '#{sites-storages-fieldclass-validation-required}',
                             method: '(field, validator) => !!field.value'
                         }],
-                        valuegenerator: (value, rootValue, component, rootComponent) => {
-                            if(!value) {
+                        valuegenerator: (value, rootValue, component, rootComponent, changedComponent) => {
+                            if(!component.value) {
                                 const type = rootValue.type;
                                 let found = Object.filter(storage.allowedTypes, (k, v) => k === type);
                                 let o = Object.values(found)[0];
+                                console.log(o?.generic);
                                 if(Object.isObject(o?.generic)) {
                                     return o?.generic[rootValue.component] ?? value;
                                 } 
-                                return o?.generic ?? value;
+                                return o?.generic ?? component.value;
                             }
-                            return value;
+                            return component.value;
                         }
                     }
                 },
