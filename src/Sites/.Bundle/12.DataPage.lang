@@ -126,8 +126,8 @@ sites-structure-editrow:
   en: Edit row
   hy: Խմբագրում
 sites-storages-buttons-cleardata:
-  ru: Очистить таблицу
-  en: Clear data
+  ru: Очистить
+  en: Clear
   hy: Մաքրել աղյուսակը
 sites-structure-cleardatas:
   ru: Очистка
