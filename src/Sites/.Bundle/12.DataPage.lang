@@ -89,7 +89,6 @@ sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
   hy: Բեռնաթափել
-sites-structure-contextmenu-respotre: {}
 sites-structure-contextmenu-restore:
   ru: Восстановить
   en: Restore
@@ -126,3 +125,22 @@ sites-structure-editrow:
   ru: Редактирование строки
   en: Edit row
   hy: Խմբագրում
+sites-storages-buttons-cleardata:
+  ru: Очистить таблицу
+  en: Clear data
+  hy: Մաքրել աղյուսակը
+sites-structure-cleardatas:
+  ru: Очистка таблицы
+  en: Clear table
+  hy: Աղյուսակի մաքրում
+sites-structure-cleardatasmessage:
+  ru: Внимание! Данные невозможно будет восстановить, если у вас не включено
+    мягкое удаление
+  en: Attention! Data will not be able to restore if you do not have soft delete
+    enabled
+  hy: Ուշադրություն! Դատարկման դեպքում տվյալները չեն կարող վերականգվել, եթե դուք
+    չունեք մուտքագրված ջնջման հաշվին
+sites-structure-cleardatasmessage-clear:
+  ru: Очистить
+  en: Clear
+  hy: Մաքրել

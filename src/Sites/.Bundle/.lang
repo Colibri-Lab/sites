@@ -82,3 +82,7 @@ sites-storages-messages-data-restored:
   ru: Данные восстановлены
   en: Data restored
   hy: Տվյալները վերականգնվել են
+sites-storages-messages-data-cleared:
+  ru: Хранилище успешно очищено
+  en: Storage successfully cleared
+  hy: Պահեստը հաջողությամբ մաքրվեց

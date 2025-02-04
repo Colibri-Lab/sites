@@ -230,6 +230,43 @@ class DataController extends WebController
     }
 
     /**
+     * Cleares the storage
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
+    public function Clear(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        if (!SecurityModule::$instance->current) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        $storage = $post->{'storage'};
+        if (!$storage) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        $storage = Storages::Create()->Load($storage);
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+
+        if (!$tableClass::DeleteAllByFilter('')) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        return $this->Finish(200, 'ok');
+    }
+
+    /**
      * Restore a row
      * @param RequestCollection $get
      * @param RequestCollection $post

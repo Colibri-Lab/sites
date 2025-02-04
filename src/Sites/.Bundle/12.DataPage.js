@@ -14,6 +14,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._dublData = this.Children('split/data-pane/buttons-pane/dubl-data');
         this._editData = this.Children('split/data-pane/buttons-pane/edit-data');
         this._deleteData = this.Children('split/data-pane/buttons-pane/delete-data');
+        this._clearData = this.Children('split/data-pane/buttons-pane/clear-data');
         this._restoreData = this.Children('split/data-pane/buttons-pane/restore-data');
         this._exportData = this.Children('split/data-pane/buttons-pane/export-data');
         this._pagerData = this.Children('split/data-pane/buttons-pane/pager');
@@ -33,6 +34,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._data.AddHandler('ColumnClicked', (event, args) => this.__clickOnDataColumn(event, args));
 
         this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
+        this._clearData.AddHandler('Clicked', (event, args) => this.__clearDataButtonClicked(event, args));
         this._restoreData.AddHandler('Clicked', (event, args) => this.__restoreDataButtonClicked(event, args));
         this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
         this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
@@ -156,6 +158,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._editData.enabled = false;
         this._dublData.enabled = false;
         this._deleteData.enabled = false;
+        this._clearData.enabled = true;
         this._pagerData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
 
         this.__searchInputFilled(event, args);
@@ -246,19 +249,47 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         if (!storage) {
             return;
         }
-        if (this._data.checked.length == 0) {
-            App.Confirm.Show('#{sites-structure-deletedata}', '#{sites-structure-deletedatamessage}', '#{sites-structure-deletedatamessage-delete}').then(() => {
-                Sites.DeleteData(storage, [this._data.selected?.value?.id]);
+        if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.remove')) {
+
+            if (this._data.checked.length == 0) {
+                App.Confirm.Show('#{sites-structure-deletedata}', '#{sites-structure-deletedatamessage}', '#{sites-structure-deletedatamessage-delete}').then(() => {
+                    Sites.DeleteData(storage, [this._data.selected?.value?.id]);
+                });
+            }
+            else {
+                App.Confirm.Show('#{sites-structure-deletedatas}', '#{sites-structure-deletedatasmessage}', '#{sites-structure-deletedatasmessage-delete}').then(() => {
+                    let ids = [];
+                    this._data.checked.forEach((row) => {
+                        ids.push(row.value.id);
+                    });
+                    Sites.DeleteData(storage, ids);
+                });
+            }
+        }
+        else {
+            App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
+        }
+    }
+
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
+    __clearDataButtonClicked(event, args) {
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        if (!storage) {
+            return;
+        }
+        if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.remove')) {
+
+            App.Confirm.Show('#{sites-structure-cleardatas}', '#{sites-structure-cleardatasmessage}', '#{sites-structure-cleardatasmessage-clear}').then(() => {
+                Sites.ClearAllData(storage);
             });
         }
         else {
-            App.Confirm.Show('#{sites-structure-deletedatas}', '#{sites-structure-deletedatasmessage}', '#{sites-structure-deletedatasmessage-delete}').then(() => {
-                let ids = [];
-                this._data.checked.forEach((row) => {
-                    ids.push(row.value.id);
-                });
-                Sites.DeleteData(storage, ids);
-            });
+            App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
         }
     }
 

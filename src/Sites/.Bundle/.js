@@ -324,6 +324,63 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 console.error(error);
             });
     }
+    ClearAllData(storage) {
+        this.Call('Data', 'Clear', {storage: storage.name})
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-cleared}', Colibri.UI.Notice.Success, 3000));
+
+                if(storage.params.softdeletes && storage.params.deletedautoshow) {
+                    let data = this._store.Query('sites.data');
+                    if(!data || !Array.isArray(data)) {
+                        data = [];
+                    }
+                    let newData = [];
+                    data.map((p) => {
+                        p.datedeleted = Date.Now().toDbDate();
+                        newData.push(p);
+                    });
+                    this._store.Set('sites.data', newData);
+                } else {
+                    this._store.Set('sites.data', []);
+                }
+
+                
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+    DeleteData(storage, dataIds) {
+        this.Call('Data', 'Delete', {storage: storage.name, ids: dataIds.join(',')})
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
+
+                let data = this._store.Query('sites.data');
+                if(!data || !Array.isArray(data)) {
+                    data = [];
+                }
+
+                let newData = [];
+                data.map((p) => {
+                    if(storage.params.softdeletes && storage.params.deletedautoshow) {
+                        if(dataIds.indexOf(p.id) !== -1) {
+                            p.datedeleted = Date.Now().toDbDate();
+                        }
+                        newData.push(p);
+                    } else {
+                        if(dataIds.indexOf(p.id) === -1) {
+                            newData.push(p);
+                        }    
+                    }
+                });
+                this._store.Set('sites.data', newData);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
 
     RestoreData(storage, dataIds) {
         this.Call('Data', 'Restore', {storage: storage.name, ids: dataIds.join(',')})
