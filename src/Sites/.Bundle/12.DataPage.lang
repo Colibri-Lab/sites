@@ -130,9 +130,9 @@ sites-storages-buttons-cleardata:
   en: Clear data
   hy: Մաքրել աղյուսակը
 sites-structure-cleardatas:
-  ru: Очистка таблицы
-  en: Clear table
-  hy: Աղյուսակի մաքրում
+  ru: Очистка
+  en: Clear
+  hy: Մաքրել
 sites-structure-cleardatasmessage:
   ru: Внимание! Данные невозможно будет восстановить, если у вас не включено
     мягкое удаление
