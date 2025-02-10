@@ -60,6 +60,7 @@ fields:
     params:
       required: true
       readonly: false
+      valuegenerator: "(value, rootValue) => !rootValue.name ? (rootValue.description?.en ? rootValue.description?.en?.CyrToUrl() : Lang.Translate(rootValue.description).CyrToUrl()) : undefined"
   description:
     type: json
     class: App\Modules\Lang\Models\Fields\Text

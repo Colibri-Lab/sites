@@ -60,6 +60,7 @@ fields:
     params:
       required: true
       readonly: false
+      valuegenerator: "(value, rootValue) => !rootValue.name ? rootValue.description.CyrToUrl() : undefined"
   description:
     type: varchar
     length: 512
