@@ -2,7 +2,20 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
     
     constructor(name, container) {
         super(name, container);
+        this.AddClass('app-manager-folder-tree');
         this._foldersList = [];
+
+        this.AddHandler('NodeExpanded', (event, args) => this.__thisNodeExpanded(event, args));
+        this.AddHandler('NodeCollapsed', (event, args) => this.__thisNodeExpanded(event, args));
+    }
+
+    __thisNodeExpanded(event, args) {
+        if(args.node.expanded && !args.node.isLeaf) {
+            args.node.icon = App.Modules.Sites.Icons.FolderIconPublished; 
+        } else {
+            args.node.icon = App.Modules.Sites.Icons.FolderIconPublishedClosed; 
+        }
+        
     }
 
     _findLevel(domain, parent) {
@@ -30,8 +43,17 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
             newNode = parenNode.nodes.Add('folder' + folder.id);
         }
         newNode.text = folder.description[Lang.Current] ?? folder.description;
-        newNode.icon = folder?.published?.value == 1 ? App.Modules.Sites.Icons.FolderIconPublished : App.Modules.Sites.Icons.FolderIconUnpublished;
         newNode.tag = {type: 'page', data: folder};
+        if((folder?.published ?? folder?.published?.value) == 1) {
+            newNode.AddClass('published');
+        } else {
+            newNode.RemoveClass('published');
+        }
+
+        newNode.icon = App.Modules.Sites.Icons.FolderIconPublishedClosed;
+        if(newNode.expanded && !newNode.isLeaf) {
+            newNode.icon = App.Modules.Sites.Icons.FolderIconPublished;
+        }
         return newNode;
     }
 
@@ -65,8 +87,12 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
                 newNode = this.nodes.Add('domain' + domain.id);
             }
             newNode.text = domain.description[Lang.Current] ?? domain.description;
-            newNode.icon = App.Modules.Sites.Icons.FolderIconPublished;
             newNode.tag = {type: 'domain', data: domain};
+            newNode.AddClass('published');
+            newNode.icon = App.Modules.Sites.Icons.FolderIconPublishedClosed;
+            if(newNode.expanded && !newNode.isLeaf) {
+                newNode.icon = App.Modules.Sites.Icons.FolderIconPublished;
+            }
 
             this._renderLevel(newNode, 0, domain);
     

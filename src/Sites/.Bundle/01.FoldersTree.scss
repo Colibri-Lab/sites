@@ -1,0 +1,18 @@
+.app-manager-folder-tree {
+    .node {
+        
+        > div > .icon {
+            svg path {
+                fill: #c0c0c0;
+            }
+        }
+        
+        &.published {
+            > div > .icon {
+                svg path {
+                    fill: #ff9c00;
+                }
+            }
+        }   
+    }
+}
