@@ -6,6 +6,7 @@ use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\MySql\QueryInfo;
 use Colibri\Common\StringHelper;
+use Colibri\Data\NoSqlClient\ICommandResult;
 use Colibri\Web\Controller;
 use Colibri\Xml\XmlNode;
 use Colibri\Utils\Debug;
@@ -54,7 +55,7 @@ class Text extends BaseModelDataRow
         ]
     ];
 
-    public function Delete(): QueryInfo
+    public function Delete(): QueryInfo|ICommandResult|bool
     {
         // удаляем все публикации
         Publications::DeleteAllByRow($this);

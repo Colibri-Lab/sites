@@ -13,6 +13,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\MySql\QueryInfo;
 use Colibri\Common\StringHelper;
 use Colibri\App;
+use Colibri\Data\NoSqlClient\ICommandResult;
 
 /**
  * Представление строки в таблице в хранилище Сайты
@@ -59,7 +60,7 @@ class Domain extends BaseModelDataRow
         ]
     ];
 
-    public function Delete(): QueryInfo
+    public function Delete(): QueryInfo|ICommandResult|bool
     {
         Pages::DeleteAllByDomain($this);
         return parent::Delete();

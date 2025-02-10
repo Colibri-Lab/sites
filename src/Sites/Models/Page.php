@@ -16,6 +16,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Common\StringHelper;
 use Colibri\App;
+use Colibri\Data\NoSqlClient\ICommandResult;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -210,7 +211,7 @@ class Page extends BaseModelDataRow
         return $moveToEnd ? $this->MoveToEnd() : true;
     }
 
-    public function Delete(): QueryInfo
+    public function Delete(): QueryInfo|ICommandResult|bool
     {
 
         // удаляем все публикации
