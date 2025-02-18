@@ -149,7 +149,7 @@ class Pages extends BaseModelDataTable
 
     /**
      * Загружает дочерние
-     * @return Pages 
+     * @return Page 
      */
     static function LoadByName(Domain|int $domain, Page|int $parent, string $name): ? Page
     {
