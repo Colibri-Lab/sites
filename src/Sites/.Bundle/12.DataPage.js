@@ -464,7 +464,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         }
 
         if (storage.methods?.contextmenu) {
-            m?.DataPageAdditionalExecuteMethod(menuData, storage, dta).then(() => {
+            m?.DataPageAdditionalExecuteMethod(menuData, storage, dta).then((response) => {
+                if(response?.reload === false) {
+                    return;
+                }
+                
                 this._loadDataPage(
                     storage, 
                     this._searchInput.value, 
