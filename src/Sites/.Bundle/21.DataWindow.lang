@@ -2,14 +2,23 @@ sites-datawindow-search-placeholder:
   ru: Поиск
   en: Search
   hy: Որոնում
+  it: Cerca
+  es: Buscar
 sites-datawindow-dataempty:
   ru: Данные не найдены
   en: Data not found
+  hy: Տվյալներ չեն գտնվել
+  it: Dati non trovati
+  es: Datos no encontrados
 sites-datawindow-buttons-publish:
   ru: Опубликовать выбранное
   en: Publish selected rows
   hy: Հրապարակեք ընտրված տողերը
+  it: Pubblica le righe selezionate
+  es: Publicar filas seleccionadas
 sites-datawindow-buttons-close:
   ru: Закрыть
   en: Close
   hy: Փակել
+  it: Chiudi
+  es: Cerrar

@@ -2,118 +2,167 @@ sites-menu-struct:
   ru: Структура сайта
   en: Site structure
   hy: Կայքի կառուցվածքը
+  it: Struttura del sito
+  es: Estructura del sitio
 sites-menu-struct-desc:
   ru: Структура проекта, папки и конечные страницы, публикация данных
   en: Project structure, folders and end pages, data publication
   hy: Ծրագրի կառուցվածքը, թղթապանակները եւ վերջնական էջերը, տվյալների հրապարակումը
+  it: Struttura del progetto, cartelle e pagine finali, pubblicazione dei dati
+  es: Estructura del proyecto, carpetas y páginas finales, publicación de datos
 sites-menu-storagesdata:
   ru: Материалы
   en: Materials
   hy: Նյութեր
+  it: Materiali
+  es: Materiales
 sites-menu-storagesdata-desc:
   ru: Редактор материалов, которые содержатся в хранилищах данных
   en: Editor of materials that are contained in data warehouses
   hy: Նյութերի խմբագիր, որոնք պարունակվում են տվյալների պահեստներում
+  it: Editor dei materiali contenuti nei magazzini di dati
+  es: Editor de materiales que se encuentran en almacenes de datos
 sites-menu-storages:
   ru: Хранилища
   en: Storage facilities
   hy: Պահեստարաններ
+  it: Magazzini
+  es: Almacenes
 sites-menu-storages-desc:
-  ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя
-    удобный интерфейс
-  en: Data warehouse editor. Create repositories for materials using a
-    user-friendly interface
-  hy: "Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով
-    հարմար ինտերֆեյս"
+  ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс
+  en: Data warehouse editor. Create repositories for materials using a user-friendly interface
+  hy: "Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով հարմար ինտերֆեյս"
+  it: Editor del magazzino dati. Crea repository per i materiali utilizzando un'interfaccia user-friendly
+  es: Editor de almacén de datos. Cree repositorios para materiales utilizando una interfaz fácil de usar
 sites-permissions:
   ru: Сайты и разделы
   en: Sites and pages
   hy: Կայքեր և բաժիններ
+  it: Siti e pagine
+  es: Sitios y páginas
 sites-structure-permissions:
   ru: Доступ к редактору страниц и публикаций
   en: Access to the page and post editor
   hy: Մուտք դեպի էջ և գրառման խմբագրիչ
+  it: Accesso all'editor di pagine e post
+  es: Acceso al editor de páginas y publicaciones
 sites-structure-addpage-permissions:
   ru: Создать страницу
   en: Create a page
   hy: Ստեղծեք էջ
+  it: Crea una pagina
+  es: Crear una página
 sites-structure-editpage-permissions:
   ru: Редактировать страницу
   en: Edit a page
   hy: Խմբագրել էջը
+  it: Modifica una pagina
+  es: Editar una página
 sites-structure-deletepage-permissions:
   ru: Удалить страницу
   en: Delete a page
   hy: Ջնջել էջը
+  it: Elimina una pagina
+  es: Eliminar una página
 sites-structure-pubslist-permissions:
   ru: Список публикаций
   en: List the publications
   hy: Հրապարակումների ցանկ
+  it: Elenco delle pubblicazioni
+  es: Lista de publicaciones
 sites-structure-pubsadd-permissions:
   ru: Создать публикацию
   en: Create a publication
   hy: Ստեղծել հրապարակում
+  it: Crea una pubblicazione
+  es: Crear una publicación
 sites-structure-pubsdelete-permissions:
   ru: Удалить публикацию
   en: Delete a publication
   hy: Ջնջել գրառումը
+  it: Elimina una pubblicazione
+  es: Eliminar una publicación
 sites-storages-permissions:
   ru: Доступ к редактору хранилищь
   en: Access to the storage editor
   hy: Մուտք դեպի պահեստի խմբագրիչ
+  it: Accesso all'editor del magazzino
+  es: Acceso al editor de almacenamiento
 sites-structure-addstorage-permissions:
   ru: Создать хранилище
   en: Create a storage
   hy: Ստեղծեք պահեստ
+  it: Crea un magazzino
+  es: Crear un almacenamiento
 sites-structure-editstorage-permissions:
   ru: Редактировать хранилище
   en: Edit a storage
   hy: Խմբագրել պահոցը
+  it: Modifica un magazzino
+  es: Editar un almacenamiento
 sites-structure-deletestorage-permissions:
   ru: Удалить хранилище
   en: Delete a storage
   hy: Ջնջել պահեստը
+  it: Elimina un magazzino
+  es: Eliminar un almacenamiento
 sites-storage-permissions:
   ru: Доступ к хранилищу
   en: Access to storage
   hy: Պահպանման հասանելիություն
+  it: Accesso al magazzino
+  es: Acceso al almacenamiento
 sites-storage-list-permissions:
   ru: Просматривать список строк
   en: List the rows
   hy: Դիտեք տողերի ցանկը
+  it: Elenca le righe
+  es: Listar las filas
 sites-storage-fields-permissions:
   ru: Редактировать хранилище
   en: Edit the storage
   hy: Խմբագրել պահոցը
+  it: Modifica il magazzino
+  es: Editar el almacenamiento
 sites-storage-indices-permissions:
   ru: Индексировать строки
   en: Create an index
   hy: Ինդեքսային տողեր
+  it: Crea un indice
+  es: Crear un índice
 sites-storage-add-permissions:
   ru: Добавить строку
   en: Add row
   hy: Ավելացնել տող
+  it: Aggiungi riga
+  es: Añadir fila
 sites-storage-edit-permissions:
   ru: Редактировать строку
   en: Edit a row
   hy: Խմբագրել տողը
+  it: Modifica una riga
+  es: Editar una fila
 sites-storage-delete-permissions:
   ru: Удалить строку
   en: Delete the row
   hy: Ջնջել տողը
+  it: Elimina la riga
+  es: Eliminar la fila
 sites-storage-export-permissions:
   ru: Экспорт строк
   en: Export rows
   hy: Արտահանել տողեր
+  it: Esporta righe
+  es: Exportar filas
 sites-storage-import-permissions:
   ru: Импорт строк
   en: Import rows
   hy: Տողերի ներմուծում
+  it: Importa righe
+  es: Importar filas
 sites-references-permissions:
   ru: Доступ к редактору справочников
   en: Access to the references editor
   hy: Մուտք գործեք գրացուցակի խմբագրին
-sites-structure-deletedatas:
-  en: ""
-sites-storages-fieldlookup-group:
-  en: ""
+  it: Accesso all'editor dei riferimenti
+  es: Acceso al editor de referencias

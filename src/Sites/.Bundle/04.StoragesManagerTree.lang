@@ -2,7 +2,11 @@ sites-storages-fields:
   ru: Свойства
   en: Properties
   hy: Հատկություններ
+  it: Proprietà
+  es: Propiedades
 sites-storages-indices:
   ru: Индексы
   en: Indexes
   hy: Ցուցանիշներ
+  it: Indici
+  es: Índices

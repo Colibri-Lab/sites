@@ -2,224 +2,334 @@ sites-structure-folders-title:
   ru: Разделы сайта
   en: Pages of site
   hy: Կայքի բաժինները
+  it: Sezioni del sito
+  es: Secciones del sitio
 sites-structure-publications-title:
   ru: Публикации
   en: Publications
   hy: Հրապարակումներ
+  it: Pubblicazioni
+  es: Publicaciones
 sites-structure-search-placeholder:
   ru: Поиск
   en: Search
   hy: Որոնում
+  it: Ricerca
+  es: Buscar
 sites-structure-publicationsempty:
   ru: Публикаций не найдено
   en: Publications not found
+  hy: Հրապարակումներ չեն գտնվել
+  it: Pubblicazioni non trovate
+  es: Publicaciones no encontradas
 sites-structure-publications-created:
   ru: Создана
   en: Created
   hy: Ստեղծվել է
+  it: Creato
+  es: Creado
 sites-structure-publications-page:
   ru: Страница
   en: Page
   hy: Էջ
+  it: Pagina
+  es: Página
 sites-structure-publications-mainpage:
   ru: Главная страница
   en: Main page
   hy: Գլխավոր էջ
+  it: Pagina principale
+  es: Página principal
 sites-structure-publications-storage:
   ru: Хранилище
   en: Storage
   hy: Պահպանում
+  it: Archivio
+  es: Almacenamiento
 sites-structure-publications-row:
   ru: Строка
   en: Row
   hy: Տող
+  it: Riga
+  es: Fila
 sites-structure-publications-data:
   ru: Данные
   en: Data
   hy: Տվյալներ
+  it: Dati
+  es: Datos
 sites-structure-buttons-publish:
   ru: Публикация
   en: Publication
   hy: Հրապարակում
+  it: Pubblicazione
+  es: Publicación
 sites-structure-buttons-adddata:
   ru: Данные
   en: Add data
   hy: Տվյալներ
+  it: Aggiungi dati
+  es: Agregar datos
 sites-structure-buttons-editdata:
   ru: Редактировать
   en: Edit data
   hy: Խմբագրել
+  it: Modifica dati
+  es: Editar datos
 sites-structure-buttons-deletedata:
   ru: Удалить
   en: Delete
   hy: Ջնջել
+  it: Elimina
+  es: Eliminar
 sites-structure-contextmenu-newdomain:
   ru: Новый домен
   en: New domain
   hy: Նոր տիրույթ
+  it: Nuovo dominio
+  es: Nuevo dominio
 sites-structure-contextmenu-newchild:
   ru: Новый дочерний раздел
   en: New child page
   hy: Նոր մանկական բաժին
+  it: Nuova pagina figlia
+  es: Nueva página hija
 sites-structure-contextmenu-editdomain:
   ru: Редактировать домен
   en: Edit domain
   hy: Խմբագրել տիրույթը
+  it: Modifica dominio
+  es: Editar dominio
 sites-structure-contextmenu-editprops:
   ru: Редактировать доп. свойства
   en: Edit additional properties
   hy: Խմբագրել լրացուցիչ հատկությունները
+  it: Modifica proprietà aggiuntive
+  es: Editar propiedades adicionales
 sites-structure-contextmenu-deletedomain:
   ru: Удалить домен
   en: Delete domain
   hy: Ջնջել տիրույթը
+  it: Elimina dominio
+  es: Eliminar dominio
 sites-structure-contextmenu-editpage:
   ru: Редактировать раздел
   en: Edit page
   hy: Խմբագրել բաժինը
+  it: Modifica pagina
+  es: Editar página
 sites-structure-contextmenu-deletepage:
   ru: Удалить раздел
   en: Delete page
   hy: Ջնջել բաժանումը
+  it: Elimina pagina
+  es: Eliminar página
 sites-structure-contextmenu-copypath:
   ru: Скопировать путь (ссылку)
   en: Copy path (url)
   hy: Պատճենել ուղին (հղում)
+  it: Copia percorso (url)
+  es: Copiar ruta (url)
 sites-structure-windowtitle-newdomain:
   ru: Новый домен
   en: New domain
   hy: Նոր տիրույթ
+  it: Nuovo dominio
+  es: Nuevo dominio
 sites-structure-windowtitle-editdomain:
   ru: Редактировать домен
   en: Edit domain
   hy: Խմբագրել տիրույթը
+  it: Modifica dominio
+  es: Editar dominio
 sites-structure-windowtitle-editdomainprops:
   ru: Редактировать доп. свойства домена
   en: Edit additional properties of domain
   hy: Խմբագրել լրացուցիչ տիրույթի հատկությունները
+  it: Modifica proprietà aggiuntive del dominio
+  es: Editar propiedades adicionales del dominio
 sites-structure-windowtitle-noeditdomainprops:
   ru: Свойства не найдены
   en: Properties not found
   hy: Հատկություններ չեն գտնվել
+  it: Proprietà non trovate
+  es: Propiedades no encontradas
 sites-structure-deletedomain:
   ru: Удаление домена
   en: Delete domain
   hy: Ջնջել տիրույթը
+  it: Elimina dominio
+  es: Eliminar dominio
 sites-structure-deletedomainmessage:
-  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены
-    безвозвратно
-  en: Are you sure you want to delete the domain? All folders and publications
-    will be permanently deleted
-  hy: "Իսկապե՞ս ուզում եք ջնջել տիրույթը: Բոլոր թղթապանակները և հրապարակումները
-    ընդմիշտ կջնջվեն"
+  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены безвозвратно
+  en: Are you sure you want to delete the domain? All folders and publications will be permanently deleted
+  hy: "Իսկապե՞ս ուզում եք ջնջել տիրույթը: Բոլոր թղթապանակները և հրապարակումները ընդմիշտ կջնջվեն"
+  it: Sei sicuro di voler eliminare il dominio? Tutte le cartelle e le pubblicazioni saranno eliminate permanentemente
+  es: ¿Estás seguro de que quieres eliminar el dominio? Todas las carpetas y publicaciones se eliminarán permanentemente
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child page
   hy: Նոր մանկական բաժին
+  it: Nuova pagina figlia
+  es: Nueva página hija
 sites-structure-windowtitle-editpage:
   ru: Редактировать раздел
   en: Edit page
   hy: Խմբագրել բաժինը
+  it: Modifica pagina
+  es: Editar página
 sites-structure-windowtitle-editpageprops:
   ru: Редактировать доп. свойства страницы
   en: Edit additional properties of page
   hy: Խմբագրել լրացուցիչ էջի հատկությունները
+  it: Modifica proprietà aggiuntive della pagina
+  es: Editar propiedades adicionales de la página
 sites-structure-windowtitle-noeditpageprops:
   ru: Свойства не найдены
   en: Properties not found
   hy: Հատկություններ չեն գտնվել
+  it: Proprietà non trovate
+  es: Propiedades no encontradas
 sites-structure-deletepage:
   ru: Удаление папки
   en: Delete page
   hy: Թղթապանակ ջնջելը
+  it: Elimina pagina
+  es: Eliminar página
 sites-structure-deletepagemessage:
   ru: Вы уверены, что хотите удалить папку?
   en: Are you sure you want to delete the folder?
   hy: "Իսկապե՞ս ուզում եք ջնջել թղթապանակը:"
+  it: Sei sicuro di voler eliminare la cartella?
+  es: ¿Estás seguro de que quieres eliminar la carpeta?
 sites-structure-windowtitle-urlcopied:
   ru: Путь скопирован
   en: Path is copied
   hy: Ուղին պատճենված է
+  it: Percorso copiato
+  es: Ruta copiada
 sites-structure-windowtitle-urlcopiedtext:
   ru: Путь к разделу успешно скопирован в буфер обмена
   en: Page path successfully copied to clipboard
   hy: Բաժնի ուղին հաջողությամբ պատճենվեց clipboard-ում
+  it: Percorso della pagina copiato con successo negli appunti
+  es: Ruta de la página copiada con éxito al portapapeles
 sites-structure-windowtitle-urlcopiederror:
   ru: Путь не скопирован
   en: Path is not copied
   hy: Ուղին պատճենված չէ
+  it: Percorso non copiato
+  es: Ruta no copiada
 sites-structure-windowtitle-urlcopiederrortext:
   ru: Не получилось скопировать путь к разделу
   en: Failed to copy partition path
   hy: Չհաջողվեց պատճենել բաժանման ուղին
+  it: Impossibile copiare il percorso della partizione
+  es: No se pudo copiar la ruta de la partición
 sites-structure-contextmenu-editpub:
   ru: Редактировать данные публикации
   en: Edit the publication data
   hy: Խմբագրել հրապարակման տվյալները
+  it: Modifica i dati della pubblicazione
+  es: Editar los datos de la publicación
 sites-structure-windowtitle-deletepub:
   ru: Удалить публикацию
   en: Delete publication
   hy: Ջնջել գրառումը
+  it: Elimina pubblicazione
+  es: Eliminar publicación
 sites-structure-messages-removepublication:
   ru: Удаление публикации
   en: Delete the publication
   hy: Գրառման ջնջում
+  it: Elimina la pubblicazione
+  es: Eliminar la publicación
 sites-structure-messages-removepublicationmessage:
   ru: Вы уверены, что хотите удалить выбранную публикацию?
   en: Are you sure you want to delete the selected publication?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված գրառումը:"
+  it: Sei sicuro di voler eliminare la pubblicazione selezionata?
+  es: ¿Estás seguro de que quieres eliminar la publicación seleccionada?
 sites-structure-messages-removepublications:
   ru: Удаление публикаций
   en: Delete publications
   hy: Հրապարակումների ջնջում
+  it: Elimina pubblicazioni
+  es: Eliminar publicaciones
 sites-structure-messages-removepublicationsmessage:
   ru: Вы уверены, что хотите удалить выбранные публикации?
   en: Are you sure you want to delete the selected publications?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված գրառումները:"
+  it: Sei sicuro di voler eliminare le pubblicazioni selezionate?
+  es: ¿Estás seguro de que quieres eliminar las publicaciones seleccionadas?
 sites-structure-windowtitle-newrow:
   ru: Новая строка
   en: New row
   hy: Նոր տող
+  it: Nuova riga
+  es: Nueva fila
 sites-structure-windowtitle-publish:
   ru: Публикация данных
   en: Publication of data
   hy: Տվյալների հրապարակում
+  it: Pubblicazione dei dati
+  es: Publicación de datos
 sites-structure-windowtitle-noeditdomainprops-close:
   ru: Закрыть
   en: Close
   hy: Փակել
+  it: Chiudi
+  es: Cerrar
 sites-structure-deletedomainmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
+  it: Elimina!
+  es: ¡Eliminar!
 sites-structure-windowtitle-noeditpageprops-close:
   ru: Закрыть
   en: Close
   hy: Փակել
+  it: Chiudi
+  es: Cerrar
 sites-structure-windowtitle-urlcopiedtext-close:
   ru: Закрыть
   en: Close
   hy: Փակել
+  it: Chiudi
+  es: Cerrar
 sites-structure-windowtitle-urlcopiederrortext-close:
   ru: Закрыть
   en: Close
   hy: Փակել
+  it: Chiudi
+  es: Cerrar
 sites-structure-messages-removepublicationmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
+  it: Elimina!
+  es: ¡Eliminar!
 sites-structure-messages-removepublicationsmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
+  it: Elimina!
+  es: ¡Eliminar!
 sites-structure-deletepagemessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
+  it: Elimina!
+  es: ¡Eliminar!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
+  it: Operazione non consentita
+  es: Operación no permitida
 sites-structurepage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
   hy: Գործողությունն արգելված է
+  it: Operazione non consentita
+  es: Operación no permitida

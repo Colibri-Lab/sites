@@ -7,6 +7,8 @@ desc:
   ru: Сайты/Домены
   en: Sites/Domains
   hy: Կայտեր/Դոմեններ
+  it: Siti/Domini
+  es: Sitios/Dominios
 params:
   visible: false
   maybepublished: false
@@ -20,12 +22,18 @@ fields:
       en: Domain Key
       ru: Ключ домена
       hy: Դոմեյն բանալին
+      it: Chiave del dominio
+      es: Clave de dominio
     note:
       en: The configuration must specify the domain patterns that fit this key.
       ru: В конфигурации должны быть указаны паттерны доменов, которые подходят
         под этот ключ
       hy: Կոնֆիգուրացիայում պետք է նշվեն դոմենների պատվերները, որոնք համապատասխանում
         են այս բանալին
+      it: La configurazione deve specificare i modelli di dominio che corrispondono
+        a questa chiave.
+      es: La configuración debe especificar los patrones de dominio que se ajustan
+        a esta clave.
     selector:
       value: value
       title: title
@@ -42,10 +50,14 @@ fields:
       ru: Описание сайта/домена
       en: Domain/Site description
       hy: Դոմենի/Կայքի նկարագրություն
+      it: Descrizione del dominio/sito
+      es: Descripción del dominio/sitio
     note:
       ru: Введите описание сайта
       en: Enter a description of the site
       hy: Մուտքագրեք կայքի նկարագրությունը
+      it: Inserisci una descrizione del sito
+      es: Introduzca una descripción del sitio
     params:
       required: true
       enabled: true
@@ -91,10 +103,14 @@ fields:
       ru: Закрыт
       en: Closed
       hy: Փակված է
+      it: Chiuso
+      es: Cerrado
     note:
       ru: Выберите «Да» если хотите закрыть сайт
       en: Select "Yes" if you want to close the site
       hy: Ընտրեք «Այո», եթե ցանկանում եք փակել կայքը
+      it: Seleziona "Sì" se vuoi chiudere il sito
+      es: Seleccione "Sí" si desea cerrar el sitio
     component: Colibri.UI.Forms.Checkbox
     params:
       required: true
@@ -108,6 +124,8 @@ fields:
       ru: Дополнительные параметры
       en: Additional properties
       hy: Լրացուցիչ հատկություններ
+      it: Proprietà aggiuntive
+      es: Propiedades adicionales
     default: json_object()
     fields:
       meta:
@@ -117,6 +135,8 @@ fields:
           ru: Мета данные
           en: Page metadata
           hy: Էջի մետատվյալներ
+          it: Metadati della pagina
+          es: Metadatos de la página
         component: Colibri.UI.Forms.Object
         params:
           vertical: true
@@ -130,10 +150,14 @@ fields:
               ru: Заголовок страницы
               en: Page title
               hy: Էջի վերնագիր
+              it: Titolo della pagina
+              es: Título de la página
             note:
               ru: Введите заголовок страницы
               en: Enter the page title
               hy: Մուտքագրեք էջի անվանումը
+              it: Inserisci il titolo della pagina
+              es: Introduzca el título de la página
             placeholder:
               ru: ""
               en: ""
@@ -179,10 +203,14 @@ fields:
               ru: Описание страницы
               en: Page description
               hy: Էջի նկարագրություն
+              it: Descrizione della pagina
+              es: Descripción de la página
             note:
               ru: Введите мета описание сайта
               en: Enter the description in meta header
               hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
+              it: Inserisci la descrizione nell'intestazione meta
+              es: Introduzca la descripción en la cabecera meta
             placeholder:
               ru: ""
               en: ""
@@ -228,10 +256,14 @@ fields:
               ru: Ключевые слова
               en: Page keywords
               hy: Էջի հիմնաբառեր
+              it: Parole chiave della pagina
+              es: Palabras clave de la página
             note:
               ru: Введите ключевые слова
               en: Enter the meta keywords
               hy: Մուտքագրեք մետա հիմնաբառերը
+              it: Inserisci le parole chiave meta
+              es: Introduzca las palabras clave meta
             placeholder:
               ru: ""
               en: ""
@@ -277,6 +309,8 @@ fields:
           ru: Технические данные
           en: Technical information
           hy: Տեխնիկական տեղեկատվություն
+          it: Informazioni tecniche
+          es: Información técnica
         params:
           vertical: true
         default: json_object()
@@ -290,6 +324,8 @@ fields:
               ru: Тип приложения
               en: Application type
               hy: Ցրագրի տեսակե
+              it: Tipo di applicazione
+              es: Tipo de aplicación
             params:
               readonly: false
               searchable: false
@@ -300,11 +336,15 @@ fields:
                 ru: Приложение (javascript)
                 en: Application (javascript)
                 hy: Ցրագիր (javascript)
+                it: Applicazione (javascript)
+                es: Aplicación (javascript)
             - value: website
               title: 
                 ru: Обычный вебсайт (php/js)
                 en: Website (php/js)
                 hy: Վեբսայտ (javascript)
+                it: Sito web (php/js)
+                es: Sitio web (php/js)
           module:
             type: varchar
             length: 255
@@ -314,10 +354,14 @@ fields:
               ru: Стартовый модуль
               en: Module to start
               hy: Հավելվածի մեկնարկային մոդուլ
+              it: Modulo di avvio
+              es: Módulo de inicio
             note: 
               ru: Выберите модуль, который будет стартовать
               en: Select the module wich will start
               hy: Ընտրեք մոդուլը, որը կսկսվի
+              it: Seleziona il modulo che si avvierà
+              es: Seleccione el módulo que se iniciará
             selector:
               value: value
               title: title
@@ -341,10 +385,14 @@ fields:
               ru: Компонент по умолчанию
               en: Default Component
               hy: Կանխադրված բաղադրիչ
+              it: Componente predefinito
+              es: Componente predeterminado
             note:
               ru: Выберите компонент по умолчанию
               en: Choose a default component
               hy: Ընտրեք լռելյայն բաղադրիչ
+              it: Scegli un componente predefinito
+              es: Elija un componente predeterminado
             selector:
               value: value
               title: title
@@ -404,10 +452,14 @@ fields:
               ru: Шаблон по умолчанию
               en: Default Template
               hy: Կանխադրված ձևանմուշ
+              it: Modello predefinito
+              es: Plantilla predeterminada
             note: 
               ru: Выберите шаблон по умолчанию
               en: Choose a default template
               hy: Ընտրեք լռելյայն ձևանմուշ
+              it: Scegli un modello predefinito
+              es: Elija una plantilla predeterminada
             selector:
               value: value
               title: title
@@ -431,6 +483,8 @@ fields:
           ru: Дополнительные свойства
           en: Additional properties
           hy: Լրացուցիչ հատկություններ
+          it: Proprietà aggiuntive
+          es: Propiedades adicionales
         default: json_array()
         attrs:
           className: app-field-wrap
@@ -439,6 +493,8 @@ fields:
             ru: Добавить параметр
             en: Add parameter
             hy: Ավելացնել պարամետր
+            it: Aggiungi parametro  
+            es: Añadir parámetro
         fields:
           name:
             type: varchar
@@ -449,6 +505,8 @@ fields:
               ru: Наименование поля
               en: Field name
               hy: Դաշտի անվանումը
+              it: Nome del campo
+              es: Nombre del campo
             attrs:
               width: 30%
           description:
@@ -459,6 +517,8 @@ fields:
               ru: Описание поля
               en: Field description
               hy: Դաշտի նկարագրությունը
+              it: Descrizione del campo
+              es: Descripción del campo
             attrs:
               width: 68%
             placeholder:
@@ -508,6 +568,8 @@ fields:
               ru: Тип
               en: Type
               hy: Տիպ
+              it: Tipo
+              es: Tipo
             class: string
             component: Colibri.UI.Forms.Text
             default: varchar
@@ -519,6 +581,8 @@ fields:
               ru: Длина
               en: Length
               hy: Երկարություն
+              it: Lunghezza
+              es: Longitud
             class: int
             component: Colibri.UI.Forms.Number
             attrs:
@@ -532,6 +596,8 @@ fields:
               ru: Значение по умолчанию
               en: Default value
               hy: Կանխադրված արժեք
+              it: Valore predefinito
+              es: Valor predeterminado
             attrs:
               width: 20%
           class:
@@ -543,6 +609,8 @@ fields:
               ru: Класс (PHP)
               en: Class (PHP)
               hy: Կլաս (PHP)
+              it: Classe (PHP)
+              es: Clase (PHP)
             attrs:
               width: 20%
           component:
@@ -558,6 +626,8 @@ fields:
               ru: Компонента (JS)
               en: Component (JS)
               hy: Կոմպոնենտ (JS)
+              it: Componente (JS)
+              es: Componente (JS)
             selector:
               value: value
               title: title

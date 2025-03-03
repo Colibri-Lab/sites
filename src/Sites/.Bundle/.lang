@@ -2,87 +2,131 @@ sites-storages-messages-properties-saved:
   ru: Свойства сохранены
   en: Custom properties saved
   hy: Պահպանված հատկությունները
+  it: Proprietà personalizzate salvate
+  es: Propiedades personalizadas guardadas
 sites-storages-messages-pages-saved:
   ru: Страница сохранена
   en: Page saved
   hy: Էջը պահված է
+  it: Pagina salvata
+  es: Página guardada
 sites-storages-messages-domains-saved:
   ru: Домен сохранен
   en: Domain saved
   hy: Դոմենը պահպանված է
+  it: Dominio salvato
+  es: Dominio guardado
 sites-storages-messages-domains-deleted:
   ru: Домен удален
   en: Domain deleted
   hy: Դոմենը ջնջված է
+  it: Dominio eliminato
+  es: Dominio eliminado
 sites-storages-messages-pages-deleted:
   ru: Страница удалена
   en: Page deleted
   hy: Էջը ջնջված է
+  it: Pagina eliminata
+  es: Página eliminada
 sites-storages-messages-pages-moved:
   ru: Страница перенесена
   en: Page moved
   hy: Էջը տեղափոխվեց
+  it: Pagina spostata
+  es: Página movida
 sites-storages-messages-publications-copied:
   ru: Публикация скопирована
   en: Publication copied
   hy: Գրառումը պատճենված է
+  it: Pubblicazione copiata
+  es: Publicación copiada
 sites-storages-messages-publications-moved:
   ru: Публикация перемещена
   en: Publication moved
   hy: Գրառումը տեղափոխվեց
+  it: Pubblicazione spostata
+  es: Publicación movida
 sites-storages-messages-publications-deleted:
   ru: Публикация удалена
   en: Publication removed
   hy: Գրառումը ջնջված է
+  it: Pubblicazione eliminata
+  es: Publicación eliminada
 sites-storages-messages-data-deleted:
   ru: Данные удалены
   en: Data saved
   hy: Տվյալները ջնջված են
+  it: Dati eliminati
+  es: Datos eliminados
 sites-storages-messages-storage-saved:
   ru: Хранилище сохранено
   en: Storage saved
   hy: Պահպանվել է
+  it: Archiviazione salvata
+  es: Almacenamiento guardado
 sites-storages-messages-storage-deleted:
   ru: Хранилище удалено
   en: Storage deleted
   hy: Պահեստը ջնջված է
+  it: Archiviazione eliminata
+  es: Almacenamiento eliminado
 sites-storages-messages-field-saved:
   ru: Свойство сохранено
   en: Property saved
   hy: Պահպանված է
+  it: Proprietà salvata
+  es: Propiedad guardada
 sites-storages-messages-field-deleted:
   ru: Свойство удалено
   en: Property deleted
   hy: Հեռացվաճ է
+  it: Proprietà eliminata
+  es: Propiedad eliminada
 sites-storages-messages-field-moved:
   ru: Свойство перемещено
   en: Property moved
   hy: Տեղափոխվաճ է
+  it: Proprietà spostata
+  es: Propiedad movida
 sites-storages-messages-index-saved:
   ru: Индекс сохранен
   en: Index saved
   hy: Պահպանված է
+  it: Indice salvato
+  es: Índice guardado
 sites-storages-messages-index-deleted:
   ru: Индекс удален
   en: Index deleted
   hy: Հեռացվաճ է
+  it: Indice eliminato
+  es: Índice eliminado
 sites-storages-messages-field-exists:
   ru: Поле существует, пожалуйста, переименуйте
   en: Field exists, please rename
   hy: Դաշտը գոյություն ունի, խնդրում ենք վերանվանել
+  it: Il campo esiste, per favore rinominalo
+  es: El campo existe, por favor renómbralo
 sites-storages-messages-field-save:
   ru: Сохранить
   en: Save
   hy: Պահպանել
+  it: Salva
+  es: Guardar
 sites-storages-messages-field-exist:
   ru: Поле существует
   en: Field exists
   hy: Դաշտը արդեն գոյություն ունի
+  it: Il campo esiste
+  es: El campo existe
 sites-storages-messages-data-restored:
   ru: Данные восстановлены
   en: Data restored
   hy: Տվյալները վերականգնվել են
+  it: Dati ripristinati
+  es: Datos restaurados
 sites-storages-messages-data-cleared:
   ru: Хранилище успешно очищено
   en: Storage successfully cleared
   hy: Պահեստը հաջողությամբ մաքրվեց
+  it: Archiviazione cancellata con successo
+  es: Almacenamiento limpiado con éxito

@@ -2,137 +2,208 @@ sites-storages-storages-title:
   ru: Хранилища
   en: Storages
   hy: Տակառներ
+  it: Magazzini
+  es: Almacenes
 sites-storages-data-title:
   ru: Данные
   en: Data
   hy: Տվյալներ
+  it: Dati
+  es: Datos
 sites-storages-search-placeholder:
   ru: Поиск
   en: Search
   hy: Որոնում
+  it: Cerca
+  es: Buscar
 sites-storages-dataempty:
   ru: Данные не найдены
   en: Data not found
+  it: Dati non trovati
+  es: Datos no encontrados
 sites-storages-buttons-adddata:
   ru: Добавить
   en: Add
   hy: Ավելացնել
+  it: Aggiungi
+  es: Añadir
 sites-storages-buttons-dublicatedata:
   ru: Дуб.
   en: Dublicate
   hy: Կրկն
+  it: Duplica
+  es: Duplicar
 sites-storages-buttons-editdata:
   ru: Ред.
   en: Edit
   hy: Խմբ
+  it: Modifica
+  es: Editar
 sites-storages-buttons-deletedata:
   ru: Удалить
   en: Delete
   hy: Ջնջել
+  it: Elimina
+  es: Eliminar
 sites-structure-deletedata1:
   ru: Удаление данных
   en: Delete data row
+  it: Elimina riga dati
+  es: Eliminar fila de datos
 sites-structure-deletedata1message:
   ru: Вы уверены, что хотите удалить выбранную строку?
   en: Are you sure you want to delete the selected row?
+  it: Sei sicuro di voler eliminare la riga selezionata?
+  es: ¿Está seguro de que desea eliminar la fila seleccionada?
 sites-structure-deletedata:
   ru: Удаление данных
   en: Data row delete
   hy: Տվյալների ջնջում
+  it: Elimina riga dati
+  es: Eliminar fila de datos
 sites-structure-deletedatamessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
+  en: Are you sure you want to delete the selected rows?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված տողերը:"
+  it: Sei sicuro di voler eliminare le righe selezionate?
+  es: ¿Está seguro de que desea eliminar las filas seleccionadas?
 sites-structure-newrow:
   ru: Новая строка
   en: New row
   hy: Նոր տող
+  it: Nuova riga
+  es: Nueva fila
 sites-structure-contextmenu-dublicate:
   ru: Дублировать данные
   en: Dublicate data
   hy: Կրկնվող տվյալներ
+  it: Duplica dati
+  es: Duplicar datos
 sites-structure-contextmenu-edit:
   ru: Редактировать данные
   en: Edit data
   hy: Խմբագրել տվյալները
+  it: Modifica dati
+  es: Editar datos
 sites-structure-contextmenu-delete:
   ru: Удалить
   en: Delete
   hy: Ջնջել
+  it: Elimina
+  es: Eliminar
 sites-structure-deletedatasmessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված տողերը:"
+  it: Sei sicuro di voler eliminare le righe selezionate?
+  es: ¿Está seguro de que desea eliminar las filas seleccionadas?
 sites-structure-deletedatamessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
+  it: Elimina!
+  es: ¡Eliminar!
 sites-structure-deletedatasmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
+  it: Elimina!
+  es: ¡Eliminar!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
+  it: Operazione non consentita
+  es: Operación no permitida
 sites-datapage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
   hy: Գործողությունն արգելված է
+  it: Operazione non consentita
+  es: Operación no permitida
 sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
   hy: Տողերի զտիչ
+  it: Filtro righe
+  es: Filtro de filas
 sites-structure-deletedatas:
   ru: Удаление строк
   en: Delete rows
   hy: Տողերի հեռացում
+  it: Elimina righe
+  es: Eliminar filas
 sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
   hy: Բեռնաթափել
+  it: Esporta
+  es: Exportar
 sites-structure-contextmenu-restore:
   ru: Восстановить
   en: Restore
   hy: Վերականգնել
+  it: Ripristina
+  es: Restaurar
 sites-storages-buttons-restoredata:
   ru: Восстановить
   en: Restore
   hy: Վերականգնել
+  it: Ripristina
+  es: Restaurar
 sites-structure-restoredata:
   ru: Восстановление данных
   en: Restore data
   hy: Տվյալների վերականգնում
+  it: Ripristina dati
+  es: Restaurar datos
 sites-structure-restoredatamessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
   hy: "Իսկապե՞ս ուզում եք վերականգնել ընտրված տողերը:"
+  it: Sei sicuro di voler ripristinare le righe selezionate?
+  es: ¿Está seguro de que desea restaurar las filas seleccionadas?
 sites-structure-restoredatamessage-delete:
   ru: Восстановить!
   en: Restore!
   hy: Վերականգնել
+  it: Ripristina!
+  es: ¡Restaurar!
 sites-structure-restoredatas:
   ru: Восстановление данных
   en: Restore data
   hy: Տվյալների վերականգնում
+  it: Ripristina dati
+  es: Restaurar datos
 sites-structure-restoredatasmessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
   hy: "Իսկապե՞ս ուզում եք վերականգնել ընտրված տողերը:"
+  it: Sei sicuro di voler ripristinare le righe selezionate?
+  es: ¿Está seguro de que desea restaurar las filas seleccionadas?
 sites-structure-restoredatasmessage-delete:
   ru: Восстановить!
   en: Restore!
   hy: Վերականգնել
+  it: Ripristina!
+  es: ¡Restaurar!
 sites-structure-editrow:
   ru: Редактирование строки
   en: Edit row
   hy: Խմբագրում
+  it: Modifica riga
+  es: Editar fila
 sites-storages-buttons-cleardata:
   ru: Очистить
   en: Clear
   hy: Մաքրել աղյուսակը
+  it: Pulisci
+  es: Limpiar
 sites-structure-cleardatas:
   ru: Очистка
   en: Clear
   hy: Մաքրել
+  it: Pulisci
+  es: Limpiar
 sites-structure-cleardatasmessage:
   ru: Внимание! Данные невозможно будет восстановить, если у вас не включено
     мягкое удаление
@@ -140,7 +211,11 @@ sites-structure-cleardatasmessage:
     enabled
   hy: Ուշադրություն! Դատարկման դեպքում տվյալները չեն կարող վերականգվել, եթե դուք
     չունեք մուտքագրված ջնջման հաշվին
+  it: Attenzione! I dati non potranno essere ripristinati se non hai abilitato l'eliminazione soft
+  es: ¡Atención! Los datos no se podrán restaurar si no tiene habilitada la eliminación suave
 sites-structure-cleardatasmessage-clear:
   ru: Очистить
   en: Clear
   hy: Մաքրել
+  it: Pulisci
+  es: Limpiar

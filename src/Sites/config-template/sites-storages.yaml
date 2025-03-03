@@ -11,6 +11,8 @@ pubs:
     ru: Публикации
     en: Publications
     hy: Հրապարակումներ
+    it: Pubblicazioni
+    es: Publicaciones
   params:
     visible: false
     maybepublished: false
@@ -178,10 +180,14 @@ texts:
         ru: Заголовок
         en: Title
         hy: Վերնագիր
+        it: Title
+        es: Título  
       note:
         ru: Введите заголовок текстового блока, если не обходимо
         en: Enter a title for the text block if needed
         hy: Անհրաժեշտության դեպքում մուտքագրեք վերնագիր տեքստային բլոկի համար
+        it: Inserisci un titolo per il blocco di testo se necessario
+        es: Introduzca un título para el bloque de texto si es necesario
       params:
         required: false
         enabled: true
@@ -226,12 +232,14 @@ texts:
         ru: Содержание блока
         en: Block content
         hy: Բովանդակություն
-        it: ""
+        it: Contenuto del blocco
+        es: Contenido del bloque
       note:
         ru: Введите содержание блока
         en: Enter block content
         hy: Մուտքագրեք բլոկի բովանդակությունը
-        it: ""
+        it: Inserisci il contenuto del blocco
+        es: Introduzca el contenido del bloque
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: false

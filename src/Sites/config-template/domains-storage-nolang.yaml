@@ -7,6 +7,8 @@ desc:
   ru: Сайты/Домены
   en: Sites/Domains
   hy: Կայտեր/Դոմեններ
+  it: Siti/Domini
+  es: Sitios/Dominios
 params:
   visible: false
   maybepublished: false
@@ -20,12 +22,18 @@ fields:
       en: Domain Key
       ru: Ключ домена
       hy: Դոմեյն բանալին
+      it: Chiave del dominio
+      es: Clave de dominio
     note:
       en: The configuration must specify the domain patterns that fit this key.
       ru: В конфигурации должны быть указаны паттерны доменов, которые подходят
         под этот ключ
       hy: Կոնֆիգուրացիայում պետք է նշվեն դոմենների պատվերները, որոնք համապատասխանում
         են այս բանալին
+      it: La configurazione deve specificare i modelli di dominio che corrispondono
+        a questa chiave.
+      es: La configuración debe especificar los patrones de dominio que se ajustan
+        a esta clave.
     selector:
       value: value
       title: title
@@ -43,10 +51,14 @@ fields:
       ru: Описание сайта/домена
       en: Domain/Site description
       hy: Դոմենի/Կայքի նկարագրություն
+      it: Descrizione del dominio/sito
+      es: Descripción del dominio/sitio
     note:
       ru: Введите описание сайта
       en: Enter a description of the site
       hy: Մուտքագրեք կայքի նկարագրությունը
+      it: Inserisci una descrizione del sito
+      es: Introduzca una descripción del sitio
     params:
       required: true
       enabled: true
@@ -92,10 +104,14 @@ fields:
       ru: Закрыт
       en: Closed
       hy: Փակված է
+      it: Chiuso
+      es: Cerrado
     note:
       ru: Выберите «Да» если хотите закрыть сайт
       en: Select "Yes" if you want to close the site
       hy: Ընտրեք «Այո», եթե ցանկանում եք փակել կայքը
+      it: Seleziona "Sì" se vuoi chiudere il sito
+      es: Seleccione "Sí" si desea cerrar el sitio
     component: Colibri.UI.Forms.Checkbox
     params:
       required: true
@@ -109,6 +125,8 @@ fields:
       ru: Дополнительные параметры
       en: Additional properties
       hy: Լրացուցիչ հատկություններ
+      it: Proprietà aggiuntive
+      es: Propiedades adicionales
     default: json_object()
     fields:
       meta:
@@ -118,6 +136,8 @@ fields:
           ru: Мета данные
           en: Page metadata
           hy: Էջի մետատվյալներ
+          it: Metadati della pagina
+          es: Metadatos de la página
         component: Colibri.UI.Forms.Object
         params:
           vertical: true
@@ -132,10 +152,14 @@ fields:
               ru: Заголовок страницы
               en: Page title
               hy: Էջի վերնագիր
+              it: Titolo della pagina
+              es: Título de la página
             note:
               ru: Введите заголовок страницы
               en: Enter the page title
               hy: Մուտքագրեք էջի անվանումը
+              it: Inserisci il titolo della pagina
+              es: Introduzca el título de la página
             placeholder:
               ru: ""
               en: ""
@@ -182,10 +206,14 @@ fields:
               ru: Описание страницы
               en: Page description
               hy: Էջի նկարագրություն
+              it: Descrizione della pagina
+              es: Descripción de la página
             note:
               ru: Введите мета описание сайта
               en: Enter the description in meta header
               hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
+              it: Inserisci la descrizione nell'intestazione meta
+              es: Introduzca la descripción en la cabecera meta
             placeholder:
               ru: ""
               en: ""
@@ -232,10 +260,14 @@ fields:
               ru: Ключевые слова
               en: Page keywords
               hy: Էջի հիմնաբառեր
+              it: Parole chiave della pagina
+              es: Palabras clave de la página
             note:
               ru: Введите ключевые слова
               en: Enter the meta keywords
               hy: Մուտքագրեք մետա հիմնաբառերը
+              it: Inserisci le parole chiave meta
+              es: Introduzca las palabras clave meta
             placeholder:
               ru: ""
               en: ""
