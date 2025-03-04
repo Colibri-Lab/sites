@@ -640,7 +640,7 @@ fields:
             width: 22%
           attrs: 
             type: varchar
-            class: string
+            class: string 
             length: 1024
             component: Colibri.UI.Forms.TextArea
             desc: Атрибуты (JS)
