@@ -24,6 +24,7 @@ use Colibri\Data\NoSqlClient\ICommandResult;
  * @property int $id ID строки
  * @property DateTimeField $datecreated Дата создания строки
  * @property DateTimeField $datemodified Дата последнего обновления строки
+ * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property string $name Ключ домена
  * @property Text $description Описание сайта/домена
  * @property bool $closed Закрыт

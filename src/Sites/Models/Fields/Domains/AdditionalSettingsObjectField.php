@@ -5,6 +5,7 @@ namespace App\Modules\Sites\Models\Fields\Domains;
 use Colibri\Data\Storages\Fields\ObjectField;
 
 # region Uses:
+use App\Modules\Sites\Models\Fields\Domains\AdditionalSettingsTypeEnum;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
 
@@ -14,7 +15,7 @@ use Colibri\Data\Storages\Fields\ValueField;
  * @package App\Modules\Sites\Models\Fields\Domains\Fields
  * 
  * region Properties:
- * @property ValueField|int|float|ValueField $type Тип приложения
+ * @property AdditionalSettingsTypeEnum|ValueField|ValueField $type Тип приложения
  * @property string $module Стартовый модуль
  * @property string|null $component Компонент по умолчанию
  * @property string|null $template Шаблон по умолчанию
@@ -32,7 +33,7 @@ class AdditionalSettingsObjectField extends ObjectField
         ],
         'properties' => [
             # region SchemaProperties:
-			'type' => ['type' => 'string', 'enum' => ['application', 'website']],
+			'type' => AdditionalSettingsTypeEnum::JsonSchema, 
 			'module' => ['type' => 'string', 'maxLength' => 255, ],
 			'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'template' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],

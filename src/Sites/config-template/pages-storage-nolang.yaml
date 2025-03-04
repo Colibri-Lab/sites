@@ -12,7 +12,7 @@ params:
   maybepublished: false
 fields:
   domain:
-    type: bigint unsigned
+    type: bigint
     class: App\Modules\Sites\Models\Domain
     component: Colibri.UI.Forms.Hidden
     desc:
@@ -29,7 +29,7 @@ fields:
         title: description
         value: id
   parent:
-    type: bigint unsigned
+    type: bigint
     class: App\Modules\Sites\Models\Page
     component: Colibri.UI.Forms.Hidden
     desc:
@@ -112,7 +112,7 @@ fields:
     attrs: []
     group: window
   published:
-    type: boolean
+    type: bool
     class: bool
     desc:
       ru: Опубликована

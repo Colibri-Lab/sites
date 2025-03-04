@@ -17,9 +17,9 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @package App\Modules\Sites\Models\Fields\Pages\Fields
  * 
  * region Properties:
- * @property AdditionalMetaObjectField $meta Мета данные
- * @property AdditionalSettingsObjectField $settings Технические данные
- * @property AdditionalParametersArrayField $parameters Дополнительные свойства
+ * @property AdditionalMetaObjectField|null $meta Мета данные
+ * @property AdditionalSettingsObjectField|null $settings Технические данные
+ * @property AdditionalParametersArrayField|null $parameters Дополнительные свойства
  * endregion Properties;
  */
 class AdditionalObjectField extends ObjectField

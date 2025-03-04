@@ -21,6 +21,7 @@ use App\Modules\Lang\Models\Fields\Text;
  * @property string|null $default Значение по умолчанию
  * @property string|null $class Класс (PHP)
  * @property string|null $component Компонента (JS)
+ * @property string|null $attrs Атрибуты (JS)
  * endregion Properties;
  */
 class AdditionalParametersObjectField extends ObjectField
@@ -41,6 +42,7 @@ class AdditionalParametersObjectField extends ObjectField
 			'default' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'class' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'component' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'attrs' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],
 			# endregion SchemaProperties;
         ]
     ];

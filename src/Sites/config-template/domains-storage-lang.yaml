@@ -332,6 +332,7 @@ fields:
               required: true
             values:
             - value: application
+              type: text
               title: 
                 ru: Приложение (javascript)
                 en: Application (javascript)
@@ -339,6 +340,7 @@ fields:
                 it: Applicazione (javascript)
                 es: Aplicación (javascript)
             - value: website
+              type: text
               title: 
                 ru: Обычный вебсайт (php/js)
                 en: Website (php/js)
@@ -369,8 +371,7 @@ fields:
               readonly: false
               searchable: false
               required: true
-              runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues();
-                }
+              runtime: (field, form) => { form.FindField("additional/settings/template").ReloadValues(); }
             lookup:
               method: ' () => new Promise((resolve, reject) => { Manage.Store.AsyncQuery("manage.modules").then((modules)
                 => { const ret = []; for(const module of modules) { ret.push({value:module.name,
@@ -639,6 +640,7 @@ fields:
             width: 22%
           attrs: 
             type: varchar
+            class: string
             length: 1024
             component: Colibri.UI.Forms.TextArea
             desc: Атрибуты (JS)

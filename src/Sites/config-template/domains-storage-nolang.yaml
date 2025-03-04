@@ -326,8 +326,10 @@ fields:
               required: true
             values:
             - value: application
+              type: text
               title: Приложение (javascript)
             - value: website
+              type: text
               title: Обычный вебсайт (php/js)
           module:
             type: varchar
@@ -556,6 +558,7 @@ fields:
           attrs: 
             type: varchar
             length: 1024
+            class: string
             component: Colibri.UI.Forms.TextArea
             desc: Атрибуты (JS)
             attrs:

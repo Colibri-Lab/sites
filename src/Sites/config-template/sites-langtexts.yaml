@@ -29,11 +29,16 @@ sites-menu-storages:
   it: Magazzini
   es: Almacenes
 sites-menu-storages-desc:
-  ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя удобный интерфейс
-  en: Data warehouse editor. Create repositories for materials using a user-friendly interface
-  hy: "Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով հարմար ինտերֆեյս"
-  it: Editor del magazzino dati. Crea repository per i materiali utilizzando un'interfaccia user-friendly
-  es: Editor de almacén de datos. Cree repositorios para materiales utilizando una interfaz fácil de usar
+  ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя
+    удобный интерфейс
+  en: Data warehouse editor. Create repositories for materials using a
+    user-friendly interface
+  hy: "Տվյալների պահպանման խմբագիր: Ստեղծեք նյութերի պահեստներ, օգտագործելով
+    հարմար ինտերֆեյս"
+  it: Editor del magazzino dati. Crea repository per i materiali utilizzando
+    un'interfaccia user-friendly
+  es: Editor de almacén de datos. Cree repositorios para materiales utilizando una
+    interfaz fácil de usar
 sites-permissions:
   ru: Сайты и разделы
   en: Sites and pages

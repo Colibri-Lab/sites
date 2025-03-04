@@ -7,8 +7,6 @@ use App\Modules\Lang\Models\Fields\Text;
 use App\Modules\Sites\Models\Domain;
 use App\Modules\Sites\Models\Fields\Pages\AdditionalObjectField;
 use App\Modules\Sites\Models\Fields\ParametersField;
-use Colibri\AppException;
-use Colibri\Data\SqlClient\IDataReader;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ObjectField;
 # endregion Uses;
@@ -27,8 +25,9 @@ use Colibri\Data\NoSqlClient\ICommandResult;
  * @property int $id ID строки
  * @property DateTimeField $datecreated Дата создания строки
  * @property DateTimeField $datemodified Дата последнего обновления строки
- * @property Domain $domain Домен
- * @property Page|null $parent Отцовская страница
+ * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
+ * @property Domain|int $domain Домен
+ * @property Page|int|null $parent Отцовская страница
  * @property string $name Наименование раздела
  * @property Text $description Описание страницы
  * @property bool $published Опубликована
