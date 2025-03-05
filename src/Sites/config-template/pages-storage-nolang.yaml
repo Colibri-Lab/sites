@@ -3,10 +3,7 @@ module: Sites
 models:
   row: Models\Page
   table: Models\Pages
-desc:
-  ru: Страницы
-  en: Pages
-  hy: Էջեր
+desc: Pages
 params:
   visible: false
   maybepublished: false
@@ -15,10 +12,7 @@ fields:
     type: bigint
     class: App\Modules\Sites\Models\Domain
     component: Colibri.UI.Forms.Hidden
-    desc:
-      ru: Домен
-      en: Domain
-      hy: Դոմեն
+    desc: Domain   
     default: "0"
     params:
       required: true
@@ -32,10 +26,7 @@ fields:
     type: bigint
     class: App\Modules\Sites\Models\Page
     component: Colibri.UI.Forms.Hidden
-    desc:
-      ru: Отцовская страница
-      en: Parent page
-      hy: Ծնողական էջ
+    desc: Parent page   
     default: "0"
     params:
       required: false
@@ -49,14 +40,8 @@ fields:
     type: varchar
     length: 255
     class: string
-    desc:
-      ru: Наименование раздела
-      en: Page name
-      hy: Էջի անունը
-    note:
-      ru: Введите наименование страницы, наименование будет использовано в URL
-      en: Enter the name of the page, the name will be used in the URL
-      hy: Մուտքագրեք էջի անունը, անունը կօգտագործվի URL-ում
+    desc: Section name
+    note: Enter the page name, the name will be used in the URL
     params:
       required: true
       readonly: false
@@ -65,14 +50,8 @@ fields:
     type: varchar
     length: 512
     class: string
-    desc:
-      ru: Описание страницы
-      en: Page description
-      hy: Էջի նկարագրություն
-    note:
-      ru: Введите описание сайта
-      en: Enter site description
-      hy: Մուտքագրեք կայքի նկարագրությունը
+    desc: Page description
+    note: Enter the site description
     params:
       required: true
       enabled: true
@@ -114,10 +93,7 @@ fields:
   published:
     type: bool
     class: bool
-    desc:
-      ru: Опубликована
-      en: Published
-      hy: Հրատարակվել է
+    desc: Published
     component: Colibri.UI.Forms.Checkbox
     params:
       required: true
@@ -130,19 +106,13 @@ fields:
     type: json
     class: ObjectField
     component: Colibri.UI.Forms.Tabs
-    desc:
-      ru: Всякое
-      en: Additional
-      hy: Լրացուցիչ
+    desc: Miscellaneous
     default: json_object()
     fields:
       meta:
         type: json
         class: ObjectField
-        desc:
-          ru: Мета данные
-          en: Page metadata
-          hy: Էջի մետատվյալներ
+        desc: Meta data
         component: Colibri.UI.Forms.Object
         params:
           vertical: true
@@ -153,48 +123,27 @@ fields:
             length: 512
             class: string
             component: Colibri.UI.Forms.Text
-            desc:
-              ru: Заголовок страницы
-              en: Page title
-              hy: Էջի վերնագիր
-            note:
-              ru: Введите заголовок страницы
-              en: Enter the page title
-              hy: Մուտքագրեք էջի անվանումը
+            desc: Page title
+            note: Enter the page title
           description:
             type: varchar
             length: 1024
             class: string
             component: Colibri.UI.Forms.TextArea
-            desc:
-              ru: Описание страницы
-              en: Page description
-              hy: Էջի նկարագրություն
-            note:
-              ru: Введите мета описание сайта
-              en: Enter the description in meta header
-              hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
+            desc: Page description
+            note: Enter the meta description of the site
           keywords:
             type: varchar
             length: 1024
             class: string
             component: Colibri.UI.Forms.TextArea
-            desc:
-              ru: Ключевые слова
-              en: Page keywords
-              hy: Էջի հիմնաբառեր
-            note:
-              ru: Введите ключевые слова
-              en: Enter the meta keywords
-              hy: Մուտքագրեք մետա հիմնաբառերը
+            desc: Keywords
+            note: Enter the keywords  
       settings:
         type: json
         class: ObjectField
         component: Colibri.UI.Forms.Object
-        desc:
-          ru: Технические данные
-          en: Technical information
-          hy: Տեխնիկական տեղեկատվություն
+        desc: Technical data
         params:
           vertical: true
         default: json_object()
@@ -204,10 +153,7 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Select
-            desc:
-              ru: Компонента
-              en: Component
-              hy: Բաղադրիչ
+            desc: Component
             note: ""
             params:
               required: false
@@ -229,10 +175,7 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Select
-            desc:
-              ru: Шаблон
-              en: Template
-              hy: Կաղապար
+            desc: Template     
             note: ""
             params:
               required: false
@@ -251,28 +194,19 @@ fields:
         type: json
         class: ArrayField
         component: Colibri.UI.Forms.Array
-        desc:
-          ru: Дополнительные свойства
-          en: Additional properties
-          hy: Լրացուցիչ հատկություններ
+        desc: Additional properties
         default: json_array()
         attrs:
           className: app-field-wrap
         params:
-          addlink:
-            ru: Добавить параметр
-            en: Add parameter
-            hy: Ավելացնել
+          addlink: Add parameter
         fields:
           name:
             type: varchar
             length: 50
             class: string
             component: Colibri.UI.Forms.Text
-            desc:
-              ru: Наименование поля
-              en: Param name
-              hy: Պարամետրի անվանումը
+            desc: Field name       
             attrs:
               width: 30%
           description:
@@ -280,19 +214,13 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc:
-              ru: Описание поля
-              en: Param description
-              hy: Պարամետրի նկարագրությունը
+            desc: Field description      
             attrs:
               width: 68%
           type:
             type: varchar
             length: 20
-            desc:
-              ru: Тип
-              en: Type
-              hy: Տիպ
+            desc: Type
             class: string
             component: Colibri.UI.Forms.Text
             default: varchar
@@ -300,10 +228,7 @@ fields:
               width: 19.5%
           length:
             type: int
-            desc:
-              ru: Длина
-              en: Length
-              hy: Երկարություն
+            desc: Length
             class: int
             component: Colibri.UI.Forms.Number
             attrs:
@@ -313,10 +238,7 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc:
-              ru: Значение по умолчанию
-              en: Default value
-              hy: Կանխադրված արժեք
+            desc: Value
             attrs:
               width: 20%
           class:
@@ -324,10 +246,7 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc:
-              ru: Класс (PHP)
-              en: Class name (PHP)
-              hy: Դասի անվանումը (PHP)
+            desc: Class (PHP)
             attrs:
               width: 20%
           component:
@@ -336,10 +255,7 @@ fields:
             class: string
             default: Text
             component: Colibri.UI.Forms.Select
-            desc:
-              ru: Компонента (JS)
-              en: UI Component (JS)
-              hy: UI բաղադրիչ (JS)
+            desc: Component (JS)
             selector:
               value: value
               title: title
@@ -352,10 +268,7 @@ fields:
   parameters:
     type: json
     component: Colibri.UI.Forms.Object
-    desc:
-      ru: Параметры
-      en: Parameters
-      hy: Պարամետրեր
+    desc: Parameters
     class: ParametersField
     default: json_object()
     params:
@@ -367,7 +280,7 @@ fields:
     class: float
     default: "0"
     component: Colibri.UI.Forms.Hidden
-    desc: Позиция в рамках parent-а
+    desc: Position on parent
 indices:
   pages_domain_idx:
     fields:

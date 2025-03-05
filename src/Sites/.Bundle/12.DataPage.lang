@@ -4,206 +4,276 @@ sites-storages-storages-title:
   hy: Տակառներ
   it: Magazzini
   es: Almacenes
+  kk: Қоймалар
+  uz: Omborlar
 sites-storages-data-title:
   ru: Данные
   en: Data
   hy: Տվյալներ
   it: Dati
   es: Datos
+  kk: Деректер
+  uz: Ma'lumotlar
 sites-storages-search-placeholder:
   ru: Поиск
   en: Search
   hy: Որոնում
   it: Cerca
   es: Buscar
+  kk: Іздеу
+  uz: Qidiruv
 sites-storages-dataempty:
   ru: Данные не найдены
   en: Data not found
   it: Dati non trovati
   es: Datos no encontrados
+  kk: Деректер табылмады
+  uz: Ma'lumotlar topilmadi
 sites-storages-buttons-adddata:
   ru: Добавить
   en: Add
   hy: Ավելացնել
   it: Aggiungi
   es: Añadir
+  kk: Қосу
+  uz: Qo'shish
 sites-storages-buttons-dublicatedata:
   ru: Дуб.
   en: Dublicate
   hy: Կրկն
   it: Duplica
   es: Duplicar
+  kk: Көшіру
+  uz: Nusxalash
 sites-storages-buttons-editdata:
   ru: Ред.
   en: Edit
   hy: Խմբ
   it: Modifica
   es: Editar
+  kk: Өңдеу
+  uz: Tahrirlash
 sites-storages-buttons-deletedata:
   ru: Удалить
   en: Delete
   hy: Ջնջել
   it: Elimina
   es: Eliminar
+  kk: Жою
+  uz: O'chirish
 sites-structure-deletedata1:
   ru: Удаление данных
   en: Delete data row
   it: Elimina riga dati
   es: Eliminar fila de datos
+  kk: Деректер жолын жою
+  uz: Ma'lumotlar qatorini o'chirish
 sites-structure-deletedata1message:
   ru: Вы уверены, что хотите удалить выбранную строку?
   en: Are you sure you want to delete the selected row?
   it: Sei sicuro di voler eliminare la riga selezionata?
   es: ¿Está seguro de que desea eliminar la fila seleccionada?
+  kk: Таңдалған жолды жойғыңыз келетініне сенімдісіз бе?
+  uz: Tanlangan qatorni o'chirishni xohlaysizmi?
 sites-structure-deletedata:
   ru: Удаление данных
   en: Data row delete
   hy: Տվյալների ջնջում
   it: Elimina riga dati
   es: Eliminar fila de datos
+  kk: Деректер жолын жою
+  uz: Ma'lumotlar qatorini o'chirish
 sites-structure-deletedatamessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված տողերը:"
   it: Sei sicuro di voler eliminare le righe selezionate?
   es: ¿Está seguro de que desea eliminar las filas seleccionadas?
+  kk: Таңдалған жолдарды жойғыңыз келетініне сенімдісіз бе?
+  uz: Tanlangan qatorlarni o'chirishni xohlaysizmi?
 sites-structure-newrow:
   ru: Новая строка
   en: New row
   hy: Նոր տող
   it: Nuova riga
   es: Nueva fila
+  kk: Жаңа жол
+  uz: Yangi qator
 sites-structure-contextmenu-dublicate:
   ru: Дублировать данные
   en: Dublicate data
   hy: Կրկնվող տվյալներ
   it: Duplica dati
   es: Duplicar datos
+  kk: Деректерді көшіру
+  uz: Ma'lumotlarni nusxalash
 sites-structure-contextmenu-edit:
   ru: Редактировать данные
   en: Edit data
   hy: Խմբագրել տվյալները
   it: Modifica dati
   es: Editar datos
+  kk: Деректерді өңдеу
+  uz: Ma'lumotlarni tahrirlash
 sites-structure-contextmenu-delete:
   ru: Удалить
   en: Delete
   hy: Ջնջել
   it: Elimina
   es: Eliminar
+  kk: Жою
+  uz: O'chirish
 sites-structure-deletedatasmessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված տողերը:"
   it: Sei sicuro di voler eliminare le righe selezionate?
   es: ¿Está seguro de que desea eliminar las filas seleccionadas?
+  kk: Таңдалған жолдарды жойғыңыз келетініне сенімдісіз бе?
+  uz: Tanlangan qatorlarni o'chirishni xohlaysizmi?
 sites-structure-deletedatamessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
   it: Elimina!
   es: ¡Eliminar!
+  kk: Жою!
+  uz: O'chirish!
 sites-structure-deletedatasmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
   it: Elimina!
   es: ¡Eliminar!
+  kk: Жою!
+  uz: O'chirish!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
   it: Operazione non consentita
   es: Operación no permitida
+  kk: Операцияға рұқсат етілмейді
+  uz: Operatsiyaga ruxsat berilmagan
 sites-datapage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
   hy: Գործողությունն արգելված է
   it: Operazione non consentita
   es: Operación no permitida
+  kk: Операцияға рұқсат етілмейді
+  uz: Operatsiyaga ruxsat berilmagan
 sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
   hy: Տողերի զտիչ
   it: Filtro righe
   es: Filtro de filas
+  kk: Жолдарды сүзу
+  uz: Qatorlarni filtrlash
 sites-structure-deletedatas:
   ru: Удаление строк
   en: Delete rows
   hy: Տողերի հեռացում
   it: Elimina righe
   es: Eliminar filas
+  kk: Жолдарды жою
+  uz: Qatorlarni o'chirish
 sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
   hy: Բեռնաթափել
   it: Esporta
   es: Exportar
+  kk: Экспорттау
+  uz: Eksport qilish
 sites-structure-contextmenu-restore:
   ru: Восстановить
   en: Restore
   hy: Վերականգնել
   it: Ripristina
   es: Restaurar
+  kk: Қалпына келтіру
+  uz: Tiklash
 sites-storages-buttons-restoredata:
   ru: Восстановить
   en: Restore
   hy: Վերականգնել
   it: Ripristina
   es: Restaurar
+  kk: Қалпына келтіру
+  uz: Tiklash
 sites-structure-restoredata:
   ru: Восстановление данных
   en: Restore data
   hy: Տվյալների վերականգնում
   it: Ripristina dati
   es: Restaurar datos
+  kk: Деректерді қалпына келтіру
+  uz: Ma'lumotlarni tiklash
 sites-structure-restoredatamessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
   hy: "Իսկապե՞ս ուզում եք վերականգնել ընտրված տողերը:"
   it: Sei sicuro di voler ripristinare le righe selezionate?
   es: ¿Está seguro de que desea restaurar las filas seleccionadas?
+  kk: Таңдалған жолдарды қалпына келтіргіңіз келетініне сенімдісіз бе?
+  uz: Tanlangan qatorlarni tiklashni xohlaysizmi?
 sites-structure-restoredatamessage-delete:
   ru: Восстановить!
   en: Restore!
   hy: Վերականգնել
   it: Ripristina!
   es: ¡Restaurar!
+  kk: Қалпына келтіру!
+  uz: Tiklash!
 sites-structure-restoredatas:
   ru: Восстановление данных
   en: Restore data
   hy: Տվյալների վերականգնում
   it: Ripristina dati
   es: Restaurar datos
+  kk: Деректерді қалпына келтіру
+  uz: Ma'lumotlarni tiklash
 sites-structure-restoredatasmessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
   hy: "Իսկապե՞ս ուզում եք վերականգնել ընտրված տողերը:"
   it: Sei sicuro di voler ripristinare le righe selezionate?
   es: ¿Está seguro de que desea restaurar las filas seleccionadas?
+  kk: Таңдалған жолдарды қалпына келтіргіңіз келетініне сенімдісіз бе?
+  uz: Tanlangan qatorlarni tiklashni xohlaysizmi?
 sites-structure-restoredatasmessage-delete:
   ru: Восстановить!
   en: Restore!
   hy: Վերականգնել
   it: Ripristina!
   es: ¡Restaurar!
+  kk: Қалпына келтіру!
+  uz: Tiklash!
 sites-structure-editrow:
   ru: Редактирование строки
   en: Edit row
   hy: Խմբագրում
   it: Modifica riga
   es: Editar fila
+  kk: Жолды өңдеу
+  uz: Qatorni tahrirlash
 sites-storages-buttons-cleardata:
   ru: Очистить
   en: Clear
   hy: Մաքրել աղյուսակը
   it: Pulisci
   es: Limpiar
+  kk: Тазалау
+  uz: Tozalash
 sites-structure-cleardatas:
   ru: Очистка
   en: Clear
   hy: Մաքրել
   it: Pulisci
   es: Limpiar
+  kk: Тазалау
+  uz: Tozalash
 sites-structure-cleardatasmessage:
   ru: Внимание! Данные невозможно будет восстановить, если у вас не включено
     мягкое удаление
@@ -213,9 +283,13 @@ sites-structure-cleardatasmessage:
     չունեք մուտքագրված ջնջման հաշվին
   it: Attenzione! I dati non potranno essere ripristinati se non hai abilitato l'eliminazione soft
   es: ¡Atención! Los datos no se podrán restaurar si no tiene habilitada la eliminación suave
+  kk: Назар аударыңыз! Егер сізде жұмсақ жою қосылмаған болса, деректерді қалпына келтіру мүмкін болмайды
+  uz: Diqqat! Agar sizda yumshoq o'chirish yoqilmagan bo'lsa, ma'lumotlarni tiklash mumkin bo'lmaydi
 sites-structure-cleardatasmessage-clear:
   ru: Очистить
   en: Clear
   hy: Մաքրել
   it: Pulisci
   es: Limpiar
+  kk: Тазалау
+  uz: Tozalash

@@ -4,81 +4,109 @@ sites-widgets-storageswidget-title:
   hy: Պահեստները վիճակ
   it: Stato dei magazzini
   es: Estado de los almacenes
+  kk: Сақтаулар күйі
+  uz: Saqlash holati
 sites-widgets-storageswidget-name:
   ru: Наименование
   en: Name
   hy: Անուն
   it: Nome
   es: Nombre
+  kk: Атауы
+  uz: Nomi
 sites-widgets-storageswidget-version:
   ru: Версия
   en: Version
   hy: Տարբերակ
   it: Versione
   es: Versión
+  kk: Нұсқа
+  uz: Versiya
 sites-widgets-storageswidget-engine:
   ru: Тип хранилища
   en: Engine
   hy: Շարժիչ
   it: Motore
   es: Motor
+  kk: Қозғалтқыш
+  uz: Dvigatel
 sites-widgets-storageswidget-row-format:
   ru: Формат строк
   en: Row format
   hy: Շարքի ձևաչափ
   it: Formato riga
   es: Formato de fila
+  kk: Жол форматы
+  uz: Qator formati
 sites-widgets-storageswidget-create-time:
   en: Create time
   ru: Дата создания
   hy: Ստեղծեք ժամանակ
   it: Ora di creazione
   es: Hora de creación
+  kk: Құру уақыты
+  uz: Yaratish vaqti
 sites-widgets-storageswidget-update-time:
   en: Update time
   ru: Дата обновления
   hy: Թարմացման ժամանակը
   it: Ora di aggiornamento
   es: Hora de actualización
+  kk: Жаңарту уақыты
+  uz: Yangilanish vaqti
 sites-widgets-storageswidget-autoincrement:
   en: Current autoincrement value
   ru: Текущее значение автоинкремента
   hy: Ընթացիկ ինքնաաճացման արժեքը
   it: Valore autoincremento corrente
   es: Valor de autoincremento actual
+  kk: Ағымдағы автоинкремент мәні
+  uz: Joriy autoincrement qiymati
 sites-widgets-storageswidget-avg-row-length:
   en: Avg row length
   ru: Средний размер строки
   hy: Շարքի միջին երկարությունը
   it: Lunghezza media riga
   es: Longitud media de fila
+  kk: Орташа жол ұзындығы
+  uz: O'rtacha qator uzunligi
 sites-widgets-storageswidget-collation:
   en: Collation type
   ru: Сопоставление
   hy: Հավաքման տեսակը
   it: Tipo di confronto
   es: Tipo de intercalación
+  kk: Салыстыру түрі
+  uz: Taqqoslash turi
 sites-widgets-storageswidget-rows:
   en: Rows count
   ru: Количество строк
   hy: Շարքերը հաշվում են
   it: Conteggio righe
   es: Conteo de filas
+  kk: Жолдар саны
+  uz: Qatorlar soni
 sites-widgets-storageswidget-data-free:
   en: Free data available
   ru: Свободное место
   hy: Անվճար տվյալների հասանելիություն
   it: Dati liberi disponibili
   es: Datos libres disponibles
+  kk: Бос деректер қол жетімді
+  uz: Bepul ma'lumotlar mavjud
 sites-widgets-storageswidget-data-length:
   en: Current data length
   ru: Текущий размер таблицы
   hy: Ընթացիկ տվյալների երկարությունը
   it: Lunghezza dati corrente
   es: Longitud de datos actual
+  kk: Ағымдағы деректер ұзындығы
+  uz: Joriy ma'lumotlar uzunligi
 sites-widgets-storageswidget-index-length:
   en: Current index length
   ru: Текущий размер индексов
   hy: Ընթացիկ ինդեքսի երկարությունը
   it: Lunghezza indice corrente
   es: Longitud del índice actual
+  kk: Ағымдағы индекс ұзындығы
+  uz: Joriy indeks uzunligi

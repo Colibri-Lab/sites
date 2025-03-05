@@ -13,12 +13,14 @@ pubs:
     hy: Հրապարակումներ
     it: Pubblicazioni
     es: Publicaciones
+    kk: Жарияланулар
+    uz: Nashrlar
   params:
     visible: false
     maybepublished: false
   fields:
     domain:
-      type: bigint unsigned
+      type: bigint
       class: App\Modules\Sites\Models\Domain
       component: Colibri.UI.Forms.Hidden
       desc: Домен
@@ -32,10 +34,24 @@ pubs:
           title: description
           value: id
     page:
-      type: bigint unsigned
+      type: bigint
       class: App\Modules\Sites\Models\Page
-      desc: Страница
-      note: Выберите страницу
+      desc: 
+        ru: Страница
+        en: Page
+        hy: Էջ
+        it: Pagina
+        kk: Бет
+        uz: Sahifa
+        es: Página
+      note: 
+        ru: Выберите страницу
+        en: Select a page
+        hy: Ընտրեք էջը
+        it: Seleziona una pagina
+        kk: Бетті таңдаңыз
+        uz: Sahifani tanlang
+        es: Seleccionar una página
       params:
         required: false
         readonly: false
@@ -48,16 +64,44 @@ pubs:
       type: varchar
       length: 255
       class: string
-      desc: Хранилище материалов
-      note: Выберите хранилище материалов
+      desc: 
+        ru: Хранилище материалов
+        en: Material storage
+        hy: Աղբահանումների պահպանում
+        it: Archiviazione dei materiali
+        es: Almacenamiento de materiales
+        kk: Материалдарды сақтау
+        uz: Materiallar saqlash
+      note: 
+        ru: Выберите хранилище материалов
+        en: Select a material storage
+        hy: Ընտրեք աղբահանումների պահպանումը
+        it: Seleziona un archivio di materiali
+        es: Seleccionar un almacenamiento de materiales
+        kk: Материалдарды сақтау үшін таңдаңыз 
+        uz: Materiallar saqlash uchun tanlang
       params:
         required: true
         readonly: false
     row:
-      type: bigint unsigned
+      type: bigint
       class: int
-      desc: ID записи в хранилище
-      note: Введите ID записи в хранилище
+      desc: 
+        ru: ID записи в хранилище
+        en: Record ID in storage
+        hy: Գրանցման ID-ն աղբահանում
+        it: ID del record nello storage
+        es: ID del registro en el almacenamiento
+        kk: Жазба ID-сі сақтау
+        uz: Ma'lumotlar bazasidagi yozuv ID-si
+      note: 
+        ru: Введите ID записи в хранилище
+        en: Enter the record ID in the storage
+        hy: Մուտքագրեք գրանցման ID-ն աղբահանում
+        it: Inserisci l'ID del record nello storage
+        es: Introduzca el ID del registro en el almacenamiento
+        kk: Сақтаудағы жазба ID-сін енгізіңіз
+        uz: Ma'lumotlar bazasidagi yozuv ID-sini kiriting
       params:
         required: true
         readonly: false
@@ -67,7 +111,14 @@ pubs:
       params:
         required: false
         readonly: false
-      desc: Полнотекстовый поиск
+      desc: 
+        ru: Полнотекстовый поиск
+        en: Full-text search
+        hy: Ամբողջական տեքստային որոնում
+        it: Ricerca full-text
+        es: Búsqueda de texto completo
+        kk: Толық мәтін іздеу
+        uz: To'liq matn qidirish
     object:
       type: json
       class: ObjectField
@@ -77,7 +128,14 @@ pubs:
       type: double
       class: float
       default: 0
-      desc: Позиция в рамках страницы
+      desc: 
+        ru: Позиция в рамках страницы
+        en: Position within the page
+        hy: Համասեռական դիրքը էջում
+        it: Posizione all'interno della pagina
+        es: Posición dentro de la página
+        kk: Бет ішіндегі орын
+        uz: Sahifa ichidagi joylashuvi
   indices:
     pubs_domain_idx:
       fields:
@@ -111,6 +169,10 @@ texts:
     ru: Текстовые данные
     en: Text data
     hy: Տեքստային տվյալներ
+    it: Dati di testo
+    es: Datos de texto
+    kk: Мәтіндердің деректері
+    uz: Matn ma'lumotlari
   params:
     visible: true
     maybepublished: true
@@ -120,6 +182,10 @@ texts:
         ru: Язык
         en: Language
         hy: Լեզու
+        it: Lingua
+        es: Idioma
+        kk: Тіл
+        uz: Til
       placeholder:
         ru: ""
         en: ""
@@ -182,12 +248,16 @@ texts:
         hy: Վերնագիր
         it: Title
         es: Título  
+        kk: Тақырып
+        uz: Sarlavha
       note:
         ru: Введите заголовок текстового блока, если не обходимо
         en: Enter a title for the text block if needed
         hy: Անհրաժեշտության դեպքում մուտքագրեք վերնագիր տեքստային բլոկի համար
         it: Inserisci un titolo per il blocco di testo se necessario
         es: Introduzca un título para el bloque de texto si es necesario
+        kk: Мәтін блогы үшін тақырыпты енгізіңіз
+        uz: Matn blok uchun sarlavhani kiriting, agar kerak bo'lsa
       params:
         required: false
         enabled: true
@@ -234,12 +304,16 @@ texts:
         hy: Բովանդակություն
         it: Contenuto del blocco
         es: Contenido del bloque
+        kk: Блогның мазмұны
+        uz: Blokning tarkibi
       note:
         ru: Введите содержание блока
         en: Enter block content
         hy: Մուտքագրեք բլոկի բովանդակությունը
         it: Inserisci il contenuto del blocco
         es: Introduzca el contenido del bloque
+        kk: Блогның мазмұнын енгізіңіз
+        uz: Blokning tarkibini kiriting
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: false

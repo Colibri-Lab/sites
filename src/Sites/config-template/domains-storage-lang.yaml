@@ -7,8 +7,10 @@ desc:
   ru: Сайты/Домены
   en: Sites/Domains
   hy: Կայտեր/Դոմեններ
-  it: Siti/Domini
   es: Sitios/Dominios
+  kk: Сайттар/Домендер
+  uz: Saytlar/Domenlar
+  it: Siti/Domini
 params:
   visible: false
   maybepublished: false
@@ -24,6 +26,8 @@ fields:
       hy: Դոմեյն բանալին
       it: Chiave del dominio
       es: Clave de dominio
+      kk: Домен кілті
+      uz: Domen kaliti
     note:
       en: The configuration must specify the domain patterns that fit this key.
       ru: В конфигурации должны быть указаны паттерны доменов, которые подходят
@@ -34,6 +38,8 @@ fields:
         a questa chiave.
       es: La configuración debe especificar los patrones de dominio que se ajustan
         a esta clave.
+      kk: Конфигурацияда бұл кілтке қосылатын домен паттерндері көрсетілуі керек
+      uz: Sozlashda bu kalitga mos keladigan domen modellari ko'rsatilishi kerak
     selector:
       value: value
       title: title
@@ -52,12 +58,16 @@ fields:
       hy: Դոմենի/Կայքի նկարագրություն
       it: Descrizione del dominio/sito
       es: Descripción del dominio/sitio
+      kk: Домен/Сайт сипаттамасы
+      uz: Domen/Sayt tavsifi
     note:
       ru: Введите описание сайта
       en: Enter a description of the site
       hy: Մուտքագրեք կայքի նկարագրությունը
       it: Inserisci una descrizione del sito
       es: Introduzca una descripción del sitio
+      kk: Сайттың сипаттамасын енгізіңіз
+      uz: Saytning tavsifini kiriting
     params:
       required: true
       enabled: true
@@ -105,12 +115,16 @@ fields:
       hy: Փակված է
       it: Chiuso
       es: Cerrado
+      kk: Жабық
+      uz: Yopiq
     note:
       ru: Выберите «Да» если хотите закрыть сайт
       en: Select "Yes" if you want to close the site
       hy: Ընտրեք «Այո», եթե ցանկանում եք փակել կայքը
       it: Seleziona "Sì" se vuoi chiudere il sito
       es: Seleccione "Sí" si desea cerrar el sitio
+      kk: Сайтты жабу үшін «Иә» таңдаңыз
+      uz: Saytni yopmoqchi bo'lsangiz "Ha" ni tanlang
     component: Colibri.UI.Forms.Checkbox
     params:
       required: true
@@ -126,6 +140,8 @@ fields:
       hy: Լրացուցիչ հատկություններ
       it: Proprietà aggiuntive
       es: Propiedades adicionales
+      kk: Қосымша қасиеттер
+      uz: Qo'shimcha xususiyatlar
     default: json_object()
     fields:
       meta:
@@ -137,6 +153,8 @@ fields:
           hy: Էջի մետատվյալներ
           it: Metadati della pagina
           es: Metadatos de la página
+          kk: Бет метадеректері
+          uz: Sahifa metama'lumotlari
         component: Colibri.UI.Forms.Object
         params:
           vertical: true
@@ -152,12 +170,16 @@ fields:
               hy: Էջի վերնագիր
               it: Titolo della pagina
               es: Título de la página
+              kk: Бет атауы
+              uz: Sahifa sarlavhasi
             note:
               ru: Введите заголовок страницы
               en: Enter the page title
               hy: Մուտքագրեք էջի անվանումը
               it: Inserisci il titolo della pagina
               es: Introduzca el título de la página
+              kk: Бет атауын енгізіңіз
+              uz: Sahifa sarlavhasini kiriting
             placeholder:
               ru: ""
               en: ""
@@ -205,12 +227,16 @@ fields:
               hy: Էջի նկարագրություն
               it: Descrizione della pagina
               es: Descripción de la página
+              kk: Бет сипаттамасы
+              uz: Sahifa tavsifi
             note:
               ru: Введите мета описание сайта
               en: Enter the description in meta header
               hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
               it: Inserisci la descrizione nell'intestazione meta
               es: Introduzca la descripción en la cabecera meta
+              kk: Мета тақырыпқа сипаттаманы енгізіңіз
+              uz: Meta sarlavhasiga tavsifni kiriting
             placeholder:
               ru: ""
               en: ""
@@ -258,12 +284,16 @@ fields:
               hy: Էջի հիմնաբառեր
               it: Parole chiave della pagina
               es: Palabras clave de la página
+              kk: Бет кілт сөздері
+              uz: Sahifa kalit so'zlari
             note:
               ru: Введите ключевые слова
               en: Enter the meta keywords
               hy: Մուտքագրեք մետա հիմնաբառերը
               it: Inserisci le parole chiave meta
               es: Introduzca las palabras clave meta
+              kk: Мета кілт сөздерді енгізіңіз
+              uz: Meta kalit so'zlarni kiriting
             placeholder:
               ru: ""
               en: ""
@@ -311,7 +341,8 @@ fields:
           hy: Տեխնիկական տեղեկատվություն
           it: Informazioni tecniche
           es: Información técnica
-        params:
+          kk: Техникалық ақпарат
+          uz: "Texnik ma'lumot  params:"
           vertical: true
         default: json_object()
         fields:
@@ -326,6 +357,8 @@ fields:
               hy: Ցրագրի տեսակե
               it: Tipo di applicazione
               es: Tipo de aplicación
+              kk: Қолданба түрі
+              uz: Ilova turi
             params:
               readonly: false
               searchable: false
@@ -339,6 +372,8 @@ fields:
                 hy: Ցրագիր (javascript)
                 it: Applicazione (javascript)
                 es: Aplicación (javascript)
+                kk: Қолданба (javascript)
+                uz: Ilova (javascript)
             - value: website
               type: text
               title: 
@@ -347,6 +382,8 @@ fields:
                 hy: Վեբսայտ (javascript)
                 it: Sito web (php/js)
                 es: Sitio web (php/js)
+                kk: Веб-сайт (php/js)
+                uz: Veb-sayt (php/js)
           module:
             type: varchar
             length: 255
@@ -358,12 +395,16 @@ fields:
               hy: Հավելվածի մեկնարկային մոդուլ
               it: Modulo di avvio
               es: Módulo de inicio
+              kk: Бастапқы модуль
+              uz: Boshlang'ich modul
             note: 
               ru: Выберите модуль, который будет стартовать
-              en: Select the module wich will start
+              en: Select the module which will start
               hy: Ընտրեք մոդուլը, որը կսկսվի
               it: Seleziona il modulo che si avvierà
               es: Seleccione el módulo que se iniciará
+              kk: Басталатын модульді таңдаңыз
+              uz: Boshlanadigan modulni tanlang
             selector:
               value: value
               title: title
@@ -388,12 +429,16 @@ fields:
               hy: Կանխադրված բաղադրիչ
               it: Componente predefinito
               es: Componente predeterminado
+              kk: Әдепкі компонент
+              uz: Standart komponent
             note:
               ru: Выберите компонент по умолчанию
               en: Choose a default component
               hy: Ընտրեք լռելյայն բաղադրիչ
               it: Scegli un componente predefinito
               es: Elija un componente predeterminado
+              kk: Әдепкі компонентті таңдаңыз
+              uz: Standart komponentni tanlang
             selector:
               value: value
               title: title
@@ -455,12 +500,16 @@ fields:
               hy: Կանխադրված ձևանմուշ
               it: Modello predefinito
               es: Plantilla predeterminada
+              kk: Әдепкі шаблон
+              uz: Standart shablon
             note: 
               ru: Выберите шаблон по умолчанию
               en: Choose a default template
               hy: Ընտրեք լռելյայն ձևանմուշ
               it: Scegli un modello predefinito
               es: Elija una plantilla predeterminada
+              kk: Әдепкі шаблонды таңдаңыз
+              uz: Standart shablonni tanlang
             selector:
               value: value
               title: title
@@ -486,6 +535,8 @@ fields:
           hy: Լրացուցիչ հատկություններ
           it: Proprietà aggiuntive
           es: Propiedades adicionales
+          kk: Қосымша қасиеттер
+          uz: Qo'shimcha xususiyatlar
         default: json_array()
         attrs:
           className: app-field-wrap
@@ -496,7 +547,8 @@ fields:
             hy: Ավելացնել պարամետր
             it: Aggiungi parametro  
             es: Añadir parámetro
-        fields:
+            kk: Параметр қосу
+            uz: "Parametr qo'shish  fields:"
           name:
             type: varchar
             length: 50
@@ -508,6 +560,8 @@ fields:
               hy: Դաշտի անվանումը
               it: Nome del campo
               es: Nombre del campo
+              kk: Өріс атауы
+              uz: Maydon nomi
             attrs:
               width: 30%
           description:
@@ -520,6 +574,8 @@ fields:
               hy: Դաշտի նկարագրությունը
               it: Descrizione del campo
               es: Descripción del campo
+              kk: Өріс сипаттамасы
+              uz: Maydon tavsifi
             attrs:
               width: 68%
             placeholder:
@@ -571,6 +627,8 @@ fields:
               hy: Տիպ
               it: Tipo
               es: Tipo
+              kk: Түрі
+              uz: Turi
             class: string
             component: Colibri.UI.Forms.Text
             default: varchar
@@ -584,6 +642,8 @@ fields:
               hy: Երկարություն
               it: Lunghezza
               es: Longitud
+              kk: Ұзындығы
+              uz: Uzunligi
             class: int
             component: Colibri.UI.Forms.Number
             attrs:
@@ -599,6 +659,8 @@ fields:
               hy: Կանխադրված արժեք
               it: Valore predefinito
               es: Valor predeterminado
+              kk: Әдепкі мән
+              uz: Standart qiymat
             attrs:
               width: 20%
           class:
@@ -612,6 +674,8 @@ fields:
               hy: Կլաս (PHP)
               it: Classe (PHP)
               es: Clase (PHP)
+              kk: Сынып (PHP)
+              uz: Sinf (PHP)
             attrs:
               width: 20%
           component:
@@ -629,6 +693,8 @@ fields:
               hy: Կոմպոնենտ (JS)
               it: Componente (JS)
               es: Componente (JS)
+              kk: Компонент (JS)
+              uz: Komponent (JS)
             selector:
               value: value
               title: title
@@ -643,7 +709,14 @@ fields:
             class: string 
             length: 1024
             component: Colibri.UI.Forms.TextArea
-            desc: Атрибуты (JS)
+            desc: 
+              ru: Атрибуты (JS)
+              en: Attributes (JS)
+              hy: Ատրիբուտներ (JS)
+              it: Attributi (JS)
+              es: Atributos (JS)
+              kk: Атрибуттар (JS)
+              uz: Atributlar (JS)
             attrs:
               width: 100%
   parameters:

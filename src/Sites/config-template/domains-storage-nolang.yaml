@@ -9,6 +9,8 @@ desc:
   hy: Կայտեր/Դոմեններ
   it: Siti/Domini
   es: Sitios/Dominios
+  kk: Сайттар/Домендер
+  uz: Saytlar/Domenlar
 params:
   visible: false
   maybepublished: false
@@ -24,6 +26,8 @@ fields:
       hy: Դոմեյն բանալին
       it: Chiave del dominio
       es: Clave de dominio
+      kk: Домен кілті
+      uz: Domen kaliti
     note:
       en: The configuration must specify the domain patterns that fit this key.
       ru: В конфигурации должны быть указаны паттерны доменов, которые подходят
@@ -34,6 +38,8 @@ fields:
         a questa chiave.
       es: La configuración debe especificar los patrones de dominio que se ajustan
         a esta clave.
+      kk: Конфигурацияда бұл кілтке қосылатын домен паттерндері көрсетілуі керек.
+      uz: Sozlashda bu kalitga mos keladigan domen modellari ko'rsatilishi kerak.
     selector:
       value: value
       title: title
@@ -53,12 +59,16 @@ fields:
       hy: Դոմենի/Կայքի նկարագրություն
       it: Descrizione del dominio/sito
       es: Descripción del dominio/sitio
+      kk: Домен/Сайт сипаттамасы
+      uz: Domen/Sayt tavsifi
     note:
       ru: Введите описание сайта
       en: Enter a description of the site
       hy: Մուտքագրեք կայքի նկարագրությունը
       it: Inserisci una descrizione del sito
       es: Introduzca una descripción del sitio
+      kk: Сайт сипаттамасын енгізіңіз
+      uz: Sayt tavsifini kiriting
     params:
       required: true
       enabled: true
@@ -106,12 +116,16 @@ fields:
       hy: Փակված է
       it: Chiuso
       es: Cerrado
+      kk: Жабық
+      uz: Yopiq
     note:
       ru: Выберите «Да» если хотите закрыть сайт
       en: Select "Yes" if you want to close the site
       hy: Ընտրեք «Այո», եթե ցանկանում եք փակել կայքը
       it: Seleziona "Sì" se vuoi chiudere il sito
       es: Seleccione "Sí" si desea cerrar el sitio
+      kk: Сайтты жабу керек болса «Иә» таңдаңыз
+      uz: Saytni yopishni istaysiz bo'lsa "Ha" ni tanlang
     component: Colibri.UI.Forms.Checkbox
     params:
       required: true
@@ -127,6 +141,8 @@ fields:
       hy: Լրացուցիչ հատկություններ
       it: Proprietà aggiuntive
       es: Propiedades adicionales
+      kk: Қосымша қасиеттер
+      uz: Qo'shimcha xususiyatlar
     default: json_object()
     fields:
       meta:
@@ -138,6 +154,8 @@ fields:
           hy: Էջի մետատվյալներ
           it: Metadati della pagina
           es: Metadatos de la página
+          kk: Бет метадеректері
+          uz: Sahifa metadatalari
         component: Colibri.UI.Forms.Object
         params:
           vertical: true
@@ -154,12 +172,16 @@ fields:
               hy: Էջի վերնագիր
               it: Titolo della pagina
               es: Título de la página
+              kk: Бет тақырыбы
+              uz: Sahifa sarlavhasi
             note:
               ru: Введите заголовок страницы
               en: Enter the page title
               hy: Մուտքագրեք էջի անվանումը
               it: Inserisci il titolo della pagina
               es: Introduzca el título de la página
+              kk: Бет тақырыбын енгізіңіз
+              uz: Sahifa sarlavhasini kiriting
             placeholder:
               ru: ""
               en: ""
@@ -208,12 +230,16 @@ fields:
               hy: Էջի նկարագրություն
               it: Descrizione della pagina
               es: Descripción de la página
+              kk: Бет сипаттамасы
+              uz: Sahifa tavsifi
             note:
               ru: Введите мета описание сайта
               en: Enter the description in meta header
               hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
               it: Inserisci la descrizione nell'intestazione meta
               es: Introduzca la descripción en la cabecera meta
+              kk: Мета тақырыпшасындағы сипаттаманы енгізіңіз
+              uz: Meta sarlavhasida tavsifni kiriting
             placeholder:
               ru: ""
               en: ""
@@ -262,12 +288,16 @@ fields:
               hy: Էջի հիմնաբառեր
               it: Parole chiave della pagina
               es: Palabras clave de la página
+              kk: Беттің кілтсөздері
+              uz: Sahifa kalit so'zlari
             note:
               ru: Введите ключевые слова
               en: Enter the meta keywords
               hy: Մուտքագրեք մետա հիմնաբառերը
               it: Inserisci le parole chiave meta
               es: Introduzca las palabras clave meta
+              kk: Мета кілтсөздерін енгізіңіз
+              uz: Meta kalit so'zlarni kiriting
             placeholder:
               ru: ""
               en: ""
@@ -309,7 +339,14 @@ fields:
         type: json
         class: ObjectField
         component: Colibri.UI.Forms.Object
-        desc: Технические данные
+        desc: 
+          ru: Технические данные
+          en: Technical data
+          hy: Տեխնիկական տվյալներ
+          it: Dati tecnici
+          es: Datos técnicos
+          kk: Техникалық деректерлер
+          uz: Texnik ma'lumotlar
         params:
           vertical: true
         default: json_object()
@@ -319,7 +356,14 @@ fields:
             class: ValueField
             component: Colibri.UI.Forms.Select
             default: application
-            desc: Тип приложения
+            desc: 
+              ru: Тип приложения
+              en: Application type
+              hy: Ծրագրի տեսակ
+              it: Tipo di applicazione
+              es: Tipo de aplicación
+              kk: Қолданба түрі
+              uz: Dastur turi
             params:
               readonly: false
               searchable: false
@@ -327,17 +371,45 @@ fields:
             values:
             - value: application
               type: text
-              title: Приложение (javascript)
+              title: 
+                ru: Приложение (javascript)
+                en: Application (javascript)
+                hy: Ծրագրային ծրագրը (javascript)
+                it: Applicazione (javascript)
+                es: Aplicación (javascript)
+                kk: Қолданба (javascript)
+                uz: Dastur (javascript)
             - value: website
               type: text
-              title: Обычный вебсайт (php/js)
+              title: 
+                ru: Обычный вебсайт (php/js)
+                en: Regular website (php/js)
+                hy: Սովորական կայք (php/js)
+                it: Sito web regolare (php/js)
+                es: Sitio web regular (php/js)
+                kk: Дұрыс веб-сайт (php/js)
+                uz: Oddiy veb-sayt (php/js)
           module:
             type: varchar
             length: 255
             class: string
             component: Colibri.UI.Forms.Select
-            desc: Стартовый модуль
-            note: Выжерите модуль, который будет стартовать
+            desc: 
+              ru: Стартовый модуль
+              en: Start module
+              hy: Սկավառակագրական մոդուլ
+              it: Modulo di avvio
+              es: Módulo de inicio
+              kk: Бастау модулі
+              uz: Boshlang'ich modul
+            note: 
+              ru: Выжерите модуль, который будет стартовать
+              en: Select the module that will start
+              hy: Ընտրեք սկավառակագրական մոդուլը
+              it: Seleziona il modulo di avvio
+              es: Seleccione el módulo de inicio
+              kk: Бастау модулін таңдаңыз
+              uz: Boshlang'ich modulni tanlang
             selector:
               value: value
               title: title
@@ -359,12 +431,20 @@ fields:
             component: Colibri.UI.Forms.Select
             desc:
               ru: Компонент по умолчанию
-              en: Компонент по умолчанию
-              hy: Компонент по умолчанию
+              en: Default component
+              hy: Կոմպոնենտ ընտրել
+              it: Componente predefinito
+              es: Componente predeterminado
+              kk: Әдепкі компонент
+              uz: Sukunatli komponent
             note:
               ru: Выберите компонент по умолчанию
-              en: Выберите компонент по умолчанию
-              hy: Выберите компонент по умолчанию
+              en: Select the default component
+              hy: Ընտրեք կոմպոնենտը ընտրել
+              it: Seleziona il componente predefinito
+              es: Seleccione el componente predeterminado
+              kk: Әдепкі компонентті таңдаңыз
+              uz: Sukunatli komponentni tanlang
             selector:
               value: value
               title: title
@@ -420,8 +500,22 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Select
-            desc: Шаблон по умолчанию
-            note: Выберите шаблон по умолчанию
+            desc: 
+              ru: Шаблон по умолчанию
+              en: Default template
+              hy: Կաղապարը ընտրել
+              it: Modello predefinito
+              es: Plantilla predeterminada
+              kk: Әдепкі үлгі
+              uz: Sukunatli qo'llanma
+            note: 
+              ru: Выберите шаблон по умолчанию
+              en: Select the default template
+              hy: Ընտրեք կաղապարը ընտրել
+              it: Seleziona il modello predefinito
+              es: Seleccione la plantilla predeterminada
+              kk: Әдепкі үлгіні таңдаңыз
+              uz: Sukunatli qo'llanmani tanlang
             selector:
               value: value
               title: title
@@ -441,19 +535,40 @@ fields:
         type: json
         class: ArrayField
         component: Colibri.UI.Forms.Array
-        desc: Дополнительные свойства
+        desc: 
+          ru: Дополнительные свойства
+          en: Additional properties
+          hy: Լրացուցիչ հատկություններ
+          it: Proprietà aggiuntive
+          es: Propiedades adicionales
+          kk: Қосымша қасиеттер
+          uz: Qo'shimcha xususiyatlar
         default: json_array()
         attrs:
           className: app-field-wrap
         params:
-          addlink: Добавить параметр
+          addlink: 
+            ru: Добавить параметр
+            en: Add parameter
+            hy: Ավելացնել պարամետր
+            it: Aggiungi parametro
+            es: Añadir parámetro
+            kk: Параметрді қосу
+            uz: Parametr qo'shish
         fields:
           name:
             type: varchar
             length: 50
             class: string
             component: Colibri.UI.Forms.Text
-            desc: Наименование поля
+            desc: 
+              ru: Наименование поля
+              en: Field name
+              hy: Դաշտի անվանում
+              it: Nome del campo
+              es: Nombre del campo
+              kk: Құрамы атауы
+              uz: Maydon nomi
             attrs:
               width: 30%
           description:
@@ -463,8 +578,12 @@ fields:
             component: Colibri.UI.Forms.Text
             desc:
               ru: Описание поля
-              en: Описание поля
-              hy: Описание поля
+              en: Field description
+              hy: Դաշտի նկարագրություն
+              it: Descrizione del campo
+              es: Descripción del campo
+              kk: Құрамы сипаттамасы
+              uz: Maydon tavsifi
             attrs:
               width: 68%
             placeholder:
@@ -510,7 +629,14 @@ fields:
           type:
             type: varchar
             length: 20
-            desc: Тип
+            desc: 
+              ru: Тип
+              en: Type
+              hy: Տեսակ
+              it: Tipo
+              es: Tipo
+              kk: Түр
+              uz: Turi
             class: string
             component: Colibri.UI.Forms.Text
             default: varchar
@@ -518,7 +644,14 @@ fields:
               width: 19.5%
           length:
             type: int
-            desc: Длина
+            desc: 
+              ru: Длина
+              en: Length
+              hy: երկարություն
+              it: Lunghezza
+              es: Longitud
+              kk: Ұзындық
+              uz: Uzunlik
             class: int
             component: Colibri.UI.Forms.Number
             attrs:
@@ -528,7 +661,14 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc: Значение по умолчанию
+            desc: 
+              ru: Значение по умолчанию
+              en: Default value
+              hy: Կանխայնացված արժեք
+              it: Valore predefinito
+              es: Valor predeterminado
+              kk: Әдепкі мән
+              uz: Sukunatli qiymat
             attrs:
               width: 20%
           class:
@@ -536,7 +676,14 @@ fields:
             length: 255
             class: string
             component: Colibri.UI.Forms.Text
-            desc: Класс (PHP)
+            desc: 
+              ru: Класс (PHP)
+              en: Class (PHP)
+              hy: Դաս (PHP)
+              it: Classe (PHP)
+              es: Clase (PHP)
+              kk: Сынып (PHP)
+              uz: Sinif (PHP)
             attrs:
               width: 20%
           component:
@@ -545,7 +692,14 @@ fields:
             class: string
             default: Text
             component: Colibri.UI.Forms.Select
-            desc: Компонента (JS)
+            desc: 
+              ru: Компонента (JS)
+              en: Component (JS)
+              hy: Կոմպոնենտ (JS)
+              it: Componente (JS)
+              es: Componente (JS)
+              kk: Компонент (JS)
+              uz: Komponent (JS)
             selector:
               value: value
               title: title
@@ -560,7 +714,14 @@ fields:
             length: 1024
             class: string
             component: Colibri.UI.Forms.TextArea
-            desc: Атрибуты (JS)
+            desc: 
+              ru: Атрибуты (JS)
+              en: Attributes (JS)
+              hy: Ատրիբուտներ (JS)
+              it: Attributi (JS)
+              es: Atributos (JS)
+              kk: Атрибуттар (JS)
+              uz: Atributlar (JS)
             attrs:
               width: 100%
   parameters:

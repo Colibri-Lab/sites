@@ -4,332 +4,444 @@ sites-structure-folders-title:
   hy: Կայքի բաժինները
   it: Sezioni del sito
   es: Secciones del sitio
+  kk: Сайт бөлімдері
+  uz: Sayt bo'limlari
 sites-structure-publications-title:
   ru: Публикации
   en: Publications
   hy: Հրապարակումներ
   it: Pubblicazioni
   es: Publicaciones
+  kk: Жарияланымдар
+  uz: Nashrlar
 sites-structure-search-placeholder:
   ru: Поиск
   en: Search
   hy: Որոնում
   it: Ricerca
   es: Buscar
+  kk: Іздеу
+  uz: Qidiruv
 sites-structure-publicationsempty:
   ru: Публикаций не найдено
   en: Publications not found
   hy: Հրապարակումներ չեն գտնվել
   it: Pubblicazioni non trovate
   es: Publicaciones no encontradas
+  kk: Жарияланымдар табылмады
+  uz: Nashrlar topilmadi
 sites-structure-publications-created:
   ru: Создана
   en: Created
   hy: Ստեղծվել է
   it: Creato
   es: Creado
+  kk: Жасалған
+  uz: Yaratilgan
 sites-structure-publications-page:
   ru: Страница
   en: Page
   hy: Էջ
   it: Pagina
   es: Página
+  kk: Бет
+  uz: Sahifa
 sites-structure-publications-mainpage:
   ru: Главная страница
   en: Main page
   hy: Գլխավոր էջ
   it: Pagina principale
   es: Página principal
+  kk: Басты бет
+  uz: Asosiy sahifa
 sites-structure-publications-storage:
   ru: Хранилище
   en: Storage
   hy: Պահպանում
   it: Archivio
   es: Almacenamiento
+  kk: Сақтау
+  uz: Saqlash
 sites-structure-publications-row:
   ru: Строка
   en: Row
   hy: Տող
   it: Riga
   es: Fila
+  kk: Жол
+  uz: Qator
 sites-structure-publications-data:
   ru: Данные
   en: Data
   hy: Տվյալներ
   it: Dati
   es: Datos
+  kk: Деректер
+  uz: Ma'lumotlar
 sites-structure-buttons-publish:
   ru: Публикация
   en: Publication
   hy: Հրապարակում
   it: Pubblicazione
   es: Publicación
+  kk: Жариялау
+  uz: Nashr qilish
 sites-structure-buttons-adddata:
   ru: Данные
   en: Add data
   hy: Տվյալներ
   it: Aggiungi dati
   es: Agregar datos
+  kk: Деректер қосу
+  uz: Ma'lumot qo'shish
 sites-structure-buttons-editdata:
   ru: Редактировать
   en: Edit data
   hy: Խմբագրել
   it: Modifica dati
   es: Editar datos
+  kk: Деректерді өңдеу
+  uz: Ma'lumotlarni tahrirlash
 sites-structure-buttons-deletedata:
   ru: Удалить
   en: Delete
   hy: Ջնջել
   it: Elimina
   es: Eliminar
+  kk: Жою
+  uz: O'chirish
 sites-structure-contextmenu-newdomain:
   ru: Новый домен
   en: New domain
   hy: Նոր տիրույթ
   it: Nuovo dominio
   es: Nuevo dominio
+  kk: Жаңа домен
+  uz: Yangi domen
 sites-structure-contextmenu-newchild:
   ru: Новый дочерний раздел
   en: New child page
   hy: Նոր մանկական բաժին
   it: Nuova pagina figlia
   es: Nueva página hija
+  kk: Жаңа бала беті
+  uz: Yangi bolalar sahifasi
 sites-structure-contextmenu-editdomain:
   ru: Редактировать домен
   en: Edit domain
   hy: Խմբագրել տիրույթը
   it: Modifica dominio
   es: Editar dominio
+  kk: Доменді өңдеу
+  uz: Domenni tahrirlash
 sites-structure-contextmenu-editprops:
   ru: Редактировать доп. свойства
   en: Edit additional properties
   hy: Խմբագրել լրացուցիչ հատկությունները
   it: Modifica proprietà aggiuntive
   es: Editar propiedades adicionales
+  kk: Қосымша қасиеттерді өңдеу
+  uz: Qo'shimcha xususiyatlarni tahrirlash
 sites-structure-contextmenu-deletedomain:
   ru: Удалить домен
   en: Delete domain
   hy: Ջնջել տիրույթը
   it: Elimina dominio
   es: Eliminar dominio
+  kk: Доменді жою
+  uz: Domenni o'chirish
 sites-structure-contextmenu-editpage:
   ru: Редактировать раздел
   en: Edit page
   hy: Խմբագրել բաժինը
   it: Modifica pagina
   es: Editar página
+  kk: Бетті өңдеу
+  uz: Sahifani tahrirlash
 sites-structure-contextmenu-deletepage:
   ru: Удалить раздел
   en: Delete page
   hy: Ջնջել բաժանումը
   it: Elimina pagina
   es: Eliminar página
+  kk: Бетті жою
+  uz: Sahifani o'chirish
 sites-structure-contextmenu-copypath:
   ru: Скопировать путь (ссылку)
   en: Copy path (url)
   hy: Պատճենել ուղին (հղում)
   it: Copia percorso (url)
   es: Copiar ruta (url)
+  kk: Жолды көшіру (url)
+  uz: Yo'lni nusxalash (url)
 sites-structure-windowtitle-newdomain:
   ru: Новый домен
   en: New domain
   hy: Նոր տիրույթ
   it: Nuovo dominio
   es: Nuevo dominio
+  kk: Жаңа домен
+  uz: Yangi domen
 sites-structure-windowtitle-editdomain:
   ru: Редактировать домен
   en: Edit domain
   hy: Խմբագրել տիրույթը
   it: Modifica dominio
   es: Editar dominio
+  kk: Доменді өңдеу
+  uz: Domenni tahrirlash
 sites-structure-windowtitle-editdomainprops:
   ru: Редактировать доп. свойства домена
   en: Edit additional properties of domain
   hy: Խմբագրել լրացուցիչ տիրույթի հատկությունները
   it: Modifica proprietà aggiuntive del dominio
   es: Editar propiedades adicionales del dominio
+  kk: Доменнің қосымша қасиеттерін өңдеу
+  uz: Domenning qo'shimcha xususiyatlarini tahrirlash
 sites-structure-windowtitle-noeditdomainprops:
   ru: Свойства не найдены
   en: Properties not found
   hy: Հատկություններ չեն գտնվել
   it: Proprietà non trovate
   es: Propiedades no encontradas
+  kk: Қасиеттер табылмады
+  uz: Xususiyatlar topilmadi
 sites-structure-deletedomain:
   ru: Удаление домена
   en: Delete domain
   hy: Ջնջել տիրույթը
   it: Elimina dominio
   es: Eliminar dominio
+  kk: Доменді жою
+  uz: Domenni o'chirish
 sites-structure-deletedomainmessage:
   ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены безвозвратно
   en: Are you sure you want to delete the domain? All folders and publications will be permanently deleted
   hy: "Իսկապե՞ս ուզում եք ջնջել տիրույթը: Բոլոր թղթապանակները և հրապարակումները ընդմիշտ կջնջվեն"
   it: Sei sicuro di voler eliminare il dominio? Tutte le cartelle e le pubblicazioni saranno eliminate permanentemente
   es: ¿Estás seguro de que quieres eliminar el dominio? Todas las carpetas y publicaciones se eliminarán permanentemente
+  kk: Доменді жойғыңыз келетініне сенімдісіз бе? Барлық қалталар мен жарияланымдар біржола жойылады
+  uz: Domenni o'chirishni xohlaysizmi? Barcha papkalar va nashrlar doimiy ravishda o'chiriladi
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child page
   hy: Նոր մանկական բաժին
   it: Nuova pagina figlia
   es: Nueva página hija
+  kk: Жаңа бала беті
+  uz: Yangi bolalar sahifasi
 sites-structure-windowtitle-editpage:
   ru: Редактировать раздел
   en: Edit page
   hy: Խմբագրել բաժինը
   it: Modifica pagina
   es: Editar página
+  kk: Бетті өңдеу
+  uz: Sahifani tahrirlash
 sites-structure-windowtitle-editpageprops:
   ru: Редактировать доп. свойства страницы
   en: Edit additional properties of page
   hy: Խմբագրել լրացուցիչ էջի հատկությունները
   it: Modifica proprietà aggiuntive della pagina
   es: Editar propiedades adicionales de la página
+  kk: Беттің қосымша қасиеттерін өңдеу
+  uz: Sahifaning qo'shimcha xususiyatlarini tahrirlash
 sites-structure-windowtitle-noeditpageprops:
   ru: Свойства не найдены
   en: Properties not found
   hy: Հատկություններ չեն գտնվել
   it: Proprietà non trovate
   es: Propiedades no encontradas
+  kk: Қасиеттер табылмады
+  uz: Xususiyatlar topilmadi
 sites-structure-deletepage:
   ru: Удаление папки
   en: Delete page
   hy: Թղթապանակ ջնջելը
   it: Elimina pagina
   es: Eliminar página
+  kk: Бетті жою
+  uz: Sahifani o'chirish
 sites-structure-deletepagemessage:
   ru: Вы уверены, что хотите удалить папку?
   en: Are you sure you want to delete the folder?
   hy: "Իսկապե՞ս ուզում եք ջնջել թղթապանակը:"
   it: Sei sicuro di voler eliminare la cartella?
   es: ¿Estás seguro de que quieres eliminar la carpeta?
+  kk: Қалтаны жойғыңыз келетініне сенімдісіз бе?
+  uz: Papkani o'chirishni xohlaysizmi?
 sites-structure-windowtitle-urlcopied:
   ru: Путь скопирован
   en: Path is copied
   hy: Ուղին պատճենված է
   it: Percorso copiato
   es: Ruta copiada
+  kk: Жол көшірілді
+  uz: Yo'l nusxalandi
 sites-structure-windowtitle-urlcopiedtext:
   ru: Путь к разделу успешно скопирован в буфер обмена
   en: Page path successfully copied to clipboard
   hy: Բաժնի ուղին հաջողությամբ պատճենվեց clipboard-ում
   it: Percorso della pagina copiato con successo negli appunti
   es: Ruta de la página copiada con éxito al portapapeles
+  kk: Бөлімге жол сәтті алмасу буферіне көшірілді
+  uz: Bo'lim yo'li muvaffaqiyatli ravishda clipboard-ga nusxalandi
 sites-structure-windowtitle-urlcopiederror:
   ru: Путь не скопирован
   en: Path is not copied
   hy: Ուղին պատճենված չէ
   it: Percorso non copiato
   es: Ruta no copiada
+  kk: Жол көшірілмеді
+  uz: Yo'l nusxalanmadi
 sites-structure-windowtitle-urlcopiederrortext:
   ru: Не получилось скопировать путь к разделу
   en: Failed to copy partition path
   hy: Չհաջողվեց պատճենել բաժանման ուղին
   it: Impossibile copiare il percorso della partizione
   es: No se pudo copiar la ruta de la partición
+  kk: Бөлімге жолды көшіру мүмкін болмады
+  uz: Bo'lim yo'lini nusxalash muvaffaqiyatsiz bo'ldi
 sites-structure-contextmenu-editpub:
   ru: Редактировать данные публикации
   en: Edit the publication data
   hy: Խմբագրել հրապարակման տվյալները
   it: Modifica i dati della pubblicazione
   es: Editar los datos de la publicación
+  kk: Жарияланым деректерін өңдеу
+  uz: Nashr ma'lumotlarini tahrirlash
 sites-structure-windowtitle-deletepub:
   ru: Удалить публикацию
   en: Delete publication
   hy: Ջնջել գրառումը
   it: Elimina pubblicazione
   es: Eliminar publicación
+  kk: Жарияланымды жою
+  uz: Nashrni o'chirish
 sites-structure-messages-removepublication:
   ru: Удаление публикации
   en: Delete the publication
   hy: Գրառման ջնջում
   it: Elimina la pubblicazione
   es: Eliminar la publicación
+  kk: Жарияланымды жою
+  uz: Nashrni o'chirish
 sites-structure-messages-removepublicationmessage:
   ru: Вы уверены, что хотите удалить выбранную публикацию?
   en: Are you sure you want to delete the selected publication?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված գրառումը:"
   it: Sei sicuro di voler eliminare la pubblicazione selezionata?
   es: ¿Estás seguro de que quieres eliminar la publicación seleccionada?
+  kk: Таңдалған жарияланымды жойғыңыз келетініне сенімдісіз бе?
+  uz: Tanlangan nashrni o'chirishni xohlaysizmi?
 sites-structure-messages-removepublications:
   ru: Удаление публикаций
   en: Delete publications
   hy: Հրապարակումների ջնջում
   it: Elimina pubblicazioni
   es: Eliminar publicaciones
+  kk: Жарияланымдарды жою
+  uz: Nashrlarni o'chirish
 sites-structure-messages-removepublicationsmessage:
   ru: Вы уверены, что хотите удалить выбранные публикации?
   en: Are you sure you want to delete the selected publications?
   hy: "Իսկապե՞ս ուզում եք ջնջել ընտրված գրառումները:"
   it: Sei sicuro di voler eliminare le pubblicazioni selezionate?
   es: ¿Estás seguro de que quieres eliminar las publicaciones seleccionadas?
+  kk: Таңдалған жарияланымдарды жойғыңыз келетініне сенімдісіз бе?
+  uz: Tanlangan nashrlarni o'chirishni xohlaysizmi?
 sites-structure-windowtitle-newrow:
   ru: Новая строка
   en: New row
   hy: Նոր տող
   it: Nuova riga
   es: Nueva fila
+  kk: Жаңа жол
+  uz: Yangi qator
 sites-structure-windowtitle-publish:
   ru: Публикация данных
   en: Publication of data
   hy: Տվյալների հրապարակում
   it: Pubblicazione dei dati
   es: Publicación de datos
+  kk: Деректерді жариялау
+  uz: Ma'lumotlarni nashr qilish
 sites-structure-windowtitle-noeditdomainprops-close:
   ru: Закрыть
   en: Close
   hy: Փակել
   it: Chiudi
   es: Cerrar
+  kk: Жабу
+  uz: Yopish
 sites-structure-deletedomainmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
   it: Elimina!
   es: ¡Eliminar!
+  kk: Жою!
+  uz: O'chirish!
 sites-structure-windowtitle-noeditpageprops-close:
   ru: Закрыть
   en: Close
   hy: Փակել
   it: Chiudi
   es: Cerrar
+  kk: Жабу
+  uz: Yopish
 sites-structure-windowtitle-urlcopiedtext-close:
   ru: Закрыть
   en: Close
   hy: Փակել
   it: Chiudi
   es: Cerrar
+  kk: Жабу
+  uz: Yopish
 sites-structure-windowtitle-urlcopiederrortext-close:
   ru: Закрыть
   en: Close
   hy: Փակել
   it: Chiudi
   es: Cerrar
+  kk: Жабу
+  uz: Yopish
 sites-structure-messages-removepublicationmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
   it: Elimina!
   es: ¡Eliminar!
+  kk: Жою!
+  uz: O'chirish!
 sites-structure-messages-removepublicationsmessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
   it: Elimina!
   es: ¡Eliminar!
+  kk: Жою!
+  uz: O'chirish!
 sites-structure-deletepagemessage-delete:
   ru: Удалить!
   en: Delete
   hy: Ջնջել!
   it: Elimina!
   es: ¡Eliminar!
+  kk: Жою!
+  uz: O'chirish!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
   it: Operazione non consentita
   es: Operación no permitida
+  kk: Әрекетке тыйым салынған
+  uz: Amalga ruxsat berilmagan
 sites-structurepage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
   hy: Գործողությունն արգելված է
   it: Operazione non consentita
   es: Operación no permitida
+  kk: Әрекетке тыйым салынған
+  uz: Amalga ruxsat berilmagan

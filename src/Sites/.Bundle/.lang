@@ -4,129 +4,173 @@ sites-storages-messages-properties-saved:
   hy: Պահպանված հատկությունները
   it: Proprietà personalizzate salvate
   es: Propiedades personalizadas guardadas
+  kk: Реттелген қасиеттер сақталды
+  uz: Maxsus xususiyatlar saqlandi
 sites-storages-messages-pages-saved:
   ru: Страница сохранена
   en: Page saved
   hy: Էջը պահված է
   it: Pagina salvata
   es: Página guardada
+  kk: Бет сақталды
+  uz: Sahifa saqlandi
 sites-storages-messages-domains-saved:
   ru: Домен сохранен
   en: Domain saved
   hy: Դոմենը պահպանված է
   it: Dominio salvato
   es: Dominio guardado
+  kk: Домен сақталды
+  uz: Domen saqlandi
 sites-storages-messages-domains-deleted:
   ru: Домен удален
   en: Domain deleted
   hy: Դոմենը ջնջված է
   it: Dominio eliminato
   es: Dominio eliminado
+  kk: Домен жойылды
+  uz: Domen o'chirildi
 sites-storages-messages-pages-deleted:
   ru: Страница удалена
   en: Page deleted
   hy: Էջը ջնջված է
   it: Pagina eliminata
   es: Página eliminada
+  kk: Бет жойылды
+  uz: Sahifa o'chirildi
 sites-storages-messages-pages-moved:
   ru: Страница перенесена
   en: Page moved
   hy: Էջը տեղափոխվեց
   it: Pagina spostata
   es: Página movida
+  kk: Бет көшірілді
+  uz: Sahifa ko'chirildi
 sites-storages-messages-publications-copied:
   ru: Публикация скопирована
   en: Publication copied
   hy: Գրառումը պատճենված է
   it: Pubblicazione copiata
   es: Publicación copiada
+  kk: Жарияланым көшірілді
+  uz: Noshir nusxalandi
 sites-storages-messages-publications-moved:
   ru: Публикация перемещена
   en: Publication moved
   hy: Գրառումը տեղափոխվեց
   it: Pubblicazione spostata
   es: Publicación movida
+  kk: Жарияланым көшірілді
+  uz: Noshir ko'chirildi
 sites-storages-messages-publications-deleted:
   ru: Публикация удалена
   en: Publication removed
   hy: Գրառումը ջնջված է
   it: Pubblicazione eliminata
   es: Publicación eliminada
+  kk: Жарияланым жойылды
+  uz: Noshir o'chirildi
 sites-storages-messages-data-deleted:
   ru: Данные удалены
   en: Data saved
   hy: Տվյալները ջնջված են
   it: Dati eliminati
   es: Datos eliminados
+  kk: Деректер жойылды
+  uz: Ma'lumotlar o'chirildi
 sites-storages-messages-storage-saved:
   ru: Хранилище сохранено
   en: Storage saved
   hy: Պահպանվել է
   it: Archiviazione salvata
   es: Almacenamiento guardado
+  kk: Сақтау орны сақталды
+  uz: Saqlash joyi saqlandi
 sites-storages-messages-storage-deleted:
   ru: Хранилище удалено
   en: Storage deleted
   hy: Պահեստը ջնջված է
   it: Archiviazione eliminata
   es: Almacenamiento eliminado
+  kk: Сақтау орны жойылды
+  uz: Saqlash joyi o'chirildi
 sites-storages-messages-field-saved:
   ru: Свойство сохранено
   en: Property saved
   hy: Պահպանված է
   it: Proprietà salvata
   es: Propiedad guardada
+  kk: Қасиет сақталды
+  uz: Xususiyat saqlandi
 sites-storages-messages-field-deleted:
   ru: Свойство удалено
   en: Property deleted
   hy: Հեռացվաճ է
   it: Proprietà eliminata
   es: Propiedad eliminada
+  kk: Қасиет жойылды
+  uz: Xususiyat o'chirildi
 sites-storages-messages-field-moved:
   ru: Свойство перемещено
   en: Property moved
   hy: Տեղափոխվաճ է
   it: Proprietà spostata
   es: Propiedad movida
+  kk: Қасиет көшірілді
+  uz: Xususiyat ko'chirildi
 sites-storages-messages-index-saved:
   ru: Индекс сохранен
   en: Index saved
   hy: Պահպանված է
   it: Indice salvato
   es: Índice guardado
+  kk: Индекс сақталды
+  uz: Indeks saqlandi
 sites-storages-messages-index-deleted:
   ru: Индекс удален
   en: Index deleted
   hy: Հեռացվաճ է
   it: Indice eliminato
   es: Índice eliminado
+  kk: Индекс жойылды
+  uz: Indeks o'chirildi
 sites-storages-messages-field-exists:
   ru: Поле существует, пожалуйста, переименуйте
   en: Field exists, please rename
   hy: Դաշտը գոյություն ունի, խնդրում ենք վերանվանել
   it: Il campo esiste, per favore rinominalo
   es: El campo existe, por favor renómbralo
+  kk: Өріс бар, қайта атаңыз
+  uz: Maydon mavjud, qayta nomlang
 sites-storages-messages-field-save:
   ru: Сохранить
   en: Save
   hy: Պահպանել
   it: Salva
   es: Guardar
+  kk: Сақтау
+  uz: Saqlash
 sites-storages-messages-field-exist:
   ru: Поле существует
   en: Field exists
   hy: Դաշտը արդեն գոյություն ունի
   it: Il campo esiste
   es: El campo existe
+  kk: Өріс бар
+  uz: Maydon mavjud
 sites-storages-messages-data-restored:
   ru: Данные восстановлены
   en: Data restored
   hy: Տվյալները վերականգնվել են
   it: Dati ripristinati
   es: Datos restaurados
+  kk: Деректер қалпына келтірілді
+  uz: Ma'lumotlar tiklandi
 sites-storages-messages-data-cleared:
   ru: Хранилище успешно очищено
   en: Storage successfully cleared
   hy: Պահեստը հաջողությամբ մաքրվեց
   it: Archiviazione cancellata con successo
   es: Almacenamiento limpiado con éxito
+  kk: Сақтау орны сәтті тазартылды
+  uz: Saqlash joyi muvaffaqiyatli tozalandi

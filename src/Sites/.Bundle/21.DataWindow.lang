@@ -4,21 +4,29 @@ sites-datawindow-search-placeholder:
   hy: Որոնում
   it: Cerca
   es: Buscar
+  kk: Іздеу
+  uz: Qidiruv
 sites-datawindow-dataempty:
   ru: Данные не найдены
   en: Data not found
   hy: Տվյալներ չեն գտնվել
   it: Dati non trovati
   es: Datos no encontrados
+  kk: Мәліметтер табылмады
+  uz: Ma'lumot topilmadi
 sites-datawindow-buttons-publish:
   ru: Опубликовать выбранное
   en: Publish selected rows
   hy: Հրապարակեք ընտրված տողերը
   it: Pubblica le righe selezionate
   es: Publicar filas seleccionadas
+  kk: Таңдалған жолдарды жариялау
+  uz: Tanlangan qatorlarni chop etish
 sites-datawindow-buttons-close:
   ru: Закрыть
   en: Close
   hy: Փակել
   it: Chiudi
   es: Cerrar
+  kk: Жабу
+  uz: Yopish

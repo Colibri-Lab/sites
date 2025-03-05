@@ -7,6 +7,10 @@ desc:
   ru: Страницы
   en: Pages
   hy: Էջեր
+  kk: Беттер
+  uz: Sahifalar
+  it: Pagine
+  es: Páginas
 params:
   visible: false
   maybepublished: false
@@ -19,6 +23,10 @@ fields:
       ru: Домен
       en: Domain
       hy: Դոմեն
+      kk: Домен
+      uz: Domen
+      it: Dominio
+      es: Dominio   
     default: "0"
     params:
       required: true
@@ -36,6 +44,10 @@ fields:
       ru: Отцовская страница
       en: Parent page
       hy: Ծնողական էջ
+      it: Pagina principale
+      es: Página principal
+      kk: Басты бет
+      uz: Asosiy sahifa
     default: "0"
     params:
       required: false
@@ -53,10 +65,18 @@ fields:
       ru: Наименование раздела
       en: Page name
       hy: Էջի անունը
+      it: Nome della pagina
+      es: Nombre de la página
+      kk: Беттің атауы
+      uz: Sahifa nomi
     note:
       ru: Введите наименование страницы, наименование будет использовано в URL
       en: Enter the name of the page, the name will be used in the URL
       hy: Մուտքագրեք էջի անունը, անունը կօգտագործվի URL-ում
+      it: Inserisci il nome della pagina, il nome verrà utilizzato nell'URL
+      es: Introduzca el nombre de la página, el nombre se utilizará en la URL
+      kk: Беттің атауын енгізіңіз, атау URL-де қолданылады
+      uz: Sahifa nomini kiriting, nomi URLda ishlatiladi
     params:
       required: true
       readonly: false
@@ -68,10 +88,18 @@ fields:
       ru: Описание страницы
       en: Page description
       hy: Էջի նկարագրություն
+      it: Descrizione della pagina
+      es: Descripción de la página
+      kk: Беттің сипаттамасы
+      uz: Sahifa tavsifi
     note:
       ru: Введите описание сайта
       en: Enter site description
       hy: Մուտքագրեք կայքի նկարագրությունը
+      it: Inserisci la descrizione del sito
+      es: Introduzca la descripción del sitio
+      kk: Сайттың сипаттамасын енгізіңіз
+      uz: Sayt tavsifini kiriting
     params:
       required: true
       enabled: true
@@ -117,6 +145,10 @@ fields:
       ru: Опубликована
       en: Published
       hy: Հրատարակվել է
+      it: Pubblicato
+      es: Publicado
+      kk: Жарияланды
+      uz: Nashr etilgan
     component: Colibri.UI.Forms.Checkbox
     params:
       required: true
@@ -133,6 +165,10 @@ fields:
       ru: Всякое
       en: Additional
       hy: Լրացուցիչ
+      it: Aggiuntivo
+      es: Adicional
+      kk: Қосымша
+      uz: Qo'shimcha
     default: json_object()
     fields:
       meta:
@@ -142,6 +178,10 @@ fields:
           ru: Мета данные
           en: Page metadata
           hy: Էջի մետատվյալներ
+          it: Metadati della pagina
+          es: Metadatos de la página
+          kk: Бет метадеректері
+          uz: Sahifa metadata
         component: Colibri.UI.Forms.Object
         params:
           vertical: true
@@ -155,10 +195,18 @@ fields:
               ru: Заголовок страницы
               en: Page title
               hy: Էջի վերնագիր
+              it: Titolo della pagina
+              es: Título de la página
+              kk: Бет тақырыбы
+              uz: Sahifa sarlavhasi
             note:
               ru: Введите заголовок страницы
               en: Enter the page title
               hy: Մուտքագրեք էջի անվանումը
+              it: Inserisci il titolo della pagina
+              es: Introduzca el título de la página
+              kk: Бет тақырыбын енгізіңіз
+              uz: Sahifa sarlavhasini kiriting       
             placeholder:
               ru: ""
               en: ""
@@ -204,10 +252,18 @@ fields:
               ru: Описание страницы
               en: Page description
               hy: Էջի նկարագրություն
+              it: Descrizione della pagina
+              es: Descripción de la página
+              kk: Беттің сипаттамасы
+              uz: Sahifa tavsifi
             note:
               ru: Введите мета описание
               en: Enter the description in meta header
               hy: Մուտքագրեք նկարագրությունը մետա վերնագրում
+              it: Inserisci la descrizione nell'intestazione meta
+              es: Introduzca la descripción en el encabezado meta
+              kk: Мета тақырыбына сипаттаманы енгізіңіз
+              uz: Meta sarlavhasiga tavsifni kiriting       
             placeholder:
               ru: ""
               en: ""
@@ -253,10 +309,18 @@ fields:
               ru: Ключевые слова
               en: Page keywords
               hy: Էջի հիմնաբառեր
+              it: Parole chiave della pagina
+              es: Palabras clave de la página
+              kk: Бет кілт сөздері
+              uz: Sahifa kalit so'zlari
             note:
               ru: Введите ключевые слова
               en: Enter the meta keywords
               hy: Մուտքագրեք մետա հիմնաբառերը
+              it: Inserisci le parole chiave meta
+              es: Introduzca las palabras clave meta
+              kk: Мета кілт сөздерін енгізіңіз
+              uz: Meta kalit so'zlarini kiriting       
             placeholder:
               ru: ""
               en: ""
@@ -302,6 +366,10 @@ fields:
           ru: Технические данные
           en: Technical information
           hy: Տեխնիկական տեղեկատվություն
+          it: Informazioni tecniche
+          es: Información técnica
+          kk: Техникалық ақпарат
+          uz: Texnik ma'lumot
         params:
           vertical: true
         default: json_object()
@@ -315,6 +383,10 @@ fields:
               ru: Компонента
               en: Component
               hy: Բաղադրիչ
+              it: Componente
+              es: Componente
+              kk: Компонент
+              uz: Komponent       
             note: ""
             params:
               required: false
@@ -340,6 +412,10 @@ fields:
               ru: Шаблон
               en: Template
               hy: Կաղապար
+              it: Modello
+              es: Plantilla
+              kk: Үлгі
+              uz: Shablon       
             note: ""
             params:
               required: false
@@ -363,6 +439,10 @@ fields:
           ru: Дополнительные свойства
           en: Additional properties
           hy: Լրացուցիչ հատկություններ
+          it: Proprietà aggiuntive
+          es: Propiedades adicionales
+          kk: Қосымша қасиеттер
+          uz: Qo'shimcha xususiyatlar
         default: json_array()
         attrs:
           className: app-field-wrap
@@ -371,6 +451,10 @@ fields:
             ru: Добавить параметр
             en: Add parameter
             hy: Ավելացնել
+            it: Aggiungi parametro
+            es: Añadir parámetro
+            kk: Параметр қосу
+            uz: Parametr qo'shish           
         fields:
           name:
             type: varchar
@@ -381,6 +465,10 @@ fields:
               ru: Наименование поля
               en: Param name
               hy: Պարամետրի անվանումը
+              it: Nome del parametro
+              es: Nombre del parámetro
+              kk: Параметр атауы
+              uz: Parametr nomi       
             attrs:
               width: 30%
           description:
@@ -391,6 +479,10 @@ fields:
               ru: Описание поля
               en: Param description
               hy: Պարամետրի նկարագրությունը
+              it: Descrizione del parametro
+              es: Descripción del parámetro
+              kk: Параметр сипаттамасы
+              uz: Parametr tavsifi       
             attrs:
               width: 68%
           type:
@@ -400,6 +492,10 @@ fields:
               ru: Тип
               en: Type
               hy: Տիպ
+              it: Tipo
+              es: Tipo
+              kk: Түрі
+              uz: Turi       
             class: string
             component: Colibri.UI.Forms.Text
             default: varchar
@@ -408,9 +504,13 @@ fields:
           length:
             type: int
             desc:
-              ru: Длина
-              en: Length
-              hy: Երկարություն
+                ru: Длина
+                en: Length
+                hy: Երկարություն
+                it: Lunghezza
+                es: Longitud
+                kk: Ұзындығы
+                uz: Uzunlik       
             class: int
             component: Colibri.UI.Forms.Number
             attrs:
@@ -424,6 +524,10 @@ fields:
               ru: Значение по умолчанию
               en: Default value
               hy: Կանխադրված արժեք
+              it: Valore predefinito
+              es: Valor predeterminado
+              kk: Әдепкі мән
+              uz: Standart qiymat       
             attrs:
               width: 20%
           class:
@@ -435,6 +539,10 @@ fields:
               ru: Класс (PHP)
               en: Class name (PHP)
               hy: Դասի անվանումը (PHP)
+              it: Nome della classe (PHP)
+              es: Nombre de la clase (PHP)
+              kk: Сынып атауы (PHP)
+              uz: Sinf nomi (PHP)       
             attrs:
               width: 20%
           component:
@@ -450,6 +558,10 @@ fields:
               ru: Компонента (JS)
               en: UI Component (JS)
               hy: UI բաղադրիչ (JS)
+              it: Componente (JS)
+              es: Componente (JS)
+              kk: Компонент (JS)
+              uz: Komponent (JS)       
             selector:
               value: value
               title: title
@@ -466,6 +578,10 @@ fields:
       ru: Параметры
       en: Parameters
       hy: Պարամետրեր
+      it: Parametri
+      es: Parámetros
+      kk: Параметрлер
+      uz: Parametrlar
     class: ParametersField
     default: json_object()
     params:
@@ -477,7 +593,13 @@ fields:
     class: float
     default: "0"
     component: Colibri.UI.Forms.Hidden
-    desc: Позиция в рамках parent-а
+    desc: 
+      ru: Позиция в рамках parent-а
+      en: Position within parent
+      it: Posizione all'interno del genitore
+      hy: Դիրքը ծնողի շրջանակներում
+      kk: Aта-ана аясындағы позиция
+      uz: Оta-ona doirasidagi pozitsiya
 indices:
   pages_domain_idx:
     fields:
