@@ -342,7 +342,8 @@ fields:
           it: Informazioni tecniche
           es: Información técnica
           kk: Техникалық ақпарат
-          uz: "Texnik ma'lumot  params:"
+          uz: "Texnik ma'lumot"
+        params:
           vertical: true
         default: json_object()
         fields:
