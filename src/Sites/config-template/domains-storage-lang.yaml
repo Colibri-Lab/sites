@@ -39,7 +39,7 @@ fields:
       es: La configuración debe especificar los patrones de dominio que se ajustan
         a esta clave.
       kk: Конфигурацияда бұл кілтке қосылатын домен паттерндері көрсетілуі керек
-      uz: Sozlashda bu kalitga mos keladigan domen modellari ko'rsatilishi kerak
+      uz: "Sozlashda bu kalitga mos keladigan domen modellari ko'rsatilishi kerak"
     selector:
       value: value
       title: title
