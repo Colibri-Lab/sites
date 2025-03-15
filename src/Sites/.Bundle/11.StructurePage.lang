@@ -215,13 +215,20 @@ sites-structure-deletedomain:
   kk: Доменді жою
   uz: Domenni o'chirish
 sites-structure-deletedomainmessage:
-  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены безвозвратно
-  en: Are you sure you want to delete the domain? All folders and publications will be permanently deleted
-  hy: "Իսկապե՞ս ուզում եք ջնջել տիրույթը: Բոլոր թղթապանակները և հրապարակումները ընդմիշտ կջնջվեն"
-  it: Sei sicuro di voler eliminare il dominio? Tutte le cartelle e le pubblicazioni saranno eliminate permanentemente
-  es: ¿Estás seguro de que quieres eliminar el dominio? Todas las carpetas y publicaciones se eliminarán permanentemente
-  kk: Доменді жойғыңыз келетініне сенімдісіз бе? Барлық қалталар мен жарияланымдар біржола жойылады
-  uz: Domenni o'chirishni xohlaysizmi? Barcha papkalar va nashrlar doimiy ravishda o'chiriladi
+  ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены
+    безвозвратно
+  en: Are you sure you want to delete the domain? All folders and publications
+    will be permanently deleted
+  hy: "Իսկապե՞ս ուզում եք ջնջել տիրույթը: Բոլոր թղթապանակները և հրապարակումները
+    ընդմիշտ կջնջվեն"
+  it: Sei sicuro di voler eliminare il dominio? Tutte le cartelle e le
+    pubblicazioni saranno eliminate permanentemente
+  es: ¿Estás seguro de que quieres eliminar el dominio? Todas las carpetas y
+    publicaciones se eliminarán permanentemente
+  kk: Доменді жойғыңыз келетініне сенімдісіз бе? Барлық қалталар мен жарияланымдар
+    біржола жойылады
+  uz: Domenni o'chirishni xohlaysizmi? Barcha papkalar va nashrlar doimiy ravishda
+    o'chiriladi
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child page
