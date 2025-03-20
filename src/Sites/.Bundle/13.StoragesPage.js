@@ -134,6 +134,15 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
                 }
                 contextmenu.push({ name: 'copy-field', title: '#{sites-storages-contextmenu-copyfield}', icon: Colibri.UI.ContextMenuCopyIcon });
+                if(!node.tag.entry.virtual) {
+                    contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: [
+                        { name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: Colibri.UI.ContextMenuEditIcon },
+                        { name: 'generators-generator', title: '#{sites-storages-contextmenu-generator}', icon: Colibri.UI.ContextMenuEditIcon },
+                        { name: 'generators-title', title: '#{sites-storages-contextmenu-title}', icon: Colibri.UI.ContextMenuEditIcon },
+                        { name: 'generators-valuegenerator', title: '#{sites-storages-contextmenu-valuegenerator}', icon: Colibri.UI.ContextMenuEditIcon },
+                        { name: 'generators-onchangehandler', title: '#{sites-storages-contextmenu-onchange}', icon: Colibri.UI.ContextMenuEditIcon },
+                    ] });
+                }
                 if (this._canAddFieldAsChild(tag.entry) && this._copiedField !== null) {
                     contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
                 }
@@ -893,15 +902,28 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         fieldgenerator: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-fieldgenerator}',
-                            component: 'TextArea',
-                            default: ''
+                            note: '#{sites-storages-fieldparams-fieldgenerator-note}',
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea', 
+                            default: '',
+                            params: {
+                                code: 'js'
+                            },
+                            attrs: {
+                                height: 200
+                            }
                         },
                         generator: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-generator}',
                             note: '#{sites-storages-fieldparams-generator-note}',
-                            component: 'TextArea',
-                            default: ''
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
+                            default: '',
+                            params: {
+                                code: 'js'
+                            },
+                            attrs: {
+                                height: 200
+                            }
                         },
                         noteClass: {
                             type: 'varchar',
@@ -974,10 +996,16 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         },
                         title: {
                             type: 'varchar',
-                            component: 'TextArea',
                             placeholder: '#{sites-storages-fieldparams-title}',
                             note: '#{sites-storages-fieldparams-title-note}',
-                            default: ''
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
+                            default: '',
+                            params: {
+                                code: 'js'
+                            },
+                            attrs: {
+                                height: 200
+                            }
                         },
                         removedesc: {
                             type: 'bool',
@@ -1023,15 +1051,27 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-valuegenerator}',
                             note: '#{sites-storages-fieldparams-valuegenerator-note}',
-                            component: 'TextArea',
-                            default: ''
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
+                            default: '',
+                            params: {
+                                code: 'js'
+                            },
+                            attrs: {
+                                height: 200
+                            }
                         },
                         onchangehandler: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-onchangehandler}',
                             note: '#{sites-storages-fieldparams-onchangehandler-note}',
-                            component: 'TextArea',
-                            default: ''
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
+                            default: '',
+                            params: {
+                                code: 'js'
+                            },
+                            attrs: {
+                                height: 200
+                            }
                         },
                     }
                 },
@@ -1972,6 +2012,39 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 this._copiedField = null;
             });
         }
+        else if (menuData.name.split('-')[0] === 'generators') {
+            let field = menuData.name.split('-');
+            field = field[1];
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                let fData = {fields: {}};
+                fData.fields[field] = this._fieldFields(true, module.value).fields.params.fields[field];
+                let fValue = {};
+                fValue[field] = fieldData.params[field];
+
+                Manage.FormWindow.Show(
+                    '#{sites-storages-windowtitle-editproperty}'.replaceAll('%s', Lang ? Lang.Translate(fieldData.desc) : fieldData.desc), 
+                    1024, 
+                    fData, 
+                    fValue
+                ).then((data) => {
+                    fieldData.params[field] = data[field];
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), data, false);
+                })
+                .catch(() => { });
+
+            }
+
+        }
         else if (menuData.name == 'edit-field') {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
                 
@@ -1986,7 +2059,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
                 // node.parentNode.tag.type === 'fields'
                 Manage.FormWindow.Show(
-                    '#{sites-storages-windowtitle-editproperty}', 
+                    '#{sites-storages-windowtitle-editproperty}'.replaceAll('%s', Lang ? Lang.Translate(fieldData.desc) : fieldData.desc), 
                     1024, 
                     fieldData.virtual ? this._fieldVirtualFields(module.value) : this._fieldFields(true, module.value), 
                     fieldData

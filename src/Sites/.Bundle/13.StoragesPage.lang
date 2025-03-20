@@ -836,13 +836,17 @@ sites-storages-fieldparams-generator:
   kk: Қасиеттің әдепкі мәнінің генераторы
   uz: Xususiyatning standart qiymat generatori
 sites-storages-fieldparams-generator-note:
-  ru: Генерация значений по умолчанию
-  en: Generates a default value for property
-  hy: Ստեղծում է լռելյայն արժեք սեփականության համար
-  it: Genera un valore predefinito per la proprietà
-  es: Genera un valor predeterminado para la propiedad
-  kk: Қасиет үшін әдепкі мәнді жасайды
-  uz: Xususiyat uchun standart qiymat yaratadi
+  ru: "Генерация значений по умолчанию. Метод: (value, component, formOrObject) =>
+    {}"
+  en: "Generation of default values. Method: (value, component, formOrObject) =>
+    {}"
+  hy: Լռելյայն արժեքների գեներացիա։ Մեթոդ՝ (value, component, formOrObject) => {}
+  it: "Generazione di valori predefiniti. Metodo: (value, component, formOrObject)
+    => {}"
+  es: "Generación de valores predeterminados. Método: (value, component,
+    formOrObject) => {}"
+  kk: "Әдепкі мәндерді жасау. Әдепкі мән: (value, component, formOrObject) => {}"
+  uz: "Standart qiymatlar yaratish. Usul: (value, component, formOrObject) => {}"
 sites-storages-fieldparams-note-class:
   ru: Класс для подсказки
   en: Hint class
@@ -1660,13 +1664,13 @@ sites-storages-windowtitle-newvirtualproperty:
   kk: Жаңа виртуалды қасиет
   uz: Yangi virtual xususiyat
 sites-storages-windowtitle-editproperty:
-  ru: Редактировать свойство
-  en: Edit property
-  hy: Խմբագրել սեփականությունը
-  it: Modifica proprietà
-  es: Editar propiedad
-  kk: Қасиетті өңдеу
-  uz: Xususiyatni tahrirlash
+  ru: «%s» - Редактировать свойство
+  en: «%s» - Edit property
+  hy: «%s» - Խմբագրել սեփականությունը
+  it: «%s» - Modifica proprietà
+  es: «%s» - Editar propiedad
+  kk: «%s» - Қасиетті өңдеу
+  uz: «%s» - Xususiyatni tahrirlash
 sites-storages-messages-removeproperty:
   ru: Удаление свойства
   en: Delete property
@@ -2200,13 +2204,19 @@ sites-storages-storages:
   kk: Сақтаулар
   uz: Saqlashlar
 sites-storages-fieldparams-valuegenerator-note:
-  ru: "Например: (fieldValue, formValue, fieldComponent, component) => {}"
-  en: "For example: (fieldValue, formValue, fieldComponent, component) => {}"
-  hy: Օրինակ՝ (fieldValue, formValue, fieldComponent, component) => {}
-  it: "Ad esempio: (fieldValue, formValue, fieldComponent, component) => {}"
-  es: "Por ejemplo: (fieldValue, formValue, fieldComponent, component) => {}"
-  kk: "Мысалы: (fieldValue, formValue, fieldComponent, component) => {}"
-  uz: "Masalan: (fieldValue, formValue, fieldComponent, component) => {}"
+  ru: "Например: (value, rootValue, component, rootComponent, changedComponent) =>
+    {}"
+  en: "For example: (value, rootValue, component, rootComponent, changedComponent)
+    => {}"
+  hy: Օրինակ՝ (value, rootValue, component, rootComponent, changedComponent) => {}
+  it: "Ad esempio: (value, rootValue, component, rootComponent, changedComponent)
+    => {}"
+  es: "Por ejemplo: (value, rootValue, component, rootComponent, changedComponent)
+    => {}"
+  kk: "Мысалы: (value, rootValue, component, rootComponent, changedComponent) =>
+    {}"
+  uz: "Masalan: (value, rootValue, component, rootComponent, changedComponent) =>
+    {}"
 sites-storages-fieldparams-onchangehandler-note:
   ru: "Например: (event, args) => {}"
   en: "For example: (event, args) => {}"
@@ -2280,3 +2290,66 @@ sites-storages-fieldselector-emptyvalue-desc:
   es: Valor cuando no se selecciona nada
   kk: Ештеңе таңдалмаған кезде мән
   uz: Hech narsa tanlanmaganida qiymat
+sites-storages-fieldparams-fieldgenerator-note:
+  ru: "Генератор FieldData который передается в поле при создании. Метод:
+    (fieldData, fieldComponent, formOrObject) => {}"
+  en: "FieldData generator that is passed to the field on creation. Method:
+    (fieldData, fieldComponent, formOrObject) => {}"
+  hy: "Ստեղծման ժամանակ դիմվող FieldData գեներատորը: Մեթոդ՝ (fieldData,
+    fieldComponent, formOrObject) => {}"
+  it: "Generatore di FieldData che viene passato al campo alla creazione. Metodo:
+    (fieldData, fieldComponent, formOrObject) => {}"
+  es: "Generador de FieldData que se pasa al campo en la creación. Método:
+    (fieldData, fieldComponent, formOrObject) => {}"
+  kk: "Жасау уақытында FieldData-ға берілетін генератор. Әдіс: (fieldData,
+    fieldComponent, formOrObject) => {}"
+  uz: "Yaratish paytida FieldData ga beriladigan generator. Usul: (fieldData,
+    fieldComponent, formOrObject) => {}"
+sites-storages-contextmenu-fieldgenerator:
+  ru: Метод FieldGenerator (генератор параметров поля)
+  en: FieldGenerator method (field params generator)
+  hy: FieldGenerator մեթոդ (դաշտի պարամետրերի գեներատոր)
+  it: Metodo FieldGenerator (generatore di parametri del campo)
+  es: Método FieldGenerator (generador de parámetros de campo)
+  kk: FieldGenerator әдісі (қолданба параметрлерінің генераторы)
+  uz: FieldGenerator usuli (maydon parametrlar generatori)
+sites-storages-contextmenu-generator:
+  ru: Метод Generator (значения по умолчанию)
+  en: Generator method (default values)
+  hy: Գեներատոր մեթոդ (լռելյայն արժեքներ)
+  it: Metodo generatore (valori predefiniti)
+  es: Método generador (valores predeterminados)
+  kk: Генератор әдісі (әдепкі мәндер)
+  uz: Generator usuli (standart qiymatlar)
+sites-storages-contextmenu-title:
+  ru: Метод Title (генератор заголовка массива)
+  en: Title method (array title generator)
+  hy: Վերնագիր մեթոդ (զանգվածի վերնագիրի գեներատոր)
+  it: Metodo del titolo (generatore di titoli di array)
+  es: Método de título (generador de títulos de array)
+  kk: Тақырып әдісі (массив тақырыбының генераторы)
+  uz: Sarlavha usuli (massiv sarlavhasi generatori)
+sites-storages-contextmenu-valuegenerator:
+  ru: Метод ValueGenerator (генератор значений)
+  en: ValueGenerator method (value generator)
+  hy: ValueGenerator մեթոդ (արժեքների գեներատոր)
+  it: Metodo ValueGenerator (generatore di valori)
+  es: Método ValueGenerator (generador de valores)
+  kk: Мәнді әдісі (мәндердің генераторы)
+  uz: Qiymat generatori usuli
+sites-storages-contextmenu-onchange:
+  ru: Метод OnChanged (когда значение изменилось)
+  en: OnChanged method (when value changed)
+  hy: OnChanged մեթոդ (երբ արժեքը փոխվեց)
+  it: Metodo OnChanged (quando il valore cambia)
+  es: Método OnChanged (cuando cambia el valor)
+  kk: ОнЧенджед әдісі (мән өзгерген кезде)
+  uz: OnChanged usuli (qiymat o'zganda)
+sites-storages-contextmenu-generators:
+  ru: Генераторы
+  en: Generators
+  hy: Գեներատորներ
+  it: Generatori
+  es: Generadores
+  kk: Генераторлар
+  uz: Generatorlar
