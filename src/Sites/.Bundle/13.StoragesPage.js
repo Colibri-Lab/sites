@@ -135,24 +135,24 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
                 contextmenu.push({ name: 'copy-field', title: '#{sites-storages-contextmenu-copyfield}', icon: Colibri.UI.ContextMenuCopyIcon });
                 if(!node.tag.entry.virtual) {
-                    const children = [];
+                    contextmenu.push({ name: 'separator', title: '-'});
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'fieldgenerator') ) {
-                        children.push({ name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon });
+                        contextmenu.push({ name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon });
                     }
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'generator') ) {
-                        children.push({ name: 'generators-generator', title: '#{sites-storages-contextmenu-generator}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Object'] });
+                        contextmenu.push({ name: 'generators-generator', title: '#{sites-storages-contextmenu-generator}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Object'] });
                     }
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'title') ) {
-                        children.push({ name: 'generators-title', title: '#{sites-storages-contextmenu-title}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Text'] });
+                        contextmenu.push({ name: 'generators-title', title: '#{sites-storages-contextmenu-title}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Text'] });
                     }
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'valuegenerator') ) {
-                        children.push({ name: 'generators-valuegenerator', title: '#{sites-storages-contextmenu-valuegenerator}', icon: App.Modules.Sites.Icons.ValueGenerator });
+                        contextmenu.push({ name: 'generators-valuegenerator', title: '#{sites-storages-contextmenu-valuegenerator}', icon: App.Modules.Sites.Icons.ValueGenerator });
                     }
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'onchangehandler') ) {
-                        children.push({ name: 'generators-onchangehandler', title: '#{sites-storages-contextmenu-onchange}', icon: App.Modules.Sites.Icons.OnChangeIcon });
+                        contextmenu.push({ name: 'generators-onchangehandler', title: '#{sites-storages-contextmenu-onchange}', icon: App.Modules.Sites.Icons.OnChangeIcon });
                     }
 
-                    contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: children });
+                    // contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: children });
                 }
                 if (this._canAddFieldAsChild(tag.entry) && this._copiedField !== null) {
                     contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
