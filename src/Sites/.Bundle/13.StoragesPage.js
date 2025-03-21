@@ -135,13 +135,24 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
                 contextmenu.push({ name: 'copy-field', title: '#{sites-storages-contextmenu-copyfield}', icon: Colibri.UI.ContextMenuCopyIcon });
                 if(!node.tag.entry.virtual) {
-                    contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: [
-                        { name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon },
-                        { name: 'generators-generator', title: '#{sites-storages-contextmenu-generator}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Object'] },
-                        { name: 'generators-title', title: '#{sites-storages-contextmenu-title}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Text'] },
-                        { name: 'generators-valuegenerator', title: '#{sites-storages-contextmenu-valuegenerator}', icon: App.Modules.Sites.Icons.ValueGenerator },
-                        { name: 'generators-onchangehandler', title: '#{sites-storages-contextmenu-onchange}', icon: App.Modules.Sites.Icons.OnChangeIcon },
-                    ] });
+                    const children = [];
+                    if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'fieldgenerator') ) {
+                        children.push({ name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon });
+                    }
+                    if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'generator') ) {
+                        children.push({ name: 'generators-generator', title: '#{sites-storages-contextmenu-generator}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Object'] });
+                    }
+                    if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'title') ) {
+                        children.push({ name: 'generators-title', title: '#{sites-storages-contextmenu-title}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Text'] });
+                    }
+                    if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'valuegenerator') ) {
+                        children.push({ name: 'generators-valuegenerator', title: '#{sites-storages-contextmenu-valuegenerator}', icon: App.Modules.Sites.Icons.ValueGenerator });
+                    }
+                    if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'onchangehandler') ) {
+                        children.push({ name: 'generators-onchangehandler', title: '#{sites-storages-contextmenu-onchange}', icon: App.Modules.Sites.Icons.OnChangeIcon });
+                    }
+
+                    contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: children });
                 }
                 if (this._canAddFieldAsChild(tag.entry) && this._copiedField !== null) {
                     contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
@@ -777,28 +788,52 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             placeholder: '#{sites-storages-fieldparams-required}',
                             note: '#{sites-storages-fieldparams-required-note}',
                             component: 'Checkbox',
-                            default: false
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'required') 
+                                }
+                            }
                         },
                         enabled: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-enabled}',
                             note: '#{sites-storages-fieldparams-enabled-note}',
                             component: 'Checkbox',
-                            default: true
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'enabled') 
+                                }
+                            }
                         },
                         canbeempty: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-canbeempty}',
                             note: '#{sites-storages-fieldparams-canbeempty-note}',
                             component: 'Checkbox',
-                            default: true
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canbeempty') 
+                                }
+                            }
                         },
                         readonly: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-readonly}',
                             note: '#{sites-storages-fieldparams-readonly-note}',
                             component: 'Checkbox',
-                            default: false
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'readonly') 
+                                }
+                            }
                         },
                         searchable: {
                             type: 'bool',
@@ -809,7 +844,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Select'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'searchable') 
                                 }
                             }
                         },
@@ -817,27 +852,51 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-list}',
                             component: 'Checkbox',
-                            default: false
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'list') 
+                                }
+                            }
                         },
                         template: {  
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-template}',
                             component: 'Checkbox',
-                            default: false
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'template') 
+                                }
+                            }
                         },
                         multiple: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-multiple}',
                             note: '#{sites-storages-fieldparams-multiple-note}',
                             component: 'Checkbox',
-                            default: false
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'multiple') 
+                                }
+                            }
                         },
                         greed: {
                             type: 'varchar',
                             placeholder: '#{sites-storages-fieldparams-greed}',
                             note: '#{sites-storages-fieldparams-greed-note}',
                             component: 'Text',
-                            default: ''
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'greed') 
+                                }
+                            }
                         },
                         viewer: {
                             type: 'varchar',
@@ -851,7 +910,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             },
                             params: {
                                 readonly: false,
-                                searchable: false
+                                searchable: false,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'viewer') 
+                                }
                             },
                             lookup: () => new Promise((resolve, reject) => {
                                 resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
@@ -866,7 +929,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Object' || fieldValue === 'Colibri.UI.Forms.Array'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'vertical') 
                                 }
                             }
                         },
@@ -879,7 +942,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue?.toLowerCase().indexOf('textarea') !== -1
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'visual') 
                                 }
                             }
                         },
@@ -895,7 +958,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 required: false,
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue?.toLowerCase().indexOf('textarea') !== -1
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'code') 
                                 }
                             },
                             selector: {
@@ -923,7 +986,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Text'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'mask') 
                                 }
                             }
                         },
@@ -934,7 +997,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'App.Modules.Manage.UI.TinyMCETextArea', 
                             default: '',
                             params: {
-                                code: 'js'
+                                code: 'js',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'fieldgenerator') 
+                                }
                             },
                             attrs: {
                                 height: 200
@@ -947,7 +1014,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'App.Modules.Manage.UI.TinyMCETextArea',
                             default: '',
                             params: {
-                                code: 'js'
+                                code: 'js',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'generator') 
+                                }
                             },
                             attrs: {
                                 height: 200
@@ -957,7 +1028,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             type: 'varchar',
                             component: 'Text',
                             placeholder: '#{sites-storages-fieldparams-note-class}',
-                            default: ''
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'noteClass') 
+                                }
+                            }
                         },
                         simplearraywidth: {
                             type: 'int',
@@ -968,7 +1045,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.SimpleArray'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'simplearraywidth') 
                                 }
                             }
                         },
@@ -981,7 +1058,72 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.SimpleArray'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'simplearrayheight') 
+                                }
+                            }
+                        },
+                        keyTitle: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-keyTitle}',
+                            note: '#{sites-storages-fieldparams-keyTitle-note}',
+                            component: 'Text',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'keyTitle') 
+                                }
+                            }
+                        },
+                        valueTitle: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-valueTitle}',
+                            note: '#{sites-storages-fieldparams-valueTitle-note}',
+                            component: 'Text',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'valueTitle') 
+                                }
+                            }
+                        },
+                        canEditKey: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canEditKey}',
+                            note: '#{sites-storages-fieldparams-canEditKey-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canEditKey') 
+                                }
+                            }
+                        },
+                        canAddNew: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canAddNew}',
+                            note: '#{sites-storages-fieldparams-canAddNew-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canAddNew') 
+                                }
+                            }
+                        },
+                        canRemoveRows: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canRemoveRows}',
+                            note: '#{sites-storages-fieldparams-canRemoveRows-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canRemoveRows') 
                                 }
                             }
                         },
@@ -994,7 +1136,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'addlink') 
                                 }
                             }
                         },
@@ -1007,7 +1149,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'removelink') 
                                 }
                             }
                         },
@@ -1020,7 +1162,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'updownlink') 
                                 }
                             }
                         },
@@ -1033,7 +1175,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'hasscroll') 
                                 }
                             }
                         },
@@ -1046,7 +1188,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'initempty') 
                                 }
                             }
                         },
@@ -1059,7 +1201,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.ArrayGrid'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'displayed_columns') 
                                 }
                             }
                         },
@@ -1072,7 +1214,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array' || fieldValue === 'Colibri.UI.Forms.ArrayGrid'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'maxadd') 
                                 }
                             }
                         },
@@ -1086,7 +1228,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 code: 'js',
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array' || fieldValue === 'Colibri.UI.Forms.ArrayGrid'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'title') 
                                 }
                             },
                             attrs: {
@@ -1102,7 +1244,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue === 'Colibri.UI.Forms.Array' || fieldValue === 'Colibri.UI.Forms.Object'
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'removedesc') 
                                 }
                             }
                         },
@@ -1114,7 +1256,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue?.toLowerCase().indexOf('file') !== -1
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'allow') 
                                 }
                             }
                         },
@@ -1126,7 +1268,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             params: {
                                 condition: {
                                     field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => fieldValue?.toLowerCase().indexOf('file') !== -1
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'size') 
                                 }
                             }
                         },
@@ -1137,7 +1279,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 readonly: false, 
                                 required: false,
                                 vertical: true,
-                                addlink: '#{sites-storages-fieldparams-validate-addlink}'
+                                addlink: '#{sites-storages-fieldparams-validate-addlink}',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'validate') 
+                                }
                             },
                             fields: {
                                 message: {
@@ -1158,7 +1304,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'App.Modules.Manage.UI.TinyMCETextArea',
                             default: '',
                             params: {
-                                code: 'js'
+                                code: 'js',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'valuegenerator') 
+                                }
                             },
                             attrs: {
                                 height: 200
@@ -1171,7 +1321,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'App.Modules.Manage.UI.TinyMCETextArea',
                             default: '',
                             params: {
-                                code: 'js'
+                                code: 'js',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'onchangehandler') 
+                                }
                             },
                             attrs: {
                                 height: 200

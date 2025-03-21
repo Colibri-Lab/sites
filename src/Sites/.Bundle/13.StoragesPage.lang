@@ -2368,3 +2368,83 @@ sites-storages-fieldparams-multiple-note:
   es: Múltiple, si el componente puede aceptar múltiples valores
   kk: Көптеген, компонент көптеген мәндерді қабылдауға болады ма
   uz: Ko'p, komponent necha marta qiymat qabul qilishi mumkin
+sites-storages-fieldparams-keyTitle:
+  ru: Заголовок ключа
+  en: Key title
+  hy: Ստորակետի վերնագիր
+  it: Titolo chiave
+  es: Título clave
+  kk: Кілт тақырыбы
+  uz: Kalit sarlavhasi
+sites-storages-fieldparams-keyTitle-note:
+  ru: Заголовок для поля ключ в компоненте KeyValueObject
+  en: Title for key field in KeyValueObject component
+  hy: Ստորակետի դաշտի վերնագիրը KeyValueObject կոմպոնենտում
+  it: Titolo per il campo chiave nel componente KeyValueObject
+  es: Título para el campo clave en el componente KeyValueObject
+  kk: KeyValueObject компонентінде кілт тақырыбы
+  uz: KeyValueObject komponentidagi kalit maydoni
+sites-storages-fieldparams-valueTitle:
+  ru: Заголовок значения
+  en: Value title
+  hy: Արժեքի վերնագիր
+  it: Titolo del valore
+  es: Título del valor
+  kk: Мән тақырыбы
+  uz: Qiymat sarlavhasi
+sites-storages-fieldparams-valueTitle-note:
+  ru: Заголовок для поля значение в компоненте KeyValueObject
+  en: Title for value field in KeyValueObject component
+  hy: Արժեքի դաշտի վերնագիրը KeyValueObject կոմպոնենտում
+  it: Titolo per il campo valore nel componente KeyValueObject
+  es: Título para el campo valor en el componente KeyValueObject
+  kk: KeyValueObject компонентінде мән тақырыбы
+  uz: KeyValueObject komponentidagi qiymat maydoni
+sites-storages-fieldparams-canEditKey:
+  ru: Может ли пользователь редактировать ключ
+  en: Can user edit key
+  hy: Օգտագործողը կարող է խմբագրել ստորակետը
+  it: L'utente può modificare la chiave
+  es: ¿Puede el usuario editar la clave?
+  kk: Пайдаланушы кілтті өңдеуі мүмкін
+  uz: Foydalanuvchi kalitni tahrirlay oladimi
+sites-storages-fieldparams-canEditKey-note:
+  ru: Может ли в поле KeyValueObject редактироваться поле ключ
+  en: Can the key field be edited in KeyValueObject field
+  hy: KeyValueObject դաշտում կարող է խմբագրվել ստորակետի դաշտը
+  it: Il campo chiave può essere modificato nel campo KeyValueObject
+  es: ¿Se puede editar el campo clave en el campo KeyValueObject?
+  kk: KeyValueObject құрамында кілт өзгертіле аламын ба
+  uz: KeyValueObject maydonida kalit maydoni tahrirlay oladimi
+sites-storages-fieldparams-canAddNew:
+  ru: "Может ли пользователь добавлять новые значения "
+  en: Can user add new values
+  hy: Օգտագործողը կարող է ավելացնել նոր արժեքներ
+  it: L'utente può aggiungere nuovi valori
+  es: ¿Puede el usuario agregar nuevos valores?
+  kk: Пайдаланушы жаңа мәндерді қосуға болады ма
+  uz: Foydalanuvchi yangi qiymatlar qo'sha oladimi
+sites-storages-fieldparams-canAddNew-note:
+  ru: Может ли в KeyValueObject добавляться новая строка
+  en: Can a new row be added to KeyValueObject
+  hy: KeyValueObject-ին կարող է ավելացվել նոր տող
+  it: Può essere aggiunta una nuova riga a KeyValueObject
+  es: ¿Se puede agregar una nueva fila a KeyValueObject?
+  kk: KeyValueObject-ке жаңа жол қосуға болады ма
+  uz: KeyValueObject ga yangi qator qo'shish mumkinmi
+sites-storages-fieldparams-canRemoveRows:
+  ru: Может ли пользователь удалять строки
+  en: Can user remove rows
+  hy: Օգտագործողը կարող է ջնջել տողեր
+  it: L'utente può rimuovere le righe
+  es: ¿Puede el usuario eliminar filas?
+  kk: Пайдаланушы жолдарды өшіре алады ма
+  uz: Foydalanuvchi qatorlarni o'chira oladimi
+sites-storages-fieldparams-canRemoveRows-note:
+  ru: Могут ли в KeyValueObject удаляться строки
+  en: Can rows be removed in KeyValueObject
+  hy: KeyValueObject-ին կարող է ջնջվել տողեր
+  it: Possono essere rimosse le righe in KeyValueObject
+  es: ¿Se pueden eliminar filas en KeyValueObject?
+  kk: KeyValueObject-те жолдар өшіріле аламын ба
+  uz: KeyValueObject da qatorlar o'chirila oladimi
