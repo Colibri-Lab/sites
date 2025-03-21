@@ -700,13 +700,20 @@ sites-storages-fieldparams-readonly:
   kk: Қасиет тек оқуға арналған
   uz: Xususiyat faqat o'qish uchun
 sites-storages-fieldparams-readonly-note:
-  ru: Работает только с компонентом типа Select
-  en: Works only with a Select component
-  hy: Աշխատում է միայն Select բաղադրիչի հետ
-  it: Funziona solo con un componente Select
-  es: Funciona solo con un componente Select
-  kk: Тек Select компонентімен жұмыс істейді
-  uz: Faqat Select komponenti bilan ishlaydi
+  ru: Только для чтения, курсор можно будет поставить в поле, но изменить значение
+    нельзя
+  en: Readonly, the cursor can be placed in the field, but the value cannot be
+    changed
+  hy: Միայն կարդալու է, կարսորը կարելի է դնել դաշտում, բայց արժեքը փոփոխելու
+    հնարավոր չէ
+  it: Solo lettura, il cursore può essere posizionato nel campo, ma il valore non
+    può essere modificato
+  es: Solo lectura, el cursor se puede colocar en el campo, pero el valor no se
+    puede cambiar
+  kk: Тек оқуға арналған, курсор өрісте орналауға болады, бірақ мән өзгертуге
+    болмайды
+  uz: Faqat o'qish uchun, kursorni maydon ichiga joylashtirish mumkin, lekin
+    qiymat o'zgartirib bo'lmaydi
 sites-storages-fieldparams-list:
   ru: Отображать в списке
   en: Show in list
@@ -2353,3 +2360,11 @@ sites-storages-contextmenu-generators:
   es: Generadores
   kk: Генераторлар
   uz: Generatorlar
+sites-storages-fieldparams-multiple-note:
+  ru: Мультивыбор, может ли компонента принимать множественные значения
+  en: Multiple, whether the component can accept multiple values
+  hy: Մուլտիվալ, արդյոք կոմպոնենտը կարող է ընդունել մի քանի արժեք
+  it: Multiplo, se il componente può accettare valori multipli
+  es: Múltiple, si el componente puede aceptar múltiples valores
+  kk: Көптеген, компонент көптеген мәндерді қабылдауға болады ма
+  uz: Ko'p, komponent necha marta qiymat qabul qilishi mumkin
