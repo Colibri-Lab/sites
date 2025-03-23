@@ -151,6 +151,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'onchangehandler') ) {
                         contextmenu.push({ name: 'generators-onchangehandler', title: '#{sites-storages-contextmenu-onchange}', icon: App.Modules.Sites.Icons.OnChangeIcon });
                     }
+                    
+                    contextmenu.push({ name: 'separator', title: '-'});
+                    contextmenu.push({ name: 'attrs', title: '#{sites-storages-contextmenu-attrs}', icon: App.Modules.Sites.Icons.Attrs });
 
                     // contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: children });
                 }
@@ -761,6 +764,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             type: 'varchar',
                             component: 'Text',
                             desc: '#{sites-storages-fieldattrs-width}',
+                        },
+                        inputWidth: {
+                            type: 'varchar',
+                            component: 'Text',
+                            desc: '#{sites-storages-fieldattrs-valuewidth}',
                         },
                         height: {
                             type: 'varchar',
@@ -2302,6 +2310,37 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
             }
 
+        }
+        else if(menuData.name === 'attrs') {
+            let field = 'attrs';
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                let fData = {fields: {}};
+                fData.fields[field] = this._fieldFields(true, module.value).fields[field];
+                let fValue = {};
+                fValue[field] = fieldData[field];
+
+                Manage.FormWindow.Show(
+                    '#{sites-storages-windowtitle-editproperty}'.replaceAll('%s', Lang ? Lang.Translate(fieldData.desc) : fieldData.desc), 
+                    1024, 
+                    fData, 
+                    fValue
+                ).then((data) => {
+                    fieldData[field] = data[field];
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                })
+                .catch(() => { });
+
+            }
         }
         else if (menuData.name == 'edit-field') {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {

@@ -2448,3 +2448,19 @@ sites-storages-fieldparams-canRemoveRows-note:
   es: ¿Se pueden eliminar filas en KeyValueObject?
   kk: KeyValueObject-те жолдар өшіріле аламын ба
   uz: KeyValueObject da qatorlar o'chirila oladimi
+sites-storages-contextmenu-attrs:
+  ru: Аттрибуты
+  en: Attributes
+  hy: Ատրիբուտներ
+  it: Attributi
+  es: Atributos
+  kk: Атрибуттар
+  uz: Atributlar
+sites-storages-fieldattrs-valuewidth:
+  ru: Ширина поля значения
+  en: Value field width
+  hy: Արժեքի դաշտի լայնություն
+  it: Larghezza del campo valore
+  es: Ancho del campo de valor
+  kk: Мәндік өлшемі
+  uz: Qiymat maydoni eni
