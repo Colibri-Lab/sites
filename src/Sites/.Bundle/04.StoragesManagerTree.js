@@ -101,6 +101,10 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             (field?.params?.template ? ', <span class="intemplate">intemplate</span>' : '') + 
             (field?.params?.greed ? ', <span class="greed">' + field?.params?.greed + '</span>' : '') + 
             (field?.params?.viewer ? ', <span class="viewer">' + field?.params?.viewer + '</span>' : '') + 
+            (!!field?.params?.valuegenerator ? ', <span class="calculatable">calc</span>' : '') + 
+            (!!field?.params?.onchangehandler ? ', <span class="calculatable">change</span>' : '') + 
+            (!!field?.params?.fieldgenerator ? ', <span class="calculatable">fieldgen</span>' : '') + 
+            (!!field?.params?.generator ? ', <span class="calculatable">gen</span>' : '') + 
         ')';
 
         fieldNode.isLeaf = !field.fields || Object.countKeys(field.fields) == 0;
