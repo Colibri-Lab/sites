@@ -96,8 +96,8 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             desc = '';
         }
 
-        fieldNode.text = desc + 
-            ' (' + name + (field?.params?.list ? ', <span class="inlist">inlist</span>' : '') +
+        fieldNode.text = '<span class="ellipsis">' + desc + '</span>' +  
+            ' (<span class="fieldname">' + name + '</span>' + (field?.params?.list ? ', <span class="inlist">inlist</span>' : '') +
             (field?.params?.template ? ', <span class="intemplate">intemplate</span>' : '') + 
             (field?.params?.greed ? ', <span class="greed">' + field?.params?.greed + '</span>' : '') + 
             (field?.params?.viewer ? ', <span class="viewer">' + field?.params?.viewer + '</span>' : '') + 

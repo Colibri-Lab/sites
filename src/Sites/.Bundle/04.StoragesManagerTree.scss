@@ -1,15 +1,31 @@
 .app-manager-tree-component {
 
-    .inlist, .intemplate {
-        color: red;
+    .nodes .node > div:not([data-object-name]) > span {
+
+        display: flex;
+        flex-wrap: nowrap;
+
+        .inlist, .intemplate {
+            color: red;
+        }
+        .greed {
+            color: gray;
+        }
+        .type,
+        .method,
+        .viewer {
+            color: gray;
+        }
+    
+        .ellipsis {
+            text-overflow: ellipsis;
+            overflow: hidden; 
+        }
+        .fieldname {
+    
+        }
+    
     }
-    .greed {
-        color: gray;
-    }
-    .type,
-    .method,
-    .viewer {
-        color: gray;
-    }
+
 
 }
