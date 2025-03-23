@@ -2295,8 +2295,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fData, 
                     fValue
                 ).then((data) => {
+                    debugger;
                     fieldData.params[field] = data[field];
-                    Sites.SaveField(module.value, storage.value, this._getPath(node), data, false);
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
                 })
                 .catch(() => { });
 
