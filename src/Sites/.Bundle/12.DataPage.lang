@@ -281,10 +281,14 @@ sites-structure-cleardatasmessage:
     enabled
   hy: Ուշադրություն! Դատարկման դեպքում տվյալները չեն կարող վերականգվել, եթե դուք
     չունեք մուտքագրված ջնջման հաշվին
-  it: Attenzione! I dati non potranno essere ripristinati se non hai abilitato l'eliminazione soft
-  es: ¡Atención! Los datos no se podrán restaurar si no tiene habilitada la eliminación suave
-  kk: Назар аударыңыз! Егер сізде жұмсақ жою қосылмаған болса, деректерді қалпына келтіру мүмкін болмайды
-  uz: Diqqat! Agar sizda yumshoq o'chirish yoqilmagan bo'lsa, ma'lumotlarni tiklash mumkin bo'lmaydi
+  it: Attenzione! I dati non potranno essere ripristinati se non hai abilitato
+    l'eliminazione soft
+  es: ¡Atención! Los datos no se podrán restaurar si no tiene habilitada la
+    eliminación suave
+  kk: Назар аударыңыз! Егер сізде жұмсақ жою қосылмаған болса, деректерді қалпына
+    келтіру мүмкін болмайды
+  uz: Diqqat! Agar sizda yumshoq o'chirish yoqilmagan bo'lsa, ma'lumotlarni
+    tiklash mumkin bo'lmaydi
 sites-structure-cleardatasmessage-clear:
   ru: Очистить
   en: Clear

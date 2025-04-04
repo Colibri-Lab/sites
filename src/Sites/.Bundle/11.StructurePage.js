@@ -502,7 +502,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 }
             });
 
-            const contextMenuObject = new Colibri.UI.ContextMenu('storages-list', document.body, [Colibri.UI.ContextMenu.LT, Colibri.UI.ContextMenu.RT]);
+            const contextMenuObject = new Colibri.UI.ContextMenu('storages-list', document.body, [Colibri.UI.ContextMenu.LT, Colibri.UI.ContextMenu.LB]);
             contextMenuObject.Show(contextmenu, this._addData);
             contextMenuObject.AddHandler('Clicked', (event, args) => {
                 contextMenuObject.Hide();
