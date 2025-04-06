@@ -2464,3 +2464,67 @@ sites-storages-fieldattrs-valuewidth:
   es: Ancho del campo de valor
   kk: Мәндік өлшемі
   uz: Qiymat maydoni eni
+sites-storages-contextmenu-list-show:
+  ru: Отображать в списке
+  en: Show in list
+  hy: Ցուցադրել ցանկում
+  it: Mostra nell'elenco
+  es: Mostrar en la lista
+  kk: Тізімде көрсету
+  uz: Ro'yxatda ko'rsatish
+sites-storages-contextmenu-list-hide:
+  ru: Не отображать в списке
+  en: Hide in list
+  hy: Ցուցադրել ցանկում
+  it: Nascondi nell'elenco
+  es: Ocultar en la lista
+  kk: Тізімде жасыру
+  uz: Ro'yxatda yashirish
+sites-storages-contextmenu-template-show:
+  ru: Отображать в шаблоне
+  en: Show in template
+  hy: Ցուցադրել ձևաբանում
+  it: Mostra nel modello
+  es: Mostrar en la plantilla
+  kk: Шаблонда көрсету
+  uz: Shablonda ko'rsatish
+sites-storages-contextmenu-template-hide:
+  ru: Не отображать в шаблоне
+  en: Hide in template
+  hy: Ցուցադրել ձևաբանում
+  it: Nascondi nel modello
+  es: Ocultar en la plantilla
+  kk: Шаблонда жасыру
+  uz: Shablonda yashirish
+sites-storages-contextmenu-required-set:
+  ru: Сделать обязательным
+  en: Make required
+  hy: Ապահովել պարտադիր
+  it: Rendere obbligatorio
+  es: Hacer obligatorio
+  kk: Міндетті ету
+  uz: Majburiy qilish
+sites-storages-contextmenu-required-unset:
+  ru: Сделать необязательным
+  en: Make optional
+  hy: Ապահովել ոչ պարտադիր
+  it: Rendere facoltativo
+  es: Hacer opcional
+  kk: Міндетті емес ету
+  uz: Ixtiyoriy qilish
+sites-storages-contextmenu-readonly-unset:
+  ru: Разрешить чтение и ввод
+  en: Allow read and input
+  hy: Թույլատրել կարդալ և մուտքագրել
+  it: Consenti lettura e input
+  es: Permitir lectura e ingreso
+  kk: Оқу және енгізуге рұқсат беру
+  uz: O'qish va kiritishga ruxsat berish
+sites-storages-contextmenu-readonly-set:
+  ru: Разрешить только чтение
+  en: Allow read only
+  hy: Թույլատրել միայն կարդալ
+  it: Consenti solo lettura
+  es: Permitir solo lectura
+  kk: Тек оқуға рұқсат беру
+  uz: Faqat o'qishga ruxsat berish

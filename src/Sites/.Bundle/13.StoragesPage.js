@@ -134,8 +134,41 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
                 }
                 contextmenu.push({ name: 'copy-field', title: '#{sites-storages-contextmenu-copyfield}', icon: Colibri.UI.ContextMenuCopyIcon });
+                if (this._canAddFieldAsChild(tag.entry) && this._copiedField !== null) {
+                    contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
+                }
+                contextmenu.push({ name: 'separator', title: '-'});
+                if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'list') ) {
+                    if(!tag.entry.params.list) {
+                        contextmenu.push({ name: 'params-list-show', title: '#{sites-storages-contextmenu-list-show}', icon: Colibri.UI.ContextMenuMark });
+                    } else {
+                        contextmenu.push({ name: 'params-list-hide', title: '#{sites-storages-contextmenu-list-hide}', icon: Colibri.UI.ContextMenuUnmark });
+                    }
+                }
+                if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'template') ) {
+                    if(!tag.entry.params.template) {
+                        contextmenu.push({ name: 'params-template-show', title: '#{sites-storages-contextmenu-template-show}', icon: Colibri.UI.ContextMenuMark });
+                    } else {
+                        contextmenu.push({ name: 'params-template-hide', title: '#{sites-storages-contextmenu-template-hide}', icon: Colibri.UI.ContextMenuUnmark });
+                    }
+                }
+                contextmenu.push({ name: 'separator', title: '-'});
+                if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'required') ) {
+                    if(!tag.entry.params.required) {
+                        contextmenu.push({ name: 'params-required-set', title: '#{sites-storages-contextmenu-required-set}', icon: Colibri.UI.ContextMenuMark });
+                    } else {
+                        contextmenu.push({ name: 'params-required-unset', title: '#{sites-storages-contextmenu-required-unset}', icon: Colibri.UI.ContextMenuUnmark });
+                    }
+                }
+                if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'readonly') ) {
+                    if(!tag.entry.params.readonly) {
+                        contextmenu.push({ name: 'params-readonly-set', title: '#{sites-storages-contextmenu-readonly-set}', icon: Colibri.UI.ContextMenuMark });
+                    } else {
+                        contextmenu.push({ name: 'params-readonly-unset', title: '#{sites-storages-contextmenu-readonly-unset}', icon: Colibri.UI.ContextMenuUnmark });
+                    }
+                }
+                contextmenu.push({ name: 'separator', title: '-'});
                 if(!node.tag.entry.virtual) {
-                    contextmenu.push({ name: 'separator', title: '-'});
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'fieldgenerator') ) {
                         contextmenu.push({ name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon });
                     }
@@ -157,9 +190,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
                     // contextmenu.push({ name: 'generators', title: '#{sites-storages-contextmenu-generators}', icon: Colibri.UI.ContextMenuEditIcon, children: children });
                 }
-                if (this._canAddFieldAsChild(tag.entry) && this._copiedField !== null) {
-                    contextmenu.push({ name: 'paste-field', title: '#{sites-storages-contextmenu-pastefield}', icon: Colibri.UI.ContextMenuPasteIcon });
-                }
+                
                 break;
             case 'indices':
                 contextmenu.push({ name: 'new-index', title: '#{sites-storages-contextmenu-newindex}', icon: Colibri.UI.ContextMenuAddIcon });
@@ -2340,6 +2371,74 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 })
                 .catch(() => { });
 
+            }
+        }
+        else if(menuData.name.indexOf('params-list-') !== -1) {
+            let field = 'list';
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                fieldData.params[field] = menuData.name.indexOf('show') !== -1 ? true : false;
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+            }
+        }
+        else if(menuData.name.indexOf('params-template-') !== -1) {
+            let field = 'template';
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                fieldData.params[field] = menuData.name.indexOf('show') !== -1 ? true : false;
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+            }
+        }
+        else if(menuData.name.indexOf('params-required-') !== -1) {
+            let field = 'required';
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                fieldData.params[field] = menuData.name.indexOf('unset') !== -1 ? false : true;
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+            }
+        }
+        else if(menuData.name.indexOf('params-readonly-') !== -1) {
+            let field = 'readonly';
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                fieldData.params[field] = menuData.name.indexOf('unset') !== -1 ? false : true;
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
             }
         }
         else if (menuData.name == 'edit-field') {
