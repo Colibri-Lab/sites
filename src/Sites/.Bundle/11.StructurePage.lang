@@ -452,3 +452,35 @@ sites-structurepage-notallowed:
   es: Operación no permitida
   kk: Әрекетке тыйым салынған
   uz: Amalga ruxsat berilmagan
+sites-structure-contextmenu-publish:
+  ru: Опубликовать
+  en: Publish
+  hy: Հրապարակել
+  it: Pubblica
+  es: Publicar
+  kk: Жариялау
+  uz: Nashr qilish
+sites-structure-contextmenu-unpublish:
+  ru: Снять с публикации
+  en: Unpublish
+  hy: Հրապարակումը հանել
+  it: Annulla pubblicazione
+  es: Despublicar
+  kk: Жарияланымды алып тастау
+  uz: Nashrni olib tashlash
+sites-structure-contextmenu-close:
+  ru: Закрыть сайт
+  en: Close site
+  hy: Փակել կայքը
+  it: Chiudi sito
+  es: Cerrar sitio
+  kk: Сайтты жабу
+  uz: Saytni yopish
+sites-structure-contextmenu-open:
+  ru: Открыть сайт
+  en: Open site
+  hy: Բացել կայքը
+  it: Apri sito
+  es: Abrir sitio
+  kk: Сайтты ашу
+  uz: Saytni ochish

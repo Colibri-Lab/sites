@@ -93,6 +93,11 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
             if(newNode.expanded && !newNode.isLeaf) {
                 newNode.icon = App.Modules.Sites.Icons.FolderIconPublished;
             }
+            if((domain?.closed ?? domain?.closed?.value) == 1) {
+                newNode.RemoveClass('published');
+            } else {
+                newNode.AddClass('published');
+            }
 
             this._renderLevel(newNode, 0, domain);
     

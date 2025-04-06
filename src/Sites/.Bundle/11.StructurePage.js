@@ -65,11 +65,23 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 contextmenu.push({name: 'edit-domain', title: '#{sites-structure-contextmenu-editdomain}', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'edit-domain-props', title: '#{sites-structure-contextmenu-editprops}', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'remove-domain', title: '#{sites-structure-contextmenu-deletedomain}', icon: Colibri.UI.ContextMenuRemoveIcon});
+                contextmenu.push({name: '-'});
+                if(!itemData.data.closed) {
+                    contextmenu.push({name: 'close', title: '#{sites-structure-contextmenu-close}', icon: Colibri.UI.ContextMenuUnmark});
+                } else {
+                    contextmenu.push({name: 'open', title: '#{sites-structure-contextmenu-open}', icon: Colibri.UI.ContextMenuMark});
+                }
             }
             else {
                 contextmenu.push({name: 'edit-folder', title: '#{sites-structure-contextmenu-editpage}', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'edit-folder-props', title: '#{sites-structure-contextmenu-editprops}', icon: Colibri.UI.ContextMenuEditIcon});
                 contextmenu.push({name: 'remove-folder', title: '#{sites-structure-contextmenu-deletepage}', icon: Colibri.UI.ContextMenuRemoveIcon});
+                contextmenu.push({name: '-'});
+                if(!itemData.data.published) {
+                    contextmenu.push({name: 'publish', title: '#{sites-structure-contextmenu-publish}', icon: Colibri.UI.ContextMenuMark});
+                } else {
+                    contextmenu.push({name: 'unpublish', title: '#{sites-structure-contextmenu-unpublish}', icon: Colibri.UI.ContextMenuUnmark});
+                }    
             }
             contextmenu.push({name: '-'});
             contextmenu.push({name: 'copy-path', title: '#{sites-structure-contextmenu-copypath}', icon: Colibri.UI.CopyIcon});
@@ -230,6 +242,28 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             }).catch(() => {
                 App.Alert.Show('#{sites-structure-windowtitle-urlcopiederror}', '#{sites-structure-windowtitle-urlcopiederrortext}', '#{sites-structure-windowtitle-urlcopiederrortext-close}');
             })
+        }
+        else if(menuData.name == 'close') {
+            item.tag.data.closed = true;
+            Sites.SaveDomain(item.tag.data);
+        }
+        else if(menuData.name == 'open') {
+            item.tag.data.closed = false;
+            Sites.SaveDomain(item.tag.data);
+        }
+        else if(menuData.name == 'publish') {
+            const data = Object.cloneRecursive(item.tag.data);
+            data.published = true;
+            data.parent = item.tag?.parent?.id ?? 0;
+            data.domain = item.tag?.data?.domain?.id;
+            Sites.SaveFolder(data);
+        }
+        else if(menuData.name == 'unpublish') {
+            const data = Object.cloneRecursive(item.tag.data);
+            data.published = false;
+            data.parent = item.tag?.parent?.id ?? 0;
+            data.domain = item.tag?.data?.domain?.id;
+            Sites.SaveFolder(data);
         }
     }
 

@@ -20,6 +20,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
         this._storage.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStorageContextMenu(event, args))
         this._storage.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStorageContextMenu(event, args));
+        this._storage.AddHandler('NodeDoubleClicked', (event, args) => this.__storageNodeDoubleClicked(event, args));
 
         this._storage.AddHandler('DoubleClicked', (event, args) => this.__storagesDoubleClick(event, args));
 
@@ -78,8 +79,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
-     * @private
-     * @param {Colibri.Events.Event} event event object
+     * @private* @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
      */ 
     __renderModulesContextMenu(event, args) {
@@ -107,6 +107,40 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.LB, Colibri.UI.ContextMenu.LT] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RT], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
 
+    }
+
+    __storageNodeDoubleClicked(event, args) {
+        const isIconClicked = args.clickedOnIcon;
+        if(isIconClicked && args.item.tag.type === 'field') {
+            const contextmenu = [];
+            const colibriForms = [];
+            const modules = [];
+            Object.forEach(Colibri.UI.Forms.Field.Components, (name, value) => {
+                if(value.className.indexOf('Colibri.UI.Forms') !== -1) {
+                    colibriForms.push({ name: 'component-' + value.className, title: name, icon: value.icon });
+                } else if(value.className.indexOf('App.Modules') !== -1) {
+                    const moduleName = value.className.split('.').splice(0, 3).join('.').replaceAll('App.Modules.', '');
+                    if(modules[moduleName] === undefined) {
+                        modules[moduleName] = [];
+                    }
+                    modules[moduleName].push({ name: 'component-' + value.className, title: name, icon: value.icon });
+                }    
+            });
+            
+            contextmenu.push({name: 'Colibri.UI.Forms.Hidden', title: 'Hidden'});
+            contextmenu.push({name: 'Colibri.UI.Forms', title: 'Colibri.UI.Forms', children: colibriForms});
+            Object.forEach(modules, (name, value) => {
+                contextmenu.push({value: name, title: name, children: value});
+            });
+
+            const iconBounds = args.item.iconElement.bounds();
+            args.item.contextmenu = contextmenu;
+            args.item.ShowContextMenu(
+                [Colibri.UI.ContextMenu.LB, Colibri.UI.ContextMenu.LT], 
+                '', 
+                { left: iconBounds.left, top: iconBounds.top + iconBounds.height }
+            );
+        }
     }
 
     __renderStorageContextMenu(event, args) {
@@ -2271,7 +2305,25 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             return false;
         }
 
-        if (menuData.name == 'copy-field') {
+        if(menuData.name.indexOf('component-') === 0) {
+            const component = menuData.name.replaceAll('component-', '');
+            let field = 'component';
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+                
+                const fieldData = node.tag.entry;
+                if(fieldData.default) {
+                    fieldData.hasdefault = true;
+                }
+
+                if(fieldData.group && fieldData.group !== 'window') {
+                    fieldData.group_enabled = true;
+                }
+
+                fieldData.component = component;
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+            }
+
+        } else if (menuData.name == 'copy-field') {
             if(node.tag.type === 'field') {
                 this._copiedField = node.tag.entry;
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldcopied}', Colibri.UI.Notice.Success, 5000));
