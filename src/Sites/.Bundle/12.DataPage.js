@@ -147,6 +147,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     __storagesSelectionChanged(event, args) {
 
         const selection = this._storages.selected;
+        this._data.ResetSort();
+        this._filterData = {};
+        this._searchFilter.RemoveClass('-selected');
 
         this._searchInput.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._searchFilter.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
