@@ -50,7 +50,7 @@ class Publications extends BaseModelDataTable
      */
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Publications
     {
-        $storage = Storages::Create()->Load('pubs', 'sites');
+        $storage = Storages::Instance()->Load('pubs', 'sites');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
 
     }
@@ -73,7 +73,7 @@ class Publications extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?Publications
     {
-        $storage = Storages::Create()->Load('pubs', 'sites');
+        $storage = Storages::Instance()->Load('pubs', 'sites');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -190,7 +190,7 @@ class Publications extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('pubs');
+        $storage = Storages::Instance()->Load('pubs');
         return self::DeleteByFilter($storage, $filter);
     }
 
@@ -207,7 +207,7 @@ class Publications extends BaseModelDataTable
     static function DeleteAllNotExistsInStorage(Storage|string $storage): bool
     {
         if (is_string($storage)) {
-            $storage = Storages::Create()->Load($storage);
+            $storage = Storages::Instance()->Load($storage);
         }
         return self::DeleteAllByFilter('{storage}=\'' . $storage->name . '\' and not {row} in (select ' . $storage->name . '_id from ' . $storage->table . ')');
     }

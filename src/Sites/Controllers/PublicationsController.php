@@ -30,11 +30,11 @@ class PublicationsController extends WebController
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -80,11 +80,11 @@ class PublicationsController extends WebController
      */
     public function Copy(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -128,11 +128,11 @@ class PublicationsController extends WebController
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -156,11 +156,11 @@ class PublicationsController extends WebController
      */
     public function Create(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -179,7 +179,7 @@ class PublicationsController extends WebController
         }
 
         $folder = $folder ? Pages::LoadById($folder) : null;
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadEmpty();
 
@@ -234,11 +234,11 @@ class PublicationsController extends WebController
      */
     public function Publish(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -253,7 +253,7 @@ class PublicationsController extends WebController
         }
 
         $folder = $folder ? Pages::LoadById($folder) : null;
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         $accessPoint = $domain->Storage()->accessPoint;
@@ -304,11 +304,11 @@ class PublicationsController extends WebController
      */
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 

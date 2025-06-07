@@ -31,11 +31,11 @@ class PagesController extends WebController
     public function Domains(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance?->current) {
+        if (!SecurityModule::Instance()?->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance?->current?->IsCommandAllowed('sites.structure')) {
+        if (!SecurityModule::Instance()?->current?->IsCommandAllowed('sites.structure')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -55,11 +55,11 @@ class PagesController extends WebController
     public function DomainKeys(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -87,15 +87,15 @@ class PagesController extends WebController
     public function Properties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        $storage = Storages::Create()->Load($post->{'type'});
+        $storage = Storages::Instance()->Load($post->{'type'});
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -141,15 +141,15 @@ class PagesController extends WebController
      */
     public function SaveProperties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.edit')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        $storage = Storages::Create()->Load($post->{'type'});
+        $storage = Storages::Instance()->Load($post->{'type'});
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -194,11 +194,11 @@ class PagesController extends WebController
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -221,14 +221,14 @@ class PagesController extends WebController
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'id'};
-        if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
+        if (!$id && !SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
-        } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+        } elseif (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.edit')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -299,14 +299,14 @@ class PagesController extends WebController
     public function SaveDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
         $id = $post->{'id'};
-        if (!$id && !SecurityModule::$instance->current->IsCommandAllowed('sites.structure.add')) {
+        if (!$id && !SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.add')) {
             throw new PermissionDeniedException('Permission denied', 403);
-        } elseif (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+        } elseif (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.edit')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -358,11 +358,11 @@ class PagesController extends WebController
      */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.remove')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.remove')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -392,11 +392,11 @@ class PagesController extends WebController
      */
     public function DeleteDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.remove')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.remove')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
@@ -433,11 +433,11 @@ class PagesController extends WebController
         $to = $post->{'to'};
         $sibling = $post->{'sibling'};
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.edit')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.edit')) {
             throw new PermissionDeniedException('Permission denied', 403);
         }
 

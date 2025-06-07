@@ -30,12 +30,6 @@ use App\Modules\Sites\Models\Texts;
 class Module extends BaseModule
 {
 
-    /**
-     * Синглтон
-     *
-     * @var Module
-     */
-    public static $instance = null;
 
 
     /**
@@ -44,7 +38,6 @@ class Module extends BaseModule
      */
     public function InitializeModule(): void
     {
-        self::$instance = $this;
     }
 
     /**
@@ -90,7 +83,7 @@ class Module extends BaseModule
         $permissions['sites.storages.edit'] = '#{sites-structure-editstorage-permissions}';
         $permissions['sites.storages.remove'] = '#{sites-structure-deletestorage-permissions}';
 
-        $storages = Storages::Create()->GetStorages();
+        $storages = Storages::Instance()->GetStorages();
         foreach ($storages as $storage) {
             if (($storage->{'params'}['visible'] ?? true) === false) {
                 continue;

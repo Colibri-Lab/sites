@@ -34,12 +34,12 @@ class DataController extends WebController
      */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
         $storage = $post->{'storage'};
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -50,7 +50,7 @@ class DataController extends WebController
         $page = (int) $post->{'page'} ?: 1;
         $pagesize = (int) $post->{'pagesize'} ?: 20;
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         if($storage->isSoftDelete && $storage->isShowDeletedRows) {
             $tableClass::SetFullSelect(true);
@@ -84,18 +84,18 @@ class DataController extends WebController
      */
     public function Row(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
         $storage = $post->{'storage'};
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
         $id = $post->{'row'};
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -119,7 +119,7 @@ class DataController extends WebController
      */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -127,14 +127,14 @@ class DataController extends WebController
         $data = (object) $post->{'data'};
         $pub = $post->{'pub'};
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed(
+        if (!SecurityModule::Instance()->current->IsCommandAllowed(
             'sites.storages.' . $storage . ($data->id ?? 0 ? '.edit' : '.add')
         )) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, ] = $storage->GetModelClasses();
 
         if ($data->id ?? 0) {
@@ -197,11 +197,11 @@ class DataController extends WebController
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -210,7 +210,7 @@ class DataController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -219,7 +219,7 @@ class DataController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         if (!$tableClass::DeleteAllByIds(explode(',', $ids))) {
@@ -239,11 +239,11 @@ class DataController extends WebController
     public function Clear(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -252,11 +252,11 @@ class DataController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         if (!$tableClass::DeleteAllByFilter('')) {
@@ -276,11 +276,11 @@ class DataController extends WebController
     public function Restore(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.structure.pubs.add')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.structure.pubs.add')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -289,7 +289,7 @@ class DataController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.remove')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -298,7 +298,7 @@ class DataController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         if (!$tableClass::RestoreAllByIds(explode(',', $ids))) {
@@ -319,12 +319,12 @@ class DataController extends WebController
     public function Export(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
         $storage = $post->{'storage'};
-        if (!SecurityModule::$instance->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
@@ -334,7 +334,7 @@ class DataController extends WebController
         $sortOrder = $post->{'sortorder'};
 
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         $datarows = $tableClass::LoadBy(-1, 20, $term, $filterFields, $sortField ?? '', $sortOrder ?? 'asc');
@@ -365,14 +365,14 @@ class DataController extends WebController
     public function SaveDataList(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
-        if (!SecurityModule::$instance->current) {
+        if (!SecurityModule::Instance()->current) {
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
         $storage = $post->{'storage'};
         $dataList = (array) $post->{'data'};
 
-        $storage = Storages::Create()->Load($storage);
+        $storage = Storages::Instance()->Load($storage);
         [$tableClass, ] = $storage->GetModelClasses();
 
         $accessPoint = $storage->accessPoint;
@@ -383,7 +383,7 @@ class DataController extends WebController
             foreach($dataList as $data) {
                 $data = (object)$data;
 
-                if (!SecurityModule::$instance->current->IsCommandAllowed(
+                if (!SecurityModule::Instance()->current->IsCommandAllowed(
                     'sites.storages.' . $storage->name . ($data->id ?? 0 ? '.edit' : '.add')
                 )) {
                     throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);

@@ -172,7 +172,7 @@ class Publication extends BaseModelDataRow
 
     public function DataRow(): mixed
     {
-        $storage = Storages::Create()->Load($this->storage);
+        $storage = Storages::Instance()->Load($this->storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         return $tableClass::LoadById($this->row);
     }

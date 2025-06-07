@@ -32,7 +32,7 @@ class DashboardController extends WebController
         $result = [];
         $message = 'Result message';
 
-        $storages = Storages::Create();
+        $storages = Storages::Instance();
         $list = $storages->GetStorages();
         foreach($list as $storage) {
             $result[] = $storage->GetStatus();

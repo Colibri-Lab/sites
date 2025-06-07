@@ -47,7 +47,7 @@ class Texts extends BaseModelDataTable
      */
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Texts
     {
-        $storage = Storages::Create()->Load('texts', 'sites');
+        $storage = Storages::Instance()->Load('texts', 'sites');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
 
@@ -69,7 +69,7 @@ class Texts extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?Texts
     {
-        $storage = Storages::Create()->Load('texts', 'sites');
+        $storage = Storages::Instance()->Load('texts', 'sites');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -124,7 +124,7 @@ class Texts extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('texts');
+        $storage = Storages::Instance()->Load('texts');
         if (!self::DeleteByFilter($storage->table, $filter)) {
             return false;
         }
