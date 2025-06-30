@@ -10,7 +10,7 @@ App.Modules.Sites.ModulesManagerListItem = class extends Colibri.UI.Pane {
         this._nam = this.Children('container/nam');
         this.hasContextMenu = true;
 
-        this.AddHandler('ContextMenuIconClicked', (event, args) => this.__thisContextMenuItemClicked(event, args));
+        this.AddHandler('ContextMenuIconClicked', this.__thisContextMenuItemClicked);
 
     }
 

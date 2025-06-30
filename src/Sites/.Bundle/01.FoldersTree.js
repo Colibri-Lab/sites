@@ -5,8 +5,8 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         this.AddClass('app-manager-folder-tree');
         this._foldersList = [];
 
-        this.AddHandler('NodeExpanded', (event, args) => this.__thisNodeExpanded(event, args));
-        this.AddHandler('NodeCollapsed', (event, args) => this.__thisNodeExpanded(event, args));
+        this.AddHandler('NodeExpanded', this.__thisNodeExpanded);
+        this.AddHandler('NodeCollapsed', this.__thisNodeExpanded);
     }
 
     __thisNodeExpanded(event, args) {

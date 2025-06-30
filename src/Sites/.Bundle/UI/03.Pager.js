@@ -18,11 +18,11 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._affected = 1;
         this._pageSize = 20;
 
-        this._left.AddHandler('Clicked', (event, args) => this.__leftClicked(event, args));
-        this._right.AddHandler('Clicked', (event, args) => this.__rightClicked(event, args)); 
-        this._currentPage.AddHandler(['Filled', 'Cleared'], (event, args) => this.__currentPageChanged(event, args));   
-        this._currentPagesize.AddHandler(['Filled', 'Cleared'], (event, args) => this.__currentPagesizeChanged(event, args));   
-        this._reload.AddHandler('Clicked', (event, args) => this.__reloadClicked(event, args));
+        this._left.AddHandler('Clicked', this.__leftClicked, false, this);
+        this._right.AddHandler('Clicked', this.__rightClicked, false, this); 
+        this._currentPage.AddHandler(['Filled', 'Cleared'], this.__currentPageChanged, false, this);   
+        this._currentPagesize.AddHandler(['Filled', 'Cleared'], this.__currentPagesizeChanged, false, this);   
+        this._reload.AddHandler('Clicked', this.__reloadClicked, false, this);
 
     }
 

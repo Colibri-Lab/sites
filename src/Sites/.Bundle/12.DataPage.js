@@ -22,27 +22,27 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
 
 
-        this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
+        this._storages.AddHandler('SelectionChanged', this.__storagesSelectionChanged, false, this);
 
-        // this._data.AddHandler('ScrolledToBottom', (event, args) => this.__dataScrolledToBottom(event, args));
-        this._pagerData.AddHandler('Changed', (event, args) => this.__pagerDataChanged(event, args));
-        this._data.AddHandler('SelectionChanged', (event, args) => this.__dataSelectionChanged(event, args));
-        this._data.AddHandler('CheckChanged', (event, args) => this.__checkChangedOnData(event, args));
-        this._data.AddHandler('DoubleClicked', (event, args) => this.__doubleClickedOnData(event, args));
-        this._data.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderDataContextMenu(event, args));
-        this._data.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnDataContextMenu(event, args));
-        this._data.AddHandler('ColumnClicked', (event, args) => this.__clickOnDataColumn(event, args));
+        // this._data.AddHandler('ScrolledToBottom', this.__dataScrolledToBottom, false, this);
+        this._pagerData.AddHandler('Changed', this.__pagerDataChanged, false, this);
+        this._data.AddHandler('SelectionChanged', this.__dataSelectionChanged, false, this);
+        this._data.AddHandler('CheckChanged', this.__checkChangedOnData, false, this);
+        this._data.AddHandler('DoubleClicked', this.__doubleClickedOnData, false, this);
+        this._data.AddHandler('ContextMenuIconClicked', this.__renderDataContextMenu, false, this);
+        this._data.AddHandler('ContextMenuItemClicked', this.__clickOnDataContextMenu, false, this);
+        this._data.AddHandler('ColumnClicked', this.__clickOnDataColumn, false, this);
 
-        this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
-        this._clearData.AddHandler('Clicked', (event, args) => this.__clearDataButtonClicked(event, args));
-        this._restoreData.AddHandler('Clicked', (event, args) => this.__restoreDataButtonClicked(event, args));
-        this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
-        this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
-        this._dublData.AddHandler('Clicked', (event, args) => this.__dublDataButtonClicked(event, args));
-        this._exportData.AddHandler('Clicked', (event, args) => this.__exportDataButtonClicked(event, args));
+        this._deleteData.AddHandler('Clicked', this.__deleteDataButtonClicked, false, this);
+        this._clearData.AddHandler('Clicked', this.__clearDataButtonClicked, false, this);
+        this._restoreData.AddHandler('Clicked', this.__restoreDataButtonClicked, false, this);
+        this._addData.AddHandler('Clicked', this.__addDataButtonClicked, false, this);
+        this._editData.AddHandler('Clicked', this.__editDataButtonClicked, false, this);
+        this._dublData.AddHandler('Clicked', this.__dublDataButtonClicked, false, this);
+        this._exportData.AddHandler('Clicked', this.__exportDataButtonClicked, false, this);
 
-        this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
-        this._searchFilter.AddHandler('Clicked', (event, args) => this.__searchFilterClicked(event, args));
+        this._searchInput.AddHandler(['Filled', 'Cleared'], this.__searchInputFilled, false, this);
+        this._searchFilter.AddHandler('Clicked', this.__searchFilterClicked, false, this);
     }
 
     _addAdditionalModuleMethods() {

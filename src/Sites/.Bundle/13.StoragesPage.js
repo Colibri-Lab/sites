@@ -15,21 +15,21 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         
 
         this._modules.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderModulesContextMenu(event, args))
-        this._modules.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnModulesContextMenu(event, args));
+        this._modules.AddHandler('ContextMenuItemClicked', this.__clickOnModulesContextMenu, false, this);
         this._storages.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStoragesContextMenu(event, args))
-        this._storages.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStoragesContextMenu(event, args));
+        this._storages.AddHandler('ContextMenuItemClicked', this.__clickOnStoragesContextMenu, false, this);
         this._storage.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderStorageContextMenu(event, args))
-        this._storage.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnStorageContextMenu(event, args));
-        this._storage.AddHandler('NodeDoubleClicked', (event, args) => this.__storageNodeDoubleClicked(event, args));
+        this._storage.AddHandler('ContextMenuItemClicked', this.__clickOnStorageContextMenu, false, this);
+        this._storage.AddHandler('NodeDoubleClicked', this.__storageNodeDoubleClicked, false, this);
 
-        this._storage.AddHandler('DoubleClicked', (event, args) => this.__storagesDoubleClick(event, args));
+        this._storage.AddHandler('DoubleClicked', this.__storagesDoubleClick, false, this);
 
-        this._modules.AddHandler('SelectionChanged', (event, args) => this.__modulesSelectionChanged(event, args)); 
-        this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args)); 
+        this._modules.AddHandler('SelectionChanged', this.__modulesSelectionChanged, false, this); 
+        this._storages.AddHandler('SelectionChanged', this.__storagesSelectionChanged, false, this); 
 
         this._dragManager = new Colibri.UI.DragManager([this._storage], [this._storage]);
-        this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
-        this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
+        this._dragManager.AddHandler('DragDropComplete', this.__dragDropComplete, false, this);
+        this._dragManager.AddHandler('DragDropOver', this.__dragDropOver, false, this);
         this._storage.sorting = true;    
 
         App.Store.AsyncQuery('app.settings').then((settings) => {

@@ -11,13 +11,13 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         this._searchInput = this.Children('split/data-pane/search-pane/search-input');
         this._save = this.Children('save');
 
-        this._storages.AddHandler('SelectionChanged', (event, args) => this.__storagesSelectionChanged(event, args));
-        this._data.AddHandler(['SelectionChanged', 'CheckChanged'], (event, args) => this.__dataSelectionChanged(event, args));
-        this._data.AddHandler('ColumnClicked', (event, args) => this.__clickOnDataColumn(event, args));        
-        this._data.AddHandler('ScrolledToBottom', (event, args) => this.__dataScrolledToBottom(event, args));
-        this._save.AddHandler('Clicked', (event, args) => this.__saveClicked(event, args));
+        this._storages.AddHandler('SelectionChanged', this.__storagesSelectionChanged, false, this);
+        this._data.AddHandler(['SelectionChanged', 'CheckChanged'], this.__dataSelectionChanged, false, this);
+        this._data.AddHandler('ColumnClicked', this.__clickOnDataColumn, false, this);        
+        this._data.AddHandler('ScrolledToBottom', this.__dataScrolledToBottom, false, this);
+        this._save.AddHandler('Clicked', this.__saveClicked, false, this);
 
-        this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
+        this._searchInput.AddHandler(['Filled', 'Cleared'], this.__searchInputFilled, false, this);
 
     }
 

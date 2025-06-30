@@ -4,7 +4,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         super(name, container);
         this.AddClass('app-manager-datagrid-component');
 
-        this.AddHandler('ColumnClicked', (event, args) => this.__clickOnDataColumn(event, args));        
+        this.AddHandler('ColumnClicked', this.__clickOnDataColumn);
         this._sortData = {name: '', order: ''};
     }
 

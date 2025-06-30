@@ -17,27 +17,27 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         this._searchInput = this.Children('split/publications-pane/search-pane/search-input');
 
-        this._folders.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderFoldersContextMenu(event, args));
-        this._folders.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnFoldersContextMenu(event, args));        
-        this._folders.AddHandler('DoubleClicked', (event, args) => this.__foldersDoubleClick(event, args));
-        this._folders.AddHandler('SelectionChanged', (event, args) => this.__selectionChangedOnFolder(event, args));
+        this._folders.AddHandler('ContextMenuIconClicked', this.__renderFoldersContextMenu, false, this);
+        this._folders.AddHandler('ContextMenuItemClicked', this.__clickOnFoldersContextMenu, false, this);        
+        this._folders.AddHandler('DoubleClicked', this.__foldersDoubleClick, false, this);
+        this._folders.AddHandler('SelectionChanged', this.__selectionChangedOnFolder, false, this);
 
-        this._publications.AddHandler('SelectionChanged', (event, args) => this.__selectionChangedOnPublication(event, args));
-        this._publications.AddHandler('ContextMenuIconClicked', (event, args) => this.__renderPublicationsContextMenu(event, args));
-        this._publications.AddHandler('ContextMenuItemClicked', (event, args) => this.__clickOnPublicationsContextMenu(event, args));        
-        this._publications.AddHandler('ScrolledToBottom', (event, args) => this.__publicationsScrolledToBottom(event, args));
-        this._publications.AddHandler('CheckChanged', (event, args) => this.__checkChangedOnPublications(event, args));
-        this._publications.AddHandler('DoubleClicked', (event, args) => this.__doubleClickedOnPublication(event, args));
+        this._publications.AddHandler('SelectionChanged', this.__selectionChangedOnPublication, false, this);
+        this._publications.AddHandler('ContextMenuIconClicked', this.__renderPublicationsContextMenu, false, this);
+        this._publications.AddHandler('ContextMenuItemClicked', this.__clickOnPublicationsContextMenu, false, this);        
+        this._publications.AddHandler('ScrolledToBottom', this.__publicationsScrolledToBottom, false, this);
+        this._publications.AddHandler('CheckChanged', this.__checkChangedOnPublications, false, this);
+        this._publications.AddHandler('DoubleClicked', this.__doubleClickedOnPublication, false, this);
 
-        this._dragManager.AddHandler('DragDropComplete', (event, args) => this.__dragDropComplete(event, args));
-        this._dragManager.AddHandler('DragDropOver', (event, args) => this.__dragDropOver(event, args));
+        this._dragManager.AddHandler('DragDropComplete', this.__dragDropComplete, false, this);
+        this._dragManager.AddHandler('DragDropOver', this.__dragDropOver, false, this);
 
-        this._searchInput.AddHandler(['Filled', 'Cleared'], (event, args) => this.__searchInputFilled(event, args));
+        this._searchInput.AddHandler(['Filled', 'Cleared'], this.__searchInputFilled, false, this);
 
-        this._deleteData.AddHandler('Clicked', (event, args) => this.__deleteDataButtonClicked(event, args));
-        this._addData.AddHandler('Clicked', (event, args) => this.__addDataButtonClicked(event, args));
-        this._editData.AddHandler('Clicked', (event, args) => this.__editDataButtonClicked(event, args));
-        this._publishButton.AddHandler('Clicked', (event, args) => this.__publishButtonClicked(event, args));
+        this._deleteData.AddHandler('Clicked', this.__deleteDataButtonClicked, false, this);
+        this._addData.AddHandler('Clicked', this.__addDataButtonClicked, false, this);
+        this._editData.AddHandler('Clicked', this.__editDataButtonClicked, false, this);
+        this._publishButton.AddHandler('Clicked', this.__publishButtonClicked, false, this);
 
     }
 
