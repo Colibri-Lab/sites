@@ -18,6 +18,7 @@ App.Modules.Sites.PublicationsGrid = class extends Colibri.UI.Grid {
 
         if(data.length == 0) {
             this.ClearAllRows();
+            return;
         }
 
         let found = [];
