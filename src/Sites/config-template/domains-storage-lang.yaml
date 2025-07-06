@@ -50,6 +50,7 @@ fields:
     lookup:
       binding: app.sites.domainkeys
   description:
+    component: App.Modules.Lang.UI.Text
     type: json
     class: App\Modules\Lang\Models\Fields\Text
     desc:
@@ -103,7 +104,6 @@ fields:
       ru: ""
       en: ""
       hy: ""
-    component: App.Modules.Lang.UI.Text
     attrs: []
     group: window
   closed:
