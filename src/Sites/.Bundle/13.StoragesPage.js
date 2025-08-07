@@ -728,7 +728,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-fieldcomponent}',
                     note: '#{sites-storages-fieldcomponent-note}',
                     selector: {
-                        __render: (itemData) => '<div style="display: flex; align-items: center;">' + (itemData.icon ?? '<svg width="28" height="28"></svg>') + '<span style="display: block; margin-left: 10px;">' + itemData.title + '</span></div>'
+                        __render: (itemData) => '<div style="display: flex; align-items: center;">' + (itemData?.icon ?? '<svg width="28" height="28"></svg>') + '<span style="display: block; margin-left: 10px;">' + (itemData?.title ?? '') + '</span></div>'
                     },
                     lookup: () => {
                         return new Promise((rs, rj) => {
