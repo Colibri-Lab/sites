@@ -6,6 +6,7 @@ sites-storages-messages-properties-saved:
   es: Propiedades personalizadas guardadas
   kk: Реттелген қасиеттер сақталды
   uz: Maxsus xususiyatlar saqlandi
+  cz: Vlastnosti byly uloženy
 sites-storages-messages-pages-saved:
   ru: Страница сохранена
   en: Page saved
@@ -14,6 +15,7 @@ sites-storages-messages-pages-saved:
   es: Página guardada
   kk: Бет сақталды
   uz: Sahifa saqlandi
+  cz: Stránka byla uložena
 sites-storages-messages-domains-saved:
   ru: Домен сохранен
   en: Domain saved
@@ -22,6 +24,7 @@ sites-storages-messages-domains-saved:
   es: Dominio guardado
   kk: Домен сақталды
   uz: Domen saqlandi
+  cz: Doména byla uložena
 sites-storages-messages-domains-deleted:
   ru: Домен удален
   en: Domain deleted
@@ -30,6 +33,7 @@ sites-storages-messages-domains-deleted:
   es: Dominio eliminado
   kk: Домен жойылды
   uz: Domen o'chirildi
+  cz: Doména byla odstraněna
 sites-storages-messages-pages-deleted:
   ru: Страница удалена
   en: Page deleted
@@ -38,6 +42,7 @@ sites-storages-messages-pages-deleted:
   es: Página eliminada
   kk: Бет жойылды
   uz: Sahifa o'chirildi
+  cz: Stránka byla odstraněna
 sites-storages-messages-pages-moved:
   ru: Страница перенесена
   en: Page moved
@@ -46,6 +51,7 @@ sites-storages-messages-pages-moved:
   es: Página movida
   kk: Бет көшірілді
   uz: Sahifa ko'chirildi
+  cz: Stránka byla přesunuta
 sites-storages-messages-publications-copied:
   ru: Публикация скопирована
   en: Publication copied
@@ -54,6 +60,7 @@ sites-storages-messages-publications-copied:
   es: Publicación copiada
   kk: Жарияланым көшірілді
   uz: Noshir nusxalandi
+  cz: Publikace byla zkopírována
 sites-storages-messages-publications-moved:
   ru: Публикация перемещена
   en: Publication moved
@@ -62,6 +69,7 @@ sites-storages-messages-publications-moved:
   es: Publicación movida
   kk: Жарияланым көшірілді
   uz: Noshir ko'chirildi
+  cz: Publikace byla přesunuta
 sites-storages-messages-publications-deleted:
   ru: Публикация удалена
   en: Publication removed
@@ -70,6 +78,7 @@ sites-storages-messages-publications-deleted:
   es: Publicación eliminada
   kk: Жарияланым жойылды
   uz: Noshir o'chirildi
+  cz: Publikace byla odstraněna
 sites-storages-messages-data-deleted:
   ru: Данные удалены
   en: Data saved
@@ -78,6 +87,7 @@ sites-storages-messages-data-deleted:
   es: Datos eliminados
   kk: Деректер жойылды
   uz: Ma'lumotlar o'chirildi
+  cz: Data byla odstraněna
 sites-storages-messages-storage-saved:
   ru: Хранилище сохранено
   en: Storage saved
@@ -86,6 +96,7 @@ sites-storages-messages-storage-saved:
   es: Almacenamiento guardado
   kk: Сақтау орны сақталды
   uz: Saqlash joyi saqlandi
+  cz: Úložiště bylo uloženo
 sites-storages-messages-storage-deleted:
   ru: Хранилище удалено
   en: Storage deleted
@@ -94,6 +105,7 @@ sites-storages-messages-storage-deleted:
   es: Almacenamiento eliminado
   kk: Сақтау орны жойылды
   uz: Saqlash joyi o'chirildi
+  cz: Úložiště bylo odstraněno
 sites-storages-messages-field-saved:
   ru: Свойство сохранено
   en: Property saved
@@ -102,6 +114,7 @@ sites-storages-messages-field-saved:
   es: Propiedad guardada
   kk: Қасиет сақталды
   uz: Xususiyat saqlandi
+  cz: Vlastnost byla uložena
 sites-storages-messages-field-deleted:
   ru: Свойство удалено
   en: Property deleted
@@ -110,6 +123,7 @@ sites-storages-messages-field-deleted:
   es: Propiedad eliminada
   kk: Қасиет жойылды
   uz: Xususiyat o'chirildi
+  cz: Vlastnost byla odstraněna
 sites-storages-messages-field-moved:
   ru: Свойство перемещено
   en: Property moved
@@ -118,6 +132,7 @@ sites-storages-messages-field-moved:
   es: Propiedad movida
   kk: Қасиет көшірілді
   uz: Xususiyat ko'chirildi
+  cz: Vlastnost byla přesunuta
 sites-storages-messages-index-saved:
   ru: Индекс сохранен
   en: Index saved
@@ -126,6 +141,7 @@ sites-storages-messages-index-saved:
   es: Índice guardado
   kk: Индекс сақталды
   uz: Indeks saqlandi
+  cz: Index byl uložen
 sites-storages-messages-index-deleted:
   ru: Индекс удален
   en: Index deleted
@@ -134,6 +150,7 @@ sites-storages-messages-index-deleted:
   es: Índice eliminado
   kk: Индекс жойылды
   uz: Indeks o'chirildi
+  cz: Index byl odstraněn
 sites-storages-messages-field-exists:
   ru: Поле существует, пожалуйста, переименуйте
   en: Field exists, please rename
@@ -142,6 +159,7 @@ sites-storages-messages-field-exists:
   es: El campo existe, por favor renómbralo
   kk: Өріс бар, қайта атаңыз
   uz: Maydon mavjud, qayta nomlang
+  cz: Pole již existuje, prosím přejmenujte
 sites-storages-messages-field-save:
   ru: Сохранить
   en: Save
@@ -150,6 +168,7 @@ sites-storages-messages-field-save:
   es: Guardar
   kk: Сақтау
   uz: Saqlash
+  cz: Uložit
 sites-storages-messages-field-exist:
   ru: Поле существует
   en: Field exists
@@ -158,6 +177,7 @@ sites-storages-messages-field-exist:
   es: El campo existe
   kk: Өріс бар
   uz: Maydon mavjud
+  cz: Pole již existuje
 sites-storages-messages-data-restored:
   ru: Данные восстановлены
   en: Data restored
@@ -166,6 +186,7 @@ sites-storages-messages-data-restored:
   es: Datos restaurados
   kk: Деректер қалпына келтірілді
   uz: Ma'lumotlar tiklandi
+  cz: Data byla obnovena
 sites-storages-messages-data-cleared:
   ru: Хранилище успешно очищено
   en: Storage successfully cleared
@@ -174,3 +195,4 @@ sites-storages-messages-data-cleared:
   es: Almacenamiento limpiado con éxito
   kk: Сақтау орны сәтті тазартылды
   uz: Saqlash joyi muvaffaqiyatli tozalandi
+  cz: Úložiště bylo úspěšně vymazáno

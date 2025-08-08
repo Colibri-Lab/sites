@@ -6,6 +6,7 @@ sites-structure-datagrid-created:
   es: Fecha de creación
   kk: Жасалған күні
   uz: Yaratilgan sana
+  cz: Datum vytvoření
 sites-structure-datagrid-deleted:
   ru: Удалена
   en: Deleted
@@ -14,3 +15,4 @@ sites-structure-datagrid-deleted:
   es: Eliminado
   kk: Жойылды
   uz: O'chirilgan
+  cz: Smazáno

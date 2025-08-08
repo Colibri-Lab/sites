@@ -6,6 +6,7 @@ sites-datawindow-search-placeholder:
   es: Buscar
   kk: Іздеу
   uz: Qidiruv
+  cz: Hledat
 sites-datawindow-dataempty:
   ru: Данные не найдены
   en: Data not found
@@ -14,6 +15,7 @@ sites-datawindow-dataempty:
   es: Datos no encontrados
   kk: Мәліметтер табылмады
   uz: Ma'lumot topilmadi
+  cz: Data nebyla nalezena
 sites-datawindow-buttons-publish:
   ru: Опубликовать выбранное
   en: Publish selected rows
@@ -22,6 +24,7 @@ sites-datawindow-buttons-publish:
   es: Publicar filas seleccionadas
   kk: Таңдалған жолдарды жариялау
   uz: Tanlangan qatorlarni chop etish
+  cz: Publikovat vybrané řádky
 sites-datawindow-buttons-close:
   ru: Закрыть
   en: Close
@@ -30,3 +33,4 @@ sites-datawindow-buttons-close:
   es: Cerrar
   kk: Жабу
   uz: Yopish
+  cz: Zavřít

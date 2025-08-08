@@ -6,6 +6,7 @@ sites-structure-folders-title:
   es: Secciones del sitio
   kk: Сайт бөлімдері
   uz: Sayt bo'limlari
+  cz: Sekce webu
 sites-structure-publications-title:
   ru: Публикации
   en: Publications
@@ -14,6 +15,7 @@ sites-structure-publications-title:
   es: Publicaciones
   kk: Жарияланымдар
   uz: Nashrlar
+  cz: Publikace
 sites-structure-search-placeholder:
   ru: Поиск
   en: Search
@@ -22,6 +24,7 @@ sites-structure-search-placeholder:
   es: Buscar
   kk: Іздеу
   uz: Qidiruv
+  cz: Hledat
 sites-structure-publicationsempty:
   ru: Публикаций не найдено
   en: Publications not found
@@ -30,6 +33,7 @@ sites-structure-publicationsempty:
   es: Publicaciones no encontradas
   kk: Жарияланымдар табылмады
   uz: Nashrlar topilmadi
+  cz: Publikace nenalezeny
 sites-structure-publications-created:
   ru: Создана
   en: Created
@@ -38,6 +42,7 @@ sites-structure-publications-created:
   es: Creado
   kk: Жасалған
   uz: Yaratilgan
+  cz: Vytvořeno
 sites-structure-publications-page:
   ru: Страница
   en: Page
@@ -46,6 +51,7 @@ sites-structure-publications-page:
   es: Página
   kk: Бет
   uz: Sahifa
+  cz: Stránka
 sites-structure-publications-mainpage:
   ru: Главная страница
   en: Main page
@@ -54,6 +60,7 @@ sites-structure-publications-mainpage:
   es: Página principal
   kk: Басты бет
   uz: Asosiy sahifa
+  cz: Hlavní stránka
 sites-structure-publications-storage:
   ru: Хранилище
   en: Storage
@@ -62,6 +69,7 @@ sites-structure-publications-storage:
   es: Almacenamiento
   kk: Сақтау
   uz: Saqlash
+  cz: Úložiště
 sites-structure-publications-row:
   ru: Строка
   en: Row
@@ -70,6 +78,7 @@ sites-structure-publications-row:
   es: Fila
   kk: Жол
   uz: Qator
+  cz: Řádek
 sites-structure-publications-data:
   ru: Данные
   en: Data
@@ -78,6 +87,7 @@ sites-structure-publications-data:
   es: Datos
   kk: Деректер
   uz: Ma'lumotlar
+  cz: Data
 sites-structure-buttons-publish:
   ru: Публикация
   en: Publication
@@ -86,6 +96,7 @@ sites-structure-buttons-publish:
   es: Publicación
   kk: Жариялау
   uz: Nashr qilish
+  cz: Publikace
 sites-structure-buttons-adddata:
   ru: Данные
   en: Add data
@@ -94,6 +105,7 @@ sites-structure-buttons-adddata:
   es: Agregar datos
   kk: Деректер қосу
   uz: Ma'lumot qo'shish
+  cz: Přidat data
 sites-structure-buttons-editdata:
   ru: Редактировать
   en: Edit data
@@ -102,6 +114,7 @@ sites-structure-buttons-editdata:
   es: Editar datos
   kk: Деректерді өңдеу
   uz: Ma'lumotlarni tahrirlash
+  cz: Upravit data
 sites-structure-buttons-deletedata:
   ru: Удалить
   en: Delete
@@ -110,6 +123,7 @@ sites-structure-buttons-deletedata:
   es: Eliminar
   kk: Жою
   uz: O'chirish
+  cz: Smazat
 sites-structure-contextmenu-newdomain:
   ru: Новый домен
   en: New domain
@@ -118,6 +132,7 @@ sites-structure-contextmenu-newdomain:
   es: Nuevo dominio
   kk: Жаңа домен
   uz: Yangi domen
+  cz: Nová doména
 sites-structure-contextmenu-newchild:
   ru: Новый дочерний раздел
   en: New child page
@@ -126,6 +141,7 @@ sites-structure-contextmenu-newchild:
   es: Nueva página hija
   kk: Жаңа бала беті
   uz: Yangi bolalar sahifasi
+  cz: Nová podstránka
 sites-structure-contextmenu-editdomain:
   ru: Редактировать домен
   en: Edit domain
@@ -134,6 +150,7 @@ sites-structure-contextmenu-editdomain:
   es: Editar dominio
   kk: Доменді өңдеу
   uz: Domenni tahrirlash
+  cz: Upravit doménu
 sites-structure-contextmenu-editprops:
   ru: Редактировать доп. свойства
   en: Edit additional properties
@@ -142,6 +159,7 @@ sites-structure-contextmenu-editprops:
   es: Editar propiedades adicionales
   kk: Қосымша қасиеттерді өңдеу
   uz: Qo'shimcha xususiyatlarni tahrirlash
+  cz: Upravit další vlastnosti
 sites-structure-contextmenu-deletedomain:
   ru: Удалить домен
   en: Delete domain
@@ -150,6 +168,7 @@ sites-structure-contextmenu-deletedomain:
   es: Eliminar dominio
   kk: Доменді жою
   uz: Domenni o'chirish
+  cz: Smazat doménu
 sites-structure-contextmenu-editpage:
   ru: Редактировать раздел
   en: Edit page
@@ -158,6 +177,7 @@ sites-structure-contextmenu-editpage:
   es: Editar página
   kk: Бетті өңдеу
   uz: Sahifani tahrirlash
+  cz: Upravit stránku
 sites-structure-contextmenu-deletepage:
   ru: Удалить раздел
   en: Delete page
@@ -166,6 +186,7 @@ sites-structure-contextmenu-deletepage:
   es: Eliminar página
   kk: Бетті жою
   uz: Sahifani o'chirish
+  cz: Smazat stránku
 sites-structure-contextmenu-copypath:
   ru: Скопировать путь (ссылку)
   en: Copy path (url)
@@ -174,6 +195,7 @@ sites-structure-contextmenu-copypath:
   es: Copiar ruta (url)
   kk: Жолды көшіру (url)
   uz: Yo'lni nusxalash (url)
+  cz: Kopírovat cestu (url)
 sites-structure-windowtitle-newdomain:
   ru: Новый домен
   en: New domain
@@ -182,6 +204,7 @@ sites-structure-windowtitle-newdomain:
   es: Nuevo dominio
   kk: Жаңа домен
   uz: Yangi domen
+  cz: Nová doména
 sites-structure-windowtitle-editdomain:
   ru: Редактировать домен
   en: Edit domain
@@ -190,6 +213,7 @@ sites-structure-windowtitle-editdomain:
   es: Editar dominio
   kk: Доменді өңдеу
   uz: Domenni tahrirlash
+  cz: Upravit doménu
 sites-structure-windowtitle-editdomainprops:
   ru: Редактировать доп. свойства домена
   en: Edit additional properties of domain
@@ -198,6 +222,7 @@ sites-structure-windowtitle-editdomainprops:
   es: Editar propiedades adicionales del dominio
   kk: Доменнің қосымша қасиеттерін өңдеу
   uz: Domenning qo'shimcha xususiyatlarini tahrirlash
+  cz: Upravit další vlastnosti domény
 sites-structure-windowtitle-noeditdomainprops:
   ru: Свойства не найдены
   en: Properties not found
@@ -206,6 +231,7 @@ sites-structure-windowtitle-noeditdomainprops:
   es: Propiedades no encontradas
   kk: Қасиеттер табылмады
   uz: Xususiyatlar topilmadi
+  cz: Vlastnosti nenalezeny
 sites-structure-deletedomain:
   ru: Удаление домена
   en: Delete domain
@@ -214,6 +240,7 @@ sites-structure-deletedomain:
   es: Eliminar dominio
   kk: Доменді жою
   uz: Domenni o'chirish
+  cz: Smazání domény
 sites-structure-deletedomainmessage:
   ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены
     безвозвратно
@@ -229,6 +256,7 @@ sites-structure-deletedomainmessage:
     біржола жойылады
   uz: Domenni o'chirishni xohlaysizmi? Barcha papkalar va nashrlar doimiy ravishda
     o'chiriladi
+  cz: Opravdu chcete doménu smazat? Všechny složky a publikace budou trvale odstraněny
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child page
@@ -237,6 +265,7 @@ sites-structure-windowtitle-newchildpage:
   es: Nueva página hija
   kk: Жаңа бала беті
   uz: Yangi bolalar sahifasi
+  cz: Nová podstránka
 sites-structure-windowtitle-editpage:
   ru: Редактировать раздел
   en: Edit page
@@ -245,6 +274,7 @@ sites-structure-windowtitle-editpage:
   es: Editar página
   kk: Бетті өңдеу
   uz: Sahifani tahrirlash
+  cz: Upravit stránku
 sites-structure-windowtitle-editpageprops:
   ru: Редактировать доп. свойства страницы
   en: Edit additional properties of page
@@ -253,6 +283,7 @@ sites-structure-windowtitle-editpageprops:
   es: Editar propiedades adicionales de la página
   kk: Беттің қосымша қасиеттерін өңдеу
   uz: Sahifaning qo'shimcha xususiyatlarini tahrirlash
+  cz: Upravit další vlastnosti stránky
 sites-structure-windowtitle-noeditpageprops:
   ru: Свойства не найдены
   en: Properties not found
@@ -261,6 +292,7 @@ sites-structure-windowtitle-noeditpageprops:
   es: Propiedades no encontradas
   kk: Қасиеттер табылмады
   uz: Xususiyatlar topilmadi
+  cz: Vlastnosti nenalezeny
 sites-structure-deletepage:
   ru: Удаление папки
   en: Delete page
@@ -269,6 +301,7 @@ sites-structure-deletepage:
   es: Eliminar página
   kk: Бетті жою
   uz: Sahifani o'chirish
+  cz: Smazání stránky
 sites-structure-deletepagemessage:
   ru: Вы уверены, что хотите удалить папку?
   en: Are you sure you want to delete the folder?
@@ -277,6 +310,7 @@ sites-structure-deletepagemessage:
   es: ¿Estás seguro de que quieres eliminar la carpeta?
   kk: Қалтаны жойғыңыз келетініне сенімдісіз бе?
   uz: Papkani o'chirishni xohlaysizmi?
+  cz: Opravdu chcete složku smazat?
 sites-structure-windowtitle-urlcopied:
   ru: Путь скопирован
   en: Path is copied
@@ -285,6 +319,7 @@ sites-structure-windowtitle-urlcopied:
   es: Ruta copiada
   kk: Жол көшірілді
   uz: Yo'l nusxalandi
+  cz: Cesta zkopírována
 sites-structure-windowtitle-urlcopiedtext:
   ru: Путь к разделу успешно скопирован в буфер обмена
   en: Page path successfully copied to clipboard
@@ -293,6 +328,7 @@ sites-structure-windowtitle-urlcopiedtext:
   es: Ruta de la página copiada con éxito al portapapeles
   kk: Бөлімге жол сәтті алмасу буферіне көшірілді
   uz: Bo'lim yo'li muvaffaqiyatli ravishda clipboard-ga nusxalandi
+  cz: Cesta ke stránce byla úspěšně zkopírována do schránky
 sites-structure-windowtitle-urlcopiederror:
   ru: Путь не скопирован
   en: Path is not copied
@@ -301,6 +337,7 @@ sites-structure-windowtitle-urlcopiederror:
   es: Ruta no copiada
   kk: Жол көшірілмеді
   uz: Yo'l nusxalanmadi
+  cz: Cesta nebyla zkopírována
 sites-structure-windowtitle-urlcopiederrortext:
   ru: Не получилось скопировать путь к разделу
   en: Failed to copy partition path
@@ -309,6 +346,7 @@ sites-structure-windowtitle-urlcopiederrortext:
   es: No se pudo copiar la ruta de la partición
   kk: Бөлімге жолды көшіру мүмкін болмады
   uz: Bo'lim yo'lini nusxalash muvaffaqiyatsiz bo'ldi
+  cz: Nepodařilo se zkopírovat cestu k sekci
 sites-structure-contextmenu-editpub:
   ru: Редактировать данные публикации
   en: Edit the publication data
@@ -317,6 +355,7 @@ sites-structure-contextmenu-editpub:
   es: Editar los datos de la publicación
   kk: Жарияланым деректерін өңдеу
   uz: Nashr ma'lumotlarini tahrirlash
+  cz: Upravit data publikace
 sites-structure-windowtitle-deletepub:
   ru: Удалить публикацию
   en: Delete publication
@@ -325,6 +364,7 @@ sites-structure-windowtitle-deletepub:
   es: Eliminar publicación
   kk: Жарияланымды жою
   uz: Nashrni o'chirish
+  cz: Smazat publikaci
 sites-structure-messages-removepublication:
   ru: Удаление публикации
   en: Delete the publication
@@ -333,6 +373,7 @@ sites-structure-messages-removepublication:
   es: Eliminar la publicación
   kk: Жарияланымды жою
   uz: Nashrni o'chirish
+  cz: Smazání publikace
 sites-structure-messages-removepublicationmessage:
   ru: Вы уверены, что хотите удалить выбранную публикацию?
   en: Are you sure you want to delete the selected publication?
@@ -341,6 +382,7 @@ sites-structure-messages-removepublicationmessage:
   es: ¿Estás seguro de que quieres eliminar la publicación seleccionada?
   kk: Таңдалған жарияланымды жойғыңыз келетініне сенімдісіз бе?
   uz: Tanlangan nashrni o'chirishni xohlaysizmi?
+  cz: Opravdu chcete vybranou publikaci smazat?
 sites-structure-messages-removepublications:
   ru: Удаление публикаций
   en: Delete publications
@@ -349,6 +391,7 @@ sites-structure-messages-removepublications:
   es: Eliminar publicaciones
   kk: Жарияланымдарды жою
   uz: Nashrlarni o'chirish
+  cz: Smazání publikací
 sites-structure-messages-removepublicationsmessage:
   ru: Вы уверены, что хотите удалить выбранные публикации?
   en: Are you sure you want to delete the selected publications?
@@ -357,6 +400,7 @@ sites-structure-messages-removepublicationsmessage:
   es: ¿Estás seguro de que quieres eliminar las publicaciones seleccionadas?
   kk: Таңдалған жарияланымдарды жойғыңыз келетініне сенімдісіз бе?
   uz: Tanlangan nashrlarni o'chirishni xohlaysizmi?
+  cz: Opravdu chcete vybrané publikace smazat?
 sites-structure-windowtitle-newrow:
   ru: Новая строка
   en: New row
@@ -365,6 +409,7 @@ sites-structure-windowtitle-newrow:
   es: Nueva fila
   kk: Жаңа жол
   uz: Yangi qator
+  cz: Nový řádek
 sites-structure-windowtitle-publish:
   ru: Публикация данных
   en: Publication of data
@@ -373,6 +418,7 @@ sites-structure-windowtitle-publish:
   es: Publicación de datos
   kk: Деректерді жариялау
   uz: Ma'lumotlarni nashr qilish
+  cz: Publikace dat
 sites-structure-windowtitle-noeditdomainprops-close:
   ru: Закрыть
   en: Close
@@ -381,6 +427,7 @@ sites-structure-windowtitle-noeditdomainprops-close:
   es: Cerrar
   kk: Жабу
   uz: Yopish
+  cz: Zavřít
 sites-structure-deletedomainmessage-delete:
   ru: Удалить!
   en: Delete
@@ -389,6 +436,7 @@ sites-structure-deletedomainmessage-delete:
   es: ¡Eliminar!
   kk: Жою!
   uz: O'chirish!
+  cz: Smazat!
 sites-structure-windowtitle-noeditpageprops-close:
   ru: Закрыть
   en: Close
@@ -397,6 +445,7 @@ sites-structure-windowtitle-noeditpageprops-close:
   es: Cerrar
   kk: Жабу
   uz: Yopish
+  cz: Zavřít
 sites-structure-windowtitle-urlcopiedtext-close:
   ru: Закрыть
   en: Close
@@ -405,6 +454,7 @@ sites-structure-windowtitle-urlcopiedtext-close:
   es: Cerrar
   kk: Жабу
   uz: Yopish
+  cz: Zavřít
 sites-structure-windowtitle-urlcopiederrortext-close:
   ru: Закрыть
   en: Close
@@ -413,6 +463,7 @@ sites-structure-windowtitle-urlcopiederrortext-close:
   es: Cerrar
   kk: Жабу
   uz: Yopish
+  cz: Zavřít
 sites-structure-messages-removepublicationmessage-delete:
   ru: Удалить!
   en: Delete
@@ -421,6 +472,7 @@ sites-structure-messages-removepublicationmessage-delete:
   es: ¡Eliminar!
   kk: Жою!
   uz: O'chirish!
+  cz: Smazat!
 sites-structure-messages-removepublicationsmessage-delete:
   ru: Удалить!
   en: Delete
@@ -429,6 +481,7 @@ sites-structure-messages-removepublicationsmessage-delete:
   es: ¡Eliminar!
   kk: Жою!
   uz: O'chirish!
+  cz: Smazat!
 sites-structure-deletepagemessage-delete:
   ru: Удалить!
   en: Delete
@@ -437,6 +490,7 @@ sites-structure-deletepagemessage-delete:
   es: ¡Eliminar!
   kk: Жою!
   uz: O'chirish!
+  cz: Smazat!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -444,6 +498,7 @@ sites-global-notallowed:
   es: Operación no permitida
   kk: Әрекетке тыйым салынған
   uz: Amalga ruxsat berilmagan
+  cz: Operace není povolena
 sites-structurepage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -452,6 +507,7 @@ sites-structurepage-notallowed:
   es: Operación no permitida
   kk: Әрекетке тыйым салынған
   uz: Amalga ruxsat berilmagan
+  cz: Operace není povolena
 sites-structure-contextmenu-publish:
   ru: Опубликовать
   en: Publish
@@ -460,6 +516,7 @@ sites-structure-contextmenu-publish:
   es: Publicar
   kk: Жариялау
   uz: Nashr qilish
+  cz: Publikovat
 sites-structure-contextmenu-unpublish:
   ru: Снять с публикации
   en: Unpublish
@@ -468,6 +525,7 @@ sites-structure-contextmenu-unpublish:
   es: Despublicar
   kk: Жарияланымды алып тастау
   uz: Nashrni olib tashlash
+  cz: Zrušit publikaci
 sites-structure-contextmenu-close:
   ru: Закрыть сайт
   en: Close site
@@ -476,6 +534,7 @@ sites-structure-contextmenu-close:
   es: Cerrar sitio
   kk: Сайтты жабу
   uz: Saytni yopish
+  cz: Zavřít web
 sites-structure-contextmenu-open:
   ru: Открыть сайт
   en: Open site
@@ -484,3 +543,4 @@ sites-structure-contextmenu-open:
   es: Abrir sitio
   kk: Сайтты ашу
   uz: Saytni ochish
+  cz: Otevřít web

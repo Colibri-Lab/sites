@@ -6,6 +6,7 @@ sites-storages-storages-title:
   es: Almacenes
   kk: Қоймалар
   uz: Omborlar
+  cz: Sklady
 sites-storages-data-title:
   ru: Данные
   en: Data
@@ -14,6 +15,7 @@ sites-storages-data-title:
   es: Datos
   kk: Деректер
   uz: Ma'lumotlar
+  cz: Data
 sites-storages-search-placeholder:
   ru: Поиск
   en: Search
@@ -22,6 +24,7 @@ sites-storages-search-placeholder:
   es: Buscar
   kk: Іздеу
   uz: Qidiruv
+  cz: Hledat
 sites-storages-dataempty:
   ru: Данные не найдены
   en: Data not found
@@ -29,6 +32,7 @@ sites-storages-dataempty:
   es: Datos no encontrados
   kk: Деректер табылмады
   uz: Ma'lumotlar topilmadi
+  cz: Data nenalezena
 sites-storages-buttons-adddata:
   ru: Добавить
   en: Add
@@ -37,6 +41,7 @@ sites-storages-buttons-adddata:
   es: Añadir
   kk: Қосу
   uz: Qo'shish
+  cz: Přidat
 sites-storages-buttons-dublicatedata:
   ru: Дуб.
   en: Dublicate
@@ -45,6 +50,7 @@ sites-storages-buttons-dublicatedata:
   es: Duplicar
   kk: Көшіру
   uz: Nusxalash
+  cz: Duplikovat
 sites-storages-buttons-editdata:
   ru: Ред.
   en: Edit
@@ -53,6 +59,7 @@ sites-storages-buttons-editdata:
   es: Editar
   kk: Өңдеу
   uz: Tahrirlash
+  cz: Upravit
 sites-storages-buttons-deletedata:
   ru: Удалить
   en: Delete
@@ -61,6 +68,7 @@ sites-storages-buttons-deletedata:
   es: Eliminar
   kk: Жою
   uz: O'chirish
+  cz: Smazat
 sites-structure-deletedata1:
   ru: Удаление данных
   en: Delete data row
@@ -68,6 +76,7 @@ sites-structure-deletedata1:
   es: Eliminar fila de datos
   kk: Деректер жолын жою
   uz: Ma'lumotlar qatorini o'chirish
+  cz: Smazat řádek dat
 sites-structure-deletedata1message:
   ru: Вы уверены, что хотите удалить выбранную строку?
   en: Are you sure you want to delete the selected row?
@@ -75,6 +84,7 @@ sites-structure-deletedata1message:
   es: ¿Está seguro de que desea eliminar la fila seleccionada?
   kk: Таңдалған жолды жойғыңыз келетініне сенімдісіз бе?
   uz: Tanlangan qatorni o'chirishni xohlaysizmi?
+  cz: Opravdu chcete smazat vybraný řádek?
 sites-structure-deletedata:
   ru: Удаление данных
   en: Data row delete
@@ -83,6 +93,7 @@ sites-structure-deletedata:
   es: Eliminar fila de datos
   kk: Деректер жолын жою
   uz: Ma'lumotlar qatorini o'chirish
+  cz: Smazání řádku dat
 sites-structure-deletedatamessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
@@ -91,6 +102,7 @@ sites-structure-deletedatamessage:
   es: ¿Está seguro de que desea eliminar las filas seleccionadas?
   kk: Таңдалған жолдарды жойғыңыз келетініне сенімдісіз бе?
   uz: Tanlangan qatorlarni o'chirishni xohlaysizmi?
+  cz: Opravdu chcete smazat vybrané řádky?
 sites-structure-newrow:
   ru: Новая строка
   en: New row
@@ -99,6 +111,7 @@ sites-structure-newrow:
   es: Nueva fila
   kk: Жаңа жол
   uz: Yangi qator
+  cz: Nový řádek
 sites-structure-contextmenu-dublicate:
   ru: Дублировать данные
   en: Dublicate data
@@ -107,6 +120,7 @@ sites-structure-contextmenu-dublicate:
   es: Duplicar datos
   kk: Деректерді көшіру
   uz: Ma'lumotlarni nusxalash
+  cz: Duplikovat data
 sites-structure-contextmenu-edit:
   ru: Редактировать данные
   en: Edit data
@@ -115,6 +129,7 @@ sites-structure-contextmenu-edit:
   es: Editar datos
   kk: Деректерді өңдеу
   uz: Ma'lumotlarni tahrirlash
+  cz: Upravit data
 sites-structure-contextmenu-delete:
   ru: Удалить
   en: Delete
@@ -123,6 +138,7 @@ sites-structure-contextmenu-delete:
   es: Eliminar
   kk: Жою
   uz: O'chirish
+  cz: Smazat
 sites-structure-deletedatasmessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
@@ -131,6 +147,7 @@ sites-structure-deletedatasmessage:
   es: ¿Está seguro de que desea eliminar las filas seleccionadas?
   kk: Таңдалған жолдарды жойғыңыз келетініне сенімдісіз бе?
   uz: Tanlangan qatorlarni o'chirishni xohlaysizmi?
+  cz: Opravdu chcete smazat vybrané řádky?
 sites-structure-deletedatamessage-delete:
   ru: Удалить!
   en: Delete
@@ -139,6 +156,7 @@ sites-structure-deletedatamessage-delete:
   es: ¡Eliminar!
   kk: Жою!
   uz: O'chirish!
+  cz: Smazat!
 sites-structure-deletedatasmessage-delete:
   ru: Удалить!
   en: Delete
@@ -147,6 +165,7 @@ sites-structure-deletedatasmessage-delete:
   es: ¡Eliminar!
   kk: Жою!
   uz: O'chirish!
+  cz: Smazat!
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -154,6 +173,7 @@ sites-global-notallowed:
   es: Operación no permitida
   kk: Операцияға рұқсат етілмейді
   uz: Operatsiyaga ruxsat berilmagan
+  cz: Operace není povolena
 sites-datapage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -162,6 +182,7 @@ sites-datapage-notallowed:
   es: Operación no permitida
   kk: Операцияға рұқсат етілмейді
   uz: Operatsiyaga ruxsat berilmagan
+  cz: Operace není povolena
 sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
@@ -170,6 +191,7 @@ sites-structure-filter:
   es: Filtro de filas
   kk: Жолдарды сүзу
   uz: Qatorlarni filtrlash
+  cz: Filtr řádků
 sites-structure-deletedatas:
   ru: Удаление строк
   en: Delete rows
@@ -178,6 +200,7 @@ sites-structure-deletedatas:
   es: Eliminar filas
   kk: Жолдарды жою
   uz: Qatorlarni o'chirish
+  cz: Smazání řádků
 sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
@@ -186,6 +209,7 @@ sites-storages-buttons-exportdata:
   es: Exportar
   kk: Экспорттау
   uz: Eksport qilish
+  cz: Exportovat
 sites-structure-contextmenu-restore:
   ru: Восстановить
   en: Restore
@@ -194,6 +218,7 @@ sites-structure-contextmenu-restore:
   es: Restaurar
   kk: Қалпына келтіру
   uz: Tiklash
+  cz: Obnovit
 sites-storages-buttons-restoredata:
   ru: Восстановить
   en: Restore
@@ -202,6 +227,7 @@ sites-storages-buttons-restoredata:
   es: Restaurar
   kk: Қалпына келтіру
   uz: Tiklash
+  cz: Obnovit
 sites-structure-restoredata:
   ru: Восстановление данных
   en: Restore data
@@ -210,6 +236,7 @@ sites-structure-restoredata:
   es: Restaurar datos
   kk: Деректерді қалпына келтіру
   uz: Ma'lumotlarni tiklash
+  cz: Obnovení dat
 sites-structure-restoredatamessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
@@ -218,6 +245,7 @@ sites-structure-restoredatamessage:
   es: ¿Está seguro de que desea restaurar las filas seleccionadas?
   kk: Таңдалған жолдарды қалпына келтіргіңіз келетініне сенімдісіз бе?
   uz: Tanlangan qatorlarni tiklashni xohlaysizmi?
+  cz: Opravdu chcete obnovit vybrané řádky?
 sites-structure-restoredatamessage-delete:
   ru: Восстановить!
   en: Restore!
@@ -226,6 +254,7 @@ sites-structure-restoredatamessage-delete:
   es: ¡Restaurar!
   kk: Қалпына келтіру!
   uz: Tiklash!
+  cz: Obnovit!
 sites-structure-restoredatas:
   ru: Восстановление данных
   en: Restore data
@@ -234,6 +263,7 @@ sites-structure-restoredatas:
   es: Restaurar datos
   kk: Деректерді қалпына келтіру
   uz: Ma'lumotlarni tiklash
+  cz: Obnovení dat
 sites-structure-restoredatasmessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
@@ -242,6 +272,7 @@ sites-structure-restoredatasmessage:
   es: ¿Está seguro de que desea restaurar las filas seleccionadas?
   kk: Таңдалған жолдарды қалпына келтіргіңіз келетініне сенімдісіз бе?
   uz: Tanlangan qatorlarni tiklashni xohlaysizmi?
+  cz: Opravdu chcete obnovit vybrané řádky?
 sites-structure-restoredatasmessage-delete:
   ru: Восстановить!
   en: Restore!
@@ -250,6 +281,7 @@ sites-structure-restoredatasmessage-delete:
   es: ¡Restaurar!
   kk: Қалпына келтіру!
   uz: Tiklash!
+  cz: Obnovit!
 sites-structure-editrow:
   ru: Редактирование строки
   en: Edit row
@@ -258,6 +290,7 @@ sites-structure-editrow:
   es: Editar fila
   kk: Жолды өңдеу
   uz: Qatorni tahrirlash
+  cz: Úprava řádku
 sites-storages-buttons-cleardata:
   ru: Очистить
   en: Clear
@@ -266,6 +299,7 @@ sites-storages-buttons-cleardata:
   es: Limpiar
   kk: Тазалау
   uz: Tozalash
+  cz: Vymazat
 sites-structure-cleardatas:
   ru: Очистка
   en: Clear
@@ -274,6 +308,7 @@ sites-structure-cleardatas:
   es: Limpiar
   kk: Тазалау
   uz: Tozalash
+  cz: Vymazat
 sites-structure-cleardatasmessage:
   ru: Внимание! Данные невозможно будет восстановить, если у вас не включено
     мягкое удаление
@@ -289,6 +324,7 @@ sites-structure-cleardatasmessage:
     келтіру мүмкін болмайды
   uz: Diqqat! Agar sizda yumshoq o'chirish yoqilmagan bo'lsa, ma'lumotlarni
     tiklash mumkin bo'lmaydi
+  cz: Pozor! Data nebude možné obnovit, pokud nemáte povoleno měkké mazání
 sites-structure-cleardatasmessage-clear:
   ru: Очистить
   en: Clear
@@ -297,3 +333,4 @@ sites-structure-cleardatasmessage-clear:
   es: Limpiar
   kk: Тазалау
   uz: Tozalash
+  cz: Vymazat

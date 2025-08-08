@@ -1,11 +1,12 @@
 sites-storages-fields:
   ru: Свойства
   en: Properties
-  hy: Հатկություններ
+  hy: Հատկություններ
   it: Proprietà
   es: Propiedades
   kk: Қасиеттер
   uz: Xususiyatlar
+  cz: Vlastnosti
 sites-storages-indices:
   ru: Индексы
   en: Indexes
@@ -14,3 +15,4 @@ sites-storages-indices:
   es: Índices
   kk: Индекстер
   uz: Indekslar
+  cz: Indexy
