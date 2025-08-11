@@ -9,6 +9,7 @@ sites-storages-contextmenu-add:
   cz: Nové úložiště
   de: Neuer Speicher
   tr: Yeni depolama
+  zh: 新建存储
 sites-storages-contextmenu-editfields:
   ru: Редактировать свойства хранилища
   en: Edit storage properties
@@ -20,6 +21,7 @@ sites-storages-contextmenu-editfields:
   cz: Upravit vlastnosti úložiště
   de: Speichereigenschaften bearbeiten
   tr: Depolama özelliklerini düzenle
+  zh: 编辑存储属性
 sites-storages-contextmenu-remove:
   ru: Удалить хранилище
   en: Delete storage
@@ -31,6 +33,7 @@ sites-storages-contextmenu-remove:
   cz: Smazat úložiště
   de: Speicher löschen
   tr: Depolamayı sil
+  zh: 删除存储
 sites-storages-contextmenu-newfield:
   ru: Новое свойство
   en: New property
@@ -42,6 +45,7 @@ sites-storages-contextmenu-newfield:
   cz: Nová vlastnost
   de: Neue Eigenschaft
   tr: Yeni özellik
+  zh: 新建属性
 sites-storages-contextmenu-newindex:
   ru: Новый индекс
   en: New index
@@ -53,6 +57,7 @@ sites-storages-contextmenu-newindex:
   cz: Nový index
   de: Neuer Index
   tr: Yeni dizin
+  zh: 新建索引
 sites-storages-contextmenu-newvirtualfield:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -64,6 +69,7 @@ sites-storages-contextmenu-newvirtualfield:
   cz: Nová virtuální vlastnost
   de: Neue virtuelle Eigenschaft
   tr: Yeni sanal özellik
+  zh: 新建虚拟属性
 sites-storages-contextmenu-editfield:
   ru: Редактировать свойство
   en: Edit property
@@ -75,6 +81,7 @@ sites-storages-contextmenu-editfield:
   cz: Upravit vlastnost
   de: Eigenschaft bearbeiten
   tr: Özelliği düzenle
+  zh: 编辑属性
 sites-storages-contextmenu-removefield:
   ru: Удалить свойство
   en: Delete property
@@ -86,6 +93,7 @@ sites-storages-contextmenu-removefield:
   cz: Smazat vlastnost
   de: Eigenschaft löschen
   tr: Özelliği sil
+  zh: 删除属性
 sites-storages-contextmenu-editindex:
   ru: Редактировать индекс
   en: Edit index
@@ -97,6 +105,7 @@ sites-storages-contextmenu-editindex:
   cz: Upravit index
   de: Index bearbeiten
   tr: Dizini düzenle
+  zh: 编辑索引
 sites-storages-contextmenu-removeindex:
   ru: Удалить индекс
   en: Delete index
@@ -108,6 +117,7 @@ sites-storages-contextmenu-removeindex:
   cz: Smazat index
   de: Index löschen
   tr: Dizini sil
+  zh: 删除索引
 sites-storages-storagename:
   ru: Наименование хранилища
   en: Storage name
@@ -119,3 +129,4 @@ sites-storages-storagename:
   cz: Název úložiště
   de: Speichername
   tr: Depolama adı
+  zh: 存储名称

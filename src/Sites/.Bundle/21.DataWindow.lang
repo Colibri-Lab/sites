@@ -9,6 +9,7 @@ sites-datawindow-search-placeholder:
   cz: Hledat
   de: Suchen
   tr: Ara
+  zh: 搜索
 sites-datawindow-dataempty:
   ru: Данные не найдены
   en: Data not found
@@ -20,6 +21,7 @@ sites-datawindow-dataempty:
   cz: Data nebyla nalezena
   de: Keine Daten gefunden
   tr: Veri bulunamadı
+  zh: 未找到数据
 sites-datawindow-buttons-publish:
   ru: Опубликовать выбранное
   en: Publish selected rows
@@ -31,6 +33,7 @@ sites-datawindow-buttons-publish:
   cz: Publikovat vybrané řádky
   de: Ausgewählte Zeilen veröffentlichen
   tr: Seçili satırları yayınla
+  zh: 发布所选行
 sites-datawindow-buttons-close:
   ru: Закрыть
   en: Close
@@ -42,3 +45,4 @@ sites-datawindow-buttons-close:
   cz: Zavřít
   de: Schließen
   tr: Kapat
+  zh: 关闭

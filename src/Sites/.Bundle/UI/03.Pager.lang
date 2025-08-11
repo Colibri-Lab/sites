@@ -9,3 +9,4 @@ sites-ui-pager-of:
   cz: z %s
   de: von %s
   tr: / %s
+  zh: 共 %s

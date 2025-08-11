@@ -9,6 +9,7 @@ sites-structure-datagrid-created:
   cz: Datum vytvoření
   de: Erstellungsdatum
   tr: Oluşturulma tarihi
+  zh: 创建日期
 sites-structure-datagrid-deleted:
   ru: Удалена
   en: Deleted
@@ -20,3 +21,4 @@ sites-structure-datagrid-deleted:
   cz: Smazáno
   de: Gelöscht
   tr: Silindi
+  zh: 已删除

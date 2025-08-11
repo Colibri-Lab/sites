@@ -9,6 +9,7 @@ sites-widgets-storageswidget-title:
   cz: Stav úložišť
   de: Speicherstatus
   tr: Depolama durumu
+  zh: 存储状态
 sites-widgets-storageswidget-name:
   ru: Наименование
   en: Name
@@ -20,6 +21,7 @@ sites-widgets-storageswidget-name:
   cz: Název
   de: Name
   tr: Ad
+  zh: 名称
 sites-widgets-storageswidget-version:
   ru: Версия
   en: Version
@@ -31,6 +33,7 @@ sites-widgets-storageswidget-version:
   cz: Verze
   de: Version
   tr: Sürüm
+  zh: 版本
 sites-widgets-storageswidget-engine:
   ru: Тип хранилища
   en: Engine
@@ -42,6 +45,7 @@ sites-widgets-storageswidget-engine:
   cz: Typ úložiště
   de: Engine
   tr: Motor
+  zh: 引擎
 sites-widgets-storageswidget-row-format:
   ru: Формат строк
   en: Row format
@@ -53,6 +57,7 @@ sites-widgets-storageswidget-row-format:
   cz: Formát řádku
   de: Zeilenformat
   tr: Satır formatı
+  zh: 行格式
 sites-widgets-storageswidget-create-time:
   en: Create time
   ru: Дата создания
@@ -64,6 +69,7 @@ sites-widgets-storageswidget-create-time:
   cz: Čas vytvoření
   de: Erstellungszeit
   tr: Oluşturulma zamanı
+  zh: 创建时间
 sites-widgets-storageswidget-update-time:
   en: Update time
   ru: Дата обновления
@@ -75,6 +81,7 @@ sites-widgets-storageswidget-update-time:
   cz: Čas aktualizace
   de: Aktualisierungszeit
   tr: Güncelleme zamanı
+  zh: 更新时间
 sites-widgets-storageswidget-autoincrement:
   en: Current autoincrement value
   ru: Текущее значение автоинкремента
@@ -86,6 +93,7 @@ sites-widgets-storageswidget-autoincrement:
   cz: Aktuální hodnota autoincrementu
   de: Aktueller Autoincrement-Wert
   tr: Mevcut otomatik artış değeri
+  zh: 当前自增值
 sites-widgets-storageswidget-avg-row-length:
   en: Avg row length
   ru: Средний размер строки
@@ -97,6 +105,7 @@ sites-widgets-storageswidget-avg-row-length:
   cz: Průměrná délka řádku
   de: Durchschnittliche Zeilenlänge
   tr: Ortalama satır uzunluğu
+  zh: 平均行长度
 sites-widgets-storageswidget-collation:
   en: Collation type
   ru: Сопоставление
@@ -108,6 +117,7 @@ sites-widgets-storageswidget-collation:
   cz: Typ řazení
   de: Kollationstyp
   tr: Karşılaştırma türü
+  zh: 排序规则类型
 sites-widgets-storageswidget-rows:
   en: Rows count
   ru: Количество строк
@@ -119,6 +129,7 @@ sites-widgets-storageswidget-rows:
   cz: Počet řádků
   de: Zeilenanzahl
   tr: Satır sayısı
+  zh: 行数
 sites-widgets-storageswidget-data-free:
   en: Free data available
   ru: Свободное место
@@ -130,6 +141,7 @@ sites-widgets-storageswidget-data-free:
   cz: Volná data k dispozici
   de: Freier Speicher verfügbar
   tr: Kullanılabilir boş veri
+  zh: 可用空闲数据
 sites-widgets-storageswidget-data-length:
   en: Current data length
   ru: Текущий размер таблицы
@@ -141,6 +153,7 @@ sites-widgets-storageswidget-data-length:
   cz: Aktuální délka dat
   de: Aktuelle Datenlänge
   tr: Mevcut veri uzunluğu
+  zh: 当前数据长度
 sites-widgets-storageswidget-index-length:
   en: Current index length
   ru: Текущий размер индексов
@@ -152,3 +165,4 @@ sites-widgets-storageswidget-index-length:
   cz: Aktuální délka indexu
   de: Aktuelle Indexlänge
   tr: Mevcut dizin uzunluğu
+  zh: 当前索引长度

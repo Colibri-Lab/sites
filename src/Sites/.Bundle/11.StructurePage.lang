@@ -9,6 +9,7 @@ sites-structure-folders-title:
   cz: Sekce webu
   de: Seiten der Website
   tr: Sitenin sayfaları
+  zh: 网站页面
 sites-structure-publications-title:
   ru: Публикации
   en: Publications
@@ -20,6 +21,7 @@ sites-structure-publications-title:
   cz: Publikace
   de: Publikationen
   tr: Yayınlar
+  zh: 发布内容
 sites-structure-search-placeholder:
   ru: Поиск
   en: Search
@@ -31,6 +33,7 @@ sites-structure-search-placeholder:
   cz: Hledat
   de: Suchen
   tr: Ara
+  zh: 搜索
 sites-structure-publicationsempty:
   ru: Публикаций не найдено
   en: Publications not found
@@ -42,6 +45,7 @@ sites-structure-publicationsempty:
   cz: Publikace nenalezeny
   de: Keine Publikationen gefunden
   tr: Yayın bulunamadı
+  zh: 未找到发布内容
 sites-structure-publications-created:
   ru: Создана
   en: Created
@@ -53,6 +57,7 @@ sites-structure-publications-created:
   cz: Vytvořeno
   de: Erstellt
   tr: Oluşturuldu
+  zh: 创建时间
 sites-structure-publications-page:
   ru: Страница
   en: Page
@@ -64,6 +69,7 @@ sites-structure-publications-page:
   cz: Stránka
   de: Seite
   tr: Sayfa
+  zh: 页面
 sites-structure-publications-mainpage:
   ru: Главная страница
   en: Main page
@@ -75,6 +81,7 @@ sites-structure-publications-mainpage:
   cz: Hlavní stránka
   de: Hauptseite
   tr: Ana sayfa
+  zh: 主页
 sites-structure-publications-storage:
   ru: Хранилище
   en: Storage
@@ -86,6 +93,7 @@ sites-structure-publications-storage:
   cz: Úložiště
   de: Speicher
   tr: Depolama
+  zh: 存储
 sites-structure-publications-row:
   ru: Строка
   en: Row
@@ -97,6 +105,7 @@ sites-structure-publications-row:
   cz: Řádek
   de: Zeile
   tr: Satır
+  zh: 行
 sites-structure-publications-data:
   ru: Данные
   en: Data
@@ -108,6 +117,7 @@ sites-structure-publications-data:
   cz: Data
   de: Daten
   tr: Veri
+  zh: 数据
 sites-structure-buttons-publish:
   ru: Публикация
   en: Publication
@@ -119,6 +129,7 @@ sites-structure-buttons-publish:
   cz: Publikace
   de: Publikation
   tr: Yayınla
+  zh: 发布
 sites-structure-buttons-adddata:
   ru: Данные
   en: Add data
@@ -130,6 +141,7 @@ sites-structure-buttons-adddata:
   cz: Přidat data
   de: Daten hinzufügen
   tr: Veri ekle
+  zh: 添加数据
 sites-structure-buttons-editdata:
   ru: Редактировать
   en: Edit data
@@ -141,6 +153,7 @@ sites-structure-buttons-editdata:
   cz: Upravit data
   de: Daten bearbeiten
   tr: Veriyi düzenle
+  zh: 编辑数据
 sites-structure-buttons-deletedata:
   ru: Удалить
   en: Delete
@@ -152,6 +165,7 @@ sites-structure-buttons-deletedata:
   cz: Smazat
   de: Löschen
   tr: Sil
+  zh: 删除
 sites-structure-contextmenu-newdomain:
   ru: Новый домен
   en: New domain
@@ -163,6 +177,7 @@ sites-structure-contextmenu-newdomain:
   cz: Nová doména
   de: Neue Domain
   tr: Yeni alan adı
+  zh: 新建域名
 sites-structure-contextmenu-newchild:
   ru: Новый дочерний раздел
   en: New child page
@@ -174,6 +189,7 @@ sites-structure-contextmenu-newchild:
   cz: Nová podstránka
   de: Neue Unterseite
   tr: Yeni alt sayfa
+  zh: 新建子页面
 sites-structure-contextmenu-editdomain:
   ru: Редактировать домен
   en: Edit domain
@@ -185,6 +201,7 @@ sites-structure-contextmenu-editdomain:
   cz: Upravit doménu
   de: Domain bearbeiten
   tr: Alan adını düzenle
+  zh: 编辑域名
 sites-structure-contextmenu-editprops:
   ru: Редактировать доп. свойства
   en: Edit additional properties
@@ -196,6 +213,7 @@ sites-structure-contextmenu-editprops:
   cz: Upravit další vlastnosti
   de: Zusätzliche Eigenschaften bearbeiten
   tr: Ek özellikleri düzenle
+  zh: 编辑附加属性
 sites-structure-contextmenu-deletedomain:
   ru: Удалить домен
   en: Delete domain
@@ -207,6 +225,7 @@ sites-structure-contextmenu-deletedomain:
   cz: Smazat doménu
   de: Domain löschen
   tr: Alan adını sil
+  zh: 删除域名
 sites-structure-contextmenu-editpage:
   ru: Редактировать раздел
   en: Edit page
@@ -218,6 +237,7 @@ sites-structure-contextmenu-editpage:
   cz: Upravit stránku
   de: Seite bearbeiten
   tr: Sayfayı düzenle
+  zh: 编辑页面
 sites-structure-contextmenu-deletepage:
   ru: Удалить раздел
   en: Delete page
@@ -229,6 +249,7 @@ sites-structure-contextmenu-deletepage:
   cz: Smazat stránku
   de: Seite löschen
   tr: Sayfayı sil
+  zh: 删除页面
 sites-structure-contextmenu-copypath:
   ru: Скопировать путь (ссылку)
   en: Copy path (url)
@@ -240,6 +261,7 @@ sites-structure-contextmenu-copypath:
   cz: Kopírovat cestu (url)
   de: Pfad (URL) kopieren
   tr: Yolu kopyala (url)
+  zh: 复制路径（url）
 sites-structure-windowtitle-newdomain:
   ru: Новый домен
   en: New domain
@@ -251,6 +273,7 @@ sites-structure-windowtitle-newdomain:
   cz: Nová doména
   de: Neue Domain
   tr: Yeni alan adı
+  zh: 新建域名
 sites-structure-windowtitle-editdomain:
   ru: Редактировать домен
   en: Edit domain
@@ -262,6 +285,7 @@ sites-structure-windowtitle-editdomain:
   cz: Upravit doménu
   de: Domain bearbeiten
   tr: Alan adını düzenle
+  zh: 编辑域名
 sites-structure-windowtitle-editdomainprops:
   ru: Редактировать доп. свойства домена
   en: Edit additional properties of domain
@@ -273,6 +297,7 @@ sites-structure-windowtitle-editdomainprops:
   cz: Upravit další vlastnosti domény
   de: Zusätzliche Eigenschaften der Domain bearbeiten
   tr: Alan adının ek özelliklerini düzenle
+  zh: 编辑域名附加属性
 sites-structure-windowtitle-noeditdomainprops:
   ru: Свойства не найдены
   en: Properties not found
@@ -284,6 +309,7 @@ sites-structure-windowtitle-noeditdomainprops:
   cz: Vlastnosti nenalezeny
   de: Eigenschaften nicht gefunden
   tr: Özellik bulunamadı
+  zh: 未找到属性
 sites-structure-deletedomain:
   ru: Удаление домена
   en: Delete domain
@@ -295,6 +321,7 @@ sites-structure-deletedomain:
   cz: Smazání domény
   de: Domain löschen
   tr: Alan adını sil
+  zh: 删除域名
 sites-structure-deletedomainmessage:
   ru: Вы уверены, что хотите удалить домен? Все папки и публикации будут удалены
     безвозвратно
@@ -316,6 +343,7 @@ sites-structure-deletedomainmessage:
     Publikationen werden dauerhaft gelöscht
   tr: Alan adını silmek istediğinizden emin misiniz? Tüm klasörler ve yayınlar
     kalıcı olarak silinecek
+  zh: 确定要删除该域名吗？所有文件夹和发布内容将被永久删除
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child page
@@ -327,6 +355,7 @@ sites-structure-windowtitle-newchildpage:
   cz: Nová podstránka
   de: Neue Unterseite
   tr: Yeni alt sayfa
+  zh: 新建子页面
 sites-structure-windowtitle-editpage:
   ru: Редактировать раздел
   en: Edit page
@@ -338,6 +367,7 @@ sites-structure-windowtitle-editpage:
   cz: Upravit stránku
   de: Seite bearbeiten
   tr: Sayfayı düzenle
+  zh: 编辑页面
 sites-structure-windowtitle-editpageprops:
   ru: Редактировать доп. свойства страницы
   en: Edit additional properties of page
@@ -349,6 +379,7 @@ sites-structure-windowtitle-editpageprops:
   cz: Upravit další vlastnosti stránky
   de: Zusätzliche Eigenschaften der Seite bearbeiten
   tr: Sayfanın ek özelliklerini düzenle
+  zh: 编辑页面附加属性
 sites-structure-windowtitle-noeditpageprops:
   ru: Свойства не найдены
   en: Properties not found
@@ -360,6 +391,7 @@ sites-structure-windowtitle-noeditpageprops:
   cz: Vlastnosti nenalezeny
   de: Eigenschaften nicht gefunden
   tr: Özellik bulunamadı
+  zh: 未找到属性
 sites-structure-deletepage:
   ru: Удаление папки
   en: Delete page
@@ -371,6 +403,7 @@ sites-structure-deletepage:
   cz: Smazání stránky
   de: Seite löschen
   tr: Sayfayı sil
+  zh: 删除页面
 sites-structure-deletepagemessage:
   ru: Вы уверены, что хотите удалить папку?
   en: Are you sure you want to delete the folder?
@@ -382,6 +415,7 @@ sites-structure-deletepagemessage:
   cz: Opravdu chcete složku smazat?
   de: Sind Sie sicher, dass Sie den Ordner löschen möchten?
   tr: Klasörü silmek istediğinizden emin misiniz?
+  zh: 确定要删除该文件夹吗？
 sites-structure-windowtitle-urlcopied:
   ru: Путь скопирован
   en: Path is copied
@@ -393,6 +427,7 @@ sites-structure-windowtitle-urlcopied:
   cz: Cesta zkopírována
   de: Pfad wurde kopiert
   tr: Yol kopyalandı
+  zh: 路径已复制
 sites-structure-windowtitle-urlcopiedtext:
   ru: Путь к разделу успешно скопирован в буфер обмена
   en: Page path successfully copied to clipboard
@@ -404,6 +439,7 @@ sites-structure-windowtitle-urlcopiedtext:
   cz: Cesta ke stránce byla úspěšně zkopírována do schránky
   de: Seitenpfad erfolgreich in die Zwischenablage kopiert
   tr: Sayfa yolu başarıyla panoya kopyalandı
+  zh: 页面路径已成功复制到剪贴板
 sites-structure-windowtitle-urlcopiederror:
   ru: Путь не скопирован
   en: Path is not copied
@@ -415,6 +451,7 @@ sites-structure-windowtitle-urlcopiederror:
   cz: Cesta nebyla zkopírována
   de: Pfad wurde nicht kopiert
   tr: Yol kopyalanamadı
+  zh: 路径未复制
 sites-structure-windowtitle-urlcopiederrortext:
   ru: Не получилось скопировать путь к разделу
   en: Failed to copy partition path
@@ -426,6 +463,7 @@ sites-structure-windowtitle-urlcopiederrortext:
   cz: Nepodařilo se zkopírovat cestu k sekci
   de: Kopieren des Bereichspfads fehlgeschlagen
   tr: Bölüm yolu kopyalanamadı
+  zh: 复制分区路径失败
 sites-structure-contextmenu-editpub:
   ru: Редактировать данные публикации
   en: Edit the publication data
@@ -437,6 +475,7 @@ sites-structure-contextmenu-editpub:
   cz: Upravit data publikace
   de: Publikationsdaten bearbeiten
   tr: Yayın verisini düzenle
+  zh: 编辑发布内容数据
 sites-structure-windowtitle-deletepub:
   ru: Удалить публикацию
   en: Delete publication
@@ -448,6 +487,7 @@ sites-structure-windowtitle-deletepub:
   cz: Smazat publikaci
   de: Publikation löschen
   tr: Yayını sil
+  zh: 删除发布内容
 sites-structure-messages-removepublication:
   ru: Удаление публикации
   en: Delete the publication
@@ -459,6 +499,7 @@ sites-structure-messages-removepublication:
   cz: Smazání publikace
   de: Publikation löschen
   tr: Yayını sil
+  zh: 删除发布内容
 sites-structure-messages-removepublicationmessage:
   ru: Вы уверены, что хотите удалить выбранную публикацию?
   en: Are you sure you want to delete the selected publication?
@@ -470,6 +511,7 @@ sites-structure-messages-removepublicationmessage:
   cz: Opravdu chcete vybranou publikaci smazat?
   de: Sind Sie sicher, dass Sie die ausgewählte Publikation löschen möchten?
   tr: Seçili yayını silmek istediğinizden emin misiniz?
+  zh: 确定要删除所选发布内容吗？
 sites-structure-messages-removepublications:
   ru: Удаление публикаций
   en: Delete publications
@@ -481,6 +523,7 @@ sites-structure-messages-removepublications:
   cz: Smazání publikací
   de: Publikationen löschen
   tr: Yayınları sil
+  zh: 删除发布内容
 sites-structure-messages-removepublicationsmessage:
   ru: Вы уверены, что хотите удалить выбранные публикации?
   en: Are you sure you want to delete the selected publications?
@@ -492,6 +535,7 @@ sites-structure-messages-removepublicationsmessage:
   cz: Opravdu chcete vybrané publikace smazat?
   de: Sind Sie sicher, dass Sie die ausgewählten Publikationen löschen möchten?
   tr: Seçili yayınları silmek istediğinizden emin misiniz?
+  zh: 确定要删除所选发布内容吗？
 sites-structure-windowtitle-newrow:
   ru: Новая строка
   en: New row
@@ -503,6 +547,7 @@ sites-structure-windowtitle-newrow:
   cz: Nový řádek
   de: Neue Zeile
   tr: Yeni satır
+  zh: 新建行
 sites-structure-windowtitle-publish:
   ru: Публикация данных
   en: Publication of data
@@ -514,6 +559,7 @@ sites-structure-windowtitle-publish:
   cz: Publikace dat
   de: Veröffentlichung von Daten
   tr: Veri yayını
+  zh: 数据发布
 sites-structure-windowtitle-noeditdomainprops-close:
   ru: Закрыть
   en: Close
@@ -525,6 +571,7 @@ sites-structure-windowtitle-noeditdomainprops-close:
   cz: Zavřít
   de: Schließen
   tr: Kapat
+  zh: 关闭
 sites-structure-deletedomainmessage-delete:
   ru: Удалить!
   en: Delete
@@ -536,6 +583,7 @@ sites-structure-deletedomainmessage-delete:
   cz: Smazat!
   de: Löschen
   tr: Sil
+  zh: 删除
 sites-structure-windowtitle-noeditpageprops-close:
   ru: Закрыть
   en: Close
@@ -547,6 +595,7 @@ sites-structure-windowtitle-noeditpageprops-close:
   cz: Zavřít
   de: Schließen
   tr: Kapat
+  zh: 关闭
 sites-structure-windowtitle-urlcopiedtext-close:
   ru: Закрыть
   en: Close
@@ -558,6 +607,7 @@ sites-structure-windowtitle-urlcopiedtext-close:
   cz: Zavřít
   de: Schließen
   tr: Kapat
+  zh: 关闭
 sites-structure-windowtitle-urlcopiederrortext-close:
   ru: Закрыть
   en: Close
@@ -569,6 +619,7 @@ sites-structure-windowtitle-urlcopiederrortext-close:
   cz: Zavřít
   de: Schließen
   tr: Kapat
+  zh: 关闭
 sites-structure-messages-removepublicationmessage-delete:
   ru: Удалить!
   en: Delete
@@ -580,6 +631,7 @@ sites-structure-messages-removepublicationmessage-delete:
   cz: Smazat!
   de: Löschen
   tr: Sil
+  zh: 删除
 sites-structure-messages-removepublicationsmessage-delete:
   ru: Удалить!
   en: Delete
@@ -591,6 +643,7 @@ sites-structure-messages-removepublicationsmessage-delete:
   cz: Smazat!
   de: Löschen
   tr: Sil
+  zh: 删除
 sites-structure-deletepagemessage-delete:
   ru: Удалить!
   en: Delete
@@ -602,6 +655,7 @@ sites-structure-deletepagemessage-delete:
   cz: Smazat!
   de: Löschen
   tr: Sil
+  zh: 删除
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -612,6 +666,7 @@ sites-global-notallowed:
   cz: Operace není povolena
   de: Vorgang nicht erlaubt
   tr: İşlem izni yok
+  zh: 不允许操作
 sites-structurepage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -623,6 +678,7 @@ sites-structurepage-notallowed:
   cz: Operace není povolena
   de: Vorgang nicht erlaubt
   tr: İşlem izni yok
+  zh: 不允许操作
 sites-structure-contextmenu-publish:
   ru: Опубликовать
   en: Publish
@@ -634,6 +690,7 @@ sites-structure-contextmenu-publish:
   cz: Publikovat
   de: Veröffentlichen
   tr: Yayınla
+  zh: 发布
 sites-structure-contextmenu-unpublish:
   ru: Снять с публикации
   en: Unpublish
@@ -645,6 +702,7 @@ sites-structure-contextmenu-unpublish:
   cz: Zrušit publikaci
   de: Veröffentlichung aufheben
   tr: Yayından kaldır
+  zh: 取消发布
 sites-structure-contextmenu-close:
   ru: Закрыть сайт
   en: Close site
@@ -656,6 +714,7 @@ sites-structure-contextmenu-close:
   cz: Zavřít web
   de: Website schließen
   tr: Siteyi kapat
+  zh: 关闭网站
 sites-structure-contextmenu-open:
   ru: Открыть сайт
   en: Open site
@@ -667,3 +726,4 @@ sites-structure-contextmenu-open:
   cz: Otevřít web
   de: Website öffnen
   tr: Siteyi aç
+  zh: 打开网站

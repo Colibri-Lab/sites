@@ -9,6 +9,7 @@ sites-storages-fields:
   cz: Vlastnosti
   de: Eigenschaften
   tr: Özellikler
+  zh: 属性
 sites-storages-indices:
   ru: Индексы
   en: Indexes
@@ -20,3 +21,4 @@ sites-storages-indices:
   cz: Indexy
   de: Indizes
   tr: Dizinler
+  zh: 索引
