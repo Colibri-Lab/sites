@@ -8,6 +8,7 @@ sites-storages-fields:
   uz: Xususiyatlar
   cz: Vlastnosti
   de: Eigenschaften
+  tr: Özellikler
 sites-storages-indices:
   ru: Индексы
   en: Indexes
@@ -18,3 +19,4 @@ sites-storages-indices:
   uz: Indekslar
   cz: Indexy
   de: Indizes
+  tr: Dizinler

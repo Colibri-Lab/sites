@@ -8,6 +8,7 @@ sites-storages-storages-title:
   uz: Omborlar
   cz: Sklady
   de: Speicher
+  tr: Depolamalar
 sites-storages-data-title:
   ru: Данные
   en: Data
@@ -18,6 +19,7 @@ sites-storages-data-title:
   uz: Ma'lumotlar
   cz: Data
   de: Daten
+  tr: Veri
 sites-storages-search-placeholder:
   ru: Поиск
   en: Search
@@ -28,6 +30,7 @@ sites-storages-search-placeholder:
   uz: Qidiruv
   cz: Hledat
   de: Suchen
+  tr: Ara
 sites-storages-dataempty:
   ru: Данные не найдены
   en: Data not found
@@ -37,6 +40,7 @@ sites-storages-dataempty:
   uz: Ma'lumotlar topilmadi
   cz: Data nenalezena
   de: Keine Daten gefunden
+  tr: Veri bulunamadı
 sites-storages-buttons-adddata:
   ru: Добавить
   en: Add
@@ -47,6 +51,7 @@ sites-storages-buttons-adddata:
   uz: Qo'shish
   cz: Přidat
   de: Hinzufügen
+  tr: Ekle
 sites-storages-buttons-dublicatedata:
   ru: Дуб.
   en: Dublicate
@@ -57,6 +62,7 @@ sites-storages-buttons-dublicatedata:
   uz: Nusxalash
   cz: Duplikovat
   de: Duplizieren
+  tr: Çoğalt
 sites-storages-buttons-editdata:
   ru: Ред.
   en: Edit
@@ -67,6 +73,7 @@ sites-storages-buttons-editdata:
   uz: Tahrirlash
   cz: Upravit
   de: Bearbeiten
+  tr: Düzenle
 sites-storages-buttons-deletedata:
   ru: Удалить
   en: Delete
@@ -77,6 +84,7 @@ sites-storages-buttons-deletedata:
   uz: O'chirish
   cz: Smazat
   de: Löschen
+  tr: Sil
 sites-structure-deletedata1:
   ru: Удаление данных
   en: Delete data row
@@ -86,6 +94,7 @@ sites-structure-deletedata1:
   uz: Ma'lumotlar qatorini o'chirish
   cz: Smazat řádek dat
   de: Datenzeile löschen
+  tr: Veri satırını sil
 sites-structure-deletedata1message:
   ru: Вы уверены, что хотите удалить выбранную строку?
   en: Are you sure you want to delete the selected row?
@@ -95,6 +104,7 @@ sites-structure-deletedata1message:
   uz: Tanlangan qatorni o'chirishni xohlaysizmi?
   cz: Opravdu chcete smazat vybraný řádek?
   de: Sind Sie sicher, dass Sie die ausgewählte Zeile löschen möchten?
+  tr: Seçili satırı silmek istediğinizden emin misiniz?
 sites-structure-deletedata:
   ru: Удаление данных
   en: Data row delete
@@ -105,6 +115,7 @@ sites-structure-deletedata:
   uz: Ma'lumotlar qatorini o'chirish
   cz: Smazání řádku dat
   de: Datenzeile löschen
+  tr: Veri satırı sil
 sites-structure-deletedatamessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
@@ -115,6 +126,7 @@ sites-structure-deletedatamessage:
   uz: Tanlangan qatorlarni o'chirishni xohlaysizmi?
   cz: Opravdu chcete smazat vybrané řádky?
   de: Sind Sie sicher, dass Sie die ausgewählten Zeilen löschen möchten?
+  tr: Seçili satırları silmek istediğinizden emin misiniz?
 sites-structure-newrow:
   ru: Новая строка
   en: New row
@@ -125,6 +137,7 @@ sites-structure-newrow:
   uz: Yangi qator
   cz: Nový řádek
   de: Neue Zeile
+  tr: Yeni satır
 sites-structure-contextmenu-dublicate:
   ru: Дублировать данные
   en: Dublicate data
@@ -135,6 +148,7 @@ sites-structure-contextmenu-dublicate:
   uz: Ma'lumotlarni nusxalash
   cz: Duplikovat data
   de: Daten duplizieren
+  tr: Veriyi çoğalt
 sites-structure-contextmenu-edit:
   ru: Редактировать данные
   en: Edit data
@@ -145,6 +159,7 @@ sites-structure-contextmenu-edit:
   uz: Ma'lumotlarni tahrirlash
   cz: Upravit data
   de: Daten bearbeiten
+  tr: Veriyi düzenle
 sites-structure-contextmenu-delete:
   ru: Удалить
   en: Delete
@@ -155,6 +170,7 @@ sites-structure-contextmenu-delete:
   uz: O'chirish
   cz: Smazat
   de: Löschen
+  tr: Sil
 sites-structure-deletedatasmessage:
   ru: Вы уверены, что хотите удалить выбранные строки?
   en: Are you sure you want to delete the selected rows?
@@ -165,6 +181,7 @@ sites-structure-deletedatasmessage:
   uz: Tanlangan qatorlarni o'chirishni xohlaysizmi?
   cz: Opravdu chcete smazat vybrané řádky?
   de: Sind Sie sicher, dass Sie die ausgewählten Zeilen löschen möchten?
+  tr: Seçili satırları silmek istediğinizden emin misiniz?
 sites-structure-deletedatamessage-delete:
   ru: Удалить!
   en: Delete
@@ -175,6 +192,7 @@ sites-structure-deletedatamessage-delete:
   uz: O'chirish!
   cz: Smazat!
   de: Löschen
+  tr: Sil
 sites-structure-deletedatasmessage-delete:
   ru: Удалить!
   en: Delete
@@ -185,6 +203,7 @@ sites-structure-deletedatasmessage-delete:
   uz: O'chirish!
   cz: Smazat!
   de: Löschen
+  tr: Sil
 sites-global-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -194,6 +213,7 @@ sites-global-notallowed:
   uz: Operatsiyaga ruxsat berilmagan
   cz: Operace není povolena
   de: Vorgang nicht erlaubt
+  tr: İşlem izni yok
 sites-datapage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -204,6 +224,7 @@ sites-datapage-notallowed:
   uz: Operatsiyaga ruxsat berilmagan
   cz: Operace není povolena
   de: Vorgang nicht erlaubt
+  tr: İşlem izni yok
 sites-structure-filter:
   ru: Фильтр строк
   en: Rows filter
@@ -214,6 +235,7 @@ sites-structure-filter:
   uz: Qatorlarni filtrlash
   cz: Filtr řádků
   de: Zeilenfilter
+  tr: Satır filtresi
 sites-structure-deletedatas:
   ru: Удаление строк
   en: Delete rows
@@ -224,6 +246,7 @@ sites-structure-deletedatas:
   uz: Qatorlarni o'chirish
   cz: Smazání řádků
   de: Zeilen löschen
+  tr: Satırları sil
 sites-storages-buttons-exportdata:
   ru: Выгрузить
   en: Export
@@ -234,6 +257,7 @@ sites-storages-buttons-exportdata:
   uz: Eksport qilish
   cz: Exportovat
   de: Exportieren
+  tr: Dışa aktar
 sites-structure-contextmenu-restore:
   ru: Восстановить
   en: Restore
@@ -244,6 +268,7 @@ sites-structure-contextmenu-restore:
   uz: Tiklash
   cz: Obnovit
   de: Wiederherstellen
+  tr: Geri yükle
 sites-storages-buttons-restoredata:
   ru: Восстановить
   en: Restore
@@ -254,6 +279,7 @@ sites-storages-buttons-restoredata:
   uz: Tiklash
   cz: Obnovit
   de: Wiederherstellen
+  tr: Geri yükle
 sites-structure-restoredata:
   ru: Восстановление данных
   en: Restore data
@@ -264,6 +290,7 @@ sites-structure-restoredata:
   uz: Ma'lumotlarni tiklash
   cz: Obnovení dat
   de: Daten wiederherstellen
+  tr: Veriyi geri yükle
 sites-structure-restoredatamessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
@@ -274,6 +301,7 @@ sites-structure-restoredatamessage:
   uz: Tanlangan qatorlarni tiklashni xohlaysizmi?
   cz: Opravdu chcete obnovit vybrané řádky?
   de: Sind Sie sicher, dass Sie die ausgewählten Zeilen wiederherstellen möchten?
+  tr: Seçili satırları geri yüklemek istediğinizden emin misiniz?
 sites-structure-restoredatamessage-delete:
   ru: Восстановить!
   en: Restore!
@@ -284,6 +312,7 @@ sites-structure-restoredatamessage-delete:
   uz: Tiklash!
   cz: Obnovit!
   de: Wiederherstellen!
+  tr: Geri yükle!
 sites-structure-restoredatas:
   ru: Восстановление данных
   en: Restore data
@@ -294,6 +323,7 @@ sites-structure-restoredatas:
   uz: Ma'lumotlarni tiklash
   cz: Obnovení dat
   de: Daten wiederherstellen
+  tr: Veriyi geri yükle
 sites-structure-restoredatasmessage:
   ru: Вы уверены, что хотите восстановить выбранные строки?
   en: Are you sure you want to restore the selected rows?
@@ -304,6 +334,7 @@ sites-structure-restoredatasmessage:
   uz: Tanlangan qatorlarni tiklashni xohlaysizmi?
   cz: Opravdu chcete obnovit vybrané řádky?
   de: Sind Sie sicher, dass Sie die ausgewählten Zeilen wiederherstellen möchten?
+  tr: Seçili satırları geri yüklemek istediğinizden emin misiniz?
 sites-structure-restoredatasmessage-delete:
   ru: Восстановить!
   en: Restore!
@@ -314,6 +345,7 @@ sites-structure-restoredatasmessage-delete:
   uz: Tiklash!
   cz: Obnovit!
   de: Wiederherstellen!
+  tr: Geri yükle!
 sites-structure-editrow:
   ru: Редактирование строки
   en: Edit row
@@ -324,6 +356,7 @@ sites-structure-editrow:
   uz: Qatorni tahrirlash
   cz: Úprava řádku
   de: Zeile bearbeiten
+  tr: Satırı düzenle
 sites-storages-buttons-cleardata:
   ru: Очистить
   en: Clear
@@ -334,6 +367,7 @@ sites-storages-buttons-cleardata:
   uz: Tozalash
   cz: Vymazat
   de: Leeren
+  tr: Temizle
 sites-structure-cleardatas:
   ru: Очистка
   en: Clear
@@ -344,6 +378,7 @@ sites-structure-cleardatas:
   uz: Tozalash
   cz: Vymazat
   de: Leeren
+  tr: Temizle
 sites-structure-cleardatasmessage:
   ru: Внимание! Данные невозможно будет восстановить, если у вас не включено
     мягкое удаление
@@ -362,6 +397,7 @@ sites-structure-cleardatasmessage:
   cz: Pozor! Data nebude možné obnovit, pokud nemáte povoleno měkké mazání
   de: Achtung! Daten können nicht wiederhergestellt werden, wenn Soft Delete nicht
     aktiviert ist
+  tr: Dikkat! Yumuşak silme etkin değilse veriler geri yüklenemez
 sites-structure-cleardatasmessage-clear:
   ru: Очистить
   en: Clear
@@ -372,3 +408,4 @@ sites-structure-cleardatasmessage-clear:
   uz: Tozalash
   cz: Vymazat
   de: Leeren
+  tr: Temizle

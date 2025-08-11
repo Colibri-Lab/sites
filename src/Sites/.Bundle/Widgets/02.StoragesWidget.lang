@@ -8,6 +8,7 @@ sites-widgets-storageswidget-title:
   uz: Saqlash holati
   cz: Stav úložišť
   de: Speicherstatus
+  tr: Depolama durumu
 sites-widgets-storageswidget-name:
   ru: Наименование
   en: Name
@@ -18,6 +19,7 @@ sites-widgets-storageswidget-name:
   uz: Nomi
   cz: Název
   de: Name
+  tr: Ad
 sites-widgets-storageswidget-version:
   ru: Версия
   en: Version
@@ -28,6 +30,7 @@ sites-widgets-storageswidget-version:
   uz: Versiya
   cz: Verze
   de: Version
+  tr: Sürüm
 sites-widgets-storageswidget-engine:
   ru: Тип хранилища
   en: Engine
@@ -38,6 +41,7 @@ sites-widgets-storageswidget-engine:
   uz: Dvigatel
   cz: Typ úložiště
   de: Engine
+  tr: Motor
 sites-widgets-storageswidget-row-format:
   ru: Формат строк
   en: Row format
@@ -48,6 +52,7 @@ sites-widgets-storageswidget-row-format:
   uz: Qator formati
   cz: Formát řádku
   de: Zeilenformat
+  tr: Satır formatı
 sites-widgets-storageswidget-create-time:
   en: Create time
   ru: Дата создания
@@ -58,6 +63,7 @@ sites-widgets-storageswidget-create-time:
   uz: Yaratish vaqti
   cz: Čas vytvoření
   de: Erstellungszeit
+  tr: Oluşturulma zamanı
 sites-widgets-storageswidget-update-time:
   en: Update time
   ru: Дата обновления
@@ -68,6 +74,7 @@ sites-widgets-storageswidget-update-time:
   uz: Yangilanish vaqti
   cz: Čas aktualizace
   de: Aktualisierungszeit
+  tr: Güncelleme zamanı
 sites-widgets-storageswidget-autoincrement:
   en: Current autoincrement value
   ru: Текущее значение автоинкремента
@@ -78,6 +85,7 @@ sites-widgets-storageswidget-autoincrement:
   uz: Joriy autoincrement qiymati
   cz: Aktuální hodnota autoincrementu
   de: Aktueller Autoincrement-Wert
+  tr: Mevcut otomatik artış değeri
 sites-widgets-storageswidget-avg-row-length:
   en: Avg row length
   ru: Средний размер строки
@@ -88,6 +96,7 @@ sites-widgets-storageswidget-avg-row-length:
   uz: O'rtacha qator uzunligi
   cz: Průměrná délka řádku
   de: Durchschnittliche Zeilenlänge
+  tr: Ortalama satır uzunluğu
 sites-widgets-storageswidget-collation:
   en: Collation type
   ru: Сопоставление
@@ -98,6 +107,7 @@ sites-widgets-storageswidget-collation:
   uz: Taqqoslash turi
   cz: Typ řazení
   de: Kollationstyp
+  tr: Karşılaştırma türü
 sites-widgets-storageswidget-rows:
   en: Rows count
   ru: Количество строк
@@ -108,6 +118,7 @@ sites-widgets-storageswidget-rows:
   uz: Qatorlar soni
   cz: Počet řádků
   de: Zeilenanzahl
+  tr: Satır sayısı
 sites-widgets-storageswidget-data-free:
   en: Free data available
   ru: Свободное место
@@ -118,6 +129,7 @@ sites-widgets-storageswidget-data-free:
   uz: Bepul ma'lumotlar mavjud
   cz: Volná data k dispozici
   de: Freier Speicher verfügbar
+  tr: Kullanılabilir boş veri
 sites-widgets-storageswidget-data-length:
   en: Current data length
   ru: Текущий размер таблицы
@@ -128,6 +140,7 @@ sites-widgets-storageswidget-data-length:
   uz: Joriy ma'lumotlar uzunligi
   cz: Aktuální délka dat
   de: Aktuelle Datenlänge
+  tr: Mevcut veri uzunluğu
 sites-widgets-storageswidget-index-length:
   en: Current index length
   ru: Текущий размер индексов
@@ -138,3 +151,4 @@ sites-widgets-storageswidget-index-length:
   uz: Joriy indeks uzunligi
   cz: Aktuální délka indexu
   de: Aktuelle Indexlänge
+  tr: Mevcut dizin uzunluğu

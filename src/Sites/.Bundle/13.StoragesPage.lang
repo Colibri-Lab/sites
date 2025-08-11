@@ -8,6 +8,7 @@ sites-storages-contextmenu-add:
   uz: Yangi saqlash joyi
   cz: Nové úložiště
   de: Neuer Speicher
+  tr: Yeni depolama
 sites-storages-contextmenu-editfields:
   ru: Редактировать свойства хранилища
   en: Edit storage properties
@@ -18,6 +19,7 @@ sites-storages-contextmenu-editfields:
   uz: Saqlash joyi xususiyatlarini tahrirlash
   cz: Upravit vlastnosti úložiště
   de: Speichereigenschaften bearbeiten
+  tr: Depolama özelliklerini düzenle
 sites-storages-contextmenu-remove:
   ru: Удалить хранилище
   en: Delete storage
@@ -28,6 +30,7 @@ sites-storages-contextmenu-remove:
   uz: Saqlash joyini o'chirish
   cz: Smazat úložiště
   de: Speicher löschen
+  tr: Depolamayı sil
 sites-storages-contextmenu-newfield:
   ru: Новое свойство
   en: New property
@@ -38,6 +41,7 @@ sites-storages-contextmenu-newfield:
   uz: Yangi xususiyat
   cz: Nová vlastnost
   de: Neue Eigenschaft
+  tr: Yeni özellik
 sites-storages-contextmenu-newindex:
   ru: Новый индекс
   en: New index
@@ -48,6 +52,7 @@ sites-storages-contextmenu-newindex:
   uz: Yangi indeks
   cz: Nový index
   de: Neuer Index
+  tr: Yeni dizin
 sites-storages-contextmenu-newvirtualfield:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -58,6 +63,7 @@ sites-storages-contextmenu-newvirtualfield:
   uz: Yangi virtual xususiyat
   cz: Nová virtuální vlastnost
   de: Neue virtuelle Eigenschaft
+  tr: Yeni sanal özellik
 sites-storages-contextmenu-editfield:
   ru: Редактировать свойство
   en: Edit property
@@ -68,6 +74,7 @@ sites-storages-contextmenu-editfield:
   uz: Xususiyatni tahrirlash
   cz: Upravit vlastnost
   de: Eigenschaft bearbeiten
+  tr: Özelliği düzenle
 sites-storages-contextmenu-removefield:
   ru: Удалить свойство
   en: Delete property
@@ -78,6 +85,7 @@ sites-storages-contextmenu-removefield:
   uz: Xususiyatni o'chirish
   cz: Smazat vlastnost
   de: Eigenschaft löschen
+  tr: Özelliği sil
 sites-storages-contextmenu-editindex:
   ru: Редактировать индекс
   en: Edit index
@@ -88,6 +96,7 @@ sites-storages-contextmenu-editindex:
   uz: Indeksni tahrirlash
   cz: Upravit index
   de: Index bearbeiten
+  tr: Dizini düzenle
 sites-storages-contextmenu-removeindex:
   ru: Удалить индекс
   en: Delete index
@@ -98,6 +107,7 @@ sites-storages-contextmenu-removeindex:
   uz: Indeksni o'chirish
   cz: Smazat index
   de: Index löschen
+  tr: Dizini sil
 sites-storages-storagename:
   ru: Наименование хранилища
   en: Storage name
@@ -108,3 +118,4 @@ sites-storages-storagename:
   uz: Saqlash joyi nomi
   cz: Název úložiště
   de: Speichername
+  tr: Depolama adı
