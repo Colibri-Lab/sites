@@ -7,6 +7,7 @@ sites-storages-contextmenu-add:
   kk: Жаңа сақтау орны
   uz: Yangi saqlash joyi
   cz: Nové úložiště
+  de: Neuer Speicher
 sites-storages-contextmenu-editfields:
   ru: Редактировать свойства хранилища
   en: Edit storage properties
@@ -16,6 +17,7 @@ sites-storages-contextmenu-editfields:
   kk: Сақтау орнының қасиеттерін өңдеу
   uz: Saqlash joyi xususiyatlarini tahrirlash
   cz: Upravit vlastnosti úložiště
+  de: Speichereigenschaften bearbeiten
 sites-storages-contextmenu-remove:
   ru: Удалить хранилище
   en: Delete storage
@@ -25,6 +27,7 @@ sites-storages-contextmenu-remove:
   kk: Сақтау орнын жою
   uz: Saqlash joyini o'chirish
   cz: Smazat úložiště
+  de: Speicher löschen
 sites-storages-contextmenu-newfield:
   ru: Новое свойство
   en: New property
@@ -34,6 +37,7 @@ sites-storages-contextmenu-newfield:
   kk: Жаңа қасиет
   uz: Yangi xususiyat
   cz: Nová vlastnost
+  de: Neue Eigenschaft
 sites-storages-contextmenu-newindex:
   ru: Новый индекс
   en: New index
@@ -43,6 +47,7 @@ sites-storages-contextmenu-newindex:
   kk: Жаңа индекс
   uz: Yangi indeks
   cz: Nový index
+  de: Neuer Index
 sites-storages-contextmenu-newvirtualfield:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -52,6 +57,7 @@ sites-storages-contextmenu-newvirtualfield:
   kk: Жаңа виртуалды қасиет
   uz: Yangi virtual xususiyat
   cz: Nová virtuální vlastnost
+  de: Neue virtuelle Eigenschaft
 sites-storages-contextmenu-editfield:
   ru: Редактировать свойство
   en: Edit property
@@ -61,6 +67,7 @@ sites-storages-contextmenu-editfield:
   kk: Қасиетті өңдеу
   uz: Xususiyatni tahrirlash
   cz: Upravit vlastnost
+  de: Eigenschaft bearbeiten
 sites-storages-contextmenu-removefield:
   ru: Удалить свойство
   en: Delete property
@@ -70,6 +77,7 @@ sites-storages-contextmenu-removefield:
   kk: Қасиетті жою
   uz: Xususiyatni o'chirish
   cz: Smazat vlastnost
+  de: Eigenschaft löschen
 sites-storages-contextmenu-editindex:
   ru: Редактировать индекс
   en: Edit index
@@ -79,6 +87,7 @@ sites-storages-contextmenu-editindex:
   kk: Индексті өңдеу
   uz: Indeksni tahrirlash
   cz: Upravit index
+  de: Index bearbeiten
 sites-storages-contextmenu-removeindex:
   ru: Удалить индекс
   en: Delete index
@@ -88,6 +97,7 @@ sites-storages-contextmenu-removeindex:
   kk: Индексті жою
   uz: Indeksni o'chirish
   cz: Smazat index
+  de: Index löschen
 sites-storages-storagename:
   ru: Наименование хранилища
   en: Storage name
@@ -97,5 +107,4 @@ sites-storages-storagename:
   kk: Сақтау орнының атауы
   uz: Saqlash joyi nomi
   cz: Název úložiště
-# ... repeat for all other objects, adding:
-#   cz: <Czech translation or placeholder>
+  de: Speichername

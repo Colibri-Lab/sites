@@ -7,6 +7,7 @@ sites-widgets-storageswidget-title:
   kk: Сақтаулар күйі
   uz: Saqlash holati
   cz: Stav úložišť
+  de: Speicherstatus
 sites-widgets-storageswidget-name:
   ru: Наименование
   en: Name
@@ -16,6 +17,7 @@ sites-widgets-storageswidget-name:
   kk: Атауы
   uz: Nomi
   cz: Název
+  de: Name
 sites-widgets-storageswidget-version:
   ru: Версия
   en: Version
@@ -25,6 +27,7 @@ sites-widgets-storageswidget-version:
   kk: Нұсқа
   uz: Versiya
   cz: Verze
+  de: Version
 sites-widgets-storageswidget-engine:
   ru: Тип хранилища
   en: Engine
@@ -34,6 +37,7 @@ sites-widgets-storageswidget-engine:
   kk: Қозғалтқыш
   uz: Dvigatel
   cz: Typ úložiště
+  de: Engine
 sites-widgets-storageswidget-row-format:
   ru: Формат строк
   en: Row format
@@ -43,6 +47,7 @@ sites-widgets-storageswidget-row-format:
   kk: Жол форматы
   uz: Qator formati
   cz: Formát řádku
+  de: Zeilenformat
 sites-widgets-storageswidget-create-time:
   en: Create time
   ru: Дата создания
@@ -52,6 +57,7 @@ sites-widgets-storageswidget-create-time:
   kk: Құру уақыты
   uz: Yaratish vaqti
   cz: Čas vytvoření
+  de: Erstellungszeit
 sites-widgets-storageswidget-update-time:
   en: Update time
   ru: Дата обновления
@@ -61,6 +67,7 @@ sites-widgets-storageswidget-update-time:
   kk: Жаңарту уақыты
   uz: Yangilanish vaqti
   cz: Čas aktualizace
+  de: Aktualisierungszeit
 sites-widgets-storageswidget-autoincrement:
   en: Current autoincrement value
   ru: Текущее значение автоинкремента
@@ -70,6 +77,7 @@ sites-widgets-storageswidget-autoincrement:
   kk: Ағымдағы автоинкремент мәні
   uz: Joriy autoincrement qiymati
   cz: Aktuální hodnota autoincrementu
+  de: Aktueller Autoincrement-Wert
 sites-widgets-storageswidget-avg-row-length:
   en: Avg row length
   ru: Средний размер строки
@@ -79,6 +87,7 @@ sites-widgets-storageswidget-avg-row-length:
   kk: Орташа жол ұзындығы
   uz: O'rtacha qator uzunligi
   cz: Průměrná délka řádku
+  de: Durchschnittliche Zeilenlänge
 sites-widgets-storageswidget-collation:
   en: Collation type
   ru: Сопоставление
@@ -88,6 +97,7 @@ sites-widgets-storageswidget-collation:
   kk: Салыстыру түрі
   uz: Taqqoslash turi
   cz: Typ řazení
+  de: Kollationstyp
 sites-widgets-storageswidget-rows:
   en: Rows count
   ru: Количество строк
@@ -97,6 +107,7 @@ sites-widgets-storageswidget-rows:
   kk: Жолдар саны
   uz: Qatorlar soni
   cz: Počet řádků
+  de: Zeilenanzahl
 sites-widgets-storageswidget-data-free:
   en: Free data available
   ru: Свободное место
@@ -106,6 +117,7 @@ sites-widgets-storageswidget-data-free:
   kk: Бос деректер қол жетімді
   uz: Bepul ma'lumotlar mavjud
   cz: Volná data k dispozici
+  de: Freier Speicher verfügbar
 sites-widgets-storageswidget-data-length:
   en: Current data length
   ru: Текущий размер таблицы
@@ -115,6 +127,7 @@ sites-widgets-storageswidget-data-length:
   kk: Ағымдағы деректер ұзындығы
   uz: Joriy ma'lumotlar uzunligi
   cz: Aktuální délka dat
+  de: Aktuelle Datenlänge
 sites-widgets-storageswidget-index-length:
   en: Current index length
   ru: Текущий размер индексов
@@ -124,3 +137,4 @@ sites-widgets-storageswidget-index-length:
   kk: Ағымдағы индекс ұзындығы
   uz: Joriy indeks uzunligi
   cz: Aktuální délka indexu
+  de: Aktuelle Indexlänge
