@@ -10,6 +10,7 @@ sites-structure-datagrid-created:
   de: Erstellungsdatum
   tr: Oluşturulma tarihi
   zh: 创建日期
+  fa: تاریخ ایجاد
 sites-structure-datagrid-deleted:
   ru: Удалена
   en: Deleted
@@ -22,3 +23,4 @@ sites-structure-datagrid-deleted:
   de: Gelöscht
   tr: Silindi
   zh: 已删除
+  fa: حذف شده
