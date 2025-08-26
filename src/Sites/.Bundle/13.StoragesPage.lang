@@ -10,6 +10,7 @@ sites-storages-contextmenu-add:
   de: Neuer Speicher
   tr: Yeni depolama
   zh: 新存储
+  fa: ذخیره‌سازی جدید
 sites-storages-contextmenu-editfields:
   ru: Редактировать свойства хранилища
   en: Edit storage properties
@@ -22,6 +23,7 @@ sites-storages-contextmenu-editfields:
   de: Bearbeitung der Speichereigenschaften
   tr: Depolama özelliklerini düzenle
   zh: 编辑存储属性
+  fa: ویرایش ویژگی‌های ذخیره‌سازی
 sites-storages-contextmenu-remove:
   ru: Удалить хранилище
   en: Delete storage
@@ -34,6 +36,7 @@ sites-storages-contextmenu-remove:
   de: Speicher löschen
   tr: Depolamayı sil
   zh: 删除存储
+  fa: حذف ذخیره‌سازی
 sites-storages-contextmenu-newfield:
   ru: Новое свойство
   en: New property
@@ -46,6 +49,7 @@ sites-storages-contextmenu-newfield:
   de: Neue Eigenschaften
   tr: Yeni özellikler
   zh: 新属性
+  fa: ویژگی جدید
 sites-storages-contextmenu-newindex:
   ru: Новый индекс
   en: New index
@@ -58,6 +62,7 @@ sites-storages-contextmenu-newindex:
   de: Neuer Index
   tr: Yeni indeks
   zh: 新索引
+  fa: ایندکس جدید
 sites-storages-contextmenu-newvirtualfield:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -70,6 +75,7 @@ sites-storages-contextmenu-newvirtualfield:
   de: Neue virtuelle Eigenschaft
   tr: Yeni sanal özellik
   zh: 新虚拟属性
+  fa: ویژگی مجازی جدید
 sites-storages-contextmenu-editfield:
   ru: Редактировать свойство
   en: Edit property
@@ -82,6 +88,7 @@ sites-storages-contextmenu-editfield:
   de: Bearbeitung der Eigenschaften
   tr: Özellikleri düzenle
   zh: 编辑属性
+  fa: ویرایش ویژگی
 sites-storages-contextmenu-removefield:
   ru: Удалить свойство
   en: Delete property
@@ -94,6 +101,7 @@ sites-storages-contextmenu-removefield:
   de: Eigenschaften löschen
   tr: Özellikleri sil
   zh: 删除属性
+  fa: حذف ویژگی
 sites-storages-contextmenu-editindex:
   ru: Редактировать индекс
   en: Edit index
@@ -106,6 +114,7 @@ sites-storages-contextmenu-editindex:
   de: Bearbeitung des Index
   tr: İndeksi düzenle
   zh: 编辑索引
+  fa: ویرایش ایندکس
 sites-storages-contextmenu-removeindex:
   ru: Удалить индекс
   en: Delete index
@@ -118,6 +127,7 @@ sites-storages-contextmenu-removeindex:
   de: Index löschen
   tr: İndeksi sil
   zh: 删除索引
+  fa: حذف ایندکس
 sites-storages-storagename:
   ru: Наименование хранилища
   en: Storage name
@@ -130,6 +140,7 @@ sites-storages-storagename:
   de: Speichername
   tr: Depolama adı
   zh: 存储名称
+  fa: نام ذخیره‌سازی
 sites-storages-storagename-note:
   ru: Пожалуйста, введите наименование. Внимание! должно содержать только
     латинские буквы и цифры без тире, дефисов и пробелов
@@ -152,6 +163,7 @@ sites-storages-storagename-note:
   tr: Lütfen bir ad girin. Dikkat! Sadece latin harfleri ve rakamlar, tire ve
     boşluk olmadan olmalı
   zh: 请输入名称。注意！只能包含拉丁字母和数字，不允许有短横线、连字符和空格
+  fa: لطفاً نام را وارد کنید. توجه! فقط باید شامل حروف لاتین و اعداد باشد و خط تیره، فاصله و نشانه‌ها مجاز نیستند
 sites-storages-storagename-validation-required:
   ru: Пожалуйста, введите наименование хранилища
   en: Please enter a storage name
@@ -164,6 +176,7 @@ sites-storages-storagename-validation-required:
   de: Bitte geben Sie einen Speichernamen ein
   tr: Lütfen depolama adını girin
   zh: 请输入存储名称
+  fa: لطفاً نام ذخیره‌سازی را وارد کنید
 sites-storages-storagename-validation-regexp:
   ru: Введенный текст не соответствует требованиям
   en: The entered text does not match the requirements
@@ -176,6 +189,7 @@ sites-storages-storagename-validation-regexp:
   de: Der eingegebene Text entspricht nicht den Anforderungen
   tr: Girilen metin gereksinimlerle uyuşmuyor
   zh: 输入的文本不符合要求
+  fa: متن وارد شده با الزامات مطابقت ندارد
 sites-storages-storagedesc:
   ru: Описание
   en: Description
@@ -188,6 +202,7 @@ sites-storages-storagedesc:
   de: Beschreibung
   tr: Açıklama
   zh: 描述
+  fa: توضیحات
 sites-storages-storagedesc-note:
   ru: Описание, в свободной форме
   en: Description, in free form
@@ -200,6 +215,7 @@ sites-storages-storagedesc-note:
   de: Beschreibung, in freier Form
   tr: Açıklama, serbest biçimde
   zh: 描述，自由格式
+  fa: توضیحات به صورت آزاد
 sites-storages-storagedesc-validation-required:
   ru: Пожалуйста, введите описание хранилища
   en: Please enter a description
@@ -212,6 +228,7 @@ sites-storages-storagedesc-validation-required:
   de: Bitte geben Sie eine Beschreibung ein
   tr: Lütfen bir açıklama girin
   zh: 请输入描述
+  fa: لطفاً توضیحات را وارد کنید
 sites-storages-storagegroup:
   ru: Группа
   en: Group
@@ -224,6 +241,7 @@ sites-storages-storagegroup:
   de: Gruppe
   tr: Grup
   zh: 分组
+  fa: گروه
 sites-storages-storageaccesspoint:
   ru: Подключение
   en: Access point
@@ -236,6 +254,9 @@ sites-storages-storageaccesspoint:
   de: Zugangspunkt
   tr: Erişim noktası
   zh: 接入点
+  fa: نقطه دسترسی
+
+
 sites-storages-storageaccesspoint-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
@@ -248,6 +269,7 @@ sites-storages-storageaccesspoint-note:
   de: Achtung! Sie sollten wissen, was Sie tun!
   tr: Dikkat! Ne yaptığınızı bildiğiniz varsayılır!
   zh: 注意！假定您知道自己在做什么！
+  fa: توجه! فرض بر این است که شما می‌دانید چه می‌کنید!
 sites-storages-storageaccesspoint-validation-required:
   ru: Пожалуйста, выберите подключение
   en: Please select an access point
@@ -260,6 +282,7 @@ sites-storages-storageaccesspoint-validation-required:
   de: Bitte wählen Sie einen Zugangspunkt aus
   tr: Lütfen bir erişim noktası seçin
   zh: 请选择接入点
+  fa: لطفاً یک نقطه دسترسی انتخاب کنید
 sites-storages-storagemodels:
   ru: Модели
   en: Models
@@ -272,22 +295,20 @@ sites-storages-storagemodels:
   de: Modelle
   tr: Modeller
   zh: 模型
+  fa: مدل‌ها
 sites-storages-storagemodels-note:
   ru: Название классов моделей. Внимание! Неймспейс должен начинаться с Models\\
   en: The name of the model classes. Attention! Namespace must start with Models\\
-  hy: Մոդելի դասերի անվանումը. Ուշադրություն. Անվանատարածքը պետք է սկսվի
-    Models-ով\\
-  it: Il nome delle classi modello. Attenzione! Lo spazio dei nomi deve iniziare
-    con Models\\
-  es: El nombre de las clases de modelo. ¡Atención! El espacio de nombres debe
-    comenzar con Models\\
-  kk: Модель сыныптарының атауы. Назар аударыңыз! Атаулар кеңістігі Models\\-ден
-    басталуы керек
+  hy: Մոդելի դասերի անվանումը. Ուշադրություն. Անվանատարածքը պետք է սկսվի Models-ով\\
+  it: Il nome delle classi modello. Attenzione! Lo spazio dei nomi deve iniziare con Models\\
+  es: El nombre de las clases de modelo. ¡Atención! El espacio de nombres debe comenzar con Models\\
+  kk: Модель сыныптарының атауы. Назар аударыңыз! Атаулар кеңістігі Models\\-ден басталуы керек
   uz: Model sinflari nomi. Diqqat! Nomlar maydoni Models\\ bilan boshlanishi kerak
   cz: Název tříd modelu. Pozor! Namespace musí začínat Models\\
   de: Name der Modellklassen. Achtung! Der Namespace muss mit Models\\ beginnen
   tr: Model sınıflarının adı. Dikkat! Namespace Models\\ ile başlamalıdır
   zh: 模型类名。注意！命名空间必须以 Models\\ 开头
+  fa: نام کلاس‌های مدل. توجه! فضای نام باید با Models\\ شروع شود
 sites-storages-storagemodels-table:
   ru: Таблица
   en: Table model
@@ -300,6 +321,7 @@ sites-storages-storagemodels-table:
   de: Tabellenmodell
   tr: Tablo modeli
   zh: 表模型
+  fa: مدل جدول
 sites-storages-storagemodels-row:
   ru: Строка
   en: Row model
@@ -312,6 +334,7 @@ sites-storages-storagemodels-row:
   de: Zeilenmodell
   tr: Satır modeli
   zh: 行模型
+  fa: مدل سطر
 sites-storages-storagemodels-validation-required:
   ru: Пожалуйста, введите наименование классов моделей таблицы и строки
   en: Please enter the name of the table and row model classes
@@ -324,6 +347,7 @@ sites-storages-storagemodels-validation-required:
   de: Bitte geben Sie den Namen der Tabellen- und Zeilenmodellklassen ein
   tr: Lütfen tablo ve satır model sınıflarının adını girin
   zh: 请输入表和行模型类的名称
+  fa: لطفاً نام کلاس‌های مدل جدول و سطر را وارد کنید
 sites-storages-storagecomponents:
   ru: Компоненты
   en: Components
@@ -336,11 +360,11 @@ sites-storages-storagecomponents:
   de: Komponenten
   tr: Bileşenler
   zh: 组件
+  fa: کامپوننت‌ها
 sites-storages-storagecomponents-note:
   ru: Компоненты для отображения, если проект в режиме «Приложение»
   en: Components to display if the project is in Application mode
-  hy: Բաղադրիչներ, որոնք ցուցադրվելու են, եթե նախագիծը գտնվում է Application
-    ռեժիմում
+  hy: Բաղադրիչներ, որոնք ցուցադրվելու են, եթե նախագիծը գտնվում է Application ռեժիմում
   it: Componenti da visualizzare se il progetto è in modalità Applicazione
   es: Componentes para mostrar si el proyecto está en modo Aplicación
   kk: Жобаны қолданба режимінде көрсету үшін компоненттер
@@ -349,6 +373,10 @@ sites-storages-storagecomponents-note:
   de: Komponenten, die angezeigt werden, wenn das Projekt im Anwendungsmodus ist
   tr: Proje Uygulama modunda ise gösterilecek bileşenler
   zh: 如果项目处于应用模式下显示的组件
+  fa: کامپوننت‌هایی که در حالت برنامه نمایش داده می‌شوند
+
+
+
 sites-storages-storagecomponents-default:
   ru: Компонент по умолчанию
   en: Default Component
@@ -361,6 +389,7 @@ sites-storages-storagecomponents-default:
   de: Standardkomponente
   tr: Varsayılan bileşen
   zh: 默认组件
+  fa: کامپوننت پیش‌فرض
 sites-storages-storagecomponents-list:
   ru: Компонент в списке
   en: Component in the list
@@ -373,6 +402,7 @@ sites-storages-storagecomponents-list:
   de: Komponente in der Liste
   tr: Listede bileşen
   zh: 列表中的组件
+  fa: کامپوننت در لیست
 sites-storages-storagecomponents-item:
   ru: Компонент карточка
   en: Card component
@@ -385,6 +415,7 @@ sites-storages-storagecomponents-item:
   de: Kartenkomponente
   tr: Kart bileşeni
   zh: 卡片组件
+  fa: کامپوننت کارت
 sites-storages-storagetemplates:
   ru: Шаблоны
   en: Templates
@@ -397,6 +428,7 @@ sites-storages-storagetemplates:
   de: Vorlagen
   tr: Şablonlar
   zh: 模板
+  fa: قالب‌ها
 sites-storages-storagetemplates-note:
   ru: Шаблоны для отображения, если проект в режиме «Вебсайт»
   en: Templates to display if the project is in Website mode
@@ -409,6 +441,7 @@ sites-storages-storagetemplates-note:
   de: Vorlagen, die angezeigt werden, wenn das Projekt im Website-Modus ist
   tr: Proje Web Sitesi modunda ise gösterilecek şablonlar
   zh: 如果项目处于网站模式下显示的模板
+  fa: قالب‌هایی برای نمایش اگر پروژه در حالت وبسایت باشد
 sites-storages-storagetemplates-default:
   ru: Шаблон по умолчанию
   en: Default template
@@ -421,6 +454,7 @@ sites-storages-storagetemplates-default:
   de: Standardvorlage
   tr: Varsayılan şablon
   zh: 默认模板
+  fa: قالب پیش‌فرض
 sites-storages-storagetemplates-list:
   ru: Шаблон в списке
   en: Template in the list
@@ -433,6 +467,7 @@ sites-storages-storagetemplates-list:
   de: Vorlage in der Liste
   tr: Listede şablon
   zh: 列表中的模板
+  fa: قالب در لیست
 sites-storages-storagetemplates-item:
   ru: Шаблон карточка
   en: Card template
@@ -445,6 +480,7 @@ sites-storages-storagetemplates-item:
   de: Kartenvorlage
   tr: Kart şablonu
   zh: 卡片模板
+  fa: قالب کارت
 sites-storages-storageadditional:
   ru: Дополнительные параметры
   en: Extra options
@@ -457,6 +493,7 @@ sites-storages-storageadditional:
   de: Zusätzliche Optionen
   tr: Ekstra seçenekler
   zh: 额外选项
+  fa: گزینه‌های اضافی
 sites-storages-storageadditional-visible:
   ru: Отображать в менеджере хранилищ
   en: Show in storage manager
@@ -469,6 +506,7 @@ sites-storages-storageadditional-visible:
   de: Im Speicher-Manager anzeigen
   tr: Depolama yöneticisinde göster
   zh: 在存储管理器中显示
+  fa: نمایش در مدیر ذخیره‌سازی
 sites-storages-storageadditional-maybepublished:
   ru: Данные могут быть опубликованы
   en: Data may be published
@@ -481,6 +519,7 @@ sites-storages-storageadditional-maybepublished:
   de: Daten können veröffentlicht werden
   tr: Veriler yayınlanabilir
   zh: 数据可以被发布
+  fa: داده‌ها ممکن است منتشر شوند
 sites-storages-fieldname:
   ru: Наименование свойства
   en: Property name
@@ -493,6 +532,8 @@ sites-storages-fieldname:
   de: Eigenschaftsname
   tr: Özellik adı
   zh: 属性名称
+  fa: نام ویژگی
+
 sites-storages-fieldname-note:
   ru: Пожалуйста, введите наименование. Внимание! должно содержать только
     латинские буквы и цифры без тире, дефисов и пробелов.
@@ -515,6 +556,7 @@ sites-storages-fieldname-note:
   tr: Lütfen bir ad girin. Dikkat! Sadece Latin harfleri ve rakamlar, tire, kısa
     çizgi ve boşluk olmadan olmalı.
   zh: 请输入名称。注意！只能包含拉丁字母和数字，不允许有短横线、连字符和空格。
+  fa: لطفاً نام را وارد کنید. توجه! فقط باید شامل حروف لاتین و اعداد باشد و خط تیره، فاصله و نشانه‌ها مجاز نیستند.
 sites-storages-fieldname-validation-required:
   ru: Пожалуйста, введите наименование свойства
   en: Please enter a property name
@@ -527,6 +569,7 @@ sites-storages-fieldname-validation-required:
   de: Bitte geben Sie einen Eigenschaftsnamen ein
   tr: Lütfen bir özellik adı girin
   zh: 请输入属性名称
+  fa: لطفاً نام ویژگی را وارد کنید
 sites-storages-fieldname-validation-regexp:
   ru: Введенный текст не соответствует требованиям
   en: The entered text does not match the requirements
@@ -539,6 +582,7 @@ sites-storages-fieldname-validation-regexp:
   de: Der eingegebene Text entspricht nicht den Anforderungen
   tr: Girilen metin gereksinimlerle uyuşmuyor
   zh: 输入的文本不符合要求
+  fa: متن وارد شده با الزامات مطابقت ندارد
 sites-storages-fieldgroup:
   ru: Группа свойств
   en: Properties group
@@ -551,6 +595,7 @@ sites-storages-fieldgroup:
   de: Eigenschaftsgruppe
   tr: Özellik grubu
   zh: 属性组
+  fa: گروه ویژگی‌ها
 sites-storages-fieldgroup-note:
   ru: Наименование группы, если нужно оставить в основной то нужно написать
     "window"
@@ -568,6 +613,7 @@ sites-storages-fieldgroup-note:
     Sie "window"
   tr: Grubun adı, ana grupta bırakmak istiyorsanız "window" yazın
   zh: 组名，如果要保留在主组中，请写“window”
+  fa: نام گروه، اگر می‌خواهید در گروه اصلی باقی بماند باید "window" بنویسید
 sites-storages-fieldgroup-validation-required:
   ru: Пожалуйста, введите группу свойств
   en: Please enter a property group
@@ -580,6 +626,7 @@ sites-storages-fieldgroup-validation-required:
   de: Bitte geben Sie eine Eigenschaftsgruppe ein
   tr: Lütfen bir özellik grubu girin
   zh: 请输入属性组
+  fa: لطفاً گروه ویژگی را وارد کنید
 sites-storages-fielddesc:
   ru: Описание свойства
   en: Property description
@@ -592,6 +639,7 @@ sites-storages-fielddesc:
   de: Eigenschaftsbeschreibung
   tr: Özellik açıklaması
   zh: 属性描述
+  fa: توضیحات ویژگی
 sites-storages-fielddesc-note:
   ru: Можно на русском языке. Внимание! Описание должно полностью описывать
     свойство, учитывайте, что модель будет возвращать модель указанную в поле
@@ -620,6 +668,7 @@ sites-storages-fielddesc-note:
   tr: Rusça olabilir. Dikkat! Açıklama özelliği tam olarak tanımlamalı, modelin
     Sınıf alanında belirtilen modeli döndüreceğini unutmayın.
   zh: 可以用俄语。注意！描述必须完整描述属性，注意模型将返回“类”字段中指定的模型。
+  fa: می‌توانید به روسی بنویسید. توجه! توضیحات باید ویژگی را کاملاً شرح دهد، توجه داشته باشید که مدل، مدلی را که در فیلد کلاس مشخص شده بازمی‌گرداند.
 sites-storages-fielddesc-validation-required:
   ru: Пожалуйста, опишите свойство
   en: Please describe the property
@@ -632,6 +681,7 @@ sites-storages-fielddesc-validation-required:
   de: Bitte beschreiben Sie die Eigenschaft
   tr: Lütfen özelliği açıklayın
   zh: 请描述属性
+  fa: لطفاً ویژگی را شرح دهید
 sites-storages-fieldplaceholder:
   ru: Замещающий текст
   en: Property placeholder
@@ -644,6 +694,7 @@ sites-storages-fieldplaceholder:
   de: Platzhalter für Eigenschaft
   tr: Özellik yer tutucu
   zh: 属性占位符
+  fa: جای‌نگهدار ویژگی
 sites-storages-fieldplaceholder-note:
   ru: Замещающий текст, отображается внутри поля серым текстом
   en: Alternative text, displayed inside the field as gray text
@@ -656,6 +707,7 @@ sites-storages-fieldplaceholder-note:
   de: Alternativtext, der im Feld als grauer Text angezeigt wird
   tr: Alternatif metin, alan içinde gri metin olarak görüntülenir
   zh: 替代文本，作为灰色文本显示在字段内
+  fa: متن جایگزین، به صورت متن خاکستری درون فیلد نمایش داده می‌شود
 sites-storages-fieldnote:
   ru: Подсказка
   en: Note
@@ -668,6 +720,11 @@ sites-storages-fieldnote:
   de: Hinweis
   tr: Not
   zh: 注释
+  fa: یادداشت
+
+
+
+
 sites-storages-fieldnote-note:
   ru: Подсказка, отображается под полем серым текстом
   en: Note, displayed below the field in gray text
@@ -680,6 +737,7 @@ sites-storages-fieldnote-note:
   de: Hinweis, unter dem Feld als grauer Text angezeigt
   tr: Not, alanın altında gri metin olarak görüntülenir
   zh: 注释，作为灰色文本显示在字段下方
+  fa: یادداشت، به صورت متن خاکستری زیر فیلد نمایش داده می‌شود
 sites-storages-fieldtype:
   ru: Тип свойства (для хранения в источнике данных)
   en: Property type (to be stored in the data source)
@@ -692,6 +750,7 @@ sites-storages-fieldtype:
   de: Eigenschaftstyp (zur Speicherung in der Datenquelle)
   tr: Özellik türü (veri kaynağında saklanacak)
   zh: 属性类型（存储在数据源中）
+  fa: نوع ویژگی (برای ذخیره در منبع داده)
 sites-storages-fieldtype-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
@@ -704,6 +763,7 @@ sites-storages-fieldtype-note:
   de: Achtung! Sie sollten wissen, was Sie tun!
   tr: Dikkat! Ne yaptığınızı bildiğiniz varsayılır!
   zh: 注意！假定您知道自己在做什么！
+  fa: توجه! فرض بر این است که شما می‌دانید چه می‌کنید!
 sites-storages-fieldtype-validation-required:
   ru: Пожалуйста, введите тип свойства
   en: Please enter a property type
@@ -716,6 +776,7 @@ sites-storages-fieldtype-validation-required:
   de: Bitte geben Sie einen Eigenschaftstyp ein
   tr: Lütfen bir özellik türü girin
   zh: 请输入属性类型
+  fa: لطفاً نوع ویژگی را وارد کنید
 sites-storages-fieldlength:
   ru: Длина в байтах
   en: Length in bytes
@@ -728,6 +789,7 @@ sites-storages-fieldlength:
   de: Länge in Bytes
   tr: Bayt cinsinden uzunluk
   zh: 字节长度
+  fa: طول به بایت
 sites-storages-fieldlength-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
@@ -740,6 +802,7 @@ sites-storages-fieldlength-note:
   de: Achtung! Sie sollten wissen, was Sie tun!
   tr: Dikkat! Ne yaptığınızı bildiğiniz varsayılır!
   zh: 注意！假定您知道自己在做什么！
+  fa: توجه! فرض بر این است که شما می‌دانید چه می‌کنید!
 sites-storages-fieldcomponent:
   ru: Компонента
   en: Component
@@ -752,25 +815,20 @@ sites-storages-fieldcomponent:
   de: Komponente
   tr: Bileşen
   zh: 组件
+  fa: کامپوننت
 sites-storages-fieldcomponent-note:
-  ru: Выберите компоненту, которая будет использоваться в формах для ввода и
-    редактирования данных
-  en: Select the component that will be used in the forms for entering and editing
-    data
+  ru: Выберите компоненту, которая будет использоваться в формах для ввода и редактирования данных
+  en: Select the component that will be used in the forms for entering and editing data
   hy: Ընտրեք բաղադրիչը, որը կօգտագործվի տվյալների մուտքագրման և խմբագրման ձևերում
-  it: Seleziona il componente che verrà utilizzato nei moduli per l'inserimento e
-    la modifica dei dati
-  es: Seleccione el componente que se utilizará en los formularios para ingresar y
-    editar datos
+  it: Seleziona il componente che verrà utilizzato nei moduli per l'inserimento e la modifica dei dati
+  es: Seleccione el componente que se utilizará en los formularios para ingresar y editar datos
   kk: Деректерді енгізу және өңдеу формаларында пайдаланылатын компонентті таңдаңыз
-  uz: Ma'lumotlarni kiritish va tahrirlash shakllarida foydalaniladigan
-    komponentni tanlang
-  cz: Vyberte komponentu, která bude použita ve formulářích pro zadávání a úpravu
-    dat
-  de: Wählen Sie die Komponente aus, die in den Formularen zum Eingeben und
-    Bearbeiten von Daten verwendet wird
+  uz: Ma'lumotlarni kiritish va tahrirlash shakllarida foydalaniladigan komponentni tanlang
+  cz: Vyberte komponentu, která bude použita ve formulářích pro zadávání a úpravu dat
+  de: Wählen Sie die Komponente aus, die in den Formularen zum Eingeben und Bearbeiten von Daten verwendet wird
   tr: Veri girişi ve düzenleme formlarında kullanılacak bileşeni seçin
   zh: 选择将在数据录入和编辑表单中使用的组件
+  fa: کامپوننتی را انتخاب کنید که در فرم‌های ورود و ویرایش داده استفاده خواهد شد
 sites-storages-fieldcomponent-validation-required:
   ru: Пожалуйста, выберите компоненту
   en: Please select a component
@@ -783,6 +841,7 @@ sites-storages-fieldcomponent-validation-required:
   de: Bitte wählen Sie eine Komponente aus
   tr: Lütfen bir bileşen seçin
   zh: 请选择一个组件
+  fa: لطفاً یک کامپوننت انتخاب کنید
 sites-storages-fieldclass:
   ru: Класс (PHP)
   en: Class (PHP)
@@ -795,6 +854,7 @@ sites-storages-fieldclass:
   de: Klasse (PHP)
   tr: Sınıf (PHP)
   zh: 类（PHP）
+  fa: کلاس (PHP)
 sites-storages-fieldclass-note:
   ru: Внимание! Класс должен существовать
   en: Attention! The class must exist
@@ -807,6 +867,7 @@ sites-storages-fieldclass-note:
   de: Achtung! Die Klasse muss existieren
   tr: Dikkat! Sınıf mevcut olmalı
   zh: 注意！类必须存在
+  fa: توجه! کلاس باید وجود داشته باشد
 sites-storages-fieldclass-validation-required:
   ru: Пожалуйста, выберите наименование класса
   en: Please select a class name
@@ -819,6 +880,7 @@ sites-storages-fieldclass-validation-required:
   de: Bitte wählen Sie einen Klassennamen aus
   tr: Lütfen bir sınıf adı seçin
   zh: 请选择一个类名
+  fa: لطفاً یک نام کلاس انتخاب کنید
 sites-storages-fieldsetdefault:
   ru: Указать значение по умолчанию
   en: Specify a default value
@@ -831,6 +893,7 @@ sites-storages-fieldsetdefault:
   de: Standardwert angeben
   tr: Varsayılan bir değer belirtin
   zh: 指定默认值
+  fa: مقدار پیش‌فرض را مشخص کنید
 sites-storages-fielddefault:
   ru: Значение по умолчанию
   en: Default value
@@ -843,24 +906,20 @@ sites-storages-fielddefault:
   de: Standardwert
   tr: Varsayılan değer
   zh: 默认值
+  fa: مقدار پیش‌فرض
 sites-storages-fielddefault-note:
-  ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что
-    делаете
+  ru: Введите значение по умолчанию. Внимание! Предполагается что вы знаете что делаете
   en: Enter a default value. Attention! You are supposed to know what you are doing
-  hy: "Մուտքագրեք լռելյայն արժեք: Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե
-    ինչ եք անում"
-  it: Inserisci un valore predefinito. Attenzione! Si suppone che tu sappia cosa
-    stai facendo
-  es: Ingrese un valor predeterminado. ¡Atención! Se supone que sabes lo que estás
-    haciendo
-  kk: Әдепкі мәнді енгізіңіз. Назар аударыңыз! Сіз не істеп жатқаныңызды білуіңіз
-    керек
-  uz: Standart qiymatni kiriting. Diqqat! Siz nima qilayotganingizni bilishingiz
-    kerak
+  hy: "Մուտքագրեք լռելյայն արժեք: Ուշադրություն. Ենթադրվում է, որ դուք իմանաք, թե ինչ եք անում"
+  it: Inserisci un valore predefinito. Attenzione! Si suppone che tu sappia cosa stai facendo
+  es: Ingrese un valor predeterminado. ¡Atención! Se supone que sabes lo que estás haciendo
+  kk: Әдепкі мәнді енгізіңіз. Назар аударыңыз! Сіз не істеп жатқаныңызды білуіңіз керек
+  uz: Standart qiymatni kiriting. Diqqat! Siz nima qilayotganingizni bilishingiz kerak
   cz: Zadejte výchozí hodnotu. Pozor! Předpokládá se, že víte, co děláte
   de: Geben Sie einen Standardwert ein. Achtung! Sie sollten wissen, was Sie tun
   tr: Varsayılan bir değer girin. Dikkat! Ne yaptığınızı bildiğiniz varsayılır
   zh: 输入默认值。注意！假定您知道自己在做什么
+  fa: مقدار پیش‌فرض را وارد کنید. توجه! فرض بر این است که شما می‌دانید چه می‌کنید
 sites-storages-fieldattrs:
   ru: Аттрибуты
   en: Attributes
@@ -873,6 +932,7 @@ sites-storages-fieldattrs:
   de: Attribute
   tr: Özellikler
   zh: 属性
+  fa: ویژگی‌ها
 sites-storages-fieldattrs-note:
   ru: Атрибуты компонента
   en: Component attributes
@@ -885,6 +945,7 @@ sites-storages-fieldattrs-note:
   de: Komponentenattribute
   tr: Bileşen özellikleri
   zh: 组件属性
+  fa: ویژگی‌های کامپوننت
 sites-storages-fieldattrs-width:
   ru: Ширина
   en: Width
@@ -897,6 +958,10 @@ sites-storages-fieldattrs-width:
   de: Breite
   tr: Genişlik
   zh: 宽度
+  fa: عرض
+
+
+
 sites-storages-fieldattrs-height:
   ru: Высота
   en: Height
@@ -909,6 +974,7 @@ sites-storages-fieldattrs-height:
   de: Höhe
   tr: Yükseklik
   zh: 高度
+  fa: ارتفاع
 sites-storages-fieldattrs-class:
   ru: Класс
   en: Class name (css)
@@ -921,6 +987,7 @@ sites-storages-fieldattrs-class:
   de: Klassenname (css)
   tr: Sınıf adı (css)
   zh: 类名（css）
+  fa: نام کلاس (css)
 sites-storages-fieldparams:
   ru: Дополнительные параметры
   en: Additional parameters
@@ -933,6 +1000,7 @@ sites-storages-fieldparams:
   de: Zusätzliche Parameter
   tr: Ek parametreler
   zh: 附加参数
+  fa: پارامترهای اضافی
 sites-storages-fieldparams-required:
   ru: Обязательное поле
   en: Property is required
@@ -945,6 +1013,7 @@ sites-storages-fieldparams-required:
   de: Eigenschaft erforderlich
   tr: Zorunlu özellik
   zh: 必填属性
+  fa: ویژگی الزامی است
 sites-storages-fieldparams-required-note:
   ru: Будет требоваться ввести значение в форме. Пустое значение будет
     трактоваться как "нет значения"
@@ -967,6 +1036,7 @@ sites-storages-fieldparams-required-note:
   tr: Formda bir değer girmeniz gerekecek. Boş bir değer "değer yok" olarak kabul
     edilir
   zh: 表单中需要输入值。空值将被视为“无值”
+  fa: شما باید مقداری را در فرم وارد کنید. مقدار خالی به عنوان "بدون مقدار" تلقی می‌شود
 sites-storages-fieldparams-enabled:
   ru: Поле включено
   en: Property is enabled
@@ -979,6 +1049,7 @@ sites-storages-fieldparams-enabled:
   de: Eigenschaft ist aktiviert
   tr: Özellik etkin
   zh: 属性已启用
+  fa: ویژگی فعال است
 sites-storages-fieldparams-enabled-note:
   ru: Не будет возможности ввести или изменить поле. Значение не будет
     передаваться в форме, если не будет введено
@@ -1001,6 +1072,7 @@ sites-storages-fieldparams-enabled-note:
   tr: Alanı girmek veya değiştirmek mümkün olmayacak. Değer girilmezse formda
     iletilmeyecek
   zh: 无法输入或更改该字段。除非输入，否则值不会在表单中传递
+  fa: امکان وارد کردن یا تغییر این فیلد وجود ندارد. مقدار فقط در صورت وارد شدن در فرم منتقل می‌شود
 sites-storages-fieldparams-canbeempty:
   ru: Принимает пустые значения
   en: Accepts empty values
@@ -1013,6 +1085,7 @@ sites-storages-fieldparams-canbeempty:
   de: Akzeptiert leere Werte
   tr: Boş değerleri kabul eder
   zh: 接受空值
+  fa: مقادیر خالی را می‌پذیرد
 sites-storages-fieldparams-canbeempty-note:
   ru: Значение сможет быть пустым, например пустая строка, или 0 в случае числа
   en: The value can be empty, such as an empty string, or 0 in the case of a number
@@ -1026,6 +1099,7 @@ sites-storages-fieldparams-canbeempty-note:
   de: Der Wert kann leer sein, z. B. ein leerer String oder 0 bei einer Zahl
   tr: Değer boş olabilir, örneğin boş bir dize veya sayı için 0
   zh: 值可以为空，例如空字符串，或数字为0
+  fa: مقدار می‌تواند خالی باشد، مانند رشته خالی یا عدد صفر
 sites-storages-fieldparams-readonly:
   ru: Только для чтения
   en: Property is readonly
@@ -1038,6 +1112,7 @@ sites-storages-fieldparams-readonly:
   de: Nur lesbar
   tr: Sadece okunabilir
   zh: 只读属性
+  fa: فقط خواندنی
 sites-storages-fieldparams-readonly-note:
   ru: Только для чтения, курсор можно будет поставить в поле, но изменить значение
     нельзя
@@ -1058,6 +1133,7 @@ sites-storages-fieldparams-readonly-note:
     nicht geändert werden
   tr: Sadece okunabilir, imleç alana yerleştirilebilir ancak değer değiştirilemez
   zh: 只读，可以将光标放入字段，但无法更改值
+  fa: فقط خواندنی است، می‌توانید نشانگر را در فیلد قرار دهید اما مقدار قابل تغییر نیست
 sites-storages-fieldparams-list:
   ru: Отображать в списке
   en: Show in list
@@ -1070,6 +1146,7 @@ sites-storages-fieldparams-list:
   de: In Liste anzeigen
   tr: Listede göster
   zh: 在列表中显示
+  fa: نمایش در لیست
 sites-storages-fieldparams-multiple:
   ru: Мультивыбор
   en: Multiple
@@ -1082,6 +1159,7 @@ sites-storages-fieldparams-multiple:
   de: Mehrfachauswahl
   tr: Çoklu seçim
   zh: 多选
+  fa: چندگانه
 sites-storages-fieldparams-greed:
   ru: Жадность в списке
   en: Greed is on the list
@@ -1094,6 +1172,7 @@ sites-storages-fieldparams-greed:
   de: Breite in der Liste (Prozent)
   tr: Listede genişlik (yüzde)
   zh: 列表宽度（百分比）
+  fa: عرض در لیست (درصد)
 sites-storages-fieldparams-greed-note:
   ru: Указывается в процентах
   en: Indicated as a percentage
@@ -1106,6 +1185,7 @@ sites-storages-fieldparams-greed-note:
   de: In Prozent angegeben
   tr: Yüzde olarak belirtilir
   zh: 以百分比表示
+  fa: به صورت درصد نشان داده می‌شود
 sites-storages-fieldparams-viewer:
   ru: Класс Viewer (для отображения в списках)
   en: Viewer class (for display in lists)
@@ -1118,6 +1198,10 @@ sites-storages-fieldparams-viewer:
   de: Viewer-Klasse (für Anzeige in Listen)
   tr: Görüntüleyici sınıfı (listelerde gösterim için)
   zh: 查看器类（用于列表显示）
+  fa: کلاس نمایشگر (برای نمایش در لیست‌ها)
+
+
+
 sites-storages-fieldparams-viewer-note:
   ru: Выберите из списка
   en: Select from the list
@@ -1130,6 +1214,7 @@ sites-storages-fieldparams-viewer-note:
   de: Aus der Liste auswählen
   tr: Listeden seçin
   zh: 从列表中选择
+  fa: از لیست انتخاب کنید
 sites-storages-fieldparams-vertical:
   ru: Отображать обьект вертикально
   en: Show object vertically
@@ -1142,6 +1227,7 @@ sites-storages-fieldparams-vertical:
   de: Objekt vertikal anzeigen
   tr: Nesneyi dikey göster
   zh: 垂直显示对象
+  fa: نمایش شیء به صورت عمودی
 sites-storages-fieldparams-vertical-note:
   ru: Работает только с обьектами типа Object и Array
   en: Works only with objects of type Object and Array
@@ -1154,6 +1240,7 @@ sites-storages-fieldparams-vertical-note:
   de: Funktioniert nur mit Objekten vom Typ Object und Array
   tr: Sadece Object ve Array türündeki nesnelerle çalışır
   zh: 仅适用于 Object 和 Array 类型的对象
+  fa: فقط با اشیاء از نوع Object و Array کار می‌کند
 sites-storages-fieldparams-visual:
   ru: Отображать в виде визуального редактора
   en: Display as visual editor
@@ -1166,6 +1253,7 @@ sites-storages-fieldparams-visual:
   de: Als visueller Editor anzeigen
   tr: Görsel düzenleyici olarak göster
   zh: 以可视化编辑器显示
+  fa: نمایش به عنوان ویرایشگر بصری
 sites-storages-fieldparams-visual-note:
   ru: Используется только в большом текстовом поле
   en: Used only in a large text field
@@ -1178,6 +1266,7 @@ sites-storages-fieldparams-visual-note:
   de: Wird nur in großen Textfeldern verwendet
   tr: Sadece büyük metin alanında kullanılır
   zh: 仅用于大文本字段
+  fa: فقط در فیلد متن بزرگ استفاده می‌شود
 sites-storages-fieldparams-code:
   ru: Отображать в виде редактора кода
   en: Display as code editor
@@ -1190,6 +1279,7 @@ sites-storages-fieldparams-code:
   de: Als Code-Editor anzeigen
   tr: Kod düzenleyici olarak göster
   zh: 以代码编辑器显示
+  fa: نمایش به عنوان ویرایشگر کد
 sites-storages-fieldparams-code-note:
   ru: Используется только в большом текстовом поле
   en: Used only in a large text field
@@ -1202,6 +1292,7 @@ sites-storages-fieldparams-code-note:
   de: Wird nur in großen Textfeldern verwendet
   tr: Sadece büyük metin alanında kullanılır
   zh: 仅用于大文本字段
+  fa: فقط در فیلد متن بزرگ استفاده می‌شود
 sites-storages-fieldparams-mask:
   ru: Маска ввода
   en: Input mask
@@ -1214,6 +1305,7 @@ sites-storages-fieldparams-mask:
   de: Eingabemaske
   tr: Giriş maskesi
   zh: 输入掩码
+  fa: ماسک ورودی
 sites-storages-fieldparams-mask-note:
   ru: Работает только с обьектами типа Text
   en: Works only with objects of type Text
@@ -1226,6 +1318,7 @@ sites-storages-fieldparams-mask-note:
   de: Funktioniert nur mit Objekten vom Typ Text
   tr: Sadece Text türündeki nesnelerle çalışır
   zh: 仅适用于 Text 类型的对象
+  fa: فقط با اشیاء از نوع Text کار می‌کند
 sites-storages-fieldparams-fieldgenerator:
   ru: Генератор параметров поля
   en: Field parameter generator
@@ -1238,6 +1331,7 @@ sites-storages-fieldparams-fieldgenerator:
   de: Feldparameter-Generator
   tr: Alan parametre üreteci
   zh: 字段参数生成器
+  fa: تولیدکننده پارامترهای فیلد
 sites-storages-fieldparams-generator:
   ru: Генератор значений по умолчанию
   en: Property default value generator
@@ -1250,6 +1344,7 @@ sites-storages-fieldparams-generator:
   de: Standardwert-Generator für Eigenschaft
   tr: Özellik varsayılan değer üreteci
   zh: 属性默认值生成器
+  fa: تولیدکننده مقدار پیش‌فرض ویژگی
 sites-storages-fieldparams-generator-note:
   ru: "Генерация значений по умолчанию. Метод: (value, component, formOrObject) =>
     {}"
@@ -1268,6 +1363,7 @@ sites-storages-fieldparams-generator-note:
   tr: "Varsayılan değerlerin oluşturulması. Yöntem: (value, component,
     formOrObject) => {}"
   zh: 生成默认值。方法：(value, component, formOrObject) => {}
+  fa: "تولید مقدار پیش‌فرض. روش: (value, component, formOrObject) => {}"
 sites-storages-fieldparams-note-class:
   ru: Класс для подсказки
   en: Hint class
@@ -1280,6 +1376,7 @@ sites-storages-fieldparams-note-class:
   de: Hinweis-Klasse
   tr: İpucu sınıfı
   zh: 提示类
+  fa: کلاس راهنما
 sites-storages-fieldparams-simplearraywidth:
   ru: Длина массива данных
   en: Data array length
@@ -1292,6 +1389,7 @@ sites-storages-fieldparams-simplearraywidth:
   de: Datenarray-Länge
   tr: Veri dizisi uzunluğu
   zh: 数据数组长度
+  fa: طول آرایه داده
 sites-storages-fieldparams-simplearraywidth-note:
   ru: Работает только с обьектами типа SimpleArray
   en: Works only with objects of type Simple Array
@@ -1304,6 +1402,7 @@ sites-storages-fieldparams-simplearraywidth-note:
   de: Funktioniert nur mit Objekten vom Typ SimpleArray
   tr: Sadece SimpleArray türündeki nesnelerle çalışır
   zh: 仅适用于 SimpleArray 类型的对象
+  fa: فقط با اشیاء از نوع SimpleArray کار می‌کند
 sites-storages-fieldparams-simplearrayheight:
   ru: Высота массива данных
   en: Data array height
@@ -1316,6 +1415,7 @@ sites-storages-fieldparams-simplearrayheight:
   de: Datenarray-Höhe
   tr: Veri dizisi yüksekliği
   zh: 数据数组高度
+  fa: ارتفاع آرایه داده
 sites-storages-fieldparams-simplearrayheight-note:
   ru: Работает только с обьектами типа SimpleArray
   en: Works only with objects of type Simple Array
@@ -1328,6 +1428,7 @@ sites-storages-fieldparams-simplearrayheight-note:
   de: Funktioniert nur mit Objekten vom Typ SimpleArray
   tr: Sadece SimpleArray türündeki nesnelerle çalışır
   zh: 仅适用于 SimpleArray 类型的对象
+  fa: فقط با اشیاء از نوع SimpleArray کار می‌کند
 sites-storages-fieldparams-addlink:
   ru: Текст ссылки для добавления строки в массив
   en: Link text to add string to array
@@ -1340,6 +1441,10 @@ sites-storages-fieldparams-addlink:
   de: Linktext zum Hinzufügen einer Zeile zum Array
   tr: Diziye satır eklemek için bağlantı metni
   zh: 向数组添加字符串的链接文本
+  fa: متن لینک برای افزودن رشته به آرایه
+
+
+
 sites-storages-fieldparams-addlink-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
@@ -1352,6 +1457,7 @@ sites-storages-fieldparams-addlink-note:
   de: Funktioniert nur mit Objekten vom Typ Array
   tr: Sadece Array türündeki nesnelerle çalışır
   zh: 仅适用于 Array 类型的对象
+  fa: فقط با اشیاء از نوع Array کار می‌کند
 sites-storages-fieldparams-removelink:
   ru: Отобразить удаление обьекта из массива
   en: Display the removal of an object from an array
@@ -1364,6 +1470,7 @@ sites-storages-fieldparams-removelink:
   de: Entfernen eines Objekts aus dem Array anzeigen
   tr: Diziden nesne kaldırmayı göster
   zh: 显示从数组中移除对象
+  fa: نمایش حذف یک شیء از آرایه
 sites-storages-fieldparams-removelink-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
@@ -1376,6 +1483,7 @@ sites-storages-fieldparams-removelink-note:
   de: Funktioniert nur mit Objekten vom Typ Array
   tr: Sadece Array türündeki nesnelerle çalışır
   zh: 仅适用于 Array 类型的对象
+  fa: فقط با اشیاء از نوع Array کار می‌کند
 sites-storages-fieldparams-updownlink:
   ru: Отобразить стрелки вверх/вниз
   en: Show Up/Down Arrows
@@ -1388,6 +1496,7 @@ sites-storages-fieldparams-updownlink:
   de: Nach-oben/unten-Pfeile anzeigen
   tr: Yukarı/Aşağı okları göster
   zh: 显示上下箭头
+  fa: نمایش فلش‌های بالا/پایین
 sites-storages-fieldparams-updownlink-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
@@ -1400,6 +1509,7 @@ sites-storages-fieldparams-updownlink-note:
   de: Funktioniert nur mit Objekten vom Typ Array
   tr: Sadece Array türündeki nesnelerle çalışır
   zh: 仅适用于 Array 类型的对象
+  fa: فقط با اشیاء از نوع Array کار می‌کند
 sites-storages-fieldparams-initempty:
   ru: Создать пустой обьект при инициализации?
   en: Create an empty object on initialization?
@@ -1412,6 +1522,7 @@ sites-storages-fieldparams-initempty:
   de: Leeres Objekt bei Initialisierung erstellen?
   tr: Başlatmada boş nesne oluşturulsun mu?
   zh: 初始化时创建空对象？
+  fa: آیا هنگام مقداردهی اولیه یک شیء خالی ایجاد شود؟
 sites-storages-fieldparams-initempty-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
@@ -1424,6 +1535,7 @@ sites-storages-fieldparams-initempty-note:
   de: Funktioniert nur mit Objekten vom Typ Array
   tr: Sadece Array türündeki nesnelerle çalışır
   zh: 仅适用于 Array 类型的对象
+  fa: فقط با اشیاء از نوع Array کار می‌کند
 sites-storages-fieldparams-maxadd:
   ru: Максимальное количество строк в массиве
   en: Maximum number of rows in an array
@@ -1436,6 +1548,7 @@ sites-storages-fieldparams-maxadd:
   de: Maximale Zeilenanzahl im Array
   tr: Dizideki maksimum satır sayısı
   zh: 数组中的最大行数
+  fa: حداکثر تعداد سطرها در آرایه
 sites-storages-fieldparams-maxadd-note:
   ru: Работает только с обьектами типа Array
   en: Works only with objects of type Array
@@ -1448,6 +1561,7 @@ sites-storages-fieldparams-maxadd-note:
   de: Funktioniert nur mit Objekten vom Typ Array
   tr: Sadece Array türündeki nesnelerle çalışır
   zh: 仅适用于 Array 类型的对象
+  fa: فقط با اشیاء از نوع Array کار می‌کند
 sites-storages-fieldparams-title:
   ru: Метод формирования заголовка в массиве
   en: Heading Formation Method in Array
@@ -1460,6 +1574,7 @@ sites-storages-fieldparams-title:
   de: Methode zur Überschriftenbildung im Array
   tr: Dizide başlık oluşturma yöntemi
   zh: 数组中的标题生成方法
+  fa: روش ایجاد عنوان در آرایه
 sites-storages-fieldparams-title-note:
   ru: "Работает только с обьектами типа Array: function(object, array)"
   en: "Only works with Array objects: function(object, array)"
@@ -1472,6 +1587,7 @@ sites-storages-fieldparams-title-note:
   de: "Funktioniert nur mit Array-Objekten: function(object, array)"
   tr: "Sadece Array nesneleriyle çalışır: function(object, array)"
   zh: 仅适用于 Array 对象：function(object, array)
+  fa: "فقط با اشیاء از نوع Array کار می‌کند: function(object, array)"
 sites-storages-fieldparams-removedesc:
   ru: Удалять заголовок поля?
   en: Remove field header?
@@ -1484,6 +1600,7 @@ sites-storages-fieldparams-removedesc:
   de: Feldüberschrift entfernen?
   tr: Alan başlığı kaldırılsın mı?
   zh: 删除字段标题？
+  fa: آیا عنوان فیلد حذف شود؟
 sites-storages-fieldparams-removedesc-note:
   ru: Работает только с обьектами типа Object/Array
   en: Works only with objects of type Object/Array
@@ -1496,6 +1613,7 @@ sites-storages-fieldparams-removedesc-note:
   de: Funktioniert nur mit Objekten vom Typ Object/Array
   tr: Sadece Object/Array türündeki nesnelerle çalışır
   zh: 仅适用于 Object/Array 类型的对象
+  fa: فقط با اشیاء از نوع Object/Array کار می‌کند
 sites-storages-fieldparams-allow:
   ru: Разрешенные типы файлов
   en: Allowed File Types
@@ -1508,6 +1626,7 @@ sites-storages-fieldparams-allow:
   de: Zulässige Dateitypen
   tr: İzin verilen dosya türleri
   zh: 允许的文件类型
+  fa: انواع فایل‌های مجاز
 sites-storages-fieldparams-allow-note:
   ru: Работает только с обьектами типа File/Files
   en: Works only with objects of type File/Files
@@ -1520,6 +1639,7 @@ sites-storages-fieldparams-allow-note:
   de: Funktioniert nur mit Objekten vom Typ File/Files
   tr: Sadece File/Files türündeki nesnelerle çalışır
   zh: 仅适用于 File/Files 类型的对象
+  fa: فقط با اشیاء از نوع File/Files کار می‌کند
 sites-storages-fieldparams-size:
   ru: Разрешенные размер файлов в байтах
   en: Allowed file size in bytes
@@ -1532,6 +1652,7 @@ sites-storages-fieldparams-size:
   de: Zulässige Dateigröße in Bytes
   tr: İzin verilen dosya boyutu (bayt)
   zh: 允许的文件大小（字节）
+  fa: اندازه مجاز فایل به بایت
 sites-storages-fieldparams-validate:
   ru: Проверка значения поля
   en: Property validation
@@ -1544,6 +1665,7 @@ sites-storages-fieldparams-validate:
   de: Eigenschaftsvalidierung
   tr: Özellik doğrulama
   zh: 属性验证
+  fa: اعتبارسنجی ویژگی
 sites-storages-fieldparams-validate-addlink:
   ru: Добавить проверку
   en: Add validation
@@ -1556,6 +1678,7 @@ sites-storages-fieldparams-validate-addlink:
   de: Validierung hinzufügen
   tr: Doğrulama ekle
   zh: 添加验证
+  fa: افزودن اعتبارسنجی
 sites-storages-fieldparams-validate-message:
   ru: Сообщение
   en: Message
@@ -1568,6 +1691,7 @@ sites-storages-fieldparams-validate-message:
   de: Nachricht
   tr: Mesaj
   zh: 消息
+  fa: پیام
 sites-storages-fieldparams-validate-method:
   ru: Метод
   en: Method
@@ -1580,6 +1704,7 @@ sites-storages-fieldparams-validate-method:
   de: Methode
   tr: Yöntem
   zh: 方法
+  fa: روش
 sites-storages-fieldlookup:
   ru: Связка
   en: Lookup
@@ -1592,6 +1717,7 @@ sites-storages-fieldlookup:
   de: Lookup
   tr: Arama
   zh: 查找
+  fa: جستجو
 sites-storages-fieldlookup-note:
   ru: Связь с другими хранилищами
   en: Communication with other repositories
@@ -1604,6 +1730,7 @@ sites-storages-fieldlookup-note:
   de: Verbindung mit anderen Speichern
   tr: Diğer depolarla bağlantı
   zh: 与其他存储的关联
+  fa: ارتباط با سایر مخازن
 sites-storages-fieldlookup-oneof-none:
   ru: Нет связи
   en: No lookup
@@ -1616,6 +1743,7 @@ sites-storages-fieldlookup-oneof-none:
   de: Keine Verknüpfung
   tr: Bağlantı yok
   zh: 无查找
+  fa: بدون جستجو
 sites-storages-fieldlookup-oneof-storage:
   ru: Хранилище
   en: Storage
@@ -1628,6 +1756,7 @@ sites-storages-fieldlookup-oneof-storage:
   de: Speicher
   tr: Depolama
   zh: 存储
+  fa: ذخیره‌سازی
 sites-storages-fieldlookup-oneof-accesspoint:
   ru: Точка доступа
   en: Access point
@@ -1640,6 +1769,7 @@ sites-storages-fieldlookup-oneof-accesspoint:
   de: Zugangspunkt
   tr: Erişim noktası
   zh: 接入点
+  fa: نقطه دسترسی
 sites-storages-fieldlookup-oneof-method:
   ru: Метод
   en: Method
@@ -1652,6 +1782,7 @@ sites-storages-fieldlookup-oneof-method:
   de: Methode
   tr: Yöntem
   zh: 方法
+  fa: روش
 sites-storages-fieldlookup-oneof-binding:
   ru: Байдинг к данным
   en: Data binding
@@ -1664,6 +1795,7 @@ sites-storages-fieldlookup-oneof-binding:
   de: Datenbindung
   tr: Veri bağlama
   zh: 数据绑定
+  fa: اتصال داده‌ها
 sites-storages-fieldlookup-oneof-controller:
   ru: Контроллер
   en: Controller
@@ -1676,6 +1808,10 @@ sites-storages-fieldlookup-oneof-controller:
   de: Controller
   tr: Denetleyici
   zh: 控制器
+  fa: کنترل‌کننده
+
+
+
 sites-storages-fieldlookup-storage:
   ru: Хранилище
   en: Storage
@@ -1688,6 +1824,7 @@ sites-storages-fieldlookup-storage:
   de: Speicher
   tr: Depolama
   zh: 存储
+  fa: ذخیره‌سازی
 sites-storages-fieldlookup-storage-name:
   ru: Хранилище
   en: Storage
@@ -1700,6 +1837,7 @@ sites-storages-fieldlookup-storage-name:
   de: Speicher
   tr: Depolama
   zh: 存储
+  fa: ذخیره‌سازی
 sites-storages-fieldlookup-storage-select:
   ru: Поля в выборке
   en: Properties in selection
@@ -1712,6 +1850,7 @@ sites-storages-fieldlookup-storage-select:
   de: Eigenschaften in der Auswahl
   tr: Seçimdeki özellikler
   zh: 选择中的属性
+  fa: ویژگی‌ها در انتخاب
 sites-storages-fieldlookup-storage-select-note:
   ru: Внимание, название полей в списке необходимо писать в фигурных скобках
   en: Attention, the name of the fields in the list must be written in curly
@@ -1727,6 +1866,7 @@ sites-storages-fieldlookup-storage-select-note:
   de: Achtung, die Feldnamen in der Liste müssen in geschweiften Klammern stehen
   tr: Dikkat, listedeki alan adları süslü parantez içinde yazılmalıdır
   zh: 注意，列表中的字段名必须用花括号括起来
+  fa: توجه، نام فیلدها در لیست باید داخل آکولاد نوشته شود
 sites-storages-fieldlookup-storage-title:
   ru: Поле для вывода
   en: Property to show
@@ -1739,6 +1879,7 @@ sites-storages-fieldlookup-storage-title:
   de: Anzuzeigendes Feld
   tr: Gösterilecek özellik
   zh: 显示属性
+  fa: ویژگی برای نمایش
 sites-storages-fieldlookup-storage-title-note:
   ru: Название поля, без фигурных скобок
   en: Field name, without curly braces
@@ -1751,6 +1892,7 @@ sites-storages-fieldlookup-storage-title-note:
   de: Feldname, ohne geschweifte Klammern
   tr: Alan adı, süslü parantez olmadan
   zh: 字段名，不带花括号
+  fa: نام فیلد، بدون آکولاد
 sites-storages-fieldlookup-storage-value:
   ru: Поле для значения
   en: Property for value
@@ -1763,6 +1905,7 @@ sites-storages-fieldlookup-storage-value:
   de: Feld für Wert
   tr: Değer için özellik
   zh: 值属性
+  fa: ویژگی برای مقدار
 sites-storages-fieldlookup-storage-value-note:
   ru: Название поля, без фигурных скобок
   en: Field name, without curly braces
@@ -1775,6 +1918,7 @@ sites-storages-fieldlookup-storage-value-note:
   de: Feldname, ohne geschweifte Klammern
   tr: Alan adı, süslü parantez olmadan
   zh: 字段名，不带花括号
+  fa: نام فیلد، بدون آکولاد
 sites-storages-fieldlookup-storage-group:
   ru: Поле для группы
   en: Property for group
@@ -1787,6 +1931,7 @@ sites-storages-fieldlookup-storage-group:
   de: Feld für Gruppe
   tr: Grup için özellik
   zh: 分组属性
+  fa: ویژگی برای گروه
 sites-storages-fieldlookup-storage-group-note:
   ru: Название поля, без фигурных скобок
   en: Field name, without curly braces
@@ -1799,6 +1944,7 @@ sites-storages-fieldlookup-storage-group-note:
   de: Feldname, ohne geschweifte Klammern
   tr: Alan adı, süslü parantez olmadan
   zh: 字段名，不带花括号
+  fa: نام فیلد، بدون آکولاد
 sites-storages-fieldlookup-storage-order:
   ru: Сортировка
   en: Order
@@ -1811,6 +1957,7 @@ sites-storages-fieldlookup-storage-order:
   de: Sortierung
   tr: Sıralama
   zh: 排序
+  fa: ترتیب
 sites-storages-fieldlookup-storage-order-note:
   ru: Внимание, название полей в сортировке необходимо писать в фигурных скобках
   en: Attention, the field names in sorting must be written in curly brackets
@@ -1828,6 +1975,7 @@ sites-storages-fieldlookup-storage-order-note:
     stehen
   tr: Dikkat, sıralamadaki alan adları süslü parantez içinde olmalıdır
   zh: 注意，排序字段名必须用花括号括起来
+  fa: توجه، نام فیلدها در مرتب‌سازی باید داخل آکولاد نوشته شود
 sites-storages-fieldlookup-storage-depends:
   ru: Связь с другим полем
   en: Depends on
@@ -1840,6 +1988,7 @@ sites-storages-fieldlookup-storage-depends:
   de: Abhängig von anderem Feld
   tr: Başka bir alana bağlı
   zh: 依赖其他字段
+  fa: وابسته به فیلد دیگر
 sites-storages-fieldlookup-storage-depends-note:
   ru: Название поля, без фигурных скобок. В хранилище из которого делается лукап
     необходимо наличие такого поля, так же как и исходной таблице
@@ -1863,6 +2012,7 @@ sites-storages-fieldlookup-storage-depends-note:
   tr: Alan adı, süslü parantez olmadan. Lookup yapılan depoda da, orijinal tabloda
     olduğu gibi bu alan olmalı
   zh: 字段名，不带花括号。进行查找的存储必须有该字段，与原表一致
+  fa: نام فیلد، بدون آکولاد. ذخیره‌سازی که lookup از آن انجام می‌شود باید این فیلد را داشته باشد، مانند جدول اصلی
 sites-storages-fieldlookup-storage-controller:
   ru: Контроллер (JS)
   en: Controller (JS)
@@ -1875,6 +2025,7 @@ sites-storages-fieldlookup-storage-controller:
   de: Controller (JS)
   tr: Denetleyici (JS)
   zh: 控制器 (JS)
+  fa: کنترل‌کننده (JS)
 sites-storages-fieldlookup-storage-controller-note:
   ru: Куда обращаться за получением данных по выборке
   en: Where to apply for sample data
@@ -1887,6 +2038,7 @@ sites-storages-fieldlookup-storage-controller-note:
   de: Wo Probendaten abgerufen werden
   tr: Örnek veri almak için nereye başvurulur
   zh: 获取样本数据的地址
+  fa: برای دریافت داده نمونه به کجا مراجعه شود
 sites-storages-fieldlookup-storage-controller-module:
   ru: Модуль
   en: Module
@@ -1899,6 +2051,7 @@ sites-storages-fieldlookup-storage-controller-module:
   de: Modul
   tr: Modül
   zh: 模块
+  fa: ماژول
 sites-storages-fieldlookup-storage-controller-class:
   ru: Класс
   en: Class name
@@ -1911,6 +2064,7 @@ sites-storages-fieldlookup-storage-controller-class:
   de: Klassenname
   tr: Sınıf adı
   zh: 类名
+  fa: نام کلاس
 sites-storages-fieldlookup-storage-controller-method:
   ru: Метод
   en: Method name
@@ -1923,6 +2077,7 @@ sites-storages-fieldlookup-storage-controller-method:
   de: Methodenname
   tr: Yöntem adı
   zh: 方法名
+  fa: نام متد
 sites-storages-fieldlookup-controller:
   ru: Контроллер (JS)
   en: Controller (JS)
@@ -1935,6 +2090,7 @@ sites-storages-fieldlookup-controller:
   de: Controller (JS)
   tr: Denetleyici (JS)
   zh: 控制器 (JS)
+  fa: کنترل‌کننده (JS)
 sites-storages-fieldlookup-controller-module:
   ru: Модуль
   en: Module
@@ -1947,6 +2103,7 @@ sites-storages-fieldlookup-controller-module:
   de: Modul
   tr: Modül
   zh: 模块
+  fa: ماژول
 sites-storages-fieldlookup-controller-class:
   ru: Класс
   en: Class name
@@ -1959,6 +2116,9 @@ sites-storages-fieldlookup-controller-class:
   de: Klassenname
   tr: Sınıf adı
   zh: 类名
+  fa: نام کلاس
+
+
 sites-storages-fieldlookup-controller-method:
   ru: Метод
   en: Method name
