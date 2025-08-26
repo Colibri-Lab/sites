@@ -2131,6 +2131,7 @@ sites-storages-fieldlookup-controller-method:
   de: Methodenname
   tr: Yöntem adı
   zh: 方法名
+  fa: نام متد
 sites-storages-fieldlookup-controller-depends:
   ru: Связь с другим полем
   en: Depends on
@@ -2143,6 +2144,7 @@ sites-storages-fieldlookup-controller-depends:
   de: Abhängig von anderem Feld
   tr: Başka bir alana bağlı
   zh: 依赖其他字段
+  fa: وابسته به فیلد دیگر
 sites-storages-fieldlookup-binding:
   ru: Байндинг
   en: Data binding
@@ -2155,6 +2157,7 @@ sites-storages-fieldlookup-binding:
   de: Datenbindung
   tr: Veri bağlama
   zh: 数据绑定
+  fa: اتصال داده‌ها
 sites-storages-fieldlookup-method:
   ru: Метод
   en: Method (JS)
@@ -2167,6 +2170,7 @@ sites-storages-fieldlookup-method:
   de: Methode (JS)
   tr: Yöntem (JS)
   zh: 方法 (JS)
+  fa: متد (JS)
 sites-storages-fieldlookup-accesspoint:
   ru: Точка доступа
   en: Access point
@@ -2179,6 +2183,7 @@ sites-storages-fieldlookup-accesspoint:
   de: Zugangspunkt
   tr: Erişim noktası
   zh: 接入点
+  fa: نقطه دسترسی
 sites-storages-fieldlookup-accesspoint-table:
   ru: Таблица
   en: Table
@@ -2191,6 +2196,7 @@ sites-storages-fieldlookup-accesspoint-table:
   de: Tabelle
   tr: Tablo
   zh: 表
+  fa: جدول
 sites-storages-fieldlookup-accesspoint-fields:
   ru: Список полей
   en: Fields list
@@ -2203,6 +2209,7 @@ sites-storages-fieldlookup-accesspoint-fields:
   de: Feldliste
   tr: Alan listesi
   zh: 字段列表
+  fa: لیست فیلدها
 sites-storages-fieldlookup-accesspoint-filter:
   ru: Фильтр
   en: Filter
@@ -2215,6 +2222,7 @@ sites-storages-fieldlookup-accesspoint-filter:
   de: Filter
   tr: Filtre
   zh: 过滤器
+  fa: فیلتر
 sites-storages-fieldlookup-accesspoint-order:
   ru: Сортировка
   en: Order
@@ -2227,6 +2235,7 @@ sites-storages-fieldlookup-accesspoint-order:
   de: Sortierung
   tr: Sıralama
   zh: 排序
+  fa: ترتیب
 sites-storages-fieldvalues:
   ru: Значения
   en: Values
@@ -2239,6 +2248,7 @@ sites-storages-fieldvalues:
   de: Werte
   tr: Değerler
   zh: 值
+  fa: مقادیر
 sites-storages-fieldvalues-value:
   ru: Поле для значения
   en: Value
@@ -2251,6 +2261,7 @@ sites-storages-fieldvalues-value:
   de: Wert
   tr: Değer
   zh: 值
+  fa: مقدار
 sites-storages-fieldvalues-title:
   ru: Поле для вывода
   en: Title field
@@ -2263,6 +2274,7 @@ sites-storages-fieldvalues-title:
   de: Titelfeld
   tr: Başlık alanı
   zh: 标题字段
+  fa: فیلد عنوان
 sites-storages-fieldselector:
   ru: Выборка
   en: Selector
@@ -2275,6 +2287,7 @@ sites-storages-fieldselector:
   de: Selektor
   tr: Seçici
   zh: 选择器
+  fa: انتخابگر
 sites-storages-fieldselector-note:
   ru: Дополнительные настройки для компонента Select
   en: Additional settings for the Select component
@@ -2287,6 +2300,7 @@ sites-storages-fieldselector-note:
   de: Zusätzliche Einstellungen für die Select-Komponente
   tr: Select bileşeni için ek ayarlar
   zh: Select 组件的附加设置
+  fa: تنظیمات اضافی برای کامپوننت Select
 sites-storages-fieldselector-value:
   ru: Поле значения
   en: Value field
@@ -2299,6 +2313,7 @@ sites-storages-fieldselector-value:
   de: Wertfeld
   tr: Değer alanı
   zh: 值字段
+  fa: فیلد مقدار
 sites-storages-fieldselector-title:
   ru: Поле заголовка
   en: Title field
@@ -2311,6 +2326,7 @@ sites-storages-fieldselector-title:
   de: Titelfeld
   tr: Başlık alanı
   zh: 标题字段
+  fa: فیلد عنوان
 sites-storages-fieldselector-group:
   ru: Настройка выборки
   en: Selector settings
@@ -2323,6 +2339,7 @@ sites-storages-fieldselector-group:
   de: Selektor-Einstellungen
   tr: Seçici ayarları
   zh: 选择器设置
+  fa: تنظیمات انتخابگر
 sites-storages-fieldselector-render:
   ru: Метод для вывода выборки
   en: Custom render method
@@ -2334,6 +2351,7 @@ sites-storages-fieldselector-render:
   de: Benutzerdefinierte Render-Methode
   tr: Özel render yöntemi
   zh: 自定义渲染方法
+  fa: متد رندر سفارشی
 sites-storages-fieldselector-ondemand:
   ru: Загружать при запросе
   en: Download on demand
@@ -2345,6 +2363,7 @@ sites-storages-fieldselector-ondemand:
   de: Bei Bedarf laden
   tr: İstek üzerine indir
   zh: 按需加载
+  fa: دانلود بر اساس درخواست
 sites-storages-fieldexpression:
   ru: Выражение
   en: Expression
@@ -2357,6 +2376,7 @@ sites-storages-fieldexpression:
   de: Ausdruck
   tr: İfade
   zh: 表达式
+  fa: عبارت
 sites-storages-fieldexpression-note:
   ru: Введите выражение для создания поля. Внимание! Предполагается что вы знаете
     что делаете
@@ -2378,6 +2398,7 @@ sites-storages-fieldexpression-note:
   tr: Alan oluşturmak için bir ifade girin. Dikkat! Ne yaptığınızı bildiğiniz
     varsayılır
   zh: 输入表达式以创建字段。注意！假定您知道自己在做什么
+  fa: یک عبارت برای ایجاد فیلد وارد کنید. توجه! فرض بر این است که شما می‌دانید چه می‌کنید
 sites-storages-indexname:
   ru: Наименование индекса
   en: Index name
@@ -2390,6 +2411,7 @@ sites-storages-indexname:
   de: Indexname
   tr: İndeks adı
   zh: 索引名称
+  fa: نام ایندکس
 sites-storages-indexname-note:
   ru: "Внимание! Рекомендуется индекс называть следующим образом:
     storage_fields_idx, где storage название хранилища fields - список полей
@@ -2419,6 +2441,7 @@ sites-storages-indexname-note:
     burada storage depolama alanı adı, fields ise _ ile ayrılmış alanlar
     listesidir"
   zh: 注意！建议将索引命名为：storage_fields_idx，其中 storage 是存储名称，fields 是用下划线分隔的字段列表
+  fa: "توجه! توصیه می‌شود ایندکس را به صورت زیر نامگذاری کنید: storage_fields_idx، که در آن storage نام فیلدهای ذخیره‌سازی است و fields لیست فیلدها با _ جدا شده است"
 sites-storages-indexname-validation-required:
   ru: Пожалуйста, введите наименование индекса
   en: Please enter an index name
@@ -2431,6 +2454,7 @@ sites-storages-indexname-validation-required:
   de: Bitte geben Sie einen Indexnamen ein
   tr: Lütfen bir indeks adı girin
   zh: 请输入索引名称
+  fa: لطفاً نام ایندکس را وارد کنید
 sites-storages-indexname-validation-regexp:
   ru: Введенный текст не соответствует требованиям
   en: The entered text does not match the requirements
@@ -2443,6 +2467,7 @@ sites-storages-indexname-validation-regexp:
   de: Der eingegebene Text entspricht nicht den Anforderungen
   tr: Girilen metin gereksinimlerle uyuşmuyor
   zh: 输入的文本不符合要求
+  fa: متن وارد شده با الزامات مطابقت ندارد
 sites-storages-indexfields:
   ru: Спосок свойств
   en: Properties list
@@ -2455,6 +2480,10 @@ sites-storages-indexfields:
   de: Eigenschaftenliste
   tr: Özellikler listesi
   zh: 属性列表
+  fa: لیست ویژگی‌ها
+
+
+
 sites-storages-indexfields-note:
   ru: Выберите список свойств по которым необходимо индексировать
   en: Select a list of properties to index by
