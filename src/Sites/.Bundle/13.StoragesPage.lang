@@ -2483,7 +2483,6 @@ sites-storages-indexfields:
   fa: لیست ویژگی‌ها
 
 
-
 sites-storages-indexfields-note:
   ru: Выберите список свойств по которым необходимо индексировать
   en: Select a list of properties to index by
@@ -2496,6 +2495,7 @@ sites-storages-indexfields-note:
   de: Wählen Sie eine Liste von Eigenschaften zum Indizieren aus
   tr: İndekslemek için bir özellikler listesi seçin
   zh: 选择要索引的属性列表
+  fa: لیستی از ویژگی‌ها را برای ایندکس انتخاب کنید
 sites-storages-indexfields-validation-required:
   ru: Пожалуйста, выберите свойства
   en: Please select properties
@@ -2508,6 +2508,7 @@ sites-storages-indexfields-validation-required:
   de: Bitte wählen Sie Eigenschaften aus
   tr: Lütfen özellikleri seçin
   zh: 请选择属性
+  fa: لطفاً ویژگی‌ها را انتخاب کنید
 sites-storages-indextype:
   ru: Тип индекса
   en: Index type
@@ -2520,6 +2521,7 @@ sites-storages-indextype:
   de: Indextyp
   tr: İndeks türü
   zh: 索引类型
+  fa: نوع ایندکس
 sites-storages-indextype-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
@@ -2532,6 +2534,7 @@ sites-storages-indextype-note:
   de: Achtung! Sie sollten wissen, was Sie tun!
   tr: Dikkat! Ne yaptığınızı bildiğiniz varsayılır!
   zh: 注意！假定您知道自己在做什么！
+  fa: توجه! فرض بر این است که شما می‌دانید چه می‌کنید!
 sites-storages-indextype-validation-required:
   ru: Пожалуйста, выберите тип индекса
   en: Please select an index type
@@ -2544,6 +2547,7 @@ sites-storages-indextype-validation-required:
   de: Bitte wählen Sie einen Indextyp aus
   tr: Lütfen bir indeks türü seçin
   zh: 请选择索引类型
+  fa: لطفاً نوع ایندکس را انتخاب کنید
 sites-storages-indexmethod:
   ru: Метод индексирования
   en: Indexing method
@@ -2556,6 +2560,7 @@ sites-storages-indexmethod:
   de: Indexierungsmethode
   tr: İndeksleme yöntemi
   zh: 索引方法
+  fa: روش ایندکس‌گذاری
 sites-storages-indexmethod-note:
   ru: Выберите тип индексирования
   en: Select an indexing method
@@ -2568,6 +2573,7 @@ sites-storages-indexmethod-note:
   de: Wählen Sie eine Indexierungsmethode aus
   tr: Bir indeksleme yöntemi seçin
   zh: 选择索引方法
+  fa: یک روش ایندکس‌گذاری انتخاب کنید
 sites-storages-values-binary:
   ru: Бинарное дерево
   en: Binary tree
@@ -2580,6 +2586,7 @@ sites-storages-values-binary:
   de: Binärbaum
   tr: İkili ağaç
   zh: 二叉树
+  fa: درخت دودویی
 sites-storages-values-hash:
   ru: Хэш функция
   en: Hash function
@@ -2592,6 +2599,7 @@ sites-storages-values-hash:
   de: Hash-Funktion
   tr: Hash fonksiyonu
   zh: 哈希函数
+  fa: تابع هش
 sites-storages-indexmethod-validation-required:
   ru: Пожалуйста, выберите метод индексирования
   en: Please select indexing method
@@ -2604,6 +2612,7 @@ sites-storages-indexmethod-validation-required:
   de: Bitte wählen Sie eine Indexierungsmethode aus
   tr: Lütfen bir indeksleme yöntemi seçin
   zh: 请选择索引方法
+  fa: لطفاً روش ایندکس‌گذاری را انتخاب کنید
 sites-storages-windowtitle-newstorage:
   ru: Новое хранилище
   en: New storage
@@ -2616,6 +2625,7 @@ sites-storages-windowtitle-newstorage:
   de: Neuer Speicher
   tr: Yeni depolama
   zh: 新存储
+  fa: ذخیره‌سازی جدید
 sites-storages-windowtitle-editstorage:
   ru: Редактировать хранилище
   en: Edit storage
@@ -2628,6 +2638,7 @@ sites-storages-windowtitle-editstorage:
   de: Speicher bearbeiten
   tr: Depolamayı düzenle
   zh: 编辑存储
+  fa: ویرایش ذخیره‌سازی
 sites-storages-messages-removestorage:
   ru: Удаление хранилища данных
   en: Delete storage
@@ -2640,6 +2651,7 @@ sites-storages-messages-removestorage:
   de: Speicher löschen
   tr: Depolamayı sil
   zh: 删除存储
+  fa: حذف ذخیره‌سازی
 sites-storages-messages-removestoragemessage:
   ru: Вы уверены, что хотите удалить хранилище данных?
   en: Are you sure you want to delete the datastore?
@@ -2652,6 +2664,7 @@ sites-storages-messages-removestoragemessage:
   de: Sind Sie sicher, dass Sie den Datenspeicher löschen möchten?
   tr: Veri deposunu silmek istediğinizden emin misiniz?
   zh: 您确定要删除数据存储吗？
+  fa: آیا مطمئن هستید که می‌خواهید ذخیره‌سازی داده را حذف کنید؟
 sites-storages-windowtitle-newproperty:
   ru: Новое свойство
   en: New property
@@ -2664,6 +2677,7 @@ sites-storages-windowtitle-newproperty:
   de: Neue Eigenschaft
   tr: Yeni özellik
   zh: 新属性
+  fa: ویژگی جدید
 sites-storages-windowtitle-newvirtualproperty:
   ru: Новое виртуальное свойство
   en: New virtual property
@@ -2676,6 +2690,7 @@ sites-storages-windowtitle-newvirtualproperty:
   de: Neue virtuelle Eigenschaft
   tr: Yeni sanal özellik
   zh: 新虚拟属性
+  fa: ویژگی مجازی جدید
 sites-storages-windowtitle-editproperty:
   ru: «%s» - Редактировать свойство
   en: «%s» - Edit property
@@ -2688,6 +2703,7 @@ sites-storages-windowtitle-editproperty:
   de: «%s» - Eigenschaft bearbeiten
   tr: «%s» - Özelliği düzenle
   zh: «%s» - 编辑属性
+  fa: «%s» - ویرایش ویژگی
 sites-storages-messages-removeproperty:
   ru: Удаление свойства
   en: Delete property
@@ -2700,6 +2716,7 @@ sites-storages-messages-removeproperty:
   de: Eigenschaft löschen
   tr: Özelliği sil
   zh: 删除属性
+  fa: حذف ویژگی
 sites-storages-messages-removepropertymessage:
   ru: Вы уверены, что хотите удалить свойство?
   en: Are you sure you want to delete the property?
@@ -2712,6 +2729,7 @@ sites-storages-messages-removepropertymessage:
   de: Sind Sie sicher, dass Sie die Eigenschaft löschen möchten?
   tr: Özelliği silmek istediğinizden emin misiniz?
   zh: 您确定要删除该属性吗？
+  fa: آیا مطمئن هستید که می‌خواهید ویژگی را حذف کنید؟
 sites-storages-windowtitle-newindex:
   ru: Новый индекс
   en: New index
@@ -2724,6 +2742,7 @@ sites-storages-windowtitle-newindex:
   de: Neuer Index
   tr: Yeni indeks
   zh: 新索引
+  fa: ایندکس جدید
 sites-storages-windowtitle-editindex:
   ru: Редактировать индекс
   en: Edit index
@@ -2736,6 +2755,7 @@ sites-storages-windowtitle-editindex:
   de: Index bearbeiten
   tr: İndeksi düzenle
   zh: 编辑索引
+  fa: ویرایش ایندکس
 sites-storages-messages-removeindex:
   ru: Удаление индекса
   en: Delete index
@@ -2748,6 +2768,7 @@ sites-storages-messages-removeindex:
   de: Index löschen
   tr: İndeksi sil
   zh: 删除索引
+  fa: حذف ایندکس
 sites-storages-messages-removeindexmessage:
   ru: Вы уверены, что хотите удалить индекс?
   en: Are you sure you want to delete the index?
@@ -2760,6 +2781,7 @@ sites-storages-messages-removeindexmessage:
   de: Sind Sie sicher, dass Sie den Index löschen möchten?
   tr: İndeksi silmek istediğinizden emin misiniz?
   zh: 您确定要删除索引吗？
+  fa: آیا مطمئن هستید که می‌خواهید ایندکس را حذف کنید؟
 sites-storagesmanager-title:
   ru: Хранилища материалов
   en: Storages
@@ -2772,6 +2794,7 @@ sites-storagesmanager-title:
   de: Materialspeicher
   tr: Malzeme depoları
   zh: 材料存储
+  fa: ذخیره‌سازی مواد
 sites-storages-storagetemplates-default-unselected:
   ru: Шаблон не выбран
   en: Template is not selected
@@ -2784,6 +2807,7 @@ sites-storages-storagetemplates-default-unselected:
   de: Keine Vorlage ausgewählt
   tr: Şablon seçilmedi
   zh: 未选择模板
+  fa: قالب انتخاب نشده است
 sites-storages-fieldvalues-type:
   ru: Тип значения
   en: Value type
@@ -2796,6 +2820,7 @@ sites-storages-fieldvalues-type:
   de: Werttyp
   tr: Değer tipi
   zh: 值类型
+  fa: نوع مقدار
 sites-storages-fieldvalues-type-:
   ru: Тип значения
   en: Value type
@@ -2808,6 +2833,7 @@ sites-storages-fieldvalues-type-:
   de: Werttyp
   tr: Değer tipi
   zh: 值类型
+  fa: نوع مقدار
 sites-storages-fieldvalues-type-text:
   ru: Текст
   en: Text
@@ -2820,6 +2846,7 @@ sites-storages-fieldvalues-type-text:
   de: Text
   tr: Metin
   zh: 文本
+  fa: متن
 sites-storages-fieldvalues-type-number:
   ru: Число
   en: Numeric
@@ -2832,6 +2859,7 @@ sites-storages-fieldvalues-type-number:
   de: Numerisch
   tr: Sayısal
   zh: 数值
+  fa: عددی
 sites-storages-storagegroupenabled:
   ru: Включить группу
   en: Enable group
@@ -2844,6 +2872,7 @@ sites-storages-storagegroupenabled:
   de: Gruppe aktivieren
   tr: Grubu etkinleştir
   zh: 启用分组
+  fa: فعال‌سازی گروه
 sites-storages-fieldgroupenabled:
   ru: Включить группу
   en: Enable group
@@ -2856,6 +2885,7 @@ sites-storages-fieldgroupenabled:
   de: Gruppe aktivieren
   tr: Grubu etkinleştir
   zh: 启用分组
+  fa: فعال‌سازی گروه
 sites-storages-fieldlookup-depends:
   ru: Зависимость от другого свойства
   en: Depends with other property
@@ -2868,6 +2898,7 @@ sites-storages-fieldlookup-depends:
   de: Abhängig von anderer Eigenschaft
   tr: Diğer özelliğe bağlı
   zh: 依赖其他属性
+  fa: وابسته به ویژگی دیگر
 sites-storages-fieldattrs-group:
   ru: Аттрибуты
   en: Attributes
@@ -2880,6 +2911,7 @@ sites-storages-fieldattrs-group:
   de: Attribute
   tr: Özellikler
   zh: 属性
+  fa: ویژگی‌ها
 sites-storages-fieldparams-group:
   ru: Дополнительные параметры
   en: Additional parameters
@@ -2892,6 +2924,7 @@ sites-storages-fieldparams-group:
   de: Zusätzliche Parameter
   tr: Ek parametreler
   zh: 附加参数
+  fa: پارامترهای اضافی
 sites-storages-fieldvalues-group:
   ru: Значения
   en: Values
@@ -2904,6 +2937,7 @@ sites-storages-fieldvalues-group:
   de: Werte
   tr: Değerler
   zh: 值
+  fa: مقادیر
 sites-storages-indextype-fulltext:
   ru: Полнотекстовый
   en: Full text
@@ -2916,6 +2950,7 @@ sites-storages-indextype-fulltext:
   de: Volltext
   tr: Tam metin
   zh: 全文
+  fa: متن کامل
 sites-storages-indextype-unique:
   ru: Уникальный
   en: Unique
@@ -2928,6 +2963,10 @@ sites-storages-indextype-unique:
   de: Eindeutig
   tr: Benzersiz
   zh: 唯一
+  fa: منحصر به فرد
+
+
+
 sites-storages-indextype-spatial:
   ru: Пространственный
   en: Spatial
@@ -2940,6 +2979,7 @@ sites-storages-indextype-spatial:
   de: Räumlich
   tr: Mekansal
   zh: 空间
+  fa: فضایی
 sites-storages-indextype-normal:
   ru: Нормальный
   en: Normal
@@ -2952,6 +2992,7 @@ sites-storages-indextype-normal:
   de: Normal
   tr: Normal
   zh: 普通
+  fa: عادی
 sites-storages-messages-removestoragemessage-delete:
   ru: Удалить!
   en: Delete
@@ -2964,6 +3005,7 @@ sites-storages-messages-removestoragemessage-delete:
   de: Löschen!
   tr: Sil!
   zh: 删除！
+  fa: حذف!
 sites-storages-messages-removepropertymessage-delete:
   ru: Удалить!
   en: Delete
@@ -2976,6 +3018,7 @@ sites-storages-messages-removepropertymessage-delete:
   de: Löschen!
   tr: Sil!
   zh: 删除！
+  fa: حذف!
 sites-storages-messages-removeindexmessage-delete:
   ru: Удалить!
   en: Delete
@@ -2988,6 +3031,7 @@ sites-storages-messages-removeindexmessage-delete:
   de: Löschen!
   tr: Sil!
   zh: 删除！
+  fa: حذف!
 sites-global-notallowed:
   ru: Действие запрещено
   it: Azione non consentita
@@ -2998,6 +3042,7 @@ sites-global-notallowed:
   de: Aktion nicht erlaubt
   tr: İşlem yasaklandı
   zh: 操作被禁止
+  fa: اقدام مجاز نیست
 sites-storagespage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
@@ -3010,6 +3055,7 @@ sites-storagespage-notallowed:
   de: Vorgang nicht erlaubt
   tr: İşleme izin verilmiyor
   zh: 操作不允许
+  fa: عملیات مجاز نیست
 sites-storages-fieldselector-group-desc:
   ru: Поле для группировки
   en: Group field
@@ -3022,6 +3068,7 @@ sites-storages-fieldselector-group-desc:
   de: Gruppierungsfeld
   tr: Grup alanı
   zh: 分组字段
+  fa: فیلد گروه
 sites-storages-fieldselector-render-desc:
   ru: Метод для вывода выборки
   en: Custom render method
@@ -3034,6 +3081,7 @@ sites-storages-fieldselector-render-desc:
   de: Benutzerdefinierte Render-Methode
   tr: Özel render yöntemi
   zh: 自定义渲染方法
+  fa: متد رندر سفارشی
 sites-storages-fieldselector-ondemand-desc:
   ru: Загружать при запросе
   en: Download on demand
@@ -3046,6 +3094,7 @@ sites-storages-fieldselector-ondemand-desc:
   de: Bei Bedarf laden
   tr: İstek üzerine indir
   zh: 按需加载
+  fa: دانلود بر اساس درخواست
 sites-storages-fieldlookup-group:
   ru: Связка
   en: Lookup
@@ -3058,6 +3107,7 @@ sites-storages-fieldlookup-group:
   de: Lookup
   tr: Arama
   zh: 查找
+  fa: جستجو
 sites-storages-fieldparams-searchable:
   ru: Поиск в выпадающем списке (только для списков)
   en: Search in select menu (only for selects)
@@ -3070,6 +3120,7 @@ sites-storages-fieldparams-searchable:
   de: Suche im Auswahlmenü (nur für Auswahlen)
   tr: Açılır menüde ara (sadece seçimler için)
   zh: 下拉菜单搜索（仅限选择）
+  fa: جستجو در منوی انتخاب (فقط برای انتخاب‌ها)
 sites-storages-fieldparams-searchable-note:
   ru: Указывает возможен ли в выпадающем списке поиск по тексту
   hy: Ցույց է տալիս, թե արդյոք հնարավոր է տեքստի որոնում բացվող ցանկում
@@ -3082,6 +3133,7 @@ sites-storages-fieldparams-searchable-note:
   de: Gibt an, ob eine Textsuche in der Dropdown-Liste möglich ist
   tr: Açılır listede metin araması mümkün mü belirtir
   zh: 指示下拉列表中是否可以文本搜索
+  fa: نشان می‌دهد که آیا جستجوی متن در لیست کشویی ممکن است یا نه
 sites-storages-fieldparams-valuegenerator:
   ru: Генератор значений в режиме работы формы
   en: Runtime value generator
@@ -3094,6 +3146,7 @@ sites-storages-fieldparams-valuegenerator:
   de: Laufzeit-Wertegenerator
   tr: Çalışma zamanı değer üreteci
   zh: 运行时值生成器
+  fa: تولیدکننده مقدار در زمان اجرا
 sites-storages-fieldparams-template:
   ru: Отображать в шаблоне
   en: Show in row template
@@ -3106,6 +3159,7 @@ sites-storages-fieldparams-template:
   de: In Zeilenvorlage anzeigen
   tr: Satır şablonunda göster
   zh: 在行模板中显示
+  fa: نمایش در قالب ردیف
 sites-storages-fieldparams-template-args:
   ru: Аргументы для шаблона
   hy: Փաստարկներ կաղապարի համար
@@ -3117,6 +3171,7 @@ sites-storages-fieldparams-template-args:
   de: Argumente für die Vorlage
   tr: Şablon için argümanlar
   zh: 模板参数
+  fa: آرگومان‌ها برای قالب
 sites-storages-fieldparams-template-args-rows:
   ru: Количество строк
   en: Template rows
@@ -3129,6 +3184,7 @@ sites-storages-fieldparams-template-args-rows:
   de: Vorlagenzeilen
   tr: Şablon satırları
   zh: 模板行数
+  fa: تعداد ردیف‌های قالب
 sites-storages-fieldparams-template-args-columns:
   ru: Количество колонок
   en: Template columns
@@ -3141,6 +3197,7 @@ sites-storages-fieldparams-template-args-columns:
   de: Vorlagenspalten
   tr: Şablon sütunları
   zh: 模板列数
+  fa: تعداد ستون‌های قالب
 sites-storages-fieldparams-template-args-orientation:
   ru: Направление
   en: Orientation
@@ -3153,6 +3210,7 @@ sites-storages-fieldparams-template-args-orientation:
   de: Ausrichtung
   tr: Yönlendirme
   zh: 方向
+  fa: جهت
 sites-storages-fieldparams-template-args-orientation-vr:
   ru: Вертикально
   en: Vertical
@@ -3165,6 +3223,7 @@ sites-storages-fieldparams-template-args-orientation-vr:
   de: Vertikal
   tr: Dikey
   zh: 垂直
+  fa: عمودی
 sites-storages-fieldparams-template-args-orientation-hr:
   ru: Горизонтально
   en: Horizontal
@@ -3177,6 +3236,7 @@ sites-storages-fieldparams-template-args-orientation-hr:
   de: Horizontal
   tr: Yatay
   zh: 水平
+  fa: افقی
 sites-storages-fieldparams-template-args-flow:
   ru: Поток
   en: Flow
@@ -3189,6 +3249,7 @@ sites-storages-fieldparams-template-args-flow:
   de: Fluss
   tr: Akış
   zh: 流
+  fa: جریان
 sites-storages-fieldparams-template-args-flow-row:
   ru: Строки
   en: Rows
@@ -3201,6 +3262,7 @@ sites-storages-fieldparams-template-args-flow-row:
   de: Zeilen
   tr: Satırlar
   zh: 行
+  fa: ردیف‌ها
 sites-storages-fieldparams-template-args-flow-column:
   ru: Колонки
   en: Columns
@@ -3213,6 +3275,7 @@ sites-storages-fieldparams-template-args-flow-column:
   de: Spalten
   tr: Sütunlar
   zh: 列
+  fa: ستون‌ها
 sites-storages-fieldparams-template-args-gap:
   ru: Отступы
   en: Gap
@@ -3225,6 +3288,7 @@ sites-storages-fieldparams-template-args-gap:
   de: Abstand
   tr: Boşluk
   zh: 间距
+  fa: فاصله
 sites-storages-fieldselector-chooser-desc:
   ru: Компонента для выборки
   en: Component for Chooser
@@ -3237,6 +3301,7 @@ sites-storages-fieldselector-chooser-desc:
   de: Komponente für Auswahl
   tr: Seçici için bileşen
   zh: 选择器组件
+  fa: کامپوننت برای انتخابگر
 sites-storages-fieldparams-onchangehandler:
   ru: Обработчик OnChanged
   en: OnChanged Handler
@@ -3249,6 +3314,7 @@ sites-storages-fieldparams-onchangehandler:
   de: OnChanged-Handler
   tr: OnChanged İşleyici
   zh: OnChanged 处理器
+  fa: هندلر OnChanged
 sites-storages-fieldlookup-storage-limit:
   ru: Лимит строк
   en: Rows limit
@@ -3261,6 +3327,7 @@ sites-storages-fieldlookup-storage-limit:
   de: Zeilenlimit
   tr: Satır limiti
   zh: 行数限制
+  fa: محدودیت ردیف‌ها
 sites-storages-fieldlookup-storage-limit-note:
   ru: Введите лимит строк, по умолчанию 1000
   en: Enter the rows limit, default is 1000
@@ -3273,6 +3340,7 @@ sites-storages-fieldlookup-storage-limit-note:
   de: Geben Sie das Zeilenlimit ein, Standard ist 1000
   tr: Satır limitini girin, varsayılan 1000'dir
   zh: 输入行数限制，默认值为1000
+  fa: محدودیت ردیف‌ها را وارد کنید، مقدار پیش‌فرض ۱۰۰۰ است
 sites-storages-fieldlookup-storage-filter:
   ru: Фильтр
   en: Filter
@@ -3285,6 +3353,7 @@ sites-storages-fieldlookup-storage-filter:
   de: Filter
   tr: Filtre
   zh: 过滤器
+  fa: فیلتر
 sites-storages-fieldlookup-storage-filter-note:
   ru: Используйте [[term:string]] для указания текста поиска
   en: Use [[term:string]] for search term
@@ -3297,6 +3366,7 @@ sites-storages-fieldlookup-storage-filter-note:
   de: Verwenden Sie [[term:string]] für den Suchbegriff
   tr: Arama terimi için [[term:string]] kullanın
   zh: 使用 [[term:string]] 作为搜索词
+  fa: برای عبارت جستجو از [[term:string]] استفاده کنید
 sites-storages-storageadditional-softdeletes:
   ru: Мягкое удаление
   en: Soft deletes
@@ -3309,6 +3379,7 @@ sites-storages-storageadditional-softdeletes:
   de: Soft-Löschungen
   tr: Yumuşak silme
   zh: 软删除
+  fa: حذف نرم
 sites-storages-contextmenu-copyfield:
   ru: Скопировать
   en: Copy
@@ -3321,6 +3392,7 @@ sites-storages-contextmenu-copyfield:
   de: Kopieren
   tr: Kopyala
   zh: 复制
+  fa: کپی
 sites-storages-contextmenu-pastefield:
   ru: Вставить поле
   en: Paste field
@@ -3333,6 +3405,7 @@ sites-storages-contextmenu-pastefield:
   de: Feld einfügen
   tr: Alanı yapıştır
   zh: 粘贴字段
+  fa: جای‌گذاری فیلد
 sites-storagespage-fieldcopied:
   ru: Данные поля скопированы
   en: Field data is copied
@@ -3345,6 +3418,7 @@ sites-storagespage-fieldcopied:
   de: Felddaten wurden kopiert
   tr: Alan verisi kopyalandı
   zh: 字段数据已复制
+  fa: داده‌های فیلد کپی شد
 sites-storagespage-fieldpasted:
   ru: Поле успешно вставлено
   en: Field is successfully passed
@@ -3357,6 +3431,7 @@ sites-storagespage-fieldpasted:
   de: Feld wurde erfolgreich eingefügt
   tr: Alan başarıyla yapıştırıldı
   zh: 字段已成功粘贴
+  fa: فیلد با موفقیت جای‌گذاری شد
 sites-storages-fieldparams-hasscroll:
   ru: Есть скролл в списке массива
   en: Has scroll on array items
@@ -3369,6 +3444,7 @@ sites-storages-fieldparams-hasscroll:
   de: Hat Bildlauf bei Array-Elementen
   tr: Dizi öğelerinde kaydırma var
   zh: 数组项有滚动条
+  fa: اسکرول روی آیتم‌های آرایه دارد
 sites-storages-fieldparams-hasscroll-note:
   ru: Ограничить список массива 500 пикселей и показать прокрутку
   en: Limit array list to 500px and show scrolling
@@ -3381,6 +3457,7 @@ sites-storages-fieldparams-hasscroll-note:
   de: Array-Liste auf 500px begrenzen und Bildlauf anzeigen
   tr: Dizi listesini 500px ile sınırla ve kaydırmayı göster
   zh: 将数组列表限制为500px并显示滚动条
+  fa: لیست آرایه را به ۵۰۰ پیکسل محدود کنید و اسکرول را نمایش دهید
 sites-storagesmanager-cannotchange:
   ru: Структура хранилищь может быть изменена только в локальном режиме,
     пожалуйста, обратитесь к администратору
@@ -3403,6 +3480,7 @@ sites-storagesmanager-cannotchange:
   tr: Depolama yapısı yalnızca yerel modda değiştirilebilir, lütfen yöneticinizle
     iletişime geçin
   zh: 存储结构只能在本地模式下更改，请联系管理员
+  fa: ساختار ذخیره‌سازی فقط در حالت محلی قابل تغییر است، لطفاً با مدیر خود تماس بگیرید
 sites-storages-storageadditional-deletedautoshow:
   ru: Показывать удаленные записи в бэкенд-е
   en: Show deleted items in backend
@@ -3415,6 +3493,7 @@ sites-storages-storageadditional-deletedautoshow:
   de: Gelöschte Einträge im Backend anzeigen
   tr: Silinen öğeleri arka uçta göster
   zh: 后台显示已删除项
+  fa: نمایش آیتم‌های حذف‌شده در بک‌اند
 sites-storages-fieldtag-group:
   ru: Тэги
   en: Tags
@@ -3427,6 +3506,7 @@ sites-storages-fieldtag-group:
   de: Tags
   tr: Etiketler
   zh: 标签
+  fa: برچسب‌ها
 sites-storages-fieldtag:
   en: Tags
   ru: Тэги
@@ -3439,6 +3519,7 @@ sites-storages-fieldtag:
   de: Tags
   tr: Etiketler
   zh: 标签
+  fa: برچسب‌ها
 sites-storages-fieldparams-displayed_columns:
   ru: Список отображаемых в списке полей
   en: Grid columns for ArrayGrid
@@ -3451,6 +3532,7 @@ sites-storages-fieldparams-displayed_columns:
   de: Rasterspalten für ArrayGrid
   tr: ArrayGrid için ızgara sütunları
   zh: ArrayGrid 的网格列
+  fa: ستون‌های شبکه برای ArrayGrid
 sites-storages-fieldparams-displayed_columns-note:
   ru: Работает только с полями типа ArrayGrid
   en: Works only with ArrayGrid
@@ -3463,6 +3545,7 @@ sites-storages-fieldparams-displayed_columns-note:
   de: Funktioniert nur mit ArrayGrid
   tr: Yalnızca ArrayGrid ile çalışır
   zh: 仅适用于 ArrayGrid
+  fa: فقط با ArrayGrid کار می‌کند
 sites-storages-contextmenu-copyfieldwithchilds:
   ru: Скопировать все дерево
   en: Copy with childs
@@ -3475,6 +3558,7 @@ sites-storages-contextmenu-copyfieldwithchilds:
   de: Mit Unterelementen kopieren
   tr: Altlarıyla birlikte kopyala
   zh: 连同子项复制
+  fa: کپی با فرزندان
 sites-storages-storages:
   ru: Хранилища
   en: Storages
@@ -3487,6 +3571,7 @@ sites-storages-storages:
   de: Speicher
   tr: Depolar
   zh: 存储
+  fa: ذخیره‌سازی‌ها
 sites-storages-fieldparams-valuegenerator-note:
   ru: "Например: (value, rootValue, component, rootComponent, changedComponent) =>
     {}"
@@ -3508,6 +3593,7 @@ sites-storages-fieldparams-valuegenerator-note:
   tr: "Örneğin: (value, rootValue, component, rootComponent, changedComponent) =>
     {}"
   zh: "例如: (value, rootValue, component, rootComponent, changedComponent) => {}"
+  fa: "مثال: (value, rootValue, component, rootComponent, changedComponent) => {}"
 sites-storages-fieldparams-onchangehandler-note:
   ru: "Например: (event, args) => {}"
   en: "For example: (event, args) => {}"
@@ -3520,6 +3606,9 @@ sites-storages-fieldparams-onchangehandler-note:
   de: "Zum Beispiel: (event, args) => {}"
   tr: "Örneğin: (event, args) => {}"
   zh: "例如: (event, args) => {}"
+  fa: "مثال: (event, args) => {}"
+
+
 sites-storages-fieldindexed:
   ru: Индексировать
   en: Indexed
@@ -3532,6 +3621,7 @@ sites-storages-fieldindexed:
   de: Indiziert
   tr: İndeksli
   zh: 已索引
+  fa: ایندکس شده
 sites-storages-values-gist:
   en: Generalized Search Tree
   ru: Обобщенное дерево поиска
@@ -3544,6 +3634,7 @@ sites-storages-values-gist:
   de: Generalisierter Suchbaum
   tr: Genelleştirilmiş Arama Ağacı
   zh: 广义搜索树
+  fa: درخت جستجوی عمومی
 sites-storages-values-spgist:
   en: Space-Partitioned Generalized Search Tree
   hy: Տիեզերական բաժանված ընդհանրացված որոնման ծառ
@@ -3556,6 +3647,7 @@ sites-storages-values-spgist:
   de: Raum-partitionierter generalisierter Suchbaum
   tr: Uzay Bölmeli Genelleştirilmiş Arama Ağacı
   zh: 空间分区广义搜索树
+  fa: درخت جستجوی عمومی تقسیم‌شده فضایی
 sites-storages-values-gin:
   en: Generalized Inverted Index
   ru: Обобщенный инвертированный индекс
@@ -3568,6 +3660,7 @@ sites-storages-values-gin:
   de: Generalisierter invertierter Index
   tr: Genelleştirilmiş Ters Dizin
   zh: 广义倒排索引
+  fa: ایندکس معکوس عمومی
 sites-storages-values-brin:
   en: Block Range Index
   ru: Индекс диапазона блоков
@@ -3580,6 +3673,7 @@ sites-storages-values-brin:
   de: Blockbereichsindex
   tr: Blok Aralığı İndeksi
   zh: 块范围索引
+  fa: ایندکس محدوده بلوک
 sites-storages-fieldlookup-accesspoint-point:
   ru: Точка доступа
   en: Access point
@@ -3592,6 +3686,7 @@ sites-storages-fieldlookup-accesspoint-point:
   de: Zugangspunkt
   tr: Erişim noktası
   zh: 接入点
+  fa: نقطه دسترسی
 sites-storages-fieldselector-emptytitle-desc:
   ru: Заголовок, когда ничего не выбрано
   en: Title when nothing is selected
@@ -3604,6 +3699,7 @@ sites-storages-fieldselector-emptytitle-desc:
   de: Titel, wenn nichts ausgewählt ist
   tr: Hiçbir şey seçilmediğinde başlık
   zh: 未选择时的标题
+  fa: عنوان زمانی که هیچ چیز انتخاب نشده است
 sites-storages-fieldselector-emptyvalue-desc:
   ru: Значение, когда ничего не выбрано
   en: Value when nothing is selected
@@ -3616,6 +3712,7 @@ sites-storages-fieldselector-emptyvalue-desc:
   de: Wert, wenn nichts ausgewählt ist
   tr: Hiçbir şey seçilmediğinde değer
   zh: 未选择时的值
+  fa: مقدار زمانی که هیچ چیز انتخاب نشده است
 sites-storages-fieldparams-fieldgenerator-note:
   ru: "Генератор FieldData который передается в поле при создании. Метод:
     (fieldData, fieldComponent, formOrObject) => {}"
@@ -3638,6 +3735,7 @@ sites-storages-fieldparams-fieldgenerator-note:
   tr: "Oluşturma sırasında alana iletilen FieldData üreteci. Yöntem: (fieldData,
     fieldComponent, formOrObject) => {}"
   zh: 创建字段时传递的 FieldData 生成器。方法：(fieldData, fieldComponent, formOrObject) => {}
+  fa: "تولیدکننده FieldData که هنگام ایجاد به فیلد منتقل می‌شود. روش: (fieldData, fieldComponent, formOrObject) => {}"
 sites-storages-contextmenu-fieldgenerator:
   ru: Метод FieldGenerator (генератор параметров поля)
   en: FieldGenerator method (field params generator)
@@ -3650,6 +3748,7 @@ sites-storages-contextmenu-fieldgenerator:
   de: FieldGenerator-Methode (Feldparameter-Generator)
   tr: FieldGenerator yöntemi (alan parametre üreteci)
   zh: FieldGenerator 方法（字段参数生成器）
+  fa: متد FieldGenerator (تولیدکننده پارامترهای فیلد)
 sites-storages-contextmenu-generator:
   ru: Метод Generator (значения по умолчанию)
   en: Generator method (default values)
@@ -3662,6 +3761,7 @@ sites-storages-contextmenu-generator:
   de: Generator-Methode (Standardwerte)
   tr: Generator yöntemi (varsayılan değerler)
   zh: Generator 方法（默认值）
+  fa: متد Generator (مقادیر پیش‌فرض)
 sites-storages-contextmenu-title:
   ru: Метод Title (генератор заголовка массива)
   en: Title method (array title generator)
@@ -3674,6 +3774,7 @@ sites-storages-contextmenu-title:
   de: Title-Methode (Array-Titelgenerator)
   tr: Title yöntemi (dizi başlık üreteci)
   zh: Title 方法（数组标题生成器）
+  fa: متد Title (تولیدکننده عنوان آرایه)
 sites-storages-contextmenu-valuegenerator:
   ru: Метод ValueGenerator (генератор значений)
   en: ValueGenerator method (value generator)
@@ -3686,6 +3787,7 @@ sites-storages-contextmenu-valuegenerator:
   de: ValueGenerator-Methode (Wertegenerator)
   tr: ValueGenerator yöntemi (değer üreteci)
   zh: ValueGenerator 方法（值生成器）
+  fa: متد ValueGenerator (تولیدکننده مقدار)
 sites-storages-contextmenu-onchange:
   ru: Метод OnChanged (когда значение изменилось)
   en: OnChanged method (when value changed)
@@ -3698,6 +3800,7 @@ sites-storages-contextmenu-onchange:
   de: OnChanged-Methode (bei Wertänderung)
   tr: OnChanged yöntemi (değer değiştiğinde)
   zh: OnChanged 方法（值变更时）
+  fa: متد OnChanged (هنگام تغییر مقدار)
 sites-storages-contextmenu-generators:
   ru: Генераторы
   en: Generators
@@ -3710,6 +3813,7 @@ sites-storages-contextmenu-generators:
   de: Generatoren
   tr: Üreteçler
   zh: 生成器
+  fa: تولیدکننده‌ها
 sites-storages-fieldparams-multiple-note:
   ru: Мультивыбор, может ли компонента принимать множественные значения
   en: Multiple, whether the component can accept multiple values
@@ -3722,6 +3826,7 @@ sites-storages-fieldparams-multiple-note:
   de: Mehrfach, ob die Komponente mehrere Werte akzeptieren kann
   tr: Çoklu, bileşen birden fazla değer kabul edebilir mi
   zh: 多选，组件是否可以接受多个值
+  fa: چندگانه، آیا کامپوننت می‌تواند چند مقدار بپذیرد
 sites-storages-fieldparams-keyTitle:
   ru: Заголовок ключа
   en: Key title
@@ -3734,6 +3839,7 @@ sites-storages-fieldparams-keyTitle:
   de: Schlüssel-Titel
   tr: Anahtar başlığı
   zh: 键标题
+  fa: عنوان کلید
 sites-storages-fieldparams-keyTitle-note:
   ru: Заголовок для поля ключ в компоненте KeyValueObject
   en: Title for key field in KeyValueObject component
@@ -3746,6 +3852,7 @@ sites-storages-fieldparams-keyTitle-note:
   de: Titel für Schlüsselfeld in KeyValueObject-Komponente
   tr: KeyValueObject bileşeninde anahtar alanı başlığı
   zh: KeyValueObject 组件中键字段的标题
+  fa: عنوان برای فیلد کلید در کامپوننت KeyValueObject
 sites-storages-fieldparams-valueTitle:
   ru: Заголовок значения
   en: Value title
@@ -3758,6 +3865,7 @@ sites-storages-fieldparams-valueTitle:
   de: Werttitel
   tr: Değer başlığı
   zh: 值标题
+  fa: عنوان مقدار
 sites-storages-fieldparams-valueTitle-note:
   ru: Заголовок для поля значение в компоненте KeyValueObject
   en: Title for value field in KeyValueObject component
@@ -3770,6 +3878,7 @@ sites-storages-fieldparams-valueTitle-note:
   de: Titel für Wertfeld in KeyValueObject-Komponente
   tr: KeyValueObject bileşeninde değer alanı başlığı
   zh: KeyValueObject 组件中值字段的标题
+  fa: عنوان برای فیلد مقدار در کامپوننت KeyValueObject
 sites-storages-fieldparams-canEditKey:
   ru: Может ли пользователь редактировать ключ
   en: Can user edit key
@@ -3782,6 +3891,7 @@ sites-storages-fieldparams-canEditKey:
   de: Kann der Benutzer den Schlüssel bearbeiten
   tr: Kullanıcı anahtarı düzenleyebilir mi
   zh: 用户可以编辑键吗
+  fa: آیا کاربر می‌تواند کلید را ویرایش کند
 sites-storages-fieldparams-canEditKey-note:
   ru: Может ли в поле KeyValueObject редактироваться поле ключ
   en: Can the key field be edited in KeyValueObject field
@@ -3794,6 +3904,7 @@ sites-storages-fieldparams-canEditKey-note:
   de: Kann das Schlüsselfeld im KeyValueObject bearbeitet werden
   tr: KeyValueObject alanında anahtar alanı düzenlenebilir mi
   zh: KeyValueObject 字段中的键字段可以编辑吗
+  fa: آیا فیلد کلید در KeyValueObject قابل ویرایش است
 sites-storages-fieldparams-canAddNew:
   ru: "Может ли пользователь добавлять новые значения "
   en: Can user add new values
@@ -3806,6 +3917,7 @@ sites-storages-fieldparams-canAddNew:
   de: Kann der Benutzer neue Werte hinzufügen
   tr: Kullanıcı yeni değerler ekleyebilir mi
   zh: 用户可以添加新值吗
+  fa: آیا کاربر می‌تواند مقادیر جدید اضافه کند
 sites-storages-fieldparams-canAddNew-note:
   ru: Может ли в KeyValueObject добавляться новая строка
   en: Can a new row be added to KeyValueObject
@@ -3818,6 +3930,7 @@ sites-storages-fieldparams-canAddNew-note:
   de: Kann eine neue Zeile zu KeyValueObject hinzugefügt werden
   tr: KeyValueObject'a yeni satır eklenebilir mi
   zh: 可以向 KeyValueObject 添加新行吗
+  fa: آیا می‌توان یک ردیف جدید به KeyValueObject اضافه کرد
 sites-storages-fieldparams-canRemoveRows:
   ru: Может ли пользователь удалять строки
   en: Can user remove rows
@@ -3830,6 +3943,7 @@ sites-storages-fieldparams-canRemoveRows:
   de: Kann der Benutzer Zeilen entfernen
   tr: Kullanıcı satırları silebilir mi
   zh: 用户可以删除行吗
+  fa: آیا کاربر می‌تواند ردیف‌ها را حذف کند
 sites-storages-fieldparams-canRemoveRows-note:
   ru: Могут ли в KeyValueObject удаляться строки
   en: Can rows be removed in KeyValueObject
@@ -3842,6 +3956,7 @@ sites-storages-fieldparams-canRemoveRows-note:
   de: Können Zeilen in KeyValueObject entfernt werden
   tr: KeyValueObject'ta satırlar silinebilir mi
   zh: KeyValueObject 中可以删除行吗
+  fa: آیا می‌توان ردیف‌ها را در KeyValueObject حذف کرد
 sites-storages-contextmenu-attrs:
   ru: Аттрибуты
   en: Attributes
@@ -3854,6 +3969,7 @@ sites-storages-contextmenu-attrs:
   de: Attribute
   tr: Özellikler
   zh: 属性
+  fa: ویژگی‌ها
 sites-storages-fieldattrs-valuewidth:
   ru: Ширина поля значения
   en: Value field width
@@ -3866,6 +3982,7 @@ sites-storages-fieldattrs-valuewidth:
   de: Wertfeldbreite
   tr: Değer alanı genişliği
   zh: 值字段宽度
+  fa: عرض فیلد مقدار
 sites-storages-contextmenu-list-show:
   ru: Отображать в списке
   en: Display in list
@@ -3878,6 +3995,7 @@ sites-storages-contextmenu-list-show:
   de: In der Liste anzeigen
   tr: Listede görüntüle
   zh: 在列表中显示
+  fa: نمایش در لیست
 sites-storages-contextmenu-list-hide:
   ru: Не отображать в списке
   en: Do not display in the list
@@ -3890,6 +4008,7 @@ sites-storages-contextmenu-list-hide:
   de: Nicht in der Liste anzeigen
   tr: Listede görüntülenmesin
   zh: 在列表中不显示
+  fa: عدم نمایش در لیست
 sites-storages-contextmenu-template-show:
   ru: Отображать в шаблоне
   en: Display in template
@@ -3902,6 +4021,7 @@ sites-storages-contextmenu-template-show:
   de: In der Vorlage anzeigen
   tr: Şablonda görüntüle
   zh: 在模板中显示
+  fa: نمایش در قالب
 sites-storages-contextmenu-template-hide:
   ru: Не отображать в шаблоне
   en: Do not display in the template
@@ -3914,6 +4034,7 @@ sites-storages-contextmenu-template-hide:
   de: Nicht in der Vorlage anzeigen
   tr: Şablonda görüntülenmesin
   zh: 在模板中不显示
+  fa: عدم نمایش در قالب
 sites-storages-contextmenu-required-set:
   ru: Обязательное поле
   en: Required field
@@ -3926,6 +4047,7 @@ sites-storages-contextmenu-required-set:
   de: Pflichtfeld
   tr: Zorunlu alan
   zh: 必填字段
+  fa: فیلد الزامی
 sites-storages-contextmenu-required-unset:
   ru: Не обязательное поле
   en: Not a required field
@@ -3938,6 +4060,7 @@ sites-storages-contextmenu-required-unset:
   de: Kein Pflichtfeld
   tr: Zorunlu alan değil
   zh: 非必填字段
+  fa: فیلد غیر الزامی
 sites-storages-contextmenu-readonly-set:
   ru: Только для чтения
   en: Read-only
@@ -3950,6 +4073,7 @@ sites-storages-contextmenu-readonly-set:
   de: Nur lesen
   tr: Sadece okunur
   zh: 只读
+  fa: فقط خواندنی
 sites-storages-contextmenu-readonly-unset:
   ru: Убрать только для чтения
   en: Remove read-only
@@ -3962,3 +4086,4 @@ sites-storages-contextmenu-readonly-unset:
   de: Nur lesen entfernen
   tr: Sadece okunur kaldır
   zh: 移除只读
+  fa: حذف فقط خواندنی
