@@ -10,6 +10,7 @@ sites-storages-messages-properties-saved:
   de: Benutzerdefinierte Eigenschaften gespeichert
   tr: Özel özellikler kaydedildi
   zh: 自定义属性已保存
+  fa: ویژگی‌های سفارشی ذخیره شد
 sites-storages-messages-pages-saved:
   ru: Страница сохранена
   en: Page saved
@@ -22,6 +23,7 @@ sites-storages-messages-pages-saved:
   de: Seite gespeichert
   tr: Sayfa kaydedildi
   zh: 页面已保存
+  fa: صفحه ذخیره شد
 sites-storages-messages-domains-saved:
   ru: Домен сохранен
   en: Domain saved
@@ -34,6 +36,7 @@ sites-storages-messages-domains-saved:
   de: Domain gespeichert
   tr: Alan adı kaydedildi
   zh: 域名已保存
+  fa: دامنه ذخیره شد
 sites-storages-messages-domains-deleted:
   ru: Домен удален
   en: Domain deleted
@@ -46,6 +49,7 @@ sites-storages-messages-domains-deleted:
   de: Domain gelöscht
   tr: Alan adı silindi
   zh: 域名已删除
+  fa: دامنه حذف شد
 sites-storages-messages-pages-deleted:
   ru: Страница удалена
   en: Page deleted
@@ -58,6 +62,7 @@ sites-storages-messages-pages-deleted:
   de: Seite gelöscht
   tr: Sayfa silindi
   zh: 页面已删除
+  fa: صفحه حذف شد
 sites-storages-messages-pages-moved:
   ru: Страница перенесена
   en: Page moved
@@ -70,6 +75,7 @@ sites-storages-messages-pages-moved:
   de: Seite verschoben
   tr: Sayfa taşındı
   zh: 页面已移动
+  fa: صفحه منتقل شد
 sites-storages-messages-publications-copied:
   ru: Публикация скопирована
   en: Publication copied
@@ -82,6 +88,7 @@ sites-storages-messages-publications-copied:
   de: Publikation kopiert
   tr: Yayın kopyalandı
   zh: 发布内容已复制
+  fa: انتشار کپی شد
 sites-storages-messages-publications-moved:
   ru: Публикация перемещена
   en: Publication moved
@@ -94,6 +101,7 @@ sites-storages-messages-publications-moved:
   de: Publikation verschoben
   tr: Yayın taşındı
   zh: 发布内容已移动
+  fa: انتشار منتقل شد
 sites-storages-messages-publications-deleted:
   ru: Публикация удалена
   en: Publication removed
@@ -106,6 +114,7 @@ sites-storages-messages-publications-deleted:
   de: Publikation entfernt
   tr: Yayın kaldırıldı
   zh: 发布内容已删除
+  fa: انتشار حذف شد
 sites-storages-messages-data-deleted:
   ru: Данные удалены
   en: Data saved
@@ -118,6 +127,7 @@ sites-storages-messages-data-deleted:
   de: Daten gespeichert
   tr: Veri kaydedildi
   zh: 数据已保存
+  fa: داده‌ها ذخیره شد
 sites-storages-messages-storage-saved:
   ru: Хранилище сохранено
   en: Storage saved
@@ -130,6 +140,7 @@ sites-storages-messages-storage-saved:
   de: Speicher gespeichert
   tr: Depolama kaydedildi
   zh: 存储已保存
+  fa: ذخیره‌سازی ذخیره شد
 sites-storages-messages-storage-deleted:
   ru: Хранилище удалено
   en: Storage deleted
@@ -142,6 +153,7 @@ sites-storages-messages-storage-deleted:
   de: Speicher gelöscht
   tr: Depolama silindi
   zh: 存储已删除
+  fa: ذخیره‌سازی حذف شد
 sites-storages-messages-field-saved:
   ru: Свойство сохранено
   en: Property saved
@@ -154,6 +166,7 @@ sites-storages-messages-field-saved:
   de: Eigenschaft gespeichert
   tr: Özellik kaydedildi
   zh: 属性已保存
+  fa: ویژگی ذخیره شد
 sites-storages-messages-field-deleted:
   ru: Свойство удалено
   en: Property deleted
@@ -166,6 +179,7 @@ sites-storages-messages-field-deleted:
   de: Eigenschaft gelöscht
   tr: Özellik silindi
   zh: 属性已删除
+  fa: ویژگی حذف شد
 sites-storages-messages-field-moved:
   ru: Свойство перемещено
   en: Property moved
@@ -178,6 +192,7 @@ sites-storages-messages-field-moved:
   de: Eigenschaft verschoben
   tr: Özellik taşındı
   zh: 属性已移动
+  fa: ویژگی منتقل شد
 sites-storages-messages-index-saved:
   ru: Индекс сохранен
   en: Index saved
@@ -190,6 +205,7 @@ sites-storages-messages-index-saved:
   de: Index gespeichert
   tr: Dizin kaydedildi
   zh: 索引已保存
+  fa: ایندکس ذخیره شد
 sites-storages-messages-index-deleted:
   ru: Индекс удален
   en: Index deleted
@@ -202,6 +218,7 @@ sites-storages-messages-index-deleted:
   de: Index gelöscht
   tr: Dizin silindi
   zh: 索引已删除
+  fa: ایندکس حذف شد
 sites-storages-messages-field-exists:
   ru: Поле существует, пожалуйста, переименуйте
   en: Field exists, please rename
@@ -214,6 +231,7 @@ sites-storages-messages-field-exists:
   de: Feld existiert, bitte umbenennen
   tr: Alan mevcut, lütfen yeniden adlandırın
   zh: 字段已存在，请重命名
+  fa: فیلد وجود دارد، لطفاً نام آن را تغییر دهید
 sites-storages-messages-field-save:
   ru: Сохранить
   en: Save
@@ -226,6 +244,7 @@ sites-storages-messages-field-save:
   de: Speichern
   tr: Kaydet
   zh: 保存
+  fa: ذخیره
 sites-storages-messages-field-exist:
   ru: Поле существует
   en: Field exists
@@ -238,6 +257,7 @@ sites-storages-messages-field-exist:
   de: Feld existiert
   tr: Alan mevcut
   zh: 字段已存在
+  fa: فیلد وجود دارد
 sites-storages-messages-data-restored:
   ru: Данные восстановлены
   en: Data restored
@@ -250,6 +270,7 @@ sites-storages-messages-data-restored:
   de: Daten wiederhergestellt
   tr: Veri geri yüklendi
   zh: 数据已恢复
+  fa: داده‌ها بازیابی شد
 sites-storages-messages-data-cleared:
   ru: Хранилище успешно очищено
   en: Storage successfully cleared
@@ -262,3 +283,4 @@ sites-storages-messages-data-cleared:
   de: Speicher erfolgreich geleert
   tr: Depolama başarıyla temizlendi
   zh: 存储已成功清空
+  fa: ذخیره‌سازی با موفقیت پاک شد

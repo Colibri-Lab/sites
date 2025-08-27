@@ -255,8 +255,6 @@ sites-storages-storageaccesspoint:
   tr: Erişim noktası
   zh: 接入点
   fa: نقطه دسترسی
-
-
 sites-storages-storageaccesspoint-note:
   ru: Внинание! Предполагается, что вы знаете, что делаете!
   en: Attention! You are supposed to know what you are doing!
@@ -374,9 +372,6 @@ sites-storages-storagecomponents-note:
   tr: Proje Uygulama modunda ise gösterilecek bileşenler
   zh: 如果项目处于应用模式下显示的组件
   fa: کامپوننت‌هایی که در حالت برنامه نمایش داده می‌شوند
-
-
-
 sites-storages-storagecomponents-default:
   ru: Компонент по умолчанию
   en: Default Component
@@ -2481,8 +2476,6 @@ sites-storages-indexfields:
   tr: Özellikler listesi
   zh: 属性列表
   fa: لیست ویژگی‌ها
-
-
 sites-storages-indexfields-note:
   ru: Выберите список свойств по которым необходимо индексировать
   en: Select a list of properties to index by
@@ -2964,9 +2957,6 @@ sites-storages-indextype-unique:
   tr: Benzersiz
   zh: 唯一
   fa: منحصر به فرد
-
-
-
 sites-storages-indextype-spatial:
   ru: Пространственный
   en: Spatial
@@ -3043,6 +3033,7 @@ sites-global-notallowed:
   tr: İşlem yasaklandı
   zh: 操作被禁止
   fa: اقدام مجاز نیست
+  hy: Գործողությունը չի թույլատրվում
 sites-storagespage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
