@@ -141,6 +141,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                     }
                     column.resizable = true;
                     column.sortable = true;
+                    // column.minWidth = 150;
                 }
                 return true;
             });
