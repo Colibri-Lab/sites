@@ -36,7 +36,7 @@ pubs:
     page:
       type: bigint
       class: App\Modules\Sites\Models\Page
-      desc: 
+      desc:
         ru: Страница
         en: Page
         hy: Էջ
@@ -44,7 +44,7 @@ pubs:
         kk: Бет
         uz: Sahifa
         es: Página
-      note: 
+      note:
         ru: Выберите страницу
         en: Select a page
         hy: Ընտրեք էջը
@@ -64,7 +64,7 @@ pubs:
       type: varchar
       length: 255
       class: string
-      desc: 
+      desc:
         ru: Хранилище материалов
         en: Material storage
         hy: Աղբահանումների պահպանում
@@ -72,13 +72,13 @@ pubs:
         es: Almacenamiento de materiales
         kk: Материалдарды сақтау
         uz: Materiallar saqlash
-      note: 
+      note:
         ru: Выберите хранилище материалов
         en: Select a material storage
         hy: Ընտրեք աղբահանումների պահպանումը
         it: Seleziona un archivio di materiali
         es: Seleccionar un almacenamiento de materiales
-        kk: Материалдарды сақтау үшін таңдаңыз 
+        kk: Материалдарды сақтау үшін таңдаңыз
         uz: Materiallar saqlash uchun tanlang
       params:
         required: true
@@ -86,7 +86,7 @@ pubs:
     row:
       type: bigint
       class: int
-      desc: 
+      desc:
         ru: ID записи в хранилище
         en: Record ID in storage
         hy: Գրանցման ID-ն աղբահանում
@@ -94,7 +94,7 @@ pubs:
         es: ID del registro en el almacenamiento
         kk: Жазба ID-сі сақтау
         uz: Ma'lumotlar bazasidagi yozuv ID-si
-      note: 
+      note:
         ru: Введите ID записи в хранилище
         en: Enter the record ID in the storage
         hy: Մուտքագրեք գրանցման ID-ն աղբահանում
@@ -111,7 +111,7 @@ pubs:
       params:
         required: false
         readonly: false
-      desc: 
+      desc:
         ru: Полнотекстовый поиск
         en: Full-text search
         hy: Ամբողջական տեքստային որոնում
@@ -128,7 +128,7 @@ pubs:
       type: double
       class: float
       default: 0
-      desc: 
+      desc:
         ru: Позиция в рамках страницы
         en: Position within the page
         hy: Համասեռական դիրքը էջում
@@ -245,75 +245,83 @@ texts:
       desc:
         ru: Заголовок
         en: Title
-        hy: Վերնագիր
         it: Title
-        es: Título  
+        hy: Վերնագիր
+        es: Título
         kk: Тақырып
         uz: Sarlavha
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       note:
         ru: Введите заголовок текстового блока, если не обходимо
         en: Enter a title for the text block if needed
-        hy: Անհրաժեշտության դեպքում մուտքագրեք վերնագիր տեքստային բլոկի համար
         it: Inserisci un titolo per il blocco di testo se necessario
+        hy: Անհրաժեշտության դեպքում մուտքագրեք վերնագիր տեքստային բլոկի համար
         es: Introduzca un título para el bloque de texto si es necesario
         kk: Мәтін блогы үшін тақырыпты енгізіңіз
         uz: Matn blok uchun sarlavhani kiriting, agar kerak bo'lsa
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       params:
         required: false
         enabled: true
         canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
         multiple: false
-        greed: 30%
-        viewer: ~
         vertical: false
         visual: false
-        code: ""
-        mask: ""
-        fieldgenerator: ""
-        generator: ""
-        noteClass: ""
-        simplearraywidth: ""
-        simplearrayheight: ""
-        addlink:
-          ru: ""
-          en: ""
-          hy: ""
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
         removelink: true
         updownlink: true
+        hasscroll: true
         initempty: true
-        maxadd: ""
-        title: ""
         removedesc: true
-        allow: ""
-        size: ""
-        validate: []
       group: window
-      attrs: []
-      placeholder:
-        ru: ""
-        en: ""
-        hy: ""
+      attrs:
+        inputWidth: ""
     html:
       type: longtext
       class: string
       desc:
         ru: Содержание блока
         en: Block content
-        hy: Բովանդակություն
         it: Contenuto del blocco
+        hy: Բովանդակություն
         es: Contenido del bloque
         kk: Блогның мазмұны
         uz: Blokning tarkibi
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       note:
         ru: Введите содержание блока
         en: Enter block content
-        hy: Մուտքագրեք բլոկի բովանդակությունը
         it: Inserisci il contenuto del blocco
+        hy: Մուտքագրեք բլոկի բովանդակությունը
         es: Introduzca el contenido del bloque
         kk: Блогның мазмұнын енгізіңіз
         uz: Blokning tarkibini kiriting
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       component: App.Modules.Manage.UI.TinyMCETextArea
       params:
         required: false
@@ -324,41 +332,22 @@ texts:
         list: true
         template: false
         multiple: false
-        greed: 55%
-        viewer: ~
         vertical: false
         visual: true
-        code: ""
-        mask: ""
-        fieldgenerator: ""
-        generator: ""
-        noteClass: ""
-        simplearraywidth: ""
-        simplearrayheight: ""
-        addlink:
-          ru: ""
-          en: ""
-          hy: ""
-          it: ""
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
         removelink: true
         updownlink: true
         hasscroll: true
         initempty: true
-        maxadd: ""
-        title: ""
         removedesc: true
-        allow: ""
-        size: ""
-        validate: []
-        valuegenerator: ""
-        onchangehandler: ""
       group: window
-      attrs: []
-      placeholder:
-        ru: ""
-        en: ""
-        hy: ""
-        it: ""
+      attrs:
+        inputWidth: ""
   indices:
     texts_lang_idx:
       fields:
