@@ -70,9 +70,21 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             indicesNode.tag.type = 'indices';
     
             this._insertFieldIndexes(indicesNode, storage);
-        }
 
-       
+            let triggersNode = this.FindNode(storage.name + '_triggers');
+            if(!triggersNode) {
+                triggersNode = storageNode.nodes.Add(storage.name + '_triggers');
+            }
+            triggersNode.text = '#{sites-storages-triggers}';
+            triggersNode.isLeaf = !storage.triggers || Object.countKeys(storage.triggers) == 0;
+            triggersNode.icon = App.Modules.Sites.Icons.IndexesIcon;
+            triggersNode.tag.entry = null;
+            triggersNode.tag.type = 'triggers';
+
+            this._insertFieldTriggers(triggersNode, storage);
+
+
+        }
 
         // moduleNode.isLeaf = false;
 
@@ -135,6 +147,20 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return fieldNode;
     }
 
+    _insertTriggerNode(storageNode, name, trigger) {
+        trigger.name = name;
+        this._names.set(storageNode.name + '_' + name, storageNode.name + '_' + name);
+        let fieldNode = this.FindNode(storageNode.name + '_' + name);
+        if(!fieldNode) {
+            fieldNode = storageNode.nodes.Add(storageNode.name + '_' + name);
+        }
+        fieldNode.text = name + ' (<span class="type">' + trigger.type + '</span>)';
+        fieldNode.icon = App.Modules.Sites.Icons.IndexIcon;
+        fieldNode.tag.entry = trigger;
+        fieldNode.tag.type = 'trigger';
+        return fieldNode;
+    }
+
     _insertFieldFields(storageNode, storage) {
         if(!storage.fields) {
             return;
@@ -155,7 +181,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     }
 
     _insertFieldIndexes(storageNode, storage) {
-        if(!storage.fields) {
+        if(!storage.indices) {
             return;
         }
 
@@ -163,6 +189,23 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         Object.forEach(storage.indices, (name, index) => {
             const indexNode = this._insertIndexNode(storageNode, name, index);
             founds.push(indexNode.name);
+        });
+        storageNode.nodes.ForEach((name, node) => {
+            if(founds.indexOf(name) === -1) {
+                node.Dispose();
+            }
+        });
+    }
+    
+    _insertFieldTriggers(storageNode, storage) {
+        if(!storage.triggers) {
+            return;
+        }
+
+        const founds = [];
+        Object.forEach(storage.triggers, (name, trigger) => {
+            const triggerNode = this._insertTriggerNode(storageNode, name, trigger);
+            founds.push(triggerNode.name);
         });
         storageNode.nodes.ForEach((name, node) => {
             if(founds.indexOf(name) === -1) {

@@ -664,10 +664,34 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
+    SaveTrigger(module, storage, data) {
+        this.Call('Storages', 'SaveTrigger', { module: module?.name ?? module, storage: storage?.name ?? storage, data: data })
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-trigger-saved}', Colibri.UI.Notice.Success, 3000));
+                Manage.Store.Reload('manage.storages', false);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+
     DeleteIndex(module, storage, index) {
         this.Call('Storages', 'DeleteIndex', { module: module?.name ?? module, storage: storage?.name ?? storage, index: index?.name ?? index })
             .then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-index-deleted}', Colibri.UI.Notice.Success, 3000));
+                Manage.Store.Reload('manage.storages', false);
+            })
+            .catch(error => {
+                App.Notices.Add(new Colibri.UI.Notice(error.result));
+                console.error(error);
+            });
+    }
+    
+    DeleteTrigger(module, storage, trigger) {
+        this.Call('Storages', 'DeleteTrigger', { module: module?.name ?? module, storage: storage?.name ?? storage, trigger: trigger?.name ?? trigger })
+            .then((response) => {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-trigger-deleted}', Colibri.UI.Notice.Success, 3000));
                 Manage.Store.Reload('manage.storages', false);
             })
             .catch(error => {

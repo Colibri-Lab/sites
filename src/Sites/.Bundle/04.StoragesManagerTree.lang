@@ -24,3 +24,16 @@ sites-storages-indices:
   tr: Dizinler
   zh: 索引
   fa: شاخص‌ها
+sites-storages-triggers:
+  ru: Триггеры
+  en: Triggers
+  hy: Թրիգերներ
+  it: Trigger
+  es: Disparadores
+  kk: Триггерлер
+  uz: Triggerlar
+  cz: Spouštěče
+  de: Trigger
+  tr: Tetikleyiciler
+  zh: 触发器
+  fa: ماشه‌ها

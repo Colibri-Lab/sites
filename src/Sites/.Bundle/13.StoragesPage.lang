@@ -4087,3 +4087,263 @@ sites-storages-contextmenu-readonly-unset:
   tr: Sadece okunur kaldır
   zh: 移除只读
   fa: حذف فقط خواندنی
+sites-storages-fields:
+  ru: Свойства
+  en: Properties
+  hy: Հատկություններ
+  it: Proprietà
+  es: Propiedades
+  kk: Қасиеттер
+  uz: Xususiyatlar
+  cz: Vlastnosti
+  de: Eigenschaften
+  tr: Özellikler
+  zh: 属性
+  fa: ویژگی‌ها
+sites-storages-virtualfields:
+  ru: Виртуальные свойства
+  en: Virtual properties
+  hy: Վիրտուալ հատկություններ
+  it: Proprietà virtuali
+  es: Propiedades virtuales
+  kk: Виртуалды қасиеттер
+  uz: Virtual xususiyatlar
+  cz: Virtuální vlastnosti
+  de: Virtuelle Eigenschaften
+  tr: Sanal özellikler
+  zh: 虚拟属性
+  fa: ویژگی‌های مجازی
+sites-storages-triggers:
+  ru: Триггеры
+  en: Triggers
+  hy: Թրիգերներ
+  it: Trigger
+  es: Disparadores
+  kk: Триггерлер
+  uz: Trigerlar
+  cz: Spouštěče
+  de: Auslöser
+  tr: Tetikleyiciler
+  zh: 触发器
+  fa: ماشه‌ها
+sites-storages-triggername:
+  ru: Название триггера
+  en: Trigger name
+  hy: Թրիգերի անուն
+  it: Nome del trigger
+  es: Nombre del disparador
+  kk: Триггер атауы
+  uz: Triger nomi
+  cz: Název spouštěče
+  de: Name des Triggers
+  tr: Tetikleyici adı
+  zh: 触发器名称
+  fa: نام ماشه
+sites-storages-triggername-note:
+  ru: Название триггера, которое будет использоваться в базе данных
+  en: Trigger name that will be used in the database
+  hy: Թրիգերի անունը, որը կօգտագործվի տվյալների բազայում
+  it: Nome del trigger che verrà utilizzato nel database
+  es: Nombre del disparador que se utilizará en la base de datos
+  kk: Дерекқорда қолданылатын триггер атауы
+  uz: Ma'lumotlar bazasida ishlatiladigan triger nomi
+  cz: Název spouštěče, který bude použit v databázi
+  de: Name des Triggers, der in der Datenbank verwendet wird
+  tr: Veritabanında kullanılacak tetikleyici adı
+  zh: 将在数据库中使用的触发器名称
+  fa: نام ماشه که در پایگاه داده استفاده خواهد شد
+sites-storages-triggername-validation-required:
+  ru: Поле не должно быть пустым
+  en: Field must not be empty
+  hy: Դաշտը չպետք է դատարկ լինի
+  it: Il campo non deve essere vuoto
+  es: El campo no debe estar vacío
+  kk: Өріс бос болмауы керек
+  uz: Maydon bo'sh bo'lmasligi kerak
+  cz: Pole nesmí být prázdné
+  de: Das Feld darf nicht leer sein
+  tr: Alan boş olmamalıdır
+  zh: 字段不能为空
+  fa: فیلد نباید خالی باشد
+sites-storages-triggername-validation-regexp:
+  ru: Пожалуйста, введите валидное название триггера
+  en: Please enter a valid trigger name
+  hy: Խնդրում ենք մուտքագրել վավեր թրիգերի անուն
+  it: Si prega di inserire un nome trigger valido
+  es: Por favor ingrese un nombre de disparador válido
+  kk: Жарамды триггер атауын енгізіңіз
+  uz: Iltimos, haqiqiy triger nomini kiriting
+  cz: Zadejte platný název spouštěče
+  de: Bitte geben Sie einen gültigen Trigger-Namen ein
+  tr: Lütfen geçerli bir tetikleyici adı girin
+  zh: 请输入有效的触发器名称
+  fa: لطفاً یک نام ماشه معتبر وارد کنید
+sites-storages-triggertype:
+  ru: Тип триггера
+  en: Trigger type
+  hy: Թրիգերի տիպ
+  it: Tipo di trigger
+  es: Tipo de disparador
+  kk: Триггер түрі
+  uz: Triger turi
+  cz: Typ spouštěče
+  de: Trigger-Typ
+  tr: Tetikleyici türü
+  zh: 触发器类型
+  fa: نوع ماشه
+sites-storages-triggertype-note:
+  ru: При каких обстоятельствах он должен срабатывать
+  en: Under what circumstances it should trigger
+  hy: Որոնք են այն պայմանները, որոնց դեպքում այն պետք է գործի
+  it: In quali circostanze dovrebbe attivarsi
+  es: Bajo qué circunstancias debería activarse
+  kk: Қандай жағдайларда іске қосылуы керек
+  uz: Qanday sharoitlarda ishga tushishi kerak
+  cz: Za jakých okolností by měl spustit
+  de: Unter welchen Umständen es ausgelöst werden soll
+  tr: Hangi durumlarda tetiklenmeli
+  zh: 在什么情况下它应该触发
+  fa: تحت چه شرایطی باید ماشه فعال شود
+sites-storages-triggertype-validation-required:
+  ru: Поле обязатаельно для заполнения
+  en: Field is required
+  hy: Դաշտը պարտադիր է
+  it: Il campo è obbligatorio
+  es: El campo es obligatorio
+  kk: Өріс міндетті
+  uz: Maydon majburiy
+  cz: Pole je povinné
+  de: Feld ist erforderlich
+  tr: Alan gereklidir
+  zh: 该字段是必填项
+  fa: فیلد الزامی است
+sites-storages-triggerexpression:
+  ru: Код триггера
+  en: Trigger code
+  hy: Թրիգերի կոդ
+  it: Codice trigger
+  es: Código del disparador
+  kk: Триггер коды
+  uz: Triger kodi
+  cz: Kód spouštěče
+  de: Trigger-Code
+  tr: Tetikleyici kodu
+  zh: 触发器代码
+  fa: کد ماشه
+sites-storages-triggerexpression-note:
+  ru: Код триггера, который будет выполняться при событиях указанных выше
+  en: Trigger code that will be executed on the events specified above
+  hy: Թրիգերի կոդը, որը կկատարվի վերևում նշված իրադարձությունների վրա
+  it: Codice trigger che verrà eseguito sugli eventi specificati sopra
+  es: Código del disparador que se ejecutará en los eventos especificados
+  kk: Жоғарыда көрсетілген оқиғаларда орындалатын триггер коды
+  uz: Yuqorida ko'rsatilgan voqealarda bajariladigan triger kodi
+  cz: Kód spouštěče, který bude proveden při výše uvedených událostech
+  de: Trigger-Code, der bei den oben angegebenen Ereignissen ausgeführt wird
+  tr: Yukarıda belirtilen olaylarda çalıştırılacak tetikleyici kodu
+  zh: 将在上述指定事件上执行的触发器代码
+  fa: کد ماشه که در رویدادهای مشخص شده در بالا اجرا می‌شود
+sites-storages-windowtitle-newtrigger:
+  ru: Создать триггер
+  en: Create trigger
+  hy: Ստեղծել թրիգեր
+  it: Crea trigger
+  es: Crear disparador
+  kk: Триггер жасау
+  uz: Triger yaratish
+  cz: Vytvořit spouštěč
+  de: Trigger erstellen
+  tr: Tetikleyici oluştur
+  zh: 创建触发器
+  fa: ایجاد ماشه
+sites-storages-windowtitle-edittrigger:
+  ru: Редактировать триггер
+  en: Edit trigger
+  hy: Խմբագրել թրիգերը
+  it: Modifica trigger
+  es: Editar disparador
+  kk: Триггерді өңдеу
+  uz: Trigerni tahrirlash
+  cz: Upravit spouštěč
+  de: Trigger bearbeiten
+  tr: Tetikleyiciyi düzenle
+  zh: 编辑触发器
+  fa: ویرایش ماشه
+sites-storages-messages-removetrigger:
+  ru: Удаление триггера
+  en: Deleting trigger
+  hy: Թրիգերի ջնջում
+  it: Eliminazione del trigger
+  es: Eliminando disparador
+  kk: Триггерді жою
+  uz: Trigerni o'chirish
+  cz: Odstraňování spouštěče
+  de: Trigger löschen
+  tr: Tetikleyiciyi silme
+  zh: 删除触发器
+  fa: حذف ماشه
+sites-storages-messages-removetriggermessage:
+  ru: Вы уверены что хотите удалить триггер?
+  en: Are you sure you want to delete the trigger?
+  hy: Դուք համոզվա՞ծ եք, որ ցանկանում եք ջնջել թրիգերը
+  it: Sei sicuro di voler eliminare il trigger?
+  es: ¿Estás seguro de que deseas eliminar el disparador?
+  kk: Триггерді жоюға сенімдісіз бе?
+  uz: Trigerni o'chirmoqchimisiz?
+  cz: Opravdu chcete odstranit spouštěč?
+  de: Sind Sie sicher, dass Sie den Trigger löschen möchten?
+  tr: Tetikleyiciyi silmek istediğinizden emin misiniz?
+  zh: 您确定要删除触发器吗？
+  fa: آیا مطمئن هستید که می‌خواهید ماشه را حذف کنید
+sites-storages-messages-removetriggermessage-delete:
+  ru: Удалить
+  en: Delete
+  hy: Ջնջել
+  it: Elimina
+  es: Eliminar
+  kk: Жою
+  uz: O'chirish
+  cz: Odstranit
+  de: Löschen
+  tr: Sil
+  zh: 删除
+  fa: حذف
+sites-storages-contextmenu-newtrigger:
+  ru: Новый триггер
+  en: New trigger
+  hy: Նոր թրիգեր
+  it: Nuovo trigger
+  es: Nuevo disparador
+  kk: Жаңа триггер
+  uz: Yangi triger
+  cz: Nový spouštěč
+  de: Neuer Trigger
+  tr: Yeni tetikleyici
+  zh: 新建触发器
+  fa: ماشه جدید
+sites-storages-contextmenu-edittrigger:
+  ru: Редактировать триггер
+  en: Edit trigger
+  hy: Խմբագրել թրիգերը
+  it: Modifica trigger
+  es: Editar disparador
+  kk: Триггерді өңдеу
+  uz: Trigerni tahrirlash
+  cz: Upravit spouštěč
+  de: Trigger bearbeiten
+  tr: Tetikleyiciyi düzenle
+  zh: 编辑触发器
+  fa: ویرایش ماشه
+sites-storages-contextmenu-removetrigger:
+  ru: Удалить триггер
+  en: Remove trigger
+  hy: Ջնջել թրիգերը
+  it: Rimuovi trigger
+  es: Eliminar disparador
+  kk: Триггерді жою
+  uz: Trigerni o'chirish
+  cz: Odstranit spouštěč
+  de: Trigger löschen
+  tr: Tetikleyiciyi sil
+  zh: 删除触发器
+  fa: حذف ماشه

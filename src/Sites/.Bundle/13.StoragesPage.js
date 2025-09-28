@@ -103,6 +103,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         contextmenu.push({ name: 'remove-storage', title: '#{sites-storages-contextmenu-remove}', icon: Colibri.UI.ContextMenuRemoveIcon });
         contextmenu.push({ name: 'new-field', title: '#{sites-storages-contextmenu-newfield}', icon: Colibri.UI.ContextMenuAddIcon });
         contextmenu.push({ name: 'new-index', title: '#{sites-storages-contextmenu-newindex}', icon: Colibri.UI.ContextMenuAddIcon });
+        contextmenu.push({ name: 'new-trigger', title: '#{sites-storages-contextmenu-newtrigger}', icon: Colibri.UI.ContextMenuAddIcon });
 
         args.item.contextmenu = contextmenu;
         args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.LB, Colibri.UI.ContextMenu.LT] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RT], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
@@ -228,6 +229,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 break;
             case 'indices':
                 contextmenu.push({ name: 'new-index', title: '#{sites-storages-contextmenu-newindex}', icon: Colibri.UI.ContextMenuAddIcon });
+                break;
+            case 'triggers':
+                contextmenu.push({ name: 'new-trigger', title: '#{sites-storages-contextmenu-newtrigger}', icon: Colibri.UI.ContextMenuAddIcon });
+                break;
+            case 'trigger':
+                contextmenu.push({ name: 'edit-trigger', title: '#{sites-storages-contextmenu-edittrigger}', icon: Colibri.UI.ContextMenuEditIcon });
+                contextmenu.push({ name: 'remove-trigger', title: '#{sites-storages-contextmenu-removetrigger}', icon: Colibri.UI.ContextMenuRemoveIcon });
                 break;
             case 'index':
                 contextmenu.push({ name: 'edit-index', title: '#{sites-storages-contextmenu-editindex}', icon: Colibri.UI.ContextMenuEditIcon });
@@ -604,7 +612,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         const dbms = storage.dbms;
         const fields = {
             name: 'Field',
-            desc: 'Свойство',
+            desc: '#{sites-storages-fields}',
             fields: {
                 name: {
                     type: 'varchar',
@@ -1841,7 +1849,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         const dbms = storage.dbms;
         const fields = {
             name: 'Field',
-            desc: 'Свойство',
+            desc: '#{sites-storages-virtualfields}',
             fields: {
                 name: {
                     type: 'varchar',
@@ -2146,6 +2154,57 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         };
     }
 
+    _fieldTrigger(storageName) {
+        const storage = this._storages.selected.value;
+        const dbms = storage.dbms;
+        const fields = {
+            name: 'Field',
+            desc: '#{sites-storages-triggers}',
+            fields: {
+                name: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-triggername}',
+                    note: '#{sites-storages-triggername-note}',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-triggername-validation-required}',
+                            method: '(field, validator) => !!field.value'
+                        }, {
+                            message: '#{sites-storages-triggername-validation-regexp}',
+                            method: '(field, validator) => !/[^\\w\\d]/.test(field.value)'
+                        }]
+                    }
+                },
+                type: {
+                    type: 'varchar',
+                    component: 'Text',
+                    group: 'window',
+                    desc: '#{sites-storages-triggertype}',
+                    note: '#{sites-storages-triggertype-note}',
+                    default: 'BEFORE CREATE OR UPDATE',
+                    params: {
+                        required: true,
+                        validate: [{
+                            message: '#{sites-storages-triggertype-validation-required}',
+                            method: '(field, validator) => !!field.value'
+                        }]
+                    }
+                },
+                code: {
+                    type: 'varchar',
+                    group: 'window',
+                    component: 'TextArea',
+                    desc: '#{sites-storages-triggerexpression}',
+                    note: '#{sites-storages-triggerexpression-note}'
+                }
+            }
+        };
+        return fields;
+    }
+
     _getPath(node, add = null) {
         const storageNode = node.FindParent((node) => node.tag.type === 'storage');
         let paths = [];
@@ -2274,6 +2333,21 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             data.fields = [data.fields];
                         }
                         Sites.SaveIndex(module.value, storage.value, data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
+        else if (menuData.name == 'new-trigger') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newtrigger}', 800, this._fieldTrigger(storage.value.name), {})
+                    .then((data) => {
+                        if(!Array.isArray(data.fields)) {
+                            data.fields = [data.fields];
+                        }
+                        Sites.SaveTrigger(module.value, storage.value, data);
                     })
                     .catch(() => { });
             }
@@ -2552,6 +2626,22 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
 
         }
+        else if (menuData.name == 'edit-trigger') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-edittrigger}', 800, this._fieldTrigger(storage.value.name), node.tag.entry)
+                    .then((data) => {
+                        if(!Array.isArray(data.fields)) {
+                            data.fields = [data.fields];
+                        }
+                        Sites.SaveTrigger(module.value, storage.value, data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+
+        }
         else if (menuData.name == 'remove-index') {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
                 App.Confirm.Show(
@@ -2566,7 +2656,23 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
             }
 
-        } else if (menuData.name == 'new-index') {
+        } 
+        else if (menuData.name == 'remove-trigger') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+                App.Confirm.Show(
+                    '#{sites-storages-messages-removetrigger}', 
+                    '#{sites-storages-messages-removetriggermessage}', 
+                    '#{sites-storages-messages-removetriggermessage-delete}'
+                ).then(() => {
+                    Sites.DeleteTrigger(module.value, storage.value, node.tag.entry);
+                });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+
+        } 
+        else if (menuData.name == 'new-index') {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
                     .then((data) => {
@@ -2574,6 +2680,21 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             data.fields = [data.fields];
                         }
                         Sites.SaveIndex(module.value, storage.value, data);
+                    })
+                    .catch(() => { });
+            }
+            else {
+                App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
+            }
+        }
+        else if (menuData.name == 'new-trigger') {
+            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newtrigger}', 800, this._fieldTrigger(storage.value.name), {})
+                    .then((data) => {
+                        if(!Array.isArray(data.fields)) {
+                            data.fields = [data.fields];
+                        }
+                        Sites.SaveTrigger(module.value, storage.value, data);
                     })
                     .catch(() => { });
             }

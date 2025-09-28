@@ -284,3 +284,7 @@ sites-storages-messages-data-cleared:
   tr: Depolama başarıyla temizlendi
   zh: 存储已成功清空
   fa: ذخیره‌سازی با موفقیت پاک شد
+sites-storages-messages-trigger-saved:
+  ru: Триггерс сохранен
+sites-storages-messages-trigger-deleted:
+  ru: Триггер удален

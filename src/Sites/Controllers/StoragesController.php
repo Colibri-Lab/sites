@@ -349,6 +349,58 @@ class StoragesController extends WebController
 
         return $this->Finish(200, 'ok');
     }
+    
+    /**
+     * Saves an trigger
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
+    public function SaveTrigger(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        if (!SecurityModule::Instance()->current) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        if (!SecurityModule::Instance()->current) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        $module = $post->{'module'};
+        if (!$module) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $moduleObject = App::$moduleManager->$module;
+        if (!$moduleObject) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $storage = $post->{'storage'};
+        if (!$storage) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $storage = Storages::Instance()->Load($storage);
+        if (!$storage) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $data = $post->{'data'};
+
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage->name . '.triggers')) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        $name = $data['name'];
+        unset($data['name']);
+        $storage->AddTrigger($name, $data);
+        $storage->Save();
+
+        return $this->Finish(200, 'ok');
+    }
 
     /**
      * Deletes an index
@@ -398,6 +450,59 @@ class StoragesController extends WebController
         }
 
         $storage->DeleteIndex($name);
+        $storage->Save();
+
+        return $this->Finish(200, 'ok');
+    }
+    
+    /**
+     * Deletes an index
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     */
+    public function DeleteTrigger(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
+    {
+
+        if (!SecurityModule::Instance()->current) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        if (!SecurityModule::Instance()->current) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        $module = $post->{'module'};
+        if (!$module) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $moduleObject = App::$moduleManager->$module;
+        if (!$moduleObject) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $storage = $post->{'storage'};
+        if (!$storage) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $storage = Storages::Instance()->Load($storage);
+        if (!$storage) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        $name = $post->{'index'};
+        if (!$name) {
+            throw new BadRequestException('Bad request', 400);
+        }
+
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage->name . '.triggers')) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        $storage->DeleteTrigger($name);
         $storage->Save();
 
         return $this->Finish(200, 'ok');
