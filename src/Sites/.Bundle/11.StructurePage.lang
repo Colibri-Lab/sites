@@ -232,7 +232,6 @@ sites-structure-contextmenu-editprops:
   tr: Ek özellikleri düzenle
   zh: 编辑附加属性
   fa: ویرایش ویژگی‌های اضافی
-
 sites-structure-contextmenu-deletedomain:
   ru: Удалить домен
   en: Delete domain
@@ -372,7 +371,8 @@ sites-structure-deletedomainmessage:
   tr: Alan adını silmek istediğinizden emin misiniz? Tüm klasörler ve yayınlar
     kalıcı olarak silinecek
   zh: 确定要删除该域名吗？所有文件夹和发布内容将被永久删除
-  fa: آیا مطمئن هستید که می‌خواهید دامنه را حذف کنید؟ همه پوشه‌ها و انتشارات به طور دائمی حذف خواهند شد
+  fa: آیا مطمئن هستید که می‌خواهید دامنه را حذف کنید؟ همه پوشه‌ها و انتشارات به
+    طور دائمی حذف خواهند شد
 sites-structure-windowtitle-newchildpage:
   ru: Новый дочерний раздел
   en: New child page
@@ -438,7 +438,6 @@ sites-structure-deletepage:
   tr: Sayfayı sil
   zh: 删除页面
   fa: حذف صفحه
-
 sites-structure-deletepagemessage:
   ru: Вы уверены, что хотите удалить папку?
   en: Are you sure you want to delete the folder?
