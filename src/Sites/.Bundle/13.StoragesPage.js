@@ -203,10 +203,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     }
                 }
                 contextmenu.push({ name: 'separator', title: '-'});
+                if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'fieldgenerator') ) {
+                    contextmenu.push({ name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon });
+                }
                 if(!node.tag.entry.virtual) {
-                    if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'fieldgenerator') ) {
-                        contextmenu.push({ name: 'generators-fieldgenerator', title: '#{sites-storages-contextmenu-fieldgenerator}', icon: App.Modules.Sites.Icons.FieldsIcon });
-                    }
                     if(Colibri.UI.Forms.Field.HasParam(node.tag.entry.component, 'generator') ) {
                         contextmenu.push({ name: 'generators-generator', title: '#{sites-storages-contextmenu-generator}', icon: Colibri.UI.FieldIcons['Colibri.UI.Forms.Object'] });
                     }
@@ -1996,6 +1996,23 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             lookup:  () => new Promise((resolve, reject) => {
                                 resolve(Colibri.UI.Viewer.Enum().map(v => { return {value: v.value, title: v.value + ' ' + v.title}; }));
                             })
+                        },
+                        fieldgenerator: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-fieldgenerator}',
+                            note: '#{sites-storages-fieldparams-fieldgenerator-note}',
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea', 
+                            default: '',
+                            params: {
+                                code: 'js',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'fieldgenerator') 
+                                }
+                            },
+                            attrs: {
+                                height: 200
+                            }
                         },
                     }
                 },
