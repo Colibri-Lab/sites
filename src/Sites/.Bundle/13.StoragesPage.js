@@ -2201,7 +2201,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     group: 'window',
                     desc: '#{sites-storages-triggertype}',
                     note: '#{sites-storages-triggertype-note}',
-                    default: 'BEFORE CREATE OR UPDATE',
+                    default: 'BEFORE INSERT OR UPDATE',
                     params: {
                         required: true,
                         validate: [{
