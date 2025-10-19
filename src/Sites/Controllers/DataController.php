@@ -395,6 +395,7 @@ class DataController extends WebController
             $file = $files->Item(0);
             $file = $file->path;
             $dirsToRemove[] = $cachePath . $dirName . '/';
+            $filesToRemove[] = $cachePath . $fileName;
             $filesToRemove[] = $file;
         } else {
             $cacheUrl = App::$config->Query('cache')->GetValue();
