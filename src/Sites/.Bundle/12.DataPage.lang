@@ -483,3 +483,16 @@ sites-structure-cleardatasmessage-clear:
   tr: Temizle
   zh: 清空
   fa: پاک کردن
+sites-storages-buttons-importdata:
+  ru: Импорт
+  en: Import
+  hy: Ներմուծել
+  it: Importa
+  es: Importar
+  kk: Импорттау
+  uz: Import qilish
+  cz: Importovat
+  de: Importieren
+  tr: İçe aktar
+  zh: 导入
+  fa: وارد کردن

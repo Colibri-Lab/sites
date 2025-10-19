@@ -353,7 +353,46 @@ class DataController extends WebController
 
     }
 
+    /**
+     * Exports a data to file
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function Import(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
 
+        if (!SecurityModule::Instance()->current) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        $storage = $post->{'storage'};
+        if (!SecurityModule::Instance()->current->IsCommandAllowed('sites.storages.' . $storage . '.list')) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        $file = $post->{'file'};
+        $file = str_replace('file(', '', $file);
+        $file = str_replace(')', '', $file);
+        $file = App::$request->files->$file;
+
+        $cacheUrl = App::$config->Query('cache')->GetValue();
+        $cachePath = App::$webRoot . $cacheUrl;
+        $fileName = 'import' . microtime(true) . '.xml';
+        $file->MoveTo($cachePath . $fileName);
+
+        $storage = Storages::Instance()->Load($storage);
+        [$tableClass, $rowClass] = $storage->GetModelClasses();
+
+        $tableClass->ImportXML($cachePath . $fileName, 2);
+
+        
+        $result = ['success' => true];
+
+        return $this->Finish(200, 'ok', $result);
+
+    }
     
     /**
      * Saves a data list

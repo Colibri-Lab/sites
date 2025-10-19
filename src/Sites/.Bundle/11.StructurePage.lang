@@ -788,3 +788,16 @@ sites-structure-contextmenu-open:
   tr: Siteyi aç
   zh: 打开网站
   fa: باز کردن سایت
+sites-structure-contextmenu-copy:
+  ru: Копировать раздел
+  en: Copy page
+  hy: Պատճենել բաժինը
+  it: Copia pagina
+  es: Copiar página
+  kk: Бетті көшіру
+  uz: Sahifani nusxalash
+  cz: Kopírovat stránku
+  de: Seite kopieren
+  tr: Sayfayı kopyala
+  zh: 复制页面
+  fa: کپی صفحه

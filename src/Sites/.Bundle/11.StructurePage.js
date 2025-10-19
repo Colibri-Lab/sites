@@ -84,6 +84,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 }    
             }
             contextmenu.push({name: '-'});
+            contextmenu.push({name: 'copy', title: '#{sites-structure-contextmenu-copy}', icon: Colibri.UI.CopyIcon});
             contextmenu.push({name: 'copy-path', title: '#{sites-structure-contextmenu-copypath}', icon: Colibri.UI.CopyIcon});
 
             args.item.contextmenu = contextmenu;

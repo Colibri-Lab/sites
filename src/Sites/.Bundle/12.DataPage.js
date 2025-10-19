@@ -17,6 +17,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._clearData = this.Children('split/data-pane/buttons-pane/clear-data');
         this._restoreData = this.Children('split/data-pane/buttons-pane/restore-data');
         this._exportData = this.Children('split/data-pane/buttons-pane/export-data');
+        this._importData = this.Children('split/data-pane/buttons-pane/import-data');
         this._pagerData = this.Children('split/data-pane/buttons-pane/pager');
         this._additionalData = this.Children('split/data-pane/buttons-pane/additional');
 
@@ -40,6 +41,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._editData.AddHandler('Clicked', this.__editDataButtonClicked, false, this);
         this._dublData.AddHandler('Clicked', this.__dublDataButtonClicked, false, this);
         this._exportData.AddHandler('Clicked', this.__exportDataButtonClicked, false, this);
+        this._importData.AddHandler('Changed', this.__importDataButtonClicked, false, this);
 
         this._searchInput.AddHandler(['Filled', 'Cleared'], this.__searchInputFilled, false, this);
         this._searchFilter.AddHandler('Clicked', this.__searchFilterClicked, false, this);
@@ -158,6 +160,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._data.UncheckAllRows();
         this._addData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._exportData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
+        this._importData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._editData.enabled = false;
         this._dublData.enabled = false;
         this._deleteData.enabled = false;
@@ -389,6 +392,25 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         }
 
         Sites.ExportData(storage, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder);
+    }
+
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
+    __importDataButtonClicked(event, args) {
+
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        if (!storage) {
+            return;
+        }
+        
+        const file = args.success[0];
+        Sites.ImportData(storage, file).then(() => {
+            this.__pagerDataChanged(null, null);
+        });
     }
 
 
