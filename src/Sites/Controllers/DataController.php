@@ -5,6 +5,7 @@ namespace App\Modules\Sites\Controllers;
 use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
 use Colibri\App;
+use Colibri\Common\ArchiveHelper;
 use Colibri\Common\StringHelper;
 use Colibri\Common\VariableHelper;
 use Colibri\Data\DataAccessPoint;
@@ -15,9 +16,12 @@ use Colibri\Exceptions\BadRequestException;
 use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Exceptions\ValidationException;
 use Colibri\IO\FileSystem\File;
+use Colibri\IO\FileSystem\Directory;
+use Colibri\IO\FileSystem\Finder;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
 use Colibri\Web\RequestCollection;
+use Colibri\Web\RequestedFile;
 use InvalidArgumentException;
 
 /**
@@ -375,20 +379,45 @@ class DataController extends WebController
         $file = $post->{'file'};
         $file = str_replace('file(', '', $file);
         $file = str_replace(')', '', $file);
+        /** @var RequestedFile */
         $file = App::$request->files->$file;
-
-        $cacheUrl = App::$config->Query('cache')->GetValue();
-        $cachePath = App::$webRoot . $cacheUrl;
-        $fileName = 'import' . microtime(true) . '.xml';
-        $file->MoveTo($cachePath . $fileName);
+        $filesToRemove = [];
+        $dirsToRemove = [];
+        if($file->ext === 'zip') {
+            $cacheUrl = App::$config->Query('cache')->GetValue();
+            $cachePath = App::$webRoot . $cacheUrl;
+            $dirName = 'import' . microtime(true);
+            $fileName = $dirName  . '.zip';
+            $file->MoveTo($cachePath . $fileName);
+            ArchiveHelper::ExtractTo($cachePath . $fileName, $cachePath . $dirName . '/');
+            $fi = new Finder();
+            $files = $fi->Files($cachePath . $dirName . '/');
+            $file = $files->Item(0);
+            $file = $file->path;
+            $dirsToRemove[] = $cachePath . $dirName . '/';
+            $filesToRemove[] = $file;
+        } else {
+            $cacheUrl = App::$config->Query('cache')->GetValue();
+            $cachePath = App::$webRoot . $cacheUrl;
+            $fileName = 'import' . microtime(true) . '.xml';
+            $file->MoveTo($cachePath . $fileName);
+            $file = $cachePath . $fileName;
+            $filesToRemove[] = $file;
+        }
 
         $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         $datarows = $tableClass::LoadAll(-1, 0);
-        $datarows->ImportXML($cachePath . $fileName, 2);
-
+        $datarows->ImportXML($file, 2);
         
+        foreach($filesToRemove as $f) {
+            File::Delete($f);
+        }
+        foreach($dirsToRemove as $d) {
+            Directory::Delete($d);
+        }
+
         $result = ['success' => true];
 
         return $this->Finish(200, 'ok', $result);
