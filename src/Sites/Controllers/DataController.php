@@ -385,7 +385,8 @@ class DataController extends WebController
         $storage = Storages::Instance()->Load($storage);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
-        $tableClass->ImportXML($cachePath . $fileName, 2);
+        $datarows = $tableClass::LoadAll(-1, 0);
+        $datarows->ImportXML($cachePath . $fileName, 2);
 
         
         $result = ['success' => true];

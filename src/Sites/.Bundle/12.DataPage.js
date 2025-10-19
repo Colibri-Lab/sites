@@ -164,7 +164,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._editData.enabled = false;
         this._dublData.enabled = false;
         this._deleteData.enabled = false;
-        this._clearData.enabled = true;
+        this._clearData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
         this._pagerData.enabled = selection != null && selection.tag !== 'module' && selection.tag !== 'group';
 
         this.__searchInputFilled(event, args);

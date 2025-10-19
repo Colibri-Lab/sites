@@ -499,12 +499,16 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     ImportData(storage, file) {
         return new Promise((resolve, reject) => {
+            App.Loading.Show();
             this.Call('Data', 'Import', { storage: storage.name, file: file })
                 .then((response) => {
                     resolve();
                 })
                 .catch(error => {
                     reject(error);
+                })
+                .finally(() => {
+                    App.Loading.Hide();
                 });
         })
     }
