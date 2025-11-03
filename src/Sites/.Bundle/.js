@@ -90,12 +90,21 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     Check(current) {
         return new Promise((resolve, reject) => {
-            this.Call('Checks', 'Domain', { current: current }).then(response => {
-                resolve(response.result);
-            }).catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+            if(App.Device.isElectron) {
+                Colibri.IO.Request.Get('./domain.json', {}, {}, false).then((response) => {
+                    resolve(JSON.parse(response.result));
+                }).catch(e => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                });
+            } else {
+                this.Call('Checks', 'Domain', { current: current }).then(response => {
+                    resolve(response.result);
+                }).catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                });
+            }
         })
     }
 
