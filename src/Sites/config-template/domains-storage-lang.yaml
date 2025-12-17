@@ -720,6 +720,122 @@ fields:
               uz: Atributlar (JS)
             attrs:
               width: 100%
+        fields:
+          name:
+            type: varchar
+            length: 50
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Наименование поля
+              en: Param name
+              hy: Պարամետրի անվանումը
+              it: Nome del parametro
+              es: Nombre del parámetro
+              kk: Параметр атауы
+              uz: Parametr nomi       
+            attrs:
+              width: 30%
+          description:
+            type: json
+            class: App\Modules\Lang\Models\Fields\Text
+            component: App.Modules.Lang.UI.Text
+            desc:
+              ru: Описание поля
+              en: Param description
+              hy: Պարամետրի նկարագրությունը
+              it: Descrizione del parametro
+              es: Descripción del parámetro
+              kk: Параметр сипаттамасы
+              uz: Parametr tavsifi       
+            attrs:
+              width: 68%
+          type:
+            type: varchar
+            length: 20
+            desc:
+              ru: Тип
+              en: Type
+              hy: Տիպ
+              it: Tipo
+              es: Tipo
+              kk: Түрі
+              uz: Turi       
+            class: string
+            component: Colibri.UI.Forms.Text
+            default: varchar
+            attrs:
+              width: 19.5%
+          length:
+            type: int
+            desc:
+                ru: Длина
+                en: Length
+                hy: Երկարություն
+                it: Lunghezza
+                es: Longitud
+                kk: Ұзындығы
+                uz: Uzunlik       
+            class: int
+            component: Colibri.UI.Forms.Number
+            attrs:
+              width: 15%
+          default:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Значение по умолчанию
+              en: Default value
+              hy: Կանխադրված արժեք
+              it: Valore predefinito
+              es: Valor predeterminado
+              kk: Әдепкі мән
+              uz: Standart qiymat       
+            attrs:
+              width: 20%
+          class:
+            type: varchar
+            length: 255
+            class: string
+            component: Colibri.UI.Forms.Text
+            desc:
+              ru: Класс (PHP)
+              en: Class name (PHP)
+              hy: Դասի անվանումը (PHP)
+              it: Nome della classe (PHP)
+              es: Nombre de la clase (PHP)
+              kk: Сынып атауы (PHP)
+              uz: Sinf nomi (PHP)       
+            attrs:
+              width: 20%
+          component:
+            type: varchar
+            length: 255
+            class: string
+            default: Text
+            component: Colibri.UI.Forms.Select
+            params:
+              readonly: false
+              searchable: false
+            desc:
+              ru: Компонента (JS)
+              en: UI Component (JS)
+              hy: UI բաղադրիչ (JS)
+              it: Componente (JS)
+              es: Componente (JS)
+              kk: Компонент (JS)
+              uz: Komponent (JS)       
+            selector:
+              value: value
+              title: title
+            lookup:
+              method: ' () => new Promise((resolve, reject) => { let ret = []; Object.forEach(Colibri.UI.Forms.Field.Components,
+                (name, value) => { ret.push({value: value.className, title: value.description});
+                }); resolve(ret); })'
+            attrs:
+              width: 22%
   parameters:
     type: json
     component: Colibri.UI.Forms.Object
