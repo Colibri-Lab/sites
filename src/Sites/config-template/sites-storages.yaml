@@ -125,7 +125,8 @@ pubs:
       desc: Данные строки
       default: json_object()
     order:
-      type: double
+      type: decimal
+      length: 20.6
       class: float
       default: 0
       desc:

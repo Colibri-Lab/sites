@@ -589,7 +589,8 @@ fields:
       required: false
       readonly: false
   order:
-    type: double
+    type: decimal
+    length: 20.6
     class: float
     default: "0"
     component: Colibri.UI.Forms.Hidden

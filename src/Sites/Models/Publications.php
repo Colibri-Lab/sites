@@ -8,6 +8,7 @@ use Colibri\Data\Storages\Storages;
 use Colibri\Data\Storages\Storage;
 use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Sites\Models\Publication;
+use Colibri\Common\DateHelper;
 use Colibri\Data\Storages\Models\DataRow;
 
 /**
@@ -163,14 +164,14 @@ class Publications extends BaseModelDataTable
     }
 
 
-    static function NextPublicationOrder(? Page $page = null): int
+    static function NextPublicationOrder(? Page $page = null): float
     {
-        $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]]', '{order} desc', ['page' => $page ? $page->id : 0], false);
-        $pub = $pubs->First();
-        if (!$pub) {
-            return Publications::StartOrder;
-        }
-        return (int) $pub->order + Publications::StartOrder;
+        // $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:integer]]', '{order} desc', ['page' => $page ? $page->id : 0], false);
+        // $pub = $pubs->First();
+        // if (!$pub) {
+        //     return Publications::StartOrder;
+        // }
+        return microtime(true); // (int) $pub->order + Publications::StartOrder;
     }
 
     /**

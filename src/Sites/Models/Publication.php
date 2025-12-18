@@ -67,7 +67,7 @@ class Publication extends BaseModelDataRow
         $domain = $this->domain;
         $page = $this->page;
         $order = $this->order;
-        $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]] and {order}>[[order:integer]]', '{order} asc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
+        $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and ({page}=[[page:integer]] or {page} is null) and {order}>[[order:double]]', '{order} asc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
         if ($pubs->Count() > 0) {
             return $pubs->First();
         }
@@ -79,7 +79,7 @@ class Publication extends BaseModelDataRow
         $domain = $this->domain;
         $page = $this->page;
         $order = $this->order;
-        $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and {page}=[[page:integer]] and {order}<[[order:integer]]', '{order} desc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
+        $pubs = Publications::LoadByFilter(1, 1, '{domain}=[[domain:integer]] and ({page}=[[page:integer]] or {page} is null) and {order}<[[order:double]]', '{order} desc', ['domain' => $domain->id, 'page' => $page?->id ?? 0, 'order' => $order]);
         if ($pubs->Count() > 0) {
             return $pubs->First();
         }
@@ -137,7 +137,7 @@ class Publication extends BaseModelDataRow
     {
         if (!$reference) {
             $fristPub = Publications::LoadByPage($this->domain, $this->page)->First();
-            $this->order = $fristPub ? $fristPub->order / 2 : Publications::StartOrder / 2;
+            $this->order = $fristPub ? $fristPub->order / 2 : Publications::NextPublicationOrder($this->page);
         } else {
             $referencePrev = $reference->Previous();
             $this->order = (($referencePrev ? $referencePrev->order : 0) + $reference->order) / 2;
@@ -159,9 +159,9 @@ class Publication extends BaseModelDataRow
         $pubs = Publications::LoadByFilter(1, 1, '{page}=[[page:string]]', '{order} desc', ['page' => $this->page->id]);
         $lastPub = $pubs->First();
         if (!$lastPub) {
-            $this->order = Publications::StartOrder;
+            $this->order = Publications::NextPublicationOrder($this->page);
         } else {
-            $this->order = $lastPub->order + Publications::StartOrder;
+            $this->order = $lastPub->order * 2;
         }
         if (($res = $this->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
