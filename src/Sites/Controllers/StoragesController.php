@@ -493,7 +493,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $name = $post->{'index'};
+        $name = $post->{'trigger'};
         if (!$name) {
             throw new BadRequestException('Bad request', 400);
         }
