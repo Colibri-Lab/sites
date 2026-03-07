@@ -467,10 +467,10 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-    CreatePublication(domain, folder, storage, data) {
+    CreatePublication(domain, folder, storage, module, data) {
         return new Promise((resolve, reject) => {
 
-            this.Call('Publications', 'Create', { domain: domain.id, folder: folder?.id ?? null, storage, data: data })
+            this.Call('Publications', 'Create', { domain: domain.id, folder: folder?.id ?? null, storage, module, data: data })
                 .then((response) => {
                     let pubs = this._store.Query('sites.pubs');
                     if (!pubs || !Array.isArray(pubs)) {
@@ -489,10 +489,10 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     }
 
-    Publish(domain, folder, storage, ids) {
+    Publish(domain, folder, storage, module, ids) {
         return new Promise((resolve, reject) => {
 
-            this.Call('Publications', 'Publish', { domain: domain.id, folder: folder?.id ?? null, storage, ids: ids.join(',') })
+            this.Call('Publications', 'Publish', { domain: domain.id, folder: folder?.id ?? null, storage, module, ids: ids.join(',') })
                 .then((response) => {
                     let pubs = this._store.Query('sites.pubs');
                     if (!pubs || !Array.isArray(pubs)) {
@@ -513,7 +513,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     SaveData(storage, data, pub = null) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Save', { storage: storage, data: data, pub: pub?.id ?? null })
+            this.Call('Data', 'Save', { storage: storage.name, module: storage.module, data: data, pub: pub?.id ?? null })
                 .then((response) => {
                     if (pub) {
                         let p = response.result.pub;
@@ -594,9 +594,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         })
     }
 
-    LoadRow(storage, rowId) {
+    LoadRow(storage, module, rowId) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Row', { storage: storage, row: rowId }).then((response) => {
+            this.Call('Data', 'Row', { storage: storage, module: module, row: rowId }).then((response) => {
                 resolve(response.result);
             }).catch((response) => {
                 reject(response.result);
@@ -636,7 +636,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     LoadData(storage, term = null, filters = null, sortField = null, sortOrder = null, page = 1, pagesize = 20, returnPromise = false) {
         this.Requests('Data.List')?.Abort();
-        const promise = this.Call('Data', 'List', { storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize }, {}, true, 'Data.List');
+        const promise = this.Call('Data', 'List', { storage: storage.name, module: storage.module, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize }, {}, true, 'Data.List');
         if (returnPromise) {
             return promise;
         }

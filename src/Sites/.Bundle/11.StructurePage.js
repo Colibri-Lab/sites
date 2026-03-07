@@ -84,7 +84,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 }    
             }
             contextmenu.push({name: '-'});
-            contextmenu.push({name: 'copy', title: '#{sites-structure-contextmenu-copy}', icon: Colibri.UI.CopyIcon});
+        
+            if(!this._copiedPage && itemData.type !== 'domain') {
+                contextmenu.push({name: 'copy', title: '#{sites-structure-contextmenu-copy}', icon: Colibri.UI.ContextMenuCopyIcon});
+            } else if(this._copiedPage) {
+                contextmenu.push({name: 'paste', title: '#{sites-structure-contextmenu-paste}', icon: Colibri.UI.ContextMenuPasteIcon});
+            }
+        
             contextmenu.push({name: 'copy-path', title: '#{sites-structure-contextmenu-copypath}', icon: Colibri.UI.CopyIcon});
 
             args.item.contextmenu = contextmenu;
@@ -301,6 +307,21 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             data.parent = item.tag?.parent?.id ?? 0;
             data.domain = item.tag?.data?.domain?.id;
             Sites.SaveFolder(data);
+        } else if(menuData.name == 'copy') {
+            this._copiedPage = item.tag.data;
+        } else if(menuData.name == 'paste') {
+            delete this._copiedPage.id;
+            if(item.tag.type == 'domain') {
+                this._copiedPage.domain = item.tag.data.id;
+                this._copiedPage.parent = 0;
+            }
+            else {
+                this._copiedPage.domain = item.tag.data.domain.id;
+                this._copiedPage.parent = item.tag.data.id;
+            }
+            Sites.SaveFolder(this._copiedPage).then(() => {
+                this._copiedPage = null;
+            });
         }
     }
 
@@ -587,7 +608,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             const contextmenu = [];
             Object.forEach(storages, (name, storage) => {
                 if(storage.params.visible && storage.params.maybepublished) {
-                    contextmenu.push({name: storage.name, title: storage.desc[Lang.Current] ?? storage.desc, icon: App.Modules.Sites.Icons.ContextMenuStorageIcon});
+                    contextmenu.push({name: storage.name, module: storage.module, title: storage.desc[Lang.Current] ?? storage.desc, icon: App.Modules.Sites.Icons.ContextMenuStorageIcon});
                 }
             });
 
@@ -596,12 +617,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             contextMenuObject.AddHandler('Clicked', (event, args) => {
                 contextMenuObject.Hide();
                 const menuData = args.menuData;
-                if(Security.IsCommandAllowed('sites.storages.' + menuData.name + '.edit')) {
-                    Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + menuData.title + '»', 1024, 'app.manage.storages(' + menuData.name + ')', {})
+                if(Security.IsCommandAllowed('sites.storages.' + menuData.module + '.' + menuData.name + '.edit')) {
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + menuData.title + '»', 1024, 'app.manage.storages(name=' + menuData.name + ',module=' + menuData.module + ')', {})
                         .then((data) => {
                             const selected = this._folders.selected.tag;
                             if(selected.type == 'domain') {
-                                Sites.CreatePublication(selected.data, null, menuData.name, data).then(() => {
+                                Sites.CreatePublication(selected.data, null, menuData.name, menuData.module, data).then(() => {
                                     Manage.FormWindow.Hide();
                                 });
                             }
@@ -644,19 +665,18 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         if(!this._publications.selected) {
             return;
         }
-        
-        const pub = this._publications.selected.value;
 
+        const pub = this._publications.selected.value;
         Promise.all([
-            Manage.Store.AsyncQuery('manage.storages(' + pub.storage + ')'),
-            Sites.LoadRow(pub.storage, pub.row, pub)
+            Manage.Store.AsyncQuery('manage.storages(name=' + pub.storage + ',module=' + pub.module + ')'),
+            Sites.LoadRow(pub.storage, pub.module, pub.row, pub)
         ]).then((responses) => {
             const storage = responses[0];
             const data = responses[1];
-            if(Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc) + '»', 1024, 'app.manage.storages(' + storage.name + ')', data)
+            if(Security.IsCommandAllowed('sites.storages.' + pub.module + '.' +storage.name + '.edit')) {
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc) + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + pub.module + ')', data)
                     .then((data) => {
-                        Sites.SaveData(storage.name, data, pub);
+                        Sites.SaveData(storage, data, pub);
                     })
                     .catch(() => {
                         Manage.FormWindow.Hide();
@@ -679,10 +699,10 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         wnd.Show((storage, dataIds) => {
             const selected = this._folders.selected?.tag;
             if(selected.type == 'domain') {
-                Sites.Publish(selected.data, null, storage.name, dataIds);
+                Sites.Publish(selected.data, null, storage.name, storage.module, dataIds);
             }
             else {
-                Sites.Publish(selected?.data.domain, selected.data, storage.name, dataIds);
+                Sites.Publish(selected?.data.domain, selected.data, storage.name, storage.module, dataIds);
             }
         }); 
 

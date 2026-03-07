@@ -25,6 +25,7 @@ use InvalidArgumentException;
  * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property Domain $domain Домен
  * @property Page|null $page Страница
+ * @property string $module Модуль
  * @property string $storage Хранилище материалов
  * @property int $row ID записи в хранилище
  * @property string|null $ft Полнотекстовый поиск
@@ -54,6 +55,7 @@ class Publication extends BaseModelDataRow
             # region SchemaProperties:
 			'domain' => Domain::JsonSchema,
 			'page' => [ 'oneOf' => [ [ 'type' => 'null'], Page::JsonSchema ] ],
+			'module' => ['type' => 'string', 'maxLength' => 255, ],
 			'storage' => ['type' => 'string', 'maxLength' => 255, ],
 			'row' => ['type' => 'integer', ],
 			'ft' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],
@@ -172,7 +174,7 @@ class Publication extends BaseModelDataRow
 
     public function DataRow(): mixed
     {
-        $storage = Storages::Instance()->Load($this->storage);
+        $storage = Storages::Instance()->Load($this->storage, $this->module ?? null);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         return $tableClass::LoadById($this->row);
     }

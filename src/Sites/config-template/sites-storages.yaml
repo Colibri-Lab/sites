@@ -60,6 +60,21 @@ pubs:
           name: pages
           title: description
           value: id
+    module:
+      type: varchar
+      length: 255
+      class: string
+      desc:
+        ru: Модуль хранилищаЭ
+        en: Module storage
+        hy: Մոդուլի պահպանում
+        it: Archiviazione del modulo
+        es: Almacenamiento de módulos
+        kk: Модульдің сақталуы
+        uz: Modul saqlash
+      params:
+        required: true
+        readonly: false
     storage:
       type: varchar
       length: 255

@@ -801,3 +801,16 @@ sites-structure-contextmenu-copy:
   tr: Sayfayı kopyala
   zh: 复制页面
   fa: کپی صفحه
+sites-structure-contextmenu-paste:
+  ru: Вставить раздел
+  en: Paste page
+  hy: Ներսցնել բաժինը
+  it: Incolla pagina
+  es: Pegar página
+  kk: Бетті қою
+  uz: Sahifani yapıştır
+  cz: Vložit stránku
+  de: Seite einfügen
+  tr: Sayfayı yapıştır
+  zh: 粘贴页面
+  fa: چسباندن صفحه

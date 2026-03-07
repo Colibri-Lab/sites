@@ -166,7 +166,8 @@ class PublicationsController extends WebController
 
         $domain = $post->{'domain'};
         $folder = $post->{'folder'};
-        $storage = $post->{'storage'};
+        $module = strtolower($post->{'module'});
+        $storage = strtolower($post->{'storage'});
         $data = $post->{'data'};
 
         if (!$storage || !$data) {
@@ -179,7 +180,7 @@ class PublicationsController extends WebController
         }
 
         $folder = $folder ? Pages::LoadById($folder) : null;
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
         $datarow = $tableClass::LoadEmpty();
 
@@ -246,14 +247,15 @@ class PublicationsController extends WebController
         $domain = Domains::LoadById($domain);
 
         $folder = $post->{'folder'};
-        $storage = $post->{'storage'};
+        $module = strtolower($post->{'module'});
+        $storage = strtolower($post->{'storage'});
         $ids = $post->{'ids'} ? explode(',', $post->{'ids'}) : [];
         if (!$ids || !$storage) {
             throw new BadRequestException('Bad request', 400);
         }
 
         $folder = $folder ? Pages::LoadById($folder) : null;
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         [$tableClass, $rowClass] = $storage->GetModelClasses();
 
         $accessPoint = $domain->Storage()->accessPoint;

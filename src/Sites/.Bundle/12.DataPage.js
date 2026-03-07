@@ -311,10 +311,10 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
             return;
         }
 
-        if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(' + storage.name + ')', {})
+        if (Security.IsCommandAllowed('sites.storages.' + storage.module.toLowerCase() + '.' + storage.name + '.edit')) {
+            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', {})
                 .then((data) => {
-                    Sites.SaveData(storage.name, data).then(() => {
+                    Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
@@ -344,10 +344,10 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
             return;
         }
 
-        if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-editrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+        if (Security.IsCommandAllowed('sites.storages.' + storage.module.toLowerCase() + '.' + storage.name + '.edit')) {
+            Manage.FormWindow.Show('#{sites-structure-editrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', dta)
                 .then((data) => {
-                    Sites.SaveData(storage.name, data).then(() => {
+                    Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
@@ -378,10 +378,10 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
         delete dta.id;
 
-        if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(' + storage.name + ')', dta)
+        if (Security.IsCommandAllowed('sites.storages.' + storage.module.toLowerCase() + '.' + storage.name + '.edit')) {
+            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', dta)
                 .then((data) => {
-                    Sites.SaveData(storage.name, data).then(() => {
+                    Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing

@@ -157,7 +157,8 @@ class Publications extends BaseModelDataTable
         $empty = $pubs->CreateEmptyRow();
         $empty->domain = $domain;
         $empty->page = $page ?: 0;
-        $empty->storage = $datarow->Storage()->name;
+        $empty->module = strtolower($datarow->Storage()->module);
+        $empty->storage = strtolower($datarow->Storage()->name);
         $empty->row = $datarow->id;
         $empty->order = Publications::NextPublicationOrder($page);
         return $empty;

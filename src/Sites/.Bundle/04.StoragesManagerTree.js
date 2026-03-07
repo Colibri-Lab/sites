@@ -252,7 +252,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     set storage(value) {
         this._storageObject = value;
         if(value) {
-            this.binding = 'app.manage.storages.' + this._storageObject.name; 
+            this.binding = 'app.manage.storages(name=' + this._storageObject.name + ',module=' + this._storageObject.module + ')'; 
             this.nodes.Clear();
             this._insertStorageNode(this, this._storageObject);
         } else {

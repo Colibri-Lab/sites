@@ -98,15 +98,15 @@ class Module extends BaseModule
                 }
             }
 
-            $permissions['sites.storages.' . $storage->name] = '#{sites-storage-permissions} «' . $storageDesc . '»';
-            $permissions['sites.storages.' . $storage->name . '.list'] = '#{sites-storage-list-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.fields'] = '#{sites-storage-fields-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.indices'] = '#{sites-storage-indices-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.add'] = '#{sites-storage-add-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.edit'] = '#{sites-storage-edit-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.remove'] = '#{sites-storage-delete-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.export'] = '#{sites-storage-export-permissions}';
-            $permissions['sites.storages.' . $storage->name . '.import'] = '#{sites-storage-import-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name] = '#{sites-storage-permissions} «' . $storageDesc . '»';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.list'] = '#{sites-storage-list-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.fields'] = '#{sites-storage-fields-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.indices'] = '#{sites-storage-indices-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.add'] = '#{sites-storage-add-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.edit'] = '#{sites-storage-edit-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.remove'] = '#{sites-storage-delete-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.export'] = '#{sites-storage-export-permissions}';
+            $permissions['sites.storages.' . strtolower($storage->module) . '.' . $storage->name . '.import'] = '#{sites-storage-import-permissions}';
         }
 
         $permissions['sites.references'] = '#{sites-references-permissions}';

@@ -28,8 +28,7 @@
                             <params>
                                 {
                                     render: (cell, row) => {
-                                        Manage.Store.AsyncQuery('manage.storages').then(storages => {
-                                            const storage = storages[row.value.storage];
+                                        Manage.Store.AsyncQuery('manage.storages(name=' + row.value.storage + ',module=' + row.value.module + ')').then(storage => {
                                             cell.valueContainer.value = storage.desc[Lang.Current] ?? storage.desc ?? '';
                                         });
                                     }

@@ -52,7 +52,7 @@ App.Modules.Sites.StoragesManagerListItem = class extends Colibri.UI.Pane {
         this._showValue();
     }
     _showValue() {
-        this.binding = 'app.manage.storages.' + this._value.name;
+        this.binding = 'app.manage.storages(name=' + this._value.name + ',module=' + this._value.module + ')';
         this._ttl.value = Lang.Translate(this._value.desc);
         this._nam.value = this._value.name;
     }

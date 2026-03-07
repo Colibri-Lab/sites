@@ -2326,7 +2326,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             });
         }
         else if (menuData.name == 'new-field') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {})
                     .then((data) => {
                         Sites.SaveField(module.value, storage.value, data.name, data, true).then(() => {
@@ -2342,7 +2342,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-virtual-field') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {})
                     .then((data) => {
                         data.virtual = true;
@@ -2359,7 +2359,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-index') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
                     .then((data) => {
                         if(!Array.isArray(data.fields)) {
@@ -2378,7 +2378,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-trigger') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.triggers')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newtrigger}', 800, this._fieldTrigger(storage.value.name), {})
                     .then((data) => {
                         if(!Array.isArray(data.fields)) {
@@ -2423,7 +2423,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         if(menuData.name.indexOf('component-') === 0) {
             const component = menuData.name.replaceAll('component-', '');
             let field = 'component';
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2445,7 +2445,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-field') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {})
                     .then((data) => {
                         Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then(() => {
@@ -2461,7 +2461,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-virtual-field') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {})
                     .then((data) => {
                         data.virtual = true;
@@ -2487,7 +2487,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         else if (menuData.name.split('-')[0] === 'generators') {
             let field = menuData.name.split('-');
             field = field[1];
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2523,7 +2523,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if(menuData.name === 'attrs') {
             let field = 'attrs';
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2558,7 +2558,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if(menuData.name.indexOf('params-list-') !== -1) {
             let field = 'list';
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2592,7 +2592,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if(menuData.name.indexOf('params-required-') !== -1) {
             let field = 'required';
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2609,7 +2609,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if(menuData.name.indexOf('params-readonly-') !== -1) {
             let field = 'readonly';
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2625,7 +2625,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'edit-field') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 
                 const fieldData = node.tag.entry;
                 if(fieldData.default) {
@@ -2657,7 +2657,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-field') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 App.Confirm.Show(
                     '#{sites-storages-messages-removeproperty}', 
                     '#{sites-storages-messages-removepropertymessage}', 
@@ -2672,7 +2672,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'edit-index') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-editindex}', 800, this._fieldIndex(storage.value.name), node.tag.entry)
                     .then((data) => {
                         if(!Array.isArray(data.fields)) {
@@ -2692,7 +2692,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'edit-trigger') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.triggers')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-edittrigger}', 800, this._fieldTrigger(storage.value.name), node.tag.entry)
                     .then((data) => {
                         if(!Array.isArray(data.fields)) {
@@ -2712,7 +2712,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         }
         else if (menuData.name == 'remove-index') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 App.Confirm.Show(
                     '#{sites-storages-messages-removeindex}', 
                     '#{sites-storages-messages-removeindexmessage}', 
@@ -2727,7 +2727,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         } 
         else if (menuData.name == 'remove-trigger') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.triggers')) {
                 App.Confirm.Show(
                     '#{sites-storages-messages-removetrigger}', 
                     '#{sites-storages-messages-removetriggermessage}', 
@@ -2742,7 +2742,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
         } 
         else if (menuData.name == 'new-index') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.indexes')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.indexes')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newindex}', 800, this._fieldIndex(storage.value.name), {})
                     .then((data) => {
                         if(!Array.isArray(data.fields)) {
@@ -2761,7 +2761,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             }
         }
         else if (menuData.name == 'new-trigger') {
-            if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.triggers')) {
+            if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.triggers')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newtrigger}', 800, this._fieldTrigger(storage.value.name), {})
                     .then((data) => {
                         if(!Array.isArray(data.fields)) {
