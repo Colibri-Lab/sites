@@ -117,7 +117,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             // do nothing
                         });
                     })
-                    .catch(() => {});
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -134,7 +136,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             // do nothing
                         });
                     })
-                    .catch(() => {});
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -150,12 +154,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops}', 750, properties, item.tag.data.parameters)
                                 .then((data) => {
                                     Sites.SaveProperties('domains', item.tag.data, data).then(() => {
-                                        Manage.FormWindow.Hide();
+                                    Manage.FormWindow.Hide();
                                     }).catch(() => {
                                         // do nothing
                                     });
                                 })
-                                .catch(() => {});
+                                .catch(() => {
+                                    Manage.FormWindow.Hide();
+                                });
                         }
                         else {
                             App.Alert.Show('#{sites-structure-windowtitle-editdomainprops}', '#{sites-structure-windowtitle-noeditdomainprops}', '#{sites-structure-windowtitle-noeditdomainprops-close}');
@@ -203,7 +209,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             // do nothing
                         });
                     })
-                    .catch(() => {});
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -222,7 +230,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             // do nothing
                         });
                     })
-                    .catch(() => {});
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -242,7 +252,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                                         // do nothing
                                     });
                                 })
-                                .catch(() => {});
+                                .catch(() => {
+                                    Manage.FormWindow.Hide();
+                                });
                         }
                         else {
                             App.Alert.Show('#{sites-structure-windowtitle-editpageprops}', '#{sites-structure-windowtitle-noeditpageprops}', '#{sites-structure-windowtitle-noeditpageprops-close}');
@@ -346,7 +358,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             // do nothing
                         });
                     })
-                    .catch(() => {});
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -363,7 +377,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                                 // do nothing
                             });
                         })
-                        .catch(() => {});
+                        .catch(() => {
+                            Manage.FormWindow.Hide();
+                        }); 
                 }
                 else if(item.tag.type == 'page') {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(pages)', item.tag.data)
@@ -376,7 +392,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                                 // do nothing
                             });
                         })
-                        .catch(() => {});
+                        .catch(() => {
+                            Manage.FormWindow.Hide();
+                        });
                 }
             }
             else {
@@ -589,7 +607,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                                 Sites.CreatePublication(selected.data.domain, selected.data, menuData.name, data);
                             }
                         })
-                        .catch(() => {});
+                        .catch(() => {
+                            Manage.FormWindow.Hide();
+                        });
                 }
                 else {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -634,7 +654,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .then((data) => {
                         Sites.SaveData(storage.name, data, pub);
                     })
-                    .catch(() => {});
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-structurepage-notallowed}', Colibri.UI.Notice.Error, 5000));

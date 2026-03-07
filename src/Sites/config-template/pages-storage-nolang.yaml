@@ -199,6 +199,7 @@ fields:
         attrs:
           className: app-field-wrap
         params:
+          copyjson: true
           addlink: Add parameter
         fields:
           name:

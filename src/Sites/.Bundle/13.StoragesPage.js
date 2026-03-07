@@ -2259,9 +2259,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.add')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newstorage}', 800, this._storageFields(), {})
                     .then((data) => {
-                        Sites.SaveStorage(moduleNode.value, data);
+                        Sites.SaveStorage(moduleNode.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2299,9 +2303,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-editstorage}', 800, this._storageFields(), storage.value)
                     .then((data) => {
-                        Sites.SaveStorage(module.value, data);
+                        Sites.SaveStorage(module.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2321,9 +2329,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {})
                     .then((data) => {
-                        Sites.SaveField(module.value, storage.value, data.name, data, true);
+                        Sites.SaveField(module.value, storage.value, data.name, data, true).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2334,9 +2346,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {})
                     .then((data) => {
                         data.virtual = true;
-                        Sites.SaveField(module.value, storage.value, data.name, data, true);
+                        Sites.SaveField(module.value, storage.value, data.name, data, true).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2349,9 +2365,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         if(!Array.isArray(data.fields)) {
                             data.fields = [data.fields];
                         }
-                        Sites.SaveIndex(module.value, storage.value, data);
+                        Sites.SaveIndex(module.value, storage.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2364,9 +2384,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         if(!Array.isArray(data.fields)) {
                             data.fields = [data.fields];
                         }
-                        Sites.SaveTrigger(module.value, storage.value, data);
+                        Sites.SaveTrigger(module.value, storage.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2424,9 +2448,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {})
                     .then((data) => {
-                        Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true);
+                        Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2437,9 +2465,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {})
                     .then((data) => {
                         data.virtual = true;
-                        Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true);
+                        Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2478,9 +2510,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fValue
                 ).then((data) => {
                     fieldData.params[field] = data[field];
-                    Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).then(() => {
+                        Manage.FormWindow.Hide();
+                    });
                 })
-                .catch(() => { });
+                .catch(() => {
+                    Manage.FormWindow.Hide();
+                });
 
             }
 
@@ -2510,9 +2546,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fValue
                 ).then((data) => {
                     fieldData[field] = data[field];
-                    Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).then(() => {
+                        Manage.FormWindow.Hide();
+                    });
                 })
-                .catch(() => { });
+                .catch(() => {
+                    Manage.FormWindow.Hide();
+                });
 
             }
         }
@@ -2603,9 +2643,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fieldData.virtual ? this._fieldVirtualFields(module.value) : this._fieldFields(true, module.value), 
                     fieldData
                 ).then((data) => {
-                    Sites.SaveField(module.value, storage.value, this._getPath(node), data, false);
+                    Sites.SaveField(module.value, storage.value, this._getPath(node), data, false).then(() => {
+                        Manage.FormWindow.Hide();
+                    });
                 })
-                .catch(() => { });
+                .catch(() => {
+                    Manage.FormWindow.Hide();
+                });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2634,9 +2678,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         if(!Array.isArray(data.fields)) {
                             data.fields = [data.fields];
                         }
-                        Sites.SaveIndex(module.value, storage.value, data);
+                        Sites.SaveIndex(module.value, storage.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2650,9 +2698,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         if(!Array.isArray(data.fields)) {
                             data.fields = [data.fields];
                         }
-                        Sites.SaveTrigger(module.value, storage.value, data);
+                        Sites.SaveTrigger(module.value, storage.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2696,9 +2748,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         if(!Array.isArray(data.fields)) {
                             data.fields = [data.fields];
                         }
-                        Sites.SaveIndex(module.value, storage.value, data);
+                        Sites.SaveIndex(module.value, storage.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -2711,7 +2767,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         if(!Array.isArray(data.fields)) {
                             data.fields = [data.fields];
                         }
-                        Sites.SaveTrigger(module.value, storage.value, data);
+                        Sites.SaveTrigger(module.value, storage.value, data).then(() => {
+                            Manage.FormWindow.Hide();
+                        });
                     })
                     .catch(() => { });
             }

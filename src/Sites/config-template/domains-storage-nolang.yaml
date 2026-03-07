@@ -547,6 +547,7 @@ fields:
         attrs:
           className: app-field-wrap
         params:
+          copyjson: true
           addlink: 
             ru: Добавить параметр
             en: Add parameter

@@ -320,7 +320,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
                         // do nothing
                     });
                 })
-                .catch(() => { });
+                .catch(() => {
+                    Manage.FormWindow.Hide();
+                });
         }
         else {
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -351,7 +353,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
                         // do nothing
                     });
                 })
-                .catch(() => { });
+                .catch(() => {
+                    Manage.FormWindow.Hide();
+                });
         }
         else {
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -383,7 +387,9 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
                         // do nothing
                     });
                 })
-                .catch(() => { });
+                .catch(() => {
+                    Manage.FormWindow.Hide();
+                });
         }
         else {
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
