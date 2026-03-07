@@ -90,7 +90,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     Check(current) {
         return new Promise((resolve, reject) => {
-            if(App.Device.isElectron) {
+            if (App.Device.isElectron) {
                 Colibri.IO.Request.Get('./domain.json', {}, {}, false).then((response) => {
                     resolve(JSON.parse(response.result));
                 }).catch(e => {
@@ -139,371 +139,443 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
     SaveProperties(type, obj, data) {
-        this.Call('Pages', 'SaveProperties', { type: type, object: obj?.id, data: data })
-            .then((response) => {
-                const saved = response.result;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-properties-saved}', Colibri.UI.Notice.Success, 3000));
-                let rows = Object.values(this._store.Query('sites.' + type));
-                for (const row of rows) {
-                    if (row.id == obj.id) {
-                        row.parameters = saved;
+        return new Promise((resolve, reject) => {
+            this.Call('Pages', 'SaveProperties', { type: type, object: obj?.id, data: data })
+                .then((response) => {
+                    const saved = response.result;
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-properties-saved}', Colibri.UI.Notice.Success, 3000));
+                    let rows = Object.values(this._store.Query('sites.' + type));
+                    for (const row of rows) {
+                        if (row.id == obj.id) {
+                            row.parameters = saved;
+                        }
                     }
-                }
-                this._store.Set('sites.' + type, rows);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+                    this._store.Set('sites.' + type, rows);
+                    resolve(saved);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
 
     SaveFolder(data) {
-        data = Object.assign(data);
-        this.Call('Pages', 'Save', data)
-            .then((response) => {
-                const saved = response.result;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-saved}', Colibri.UI.Notice.Success, 3000));
-                const pages = Object.values(this._store.Query('sites.pages'));
-                let found = null;
-                pages.forEach((page) => {
-                    if (page.id == saved.id) {
-                        found = page;
-                        return false;
+        return new Promise((resolve, reject) => {
+
+            data = Object.assign(data);
+            this.Call('Pages', 'Save', data)
+                .then((response) => {
+                    const saved = response.result;
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-saved}', Colibri.UI.Notice.Success, 3000));
+                    const pages = Object.values(this._store.Query('sites.pages'));
+                    let found = null;
+                    pages.forEach((page) => {
+                        if (page.id == saved.id) {
+                            found = page;
+                            return false;
+                        }
+                        return true;
+                    });
+
+                    if (!found) {
+                        pages.push(saved);
                     }
-                    return true;
+                    else {
+                        found.description = saved.description;
+                        found.published = saved.published;
+                        found.additional = saved.additional;
+                        found.order = saved.order;
+                    }
+                    this._store.Set('sites.pages', pages);
+                    resolve(found || saved);
+                    
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
                 });
-
-                if (!found) {
-                    pages.push(saved);
-                }
-                else {
-                    found.description = saved.description;
-                    found.published = saved.published;
-                    found.additional = saved.additional;
-                    found.order = saved.order;
-                }
-                this._store.Set('sites.pages', pages);
-
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        });
     }
 
     SaveDomain(data) {
-        data = Object.assign(data);
-        this.Call('Pages', 'SaveDomain', data)
-            .then((response) => {
-                const saved = response.result;
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-saved}', Colibri.UI.Notice.Success, 3000));
-                let domains = Object.values(this._store.Query('sites.domains'));
-                if (!data?.id) {
-                    domains.push(saved);
-                }
-                else {
-                    domains = domains.map(d => d.id == saved.id ? saved : d);
-                }
-                this._store.Set('sites.domains', domains);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            data = Object.assign(data);
+            this.Call('Pages', 'SaveDomain', data)
+                .then((response) => {
+                    const saved = response.result;
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-saved}', Colibri.UI.Notice.Success, 3000));
+                    let domains = Object.values(this._store.Query('sites.domains'));
+                    if (!data?.id) {
+                        domains.push(saved);
+                    }
+                    else {
+                        domains = domains.map(d => d.id == saved.id ? saved : d);
+                    }
+                    this._store.Set('sites.domains', domains);
+                    resolve(saved);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     DeleteDomain(id) {
-        this.Call('Pages', 'DeleteDomain', { id: id })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-deleted}', Colibri.UI.Notice.Success, 3000));
-                this._store.Set('sites.domains', response.result);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            this.Call('Pages', 'DeleteDomain', { id: id })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-domains-deleted}', Colibri.UI.Notice.Success, 3000));
+                    this._store.Set('sites.domains', response.result);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     DeleteFolder(id) {
-        this.Call('Pages', 'Delete', { id: id })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-deleted}', Colibri.UI.Notice.Success, 3000));
-                this._store.Set('sites.pages', response.result);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            this.Call('Pages', 'Delete', { id: id })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-deleted}', Colibri.UI.Notice.Success, 3000));
+                    this._store.Set('sites.pages', response.result);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     MoveFolder(move, domain, to, siblingStatus) {
-        this.Call('Pages', 'Move', { move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved}', Colibri.UI.Notice.Success, 3000));
-                this._store.Set('sites.pages', response.result);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            this.Call('Pages', 'Move', { move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved}', Colibri.UI.Notice.Success, 3000));
+                    this._store.Set('sites.pages', response.result);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     CopyPublication(pub, domain, to) {
-        this.Call('Publications', 'Copy', { pub: pub.id, domain: domain.id, to: to?.id ?? null })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-copied}', Colibri.UI.Notice.Success, 3000));
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            this.Call('Publications', 'Copy', { pub: pub.id, domain: domain.id, to: to?.id ?? null })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-copied}', Colibri.UI.Notice.Success, 3000));
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     MovePublication(pub, pubBefore) {
-        this.Call('Publications', 'Move', { pub: pub.id, before: pubBefore.id })
-            .then((response) => {
-                const movedPub = response.result;
-                let pubs = this._store.Query('sites.pubs');
-                if (!pubs || !Array.isArray(pubs)) {
-                    pubs = [];
-                }
-                pubs = pubs.map((p) => p.id == movedPub.id ? movedPub : p);
-                this._store.Set('sites.pubs', pubs);
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-moved}', Colibri.UI.Notice.Success, 3000));
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-    }
-
-    DeletePublication(pubIds) {
-        this.Call('Publications', 'Delete', { pubs: pubIds.join(',') })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-deleted}', Colibri.UI.Notice.Success, 3000));
-
-                let pubs = this._store.Query('sites.pubs');
-                if (!pubs || !Array.isArray(pubs)) {
-                    pubs = [];
-                }
-
-                let newPubs = [];
-                pubs.map((p) => {
-                    if (pubIds.indexOf(p.id) === -1) {
-                        newPubs.push(p);
-                    }
-                });
-                this._store.Set('sites.pubs', newPubs);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-    }
-
-    DeleteData(storage, dataIds) {
-        this.Call('Data', 'Delete', { storage: storage.name, ids: dataIds.join(',') })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
-
-                let data = this._store.Query('sites.data');
-                if (!data || !Array.isArray(data)) {
-                    data = [];
-                }
-
-                let newData = [];
-                data.map((p) => {
-                    if (storage.params.softdeletes && storage.params.deletedautoshow) {
-                        if (dataIds.indexOf(p.id) !== -1) {
-                            p.datedeleted = Date.Now().toDbDate();
-                        }
-                        newData.push(p);
-                    } else {
-                        if (dataIds.indexOf(p.id) === -1) {
-                            newData.push(p);
-                        }
-                    }
-                });
-                this._store.Set('sites.data', newData);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-    }
-    ClearAllData(storage) {
-        this.Call('Data', 'Clear', { storage: storage.name })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-cleared}', Colibri.UI.Notice.Success, 3000));
-
-                if (storage.params.softdeletes && storage.params.deletedautoshow) {
-                    let data = this._store.Query('sites.data');
-                    if (!data || !Array.isArray(data)) {
-                        data = [];
-                    }
-                    let newData = [];
-                    data.map((p) => {
-                        p.datedeleted = Date.Now().toDbDate();
-                        newData.push(p);
-                    });
-                    this._store.Set('sites.data', newData);
-                } else {
-                    this._store.Set('sites.data', []);
-                }
-
-
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-    }
-    DeleteData(storage, dataIds) {
-        this.Call('Data', 'Delete', { storage: storage.name, ids: dataIds.join(',') })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
-
-                let data = this._store.Query('sites.data');
-                if (!data || !Array.isArray(data)) {
-                    data = [];
-                }
-
-                let newData = [];
-                data.map((p) => {
-                    if (storage.params.softdeletes && storage.params.deletedautoshow) {
-                        if (dataIds.indexOf(p.id) !== -1) {
-                            p.datedeleted = Date.Now().toDbDate();
-                        }
-                        newData.push(p);
-                    } else {
-                        if (dataIds.indexOf(p.id) === -1) {
-                            newData.push(p);
-                        }
-                    }
-                });
-                this._store.Set('sites.data', newData);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-    }
-
-    RestoreData(storage, dataIds) {
-        this.Call('Data', 'Restore', { storage: storage.name, ids: dataIds.join(',') })
-            .then((response) => {
-                App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-restored}', Colibri.UI.Notice.Success, 3000));
-
-                let data = this._store.Query('sites.data');
-                if (!data || !Array.isArray(data)) {
-                    data = [];
-                }
-
-                let newData = [];
-                data.map((p) => {
-                    if (dataIds.indexOf(p.id) !== -1) {
-                        p.datedeleted = '';
-                    }
-                    newData.push(p);
-                });
-                this._store.Set('sites.data', newData);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-    }
-
-    CreatePublication(domain, folder, storage, data) {
-
-        this.Call('Publications', 'Create', { domain: domain.id, folder: folder?.id ?? null, storage, data: data })
-            .then((response) => {
-                let pubs = this._store.Query('sites.pubs');
-                if (!pubs || !Array.isArray(pubs)) {
-                    pubs = [];
-                }
-                pubs.push(response.result);
-                this._store.Set('sites.pubs', pubs);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-
-    }
-
-    Publish(domain, folder, storage, ids) {
-
-        this.Call('Publications', 'Publish', { domain: domain.id, folder: folder?.id ?? null, storage, ids: ids.join(',') })
-            .then((response) => {
-                let pubs = this._store.Query('sites.pubs');
-                if (!pubs || !Array.isArray(pubs)) {
-                    pubs = [];
-                }
-                pubs = pubs.concat(response.result);
-                this._store.Set('sites.pubs', pubs);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
-
-    }
-
-    SaveData(storage, data, pub = null) {
-        this.Call('Data', 'Save', { storage: storage, data: data, pub: pub?.id ?? null })
-            .then((response) => {
-                if (pub) {
-                    let p = response.result.pub;
+        return new Promise((resolve, reject) => {
+            this.Call('Publications', 'Move', { pub: pub.id, before: pubBefore.id })
+                .then((response) => {
+                    const movedPub = response.result;
                     let pubs = this._store.Query('sites.pubs');
                     if (!pubs || !Array.isArray(pubs)) {
                         pubs = [];
                     }
-                    pubs = pubs.map(pp => pp.id == p.id ? p : pp);
+                    pubs = pubs.map((p) => p.id == movedPub.id ? movedPub : p);
                     this._store.Set('sites.pubs', pubs);
-                }
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-moved}', Colibri.UI.Notice.Success, 3000));
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+    }
 
-                let dtas = this._store.Query('sites.data');
-                if (!dtas || !Array.isArray(dtas)) {
-                    dtas = [];
-                }
-                if (data?.id) {
-                    // редактирование
-                    dtas = dtas.map(dd => dd.id == data.id ? data : dd);
-                }
-                else {
-                    dtas.push(response.result.datarow);
-                }
-                this._store.Set('sites.data', dtas);
+    DeletePublication(pubIds) {
+        return new Promise((resolve, reject) => {
+            this.Call('Publications', 'Delete', { pubs: pubIds.join(',') })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-deleted}', Colibri.UI.Notice.Success, 3000));
 
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result, Colibri.UI.Notice.Error, 15000));
-                console.error(error);
-            });
+                    let pubs = this._store.Query('sites.pubs');
+                    if (!pubs || !Array.isArray(pubs)) {
+                        pubs = [];
+                    }
+
+                    let newPubs = [];
+                    pubs.map((p) => {
+                        if (pubIds.indexOf(p.id) === -1) {
+                            newPubs.push(p);
+                        }
+                    });
+                    this._store.Set('sites.pubs', newPubs);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+    }
+
+    DeleteData(storage, dataIds) {
+        return new Promise((resolve, reject) => {
+            this.Call('Data', 'Delete', { storage: storage.name, ids: dataIds.join(',') })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
+
+                    let data = this._store.Query('sites.data');
+                    if (!data || !Array.isArray(data)) {
+                        data = [];
+                    }
+
+                    let newData = [];
+                    data.map((p) => {
+                        if (storage.params.softdeletes && storage.params.deletedautoshow) {
+                            if (dataIds.indexOf(p.id) !== -1) {
+                                p.datedeleted = Date.Now().toDbDate();
+                            }
+                            newData.push(p);
+                        } else {
+                            if (dataIds.indexOf(p.id) === -1) {
+                                newData.push(p);
+                            }
+                        }
+                    });
+                    this._store.Set('sites.data', newData);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+    }
+    ClearAllData(storage) {
+        return new Promise((resolve, reject) => {
+            this.Call('Data', 'Clear', { storage: storage.name })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-cleared}', Colibri.UI.Notice.Success, 3000));
+
+                    if (storage.params.softdeletes && storage.params.deletedautoshow) {
+                        let data = this._store.Query('sites.data');
+                        if (!data || !Array.isArray(data)) {
+                            data = [];
+                        }
+                        let newData = [];
+                        data.map((p) => {
+                            p.datedeleted = Date.Now().toDbDate();
+                            newData.push(p);
+                        });
+                        this._store.Set('sites.data', newData);
+                    } else {
+                        this._store.Set('sites.data', []);
+                    }
+                    resolve(response.result);
+
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+    }
+    DeleteData(storage, dataIds) {
+        return new Promise((resolve, reject) => {
+            this.Call('Data', 'Delete', { storage: storage.name, ids: dataIds.join(',') })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
+
+                    let data = this._store.Query('sites.data');
+                    if (!data || !Array.isArray(data)) {
+                        data = [];
+                    }
+
+                    let newData = [];
+                    data.map((p) => {
+                        if (storage.params.softdeletes && storage.params.deletedautoshow) {
+                            if (dataIds.indexOf(p.id) !== -1) {
+                                p.datedeleted = Date.Now().toDbDate();
+                            }
+                            newData.push(p);
+                        } else {
+                            if (dataIds.indexOf(p.id) === -1) {
+                                newData.push(p);
+                            }
+                        }
+                    });
+                    this._store.Set('sites.data', newData);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+    }
+
+    RestoreData(storage, dataIds) {
+        return new Promise((resolve, reject) => {
+            this.Call('Data', 'Restore', { storage: storage.name, ids: dataIds.join(',') })
+                .then((response) => {
+                    App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-restored}', Colibri.UI.Notice.Success, 3000));
+
+                    let data = this._store.Query('sites.data');
+                    if (!data || !Array.isArray(data)) {
+                        data = [];
+                    }
+
+                    let newData = [];
+                    data.map((p) => {
+                        if (dataIds.indexOf(p.id) !== -1) {
+                            p.datedeleted = '';
+                        }
+                        newData.push(p);
+                    });
+                    this._store.Set('sites.data', newData);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+    }
+
+    CreatePublication(domain, folder, storage, data) {
+        return new Promise((resolve, reject) => {
+
+            this.Call('Publications', 'Create', { domain: domain.id, folder: folder?.id ?? null, storage, data: data })
+                .then((response) => {
+                    let pubs = this._store.Query('sites.pubs');
+                    if (!pubs || !Array.isArray(pubs)) {
+                        pubs = [];
+                    }
+                    pubs.push(response.result);
+                    this._store.Set('sites.pubs', pubs);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+
+    }
+
+    Publish(domain, folder, storage, ids) {
+        return new Promise((resolve, reject) => {
+
+            this.Call('Publications', 'Publish', { domain: domain.id, folder: folder?.id ?? null, storage, ids: ids.join(',') })
+                .then((response) => {
+                    let pubs = this._store.Query('sites.pubs');
+                    if (!pubs || !Array.isArray(pubs)) {
+                        pubs = [];
+                    }
+                    pubs = pubs.concat(response.result);
+                    this._store.Set('sites.pubs', pubs);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
+
+    }
+
+    SaveData(storage, data, pub = null) {
+        return new Promise((resolve, reject) => {
+            this.Call('Data', 'Save', { storage: storage, data: data, pub: pub?.id ?? null })
+                .then((response) => {
+                    if (pub) {
+                        let p = response.result.pub;
+                        let pubs = this._store.Query('sites.pubs');
+                        if (!pubs || !Array.isArray(pubs)) {
+                            pubs = [];
+                        }
+                        pubs = pubs.map(pp => pp.id == p.id ? p : pp);
+                        this._store.Set('sites.pubs', pubs);
+                    }
+
+                    let dtas = this._store.Query('sites.data');
+                    if (!dtas || !Array.isArray(dtas)) {
+                        dtas = [];
+                    }
+                    if (data?.id) {
+                        // редактирование
+                        dtas = dtas.map(dd => dd.id == data.id ? data : dd);
+                    }
+                    else {
+                        dtas.push(response.result.datarow);
+                    }
+                    this._store.Set('sites.data', dtas);
+                    resolve(response.result);
+
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result, Colibri.UI.Notice.Error, 15000));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     SaveDataInList(storage, data) {
-        return this.Call('Data', 'SaveDataList', { storage: storage, data: data })
-            .then((response) => {
-                this._store.IntersectList('sites.data', 'id', response.result);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result, Colibri.UI.Notice.Error, 15000));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            return this.Call('Data', 'SaveDataList', { storage: storage, data: data })
+                .then((response) => {
+                    this._store.IntersectList('sites.data', 'id', response.result);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result, Colibri.UI.Notice.Error, 15000));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     ExportData(storage, term = null, filters = null, sortField = null, sortOrder = null) {
-        this.Call('Data', 'Export', { storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder })
-            .then((response) => {
-                DownloadFile(response.result.filecontent, response.result.filename);
-            })
-            .catch(error => {
-                App.Notices.Add(new Colibri.UI.Notice(error.result));
-                console.error(error);
-            });
+        return new Promise((resolve, reject) => {
+            this.Call('Data', 'Export', { storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder })
+                .then((response) => {
+                    DownloadFile(response.result.filecontent, response.result.filename);
+                    resolve(response.result);
+                })
+                .catch(error => {
+                    App.Notices.Add(new Colibri.UI.Notice(error.result));
+                    console.error(error);
+                    reject(error.result);
+                });
+        });
     }
 
     ImportData(storage, file) {
@@ -511,7 +583,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             App.Loading.Show();
             this.Call('Data', 'Import', { storage: storage.name, file: file })
                 .then((response) => {
-                    resolve();
+                    resolve(response.result);
                 })
                 .catch(error => {
                     reject(error);
@@ -553,7 +625,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 this._store.Set('sites.pubs', pubs);
             }
         }).catch(error => {
-            if(error.status > 0) {
+            if (error.status > 0) {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
                 console.error(error);
             }
@@ -573,7 +645,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         promise.then((response) => {
             this._store.Set('sites.data', response.result);
         }).catch(error => {
-            if(error.status > 0) {
+            if (error.status > 0) {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
                 console.error(error);
             }
@@ -712,7 +784,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 console.error(error);
             });
     }
-    
+
     DeleteTrigger(module, storage, trigger) {
         this.Call('Storages', 'DeleteTrigger', { module: module?.name ?? module, storage: storage?.name ?? storage, trigger: trigger?.name ?? trigger })
             .then((response) => {

@@ -111,7 +111,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             if(Security.IsCommandAllowed('sites.structure.add')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(domains)', {})
                     .then((data) => {
-                        Sites.SaveDomain(data);
+                        Sites.SaveDomain(data).then(() => {
+                            Manage.FormWindow.Hide();
+                        }).catch(() => {
+                            // do nothing
+                        });
                     })
                     .catch(() => {});
             }
@@ -124,7 +128,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             if(Security.IsCommandAllowed('sites.structure.edit')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(domains)', item.tag.data)
                     .then((data) => {
-                        Sites.SaveDomain(data);
+                        Sites.SaveDomain(data).then(() => {
+                            Manage.FormWindow.Hide();
+                        }).catch(() => {
+                            // do nothing
+                        });
                     })
                     .catch(() => {});
             }
@@ -141,7 +149,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         if(Object.countKeys(properties.fields) > 0) {                            
                             Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops}', 750, properties, item.tag.data.parameters)
                                 .then((data) => {
-                                    Sites.SaveProperties('domains', item.tag.data, data);
+                                    Sites.SaveProperties('domains', item.tag.data, data).then(() => {
+                                        Manage.FormWindow.Hide();
+                                    }).catch(() => {
+                                        // do nothing
+                                    });
                                 })
                                 .catch(() => {});
                         }
@@ -185,7 +197,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             data.parent = item.tag.data.id;
                         }
                         item.Expand();
-                        Sites.SaveFolder(data);
+                        Sites.SaveFolder(data).then(() => {
+                            Manage.FormWindow.Hide();
+                        }).catch(() => {
+                            // do nothing
+                        });
                     })
                     .catch(() => {});
             }
@@ -200,7 +216,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     .then((data) => {
                         data.domain = item.tag?.data?.domain?.id;
                         data.parent = item.tag?.data?.parent?.id ?? 0;
-                        Sites.SaveFolder(data);
+                        Sites.SaveFolder(data).then(() => {
+                            Manage.FormWindow.Hide();
+                        }).catch(() => {
+                            // do nothing
+                        });
                     })
                     .catch(() => {});
             }
@@ -216,7 +236,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         if(Object.countKeys(properties.fields) > 0) {                            
                             Manage.FormWindow.Show('#{sites-structure-windowtitle-editpageprops}', 750, properties, item.tag.data.parameters)
                                 .then((data) => {
-                                    Sites.SaveProperties('pages', item.tag.data, data);
+                                    Sites.SaveProperties('pages', item.tag.data, data).then(() => {
+                                        Manage.FormWindow.Hide();
+                                    }).catch(() => {
+                                        // do nothing
+                                    });
                                 })
                                 .catch(() => {});
                         }
@@ -316,7 +340,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
             if(Security.IsCommandAllowed('sites.structure.add')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(domains)', {})
                     .then((data) => {
-                        Sites.SaveDomain(data);
+                        Sites.SaveDomain(data).then(() => {
+                            Manage.FormWindow.Hide();
+                        }).catch(() => {
+                            // do nothing
+                        });
                     })
                     .catch(() => {});
             }
@@ -329,7 +357,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                 if(item.tag.type == 'domain') {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(domains)', item.tag.data)
                         .then((data) => {
-                            Sites.SaveDomain(data);
+                            Sites.SaveDomain(data).then(() => {
+                                Manage.FormWindow.Hide();
+                            }).catch(() => {
+                                // do nothing
+                            });
                         })
                         .catch(() => {});
                 }
@@ -338,7 +370,11 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         .then((data) => {
                             data.parent = item.tag?.parent?.id ?? 0;
                             data.domain = item.tag?.data?.domain?.id;
-                            Sites.SaveFolder(data);
+                            Sites.SaveFolder(data).then(() => {
+                                Manage.FormWindow.Hide();
+                            }).catch(() => {
+                                // do nothing
+                            });
                         })
                         .catch(() => {});
                 }
