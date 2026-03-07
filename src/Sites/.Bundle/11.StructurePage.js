@@ -154,7 +154,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                             Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops}', 750, properties, item.tag.data.parameters)
                                 .then((data) => {
                                     Sites.SaveProperties('domains', item.tag.data, data).then(() => {
-                                    Manage.FormWindow.Hide();
+                                        Manage.FormWindow.Hide();
                                     }).catch(() => {
                                         // do nothing
                                     });
@@ -601,10 +601,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         .then((data) => {
                             const selected = this._folders.selected.tag;
                             if(selected.type == 'domain') {
-                                Sites.CreatePublication(selected.data, null, menuData.name, data);
+                                Sites.CreatePublication(selected.data, null, menuData.name, data).then(() => {
+                                    Manage.FormWindow.Hide();
+                                });
                             }
                             else {
-                                Sites.CreatePublication(selected.data.domain, selected.data, menuData.name, data);
+                                Sites.CreatePublication(selected.data.domain, selected.data, menuData.name, data).then(() => {
+                                    Manage.FormWindow.Hide();
+                                });
                             }
                         })
                         .catch(() => {
