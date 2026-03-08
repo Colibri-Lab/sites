@@ -341,7 +341,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     DeleteData(storage, dataIds) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Delete', { storage: storage.name, ids: dataIds.join(',') })
+            this.Call('Data', 'Delete', { storage: storage.name, module: storage.module, ids: dataIds.join(',') })
                 .then((response) => {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
 
@@ -375,7 +375,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
     ClearAllData(storage) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Clear', { storage: storage.name })
+            this.Call('Data', 'Clear', { storage: storage.name, module: storage.module })
                 .then((response) => {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-cleared}', Colibri.UI.Notice.Success, 3000));
 
@@ -405,7 +405,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
     DeleteData(storage, dataIds) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Delete', { storage: storage.name, ids: dataIds.join(',') })
+            this.Call('Data', 'Delete', { storage: storage.name, module: storage.module, ids: dataIds.join(',') })
                 .then((response) => {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-deleted}', Colibri.UI.Notice.Success, 3000));
 
@@ -440,7 +440,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     RestoreData(storage, dataIds) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Restore', { storage: storage.name, ids: dataIds.join(',') })
+            this.Call('Data', 'Restore', { storage: storage.name, module: storage.module, ids: dataIds.join(',') })
                 .then((response) => {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-data-restored}', Colibri.UI.Notice.Success, 3000));
 
@@ -548,9 +548,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-    SaveDataInList(storage, data) {
+    SaveDataInList(storage, module, data) {
         return new Promise((resolve, reject) => {
-            return this.Call('Data', 'SaveDataList', { storage: storage, data: data })
+            return this.Call('Data', 'SaveDataList', { storage: storage, module: module, data: data })
                 .then((response) => {
                     this._store.IntersectList('sites.data', 'id', response.result);
                     resolve(response.result);
@@ -565,7 +565,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     ExportData(storage, term = null, filters = null, sortField = null, sortOrder = null) {
         return new Promise((resolve, reject) => {
-            this.Call('Data', 'Export', { storage: storage.name, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder })
+            this.Call('Data', 'Export', { storage: storage.name, module: storage.module, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder })
                 .then((response) => {
                     DownloadFile(response.result.filecontent, response.result.filename);
                     resolve(response.result);
@@ -581,7 +581,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     ImportData(storage, file) {
         return new Promise((resolve, reject) => {
             App.Loading.Show();
-            this.Call('Data', 'Import', { storage: storage.name, file: file })
+            this.Call('Data', 'Import', { storage: storage.name, module: storage.module, file: file })
                 .then((response) => {
                     resolve(response.result);
                 })

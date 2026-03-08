@@ -95,7 +95,7 @@ class PagesController extends WebController
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        $storage = Storages::Instance()->Load($post->{'type'});
+        $storage = Storages::Instance()->Load($post->{'type'}, 'sites');
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -149,7 +149,7 @@ class PagesController extends WebController
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        $storage = Storages::Instance()->Load($post->{'type'});
+        $storage = Storages::Instance()->Load($post->{'type'}, 'sites');
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }

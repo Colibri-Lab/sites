@@ -30,7 +30,7 @@ class Texts extends BaseModelDataTable
      * @param Storage|null $storage хранилище
      * @return void 
      */
-    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Text', Storage|null $storage = null)
+    public function __construct(DataAccessPoint $point, ?IDataReader $reader = null, string $returnAs = 'Text', ?Storage $storage = null)
     {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
@@ -45,7 +45,7 @@ class Texts extends BaseModelDataTable
      * @param array $params параметры к запросу
      * @return Texts
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Texts
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, ?string $filter = null, ?string $order = null, array $params = [], bool $calculateAffected = true): ? Texts
     {
         $storage = Storages::Instance()->Load('texts', 'sites');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
@@ -124,11 +124,11 @@ class Texts extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Instance()->Load('texts');
-        if (!self::DeleteByFilter($storage->table, $filter)) {
+        $storage = Storages::Instance()->Load('texts', 'sites');
+        if (!self::DeleteByFilter($storage, $filter)) {
             return false;
         }
-        return Publications::DeleteAllNotExistsInStorage('texts');
+        return Publications::DeleteAllNotExistsInStorage($storage);
     }
 
 }

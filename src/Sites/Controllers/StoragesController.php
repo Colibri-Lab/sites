@@ -49,9 +49,9 @@ class StoragesController extends WebController
         }
 
         $data = $post->{'data'};
-        $storage = Storages::Instance()->Load($data['name']);
+        $storage = Storages::Instance()->Load($data['name'], $module);
         if (!SecurityModule::Instance()->current->IsCommandAllowed(
-            'sites.storages.' . ($storage != null ? '.edit' : '.add')
+            'sites.storages.' . $module . '.' . ($storage != null ? '.edit' : '.add')
         )) {
             throw new PermissionDeniedException(
                 PermissionDeniedException::PermissionDeniedMessage,
@@ -117,7 +117,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -219,7 +219,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -281,7 +281,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -331,7 +331,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -383,7 +383,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -435,7 +435,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
@@ -488,7 +488,7 @@ class StoragesController extends WebController
             throw new BadRequestException('Bad request', 400);
         }
 
-        $storage = Storages::Instance()->Load($storage);
+        $storage = Storages::Instance()->Load($storage, $module);
         if (!$storage) {
             throw new BadRequestException('Bad request', 400);
         }
