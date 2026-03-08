@@ -1455,6 +1455,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             component: 'Object',
                             desc: '#{sites-storages-fieldlookup-storage}',
                             fields: {
+                                module: {
+                                    component: 'Text',
+                                    default: moduleNode.name,
+                                    desc: '#{sites-storages-fieldlookup-storage-module}',
+                                    params: {
+                                        enabled: false
+                                    }
+                                },
                                 name: {
                                     type: 'varchar',
                                     desc: '#{sites-storages-fieldlookup-storage-name}',
@@ -1471,8 +1479,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                         return new Promise((rs, rj) => {
                                             Manage.Store.AsyncQuery('manage.storages').then((storages) => {
                                                 rs({ 
-                                                    result: Object.values(storages)
-                                                        .filter((s => s.params.visible && s.module === moduleNode.name)) 
+                                                    result: storages.filter((s => s.params.visible && s.module === moduleNode.name)) 
                                                 });
                                             });
                                         });
