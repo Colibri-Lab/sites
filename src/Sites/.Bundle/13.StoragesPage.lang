@@ -4347,3 +4347,16 @@ sites-storages-contextmenu-removetrigger:
   tr: Tetikleyiciyi sil
   zh: 删除触发器
   fa: حذف ماشه
+sites-storages-indexfields-placeholder:
+  ru: Ничего не выбрано
+  en: Nothing selected
+  hy: Ոչինչ չի ընտրվել
+  it: Niente selezionato
+  es: Nada seleccionado
+  kk: Ештеңе таңдалмаған
+  uz: Hech narsa tanlanmagan
+  cz: Nic není vybráno
+  de: Nichts ausgewählt
+  tr: Hiçbir şey seçilmedi
+  zh: 未选择任何内容
+  fa: هیچ چیز انتخاب نشده است

@@ -2071,30 +2071,31 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     note: '#{sites-storages-indexfields-note}',
                     lookup: () => {
                         return new Promise((rs, rj) => {
-                            Manage.Store.AsyncQuery('manage.storages(' + storageName + ')').then((storage) => {
-                                const components = [];
-                                const getIndexNames = (fields, parentName = '') => {
-                                    Object.forEach(fields, (name, field) => {
-                                        const allowedType = allowedTypes[field.type];
-                                        const n = (parentName ? parentName + '.' : '') + name;
-                                        const tab = '----'.repeat(n.countCharIn(/\./));
-                                        if((allowedType?.index ?? true)) {
-                                            components.push({ value: n, title: (tab ? tab + ' ' : '') + (field.desc[Lang.Current] ?? field.desc) + ' (' + n + ')' });
-                                        }
-                                        if(field.type === 'json') {
-                                            getIndexNames(field.fields, n);
-                                        }
-                                    });    
-                                };
-                                getIndexNames(storage.fields, '');
-                                rs({ result: components });
-                            });
+                            const components = [];
+                            const getIndexNames = (fields, parentName = '') => {
+                                Object.forEach(fields, (name, field) => {
+                                    const allowedType = allowedTypes[field.type];
+                                    const n = (parentName ? parentName + '.' : '') + name;
+                                    const tab = '----'.repeat(n.countCharIn(/\./));
+                                    if((allowedType?.index ?? true)) {
+                                        components.push({ value: n, title: (tab ? tab + ' ' : '') + (field.desc[Lang.Current] ?? field.desc) + ' (' + n + ')' });
+                                    }
+                                    if(field.type === 'json') {
+                                        getIndexNames(field.fields, n);
+                                    }
+                                });    
+                            };
+                            getIndexNames(storage.fields, '');
+                            rs({ result: components });
                         });
                     },
                     params: {
                         required: true,
                         searchable: false,
                         readonly: false,
+                        placeholderinfo: (value, values) => new Promise((resolve, reject) => {
+                            value.length > 0 ? resolve(value.map(v => v.title).join(', ')) : resolve('#{sites-storages-indexfields-placeholder}');
+                        }),
                         validate: [{
                             message: '#{sites-storages-indexfields-validation-required}',
                             method: '(field, validator) => !!field.value'
@@ -2771,7 +2772,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             Manage.FormWindow.Hide();
                         });
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                        Manage.FormWindow.Hide();
+                    });
             }
             else {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-notallowed}', Colibri.UI.Notice.Error, 5000));

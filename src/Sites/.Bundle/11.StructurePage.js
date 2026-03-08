@@ -115,7 +115,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
 
         if(menuData.name == 'new-domain') {
             if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(domains)', {})
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', {})
                     .then((data) => {
                         Sites.SaveDomain(data).then(() => {
                             Manage.FormWindow.Hide();
@@ -134,7 +134,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         else if(menuData.name == 'edit-domain') {
 
             if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(domains)', item.tag.data)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', item.tag.data)
                     .then((data) => {
                         Sites.SaveDomain(data).then(() => {
                             Manage.FormWindow.Hide();
@@ -198,7 +198,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                     dta.parent = item.tag.data;
                 }
 
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newchildpage}', 1024, 'app.manage.storages(pages)', dta)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newchildpage}', 1024, 'app.manage.storages(name=pages,module=sites)', dta)
                     .then((data) => {
                         if(item.tag.type == 'domain') {
                             data.domain = item.tag.data.id;    
@@ -226,7 +226,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         }
         else if(menuData.name == 'edit-folder') {
             if(Security.IsCommandAllowed('sites.structure.edit')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(pages)', item.tag.data)
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(name=pages,module=sites)', item.tag.data)
                     .then((data) => {
                         data.domain = item.tag?.data?.domain?.id;
                         data.parent = item.tag?.data?.parent?.id ?? 0;
@@ -371,7 +371,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         const item = this._folders.selected;
         if(!item) {
             if(Security.IsCommandAllowed('sites.structure.add')) {
-                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(domains)', {})
+                Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', {})
                     .then((data) => {
                         Sites.SaveDomain(data).then(() => {
                             Manage.FormWindow.Hide();
@@ -390,7 +390,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
         else {
             if(Security.IsCommandAllowed('sites.structure.edit')) {
                 if(item.tag.type == 'domain') {
-                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(domains)', item.tag.data)
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', item.tag.data)
                         .then((data) => {
                             Sites.SaveDomain(data).then(() => {
                                 Manage.FormWindow.Hide();
@@ -403,7 +403,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component
                         }); 
                 }
                 else if(item.tag.type == 'page') {
-                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(pages)', item.tag.data)
+                    Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(name=pages,module=sites)', item.tag.data)
                         .then((data) => {
                             data.parent = item.tag?.parent?.id ?? 0;
                             data.domain = item.tag?.data?.domain?.id;

@@ -94,7 +94,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
             return;
         }
 
-        Manage.FilterWindow.Show('#{sites-structure-filter} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 800, 'app.manage.storages(' + storage.name + ')', this._filterData)
+        Manage.FilterWindow.Show('#{sites-structure-filter} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 800, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', this._filterData)
             .then((data) => {
                 this._filterData = data;
                 if (Object.countKeys(this._filterData) > 0) {
