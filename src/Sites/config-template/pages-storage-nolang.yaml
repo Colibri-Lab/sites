@@ -163,12 +163,21 @@ fields:
               value: value
               title: title
             lookup:
-              method: '(term, dependsValue) => new Promise((resolve, reject) =>
-                { let ret = []; const module
-                = dependsValue?.additional?.settings.module; Object.forEach(eval("App.Modules."
-                + module), (name, value) => { if(name.indexOf(''Page'') !== -1)
-                { ret.push({value: name, title: module + ''.'' + name}); } }); resolve(ret);
-                }); '
+              method: |-
+                (term, dependsValue) => new Promise((resolve, reject) => { 
+                  let module = dependsValue?.additional?.settings.module; 
+                  Manage.Store.AsyncQuery('manage.modules').then((modules) => {
+                    let ret = []; 
+                    module = Array.findObject(modules, 'name', module);
+                    modules = modules.filter(v => v.for.indexOf(module.key) !== -1);
+                    for(const m of modules) {
+                      Object.forEach(eval("App.Modules."+ m.name + ".Pages"), (name, value) => { 
+                          ret.push({value: name, title: m.name + '.Pages.' + name}); 
+                      }); 
+                    }
+                    resolve(ret);
+                  });
+                });
               depends: domain
           template:
             type: varchar
