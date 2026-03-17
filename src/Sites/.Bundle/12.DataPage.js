@@ -61,20 +61,20 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
             m.DataPageAdditionalMethods(this, storage).then(methods => {
                 storage.methods = methods;
                 this._additionalData.Clear();
-                if(storage.methods?.buttons) {
-                    for(const button of storage.methods?.buttons) {
+                if (storage.methods?.buttons) {
+                    for (const button of storage.methods?.buttons) {
                         const b = new Colibri.UI.SuccessButton(button.name, this._additionalData);
                         b.shown = true;
                         b.value = button.title;
                         b.icon = button.icon;
                         b.AddHandler('Clicked', (event, args) => {
-                            m?.DataPageAdditionalExecuteMethod(button, storage, {filter: this._filterData, search: this._searchInput.value}).then(() => {
+                            m?.DataPageAdditionalExecuteMethod(button, storage, { filter: this._filterData, search: this._searchInput.value }).then(() => {
                                 this._loadDataPage(
-                                    storage, 
-                                    this._searchInput.value, 
-                                    this._filterData, 
-                                    this._data.sortColumn?.name, 
-                                    this._data.sortOrder, 
+                                    storage,
+                                    this._searchInput.value,
+                                    this._filterData,
+                                    this._data.sortColumn?.name,
+                                    this._data.sortOrder,
                                     this._pagerData.value
                                 );
                             });
@@ -312,17 +312,24 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         }
 
         if (Security.IsCommandAllowed('sites.storages.' + storage.module.toLowerCase() + '.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', {})
-                .then((data) => {
+            Manage.FormWindow.Show(
+                '#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»',
+                1024,
+                'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')',
+                {},
+                '',
+                {},
+                (data) => {
                     Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
                     });
-                })
-                .catch(() => {
+                },
+                () => {
                     Manage.FormWindow.Hide();
-                });
+                }
+            );
         }
         else {
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -345,17 +352,24 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         }
 
         if (Security.IsCommandAllowed('sites.storages.' + storage.module.toLowerCase() + '.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-editrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', dta)
-                .then((data) => {
+            Manage.FormWindow.Show(
+                '#{sites-structure-editrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»',
+                1024,
+                'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')',
+                dta,
+                '',
+                {},
+                (data) => {
                     Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
                     });
-                })
-                .catch(() => {
+                },
+                () => {
                     Manage.FormWindow.Hide();
-                });
+                }
+            );
         }
         else {
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -379,17 +393,24 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         delete dta.id;
 
         if (Security.IsCommandAllowed('sites.storages.' + storage.module.toLowerCase() + '.' + storage.name + '.edit')) {
-            Manage.FormWindow.Show('#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', dta)
-                .then((data) => {
+            Manage.FormWindow.Show(
+                '#{sites-structure-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»',
+                1024,
+                'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')',
+                dta,
+                '',
+                {},
+                (data) => {
                     Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
                     });
-                })
-                .catch(() => {
+                },
+                () => {
                     Manage.FormWindow.Hide();
-                });
+                }
+            );
         }
         else {
             App.Notices.Add(new Colibri.UI.Notice('#{sites-datapage-notallowed}', Colibri.UI.Notice.Error, 5000));
@@ -424,7 +445,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         if (!storage) {
             return;
         }
-        
+
         const file = args.success[0];
         Sites.ImportData(storage, file).then(() => {
             this.__pagerDataChanged(null, null);
@@ -443,8 +464,8 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
         contextmenu.push({ name: 'dubl-data', title: '#{sites-structure-contextmenu-dublicate}', icon: Colibri.UI.ContextMenuDublicateIcon });
         contextmenu.push({ name: 'edit-data', title: '#{sites-structure-contextmenu-edit}', icon: Colibri.UI.ContextMenuEditIcon });
-        
-        if ( (args.item.value.datedeleted && args.item.value.datedeleted.isNumeric() && parseInt(args.item.value.datedeleted) == 0) || !args.item.value.datedeleted) {
+
+        if ((args.item.value.datedeleted && args.item.value.datedeleted.isNumeric() && parseInt(args.item.value.datedeleted) == 0) || !args.item.value.datedeleted) {
             contextmenu.push({ name: 'remove-data', title: '#{sites-structure-contextmenu-delete}', icon: Colibri.UI.ContextMenuRemoveIcon });
         } else {
             contextmenu.push({ name: 'restore-data', title: '#{sites-structure-contextmenu-restore}', icon: Colibri.UI.ContextMenuRemoveIcon });
@@ -457,7 +478,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         }
 
         if (storage.methods?.contextmenu) {
-            contextmenu = contextmenu.concat([{name: '-'}]);
+            contextmenu = contextmenu.concat([{ name: '-' }]);
             contextmenu = contextmenu.concat(storage.methods?.contextmenu);
         }
 
@@ -508,16 +529,16 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
         if (storage.methods?.contextmenu) {
             m?.DataPageAdditionalExecuteMethod(menuData, storage, dta).then((response) => {
-                if(response?.reload === false) {
+                if (response?.reload === false) {
                     return;
                 }
-                
+
                 this._loadDataPage(
-                    storage, 
-                    this._searchInput.value, 
-                    this._filterData, 
-                    this._data.sortColumn?.name, 
-                    this._data.sortOrder, 
+                    storage,
+                    this._searchInput.value,
+                    this._filterData,
+                    this._data.sortColumn?.name,
+                    this._data.sortOrder,
                     this._pagerData.value
                 );
             });
@@ -531,7 +552,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
      * @param {*} args event arguments
      */
     __clickOnDataColumn(event, args) {
-        if(this._data.sortColumn?.name === 'checkbox-column') {
+        if (this._data.sortColumn?.name === 'checkbox-column') {
             return;
         }
         this.__searchInputFilled(event, args);
