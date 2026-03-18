@@ -320,10 +320,13 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
                 '',
                 {},
                 (data) => {
+                    App.Loading.Show();
                     Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 },
                 () => {
@@ -360,10 +363,13 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
                 '',
                 {},
                 (data) => {
+                    App.Loading.Show();
                     Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 },
                 () => {
@@ -401,10 +407,13 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
                 '',
                 {},
                 (data) => {
+                    App.Loading.Show();
                     Sites.SaveData(storage, data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 },
                 () => {

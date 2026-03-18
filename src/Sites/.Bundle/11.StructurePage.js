@@ -115,10 +115,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         if (menuData.name == 'new-domain') {
             if (Security.IsCommandAllowed('sites.structure.add')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', {}, '', {}, (data) => {
+                    App.Loading.Show();
                     Sites.SaveDomain(data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -132,10 +135,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
             if (Security.IsCommandAllowed('sites.structure.edit')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', item.tag.data, '', {}, (data) => {
+                    App.Loading.Show();
                     Sites.SaveDomain(data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -153,10 +159,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                     .then((properties) => {
                         if (Object.countKeys(properties.fields) > 0) {
                             Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomainprops}', 750, properties, item.tag.data.parameters, '', {}, (data) => {
+                                App.Loading.Show();
                                 Sites.SaveProperties('domains', item.tag.data, data).then(() => {
                                     Manage.FormWindow.Hide();
                                 }).catch(() => {
                                     // do nothing
+                                }).finally(() => {
+                                    App.Loading.Hide();
                                 });
                             }, () => {
                                 Manage.FormWindow.Hide();
@@ -201,10 +210,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                         data.parent = item.tag.data.id;
                     }
                     item.Expand();
+                    App.Loading.Show();
                     Sites.SaveFolder(data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -220,10 +232,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(name=pages,module=sites)', item.tag.data, '', {}, (data) => {
                     data.domain = item.tag?.data?.domain?.id;
                     data.parent = item.tag?.data?.parent?.id ?? 0;
+                    App.Loading.Show();
                     Sites.SaveFolder(data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -240,10 +255,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                     .then((properties) => {
                         if (Object.countKeys(properties.fields) > 0) {
                             Manage.FormWindow.Show('#{sites-structure-windowtitle-editpageprops}', 750, properties, item.tag.data.parameters, '', {}, (data) => {
+                                App.Loading.Show();
                                 Sites.SaveProperties('pages', item.tag.data, data).then(() => {
                                     Manage.FormWindow.Hide();
                                 }).catch(() => {
                                     // do nothing
+                                }).finally(() => {
+                                    App.Loading.Hide();
                                 });
                             }, () => {
                                 Manage.FormWindow.Hide();
@@ -306,8 +324,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                 this._copiedPage.domain = item.tag.data.domain.id;
                 this._copiedPage.parent = item.tag.data.id;
             }
+
+            App.Loading.Show();
             Sites.SaveFolder(this._copiedPage).then(() => {
                 this._copiedPage = null;
+            }).finally(() => {
+                App.Loading.Hide();
             });
         }
     }
@@ -359,10 +381,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         if (!item) {
             if (Security.IsCommandAllowed('sites.structure.add')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-newdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', {}, '', {}, (data) => {
+                    App.Loading.Show();
                     Sites.SaveDomain(data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
                         // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -376,10 +401,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.structure.edit')) {
                 if (item.tag.type == 'domain') {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-editdomain}', 1024, 'app.manage.storages(name=domains,module=sites)', item.tag.data, '', {}, (data) => {
+                        App.Loading.Show();
                         Sites.SaveDomain(data).then(() => {
                             Manage.FormWindow.Hide();
                         }).catch(() => {
                             // do nothing
+                        }).finally(() => {
+                            App.Loading.Hide();
                         });
                     }, () => {
                         Manage.FormWindow.Hide();
@@ -389,10 +417,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(name=pages,module=sites)', item.tag.data, '', {}, (data) => {
                         data.domain = item.tag?.data?.domain?.id;
                         data.parent = item.tag?.data?.parent?.id ?? 0;
+                        App.Loading.Show();
                         Sites.SaveFolder(data).then(() => {
                             Manage.FormWindow.Hide();
                         }).catch(() => {
                             // do nothing
+                        }).finally(() => {
+                            App.Loading.Hide();
                         });
                     }, () => {
                         Manage.FormWindow.Hide();
@@ -602,13 +633,19 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + menuData.title + '»', 1024, 'app.manage.storages(name=' + menuData.name + ',module=' + menuData.module + ')', {}, '', {}, (data) => {
                         const selected = this._folders.selected.tag;
                         if (selected.type == 'domain') {
+                            App.Loading.Show();
                             Sites.CreatePublication(selected.data, null, menuData.name, menuData.module, data).then(() => {
                                 Manage.FormWindow.Hide();
+                            }).finally(() => {
+                                App.Loading.Hide();
                             });
                         }
                         else {
+                            App.Loading.Show();
                             Sites.CreatePublication(selected.data.domain, selected.data, menuData.name, data).then(() => {
                                 Manage.FormWindow.Hide();
+                            }).finally(() => {
+                                App.Loading.Hide();
                             });
                         }
                     }, () => {

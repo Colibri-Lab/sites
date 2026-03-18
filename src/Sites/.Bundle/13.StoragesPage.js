@@ -2275,8 +2275,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     '',
                     {},
                     (data) => {
+                        App.Loading.Show();
                         Sites.SaveStorage(moduleNode.value, data).then(() => {
                             Manage.FormWindow.Hide();
+                        }).finally(() => {
+                            App.Loading.Hide();
                         });
                     },
                     () => {
@@ -2319,8 +2322,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     storage.value.group_enabled = true;
                 }
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-editstorage}', 800, this._storageFields(), storage.value, '', {}, (data) => {
+                    App.Loading.Show();
                     Sites.SaveStorage(module.value, data).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2343,8 +2349,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         else if (menuData.name == 'new-field') {
             if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {}, '', {}, (data) => {
+                    App.Loading.Show();
                     Sites.SaveField(module.value, storage.value, data.name, data, true).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2358,8 +2367,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {}, '', {}, (data) => {
                     data.virtual = true;
+                    App.Loading.Show();
                     Sites.SaveField(module.value, storage.value, data.name, data, true).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2375,8 +2387,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
+                    App.Loading.Show();
                     Sites.SaveIndex(module.value, storage.value, data).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2392,8 +2407,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
+                    App.Loading.Show();
                     Sites.SaveTrigger(module.value, storage.value, data).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2442,7 +2460,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 fieldData.component = component;
-                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                App.Loading.Show();
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).finally(() => {
+                    App.Loading.Hide();
+                });
             }
 
         } else if (menuData.name == 'copy-field') {
@@ -2454,8 +2475,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         else if (menuData.name == 'new-field') {
             if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {}, '', {}, (data) => {
+                    App.Loading.Show();
                     Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2469,8 +2493,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
             if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) {
                 Manage.FormWindow.Show('#{sites-storages-windowtitle-newvirtualproperty}', 1024, this._fieldVirtualFields(), {}, '', {}, (data) => {
                     data.virtual = true;
+                    App.Loading.Show();
                     Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then(() => {
                         Manage.FormWindow.Hide();
+                    }).finally(() => {
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2482,9 +2509,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if (menuData.name == 'paste-field') {
             const data = this._copiedField;
+            App.Loading.Show();
             Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
                 this._copiedField = null;
+            }).finally(() => {
+                App.Loading.Hide();
             });
         }
         else if (menuData.name.split('-')[0] === 'generators') {
@@ -2515,8 +2545,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     {},
                     (data) => {
                         fieldData.params[field] = data[field];
+                        App.Loading.Show();
                         Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).then(() => {
                             Manage.FormWindow.Hide();
+                        }).finally(() => {
+                            App.Loading.Hide();
                         });
                     },
                     () => {
@@ -2554,8 +2587,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     {},
                     (data) => {
                         fieldData[field] = data[field];
+                        App.Loading.Show();
                         Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).then(() => {
                             Manage.FormWindow.Hide();
+                        }).finally(() => {
+                            App.Loading.Hide();
                         });
                     },
                     () => {
@@ -2579,7 +2615,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 fieldData.params[field] = menuData.name.indexOf('show') !== -1 ? true : false;
-                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                App.Loading.Show();
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).finally(() => {
+                    App.Loading.Hide();
+                });
             }
         }
         else if (menuData.name.indexOf('params-template-') !== -1) {
@@ -2596,7 +2635,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 fieldData.params[field] = menuData.name.indexOf('show') !== -1 ? true : false;
-                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                App.Loading.Show();
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).finally(() => {
+                    App.Loading.Hide();
+                });
             }
         }
         else if (menuData.name.indexOf('params-required-') !== -1) {
@@ -2613,7 +2655,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 fieldData.params[field] = menuData.name.indexOf('unset') !== -1 ? false : true;
-                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                App.Loading.Show();
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).finally(() => {
+                    App.Loading.Hide();
+                });
             }
         }
         else if (menuData.name.indexOf('params-readonly-') !== -1) {
@@ -2630,7 +2675,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 fieldData.params[field] = menuData.name.indexOf('unset') !== -1 ? false : true;
-                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false);
+                App.Loading.Show();
+                Sites.SaveField(module.value, storage.value, this._getPath(node), fieldData, false).finally(() => {
+                    App.Loading.Hide();
+                });
             }
         }
         else if (menuData.name == 'edit-field') {
@@ -2653,7 +2701,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     fieldData,
                     '', {},
                     (data) => {
-                        Sites.SaveField(module.value, storage.value, this._getPath(node), data, false).then(() => {
+                        App.Loading.Show();
+                        Sites.SaveField(module.value, storage.value, this._getPath(node), data, false).finally(() => {
+                            App.Loading.Hide();
                             Manage.FormWindow.Hide();
                         });
                     }, () => {
@@ -2687,7 +2737,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
-                    Sites.SaveIndex(module.value, storage.value, data).then(() => {
+                    
+                    App.Loading.Show();
+                    Sites.SaveIndex(module.value, storage.value, data).finally(() => {
+                        App.Loading.Hide();
                         Manage.FormWindow.Hide();
                     });
                 }, () => {
@@ -2705,8 +2758,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
-                    Sites.SaveTrigger(module.value, storage.value, data).then(() => {
+                    App.Loading.Show();
+                    Sites.SaveTrigger(module.value, storage.value, data).finally(() => {
                         Manage.FormWindow.Hide();
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();
@@ -2753,7 +2808,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
-                    Sites.SaveIndex(module.value, storage.value, data).then(() => {
+                    App.Loading.Show();
+                    Sites.SaveIndex(module.value, storage.value, data).finally(() => {
+                        App.Loading.Hide();
                         Manage.FormWindow.Hide();
                     });
                 }, () => {
@@ -2770,8 +2827,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
-                    Sites.SaveTrigger(module.value, storage.value, data).then(() => {
+                    App.Loading.Show();
+                    Sites.SaveTrigger(module.value, storage.value, data).finally(() => {
                         Manage.FormWindow.Hide();
+                        App.Loading.Hide();
                     });
                 }, () => {
                     Manage.FormWindow.Hide();

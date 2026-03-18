@@ -364,6 +364,48 @@ texts:
       group: window
       attrs:
         inputWidth: ""
+    file:
+      desc:
+        ru: Файл
+        en: ""
+        it: ""
+        hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
+      type: varchar
+      component: Colibri.UI.Forms.File
+      class: string
+      attrs:
+        inputWidth: ""
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
   indices:
     texts_lang_idx:
       fields:
