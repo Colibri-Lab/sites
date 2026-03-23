@@ -31,7 +31,7 @@ class Domains extends BaseModelDataTable
      * @param Storage|null $storage хранилище
      * @return void 
      */
-    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Domain', Storage|null $storage = null)
+    public function __construct(DataAccessPoint $point, ?IDataReader $reader = null, string $returnAs = 'Domain', Storage|null $storage = null)
     {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
@@ -46,7 +46,7 @@ class Domains extends BaseModelDataTable
      * @param array $params параметры к запросу
      * @return Domains
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Domains
+    public static function LoadByFilter(int $page = -1, int $pagesize = 20, ?string $filter = null, ?string $order = null, array $params = [], bool $calculateAffected = true): ? Domains
     {
         $storage = Storages::Instance()->Load('domains', 'sites');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
@@ -60,7 +60,7 @@ class Domains extends BaseModelDataTable
      * @param ?array $filtersArray filters array|object
      * @param string $sortField sort field
      * @param string $sortOrder sort order, default asc
-     * @return ?Pages
+     * @return ?Domains
      */
     public static function LoadBy(
         int $page = -1, 
@@ -69,7 +69,7 @@ class Domains extends BaseModelDataTable
         ?array $filtersArray = null,
         ?string $sortField = null,
         string $sortOrder = 'asc'
-    ) : ?Pages
+    ) : ?Domains
     {
         $storage = Storages::Instance()->Load('domains', 'sites');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
@@ -82,7 +82,7 @@ class Domains extends BaseModelDataTable
      * @param int $pagesize размер страницы
      * @return Domains 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false): ? Domains
+    public static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false): ? Domains
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
@@ -137,7 +137,7 @@ class Domains extends BaseModelDataTable
     static function DeleteAllByFilter(string $filter): bool
     {
         $storage = Storages::Instance()->Load('domains', 'sites');
-        if (!self::DeleteByFilter($storage->table, $filter)) {
+        if (!self::DeleteByFilter($storage, $filter)) {
             return false;
         }
         return Pages::DeleteAllByFilter($filter);

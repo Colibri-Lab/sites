@@ -197,24 +197,22 @@ texts:
       desc:
         ru: Язык
         en: Language
-        hy: Լեզու
         it: Lingua
+        hy: Լեզու
         es: Idioma
         kk: Тіл
         uz: Til
-      placeholder:
-        ru: ""
-        en: ""
-        hy: ""
-      note:
-        ru: ""
-        en: ""
-        hy: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       type: varchar
-      length: 10
+      length: "10"
       component: Colibri.UI.Forms.Select
       class: string
-      attrs: []
+      attrs:
+        inputWidth: ""
       params:
         required: true
         enabled: true
@@ -222,31 +220,21 @@ texts:
         readonly: false
         searchable: false
         list: true
+        template: false
         multiple: false
-        greed: ""
-        viewer: ~
         vertical: false
         visual: false
-        code: ""
-        mask: ""
-        fieldgenerator: ""
-        generator: ""
-        noteClass: ""
-        simplearraywidth: ""
-        simplearrayheight: ""
-        addlink:
-          ru: ""
-          en: ""
-          hy: ""
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
         removelink: true
         updownlink: true
+        hasscroll: true
         initempty: true
-        maxadd: ""
-        title: ""
         removedesc: true
-        allow: ""
-        size: ""
-        validate: []
       lookup:
         method: "() => new Promise((resolve, reject) => { \n     Lang.Store.AsyncQuery(\"lang.langs\").then((langs)
           => { \n          const ret = [];\n          Object.forEach(langs, (lang,

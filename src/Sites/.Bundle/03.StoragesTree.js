@@ -79,9 +79,9 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                 let moduleNode = this.FindNode(storage.module);
                 let groupNode = group ? moduleNode.nodes.Children(group) : null;
 
-                let newNode = this.FindNode(storage.name);
+                let newNode = this.FindNode(storage.module + '-' + storage.name);
                 if(!newNode) {
-                    newNode = (groupNode ? groupNode : moduleNode).nodes.Add(storage.name);
+                    newNode = (groupNode ? groupNode : moduleNode).nodes.Add(storage.module + '-' + storage.name);
                 }
                 newNode.text = desc;
                 newNode.isLeaf = true;

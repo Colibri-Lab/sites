@@ -33,7 +33,7 @@ class Pages extends BaseModelDataTable
      * @param Storage|null $storage хранилище
      * @return void 
      */
-    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Page', Storage|null $storage = null)
+    public function __construct(DataAccessPoint $point, IDataReader|array|null $reader = null, string $returnAs = 'Page', Storage|null $storage = null)
     {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
@@ -48,7 +48,7 @@ class Pages extends BaseModelDataTable
      * @param array $params параметры к запросу
      * @return Pages
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Pages
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, ?string $filter = null, ?string $order = null, array $params = [], bool $calculateAffected = true): ? Pages
     {
         $storage = Storages::Instance()->Load('pages', 'sites');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
@@ -246,7 +246,7 @@ class Pages extends BaseModelDataTable
     static function DeleteAllByFilter(string $filter): bool
     {
         $storage = Storages::Instance()->Load('pages', 'sites');
-        if (!self::DeleteByFilter($storage->table, $filter)) {
+        if (!self::DeleteByFilter($storage, $filter)) {
             return false;
         }
         return Publications::DeleteAllByFilter($filter);
