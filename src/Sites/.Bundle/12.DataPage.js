@@ -21,8 +21,6 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._pagerData = this.Children('split/data-pane/buttons-pane/pager');
         this._additionalData = this.Children('split/data-pane/buttons-pane/additional');
 
-
-
         this._storages.AddHandler('SelectionChanged', this.__storagesSelectionChanged, false, this);
 
         // this._data.AddHandler('ScrolledToBottom', this.__dataScrolledToBottom, false, this);
