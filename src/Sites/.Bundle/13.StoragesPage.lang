@@ -4360,4 +4360,17 @@ sites-storages-indexfields-placeholder:
   tr: Hiçbir şey seçilmedi
   zh: 未选择任何内容
   fa: هیچ چیز انتخاب نشده است
+sites-storages-fieldprotected:
+  ru: Не сохранять значение при стандартном сохранении
+  en: Do not save value on standard save
+  hy: Մի պահեք արժեքը ստանդարտ պահպանման ժամանակ
+  it: Non salvare il valore al salvataggio standard
+  es: No guardar el valor en la guardado estándar
+  kk: Стандартты сақтау кезінде мәнді сақтамаңыз
+  uz: Standart saqlashda qiymatni saqlamang
+  cz: Neukládat hodnotu při standardním uložení
+  de: Wert bei Standard-Speicherung nicht speichern
+  tr: Standart kaydetme sırasında değeri kaydetmeyin
+  zh: 在标准保存时不保存值
+  fa: در ذخیره‌سازی استاندارد، مقدار را ذخیره نکنید
 sites-storages-fieldlookup-storage-module: {}
