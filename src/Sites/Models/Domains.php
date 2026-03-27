@@ -110,6 +110,17 @@ class Domains extends BaseModelDataTable
     }
 
     /**
+     * Возвращает модель наименованию
+     * @param string $name
+     * @return Domain|null
+     */
+    static function LoadByModuleName(string $name): Domain|null
+    {
+        $table = self::LoadByFilter(1, 1, 'JSON_EXTRACT({additional}, \'$.settings.domain\')=[[name:string]]', null, ['name' => $name]);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
      * Создание модели по названию хранилища
      * @return Domain
      */
