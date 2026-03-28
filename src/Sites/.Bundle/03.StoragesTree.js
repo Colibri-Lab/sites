@@ -2,6 +2,8 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
     
     constructor(name, container) {
         super(name, container);
+        this.AddClass('app-modules-sites-storagestree-component');
+
         this._foldersList = [];
 
         this.AddHandler('NodeClicked', this.__thisNodeClicked);
@@ -14,10 +16,8 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
      * @param {*} args event arguments
      */ 
     __thisNodeClicked(event, args) {
-        // if(args.item.tag === 'module') {
         args.item.Expand();
-        // }
-    }
+   }
  
 
     /**
@@ -51,6 +51,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                     moduleNode = this.nodes.Add(storage.module);
                     moduleNode.text = module.desc;
                     moduleNode.tag = 'module';
+                    moduleNode.AddClass('app-modules-sites-storagestree-module-node');
                     moduleNode.icon = App.Modules.Sites.Icons.ModuleIcon;
                 }
 
@@ -61,6 +62,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                         groupNode = moduleNode.nodes.Add(group);
                         groupNode.text = group;
                         groupNode.tag = 'group';
+                        groupNode.AddClass('app-modules-sites-storagestree-group-node');
                         groupNode.icon = Colibri.UI.FolderIcon;
                     }
                 }
@@ -69,7 +71,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
 
             data.forEach((storage) => {
 
-                if(storage?.params?.visible === false) {
+                if(storage?.params?.visible === false) { 
                     return true;
                 }
                 
@@ -86,6 +88,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                 newNode.text = desc;
                 newNode.isLeaf = true;
                 newNode.icon = App.Modules.Sites.Icons.StorageIcon;
+                newNode.AddClass('app-modules-sites-storagestree-storage-node');
                 newNode.tag = storage;
 
                 return true;

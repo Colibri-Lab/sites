@@ -1,0 +1,39 @@
+.app-modules-sites-storagestree-component {
+
+    .app-modules-sites-storagestree-module-node {
+        .icon {
+            svg {
+                path, rect, circle, ellipse, line, polyline, polygon {
+                    &[fill="black"] {
+                        fill: #0d3855;
+                    }
+                }
+            }
+        }
+    }
+
+    .app-modules-sites-storagestree-group-node {
+        .icon {
+            svg {
+                path, rect, circle, ellipse, line, polyline, polygon {
+                    &[fill="black"] {
+                        fill: #daa700;
+                    }
+                }
+            }
+        }
+    }
+
+    .app-modules-sites-storagestree-storage-node {
+        .icon {
+            svg {
+                path, rect, circle, ellipse, line, polyline, polygon {
+                    &[fill="black"] {
+                        fill: #26633a;
+                    }
+                }
+            }
+        }
+    } 
+
+}

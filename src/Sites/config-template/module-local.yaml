@@ -26,6 +26,8 @@ databases:
         # пароль
         password: 123456
 
+        persistent: true
+
     points:
       sites: 
         connection: sites
