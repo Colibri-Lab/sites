@@ -91,14 +91,14 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 
             let idColumn = this.header.columns.Children('id');
             if(!idColumn) {
-                idColumn = this.header.columns.Add('id', '#', {width: '5%'});
+                idColumn = this.header.columns.Add('id', '#', {width: 50});
                 idColumn.resizable = true;
                 idColumn.sortable = true;
             }
             
             let dateCreatedColumn = this.header.columns.Children('datecreated');
             if(!dateCreatedColumn) {
-                dateCreatedColumn = this.header.columns.Add('datecreated', '#{sites-structure-datagrid-created}', {width: '10%'});
+                dateCreatedColumn = this.header.columns.Add('datecreated', '#{sites-structure-datagrid-created}', {width: 120});
                 dateCreatedColumn.viewer = 'Colibri.UI.DateTimeViewer';
                 dateCreatedColumn.resizable = true;
                 dateCreatedColumn.sortable = true;
@@ -107,7 +107,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
             if(this._storageObject.params.softdeletes && this._storageObject.params.deletedautoshow) {
                 let dateDeletedColumn = this.header.columns.Children('datedeleted');
                 if(!dateDeletedColumn) {
-                    dateDeletedColumn = this.header.columns.Add('datedeleted', '#{sites-structure-datagrid-deleted}', {width: '10%'});
+                    dateDeletedColumn = this.header.columns.Add('datedeleted', '#{sites-structure-datagrid-deleted}', {width: 120});
                     dateDeletedColumn.viewer = 'Colibri.UI.DateTimeViewer';
                     dateDeletedColumn.resizable = true;
                     dateDeletedColumn.sortable = true;
@@ -138,6 +138,17 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                     column.tag = field;
                     if(field.params?.render) {
                         column.tag.params = {render: eval(field.params?.render)};
+                    }
+                    if(field.attrs) {
+                        if(field.attrs.width) {
+                            column.width = field.attrs.width;
+                        }
+                        if(field.attrs.height) {
+                            column.height = field.attrs.height;
+                        }
+                        if(field.attrs.class) {
+                            column.AddClass(field.attrs.class);
+                        }
                     }
                     column.resizable = true;
                     column.sortable = true;

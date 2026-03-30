@@ -1,7 +1,7 @@
 <div ComponentName="App.Modules.Sites.Widgets.StoragesWidget">
     <!-- sites-widgets-storageswidget -->
 
-    <Grid shown="true" name="storages" selectionMode="fullrow" multiple="false" cycleSelection="true" >
+    <VirtualGrid shown="true" name="storages" selectionMode="fullrow" multiple="false" rowHeight="50"  >
         <component-header>
             <component-columns>
                 <Grid.Column shown="true" name="Name" value="#{sites-widgets-storageswidget-name}" />
@@ -49,6 +49,6 @@
                 </Grid.Column>
             </component-columns>
         </component-header>
-    </Grid>
+    </VirtualGrid>
     
 </div>
