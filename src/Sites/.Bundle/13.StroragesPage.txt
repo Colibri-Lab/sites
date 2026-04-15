@@ -1,0 +1,394 @@
+                        simplearraywidth: {
+                            type: 'int',
+                            placeholder: '#{sites-storages-fieldparams-simplearraywidth}',
+                            note: '#{sites-storages-fieldparams-simplearraywidth-note}',
+                            component: 'Number',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'simplearraywidth')
+                                }
+                            }
+                        },
+                        simplearrayheight: {
+                            type: 'int',
+                            placeholder: '#{sites-storages-fieldparams-simplearrayheight}',
+                            note: '#{sites-storages-fieldparams-simplearrayheight-note}',
+                            component: 'Number',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'simplearrayheight')
+                                }
+                            }
+                        },
+                        canEditKey: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canEditKey}',
+                            note: '#{sites-storages-fieldparams-canEditKey-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canEditKey')
+                                }
+                            }
+                        },
+                        canAddNew: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canAddNew}',
+                            note: '#{sites-storages-fieldparams-canAddNew-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canAddNew')
+                                }
+                            }
+                        },
+                        canRemoveRows: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-canRemoveRows}',
+                            note: '#{sites-storages-fieldparams-canRemoveRows-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canRemoveRows')
+                                }
+                            }
+                        },
+                        keyTitle: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-keyTitle}',
+                            note: '#{sites-storages-fieldparams-keyTitle-note}',
+                            component: 'App.Modules.Lang.UI.Text',
+                            default: '',
+                            params: {
+                                compact: true,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'keyTitle')
+                                }
+                            }
+                        },
+                        keyEditor: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-keyEditor}',
+                            note: '#{sites-storages-fieldparams-keyEditor-note}',
+                            component: 'Select',
+                            default: '',
+                            params: {
+                                compact: true,
+                                readonly: false,
+                                searchable: false,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'keyEditor') && data.canEditKey
+                                }
+                            },
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            lookup: () => new Promise((resolve, reject) => {
+                                resolve(Colibri.UI.Editor.Enum().map(v => { return { value: v.value, title: v.value + ' ' + v.title }; }));
+                            })
+                        },
+                        valueTitle: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-valueTitle}',
+                            note: '#{sites-storages-fieldparams-valueTitle-note}',
+                            component: 'App.Modules.Lang.UI.Text',
+                            default: '',
+                            params: {
+                                compact: true,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'valueTitle')
+                                }
+                            }
+                        },
+                        valueEditor: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-valueEditor}',
+                            note: '#{sites-storages-fieldparams-valueEditor-note}',
+                            component: 'Select',
+                            default: '',
+                            params: {
+                                compact: true,
+                                readonly: false,
+                                searchable: false,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'valueEditor')
+                                }
+                            },
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            lookup: () => new Promise((resolve, reject) => {
+                                resolve(Colibri.UI.Editor.Enum().map(v => { return { value: v.value, title: v.value + ' ' + v.title }; }));
+                            })
+                        },
+                        addlink: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-addlink}',
+                            note: '#{sites-storages-fieldparams-addlink-note}',
+                            component: 'App.Modules.Lang.UI.TextArea',
+                            default: '',
+                            params: {
+                                compact: true,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'addlink')
+                                }
+                            }
+                        },
+                        removelink: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-removelink}',
+                            note: '#{sites-storages-fieldparams-removelink-note}',
+                            component: 'Checkbox',
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'removelink')
+                                }
+                            }
+                        },
+                        updownlink: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-updownlink}',
+                            note: '#{sites-storages-fieldparams-updownlink-note}',
+                            component: 'Checkbox',
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'updownlink')
+                                }
+                            }
+                        },
+                        hasscroll: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-hasscroll}',
+                            note: '#{sites-storages-fieldparams-hasscroll-note}',
+                            component: 'Checkbox',
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'hasscroll')
+                                }
+                            }
+                        },
+                        initempty: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-initempty}',
+                            note: '#{sites-storages-fieldparams-initempty-note}',
+                            component: 'Checkbox',
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'initempty')
+                                }
+                            }
+                        },
+                        displayed_columns: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-displayed_columns}',
+                            note: '#{sites-storages-fieldparams-displayed_columns-note}',
+                            component: 'Text',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'displayed_columns')
+                                }
+                            }
+                        },
+                        maxadd: {
+                            type: 'int',
+                            component: 'Number',
+                            placeholder: '#{sites-storages-fieldparams-maxadd}',
+                            note: '#{sites-storages-fieldparams-maxadd-note}',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'maxadd')
+                                }
+                            }
+                        },
+                        title: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-title}',
+                            note: '#{sites-storages-fieldparams-title-note}',
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
+                            default: '',
+                            params: {
+                                code: 'js',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'title')
+                                }
+                            },
+                            attrs: {
+                                height: 200
+                            }
+                        },
+                        removedesc: {
+                            type: 'bool',
+                            component: 'Checkbox',
+                            placeholder: '#{sites-storages-fieldparams-removedesc}',
+                            note: '#{sites-storages-fieldparams-removedesc-note}',
+                            default: true,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'removedesc')
+                                }
+                            }
+                        },
+                        allow: {
+                            type: 'varchar',
+                            component: 'Text',
+                            placeholder: '#{sites-storages-fieldparams-allow}',
+                            note: '#{sites-storages-fieldparams-allow-note}',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'allow')
+                                }
+                            }
+                        },
+                        size: {
+                            type: 'int',
+                            component: 'Number',
+                            placeholder: '#{sites-storages-fieldparams-size}',
+                            note: '#{sites-storages-fieldparams-size-note}',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'size')
+                                }
+                            }
+                        },
+                        visual: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-visual}',
+                            note: '#{sites-storages-fieldparams-visual-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'visual')
+                                }
+                            }
+                        },
+                        code: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-code}',
+                            note: '#{sites-storages-fieldparams-code-note}',
+                            component: 'Select',
+                            default: '',
+                            params: {
+                                readonly: false,
+                                searchable: false,
+                                required: false,
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'code')
+                                }
+                            },
+                            selector: {
+                                value: 'value',
+                                title: 'title'
+                            },
+                            values: [
+                                { value: '', title: '' },
+                                { value: 'js', title: 'JavaScript' },
+                                { value: 'css', title: 'CSS' },
+                                { value: 'less', title: 'Less' },
+                                { value: 'scss', title: 'Scss' },
+                                { value: 'html', title: 'HTML' },
+                                { value: 'php', title: 'PHP' },
+                                { value: 'xml', title: 'XML' },
+                                { value: 'yaml', title: 'YAML' }
+                            ]
+                        },
+                        vertical: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-vertical}',
+                            note: '#{sites-storages-fieldparams-vertical-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'vertical')
+                                }
+                            }
+                        },
+                        compact: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-compact}',
+                            note: '#{sites-storages-fieldparams-compact-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'compact')
+                                }
+                            }
+                        },
+                        multiple: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-multiple}',
+                            note: '#{sites-storages-fieldparams-multiple-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'multiple')
+                                }
+                            }
+                        },
+                        searchable: {
+                            type: 'bool',
+                            placeholder: '#{sites-storages-fieldparams-searchable}',
+                            note: '#{sites-storages-fieldparams-searchable-note}',
+                            component: 'Checkbox',
+                            default: false,
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'searchable')
+                                }
+                            }
+                        },
+                        mask: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-mask}',
+                            note: '#{sites-storages-fieldparams-mask-note}',
+                            component: 'Text',
+                            default: '',
+                            params: {
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'mask')
+                                }
+                            }
+                        },

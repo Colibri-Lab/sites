@@ -13,8 +13,8 @@ sites-datawindow-search-placeholder:
   fa: جستجو
 sites-datawindow-dataempty:
   ru: Данные не найдены
-  en: Data not found
   hy: Տվյալներ չեն գտնվել
+  en: Data not found
   it: Dati non trovati
   es: Datos no encontrados
   kk: Мәліметтер табылмады

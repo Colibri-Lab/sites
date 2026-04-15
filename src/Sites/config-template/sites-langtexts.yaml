@@ -6,6 +6,11 @@ sites-menu-struct:
   es: Estructura del sitio
   kk: Сайт құрылымы
   uz: Sayt tuzilishi
+  tr: Site yapısı
+  zh: 网站结构
+  fa: ساختار سایت
+  cz: Struktura stránek
+  de: Seitenstruktur
 sites-menu-struct-desc:
   ru: Структура проекта, папки и конечные страницы, публикация данных
   en: Project structure, folders and end pages, data publication
@@ -15,6 +20,11 @@ sites-menu-struct-desc:
   kk: Жобаның құрылымы, қалталар және соңғы беттер, деректерді жариялау
   uz: Loyihaning tuzilishi, papkalar va yakuniy sahifalar, ma'lumotlarni nashr
     qilish
+  tr: Proje yapısı, klasörler ve son sayfalar, veri yayını
+  zh: 项目结构、文件夹和最终页面、数据发布
+  fa: ساختار پروژه، پوشه ها و صفحات نهایی، انتشار داده ها
+  cz: Struktura projektu, složky a koncové stránky, publikace dat
+  de: Projektstruktur, Ordner und Endseiten, Datenveröffentlichung
 sites-menu-storagesdata:
   ru: Материалы
   en: Materials
@@ -23,6 +33,11 @@ sites-menu-storagesdata:
   es: Materiales
   kk: Материалдар
   uz: Materiallar
+  tr: Malzemeler
+  zh: 材料
+  fa: مواد
+  cz: Materiály
+  de: Materialien
 sites-menu-storagesdata-desc:
   ru: Редактор материалов, которые содержатся в хранилищах данных
   en: Editor of materials that are contained in data warehouses
@@ -31,6 +46,11 @@ sites-menu-storagesdata-desc:
   es: Editor de materiales que se encuentran en almacenes de datos
   kk: Деректер қоймаларында сақталған материалдардың редакторы
   uz: Ma'lumotlar omborlarida saqlanadigan materiallar muharriri
+  tr: Veri ambarlarında bulunan malzemelerin düzenleyicisi
+  zh: 包含在数据仓库中的材料编辑器
+  fa: ویرایشگر مواد موجود در انبارهای داده
+  cz: Editor materiálů, které jsou obsaženy v datových skladech
+  de: Editor von Materialien, die in Datenlagern enthalten sind
 sites-menu-storages:
   ru: Хранилища
   en: Storage facilities
@@ -39,6 +59,11 @@ sites-menu-storages:
   es: Almacenes
   kk: Қоймалар
   uz: Omborlar
+  tr: Depolama tesisleri
+  zh: 存储设施
+  fa: امکانات ذخیره سازی
+  cz: Skladovací zařízení
+  de: Lagerstätten
 sites-menu-storages-desc:
   ru: Редактор хранилищ данных. Создавайте хранилища для материалов используя
     удобный интерфейс
@@ -54,6 +79,12 @@ sites-menu-storages-desc:
     интерфейсті пайдаланып
   uz: Ma'lumotlar ombori muharriri. Materiallar uchun omborlar yarating, qulay
     interfeysdan foydalanib
+  tr: Veri ambarı düzenleyicisi. Malzemeler için depolar oluşturun, kullanıcı dostu
+    bir arayüz kullanarak
+  zh: 数据仓库编辑器。使用用户友好的界面为材料创建存储库
+  fa: ویرایشگر انبار داده. با استفاده از یک رابط کاربر پسند، مخازن برای مواد ایجاد کنید
+  cz: Editor datových skladů. Vytvořte úložiště pro materiály pomocí uživatelsky přívětivého rozhraní
+  de: Editor von Datenlagern. Erstellen Sie Repositorien für Materialien mit einer benutzerfreundlichen Oberfläche
 sites-permissions:
   ru: Сайты и разделы
   en: Sites and pages
@@ -62,6 +93,11 @@ sites-permissions:
   es: Sitios y páginas
   kk: Сайттар мен бөлімдер
   uz: Saytlar va bo'limlar
+  tr: Siteler ve sayfalar
+  zh: 网站和页面
+  fa: سایت ها و صفحات 
+  cz: Stránky a sekce
+  de: Seiten und Abschnitte
 sites-structure-permissions:
   ru: Доступ к редактору страниц и публикаций
   en: Access to the page and post editor
@@ -70,6 +106,11 @@ sites-structure-permissions:
   es: Acceso al editor de páginas y publicaciones
   kk: Беттер мен жазбалар редакторына қол жеткізу
   uz: Sahifa va post muharririga kirish
+  tr: Sayfa ve gönderi düzenleyicisine erişim
+  zh: 访问页面和帖子编辑器
+  fa: دسترسی به ویرایشگر صفحه و پست
+  cz: Přístup k editoru stránek a příspěvků
+  de: Zugriff auf den Seiten- und Beitrag-Editor
 sites-structure-addpage-permissions:
   ru: Создать страницу
   en: Create a page
@@ -78,6 +119,11 @@ sites-structure-addpage-permissions:
   es: Crear una página
   kk: Бет жасау
   uz: Sahifa yaratish
+  tr: Bir sayfa oluştur
+  zh: 创建一个页面  
+  fa: یک صفحه ایجاد کنید
+  cz: Vytvořit stránku
+  de: Erstellen Sie eine Seite
 sites-structure-editpage-permissions:
   ru: Редактировать страницу
   en: Edit a page
@@ -86,6 +132,11 @@ sites-structure-editpage-permissions:
   es: Editar una página
   kk: Бетті өңдеу
   uz: Sahifani tahrirlash
+  tr: Bir sayfayı düzenle
+  zh: 编辑一个页面
+  fa: یک صفحه را ویرایش کنید
+  cz: Upravit stránku
+  de: Bearbeiten Sie eine Seite
 sites-structure-deletepage-permissions:
   ru: Удалить страницу
   en: Delete a page
@@ -94,6 +145,11 @@ sites-structure-deletepage-permissions:
   es: Eliminar una página
   kk: Бетті жою
   uz: Sahifani o'chirish
+  tr: Bir sayfayı sil
+  zh: 删除一个页面
+  fa: یک صفحه را حذف کنید
+  cz: Smazat stránku
+  de: Löschen Sie eine Seite
 sites-structure-pubslist-permissions:
   ru: Список публикаций
   en: List the publications
@@ -102,6 +158,11 @@ sites-structure-pubslist-permissions:
   es: Lista de publicaciones
   kk: Жарияланымдар тізімі
   uz: Nashrlar ro'yxati
+  tr: Yayınları listele
+  zh: 列出出版物
+  fa: لیست نشریات
+  cz: Seznam publikací
+  de: Liste der Veröffentlichungen
 sites-structure-pubsadd-permissions:
   ru: Создать публикацию
   en: Create a publication
@@ -110,6 +171,11 @@ sites-structure-pubsadd-permissions:
   es: Crear una publicación
   kk: Жарияланым жасау
   uz: Nashr yaratish
+  tr: Bir yayın oluştur
+  zh: 创建一个出版物
+  fa: یک نشریه ایجاد کنید
+  cz: Vytvořit publikaci
+  de: Erstellen Sie eine Veröffentlichung
 sites-structure-pubsdelete-permissions:
   ru: Удалить публикацию
   en: Delete a publication
@@ -118,6 +184,11 @@ sites-structure-pubsdelete-permissions:
   es: Eliminar una publicación
   kk: Жарияланымды жою
   uz: Nashrni o'chirish
+  tr: Bir yayını sil
+  zh: 删除一个出版物
+  fa: یک نشریه را حذف کنید
+  cz: Smazat publikaci
+  de: Löschen Sie eine Veröffentlichung
 sites-storages-permissions:
   ru: Доступ к редактору хранилищь
   en: Access to the storage editor
@@ -126,6 +197,11 @@ sites-storages-permissions:
   es: Acceso al editor de almacenamiento
   kk: Қойма редакторына қол жеткізу
   uz: Ombor muharririga kirish
+  tr: Depo düzenleyicisine erişim
+  zh: 访问存储编辑器
+  fa: دسترسی به ویرایشگر انبار
+  cz: Přístup k editoru skladů
+  de: Zugriff auf den Lager-Editor
 sites-structure-addstorage-permissions:
   ru: Создать хранилище
   en: Create a storage
@@ -134,6 +210,11 @@ sites-structure-addstorage-permissions:
   es: Crear un almacenamiento
   kk: Қойма жасау
   uz: Ombor yaratish
+  tr: Bir depo oluştur
+  zh: 创建一个存储
+  fa: یک انبار ایجاد کنید
+  cz: Vytvořit sklad
+  de: Erstellen Sie ein Lager
 sites-structure-editstorage-permissions:
   ru: Редактировать хранилище
   en: Edit a storage
@@ -142,6 +223,11 @@ sites-structure-editstorage-permissions:
   es: Editar un almacenamiento
   kk: Қойманы өңдеу
   uz: Omborni tahrirlash
+  tr: Bir depoyu düzenle
+  zh: 编辑一个存储
+  fa: یک انبار را ویرایش کنید
+  cz: Upravit sklad
+  de: Bearbeiten Sie ein Lager
 sites-structure-deletestorage-permissions:
   ru: Удалить хранилище
   en: Delete a storage
@@ -150,6 +236,11 @@ sites-structure-deletestorage-permissions:
   es: Eliminar un almacenamiento
   kk: Қойманы жою
   uz: Omborni o'chirish
+  tr: Bir depoyu sil
+  zh: 删除一个存储
+  fa: یک انبار را حذف کنید
+  cz: Smazat sklad
+  de: Löschen Sie ein Lager
 sites-storage-permissions:
   ru: Доступ к хранилищу
   en: Access to storage
@@ -158,6 +249,11 @@ sites-storage-permissions:
   es: Acceso al almacenamiento
   kk: Қоймаға қол жеткізу
   uz: Omborga kirish
+  tr: Depoya erişim
+  zh: 访问存储
+  fa: دسترسی به انبار
+  cz: Přístup ke skladu
+  de: Zugriff auf das Lager
 sites-storage-list-permissions:
   ru: Просматривать список строк
   en: List the rows
@@ -166,6 +262,11 @@ sites-storage-list-permissions:
   es: Listar las filas
   kk: Жолдар тізімін қарау
   uz: Qatorlar ro'yxatini ko'rish
+  tr: Satırları listele
+  zh: 列出行
+  fa: لیست ردیف ها
+  cz: Seznam řádků
+  de: Liste der Zeilen
 sites-storage-fields-permissions:
   ru: Редактировать хранилище
   en: Edit the storage
@@ -174,6 +275,11 @@ sites-storage-fields-permissions:
   es: Editar el almacenamiento
   kk: Қойманы өңдеу
   uz: Omborni tahrirlash
+  tr: Depoyu düzenle
+  zh: 编辑存储
+  fa: ویرایش انبار
+  cz: Upravit sklad
+  de: Bearbeiten Sie das Lager
 sites-storage-indices-permissions:
   ru: Индексировать строки
   en: Create an index
@@ -182,6 +288,11 @@ sites-storage-indices-permissions:
   es: Crear un índice
   kk: Жолдарды индекстеу
   uz: Qatorlarni indekslash
+  tr: Bir indeks oluştur
+  zh: 创建索引
+  fa: ایجاد یک شاخص
+  cz: Vytvořit index
+  de: Erstellen Sie einen Index
 sites-storage-add-permissions:
   ru: Добавить строку
   en: Add row
@@ -190,6 +301,11 @@ sites-storage-add-permissions:
   es: Añadir fila
   kk: Жол қосу
   uz: Qator qo'shish
+  tr: Satır ekle
+  zh: 添加行
+  fa: اضافه کردن ردیف
+  cz: Přidat řádek
+  de: Zeile hinzufügen
 sites-storage-edit-permissions:
   ru: Редактировать строку
   en: Edit a row
@@ -198,6 +314,11 @@ sites-storage-edit-permissions:
   es: Editar una fila
   kk: Жолды өңдеу
   uz: Qatorni tahrirlash
+  tr: Bir satırı düzenle
+  zh: 编辑行
+  fa: یک ردیف را ویرایش کنید
+  cz: Upravit řádek
+  de: Bearbeiten Sie eine Zeile
 sites-storage-delete-permissions:
   ru: Удалить строку
   en: Delete the row
@@ -206,6 +327,11 @@ sites-storage-delete-permissions:
   es: Eliminar la fila
   kk: Жолды жою
   uz: Qatorni o'chirish
+  tr: Bir satırı sil
+  zh: 删除行
+  fa: یک ردیف را حذف کنید
+  cz: Smazat řádek
+  de: Löschen Sie die Zeile
 sites-storage-export-permissions:
   ru: Экспорт строк
   en: Export rows
@@ -214,6 +340,11 @@ sites-storage-export-permissions:
   es: Exportar filas
   kk: Жолдарды экспорттау
   uz: Qatorlarni eksport qilish
+  tr: Satırları dışa aktar
+  zh: 导出行
+  fa: صادرات ردیف ها
+  cz: Exportovat řádky
+  de: Zeilen exportieren
 sites-storage-import-permissions:
   ru: Импорт строк
   en: Import rows
@@ -222,6 +353,11 @@ sites-storage-import-permissions:
   es: Importar filas
   kk: Жолдарды импорттау
   uz: Qatorlarni import qilish
+  tr: Satırları içe aktar
+  zh: 导入行
+  fa: واردات ردیف ها
+  cz: Importovat řádky
+  de: Zeilen importieren
 sites-references-permissions:
   ru: Доступ к редактору справочников
   en: Access to the references editor
@@ -230,3 +366,8 @@ sites-references-permissions:
   es: Acceso al editor de referencias
   kk: Анықтамалық редакторына қол жеткізу
   uz: Ma'lumotnoma muharririga kirish
+  tr: Referans düzenleyicisine erişim
+  zh: 访问参考编辑器
+  fa: دسترسی به ویرایشگر مراجع
+  cz: Přístup k editoru referencí
+  de: Zugriff auf den Referenz-Editor

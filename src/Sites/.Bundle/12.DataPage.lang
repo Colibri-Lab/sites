@@ -39,6 +39,7 @@ sites-storages-search-placeholder:
   fa: جستجو
 sites-storages-dataempty:
   ru: Данные не найдены
+  hy: Տվյալներ չեն գտնվել
   en: Data not found
   it: Dati non trovati
   es: Datos no encontrados

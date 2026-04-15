@@ -48,7 +48,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _canAddFieldAsChild(field) {
-        return field.type === 'json';
+        const component = field.component;
+        const c = Array.findObject(Object.values(Colibri.UI.Forms.Field.Components), 'className', component);
+        return c.canhaveFields;
+        // return field.type === 'json';
     }
 
     /**
@@ -277,6 +280,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-storagedesc}',
                     note: '#{sites-storages-storagedesc-note}',
                     params: {
+                        compact: true,
                         required: true,
                         validate: [{
                             message: '#{sites-storages-storagedesc-validation-required}',
@@ -300,6 +304,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     group: 'window',
                     desc: '#{sites-storages-storagegroup}',
                     params: {
+                        compact: true,
                         required: false,
                         condition: {
                             field: 'group_enabled',
@@ -607,7 +612,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         };
     }
 
-    _fieldFields(showGroup = true, moduleNode) {
+    _fieldFields(showGroup = true, moduleNode, initialValue) {
         const storage = this._storages.selected.value;
         const dbms = storage.dbms;
         const fields = {
@@ -649,6 +654,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     note: '#{sites-storages-fieldgroup-note}',
                     default: 'window',
                     params: {
+                        compact: true,
                         required: true,
                         condition: {
                             field: 'group_enabled',
@@ -667,6 +673,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-fielddesc}',
                     note: '#{sites-storages-fielddesc-note}',
                     params: {
+                        compact: true,
                         required: true,
                         validate: [{
                             message: '#{sites-storages-fielddesc-validation-required}',
@@ -681,6 +688,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-fieldplaceholder}',
                     note: '#{sites-storages-fieldplaceholder-note}',
                     params: {
+                        compact: true,
                         required: false
                     }
                 },
@@ -691,6 +699,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-fieldnote}',
                     note: '#{sites-storages-fieldnote-note}',
                     params: {
+                        compact: true,
                         required: false
                     }
                 },
@@ -766,6 +775,27 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 return o?.component ?? '';
                             }
                             return component.value;
+                        },
+                        onchangehandler: (event, args) => {
+                            const component = args.component;
+                            const form = component.form;
+                            const value = component.value;
+                            const paramsComponent = form.Fields('params');
+
+                            const params = Colibri.UI.Forms.Field.Params[value];
+                            const field = Object.cloneRecursive(paramsComponent.field);
+                            field.fields['component-params'] = {
+                                component: 'Colibri.UI.Forms.Label',
+                                default: '#{sites-storages-fieldparams-component-params}'.replaceAll('%s', value)
+                            };
+                            Object.forEach(params, (name, param) => {
+                                field.fields[name] = param;
+                            });
+                            const paramsValue = Object.cloneRecursive(paramsComponent.value);
+                            paramsComponent.ClearFieldContainer();
+                            paramsComponent.field = field;
+                            paramsComponent.RenderFieldContainer();
+                            paramsComponent.value = paramsValue;
                         }
                     }
                 },
@@ -786,7 +816,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 const type = rootValue.type;
                                 let found = Object.filter(storage.allowedTypes, (k, v) => k === type);
                                 let o = Object.values(found)[0];
-                                console.log(o?.generic);
                                 if (Object.isObject(o?.generic)) {
                                     return o?.generic[rootValue.component] ?? value;
                                 }
@@ -865,7 +894,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     params: {
                         vertical: true,
                     },
-                    fields: {
+                    fields: Object.assign({
                         required: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-required}',
@@ -918,19 +947,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }
                             }
                         },
-                        searchable: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-searchable}',
-                            note: '#{sites-storages-fieldparams-searchable-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'searchable')
-                                }
-                            }
-                        },
                         list: {
                             type: 'bool',
                             placeholder: '#{sites-storages-fieldparams-list}',
@@ -952,19 +968,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 condition: {
                                     field: 'component',
                                     method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'template')
-                                }
-                            }
-                        },
-                        multiple: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-multiple}',
-                            note: '#{sites-storages-fieldparams-multiple-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'multiple')
                                 }
                             }
                         },
@@ -1002,76 +1005,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             lookup: () => new Promise((resolve, reject) => {
                                 resolve(Colibri.UI.Viewer.Enum().map(v => { return { value: v.value, title: v.value + ' ' + v.title }; }));
                             })
-                        },
-                        vertical: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-vertical}',
-                            note: '#{sites-storages-fieldparams-vertical-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'vertical')
-                                }
-                            }
-                        },
-                        visual: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-visual}',
-                            note: '#{sites-storages-fieldparams-visual-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'visual')
-                                }
-                            }
-                        },
-                        code: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-code}',
-                            note: '#{sites-storages-fieldparams-code-note}',
-                            component: 'Select',
-                            default: '',
-                            params: {
-                                readonly: false,
-                                searchable: false,
-                                required: false,
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'code')
-                                }
-                            },
-                            selector: {
-                                value: 'value',
-                                title: 'title'
-                            },
-                            values: [
-                                { value: '', title: '' },
-                                { value: 'js', title: 'JavaScript' },
-                                { value: 'css', title: 'CSS' },
-                                { value: 'less', title: 'Less' },
-                                { value: 'scss', title: 'Scss' },
-                                { value: 'html', title: 'HTML' },
-                                { value: 'php', title: 'PHP' },
-                                { value: 'xml', title: 'XML' },
-                                { value: 'yaml', title: 'YAML' }
-                            ]
-                        },
-                        mask: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-mask}',
-                            note: '#{sites-storages-fieldparams-mask-note}',
-                            component: 'Text',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'mask')
-                                }
-                            }
                         },
                         fieldgenerator: {
                             type: 'varchar',
@@ -1119,242 +1052,6 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 }
                             }
                         },
-                        simplearraywidth: {
-                            type: 'int',
-                            placeholder: '#{sites-storages-fieldparams-simplearraywidth}',
-                            note: '#{sites-storages-fieldparams-simplearraywidth-note}',
-                            component: 'Number',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'simplearraywidth')
-                                }
-                            }
-                        },
-                        simplearrayheight: {
-                            type: 'int',
-                            placeholder: '#{sites-storages-fieldparams-simplearrayheight}',
-                            note: '#{sites-storages-fieldparams-simplearrayheight-note}',
-                            component: 'Number',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'simplearrayheight')
-                                }
-                            }
-                        },
-                        keyTitle: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-keyTitle}',
-                            note: '#{sites-storages-fieldparams-keyTitle-note}',
-                            component: 'Text',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'keyTitle')
-                                }
-                            }
-                        },
-                        valueTitle: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-valueTitle}',
-                            note: '#{sites-storages-fieldparams-valueTitle-note}',
-                            component: 'Text',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'valueTitle')
-                                }
-                            }
-                        },
-                        canEditKey: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-canEditKey}',
-                            note: '#{sites-storages-fieldparams-canEditKey-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canEditKey')
-                                }
-                            }
-                        },
-                        canAddNew: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-canAddNew}',
-                            note: '#{sites-storages-fieldparams-canAddNew-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canAddNew')
-                                }
-                            }
-                        },
-                        canRemoveRows: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-canRemoveRows}',
-                            note: '#{sites-storages-fieldparams-canRemoveRows-note}',
-                            component: 'Checkbox',
-                            default: false,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'canRemoveRows')
-                                }
-                            }
-                        },
-                        addlink: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-addlink}',
-                            note: '#{sites-storages-fieldparams-addlink-note}',
-                            component: 'App.Modules.Lang.UI.TextArea',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'addlink')
-                                }
-                            }
-                        },
-                        removelink: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-removelink}',
-                            note: '#{sites-storages-fieldparams-removelink-note}',
-                            component: 'Checkbox',
-                            default: true,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'removelink')
-                                }
-                            }
-                        },
-                        updownlink: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-updownlink}',
-                            note: '#{sites-storages-fieldparams-updownlink-note}',
-                            component: 'Checkbox',
-                            default: true,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'updownlink')
-                                }
-                            }
-                        },
-                        hasscroll: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-hasscroll}',
-                            note: '#{sites-storages-fieldparams-hasscroll-note}',
-                            component: 'Checkbox',
-                            default: true,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'hasscroll')
-                                }
-                            }
-                        },
-                        initempty: {
-                            type: 'bool',
-                            placeholder: '#{sites-storages-fieldparams-initempty}',
-                            note: '#{sites-storages-fieldparams-initempty-note}',
-                            component: 'Checkbox',
-                            default: true,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'initempty')
-                                }
-                            }
-                        },
-                        displayed_columns: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-displayed_columns}',
-                            note: '#{sites-storages-fieldparams-displayed_columns-note}',
-                            component: 'Text',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'displayed_columns')
-                                }
-                            }
-                        },
-                        maxadd: {
-                            type: 'int',
-                            component: 'Number',
-                            placeholder: '#{sites-storages-fieldparams-maxadd}',
-                            note: '#{sites-storages-fieldparams-maxadd-note}',
-                            default: '',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'maxadd')
-                                }
-                            }
-                        },
-                        title: {
-                            type: 'varchar',
-                            placeholder: '#{sites-storages-fieldparams-title}',
-                            note: '#{sites-storages-fieldparams-title-note}',
-                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
-                            default: '',
-                            params: {
-                                code: 'js',
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'title')
-                                }
-                            },
-                            attrs: {
-                                height: 200
-                            }
-                        },
-                        removedesc: {
-                            type: 'bool',
-                            component: 'Checkbox',
-                            placeholder: '#{sites-storages-fieldparams-removedesc}',
-                            note: '#{sites-storages-fieldparams-removedesc-note}',
-                            default: true,
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'removedesc')
-                                }
-                            }
-                        },
-                        allow: {
-                            type: 'varchar',
-                            component: 'Text',
-                            placeholder: '#{sites-storages-fieldparams-allow}',
-                            note: '#{sites-storages-fieldparams-allow-note}',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'allow')
-                                }
-                            }
-                        },
-                        size: {
-                            type: 'int',
-                            component: 'Number',
-                            placeholder: '#{sites-storages-fieldparams-size}',
-                            note: '#{sites-storages-fieldparams-allow-note}',
-                            params: {
-                                condition: {
-                                    field: 'component',
-                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'size')
-                                }
-                            }
-                        },
                         validate: {
                             component: 'Array',
                             desc: '#{sites-storages-fieldparams-validate}',
@@ -1371,7 +1068,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                             fields: {
                                 message: {
                                     component: 'App.Modules.Lang.UI.TextArea',
-                                    placeholder: '#{sites-storages-fieldparams-validate-message}'
+                                    placeholder: '#{sites-storages-fieldparams-validate-message}',
+                                    params: {
+                                        compact: true
+                                    }
                                 },
                                 method: {
                                     component: 'TextArea',
@@ -1414,7 +1114,21 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 height: 200
                             }
                         },
-                    }
+                    }, ((component) => {
+                        const params = Colibri.UI.Forms.Field.Params[component];
+                        if(Object.countKeys(params) == 0) {
+                            return {};
+                        }
+                        const fields = {};
+                        fields['component-params'] = {
+                            component: 'Colibri.UI.Forms.Label',
+                            default: '#{sites-storages-fieldparams-component-params}'.replaceAll('%s', component)
+                        };
+                        Object.forEach(params, (name, param) => {
+                            fields[name] = param;
+                        });
+                        return fields;
+                    })(initialValue.component))
                 },
                 lookup: {
                     type: 'json',
@@ -1744,7 +1458,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         title: {
                             type: 'varchar',
                             component: 'App.Modules.Lang.UI.Text',
-                            desc: '#{sites-storages-fieldvalues-title}'
+                            desc: '#{sites-storages-fieldvalues-title}',
+                            params: {
+                                compact: true
+                            }
                         },
                         type: {
                             type: 'varchar',
@@ -1810,7 +1527,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                         emptytitle: {
                             type: 'json',
                             component: 'App.Modules.Lang.UI.Text',
-                            desc: '#{sites-storages-fieldselector-emptytitle-desc}'
+                            desc: '#{sites-storages-fieldselector-emptytitle-desc}',
+                            params: {
+                                compact: true
+                            }
                         },
                         emptyvalue: {
                             type: 'varchar',
@@ -1897,6 +1617,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     note: '#{sites-storages-fieldgroup-note}',
                     default: 'window',
                     params: {
+                        compact: true,
                         required: true,
                         validate: [{
                             message: '#{sites-storages-fieldgroup-validation-required}',
@@ -1911,6 +1632,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     desc: '#{sites-storages-fielddesc}',
                     note: '#{sites-storages-fielddesc-note}',
                     params: {
+                        compact: true,
                         required: true,
                         validate: [{
                             message: '#{sites-storages-fielddesc-validation-required}',
@@ -2350,7 +2072,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if (menuData.name == 'new-field') {
             if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {}, '', {}, (data) => {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value, {}), {}, '', {}, (data) => {
                     App.Loading.Show();
                     Sites.SaveField(module.value, storage.value, data.name, data, true).then(() => {
                         Manage.FormWindow.Hide();
@@ -2476,7 +2198,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if (menuData.name == 'new-field') {
             if (Security.IsCommandAllowed('sites.storages.' + module.value.name + '.' + storage.value.name + '.fields')) { // node.tag.type === 'fields'
-                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value), {}, '', {}, (data) => {
+                Manage.FormWindow.Show('#{sites-storages-windowtitle-newproperty}', 1024, this._fieldFields(true, module.value, {}), {}, '', {}, (data) => {
                     App.Loading.Show();
                     Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then(() => {
                         Manage.FormWindow.Hide();
@@ -2534,7 +2256,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 let fData = { fields: {} };
-                fData.fields[field] = this._fieldFields(true, module.value).fields.params.fields[field];
+                fData.fields[field] = this._fieldFields(true, module.value, fieldData).fields.params.fields[field];
                 let fValue = {};
                 fValue[field] = fieldData.params[field];
 
@@ -2576,7 +2298,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 }
 
                 let fData = { fields: {} };
-                fData.fields[field] = this._fieldFields(true, module.value).fields[field];
+                fData.fields[field] = this._fieldFields(true, module.value, fieldData).fields[field];
                 let fValue = {};
                 fValue[field] = fieldData[field];
 
@@ -2699,7 +2421,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                 Manage.FormWindow.Show(
                     '#{sites-storages-windowtitle-editproperty}'.replaceAll('%s', Lang ? Lang.Translate(fieldData.desc) : fieldData.desc),
                     1024,
-                    fieldData.virtual ? this._fieldVirtualFields(module.value) : this._fieldFields(true, module.value),
+                    fieldData.virtual ? this._fieldVirtualFields(module.value) : this._fieldFields(true, module.value, fieldData),
                     fieldData,
                     '', {},
                     (data) => {
@@ -2739,7 +2461,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                     if (!Array.isArray(data.fields)) {
                         data.fields = [data.fields];
                     }
-                    
+
                     App.Loading.Show();
                     Sites.SaveIndex(module.value, storage.value, data).finally(() => {
                         App.Loading.Hide();
