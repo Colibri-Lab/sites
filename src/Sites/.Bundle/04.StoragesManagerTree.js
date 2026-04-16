@@ -86,7 +86,7 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
 
         }
 
-        // moduleNode.isLeaf = false;
+        fieldsNode.Expand();
 
         return storageNode;
     }
