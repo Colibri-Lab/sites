@@ -35,6 +35,8 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
             data = Object.values(data);
         }
 
+        const selection = this.selected?.tag ?? null;
+
         Manage.Store.AsyncQuery('manage.modules').then((modules) => {
                 
             this.nodes.Clear();
@@ -94,6 +96,12 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
                 return true;
 
             });
+
+            if(selection) {
+                const moduleNode = this.FindNode(selection.module);
+                moduleNode.Expand();
+                this.selected = this.FindNode(selection.module + '-' + selection.name);
+            }
            
         });
        
