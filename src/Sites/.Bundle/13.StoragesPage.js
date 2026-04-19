@@ -1179,17 +1179,17 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                     note: '#{sites-storages-fieldlookup-storage-select-note}',
                                     default: '*'
                                 },
-                                title: {
-                                    type: 'varchar',
-                                    component: 'Text',
-                                    desc: '#{sites-storages-fieldlookup-storage-title}',
-                                    note: '#{sites-storages-fieldlookup-storage-title-note}',
-                                },
                                 value: {
                                     type: 'varchar',
                                     component: 'Text',
                                     desc: '#{sites-storages-fieldlookup-storage-value}',
                                     note: '#{sites-storages-fieldlookup-storage-value-note}',
+                                },
+                                title: {
+                                    type: 'varchar',
+                                    component: 'Text',
+                                    desc: '#{sites-storages-fieldlookup-storage-title}',
+                                    note: '#{sites-storages-fieldlookup-storage-title-note}',
                                 },
                                 group: {
                                     type: 'varchar',
