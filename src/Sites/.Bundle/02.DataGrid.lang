@@ -24,3 +24,42 @@ sites-structure-datagrid-deleted:
   tr: Silindi
   zh: 已删除
   fa: حذف شده
+sites-structure-datagrid-column-hide:
+  ru: Скрыть
+  en: Hide
+  hy: Թաքցնել
+  it: Nascondi
+  es: Ocultar
+  kk: Жасыру
+  uz: Yükle
+  cz: Skrýt
+  de: Verstecken
+  tr: Gizle
+  zh: 隐藏
+  fa: پنهان کردن
+sites-structure-datagrid-column-restore:
+  ru: Отобразить
+  en: Show
+  hy: Ցույց տալ
+  it: Mostra
+  es: Mostrar
+  kk: Көрсету
+  uz: Ko'rsatish
+  cz: Zobrazit
+  de: Anzeigen
+  tr: Göster
+  zh: 显示
+  fa: نمایش دادن
+sites-structure-datagrid-column-restore-all:
+  ru: Отобразить все
+  en: Show all
+  hy: Ցույց տալ բոլորը
+  it: Mostra tutto
+  es: Mostrar todo
+  kk: Все показать
+  uz: Hammasini ko'rsatish
+  cz: Zobrazit vše
+  de: Alle anzeigen
+  tr: Hepsini göster
+  zh: 显示全部
+  fa: نمایش همه

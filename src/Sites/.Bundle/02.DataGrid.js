@@ -5,7 +5,102 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this.AddClass('app-manager-datagrid-component');
 
         this.AddHandler('ColumnClicked', this.__clickOnDataColumn);
+        
+        this.AddHandler('ColumnContextMenu', this.__thisColumnContextMenu);
+        this.AddHandler('ColumnContextMenuItemClicked', this.__thisColumnContextMenuItemClicked);
+
+        this.AddHandler('CustomContextMenuButtonClicked', this.__thisCustomContextMenuButtonClicked);
+        this.AddHandler('CustomContextMenuButtonContextMenuItemClicked', this.__thisCustomContextMenuButtonContextMenuItemClicked);
+
         this._sortData = {name: '', order: ''};
+
+    }
+
+    __thisColumnContextMenu(event, args) {
+        if(args.column.name === 'empty') {
+            return false;
+        }
+
+        const contextmenu = [];
+        if (args.column.shown) {
+            contextmenu.push({ name: 'hide', title: '#{sites-structure-datagrid-column-hide}' });
+        } else {
+            contextmenu.push({ name: 'restore', title: '#{sites-structure-datagrid-column-restore}' });
+        }
+        args.column.contextmenu = contextmenu;
+        args.column.ShowContextMenu([Colibri.UI.ContextMenu.LB, Colibri.UI.ContextMenu.LT], '', { left: args.domEvent.clientX, top: args.domEvent.clientY });
+        args.domEvent.stopPropagation();
+        args.domEvent.preventDefault();
+        return false;
+    }
+
+    
+    __thisColumnContextMenuItemClicked(event, args) {
+        if (args.menuData?.name === 'hide') {
+            args.column.Hide();
+        } else if (args.menuData?.name === 'restore') {
+            args.column.Show();
+        } else if (args.menuData?.name === 'restore-all') {
+            Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
+                column.Show();
+            });
+        }
+        this._renderCustomContextMenuIfNeeded();
+        this.Dispatch('Scrolled');
+    }
+
+    __thisCustomContextMenuButtonClicked(event, args) {
+        const contextmenu = [];
+        Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
+            if (!column.shown) {
+                contextmenu.push({name: column.name, title: column.value});
+            }
+        });
+        contextmenu.push({name: 'separator'});
+        contextmenu.push({ name: 'restore-all', title: '#{sites-structure-datagrid-column-restore-all}' });
+     
+        args.icon.contextmenu = contextmenu;
+        args.icon.ShowContextMenu([Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RT]);
+
+        this._renderCustomContextMenuIfNeeded();
+
+    }
+
+    __thisCustomContextMenuButtonContextMenuItemClicked(event, args) {
+        if (args.menuData?.name === 'restore-all') {
+            Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
+                column.Show();
+            });
+        } else {
+            Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
+                if(column.name === args.menuData?.name) {
+                    column.Show();
+                }
+            });
+        }
+        this._renderCustomContextMenuIfNeeded();
+    }
+
+    _renderCustomContextMenuIfNeeded() {
+       
+        const hiddenColumns = [];
+        Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
+            if (!column.shown) {
+                hiddenColumns.push(column.name);
+            }
+        });
+
+        if (hiddenColumns.length > 0) {
+            this.AddCustomContextMenuButton('Colibri.UI.BookIcon', this.top - this.parent.top + 10, 10);
+        } else {
+            this.RemoveCustomContextMenuButton();
+        }
+
+        this._hiddenColumns = hiddenColumns;
+        if(this._storageObject) {
+            App.Browser.Set('columns-' + this._storageObject.name, JSON.stringify(this._hiddenColumns));
+        }
+
     }
 
     /**
@@ -88,12 +183,16 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         }
 
         if(this._storageObject && this._storageObject?.fields && this._storageChanged) {
-                
+            const columnsHidden = JSON.parse(App.Browser.Get('columns-' + this._storageObject.name));
+
             let idColumn = this.header.columns.Children('id');
             if(!idColumn) {
                 idColumn = this.header.columns.Add('id', '#', {width: 50});
                 idColumn.resizable = true;
                 idColumn.sortable = true;
+                if(columnsHidden?.indexOf('id') > -1) {
+                    idColumn.Hide();
+                }
             }
             
             let dateCreatedColumn = this.header.columns.Children('datecreated');
@@ -102,6 +201,9 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                 dateCreatedColumn.viewer = 'Colibri.UI.DateTimeViewer';
                 dateCreatedColumn.resizable = true;
                 dateCreatedColumn.sortable = true;
+                if(columnsHidden?.indexOf('datecreated') > -1) {
+                    dateCreatedColumn.Hide();
+                }
             }
 
             if(this._storageObject.params.softdeletes && this._storageObject.params.deletedautoshow) {
@@ -111,6 +213,9 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                     dateDeletedColumn.viewer = 'Colibri.UI.DateTimeViewer';
                     dateDeletedColumn.resizable = true;
                     dateDeletedColumn.sortable = true;
+                    if(columnsHidden?.indexOf('datedeleted') > -1) {
+                        dateDeletedColumn.Hide();
+                    }
                 }   
             }
 
@@ -154,6 +259,9 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
                     column.sortable = true;
                     // column.minWidth = 150;
                 }
+                if(columnsHidden?.indexOf(name) > -1) {
+                    column.Hide();
+                }
                 return true;
             });
 
@@ -189,6 +297,9 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
         this.rows.title = '';
         this._storageChanged = false;
+
+        this._renderCustomContextMenuIfNeeded();
+
 
     }
 }
