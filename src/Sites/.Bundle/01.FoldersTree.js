@@ -5,6 +5,12 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         this.AddClass('app-manager-folder-tree');
         this._foldersList = [];
 
+        this.hasSearchBox = true;
+        this.searchFilterCallback = (node, term) => {
+            return node.text.toLowerCase().indexOf(term.toLowerCase()) !== -1;
+        };
+
+
         this.AddHandler('NodeExpanded', this.__thisNodeExpanded);
         this.AddHandler('NodeCollapsed', this.__thisNodeExpanded);
     }

@@ -6,6 +6,11 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
 
         this._foldersList = [];
 
+        this.hasSearchBox = true;
+        this.searchFilterCallback = (node, term) => {
+            return node.text.toLowerCase().indexOf(term.toLowerCase()) !== -1;
+        };
+        
         this.AddHandler('NodeClicked', this.__thisNodeClicked);
 
     }
