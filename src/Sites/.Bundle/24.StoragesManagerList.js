@@ -5,7 +5,7 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-manager-storages-list-component');
-        this.AddClass('-has-search');
+        this.AddClass('app-component-has-search');
 
         this.hasSearchBox = true;
         this.searchFilterCallback = (item, term) => {

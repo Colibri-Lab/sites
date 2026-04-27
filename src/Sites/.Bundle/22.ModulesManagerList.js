@@ -10,7 +10,7 @@ App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
         this.removeHiddenNodes = true;
 
         this.idField = 'name';
-        this.AddClass('-has-search');
+        this.AddClass('app-component-has-search');
         this.rendererComponent = 'App.Modules.Sites.ModulesManagerListItem';
 
         this._group = new Colibri.UI.List.Group(this.name + '_group', this);
