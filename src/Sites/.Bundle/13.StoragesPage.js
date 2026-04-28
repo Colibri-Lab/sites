@@ -102,7 +102,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
      */
     __renderStoragesContextMenu(event, args) {
 
-        this._storages.selectedIndex = args.item.childIndex;
+        this._storages.selectedIndex = args.item.childIndex + 1;
 
         let contextmenu = [];
 
