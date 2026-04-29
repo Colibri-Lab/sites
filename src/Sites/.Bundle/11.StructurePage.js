@@ -691,7 +691,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
             const data = responses[1];
             if (Security.IsCommandAllowed('sites.storages.' + pub.module + '.' + storage.name + '.edit')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + (storage.desc[Lang.Current] ?? storage.desc) + '»', 1024, 'app.manage.storages(name=' + storage.name + ',module=' + pub.module + ')', data, '', {}, (data) => {
-                    Sites.SaveData(storage, data, pub);
+                    App.Loading.Show();
+                    Sites.SaveData(storage, data, pub).then(() => {
+                        Manage.FormWindow.Hide();
+                    }).catch(() => {
+                        // do nothing
+                    }).finally(() => {
+                        App.Loading.Hide();
+                    });
                 }, () => {
                     Manage.FormWindow.Hide();
                 });
