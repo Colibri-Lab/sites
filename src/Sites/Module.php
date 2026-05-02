@@ -21,6 +21,8 @@ use App\Modules\Sites\Models\Pages;
 use App\Modules\Sites\Models\Publications;
 use App\Modules\Sites\Models\Texts;
 
+use CometApiClient\Client as CometClient;
+
 /**
  * Sites and folders support module
  * @package App\Modules\Sites
@@ -30,7 +32,7 @@ use App\Modules\Sites\Models\Texts;
 class Module extends BaseModule
 {
 
-
+    private ?CometClient $_cometApiClient = null;
 
     /**
      * Initializes a module
@@ -145,6 +147,17 @@ class Module extends BaseModule
         $table = Texts::LoadAll();
         $table->ExportJson($modulePath . 'texts.json');
 
+    }
+
+    public function GetCometClient(): CometClient
+    {
+        if(!$this->_cometApiClient) {
+            $this->_cometApiClient = new CometClient(
+                App::$config->Query('comet.host')->GetValue(),
+                App::$config->Query('comet.port')->GetValue()
+            );
+        }
+        return $this->_cometApiClient;
     }
 
 }

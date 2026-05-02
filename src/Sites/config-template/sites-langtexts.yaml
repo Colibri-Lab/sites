@@ -79,12 +79,15 @@ sites-menu-storages-desc:
     интерфейсті пайдаланып
   uz: Ma'lumotlar ombori muharriri. Materiallar uchun omborlar yarating, qulay
     interfeysdan foydalanib
-  tr: Veri ambarı düzenleyicisi. Malzemeler için depolar oluşturun, kullanıcı dostu
-    bir arayüz kullanarak
+  tr: Veri ambarı düzenleyicisi. Malzemeler için depolar oluşturun, kullanıcı
+    dostu bir arayüz kullanarak
   zh: 数据仓库编辑器。使用用户友好的界面为材料创建存储库
-  fa: ویرایشگر انبار داده. با استفاده از یک رابط کاربر پسند، مخازن برای مواد ایجاد کنید
-  cz: Editor datových skladů. Vytvořte úložiště pro materiály pomocí uživatelsky přívětivého rozhraní
-  de: Editor von Datenlagern. Erstellen Sie Repositorien für Materialien mit einer benutzerfreundlichen Oberfläche
+  fa: ویرایشگر انبار داده. با استفاده از یک رابط کاربر پسند، مخازن برای مواد ایجاد
+    کنید
+  cz: Editor datových skladů. Vytvořte úložiště pro materiály pomocí uživatelsky
+    přívětivého rozhraní
+  de: Editor von Datenlagern. Erstellen Sie Repositorien für Materialien mit einer
+    benutzerfreundlichen Oberfläche
 sites-permissions:
   ru: Сайты и разделы
   en: Sites and pages
@@ -95,7 +98,7 @@ sites-permissions:
   uz: Saytlar va bo'limlar
   tr: Siteler ve sayfalar
   zh: 网站和页面
-  fa: سایت ها و صفحات 
+  fa: سایت ها و صفحات
   cz: Stránky a sekce
   de: Seiten und Abschnitte
 sites-structure-permissions:
@@ -120,7 +123,7 @@ sites-structure-addpage-permissions:
   kk: Бет жасау
   uz: Sahifa yaratish
   tr: Bir sayfa oluştur
-  zh: 创建一个页面  
+  zh: 创建一个页面
   fa: یک صفحه ایجاد کنید
   cz: Vytvořit stránku
   de: Erstellen Sie eine Seite

@@ -4,6 +4,7 @@ namespace App\Modules\Sites\Controllers;
 
 use App\Modules\Security\Module as SecurityModule;
 use App\Modules\Sites\Models\Publications;
+use App\Modules\Sites\Threading\ExportWorker;
 use Colibri\App;
 use Colibri\Common\ArchiveHelper;
 use Colibri\Common\StringHelper;
@@ -18,6 +19,7 @@ use Colibri\Exceptions\ValidationException;
 use Colibri\IO\FileSystem\File;
 use Colibri\IO\FileSystem\Directory;
 use Colibri\IO\FileSystem\Finder;
+use Colibri\Threading\Process;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
 use Colibri\Web\RequestCollection;
@@ -319,6 +321,20 @@ class DataController extends WebController
         return $this->Finish(200, 'ok');
     }
 
+    public function StopProcess(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        if (!SecurityModule::Instance()->current) {
+            throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
+        }
+
+        $downloadId = $post->{'id'};
+
+        $process = Process::ByWorkerName('export-'.$downloadId);
+        $process->Stop();
+
+        return $this->Finish(200, 'ok', []); // $result
+    }
+
 
     /**
      * Exports a data to file
@@ -327,7 +343,7 @@ class DataController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Export(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    public function Export(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
 
         if (!SecurityModule::Instance()->current) {
@@ -340,28 +356,46 @@ class DataController extends WebController
             throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
         }
 
+        $currentUser = SecurityModule::Instance()->current;
+        $userGUID = md5($currentUser->id);
+
         $term = $post->{'term'};
         $filterFields = $post->{'filters'};
         $sortField = $post->{'sortfield'};
         $sortOrder = $post->{'sortorder'};
+        $downloadId = md5(uniqid((string)microtime(true), true));
 
-
-        $storage = Storages::Instance()->Load($storage, $module);
-        [$tableClass, $rowClass] = $storage->GetModelClasses();
-
-        $datarows = $tableClass::LoadBy(-1, 20, $term, $filterFields, $sortField ?? '', $sortOrder ?? 'asc');
-
-        $cacheUrl = App::$config->Query('cache')->GetValue();
-        $cachePath = App::$webRoot . $cacheUrl;
-        $fileName = 'export' . microtime(true) . '.xml.xls';
-        $datarows->ExportXML($cachePath . $fileName);
-
-        $result = [
-            'filename' => '/' . $cacheUrl . $fileName,
-            'filecontent' => base64_encode(File::Read($cachePath . $fileName))
+        $worker = new ExportWorker(0, 0, 'export-'.$downloadId);
+        $process = new Process($worker, true);
+        $process->params = [
+            'id' => $downloadId,
+            'module' => $module, 
+            'storage' => $storage, 
+            'user' => $userGUID, 
+            'host' => App::$request->headers->{'requester'},
+            'term' => $term,
+            'filters' => $filterFields,
+            'sortfield' => $sortField,
+            'sortorder' => $sortOrder
         ];
-        
-        return $this->Finish(200, 'ok', $result);
+        $process->Run();
+
+        // $storage = Storages::Instance()->Load($storage, $module);
+        // [$tableClass, $rowClass] = $storage->GetModelClasses();
+
+        // $datarows = $tableClass::LoadBy(-1, 20, $term, $filterFields, $sortField ?? '', $sortOrder ?? 'asc');
+
+        // $cacheUrl = App::$config->Query('cache')->GetValue();
+        // $cachePath = App::$webRoot . $cacheUrl;
+        // $fileName = 'export' . microtime(true) . '.xml.xls';
+        // $datarows->ExportXML($cachePath . $fileName);
+
+        // $result = [
+        //     'filename' => '/' . $cacheUrl . $fileName,
+        //     'filecontent' => base64_encode(File::Read($cachePath . $fileName))
+        // ];
+
+        return $this->Finish(200, 'ok', []); // $result
 
     }
 
@@ -372,7 +406,7 @@ class DataController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Import(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    public function Import(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
 
         if (!SecurityModule::Instance()->current) {
@@ -420,7 +454,7 @@ class DataController extends WebController
 
         $datarows = $tableClass::LoadAll(-1, 0);
         $datarows->ImportXML($file, 2);
-        
+
         foreach($filesToRemove as $f) {
             File::Delete($f);
         }
@@ -433,7 +467,7 @@ class DataController extends WebController
         return $this->Finish(200, 'ok', $result);
 
     }
-    
+
     /**
      * Saves a data list
      * @param RequestCollection $get данные GET
@@ -441,7 +475,7 @@ class DataController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function SaveDataList(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    public function SaveDataList(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
 
         if (!SecurityModule::Instance()->current) {
@@ -468,7 +502,7 @@ class DataController extends WebController
                 )) {
                     throw new PermissionDeniedException(PermissionDeniedException::PermissionDeniedMessage, 403);
                 }
-        
+
                 if ($data->id ?? 0) {
                     $datarow = $tableClass::LoadById($data->id);
                     if (!$datarow) {
@@ -477,20 +511,20 @@ class DataController extends WebController
                 } else {
                     $datarow = $tableClass::LoadEmpty();
                 }
-        
+
                 foreach ($data as $key => $value) {
                     $datarow->$key = $value;
                 }
-        
+
                 /** @var QueryInfo $res */
                 if (($res = $datarow->Save(true)) !== true) {
                     throw new InvalidArgumentException($res->error, 400);
                 }
 
                 $ret[] = $datarow->ToArray(true);
-                
+
             }
-            
+
         } catch (InvalidArgumentException $e) {
             $accessPoint->Rollback();
             throw new BadRequestException($e->getMessage(), 400, $e);
@@ -509,5 +543,5 @@ class DataController extends WebController
     }
 
 
-    
+
 }

@@ -47,6 +47,27 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             }
         });
 
+
+        this.DownloadInformer.AddHandler('CloseClicked', async (event, args) => {
+            await this.ResetDownload(args.item.value.id);
+        });        
+
+        App.AddHandler('ApplicationReady', (event, args) => {
+
+            if(App.Comet) {
+                this.__eventReceived = (event, args) => this.__cometEventReceived(event, args);
+                App.Comet.RemoveHandler('EventReceived', this.__eventReceived);
+                App.Comet.AddHandler('EventReceived', this.__eventReceived);
+            } 
+
+        });
+
+    } 
+
+    __cometEventReceived(event, args) {
+        if(args.event.action === 'download-message') {
+            this.DownloadInformer.Add(args.event.message);
+        }
     }
 
     Render(container) {
@@ -71,6 +92,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         return this._store;
     }
 
+
+    get DownloadInformer() {
+        if(!this._downloadInformer) {
+            this._downloadInformer = new Colibri.UI.Informers.Download('download-informer', document.body);
+        }
+        return this._downloadInformer;
+    }
 
     /** API */
 
@@ -563,17 +591,24 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    ResetDownload(id) {
+        return this.Call('Data', 'StopProcess', { id: id });
+    }
+
     ExportData(storage, term = null, filters = null, sortField = null, sortOrder = null) {
         return new Promise((resolve, reject) => {
+            App.Loading.Show();
             this.Call('Data', 'Export', { storage: storage.name, module: storage.module, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder })
                 .then((response) => {
-                    DownloadFile(response.result.filecontent, response.result.filename);
+                    // DownloadFile(response.result.filecontent, response.result.filename);
                     resolve(response.result);
                 })
                 .catch(error => {
                     App.Notices.Add(new Colibri.UI.Notice(error.result));
                     console.error(error);
                     reject(error.result);
+                }).finally(() => {
+                    App.Loading.Hide();
                 });
         });
     }
