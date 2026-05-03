@@ -4556,3 +4556,29 @@ sites-storages-fieldparams-component-params:
   tr: Bileşen parametreleri %s
   zh: 组件参数 %s
   fa: پارامترهای کامپوننت %s
+sites-storages-fieldparams-transformer:
+  ru: Трансформация в модели
+  en: Transformation in model
+  hy: Տրանսֆորմացիա մոդելում
+  it: Trasformazione nel modello
+  es: Transformación en el modelo
+  kk: Модельдегі трансформация
+  uz: Modeldagi transformatsiya
+  cz: Transformace v modelu
+  de: Transformation im Modell
+  tr: Modelde dönüşüm
+  zh: 模型中的转换
+  fa: تبدیل در مدل
+sites-storages-fieldparams-transformer-note:
+  ru: "Трансформация в модели. Метод: function($field, $value) {  }"
+  en: "Transformation in model. Method: function($field, $value) {  }"
+  hy: "Տրանսֆորմացիա մոդելում. Մեթոդ: function($field, $value) {  }"
+  it: "Trasformazione nel modello. Metodo: function($field, $value) {  }"
+  es: "Transformación en el modelo. Método: function($field, $value) {  }"
+  kk: "Модельдегі трансформация. Метод: function($field, $value) {  }"
+  uz: "Modeldagi transformatsiya. Metod: function($field, $value) {  }"
+  cz: "Transformace v modelu. Metoda: function($field, $value) {  }"
+  de: "Transformation im Modell. Methode: function($field, $value) {  }"
+  tr: "Modelde dönüşüm. Yöntem: function($field, $value) {  }"
+  zh: 模型中的转换。方法：function($field, $value) {  }
+  fa: "تبدیل در مدل. روش: function($field, $value) {  }"

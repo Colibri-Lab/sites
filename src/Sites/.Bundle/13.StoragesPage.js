@@ -1011,6 +1011,23 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
                                 height: 200
                             }
                         },
+                        transformer: {
+                            type: 'varchar',
+                            placeholder: '#{sites-storages-fieldparams-transformer}',
+                            note: '#{sites-storages-fieldparams-transformer-note}',
+                            component: 'App.Modules.Manage.UI.TinyMCETextArea',
+                            default: '',
+                            params: {
+                                code: 'php',
+                                condition: {
+                                    field: 'component',
+                                    method: (fieldValue, data, type, empty, inverse, fieldData) => Colibri.UI.Forms.Field.HasParam(fieldValue, 'transformer')
+                                }
+                            },
+                            attrs: {
+                                height: 200
+                            }
+                        },
                         noteClass: {
                             type: 'varchar',
                             component: 'Text',
