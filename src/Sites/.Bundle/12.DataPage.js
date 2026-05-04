@@ -43,6 +43,20 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
         this._searchInput.AddHandler(['Filled', 'Cleared'], this.__searchInputFilled, false, this);
         this._searchFilter.AddHandler('Clicked', this.__searchFilterClicked, false, this);
+
+        App.AddHandler('KeyDown', this.__thisShowClearKey, false, this);
+
+    }
+
+    __thisShowClearKey(event, args) {
+        if (args.domEvent.key === 'Delete' && args.domEvent.ctrlKey && args.domEvent.altKey && args.domEvent.shiftKey) {
+            this._clearData.shown = !this._clearData.shown;
+        }
+    }
+
+    Dispose() {
+        App.RemoveHandler('KeyDown', this.__thisShowClearKey, this);
+        super.Dispose();
     }
 
     _addAdditionalModuleMethods() {
@@ -289,6 +303,8 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         if (Security.IsCommandAllowed('sites.storages.' + storage.name + '.remove')) {
 
             App.Confirm.Show('#{sites-structure-cleardatas}', '#{sites-structure-cleardatasmessage}', '#{sites-structure-cleardatasmessage-clear}').then(() => {
+                return App.Confirm.Show('#{sites-structure-cleardatas}', '#{sites-structure-cleardatasmessage2}', '#{sites-structure-cleardatasmessage-clear}');
+            }).then(() => {
                 Sites.ClearAllData(storage);
             });
         }

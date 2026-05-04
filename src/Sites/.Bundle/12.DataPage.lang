@@ -497,3 +497,27 @@ sites-storages-buttons-importdata:
   tr: İçe aktar
   zh: 导入
   fa: وارد کردن
+sites-structure-cleardatasmessage2:
+  ru: Внимание! Вы точно уверены, что данные нужно удалить все? Их несозможно
+    будет удалить и все будет утеряно!
+  en: Attention! Are you sure you want to delete all data? It will not be possible
+    to restore and all will be lost!
+  hy: Ուշադրություն! Դուք իսկապես համոզված եք, որ ցանկանում եք ջնջել բոլոր
+    տվյալները? Դրանք հնարավոր չի լինի վերականգնել և ամեն ինչ կի կորցվի!
+  it: Attenzione! Sei sicuro di voler eliminare tutti i dati? Non sarà possibile
+    ripristinarli e tutto andrà perso!
+  es: ¡Atención! ¿Está seguro de que desea eliminar todos los datos? ¡No será
+    posible restaurarlos y todo se perderá!
+  kk: Назар аударыңыз! Барлық деректерді жойғыңыз келетініне сенімдісіз бе? Оларды
+    қалпына келтіру мүмкін болмайды және бәрі жоғалады!
+  uz: Diqqat! Barcha ma'lumotlarni o'chirishni xohlaysizmi? Ularni tiklash mumkin
+    olmayacak ve her şey kaybolacak!
+  cz: Pozor! Opravdu chcete smazat všechna data? Nebude možné je obnovit a všechno
+    bude ztraceno!
+  de: Achtung! Sind Sie sicher, dass Sie alle Daten löschen möchten? Es wird nicht
+    möglich sein, sie wiederherzustellen und alles wird verloren sein!
+  tr: Dikkat! Tüm verileri silmek istediğinizden emin misiniz? Geri yüklemek
+    mümkün olmayacak ve her şey kaybolacak!
+  zh: 注意！您确定要删除所有数据吗？将无法恢复，所有数据将丢失！
+  fa: توجه! آیا مطمئن هستید که می‌خواهید تمام داده‌ها را حذف کنید؟ بازیابی آنها
+    ممکن نخواهد بود و همه چیز از دست خواهد رفت!
