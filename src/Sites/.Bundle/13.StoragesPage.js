@@ -50,6 +50,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     _canAddFieldAsChild(field) {
+        if(!field.component) {
+            return false;
+        }
         const component = field.component;
         const c = Array.findObject(Object.values(Colibri.UI.Forms.Field.Components), 'className', component);
         return c.canhaveFields;

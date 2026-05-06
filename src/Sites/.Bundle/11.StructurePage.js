@@ -629,11 +629,15 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
             contextMenuObject.AddHandler('Clicked', (event, args) => {
                 contextMenuObject.Hide();
                 const menuData = args.menuData;
+                if(!menuData?.module) {
+                    return;
+                }
                 if (Security.IsCommandAllowed('sites.storages.' + menuData.module + '.' + menuData.name + '.edit')) {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-newrow} «' + menuData.title + '»', 1024, 'app.manage.storages(name=' + menuData.name + ',module=' + menuData.module + ')', {}, '', {}, (data) => {
                         const selected = this._folders.selected.tag;
                         if (selected.type == 'domain') {
                             App.Loading.Show();
+                            debugger;
                             Sites.CreatePublication(selected.data, null, menuData.name, menuData.module, data).then(() => {
                                 Manage.FormWindow.Hide();
                             }).finally(() => {
@@ -642,7 +646,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                         }
                         else {
                             App.Loading.Show();
-                            Sites.CreatePublication(selected.data.domain, selected.data, menuData.name, data).then(() => {
+                            Sites.CreatePublication(selected.data.domain, selected.data, menuData.name, menuData.module, data).then(() => {
                                 Manage.FormWindow.Hide();
                             }).finally(() => {
                                 App.Loading.Hide();
