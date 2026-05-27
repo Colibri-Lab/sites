@@ -157,7 +157,7 @@ class DataController extends WebController
 
         foreach ($data as $key => $value) {
             $field = $storage->GetField($key);
-            if(!in_array($key, ['id','datecreated','datemodified']) && !$field->params['readonly']) {
+            if(!in_array($key, ['id','datecreated','datemodified']) && !($field?->params['readonly'] ?? null)) {
                 $datarow->$key = $value;
             }
         }

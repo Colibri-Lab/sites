@@ -118,6 +118,7 @@ class PagesController extends WebController
 
         $fields = [];
         foreach ($parameters as $parameter) {
+            ddrx($parameter['attrs']);
             $fields[$parameter['name']] = [
                 'type' => $parameter['type'],
                 'length' => $parameter['length'],

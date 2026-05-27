@@ -79,6 +79,7 @@ class StoragesController extends WebController
 
         $storage->Save();
 
+        Storages::Instance()->ClearCache();
 
         return $this->Finish(200, 'ok');
 
@@ -123,6 +124,8 @@ class StoragesController extends WebController
         }
 
         $storage->Delete();
+
+        Storages::Instance()->ClearCache();
 
         return $this->Finish(200, 'ok');
 
@@ -186,6 +189,7 @@ class StoragesController extends WebController
         }
 
         $storage->Save();
+        Storages::Instance()->ClearCache();
 
         return $this->Finish(200, 'ok');
     }
@@ -249,6 +253,8 @@ class StoragesController extends WebController
 
         $storage->Save();
 
+        Storages::Instance()->ClearCache();
+
         return $this->Finish(200, 'ok');
     }
 
@@ -294,6 +300,8 @@ class StoragesController extends WebController
 
         $storage->DeleteField($path);
         $storage->Save();
+
+        Storages::Instance()->ClearCache();
 
         return $this->Finish(200, 'ok');
     }
@@ -347,6 +355,8 @@ class StoragesController extends WebController
         $storage->AddIndex($name, $data);
         $storage->Save();
 
+        Storages::Instance()->ClearCache();
+
         return $this->Finish(200, 'ok');
     }
     
@@ -398,6 +408,8 @@ class StoragesController extends WebController
         unset($data['name']);
         $storage->AddTrigger($name, $data);
         $storage->Save();
+
+        Storages::Instance()->ClearCache();
 
         return $this->Finish(200, 'ok');
     }
@@ -452,6 +464,8 @@ class StoragesController extends WebController
         $storage->DeleteIndex($name);
         $storage->Save();
 
+        Storages::Instance()->ClearCache();
+
         return $this->Finish(200, 'ok');
     }
     
@@ -504,6 +518,8 @@ class StoragesController extends WebController
 
         $storage->DeleteTrigger($name);
         $storage->Save();
+
+        Storages::Instance()->ClearCache();
 
         return $this->Finish(200, 'ok');
     }
