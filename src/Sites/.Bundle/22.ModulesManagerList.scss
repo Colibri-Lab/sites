@@ -1,6 +1,7 @@
 .app-manager-module-list-component {
     height: 100%;
     [data-object-name="modules_group"] {
+        width: 100%;
         > div {
             display: flex;
             align-items: stretch;
