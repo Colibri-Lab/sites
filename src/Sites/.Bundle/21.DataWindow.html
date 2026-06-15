@@ -3,10 +3,12 @@
         <Split name="split" shown="true" hasHandle="true">
             <App.Modules.Sites.StoragesTree name="storages" shown="true" binding="app.manage.storages" />
             <Pane name="data-pane" shown="true">
-                <Pane name="search-pane" shown="true">
+                <FlexBox name="search-pane" shown="true">
                     <Input name="search-input" shown="true" placeholder="#{sites-datawindow-search-placeholder}" enabled="false" />
-                </Pane>
+                    <Icon shown="true" name="filters" iconSVG="Colibri.UI.Filters"  enabled="false" />
+                </FlexBox>
                 <App.Modules.Sites.DataGrid name="data" shown="true" binding="app.sites.data" enabled="false" selectionMode="fullrow" showCheckboxes="true" emptyMessage="#{sites-datawindow-dataempty}" />
+                <App.Modules.Sites.UI.Pager shown="true" name="pager" hasMaxPages="false" enabled="false" />
             </Pane>
         </Split>
     </component-container>

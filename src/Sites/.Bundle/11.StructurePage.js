@@ -24,9 +24,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         this._publications.AddHandler('SelectionChanged', this.__selectionChangedOnPublication, false, this);
         this._publications.AddHandler('ContextMenuIconClicked', this.__renderPublicationsContextMenu, false, this);
         this._publications.AddHandler('ContextMenuItemClicked', this.__clickOnPublicationsContextMenu, false, this);
-        this._publications.AddHandler('ScrolledToBottom', this.__publicationsScrolledToBottom, false, this);
+        // this._publications.AddHandler('ScrolledToBottom', this.__publicationsScrolledToBottom, false, this);
         this._publications.AddHandler('CheckChanged', this.__checkChangedOnPublications, false, this);
         this._publications.AddHandler('DoubleClicked', this.__doubleClickedOnPublication, false, this);
+
+        this._pagerData = this.Children('split/publications-pane/buttons-pane/pager');
+        
 
         this._dragManager.AddHandler('DragDropComplete', this.__dragDropComplete, false, this);
         this._dragManager.AddHandler('DragDropOver', this.__dragDropOver, false, this);
@@ -37,6 +40,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         this._addData.AddHandler('Clicked', this.__addDataButtonClicked, false, this);
         this._editData.AddHandler('Clicked', this.__editDataButtonClicked, false, this);
         this._publishButton.AddHandler('Clicked', this.__publishButtonClicked, false, this);
+        this._pagerData.AddHandler('Changed', this.__pagerDataChanged, false, this);
 
     }
 
@@ -509,13 +513,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     _loadPublicationsPage(folder, searchTerm, page) {
-        this._publicationsCurrentPage = page;
+        this._pagerData.value = page;
         if (folder) {
             if (folder.type == 'domain') {
-                Sites.LoadPublications(folder.data, null, searchTerm, page, 20);
+                Sites.LoadPublications(folder.data, null, searchTerm, page, this._pagerData.pageSize);
             }
             else {
-                Sites.LoadPublications(folder.data.domain, folder.data, searchTerm, page, 20);
+                Sites.LoadPublications(folder.data.domain, folder.data, searchTerm, page, this._pagerData.pageSize);
             }
         }
     }
@@ -535,16 +539,6 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
      */
-    __publicationsScrolledToBottom(event, args) {
-        const selected = this._folders.selected;
-        this._loadPublicationsPage(selected?.tag, this._searchInput.value, this._publicationsCurrentPage + 1);
-    }
-
-    /**
-     * @private
-     * @param {Colibri.Events.Event} event event object
-     * @param {*} args event arguments
-     */
     __selectionChangedOnFolder(event, args) {
 
         const selected = this._folders.selected;
@@ -557,6 +551,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         this._deleteData.enabled = false;
         this._publications.UnselectAllRows();
         this._publications.UncheckAllRows();
+        this._pagerData.value = 1;
+        this._pagerData.enabled = selected != null;
 
         this.__searchInputFilled(event, args);
 
@@ -748,6 +744,15 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         add && paths.push(add);
         let path = paths.join('/').trim(/\//);
         return '/' + (path ? path + '/' : '');
+    }
+
+    /**
+     * @private
+     * 
+     */
+    __pagerDataChanged(event, args) {
+        const selected = this._folders.selected;
+        this._loadPublicationsPage(selected?.tag, this._searchInput.value, this._pagerData.value);
     }
 
 }

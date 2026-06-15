@@ -6,18 +6,24 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
         this.AddClass('app-data-window-component');
 
+        this._filterData = {};
+
         this._storages = this.Children('split/storages');
         this._data = this.Children('split/data-pane/data');
         this._searchInput = this.Children('split/data-pane/search-pane/search-input');
+        this._searchFilter = this.Children('split/data-pane/search-pane/filters');
+        this._pagerData = this.Children('split/data-pane/pager');
+        
         this._save = this.Children('save');
 
         this._storages.AddHandler('SelectionChanged', this.__storagesSelectionChanged, false, this);
+        this._pagerData.AddHandler('Changed', this.__pagerDataChanged, false, this);
         this._data.AddHandler(['SelectionChanged', 'CheckChanged'], this.__dataSelectionChanged, false, this);
         this._data.AddHandler('ColumnClicked', this.__clickOnDataColumn, false, this);        
-        this._data.AddHandler('ScrolledToBottom', this.__dataScrolledToBottom, false, this);
         this._save.AddHandler('Clicked', this.__saveClicked, false, this);
 
         this._searchInput.AddHandler(['Filled', 'Cleared'], this.__searchInputFilled, false, this);
+        this._searchFilter.AddHandler('Clicked', this.__searchFilterClicked, false, this);
 
     }
 
@@ -37,15 +43,12 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         this.__searchInputFilled(event, args);
     }
 
-
     /**
      * @private
-     * @param {Colibri.Events.Event} event event object
-     * @param {*} args event arguments
-     */ 
-    __dataScrolledToBottom(event, args) {
-        const selected = this._storages.selected;
-        this._loadDataPage(selected?.tag, this._searchInput.value, this._data.sortColumn?.name, this._data.sortOrder, this._dataCurrentPage + 1);
+     * 
+     */
+    __searchFilterClicked(event, args) {
+        this._showFilters();
     }
 
     /**
@@ -62,12 +65,12 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         }
         
         this._data.storage = selected.tag;
-        this._loadDataPage(selected?.tag, this._searchInput.value, this._data.sortColumn?.name, this._data.sortOrder, 1);
+        this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, 1);
     }
 
-    _loadDataPage(storage, searchTerm, sortField, sortOrder, page) {
-        this._dataCurrentPage = page;
-        Sites.LoadData(storage, searchTerm, {}, sortField, sortOrder, page, 20);
+    _loadDataPage(storage, searchTerm, filters, sortField, sortOrder, page) {
+        this._pagerData.value = page;
+        Sites.LoadData(storage, searchTerm, filters, sortField, sortOrder, page, this._pagerData.pageSize);
     }
 
     /**
@@ -84,10 +87,13 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
             return;
         }
 
+        this._pagerData.enabled = selection != null;
+        this._searchFilter.enabled = selection != null;
         this._searchInput.enabled = selection != null;
         this._data.enabled = selection != null;     
         this._data.UncheckAllRows();
         this._data.UnselectAllRows();   
+        this._filterData = {};
         
         this.__searchInputFilled(event, args);
         
@@ -136,6 +142,32 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
             this._publicationCallback(storage.tag, ids);
         }
 
+    }
+
+    _showFilters() {
+        const selection = this._storages.selected;
+        const storage = selection?.tag;
+        if (!storage) {
+            return;
+        }
+
+        Manage.FilterWindow.Show('#{sites-structure-filter} «' + (storage.desc[Lang.Current] ?? storage.desc ?? '') + '»', 800, 'app.manage.storages(name=' + storage.name + ',module=' + storage.module.toLowerCase() + ')', this._filterData)
+            .then((data) => {
+                this._filterData = data;
+                if (Object.countKeys(this._filterData) > 0) {
+                    this._searchFilter.AddClass('-selected');
+                } else {
+                    this._searchFilter.RemoveClass('-selected');
+                }
+                this._data.storage = storage;
+                this._loadDataPage(storage, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, 1);
+            })
+            .catch(() => { });
+    }
+
+    __pagerDataChanged(event, args) {
+        const selected = this._storages.selected;
+        this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._pagerData.value);
     }
 
 
