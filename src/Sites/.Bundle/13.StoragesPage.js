@@ -2455,12 +2455,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
         else if (menuData.name == 'paste-field') {
             const data = this._copiedField;
-            App.Loading.Show();
             Sites.SaveField(module.value, storage.value, this._getPath(node, data.name), data, true).then((response) => {
                 App.Notices.Add(new Colibri.UI.Notice('#{sites-storagespage-fieldpasted}', Colibri.UI.Notice.Success, 5000));
                 this._copiedField = null;
-            }).finally(() => {
-                App.Loading.Hide();
             });
         }
         else if (menuData.name.split('-')[0] === 'generators') {
