@@ -648,17 +648,17 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
         App.Loading.Show();
         promise.then((response) => {
-            if (page == 1) {
-                this._store.Set('sites.pubs', response.result);
-            }
-            else if (Array.isArray(response.result)) {
-                let pubs = this._store.Query('sites.pubs');
-                if (!pubs || !Array.isArray(pubs)) {
-                    pubs = [];
-                }
-                pubs = pubs.concat(response.result);
-                this._store.Set('sites.pubs', pubs);
-            }
+            this._store.Set('sites.pubs', response.result);
+            // if (page == 1) {
+            // }
+            // else if (Array.isArray(response.result)) {
+            //     let pubs = this._store.Query('sites.pubs');
+            //     if (!pubs || !Array.isArray(pubs)) {
+            //         pubs = [];
+            //     }
+            //     pubs = pubs.concat(response.result);
+            //     this._store.Set('sites.pubs', pubs);
+            // }
         }).catch(error => {
             if (error.status > 0) {
                 App.Notices.Add(new Colibri.UI.Notice(error.result));
