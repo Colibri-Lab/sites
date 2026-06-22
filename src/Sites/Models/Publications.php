@@ -137,6 +137,11 @@ class Publications extends BaseModelDataTable
         return self::LoadByFilter($page, $pagesize, 'pubs_domain=[[domain:integer]] and pubs_page' . ($folder !== 0 ? '=[[folder:integer]]' : ' is null') . ($term ? ' and {ft} like [[term:string]]' : ''), '{order}', $params, $calculateAffected);
     }
 
+    public static function LoadByDataRow(DataRow $datarow): ? Publications
+    {
+        return self::LoadByFilter(1, 1, '{storage}=[[storage:string]] and {row}=[[row:integer]]', null, ['storage' => $datarow->Storage()->name, 'row' => $datarow->id], false);
+    }
+
     /**
      * Создание модели по названию хранилища
      * @return Publication
