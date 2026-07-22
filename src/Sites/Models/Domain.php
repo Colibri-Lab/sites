@@ -95,4 +95,13 @@ class Domain extends BaseModelDataRow
         return Publications::LoadByPage($this, 0, $term, $page, $pagesize);
     }
 
+    public function ToArrayForBackend(): array
+    {
+        $ret = (array)$this->Original(true);
+        $ret['description'] = json_decode($ret['description']);
+        $ret['additional'] = json_decode($ret['additional']);
+        $ret['parameters'] = json_decode($ret['parameters']);
+        return $ret;
+    }
+
 }

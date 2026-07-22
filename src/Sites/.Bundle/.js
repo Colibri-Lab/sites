@@ -155,7 +155,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 .then((response) => {
                     Object.forEach(response.result.fields, (name, field) => {
                         if (field.attrs) {
-                            eval('field.attrs = ' + field.attrs + ';');
+                            try {
+                                eval('field.attrs = ' + field.attrs + ';');
+                            } catch(e) {}
                         }
                     });
                     resolve(response.result);
@@ -196,6 +198,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             data = Object.assign(data);
             this.Call('Pages', 'Save', data)
                 .then((response) => {
+                    debugger;
                     const saved = response.result;
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-saved}', Colibri.UI.Notice.Success, 3000));
                     const pages = Object.values(this._store.Query('sites.pages'));
@@ -288,7 +291,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     MoveFolder(move, domain, to, siblingStatus) {
         return new Promise((resolve, reject) => {
-            this.Call('Pages', 'Move', { move: move.id, domain: domain.id, to: to?.id ?? null, sibling: siblingStatus })
+            this.Call('Pages', 'Move', { move: move.id, domain: (domain?.id ?? domain), to: to?.id ?? null, sibling: siblingStatus })
                 .then((response) => {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-moved}', Colibri.UI.Notice.Success, 3000));
                     this._store.Set('sites.pages', response.result);
@@ -304,7 +307,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     CopyPublication(pub, domain, to) {
         return new Promise((resolve, reject) => {
-            this.Call('Publications', 'Copy', { pub: pub.id, domain: domain.id, to: to?.id ?? null })
+            this.Call('Publications', 'Copy', { pub: pub.id, domain: (domain?.id ?? domain), to: to?.id ?? null })
                 .then((response) => {
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-publications-copied}', Colibri.UI.Notice.Success, 3000));
                     resolve(response.result);
@@ -498,7 +501,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     CreatePublication(domain, folder, storage, module, data) {
         return new Promise((resolve, reject) => {
 
-            this.Call('Publications', 'Create', { domain: domain.id, folder: folder?.id ?? null, storage, module, data: data })
+            this.Call('Publications', 'Create', { domain: (domain?.id ?? domain), folder: folder?.id ?? null, storage, module, data: data })
                 .then((response) => {
                     let pubs = this._store.Query('sites.pubs');
                     if (!pubs || !Array.isArray(pubs)) {
@@ -520,7 +523,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     Publish(domain, folder, storage, module, ids) {
         return new Promise((resolve, reject) => {
 
-            this.Call('Publications', 'Publish', { domain: domain.id, folder: folder?.id ?? null, storage, module, ids: ids.join(',') })
+            this.Call('Publications', 'Publish', { domain: (domain?.id ?? domain), folder: folder?.id ?? null, storage, module, ids: ids.join(',') })
                 .then((response) => {
                     let pubs = this._store.Query('sites.pubs');
                     if (!pubs || !Array.isArray(pubs)) {
@@ -641,7 +644,7 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     LoadPublications(domain, folder, term = null, page = 1, pagesize = 20, returnPromise = false) {
         this.Requests('Publications.List')?.Abort();
-        const promise = this.Call('Publications', 'List', { domain: domain.id, folder: folder?.id ?? null, term: term, page: page, pagesize: pagesize }, {}, true, 'Publications.List');
+        const promise = this.Call('Publications', 'List', { domain: (domain?.id ?? domain), folder: folder?.id ?? null, term: term, page: page, pagesize: pagesize }, {}, true, 'Publications.List');
         if (returnPromise) {
             return promise;
         }

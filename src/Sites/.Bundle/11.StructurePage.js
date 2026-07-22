@@ -29,7 +29,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         this._publications.AddHandler('DoubleClicked', this.__doubleClickedOnPublication, false, this);
 
         this._pagerData = this.Children('split/publications-pane/buttons-pane/pager');
-        
+
 
         this._dragManager.AddHandler('DragDropComplete', this.__dragDropComplete, false, this);
         this._dragManager.AddHandler('DragDropOver', this.__dragDropOver, false, this);
@@ -64,6 +64,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         else {
 
             contextmenu.push({ name: 'new-child-folder', title: '#{sites-structure-contextmenu-newchild}', icon: Colibri.UI.ContextMenuAddIcon });
+            contextmenu.push({ name: 'bulk-new-child-folder', title: '#{sites-structure-contextmenu-bulknewchild}', icon: Colibri.UI.ContextMenuAddIcon });
             if (itemData.type == 'domain') {
                 contextmenu.push({ name: 'edit-domain', title: '#{sites-structure-contextmenu-editdomain}', icon: Colibri.UI.ContextMenuEditIcon });
                 contextmenu.push({ name: 'edit-domain-props', title: '#{sites-structure-contextmenu-editprops}', icon: Colibri.UI.ContextMenuEditIcon });
@@ -190,6 +191,47 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                 Sites.DeleteDomain(item.tag.data.id);
             });
         }
+        else if (menuData.name == 'bulk-new-child-folder') {
+            Manage.FormWindow.Show('#{sites-structure-windowtitle-bulknewchildpage}', 1024, {
+                name: 'new',
+                module: 'sites',
+                fields: {
+                    text: {
+                        component: 'TextArea',
+                        desc: '#{sites-structure-windowtitle-bulknewchildpage-text}',
+                    }
+                }
+            }, {}, '', {}, (data) => {
+                const promises = [];
+                const descriptions = data.text.split('\n');
+                App.Loading.Show();
+                item.Expand();
+
+                for(const desc of descriptions) {
+                    const data = {};
+                    data.description = {[Lang.Current]: desc};
+                    if (item.tag.type == 'domain') {
+                        data.domain = item.tag.data.id;
+                        data.parent = 0;
+                    }
+                    else {
+                        data.domain = (item.tag.data.domain?.id ?? item.tag.data.domain);
+                        data.parent = item.tag.data.id;
+                    }
+                    data.name = desc.CyrToUrl();
+                    data.published = true;
+                    promises.push(Sites.SaveFolder(data));
+                
+                }
+                Promise.all(promises).then(() => {
+                    Manage.FormWindow.Hide();
+                }).catch(() => {
+                    // do nothing
+                }).finally(() => {
+                    App.Loading.Hide();
+                });
+            });
+        }
         else if (menuData.name == 'new-child-folder') {
 
             if (Security.IsCommandAllowed('sites.structure.add')) {
@@ -210,11 +252,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                         data.parent = 0;
                     }
                     else {
-                        data.domain = item.tag.data.domain.id;
+                        data.domain = (item.tag.data.domain?.id ?? item.tag.data.domain);
                         data.parent = item.tag.data.id;
                     }
                     item.Expand();
                     App.Loading.Show();
+
                     Sites.SaveFolder(data).then(() => {
                         Manage.FormWindow.Hide();
                     }).catch(() => {
@@ -234,8 +277,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         else if (menuData.name == 'edit-folder') {
             if (Security.IsCommandAllowed('sites.structure.edit')) {
                 Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(name=pages,module=sites)', item.tag.data, '', {}, (data) => {
-                    data.domain = item.tag?.data?.domain?.id;
-                    data.parent = item.tag?.data?.parent?.id ?? 0;
+                    data.domain = item.tag?.data?.domain?.id ?? item.tag?.data?.domain;
+                    data.parent = item.tag?.data?.parent?.id ?? item.tag?.data?.parent ?? 0;
                     App.Loading.Show();
                     Sites.SaveFolder(data).then(() => {
                         Manage.FormWindow.Hide();
@@ -306,15 +349,15 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         else if (menuData.name == 'publish') {
             const data = Object.cloneRecursive(item.tag.data);
             data.published = true;
-            data.parent = item.tag?.parent?.id ?? 0;
-            data.domain = item.tag?.data?.domain?.id;
+            data.parent = item.tag?.parent?.id ?? item.tag?.parent ?? 0;
+            data.domain = item.tag?.data?.domain?.id ?? item.tag?.data?.domain;
             Sites.SaveFolder(data);
         }
         else if (menuData.name == 'unpublish') {
             const data = Object.cloneRecursive(item.tag.data);
             data.published = false;
-            data.parent = item.tag?.parent?.id ?? 0;
-            data.domain = item.tag?.data?.domain?.id;
+            data.parent = item.tag?.parent?.id ?? item.tag?.parent ?? 0;
+            data.domain = item.tag?.data?.domain?.id ?? item.tag?.data?.domain;
             Sites.SaveFolder(data);
         } else if (menuData.name == 'copy') {
             this._copiedPage = item.tag.data;
@@ -325,7 +368,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                 this._copiedPage.parent = 0;
             }
             else {
-                this._copiedPage.domain = item.tag.data.domain.id;
+                this._copiedPage.domain = (item.tag.data.domain?.id ?? item.tag.data.domain);
                 this._copiedPage.parent = item.tag.data.id;
             }
 
@@ -419,8 +462,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                 }
                 else if (item.tag.type == 'page') {
                     Manage.FormWindow.Show('#{sites-structure-windowtitle-editpage}', 1024, 'app.manage.storages(name=pages,module=sites)', item.tag.data, '', {}, (data) => {
-                        data.domain = item.tag?.data?.domain?.id;
-                        data.parent = item.tag?.data?.parent?.id ?? 0;
+                        data.domain = item.tag?.data?.domain?.id ?? item.tag?.data?.domain;
+                        data.parent = item.tag?.data?.parent?.id ?? item.tag?.data?.parent ?? 0;
                         App.Loading.Show();
                         Sites.SaveFolder(data).then(() => {
                             Manage.FormWindow.Hide();
@@ -625,7 +668,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
             contextMenuObject.AddHandler('Clicked', (event, args) => {
                 contextMenuObject.Hide();
                 const menuData = args.menuData;
-                if(!menuData?.module) {
+                if (!menuData?.module) {
                     return;
                 }
                 if (Security.IsCommandAllowed('sites.storages.' + menuData.module + '.' + menuData.name + '.edit')) {

@@ -149,6 +149,18 @@ class Pages extends BaseModelDataTable
 
     /**
      * Загружает дочерние
+     * @param int $page страница
+     * @param int $pagesize размер страницы
+     * @return Pages 
+     */
+    static function LoadByDomains(array $domains, int $page = -1, int $pagesize = 20, bool $calculateAffected = false): ? Pages
+    {
+        $domains = array_map(fn($v) => $v instanceOf Domain ? $v->id : $v, $domains);
+        return self::LoadByFilter($page, $pagesize, '{domain} in (' . implode(',', $domains) . ')', '{order}', [], $calculateAffected);
+    }
+
+    /**
+     * Загружает дочерние
      * @return Page 
      */
     static function LoadByName(Domain|int $domain, Page|int $parent, string $name): ? Page

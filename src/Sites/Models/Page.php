@@ -14,7 +14,9 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Common\StringHelper;
 use Colibri\App;
+use Colibri\AppException;
 use Colibri\Data\NoSqlClient\ICommandResult;
+use Colibri\Data\SqlClient\IDataReader;
 
 /**
  * Представление строки в таблице в хранилище Публикации
@@ -351,5 +353,22 @@ class Page extends BaseModelDataRow
         }
     }
 
+    public function ToArrayForBackend(): array
+    {
+        $ret = [];
+        $ret['datecreated'] = (string)$this->datecreated;
+        $ret['datemodified'] = (string)$this->datemodified;
+        $ret['datedeleted'] = (string)$this->datedeleted;
+        $ret['description'] = $this->description->ToArray(true);
+        $ret['additional'] = $this->additional?->ToArray(true);
+        $ret['parameters'] = $this->parameters?->ToArray(true);
+        $ret['id'] = (int)$this->id;
+        $ret['name'] = $this->name;
+        $ret['domain'] = (int)$this->_data['pages_domain'];
+        $ret['parent'] = (int)$this->_data['pages_parent'];
+        $ret['published'] = (bool)$this->published;
+        $ret['order'] = $this->order;
+        return $ret;
+    }
 
 }

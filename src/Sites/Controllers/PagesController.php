@@ -118,7 +118,6 @@ class PagesController extends WebController
 
         $fields = [];
         foreach ($parameters as $parameter) {
-            ddrx($parameter['attrs']);
             $fields[$parameter['name']] = [
                 'type' => $parameter['type'],
                 'length' => $parameter['length'],
@@ -126,7 +125,7 @@ class PagesController extends WebController
                 'component' => $parameter['component'],
                 'default' => $parameter['default'],
                 'desc' => $parameter['description'],
-                'attrs' => $parameter['attrs']
+                'attrs' => $parameter['attrs'] ?? []
             ];
         }
 
@@ -203,10 +202,21 @@ class PagesController extends WebController
             throw new PermissionDeniedException('Permission denied', 403);
         }
 
-        $pages = Pages::LoadAll();
+        $domains = Domains::LoadAll();
+        $domainIds = [];
+        foreach ($domains as $domain) {
+            if(
+                (App::$moduleManager->{'manage'} && App::$moduleManager->{$domain->additional->settings->module}) ||
+                !App::$moduleManager->{'manage'}
+            ) {
+                $domainIds[] = $domain->id;
+            }
+        }
+
+        $pages = Pages::LoadByDomains($domainIds);
         $pagesArray = [];
         foreach ($pages as $page) {
-            $pagesArray[$page->id] = $page->ToArray(true);
+            $pagesArray[$page->id] = $page->ToArrayForBackend();
         }
         return $this->Finish(200, 'ok', $pagesArray);
     }
@@ -285,7 +295,7 @@ class PagesController extends WebController
 
 
 
-        return $this->Finish(200, 'ok', $page->ToArray(true));
+        return $this->Finish(200, 'ok', $page->ToArrayForBackend());
 
     }
 
@@ -369,6 +379,9 @@ class PagesController extends WebController
 
         $id = $post->{'id'};
         $page = Pages::LoadById($id);
+        if(!$page) {
+            throw new BadRequestException('Bad request', 400);
+        }
         try {
             $page->Delete();
         } catch (DataModelException $e) {
@@ -378,7 +391,7 @@ class PagesController extends WebController
         $pages = Pages::LoadAll();
         $pagesArray = [];
         foreach ($pages as $page) {
-            $pagesArray[$page->id] = $page->ToArray(true);
+            $pagesArray[$page->id] = $page->ToArrayForBackend();
         }
         return $this->Finish(200, 'ok', $pagesArray);
 
@@ -490,7 +503,7 @@ class PagesController extends WebController
         $pages = Pages::LoadAll();
         $pagesArray = [];
         foreach ($pages as $page) {
-            $pagesArray[$page->id] = $page->ToArray(true);
+            $pagesArray[$page->id] = $page->ToArrayForBackend();
         }
         return $this->Finish(200, 'ok', $pagesArray);
 

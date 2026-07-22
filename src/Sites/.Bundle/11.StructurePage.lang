@@ -814,3 +814,42 @@ sites-structure-contextmenu-paste:
   tr: Sayfayı yapıştır
   zh: 粘贴页面
   fa: چسباندن صفحه
+sites-structure-contextmenu-bulknewchild:
+  ru: Новый дочерний раздел (пачкой)
+  en: New child page (bulk)
+  hy: Նոր մանկական բաժին (մասամբ)
+  it: Nuova pagina figlia (in blocco)
+  es: Nueva página hija (en bloque)
+  kk: Жаңа бала беті (bulk)
+  uz: Yangi bolalar sahifasi (bulk)
+  cz: Nová podstránka (hromadně)
+  de: Neue Unterseite (Massenbearbeitung)
+  tr: Yeni alt sayfa (toplu)
+  zh: 新建子页面（批量）
+  fa: صفحه فرزند جدید (به صورت دسته‌ای)
+sites-structure-windowtitle-bulknewchildpage:
+  ru: Разделы списком
+  en: Pages in bulk
+  hy: Բաժիններ մասամբ
+  it: Pagine in blocco
+  es: Páginas en bloque
+  kk: Беттер bulk
+  uz: Sahifalar bulk
+  cz: Stránky hromadně
+  de: Seiten in Massenbearbeitung
+  tr: Sayfalar toplu
+  zh: 批量页面
+  fa: صفحات به صورت دسته‌ای
+sites-structure-windowtitle-bulknewchildpage-text:
+  ru: Введите список разделов, каждый на новой строке
+  en: Enter a list of pages, each on a new line
+  hy: Մուտքագրեք բաժինների ցանկը, յուրաքանչյուրը նոր տողում
+  it: Inserisci un elenco di pagine, ciascuna su una nuova riga
+  es: Introduzca una lista de páginas, cada una en una nueva línea
+  kk: Беттер тізімін енгізіңіз, әрқайсысы жаңа жолда
+  uz: Sahifalar ro'yxatini kiriting, har biri yangi qatorda
+  cz: Zadejte seznam stránek, každou na novém řádku
+  de: Geben Sie eine Liste von Seiten ein, jede auf einer neuen Zeile
+  tr: Sayfa listesini girin, her biri yeni bir satırda
+  zh: 输入页面列表，每个页面占一行
+  fa: فهرستی از صفحات را وارد کنید، هر کدام در یک خط جدید
