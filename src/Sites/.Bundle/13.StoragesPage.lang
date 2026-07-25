@@ -3043,6 +3043,7 @@ sites-global-notallowed:
   zh: 操作被禁止
   fa: اقدام مجاز نیست
   hy: Գործողությունը չի թույլատրվում
+  en: The action is prohibited
 sites-storagespage-notallowed:
   ru: Действие запрещено
   en: Operation not permitted
