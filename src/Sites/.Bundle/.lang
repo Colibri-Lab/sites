@@ -287,6 +287,8 @@ sites-storages-messages-data-cleared:
 sites-storages-messages-trigger-saved:
   ru: Триггерс сохранен
   en: Triggers saved
+  fa: تنظیمات ذخیره شده
 sites-storages-messages-trigger-deleted:
   ru: Триггер удален
   en: The trigger has been deleted.
+  fa: آیتم حذف شد
