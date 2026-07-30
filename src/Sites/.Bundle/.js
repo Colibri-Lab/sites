@@ -49,7 +49,9 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
 
         this.DownloadInformer.AddHandler('CloseClicked', async (event, args) => {
-            await this.ResetDownload(args.item.value.id);
+            if(args.item.value.id.indexOf('export-') !== -1 || args.item.value.id.indexOf('import-') !== -1) {
+                await this.ResetDownload(args.item.value.id);
+            }
         });        
 
         App.AddHandler('ApplicationReady', (event, args) => {
@@ -60,6 +62,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 App.Comet.AddHandler('EventReceived', this.__eventReceived);
             } 
 
+        });
+
+        App.Actions.AddHandler('reload-tree', () => {
+            Sites.Store.Reload('sites.pages', false);
+            Sites.Store.Reload('sites.domains', false);
         });
 
     } 
@@ -92,10 +99,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         return this._store;
     }
 
-
     get DownloadInformer() {
         if(!this._downloadInformer) {
-            this._downloadInformer = new Colibri.UI.Informers.Download('download-informer', document.body);
+            if(Colibri.UI.Find('download-informer')) {
+                this._downloadInformer = Colibri.UI.Find('download-informer');
+            } else {
+                this._downloadInformer = new Colibri.UI.Informers.Download('download-informer', document.body);
+            }
         }
         return this._downloadInformer;
     }
@@ -198,7 +208,6 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             data = Object.assign(data);
             this.Call('Pages', 'Save', data)
                 .then((response) => {
-                    debugger;
                     const saved = response.result;
                     App.Notices.Add(new Colibri.UI.Notice('#{sites-storages-messages-pages-saved}', Colibri.UI.Notice.Success, 3000));
                     const pages = Object.values(this._store.Query('sites.pages'));

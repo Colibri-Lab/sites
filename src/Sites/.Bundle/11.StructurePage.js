@@ -44,18 +44,41 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
     }
 
+    async _getAdditionalFolderContextItems(contextmenu, itemData) {
+        const keys = Object.keys(App.Modules);
+        for(const module of keys) {
+            const o = eval(module);
+            if(o.GetAdditionalFolderContextMenuItems) {
+                contextmenu = [...contextmenu, ...(await o.GetAdditionalFolderContextMenuItems('structure', itemData))];
+            }
+        }
+        return contextmenu;
+    }
+
+    _executeAdditionalFolderContextMenuItem(item, menuData) {
+        const keys = Object.keys(App.Modules);
+        for(const module of keys) {
+            const o = eval(module);
+            if(o.ExecuteAdditionalFolderContextMenuItems) {
+                o.ExecuteAdditionalFolderContextMenuItems('structure', item, menuData);
+            }
+        }
+    }
+
     /**
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
      */
-    __renderFoldersContextMenu(event, args) {
+    async __renderFoldersContextMenu(event, args) {
 
         let contextmenu = [];
 
         const itemData = args.item?.tag;
         if (!itemData) {
             contextmenu.push({ name: 'new-domain', title: '#{sites-structure-contextmenu-newdomain}', icon: Colibri.UI.ContextMenuAddIcon });
+
+            contextmenu = await this._getAdditionalFolderContextItems(contextmenu, null);
 
             this._folders.contextmenu = contextmenu;
             this._folders.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RB] : [Colibri.UI.ContextMenu.RT, Colibri.UI.ContextMenu.LT], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
@@ -97,12 +120,15 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
             contextmenu.push({ name: 'copy-path', title: '#{sites-structure-contextmenu-copypath}', icon: Colibri.UI.CopyIcon });
 
+            contextmenu = await this._getAdditionalFolderContextItems(contextmenu, itemData);
+
             args.item.contextmenu = contextmenu;
             args.item.ShowContextMenu(args.isContextMenuEvent ? [Colibri.UI.ContextMenu.LB, Colibri.UI.ContextMenu.LT] : [Colibri.UI.ContextMenu.RB, Colibri.UI.ContextMenu.RT], '', args.isContextMenuEvent ? { left: args.domEvent.clientX, top: args.domEvent.clientY } : null);
         }
-
+        
 
     }
+
 
     /**
      * @private
@@ -378,6 +404,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
             }).finally(() => {
                 App.Loading.Hide();
             });
+        } else {
+            this._executeAdditionalFolderContextMenuItem(item, menuData);
         }
     }
 
@@ -676,7 +704,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
                         const selected = this._folders.selected.tag;
                         if (selected.type == 'domain') {
                             App.Loading.Show();
-                            debugger;
+
                             Sites.CreatePublication(selected.data, null, menuData.name, menuData.module, data).then(() => {
                                 Manage.FormWindow.Hide();
                             }).finally(() => {

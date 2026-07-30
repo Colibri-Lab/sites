@@ -329,7 +329,7 @@ class DataController extends WebController
 
         $downloadId = $post->{'id'};
 
-        $process = Process::ByWorkerName('export-'.$downloadId);
+        $process = Process::ByWorkerName($downloadId);
         $process->Stop();
 
         return $this->Finish(200, 'ok', []); // $result
@@ -363,9 +363,9 @@ class DataController extends WebController
         $filterFields = $post->{'filters'};
         $sortField = $post->{'sortfield'};
         $sortOrder = $post->{'sortorder'};
-        $downloadId = md5(uniqid((string)microtime(true), true));
+        $downloadId = 'export-' . md5(uniqid((string)microtime(true), true));
 
-        $worker = new ExportWorker(0, 0, 'export-'.$downloadId);
+        $worker = new ExportWorker(0, 0, $downloadId);
         $process = new Process($worker, true);
         $process->params = [
             'id' => $downloadId,
