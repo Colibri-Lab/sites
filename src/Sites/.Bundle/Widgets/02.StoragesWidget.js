@@ -1,3 +1,8 @@
+/**
+ * @class
+ * @extends Colibri.UI.Widget
+ * @memberof App.Modules.Sites.Widgets
+ */
 App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
     
     constructor(name, container) {

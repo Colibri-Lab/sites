@@ -1,3 +1,9 @@
+/**
+ * TextSnippet component
+ * @class
+ * @extends Colibri.UI.Pane
+ * @memberof App.Modules.Sites.UI
+ */
 App.Modules.Sites.UI.TextSnippet = class extends Colibri.UI.Pane {
 
     constructor(name, container) {

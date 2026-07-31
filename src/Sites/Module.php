@@ -25,7 +25,8 @@ use CometApiClient\Client as CometClient;
 
 /**
  * Sites and folders support module
- * @package App\Modules\Sites
+ * @class
+ * @extends BaseModule
  * 
  * 
  */

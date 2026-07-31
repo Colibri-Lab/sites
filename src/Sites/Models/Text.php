@@ -17,8 +17,8 @@ use Colibri\Utils\ExtendedObject;
 
 /**
  * Представление строки в таблице в хранилище Тексты
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataRow
  * 
  * region Properties:
  * @property int $id ID строки

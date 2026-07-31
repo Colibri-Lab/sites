@@ -10,8 +10,8 @@ use App\Modules\Lang\Models\Fields\Text;
 
 /**
  * Представление поля в таблице в хранилище Мета данные
- * @author <author name and email>
- * @package App\Modules\Sites\Models\Fields\Pages\Fields
+ * @class
+ * @extends ObjectField
  * 
  * region Properties:
  * @property Text|null $title Заголовок страницы

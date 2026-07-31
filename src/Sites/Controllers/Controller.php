@@ -19,6 +19,8 @@ use ScssPhp\ScssPhp\OutputStyle;
 
 /**
  * Default controller
+ * @class
+ * @extends WebController
  */
 class Controller extends WebController
 {

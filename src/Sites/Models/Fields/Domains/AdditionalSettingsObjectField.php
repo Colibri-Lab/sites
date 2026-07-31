@@ -11,8 +11,8 @@ use Colibri\Data\Storages\Fields\ValueField;
 
 /**
  * Представление поля в таблице в хранилище Технические данные
- * @author <author name and email>
- * @package App\Modules\Sites\Models\Fields\Domains\Fields
+ * @class
+ * @extends ObjectField
  * 
  * region Properties:
  * @property AdditionalSettingsTypeEnum|ValueField|ValueField $type Тип приложения

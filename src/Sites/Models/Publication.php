@@ -16,8 +16,8 @@ use InvalidArgumentException;
 
 /**
  * Представление строки в таблице в хранилище Публикации
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataRow
  * 
  * region Properties:
  * @property int $id ID строки

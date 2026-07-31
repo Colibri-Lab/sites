@@ -11,8 +11,8 @@ use App\Modules\Sites\Models\Domain;
 
 /**
  * Таблица, представление данных в хранилище Сайты
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataTable
  * 
  * @method Domain[] getIterator()
  * @method Domain _createDataRowObject()

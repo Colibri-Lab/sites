@@ -10,7 +10,11 @@ use Colibri\Events\EventDispatcher;
 use Colibri\Events\EventsContainer;
 use Colibri\IO\FileSystem\File;
 use Throwable;
-
+/**
+ * Worker for importing data from XML
+ * @class
+ * @extends BaseWorker
+ */
 class ImportWorker extends BaseWorker
 {
     public function Run(): void

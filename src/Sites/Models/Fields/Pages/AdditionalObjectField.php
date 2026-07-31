@@ -13,8 +13,8 @@ use Colibri\Data\Storages\Fields\ArrayField;
 
 /**
  * Представление поля в таблице в хранилище Всякое
- * @author <author name and email>
- * @package App\Modules\Sites\Models\Fields\Pages\Fields
+ * @class
+ * @extends ObjectField
  * 
  * region Properties:
  * @property AdditionalMetaObjectField|null $meta Мета данные

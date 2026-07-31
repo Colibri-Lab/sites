@@ -11,6 +11,11 @@ use Colibri\Events\EventsContainer;
 use Colibri\IO\FileSystem\File;
 use Throwable;
 
+/**
+ * Worker for exporting data to XML
+ * @class
+ * @extends BaseWorker
+ */
 class ExportWorker extends BaseWorker
 {
     public function Run(): void

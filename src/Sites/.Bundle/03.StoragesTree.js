@@ -1,3 +1,9 @@
+/**
+ * StoragesTree component
+ * @class
+ * @extends Colibri.UI.Tree
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
     
     constructor(name, container) {

@@ -18,6 +18,8 @@ use InvalidArgumentException;
 
 /**
  * Pages controller
+ * @class
+ * @extends WebController
  */
 class PagesController extends WebController
 {

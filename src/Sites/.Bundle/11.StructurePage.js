@@ -1,3 +1,9 @@
+/**
+ * StructurePage component
+ * @class
+ * @extends Colibri.UI.Component
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
     constructor(name, container) {

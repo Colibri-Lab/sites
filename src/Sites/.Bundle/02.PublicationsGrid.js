@@ -1,3 +1,9 @@
+/**
+ * PublicationsGrid component
+ * @class
+ * @extends Colibri.UI.Grid
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.PublicationsGrid = class extends Colibri.UI.Grid {
  
 

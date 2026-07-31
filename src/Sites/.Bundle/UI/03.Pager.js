@@ -1,3 +1,9 @@
+/**
+ * Pager component
+ * @class
+ * @extends Colibri.UI.FlexBox
+ * @memberof App.Modules.Sites.UI
+ */
 App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
     
     constructor(name, container) {

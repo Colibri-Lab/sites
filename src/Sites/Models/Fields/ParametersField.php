@@ -7,6 +7,11 @@ use Colibri\Data\Storages\Fields\Field;
 use Colibri\Data\Storages\Storage;
 use Colibri\Data\Storages\Models\DataRow;
 
+/**
+ * ParametersField class for Sites module
+ * @class
+ * @extends ObjectField
+ */
 class ParametersField extends ObjectField
 {
 

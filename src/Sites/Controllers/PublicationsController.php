@@ -17,6 +17,8 @@ use InvalidArgumentException;
 
 /**
  * Publications controller
+ * @class
+ * @extends WebController
  */
 class PublicationsController extends WebController
 {

@@ -1,3 +1,9 @@
+/**
+ * ModulesManagerList component
+ * @class
+ * @extends Colibri.UI.List
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
     
     

@@ -17,8 +17,8 @@ use Colibri\Data\NoSqlClient\ICommandResult;
 
 /**
  * Представление строки в таблице в хранилище Сайты
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataRow
  * 
  * region Properties:
  * @property int $id ID строки

@@ -1,3 +1,9 @@
+/**
+ * StoragesManagerList component
+ * @class
+ * @extends Colibri.UI.List
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
     
     

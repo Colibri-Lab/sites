@@ -13,6 +13,8 @@ use Colibri\Web\RequestCollection;
 
 /**
  * Storages controller
+ * @class
+ * @extends WebController
  */
 class StoragesController extends WebController
 {

@@ -1,3 +1,10 @@
+
+/**
+ * DataPage component
+ * @class
+ * @extends Colibri.UI.Component
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
     constructor(name, container) {

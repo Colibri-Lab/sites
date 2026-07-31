@@ -1,3 +1,9 @@
+/**
+ * DataGrid component
+ * @class
+ * @extends Colibri.UI.Grid
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
     constructor(name, container) {

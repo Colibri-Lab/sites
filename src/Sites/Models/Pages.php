@@ -11,8 +11,8 @@ use App\Modules\Sites\Models\Page;
 
 /**
  * Таблица, представление данных в хранилище Публикации
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataTable
  * 
  * @method Page[] getIterator()
  * @method Page _createDataRowObject()

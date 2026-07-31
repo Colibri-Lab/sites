@@ -13,8 +13,8 @@ use Colibri\Data\Storages\Models\DataRow;
 
 /**
  * Таблица, представление данных в хранилище Публикации
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataTable
  * 
  * @method Publication[] getIterator()
  * @method Publication _createDataRowObject()

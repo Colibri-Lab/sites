@@ -10,8 +10,8 @@ use App\Modules\Sites\Models\Fields\Domains\AdditionalParametersObjectField;
 
 /**
  * Представление поля в таблице в хранилище Дополнительные свойства
- * @author <author name and email>
- * @package App\Modules\Sites\Models\Fields\Domains\Fields
+ * @class
+ * @extends ObjectField
  * @method AdditionalParametersObjectField Item(int $index)
  * @method AdditionalParametersObjectField offsetGet(mixed $offset)
  */

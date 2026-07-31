@@ -12,8 +12,8 @@ use InvalidArgumentException;
 
 /**
  * Provides a dashboard functionality
- * @author self
- * @package App\Modules\Sites\Controllers
+ * @class
+ * @extends WebController
  */
 class DashboardController extends WebController
 {

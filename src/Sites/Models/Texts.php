@@ -11,8 +11,8 @@ use App\Modules\Sites\Models\Text;
 
 /**
  * Таблица, представление данных в хранилище Тексты
- * @author <author name and email>
- * @package App\Modules\Sites\Models
+ * @class
+ * @extends BaseModelDataTable
  * 
  * @method Text[] getIterator()
  * @method Text _createDataRowObject()

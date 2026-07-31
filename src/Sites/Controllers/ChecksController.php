@@ -9,6 +9,8 @@ use App\Modules\Sites\Models\Domains;
 
 /**
  * Checks controller
+ * @class
+ * @extends WebController
  */
 class ChecksController extends WebController
 {

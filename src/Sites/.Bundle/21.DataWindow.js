@@ -1,4 +1,9 @@
-
+/**
+ * DataWindow component
+ * @class
+ * @extends Colibri.UI.Window
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
     constructor(name, container, title) {

@@ -1,3 +1,9 @@
+/**
+ * ModulesManagerListItem component
+ * @class
+ * @extends Colibri.UI.Pane
+ * @memberof App.Modules.Sites
+ */
 App.Modules.Sites.ModulesManagerListItem = class extends Colibri.UI.Pane {
     
     

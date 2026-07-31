@@ -28,6 +28,8 @@ use InvalidArgumentException;
 
 /**
  * Data controller
+ * @class
+ * @extends WebController
  */
 class DataController extends WebController
 {
