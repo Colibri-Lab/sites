@@ -7,7 +7,12 @@
 App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
     
     
-
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-manager-storages-list-component');
@@ -29,6 +34,7 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
 
     /**
      * Render bounded to component data
+     * @ignore
      * @protected
      * @param {*} data 
      * @param {String} path 
@@ -68,6 +74,10 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
         this._module = value;
         this._showModule();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showModule() {
         if(!this._module) {
             this._group.value = [];
@@ -96,6 +106,10 @@ App.Modules.Sites.StoragesManagerList = class extends Colibri.UI.List {
         this._value = value;
         this._showValue();
     }
+    /** 
+     * @ignore
+     * @private
+     */
     _showValue() {
         this._group.value = this._value;
     }

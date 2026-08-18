@@ -6,6 +6,12 @@
  */
 App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
     
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-modules-sites-storagestree-component');
@@ -22,6 +28,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -36,6 +43,7 @@ App.Modules.Sites.StoragesTree = class extends Colibri.UI.Tree {
      * @protected
      * @param {*} data 
      * @param {String} path 
+     * @ignore
      */
     __renderBoundedValues(data, path) {
         if(!data) {

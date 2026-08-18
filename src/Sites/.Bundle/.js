@@ -11,7 +11,10 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
     }
 
 
-
+    /**
+     * Initialize module
+     * @public
+     */
     InitializeModule() {
         super.InitializeModule();
 
@@ -74,34 +77,61 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     } 
 
+    /**
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __cometEventReceived(event, args) {
         if(args.event.action === 'download-message') {
             this.DownloadInformer.Add(args.event.message);
         }
     }
 
-    Render(container) {
+    /**
+     * Render module
+     * @public
+     * @param {Object} domainSettings - The domain settings for the module
+     */
+    Render(domainSettings) {
         console.log('Rendering Module Sites');
 
 
     }
 
+    /**
+     * Register module events
+     * @public
+     */
     RegisterEvents() {
         console.log('Registering module events for Sites');
 
 
     }
 
+    /**
+     * Register event handlers
+     * @public
+     */
     RegisterEventHandlers() {
         console.log('Registering event handlers for Sites');
 
 
     }
 
+    /**
+     * Module store
+     * @type {App.Store}
+     */
     get Store() {
         return this._store;
     }
 
+    /**
+     * Download informer
+     * @type {Colibri.UI.Informers.Download}
+     */
     get DownloadInformer() {
         if(!this._downloadInformer) {
             if(Colibri.UI.Find('download-informer')) {
@@ -113,8 +143,12 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         return this._downloadInformer;
     }
 
-    /** API */
-
+    
+    /**
+     * Gets the status of system
+     * @public
+     * @async
+     */
     Status(returnPromise = false) {
         const promise = this.Call('Dashboard', 'Status');
         if (returnPromise) {
@@ -129,14 +163,19 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
+    /**
+     * Checks the current domain settings
+     * @public
+     * @async
+     */
     Check(current) {
         return new Promise((resolve, reject) => {
             if (App.Device.isElectron) {
                 Colibri.IO.Request.Get('./domain.json', {}, {}, false).then((response) => {
                     resolve(JSON.parse(response.result));
                 }).catch(e => {
-                    App.Notices.Add(new Colibri.UI.Notice(error.result));
-                    console.error(error);
+                    App.Notices.Add(new Colibri.UI.Notice(e.result));
+                    console.error(e);
                 });
             } else {
                 this.Call('Checks', 'Domain', { current: current }).then(response => {
@@ -149,6 +188,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         })
     }
 
+    /**
+     * Gets the list of domains
+     * @public
+     * @async
+     */
     DomainKeys(returnPromise = false) {
         const promise = this.Call('Pages', 'DomainKeys');
         if (returnPromise) {
@@ -162,6 +206,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Gets the properties of a page
+     * @public
+     * @async
+     */
     Properties(type, obj) {
         return new Promise((resolve, reject) => {
             this.Call('Pages', 'Properties', { type: type, object: obj.id })
@@ -181,6 +230,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Saves the properties of a page
+     * @public
+     * @async
+     */
     SaveProperties(type, obj, data) {
         return new Promise((resolve, reject) => {
             this.Call('Pages', 'SaveProperties', { type: type, object: obj?.id, data: data })
@@ -204,7 +258,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-
+    /**
+     * Saves a folder
+     * @public
+     * @async
+     */
     SaveFolder(data) {
         return new Promise((resolve, reject) => {
 
@@ -244,6 +302,11 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Saves a domain
+     * @public
+     * @async
+     */
     SaveDomain(data) {
         return new Promise((resolve, reject) => {
             data = Object.assign(data);
@@ -269,6 +332,12 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Deletes a domain
+     * @param {Number} id - The ID of the domain to delete
+     * @public
+     * @async
+     */
     DeleteDomain(id) {
         return new Promise((resolve, reject) => {
             this.Call('Pages', 'DeleteDomain', { id: id })
@@ -285,6 +354,12 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Deletes a folder
+     * @param {Number} id - The ID of the folder to delete
+     * @public
+     * @async
+     */
     DeleteFolder(id) {
         return new Promise((resolve, reject) => {
             this.Call('Pages', 'Delete', { id: id })
@@ -301,6 +376,15 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Moves a folder
+     * @param {Object} move - The folder to move
+     * @param {Object} domain - The domain of the folder
+     * @param {Object} to - The target location
+     * @param {String} siblingStatus - The sibling status
+     * @public
+     * @async
+     */
     MoveFolder(move, domain, to, siblingStatus) {
         return new Promise((resolve, reject) => {
             this.Call('Pages', 'Move', { move: move.id, domain: (domain?.id ?? domain), to: to?.id ?? null, sibling: siblingStatus })
@@ -317,6 +401,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Copies a publication
+     * @param {Object} pub - The publication to copy
+     * @param {Object} domain - The domain of the publication
+     * @param {Object} to - The target location
+     * @public
+     * @async
+     */
     CopyPublication(pub, domain, to) {
         return new Promise((resolve, reject) => {
             this.Call('Publications', 'Copy', { pub: pub.id, domain: (domain?.id ?? domain), to: to?.id ?? null })
@@ -332,6 +424,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Moves a publication
+     * @param {Object} pub - The publication to move
+     * @param {Object} pubBefore - The publication before which to move
+     * @public
+     * @async
+     */
     MovePublication(pub, pubBefore) {
         return new Promise((resolve, reject) => {
             this.Call('Publications', 'Move', { pub: pub.id, before: pubBefore.id })
@@ -354,6 +453,12 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Deletes publications
+     * @param {Array} pubIds - The IDs of the publications to delete
+     * @public
+     * @async
+     */
     DeletePublication(pubIds) {
         return new Promise((resolve, reject) => {
             this.Call('Publications', 'Delete', { pubs: pubIds.join(',') })
@@ -382,6 +487,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Deletes data
+     * @param {Object} storage - The storage object
+     * @param {Array} dataIds - The IDs of the data to delete
+     * @public
+     * @async
+     */
     DeleteData(storage, dataIds) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Delete', { storage: storage.name, module: storage.module, ids: dataIds.join(',') })
@@ -416,6 +528,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 });
         });
     }
+
+    /**
+     * Clear all data
+     * @param {Object} storage - The storage object
+     * @public
+     * @async
+     */
     ClearAllData(storage) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Clear', { storage: storage.name, module: storage.module })
@@ -446,6 +565,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
                 });
         });
     }
+
+    /**
+     * Delete data by ids
+     * @param {Object} storage - The storage object
+     * @param {Array} dataIds - The IDs of the data to delete
+     * @public
+     * @async
+     */
     DeleteData(storage, dataIds) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Delete', { storage: storage.name, module: storage.module, ids: dataIds.join(',') })
@@ -481,6 +608,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Restore data by ids
+     * @param {Object} storage - The storage object
+     * @param {Array} dataIds - The IDs of the data to restore
+     * @public
+     * @async
+     */
     RestoreData(storage, dataIds) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Restore', { storage: storage.name, module: storage.module, ids: dataIds.join(',') })
@@ -510,6 +644,16 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Create a new publication
+     * @param {Object} domain - The domain for the publication
+     * @param {Object} folder - The folder for the publication
+     * @param {string} storage - The storage name for the publication
+     * @param {string} module - The module name for the publication
+     * @param {Object} data - The data for the publication
+     * @public
+     * @async
+     */
     CreatePublication(domain, folder, storage, module, data) {
         return new Promise((resolve, reject) => {
 
@@ -532,6 +676,16 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     }
 
+    /**
+     * Publish data
+     * @param {Object} domain - The domain for the publication
+     * @param {Object} folder - The folder for the publication
+     * @param {string} storage - The storage name for the publication
+     * @param {string} module - The module name for the publication
+     * @param {Array} ids - The IDs of the data to publish
+     * @public
+     * @async
+     */
     Publish(domain, folder, storage, module, ids) {
         return new Promise((resolve, reject) => {
 
@@ -554,6 +708,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
 
     }
 
+    /**
+     * Save data
+     * @param {Object} storage - The storage object
+     * @param {Object} data - The data to save
+     * @param {Object|null} pub - The publication object (optional)
+     * @public
+     * @async
+     */
     SaveData(storage, data, pub = null) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Save', { storage: storage.name, module: storage.module, data: data, pub: pub?.id ?? null })
@@ -591,6 +753,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Save data in list
+     * @param {Object} storage - The storage object
+     * @param {string} module - The module name
+     * @param {Array} data - The data to save
+     * @public
+     * @async
+     */
     SaveDataInList(storage, module, data) {
         return new Promise((resolve, reject) => {
             return this.Call('Data', 'SaveDataList', { storage: storage, module: module, data: data })
@@ -606,10 +776,26 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Reset download process
+     * @param {string} id - The ID of the download process to reset
+     * @public
+     * @async
+     */
     ResetDownload(id) {
         return this.Call('Data', 'StopProcess', { id: id });
     }
 
+    /**
+     * Export data
+     * @param {Object} storage - The storage object
+     * @param {string|null} term - The search term (optional)
+     * @param {Object|null} filters - The filters to apply (optional)
+     * @param {string|null} sortField - The field to sort by (optional)
+     * @param {string|null} sortOrder - The order of sorting (optional)
+     * @public
+     * @async
+     */
     ExportData(storage, term = null, filters = null, sortField = null, sortOrder = null) {
         return new Promise((resolve, reject) => {
             App.Loading.Show();
@@ -628,6 +814,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Import data
+     * @param {Object} storage - The storage object
+     * @param {string} file - The file to import
+     * @public
+     * @async
+     */
     ImportData(storage, file) {
         return new Promise((resolve, reject) => {
             App.Loading.Show();
@@ -644,6 +837,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         })
     }
 
+    /**
+     * Load a specific row of data
+     * @param {Object} storage - The storage object
+     * @param {string} module - The module name
+     * @param {number} rowId - The ID of the row to load
+     * @public
+     * @async
+     */
     LoadRow(storage, module, rowId) {
         return new Promise((resolve, reject) => {
             this.Call('Data', 'Row', { storage: storage, module: module, row: rowId }).then((response) => {
@@ -654,6 +855,17 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Load publications
+     * @param {Object} domain - The domain object
+     * @param {Object} folder - The folder object
+     * @param {string|null} term - The search term (optional)
+     * @param {number} page - The page number (default: 1)
+     * @param {number} pagesize - The number of items per page (default: 20)
+     * @param {boolean} returnPromise - Whether to return a promise (default: false)
+     * @public
+     * @async
+     */
     LoadPublications(domain, folder, term = null, page = 1, pagesize = 20, returnPromise = false) {
         this.Requests('Publications.List')?.Abort();
         const promise = this.Call('Publications', 'List', { domain: (domain?.id ?? domain), folder: folder?.id ?? null, term: term, page: page, pagesize: pagesize }, {}, true, 'Publications.List');
@@ -684,6 +896,19 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Load data
+     * @param {Object} storage - The storage object
+     * @param {string|null} term - The search term (optional)
+     * @param {Object|null} filters - The filters to apply (optional)
+     * @param {string|null} sortField - The field to sort by (optional)
+     * @param {string|null} sortOrder - The order of sorting (optional)
+     * @param {number} page - The page number (default: 1)
+     * @param {number} pagesize - The number of items per page (default: 20)
+     * @param {boolean} returnPromise - Whether to return a promise (default: false)
+     * @public
+     * @async
+     */
     LoadData(storage, term = null, filters = null, sortField = null, sortOrder = null, page = 1, pagesize = 20, returnPromise = false) {
         this.Requests('Data.List')?.Abort();
         const promise = this.Call('Data', 'List', { storage: storage.name, module: storage.module, term: term, filters: filters, sortfield: sortField, sortorder: sortOrder, page: page, pagesize: pagesize }, {}, true, 'Data.List');
@@ -704,7 +929,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
-
+    /**
+     * Save storage
+     * @param {string} module - The module name
+     * @param {Object} data - The data to save
+     * @public
+     * @async
+     */
     SaveStorage(module, data) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'Save', { module: module?.name ?? module, data: data })
@@ -721,6 +952,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         })
     }
 
+    /**
+     * Delete storage
+     * @param {string} module - The module name
+     * @param {string} storage - The storage name
+     * @public
+     * @async
+     */
     DeleteStorage(module, storage) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'Delete', { module: module?.name ?? module, storage: storage?.name ?? storage })
@@ -737,6 +975,13 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Check if a field exists in the storage
+     * @param {Object} storage - The storage object
+     * @param {string} pathTo - The path to the field
+     * @returns {boolean} - True if the field exists, false otherwise
+     * @private
+     */
     _checkFieldExists(storage, pathTo) {
         let fieldExistance = null;
         const pathConverted = 'fieldExistance = storage.fields[\'' + pathTo.replaceAll('/', '\'].fields[\'') + '\'];';
@@ -749,6 +994,16 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         return !!fieldExistance;
     }
 
+    /**
+     * Save a field in the storage
+     * @param {string} module - The module name
+     * @param {Object} storage - The storage object
+     * @param {string} pathTo - The path to the field
+     * @param {Object} data - The data of the field to save
+     * @param {boolean} checkExistance - Whether to check if the field exists (default: true)
+     * @public
+     * @async
+     */
     SaveField(module, storage, pathTo, data, checkExistance = true) {
         return new Promise((resolve, reject) => {
             if (checkExistance && this._checkFieldExists(storage, pathTo)) {
@@ -782,6 +1037,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Delete a field from the storage
+     * @param {string} module - The module name
+     * @param {Object} storage - The storage object
+     * @param {string} path - The path to the field to delete
+     * @public
+     * @async
+     */
     DeleteField(module, storage, path) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'DeleteField', { module: module?.name ?? module, storage: storage?.name ?? storage, path: path })
@@ -798,6 +1061,16 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Move a field within the storage
+     * @param {string} module - The module name 
+     * @param {Object} storage - The storage object
+     * @param {string} pathToMove - The path of the field to move
+     * @param {string} pathRelative - The relative path to move the field to
+     * @param {string} sibling - The sibling status for the move operation
+     * @public
+     * @async
+     */
     MoveField(module, storage, pathToMove, pathRelative, sibling) {
         this.Call('Storages', 'MoveField', { module: module?.name ?? module, storage: storage?.name ?? storage, move: pathToMove, relative: pathRelative, sibling: sibling })
             .then((response) => {
@@ -810,7 +1083,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
             });
     }
 
-
+    /**
+     * Save an index in the storage
+     * @param {string} module - The module name
+     * @param {Object} storage - The storage object
+     * @param {Object} data - The data of the index to save
+     * @public
+     * @async
+     */
     SaveIndex(module, storage, data) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'SaveIndex', { module: module?.name ?? module, storage: storage?.name ?? storage, data: data })
@@ -827,6 +1107,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Save a trigger in the storage
+     * @param {string} module - The module name
+     * @param {Object} storage - The storage object
+     * @param {Object} data - The data of the trigger to save
+     * @public
+     * @async
+     */
     SaveTrigger(module, storage, data) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'SaveTrigger', { module: module?.name ?? module, storage: storage?.name ?? storage, data: data })
@@ -843,6 +1131,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Delete an index from the storage
+     * @param {string} module - The module name
+     * @param {Object} storage - The storage object
+     * @param {Object} index - The index to delete
+     * @public
+     * @async
+     */
     DeleteIndex(module, storage, index) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'DeleteIndex', { module: module?.name ?? module, storage: storage?.name ?? storage, index: index?.name ?? index })
@@ -859,6 +1155,14 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Delete a trigger from the storage
+     * @param {string} module - The module name
+     * @param {Object} storage - The storage object
+     * @param {Object} trigger - The trigger to delete
+     * @public
+     * @async
+     */
     DeleteTrigger(module, storage, trigger) {
         return new Promise((resolve, reject) => {
             this.Call('Storages', 'DeleteTrigger', { module: module?.name ?? module, storage: storage?.name ?? storage, trigger: trigger?.name ?? trigger })
@@ -875,6 +1179,12 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Gets the pages
+     * @param {boolean} returnPromise - Whether to return a promise (default: false)
+     * @public
+     * @async
+     */
     Pages(returnPromise = false) {
         const promise = this.Call('Pages', 'List')
         if (returnPromise) {
@@ -892,6 +1202,12 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Gets the domains
+     * @param {boolean} returnPromise - Whether to return a promise (default: false)
+     * @public
+     * @async
+     */
     Domains(returnPromise = false) {
         const promise = this.Call('Pages', 'Domains')
         if (returnPromise) {
@@ -905,6 +1221,17 @@ App.Modules.Sites = class extends Colibri.Modules.Module {
         });
     }
 
+    /**
+     * Override the Call method to add a raw parameter
+     * @param {string} controller - The controller name
+     * @param {string} method - The method name
+     * @param {Object|null} params - The parameters for the call (optional)
+     * @param {Object} headers - The headers for the call (default: {})
+     * @param {boolean} withCredentials - Whether to include credentials (default: true)
+     * @param {string} requestKeyword - The request keyword (default: Date.Mc())
+     * @returns {Promise} - A promise that resolves with the response
+     * @public
+     */
     Call(controller, method, params = null, headers = {}, withCredentials = true, requestKeyword = Date.Mc()) {
         if (!params) {
             params = {};

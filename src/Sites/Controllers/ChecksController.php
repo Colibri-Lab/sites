@@ -20,6 +20,7 @@ class ChecksController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Domain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {

@@ -7,7 +7,12 @@
 App.Modules.Sites.StoragesManagerListItem = class extends Colibri.UI.Pane {
     
     
-
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.StoragesManagerListItem']);
         this.AddClass('app-manager-storage-list-item-component');
@@ -25,6 +30,7 @@ App.Modules.Sites.StoragesManagerListItem = class extends Colibri.UI.Pane {
      * @protected
      * @param {*} data 
      * @param {String} path 
+     * @ignore
      */
     __renderBoundedValues(data, path) {
         if(!data) {
@@ -34,6 +40,7 @@ App.Modules.Sites.StoragesManagerListItem = class extends Colibri.UI.Pane {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -57,6 +64,10 @@ App.Modules.Sites.StoragesManagerListItem = class extends Colibri.UI.Pane {
         this._value = value;
         this._showValue();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showValue() {
         this.binding = 'app.manage.storages(name=' + this._value.name + ',module=' + this._value.module + ')';
         this._ttl.value = Lang.Translate(this._value.desc);

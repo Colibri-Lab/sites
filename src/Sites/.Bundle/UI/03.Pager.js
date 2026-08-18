@@ -6,6 +6,11 @@
  */
 App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
     
+    /**
+     * @constructor
+     * @param {string} name - The name of the component
+     * @param {Colibri.UI.Pane} container - The container of the component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.UI.Pager']);
@@ -33,6 +38,7 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -44,13 +50,17 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.Dispatch('Changed', {value: this.value});
     }
 
-    /** @protected */
+    /** 
+     * @ignore
+     * @protected
+     */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('Changed', false, 'When page changed');
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -63,6 +73,7 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.Dispatch('Changed', {value: this.value});
     }
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -76,6 +87,7 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -89,6 +101,12 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.Dispatch('Changed', {value: this.value});
     }
 
+    /**
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __currentPagesizeChanged(event, args) {
         if(!this.hasMaxPages || (this._currentPagesize.value >= 1 && this._currentPagesize.value <= this._affected)) {
             this.pageSize = this._currentPagesize.value;
@@ -98,6 +116,10 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this.Dispatch('Changed', {value: this.value});
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     _enableButtons() {
 
         if(!super.enabled) {
@@ -137,6 +159,10 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._value = value;
         this._showValue();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showValue() {
         this._currentPage.value = this._value;
         this._enableButtons();
@@ -158,6 +184,10 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._maxPages = value;
         this._showMaxPages();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showMaxPages() {
         this._maxPagesO.value = '#{sites-ui-pager-of}'.replaceAll('%s', this._maxPages);
         this.value = 1;
@@ -181,14 +211,14 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
     }
 
     /**
-     * 
+     * Affected rows
      * @type {Number}
      */
     get affected() {
         return this._affected;
     }
     /**
-     * 
+     * Affected rows
      * @type {Number}
      */
     set affected(value) {
@@ -196,19 +226,23 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._affected = value;
         this._showAffected();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showAffected() {
         this.maxPages = Math.ceil(this._affected / this._pageSize);
     }
 
     /**
-     * 
+     * Page size
      * @type {Number}
      */
     get pageSize() {
         return this._pageSize;
     }
     /**
-     * 
+     * Page size
      * @type {Number}
      */
     set pageSize(value) {
@@ -216,6 +250,10 @@ App.Modules.Sites.UI.Pager = class extends Colibri.UI.FlexBox {
         this._pageSize = value;
         this._showPageSize();
     }
+    /**~
+     * @ignore
+     * @private
+     */
     _showPageSize() {
         this.maxPages = Math.ceil(this._affected / this._pageSize);
     }

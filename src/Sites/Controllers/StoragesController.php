@@ -24,6 +24,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -93,6 +94,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -139,6 +141,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function SaveField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -202,6 +205,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function MoveField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -266,6 +270,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function DeleteField(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -314,6 +319,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function SaveIndex(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -368,6 +374,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function SaveTrigger(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -422,6 +429,7 @@ class StoragesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function DeleteIndex(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -472,11 +480,12 @@ class StoragesController extends WebController
     }
     
     /**
-     * Deletes an index
+     * Deletes a trigger
      * @param RequestCollection $get
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function DeleteTrigger(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {

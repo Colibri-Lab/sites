@@ -7,6 +7,12 @@
  */
 App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.DataPage']);
 
@@ -55,17 +61,32 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __thisShowClearKey(event, args) {
         if (args.domEvent.key === 'Delete' && args.domEvent.ctrlKey && args.domEvent.altKey && args.domEvent.shiftKey) {
             this._clearData.shown = !this._clearData.shown;
         }
     }
 
+    /**
+     * Disposes the component
+     * @public
+     */
     Dispose() {
         App.RemoveHandler('KeyDown', this.__thisShowClearKey, this);
         super.Dispose();
     }
 
+    /**
+     * Add additional module methods
+     * @private
+     * @ignore
+     */
     _addAdditionalModuleMethods() {
 
         const selection = this._storages.selected;
@@ -106,6 +127,11 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * Show filters window
+     * @private
+     * @ignore
+     */
     _showFilters() {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -128,6 +154,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -136,7 +163,17 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
         this._showFilters();
     }
 
-
+    /**
+     * Load data page
+     * @private
+     * @param {*} storage 
+     * @param {String} searchTerm 
+     * @param {Object} searchFilters 
+     * @param {String} sortField 
+     * @param {String} sortOrder 
+     * @param {Number} page 
+     * @ignore
+     */
     _loadDataPage(storage, searchTerm, searchFilters, sortField, sortOrder, page) {
         this._pagerData.value = page;
         Sites.LoadData(storage, searchTerm, searchFilters, sortField, sortOrder, page, this._pagerData.pageSize);
@@ -144,6 +181,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -161,6 +199,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -193,6 +232,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -203,6 +243,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -216,6 +257,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -228,6 +270,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -237,6 +280,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -264,6 +308,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -297,6 +342,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -321,6 +367,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -363,6 +410,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -405,6 +453,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -449,6 +498,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -464,6 +514,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -484,6 +535,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
 
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -518,6 +570,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -577,6 +630,7 @@ App.Modules.Sites.DataPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments

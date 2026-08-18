@@ -29,6 +29,7 @@ class PagesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Domains(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -54,6 +55,14 @@ class PagesController extends WebController
         return $this->Finish(200, 'ok', $domainsArray);
     }
 
+    /**
+     * Returns a domain data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     * @public
+     */
     public function DomainKeys(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
 
@@ -85,6 +94,7 @@ class PagesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Properties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -140,6 +150,7 @@ class PagesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function SaveProperties(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -192,6 +203,7 @@ class PagesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -230,6 +242,7 @@ class PagesController extends WebController
      * @param mixed|null $payload
      * @throws InvalidArgumentException
      * @return object
+     * @public
      */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -308,6 +321,7 @@ class PagesController extends WebController
      * @param mixed|null $payload
      * @throws InvalidArgumentException
      * @return object
+     * @public
      */
     public function SaveDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -368,6 +382,7 @@ class PagesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -405,6 +420,7 @@ class PagesController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function DeleteDomain(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -440,6 +456,7 @@ class PagesController extends WebController
      * @param mixed|null $payload
      * @throws InvalidArgumentException
      * @return object
+     * @public
      */
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {

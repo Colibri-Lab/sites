@@ -6,6 +6,11 @@
  */
 App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.FieldsViewer {
     
+    /**
+     * @constructor
+     * @param {string} name - The name of the component
+     * @param {Colibri.UI.Pane} container - The container of the component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.UI.DataGridRowTemplateComponent']);
@@ -18,6 +23,10 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
         this._columns = 1;
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     _createFields(fields = null, value = null, contentElement = null, showTitles = true) {
         super._createFields(fields, value, contentElement, showTitles);
         
@@ -34,14 +43,14 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
     }
 
     /**
-     * Количество строк
+     * Rows count
      * @type {Number}
      */
     get rows() {
         return this._rows;
     }
     /**
-     * Количество строк
+     * Rows count
      * @type {Number}
      */
     set rows(value) {
@@ -49,14 +58,14 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
     }
 
     /**
-     * Количество колонок
+     * Columns count
      * @type {Number}
      */
     get columns() {
         return this._columns;
     }
     /**
-     * Количество колонок
+     * Columns count
      * @type {Number}
      */
     set columns(value) {
@@ -64,20 +73,24 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
     }
     
     /**
-     * Ориентация
+     * Orientation
      * @type {string}
      */
     get orientation() {
         return this._orientation;
     }
     /**
-     * Ориентация
+     * Orientation
      * @type {string}
      */
     set orientation(value) {
         this._orientation = value;
         this._showOrientation();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showOrientation() {
         if(this._orientation === 'hr') {
             this.AddClass('-hr');
@@ -88,20 +101,24 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
     }
 
     /**
-     * Порядок следования элементов
+     * Element flow
      * @type {string}
      */
     get flow() {
         return this._flow;
     }
     /**
-     * Порядок следования элементов
+     * Element flow
      * @type {string}
      */
     set flow(value) {
         this._flow = value;
         this._showFlow();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showFlow() {
         if(this._flow === 'column') {
             this.AddClass('-column');
@@ -112,14 +129,14 @@ App.Modules.Sites.UI.DataGridRowTemplateComponent = class extends Colibri.UI.Fie
     }
 
     /**
-     * Отступы между элементами
+     * Gap between elements
      * @type {string}
      */
     get gap() {
         return this._gap;
     }
     /**
-     * Отступы между элементами
+     * Gap between elements
      * @type {string}
      */
     set gap(value) {

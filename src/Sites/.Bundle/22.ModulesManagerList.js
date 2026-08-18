@@ -6,8 +6,12 @@
  */
 App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
     
-    
-
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-manager-module-list-component');
@@ -29,6 +33,7 @@ App.Modules.Sites.ModulesManagerList = class extends Colibri.UI.List {
      * @protected
      * @param {*} data 
      * @param {String} path 
+     * @ignore
      */
     __renderBoundedValues(data, path) {
         

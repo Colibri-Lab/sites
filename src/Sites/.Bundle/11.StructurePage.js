@@ -6,6 +6,12 @@
  */
 App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.StructurePage']);
 
@@ -50,6 +56,14 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * Get additional context menu items for folders
+     * @private
+     * @async
+     * @param {Array} contextmenu current context menu items
+     * @param {*} itemData data of the item for which the context menu is being generated
+     * @returns {Promise<Array>} updated context menu items
+     */
     async _getAdditionalFolderContextItems(contextmenu, itemData) {
         const keys = Object.keys(App.Modules);
         for(const module of keys) {
@@ -61,6 +75,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
         return contextmenu;
     }
 
+    /**
+     * Execute additional context menu item for folders
+     * @private
+     * @param {*} item context menu item
+     * @param {*} menuData additional menu data
+     * @ignore
+     */
     _executeAdditionalFolderContextMenuItem(item, menuData) {
         const keys = Object.keys(App.Modules);
         for(const module of keys) {
@@ -72,6 +93,8 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @async
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -137,6 +160,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -416,6 +440,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -432,6 +457,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -453,6 +479,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -518,6 +545,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -541,6 +569,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -589,6 +618,12 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @private
+     * @param {*} folder folder data
+     * @param {String} searchTerm search term
+     * @param {Number} page page number
+     */
     _loadPublicationsPage(folder, searchTerm, page) {
         this._pagerData.value = page;
         if (folder) {
@@ -602,6 +637,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -612,6 +648,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -636,6 +673,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -648,6 +686,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -660,6 +699,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -682,6 +722,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -741,6 +782,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -750,6 +792,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -787,6 +830,7 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -807,6 +851,13 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @ignore
+     * @private
+     * @param {*} node 
+     * @param {String} add 
+     * @returns {String}
+     */
     _getPath(node, add = null) {
         const storageNode = node.FindParent((node) => node.tag.type === 'domain');
         let paths = [];
@@ -825,7 +876,9 @@ App.Modules.Sites.StructurePage = class extends Colibri.UI.Component {
 
     /**
      * @private
-     * 
+     * @ignore
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
      */
     __pagerDataChanged(event, args) {
         const selected = this._folders.selected;

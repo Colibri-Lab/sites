@@ -6,8 +6,12 @@
  */
 App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
     
-    
-
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-manager-tree-component');
@@ -20,6 +24,12 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         };
     }
 
+    /**
+     * Search for field icon
+     * @protected
+     * @param {*} field 
+     * @ignore
+     */
     _searchForFieldIcon(field) {
     
         let icon = '';
@@ -37,6 +47,12 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         
     }
 
+    /**
+     * Insert module node
+     * @private
+     * @ignore
+     * @param {*} module 
+     */
     _insertModuleNode(module) {
         let moduleNode = this.FindNode(module.name);
         if(!moduleNode) {
@@ -50,6 +66,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return moduleNode;
     }
 
+    /**
+     * Insert storage node
+     * @private
+     * @ignore
+     * @param {*} storageNode 
+     * @param {*} storage 
+     */
     _insertStorageNode(storageNode, storage) {
 
 
@@ -101,6 +124,15 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return storageNode;
     }
 
+    /**
+     * Insert field node
+     * @private
+     * @param {*} storageNode 
+     * @param {String} name
+     * @param {*} field
+     * @param {Number} index
+     * @ignore
+     */
     _insertFieldNode(storageNode, name, field, index) {
         field.name = name;
         this._names.set(storageNode.name + '_' + name, storageNode.name + '_' + name);
@@ -145,6 +177,14 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return fieldNode;
     }
 
+    /**
+     * Insert index node
+     * @private
+     * @param {*} storageNode 
+     * @param {String} name
+     * @param {*} index
+     * @ignore
+     */
     _insertIndexNode(storageNode, name, index) {
         index.name = name;
         this._names.set(storageNode.name + '_' + name, storageNode.name + '_' + name);
@@ -159,6 +199,14 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return fieldNode;
     }
 
+    /**
+     * Insert trigger node
+     * @private
+     * @param {*} storageNode 
+     * @param {String} name
+     * @param {*} trigger
+     * @ignore
+     */
     _insertTriggerNode(storageNode, name, trigger) {
         trigger.name = name;
         this._names.set(storageNode.name + '_' + name, storageNode.name + '_' + name);
@@ -173,6 +221,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         return fieldNode;
     }
 
+    /**
+     * Insert field fields
+     * @private
+     * @param {*} storageNode 
+     * @param {*} storage 
+     * @ignore
+     */
     _insertFieldFields(storageNode, storage) {
         if(!storage.fields) {
             return;
@@ -192,6 +247,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
 
     }
 
+    /**
+     * Insert field indexes
+     * @private
+     * @param {*} storageNode 
+     * @param {*} storage 
+     * @ignore
+     */
     _insertFieldIndexes(storageNode, storage) {
         if(!storage.indices) {
             return;
@@ -209,6 +271,13 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         });
     }
     
+    /**
+     * Insert field triggers
+     * @private
+     * @param {*} storageNode 
+     * @param {*} storage 
+     * @ignore
+     */
     _insertFieldTriggers(storageNode, storage) {
         if(!storage.triggers) {
             return;
@@ -226,10 +295,10 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
         });
     }
 
-
     /**
      * Render bounded to component data
      * @protected
+     * @ignore
      * @param {*} data 
      * @param {String} path 
      */
@@ -249,17 +318,16 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
 
     }
 
-
     /**
      * Storage object
-     * @type {Object}
+     * @type {Colibri.Storages.Store}
      */
     get storage() {
         return this._storageObject;
     }
     /**
      * Storage object
-     * @type {Object}
+     * @type {Colibri.Storages.Store}
      */
     set storage(value) {
         this._storageObject = value;
@@ -272,7 +340,6 @@ App.Modules.Sites.StoragesManagerTree = class extends Colibri.UI.Tree {
             this.nodes.Clear();
         }
 
-  
     }
     
 }

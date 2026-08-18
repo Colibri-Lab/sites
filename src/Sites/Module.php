@@ -33,6 +33,10 @@ use CometApiClient\Client as CometClient;
 class Module extends BaseModule
 {
 
+    /**
+     * Comet API client
+     * @var CometClient|null $_cometApiClient
+     */
     private ?CometClient $_cometApiClient = null;
 
     /**
@@ -45,6 +49,7 @@ class Module extends BaseModule
 
     /**
      * Returns a topmost menu for backend
+     * @public
      */
     public function GetTopmostMenu(): Item|array |null
     {
@@ -66,6 +71,7 @@ class Module extends BaseModule
     /**
      * Returns a permissions for module
      * @return array
+     * @public
      */
     public function GetPermissions(): array
     {
@@ -123,6 +129,7 @@ class Module extends BaseModule
      * @param Logger $logger
      * @param string $path
      * @return void
+     * @public
      */
     public function Backup(Logger $logger, string $path)
     {
@@ -150,6 +157,11 @@ class Module extends BaseModule
 
     }
 
+    /**
+     * Gets the comet client instance
+     * @return CometClient
+     * @public
+     */
     public function GetCometClient(): CometClient
     {
         if(!$this->_cometApiClient) {

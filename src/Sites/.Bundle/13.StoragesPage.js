@@ -6,6 +6,12 @@
  */
 App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.StoragesPage']);
 
@@ -55,6 +61,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * Add field as child
+     * @private
+     * @ignore
+     */
     _canAddFieldAsChild(field) {
         if(!field.component) {
             return false;
@@ -66,6 +77,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -82,6 +94,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */    
     __storagesSelectionChanged(event, args) {
         const selected = this._storages.selected;
         if (!selected) {
@@ -93,7 +111,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
-     * @private* @param {Colibri.Events.Event} event event object
+     * @ignore
+     * @private 
+     * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
      */
     __renderModulesContextMenu(event, args) {
@@ -105,6 +125,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -126,7 +147,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
     }
 
-
+    /**
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __renderStorageContextMenu(event, args) {
 
         let contextmenu = [];
@@ -231,6 +257,10 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     _storageFields() {
         return {
             name: 'Storage',
@@ -592,6 +622,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         };
     }
 
+    /**
+     * @ignore
+     * @private
+     * @param {boolean} showGroup - Whether to show the group field
+     * @param {Object} moduleNode - The module node object
+     * @param {Object} initialValue - The initial value for the fields
+     */
     _fieldFields(showGroup = true, moduleNode, initialValue) {
         const storage = this._storages.selected.value;
         const dbms = storage.dbms;
@@ -1572,6 +1609,11 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return fields;
     }
 
+    /**
+     * Get the virtual fields fields for the selected storage
+     * @ignore
+     * @private
+     */
     _fieldVirtualFields() {
         const storage = this._storages.selected.value;
         const dbms = storage.dbms;
@@ -1752,6 +1794,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return fields;
     }
 
+    /**
+     * Get the index fields for the selected storage
+     * @ignore
+     * @private
+     * @param {string} storageName - The name of the storage
+     */
     _fieldIndex(storageName) {
         /**
          * 
@@ -1902,6 +1950,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         };
     }
 
+    /**
+     * Get the trigger fields for the selected storage
+     * @param {string} storageName - The name of the storage
+     * @ignore
+     * @private
+     */
     _fieldTrigger(storageName) {
         const storage = this._storages.selected.value;
         const dbms = storage.dbms;
@@ -1953,6 +2007,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return fields;
     }
 
+    /**
+     * Get the path of the node in the storage tree
+     * @param {Object} node - The node object
+     * @param {string|null} add - An optional string to add to the path
+     * @returns {string} The path of the node
+     * @ignore
+     * @private
+     */
     _getPath(node, add = null) {
         const storageNode = node.FindParent((node) => node.tag.type === 'storage');
         let paths = [];
@@ -1969,6 +2031,14 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         return path;
     }
 
+    /**
+     * Get the path of the node in the storage tree
+     * @param {Object} node - The node object
+     * @param {string|null} add - An optional string to add to the path
+     * @returns {string} The path of the node
+     * @ignore
+     * @private
+     */
     __renderModulesDoubleClicked(event, args) {
         const moduleNode = this._modules.selected; // node.FindParent((node) => node.tag.type === 'module');
         if (Security.IsCommandAllowed('sites.storages.add')) {
@@ -1998,7 +2068,9 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * Get the path of the node in the storage tree
      * @private
+     * @ignore
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
      */
@@ -2043,6 +2115,13 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * Get the path of the node in the storage tree
+     * @private
+     * @ignore
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __renderStoragesDoubleClicked(event, args) {
         const module = this._modules.selected;
         if (!module) {
@@ -2076,6 +2155,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -2205,6 +2285,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __storageNodeDoubleClicked(event, args) {
         const module = this._modules.selected;
         if (!module) {
@@ -2376,6 +2462,12 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
         }
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __clickOnStorageContextMenu(event, args) {
         const module = this._modules.selected;
         if (!module) {
@@ -2792,6 +2884,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -2813,6 +2906,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -2845,6 +2939,7 @@ App.Modules.Sites.StoragesPage = class extends Colibri.UI.Component {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments

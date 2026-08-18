@@ -28,6 +28,7 @@ class PublicationsController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -79,6 +80,7 @@ class PublicationsController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Copy(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -126,6 +128,7 @@ class PublicationsController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -155,6 +158,7 @@ class PublicationsController extends WebController
      * @param mixed|null $payload
      * @throws InvalidArgumentException
      * @return object
+     * @public
      */
     public function Create(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -234,6 +238,7 @@ class PublicationsController extends WebController
      * @param mixed|null $payload
      * @throws InvalidArgumentException
      * @return object
+     * @public
      */
     public function Publish(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -305,6 +310,7 @@ class PublicationsController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Move(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {

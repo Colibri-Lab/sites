@@ -5,6 +5,11 @@
  */
 App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
     
+    /**
+     * @constructor
+     * @param {string} name - The name of the component
+     * @param {Colibri.UI.Pane} container - The container of the component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.Widgets.StoragesWidget']);
@@ -25,7 +30,7 @@ App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
      * Render bounded to component data
      * @protected
      * @param {*} data 
-     * @param {String} path 
+     * @param {String} path
      */
     __renderBoundedValues(data, path) {
         if(!data) {
@@ -41,6 +46,10 @@ App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
 
     } 
 
+    /**
+     * @static
+     * @public
+     */
     static Params() {
         return {
             defaultIndex: 5,

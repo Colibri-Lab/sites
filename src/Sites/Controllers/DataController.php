@@ -39,6 +39,7 @@ class DataController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function List(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -90,6 +91,7 @@ class DataController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Row(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -126,6 +128,7 @@ class DataController extends WebController
      * @param mixed|null $payload
      * @throws InvalidArgumentException
      * @return object
+     * @public
      */
     public function Save(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -205,6 +208,7 @@ class DataController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Delete(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -248,6 +252,7 @@ class DataController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Clear(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -286,6 +291,7 @@ class DataController extends WebController
      * @param RequestCollection $post
      * @param mixed|null $payload
      * @return object
+     * @public
      */
     public function Restore(RequestCollection $get, RequestCollection $post, mixed $payload = null): object
     {
@@ -323,6 +329,14 @@ class DataController extends WebController
         return $this->Finish(200, 'ok');
     }
 
+    /**
+     * Stops a process
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param mixed|null $payload
+     * @return object
+     * @public
+     */
     public function StopProcess(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
         if (!SecurityModule::Instance()->current) {
@@ -344,6 +358,7 @@ class DataController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Export(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
@@ -407,6 +422,7 @@ class DataController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Import(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
@@ -476,6 +492,7 @@ class DataController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function SaveDataList(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {

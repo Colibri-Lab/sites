@@ -6,6 +6,12 @@
  */
 App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
     
+    /**
+     * Constructor
+     * @param {string} name - The name of the component
+     * @param {Colibri.UI.Component} container - The container of the component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-manager-folder-tree');
@@ -20,11 +26,21 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         this.AddHandler('NodeCollapsed', this.__thisNodeExpanded);
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __thisSearched(event, args) {
         this.nodes.Clear();
         this._renderDomains(args.term);
     }
 
+    /**
+     * @private
+     * @ignore
+     */
     _setIcon(node) {
         if(node.expanded && !node.isLeaf) {
             node.icon = App.Modules.Sites.Icons.FolderIconPublished; 
@@ -33,6 +49,12 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         }
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __thisNodeExpanded(event, args) {
         
         if(!args.node.isLeaf && args.node?.nodes?.Children('firstChild')?.name === 'fake') {
@@ -48,6 +70,14 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         
     }
 
+    /**
+     * Find the level of folders for the specified domain and parent
+     * @param {string} domain - The domain id
+     * @param {string} parent - The parent folder id
+     * @returns {Array} - The list of folders at the specified level
+     * @private
+     * @ignore
+     */
     _findLevel(domain, parent) {
         let ret = [];
         for(const folder of this._foldersList) {
@@ -67,6 +97,15 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         return ret;
     }
 
+    /**
+     * Insert a folder node into the tree
+     * @param {Colibri.UI.TreeNode} parenNode - The parent node to insert the folder into
+     * @param {Object} folder - The folder object to insert
+     * @param {string} term - The search term (optional)
+     * @returns {Colibri.UI.TreeNode} - The newly inserted node
+     * @private
+     * @ignore
+     */
     _insertFolderNode(parenNode, folder, term = '') {
         let newNode = this.FindNode('folder' + folder.id);
         if(!newNode) {
@@ -91,6 +130,14 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         return newNode;
     }
 
+    /**
+     * Add a fake node to the specified parent node to indicate loading
+     * @param {Colibri.UI.TreeNode} node - The node to add the fake child to
+     * @param {string} parent - The parent folder id
+     * @param {string} domain - The domain id
+     * @private
+     * @ignore
+     */
     _addFake(node, parent, domain) {
 
         const level = this._findLevel((domain?.id ?? domain), parent);
@@ -103,6 +150,15 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
 
     }
 
+    /**
+     * Render the folders at the specified level
+     * @param {Colibri.UI.TreeNode} node - The parent node to render into
+     * @param {string} parent - The parent folder id
+     * @param {string} domain - The domain id
+     * @param {string} term - The search term (optional)
+     * @private
+     * @ignore
+     */
     _renderLevel(node, parent, domain, term = '') {
         
 
@@ -135,6 +191,12 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
 
     }
 
+    /**
+     * Render the pages for all domains
+     * @returns {Promise} - A promise that resolves when rendering is complete
+     * @private
+     * @ignore
+     */
     _renderPages() {
         return new Promise((resolve, reject) => {
             for(const domain of this._domainsList) {
@@ -145,7 +207,11 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
         });
     }
 
-
+    /**
+     * Render the domains and their folders
+     * @private
+     * @ignore
+     */
     _renderDomains() {
 
         const term = this.searchBoxText;
@@ -186,6 +252,11 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
 
     }
 
+    /**
+     * Remove nodes that no longer exist in the current data
+     * @private
+     * @ignore
+     */
     _removeUnexistent() {
         this.allNodes.forEach((node) => {
             if(node.tag === null) {
@@ -206,6 +277,7 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
      * @protected
      * @param {*} data 
      * @param {String} path 
+     * @ignore
      */
     __renderBoundedValues(data, path) {
 
@@ -245,6 +317,14 @@ App.Modules.Sites.FoldersTree = class extends Colibri.UI.Tree {
 
     }
 
+    /**
+     * Get the path of a folder by traversing its parents
+     * @param {Object} f - The folder object
+     * @param {Array} list - The list of all folders
+     * @returns {Array} - The path of folder ids from root to the specified folder
+     * @private
+     * @ignore
+     */
     _getPath(f, list) {
         let ret = [];
         ret.push(f.id);

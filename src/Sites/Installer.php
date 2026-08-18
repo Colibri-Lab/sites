@@ -5,6 +5,7 @@ namespace App\Modules\Sites;
 
 /**
  * @suppress PHP0419
+ * @ignore
  */
 class Installer
 {

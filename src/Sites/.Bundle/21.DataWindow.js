@@ -6,6 +6,13 @@
  */
 App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
+    /**
+     * Constructor
+     * @param {String} name component name
+     * @param {Colibri.UI.Component} container parent component
+     * @param {String} title window title
+     * @constructor
+     */
     constructor(name, container, title) {
         super(name, container, Colibri.UI.Templates['App.Modules.Sites.DataWindow'], title);
 
@@ -32,6 +39,11 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
     }
 
+    /**
+     * Show the window
+     * @param {Function} publicationCallback callback function to be called when the save button is clicked
+     * @public
+     */
     Show(publicationCallback) {
 
         this._publicationCallback = publicationCallback;
@@ -40,6 +52,7 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -50,13 +63,14 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
     /**
      * @private
-     * 
+     * @ignore
      */
     __searchFilterClicked(event, args) {
         this._showFilters();
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -73,12 +87,23 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
         this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, 1);
     }
 
+    /**
+     * @private
+     * @param {String} storage storage name
+     * @param {String} searchTerm search term
+     * @param {Object} filters filters object
+     * @param {String} sortField sort field name
+     * @param {String} sortOrder sort order (asc or desc)
+     * @param {Number} page page number
+     * @ignore
+     */
     _loadDataPage(storage, searchTerm, filters, sortField, sortOrder, page) {
         this._pagerData.value = page;
         Sites.LoadData(storage, searchTerm, filters, sortField, sortOrder, page, this._pagerData.pageSize);
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -105,6 +130,7 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -116,6 +142,7 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -149,6 +176,10 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
 
     }
 
+    /**
+     * @private
+     * @ignore
+     */
     _showFilters() {
         const selection = this._storages.selected;
         const storage = selection?.tag;
@@ -170,6 +201,12 @@ App.Modules.Sites.DataWindow = class extends Colibri.UI.Window {
             .catch(() => { });
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __pagerDataChanged(event, args) {
         const selected = this._storages.selected;
         this._loadDataPage(selected?.tag, this._searchInput.value, this._filterData, this._data.sortColumn?.name, this._data.sortOrder, this._pagerData.value);

@@ -6,6 +6,12 @@
  */
 App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
+    /**
+     * Constructor for the DataGrid component
+     * @param {string} name - The name of the component
+     * @param {HTMLElement} container - The container element for the component
+     * @constructor
+     */
     constructor(name, container) {
         super(name, container);
         this.AddClass('app-manager-datagrid-component');
@@ -22,6 +28,12 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __thisColumnContextMenu(event, args) {
         if(args.column.name === 'empty') {
             return false;
@@ -40,7 +52,12 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         return false;
     }
 
-    
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */    
     __thisColumnContextMenuItemClicked(event, args) {
         if (args.menuData?.name === 'hide') {
             args.column.Hide();
@@ -55,6 +72,12 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this.Dispatch('Scrolled');
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __thisCustomContextMenuButtonClicked(event, args) {
         const contextmenu = [];
         Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
@@ -72,6 +95,12 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
 
     }
 
+    /**
+     * @param {Colibri.UI.Event} event - The event object
+     * @param {Object} args - The arguments of the event
+     * @private
+     * @ignore
+     */
     __thisCustomContextMenuButtonContextMenuItemClicked(event, args) {
         if (args.menuData?.name === 'restore-all') {
             Object.forEach(this.header.FindAllColumns(), (nameColumn, column) => {
@@ -87,6 +116,11 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this._renderCustomContextMenuIfNeeded();
     }
 
+    /**
+     * Render the custom context menu if needed
+     * @private
+     * @ignore
+     */
     _renderCustomContextMenuIfNeeded() {
        
         const hiddenColumns = [];
@@ -110,6 +144,7 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -119,6 +154,10 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         this._sortData = {name: this.sortColumn?.name, order: this.sortOrder};
     }
 
+    /**
+     * Storage object
+     * @type {Colibri.Storages.Store}
+     */
     set storage(value) {
         if(value === null) {
             this._storageChanged = true;
@@ -130,14 +169,26 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
         }
     }
 
+    /**
+     * Storage object
+     * @type {Colibri.Storages.Store}
+     */
     get storage() {
         return this._storageObject;
     }
 
+    /**
+     * Value
+     * @type {*}
+     */
     set value(value) {
         this.__renderBoundedValues(value);
     }
 
+    /**
+     * Value
+     * @type {*}
+     */
     get value() {
         return super.value;
     }
@@ -163,7 +214,8 @@ App.Modules.Sites.DataGrid = class extends Colibri.UI.Grid {
      * Render bounded to component data
      * @protected
      * @param {*} data 
-     * @param {String} path 
+     * @param {String} path
+     * @ignore 
      */
     __renderBoundedValues(data, path) {
 
