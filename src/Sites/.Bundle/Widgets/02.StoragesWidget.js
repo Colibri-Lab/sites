@@ -29,6 +29,7 @@ App.Modules.Sites.Widgets.StoragesWidget = class extends Colibri.UI.Widget {
     /**
      * Render bounded to component data
      * @protected
+     * @ignore
      * @param {*} data 
      * @param {String} path
      */

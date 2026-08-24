@@ -171,7 +171,10 @@ class DataController extends WebController
         $accessPoint->Begin();
 
         try {
-            /** @var QueryInfo $res */
+            /** 
+             * @var QueryInfo $res
+             * @ignore
+             */
             if (($res = $datarow->Save(true)) !== true) {
                 throw new InvalidArgumentException($res->error, 400);
             }
@@ -440,7 +443,10 @@ class DataController extends WebController
         $file = $post->{'file'};
         $file = str_replace('file(', '', $file);
         $file = str_replace(')', '', $file);
-        /** @var RequestedFile */
+        /** 
+         * @var RequestedFile
+         * @ignore
+         */
         $file = App::$request->files->$file;
         $filesToRemove = [];
         $dirsToRemove = [];
@@ -535,7 +541,10 @@ class DataController extends WebController
                     $datarow->$key = $value;
                 }
 
-                /** @var QueryInfo $res */
+                /** 
+                 * @var QueryInfo $res
+                 * @ignore
+                 */
                 if (($res = $datarow->Save(true)) !== true) {
                     throw new InvalidArgumentException($res->error, 400);
                 }

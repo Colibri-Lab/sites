@@ -110,7 +110,10 @@ class Text extends BaseModelDataRow
         $xml = XmlNode::LoadHtmlNode($text, 'utf-8');
         $components = $xml->Query('//component');
         foreach ($components as $component) {
-            /** @var XmlNode $component */
+            /** 
+             * @var XmlNode $component
+             * @ignore
+             */
 
             $args = $args->GetData();
             foreach ($component->attributes as $attr) {

@@ -266,7 +266,10 @@ class Page extends BaseModelDataRow
 
         $parent = $this->parent;
         while ($parent) {
-            /** @var Page $parent */
+            /** 
+             * @var Page $parent
+             * @ignore
+             */
             $template = $parent->additional->settings->template;
             if ($template) {
                 break;
@@ -291,7 +294,10 @@ class Page extends BaseModelDataRow
 
         $parent = $this->parent;
         while ($parent) {
-            /** @var Page $parent */
+            /** 
+             * @var Page $parent
+             * @ignore
+             */
             $component = $parent->additional->settings->component;
             if ($component) {
                 break;
