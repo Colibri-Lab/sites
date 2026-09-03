@@ -227,11 +227,14 @@ class PagesController extends WebController
             }
         }
 
-        $pages = Pages::LoadByDomains($domainIds);
         $pagesArray = [];
-        foreach ($pages as $page) {
-            $pagesArray[$page->id] = $page->ToArrayForBackend();
+        $pages = Pages::LoadByDomains($domainIds);
+        if($pages) {
+            foreach ($pages as $page) {
+                $pagesArray[$page->id] = $page->ToArrayForBackend();
+            }
         }
+
         return $this->Finish(200, 'ok', $pagesArray);
     }
 
