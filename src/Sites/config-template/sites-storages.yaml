@@ -32,7 +32,7 @@ pubs:
         storage:
           name: domains
           title: description
-          value: id
+          value: idS
     page:
       type: bigint
       class: App\Modules\Sites\Models\Page
